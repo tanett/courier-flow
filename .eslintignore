@@ -1,0 +1,8 @@
+node_modules/
+.idea/
+.git/
+reportWebVitals.ts
+src/react-app-env.d.ts
+config/
+public/
+*.svg

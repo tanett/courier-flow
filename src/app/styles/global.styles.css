@@ -1,0 +1,28 @@
+
+.mantine-Skeleton-root::before {
+    background-color: transparent;
+}
+
+.mantine-Skeleton-root:after {
+    background-color: #E5E7EB;
+}
+
+.mantine-Pagination-control {
+    background-color: transparent;
+    border-radius: 2px;
+    border-color: #DDD6FE;
+}
+
+.mantine-UnstyledButton-root.mantine-Pagination-control:hover {
+    background-color: #eff6ff;
+}
+
+.mantine-UnstyledButton-root.mantine-Pagination-control[data-active="true"] {
+    border-color: #3B82F6;
+    background-color: transparent;
+    color: #3B82F6;
+}
+
+.mantine-UnstyledButton-root.mantine-Pagination-control[data-active="true"]:hover {
+    background-color: #eff6ff;
+}
