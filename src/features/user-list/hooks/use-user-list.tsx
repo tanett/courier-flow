@@ -20,13 +20,15 @@ export function useUserList() {
 
     const filters: typeSearchFilter = {
         archived: false,
-        accessScopes: [ accessScope.merchant ],
+        accessScopes: [ accessScope.merchant, accessScope.store ],
     };
 
     if (urlParams.searchPhrase) filters.searchText = urlParams.searchPhrase;
 
     const roleId = urlParams.getFilterValue('roleId');
     if (roleId && typeof roleId === 'string') filters.roleIds = [ roleId ];
+    const storeId = urlParams.getFilterValue('storeId');
+    if (storeId && typeof storeId === 'string') filters.storeIds = [ storeId ];
 
     const requestData: typeSearchRequest<typeSearchFilter, 'FULL_NAME'> = {
         filter: filters,

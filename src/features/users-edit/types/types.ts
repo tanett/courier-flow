@@ -2,5 +2,6 @@ export type typeUsersEditForm = {
     fullName:string,
     email: string,
     phone: string,
-    roleId: string
+    roleId: string,
+    storeIds: string[]
 }

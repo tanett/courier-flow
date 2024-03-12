@@ -3,7 +3,7 @@ import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeUsersCreateForm } from '../types/types';
 import { initialUsersCreateForm } from '../form/form';
-import { useAppDispatchT } from 'app/state';
+import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -16,10 +16,12 @@ import { typeUsersCreate } from '../../../entities/users/model/types';
 import { useCreateUserMutation } from '../../../entities/users/api/api';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
-import useGetRolesData from 'features/users-create/helpers/use-get-roles-data';
 import { routerPaths } from '../../../app/config/router-paths';
 import { isPossiblePhoneNumber } from 'libphonenumber-js';
 import { IconChevronDown } from '@tabler/icons-react';
+import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search-store';
+import { PhoneInputWithCountrySelector } from 'shared/ui/phoneInput';
+import useGetRolesDataForSelector from '../../../entities/role/hooks/useGetRolesDataForSelector';
 
 
 export const UsersCreateNew: React.FC = () => {
@@ -38,46 +40,55 @@ export const UsersCreateNew: React.FC = () => {
 
     const [ isInProgress, setIsInProgress ] = useState(false);
 
+    const currentUser = useSelectorT(state => state.userProfile.userProfile);
+
+
     // set roles
     const {
         roles,
         isRolesFetching,
-    } = useGetRolesData();
+    } = useGetRolesDataForSelector();
 
     const onSave = async () => {
 
-        setIsInProgress(true);
+        if (currentUser) {
 
-        const { phone } = userForm.values;
+            setIsInProgress(true);
 
-        const dataObject: typeUsersCreate = {
-            fullName: userForm.values.fullName.trim(),
-            email: userForm.values.email.trim(),
-            phone: isPossiblePhoneNumber(phone) ? phone : undefined,
-            roleId: userForm.values.roleId,
-            temporaryPassword: true,
-        };
+            const { phone } = userForm.values;
 
-        try {
+            const dataObject: typeUsersCreate = {
+                fullName: userForm.values.fullName.trim(),
+                email: userForm.values.email.trim(),
+                phone: isPossiblePhoneNumber(phone) ? phone : undefined,
+                roleId: userForm.values.roleId,
+                temporaryPassword: true,
+                merchantId: currentUser.actor.merchantId,
+                storeIds: userForm.values.storeIds.length > 0 ? userForm.values.storeIds : undefined,
+            };
 
-            await createUser(dataObject).unwrap();
+            try {
 
-            dispatchAppT(notificationActions.addNotification({
-                type: NOTIFICATION_TYPES.SUCCESS,
-                message: i18n._(t`User created successfully.`),
-            }));
+                await createUser(dataObject).unwrap();
 
-            navigate(routerPaths.users, { replace: true });
+                dispatchAppT(notificationActions.addNotification({
+                    type: NOTIFICATION_TYPES.SUCCESS,
+                    message: i18n._(t`User created successfully.`),
+                }));
 
-        } catch (err) {
+                navigate(routerPaths.users, { replace: true });
 
-            errorHandler(err as typeResponseError, 'onCreateUser', dispatchAppT);
+            } catch (err) {
+
+                errorHandler(err as typeResponseError, 'onCreateUser', dispatchAppT);
+                setIsInProgress(false);
+
+            }
+
+
             setIsInProgress(false);
 
         }
-
-
-        setIsInProgress(false);
 
     };
 
@@ -100,7 +111,7 @@ export const UsersCreateNew: React.FC = () => {
                             label={ <Trans>Full name</Trans> }
                             placeholder={ i18n._(t`User name`) }
                             { ...userForm.getInputProps('fullName') }
-                            maxLength={150}
+                            maxLength={ 150 }
                         />
                         <Select
                             withAsterisk
@@ -113,7 +124,13 @@ export const UsersCreateNew: React.FC = () => {
                             { ...userForm.getInputProps('roleId') }
                             placeholder={ i18n._(t`Select a role`) }
                             rightSection={ isRolesFetching ? <Loader size="xs"/> : <IconChevronDown size="1rem"/> }
-                            sx={{ '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+                        />
+                        <MultiSelectorWithSearchStore
+                            required={false}
+                            fieldName={'storeIds'}
+                            form={userForm}
+                            initialValue={null}
                         />
                     </SimpleGrid>
                 </FieldsetForForm>
@@ -125,19 +142,20 @@ export const UsersCreateNew: React.FC = () => {
                             label={ <Trans>Email</Trans> }
                             placeholder="example@email.com"
                             { ...userForm.getInputProps('email') }
-                            maxLength={100}
+                            maxLength={ 100 }
                         />
-                        {/* <PhoneInputWithMoskito */}
-                        {/*     formGetInputProps={userForm.getInputProps('phone')} */}
-                        {/*     onInput={ e => userForm.setFieldValue('phone', e.currentTarget.value)} */}
-                        {/*     value={userForm.values.phone} */}
-                        {/* /> */}
+                        <PhoneInputWithCountrySelector
+                            isRequired={false}
+                            {...userForm.getInputProps('phone')}
+                            value={ userForm.values.phone }
+                            onChange={(value: string) => userForm.setFieldValue('phone', value)}
+                        />
                     </SimpleGrid>
                 </FieldsetForForm>
-                <Space h={10}/>
+                <Space h={ 10 }/>
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
-                    <Button key="submit" disabled={ !!Object.values(userForm.errors).length || isInProgress}
+                    <Button key="submit" disabled={ !!Object.values(userForm.errors).length || isInProgress }
                         type="submit">{ t`Save` }</Button>
                 </Flex>
 

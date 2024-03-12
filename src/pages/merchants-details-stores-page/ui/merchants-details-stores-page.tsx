@@ -9,7 +9,7 @@ import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
 
 import { MerchantDetailsStores } from 'features/merchant-details-stores';
 import { useIsAllowedPermissions } from 'entities/users/hooks/use-is-allowed-permissions';
-import {  remoteControlMerchantPermissions } from 'app/config/permissions-config';
+import { remoteControlMerchantPermissions } from 'app/config/permissions-config';
 
 
 const MerchantsDetailsStoresPage: React.FC = () => {

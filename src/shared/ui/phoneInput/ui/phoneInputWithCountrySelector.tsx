@@ -35,7 +35,7 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
 
         }
 
-    }, []);
+    }, [ value ]);
 
 
     useEffect(() => {

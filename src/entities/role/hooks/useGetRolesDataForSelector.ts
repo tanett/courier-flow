@@ -1,4 +1,4 @@
-import { useLazySearchRolesQuery } from 'entities/role/api/api';
+import { useLazySearchRolesQuery } from '../../../entities/role/api/api';
 import { useEffect, useState } from 'react';
 import type { SelectItem } from '@mantine/core';
 import { accessScope } from 'app/config/api-constants';
@@ -17,7 +17,7 @@ const useGetRolesDataForSelector = () => {
 
             const response = await getRoles({
                 filter: {
-                    accessScopes: [ accessScope.admin ],
+                    accessScopes: [ accessScope.merchant, accessScope.store ],
                     clientRole: false,
                 },
                 pagination: {

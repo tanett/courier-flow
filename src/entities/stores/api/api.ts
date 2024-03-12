@@ -24,18 +24,6 @@ export const storesApi = baseApi.injectEndpoints({
         }),
 
 
-        // create store
-        createStore: builder.mutation<typeStore, typeCreateStoreRequest >({
-            query: (data) => (
-                {
-                    url: API_URLS.STORES_CREATE,
-                    method: 'POST',
-                    headers: protectedRoutsAPIHeaderCreator(),
-                    body: data,
-                }
-            ),
-        }),
-
         // patch store
         patchStore: builder.mutation<typeStore, typeEditStoreRequest >({
             query: (data) => (
@@ -48,17 +36,6 @@ export const storesApi = baseApi.injectEndpoints({
             ),
         }),
 
-        // archive store
-        archiveStores: builder.mutation<unknown, string[] >({
-            query: (data) => (
-                {
-                    url: API_URLS.STORES_ARCHIVE,
-                    method: 'PATCH',
-                    headers: protectedRoutsAPIHeaderCreator(),
-                    body: data,
-                }
-            ),
-        }),
 
         // get store by id
         getStoreById: builder.query<typeStore, string>({
@@ -80,7 +57,5 @@ export const {
     useLazySearchStoreQuery,
     useGetStoreByIdQuery,
     useLazyGetStoreByIdQuery,
-    useArchiveStoresMutation,
-    useCreateStoreMutation,
     usePatchStoreMutation,
 } = storesApi;

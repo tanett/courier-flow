@@ -17,7 +17,7 @@ export function useRolesList() {
     const [ rolesList, setRolesList ] = useState<typeRolesExtended[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
-    const filters: typeSearchRolesFilter = { accessScopes: [ accessScope.merchant ] };
+    const filters: typeSearchRolesFilter = { accessScopes: [ accessScope.merchant, accessScope.store ], clientRole: false };
 
     if (urlParams.searchPhrase) filters.searchText = urlParams.searchPhrase;
 

@@ -1,5 +1,8 @@
-import { typeFilterForm } from '../types/types';
+import { typeUsersFilterForm } from '../types/types';
 
-export const initialUserFilterForm: typeFilterForm = { roleId: null };
+export const initialUserFilterForm: typeUsersFilterForm = {
+    roleId: null,
+    storeId: null,
+};
 
 export const userFilterForm = { initialValues: initialUserFilterForm };

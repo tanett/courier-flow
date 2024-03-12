@@ -1,4 +1,5 @@
 import { t } from '@lingui/macro';
+import { isValidPhoneNumberByLength } from 'shared/helpers/isValidPhoneNumber';
 
 
 export const initialUsersEditForm = {
@@ -7,6 +8,7 @@ export const initialUsersEditForm = {
         email: '',
         phone: '',
         roleId: '',
+        storeIds: [],
     },
     validate: {
         fullName: (value: string) => {
@@ -31,8 +33,8 @@ export const initialUsersEditForm = {
         },
         phone: (value: string) => {
 
-            return value.length > 13
-                ? t`Invalid phone number format`
+            return value !== ''
+                ? isValidPhoneNumberByLength(value) ? null : t`Invalid phone number format`
                 : null;
 
         },

@@ -30,9 +30,46 @@ export const addProductsPermissions = [ 'product.all-operations-in-own-merchant'
 export const editProductsPermissions = [ 'product.all-operations-in-own-merchant', 'product.write-to-own-merchant'];
 
 // category of products
-
 export const readCategoryPermissions = [ 'product-category.all-operations-in-own-merchant', 'product-category.read-from-own-merchant'];
 export const addCategoryPermissions = [ 'product-category.all-operations-in-own-merchant', 'product-category.write-to-own-merchant'];
 export const editCategoryPermissions = [ 'product-category.all-operations-in-own-merchant', 'product-category.write-to-own-merchant'];
 
-// todo add cash desk , billing, refund, sales, retail-product, roles
+// roles
+export const readRolesPermissions = [ 'role.read-common-merchant-roles', 'role.read-from-own-merchant'];
+export const addRolesPermissions = [ 'role.write-to-own-merchant'];
+export const editRolesPermissions = [ 'role.write-to-own-merchant'];
+
+//sales
+export const readSalesPermissions = [ 'sale.read-from-own-merchant', 'sale.read-from-own-merchant-by-public-id', 'sale.read-from-own-store'];
+export const addSalesPermissions = [ 'sale.write-to-own-merchant', 'sale.write-to-own-store'];
+export const editSalesPermissions = [ 'sale.write-to-own-merchant', 'sale.write-to-own-store'];
+
+// refund
+export const readRefundsPermissions = [ 'refund.read-from-own-merchant', 'refund.read-from-own-store'];
+export const addRefundsPermissions = [ 'refund.write-to-own-merchant', 'refund.write-to-own-store'];
+export const editRefundsPermissions = [ 'refund.write-to-own-merchant', 'refund.write-to-own-store'];
+
+// billing
+export const readBillingPermissions = [ 'bill.read-from-own-merchant'];
+
+// balance
+export const readBalancePermissions = [ 'balance.read-from-own-merchant'];
+
+// balance-payment
+export const readBalancePaymentPermissions = [ 'balance-payment.read-from-own-merchant'];
+
+// cash desks
+export const readCashDesksPermissions = [ 'cash-desk.read-from-own-merchant', 'cash-desk.read-from-own-store'];
+export const addCashDesksPermissions = [ 'cash-desk.write-to-own-store'];
+export const editCashDesksPermissions = [ 'cash-desk.write-to-own-store'];
+
+// cash desks operation
+export const readCashDesksOperationPermissions = [ 'cash-desk-operation.read-from-own-merchant', 'cash-desk-operation.read-from-own-store'];
+export const addCashDesksOperationPermissions = [ 'cash-desk-operation.write-to-own-store'];
+export const editCashDesksOperationPermissions = [ 'cash-desk-operation.write-to-own-store'];
+
+// retail product
+export const readRetailProductPermissions = [ 'retail-product.all-operations-in-own-merchant', 'retail-product.read-from-own-merchant', 'retail-product.read-from-own-store'];
+export const addRetailProductPermissions = [ 'retail-product.all-operations-in-own-merchant', 'retail-product.write-to-own-merchant', 'retail-product.write-to-own-store'];
+export const editRetailProductPermissions = [ 'retail-product.all-operations-in-own-merchant', 'retail-product.write-to-own-merchant', 'retail-product.write-to-own-store'];
+
