@@ -12,6 +12,7 @@ import { useArchiveUsers } from '../../../entities/users/hooks/use-archive-users
 import { UserListTable } from 'features/user-list/ui/user-table';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editUserPermissions } from 'app/config/permissions-config';
+import { typeUserWithStoresName } from 'entities/users/model/types';
 
 export const UserList: React.FC = () => {
 
@@ -19,7 +20,7 @@ export const UserList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const [ confirmToArchiveData, setConfirmToArchiveData ] = useState<null | typeUser>(null);
+    const [ confirmToArchiveData, setConfirmToArchiveData ] = useState<null | typeUser | typeUserWithStoresName>(null);
 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
@@ -57,6 +58,8 @@ export const UserList: React.FC = () => {
 
     const goToEditUserPage = (id: string | number) => navigate([ routerPaths.users, id.toString(), 'edit' ].join('/'));
 
+    const goToDetailsUserPage = (id: string | number, name: string) => navigate([ routerPaths.users, id.toString(), name ].join('/'));
+
     const { onArchive } = useArchiveUsers({
         onSuccess: () => {
 
@@ -77,6 +80,7 @@ export const UserList: React.FC = () => {
             userList={userList}
             pagination={pagination}
             isLoading={isLoading}
+            goToDetailsUserPage={goToDetailsUserPage}
         />
 
 

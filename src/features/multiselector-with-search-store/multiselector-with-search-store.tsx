@@ -4,7 +4,7 @@ import { Flex, Group, Loader, MultiSelect, Text, useMantineTheme } from '@mantin
 import { t } from '@lingui/macro';
 import { IconCheck, IconChevronDown } from '@tabler/icons-react';
 import { useLazySearchStoreQuery } from '../../entities/stores/api/api';
-import { useDebouncedState } from '@mantine/hooks';
+import { useDebouncedValue } from '@mantine/hooks';
 import { sortDirection, typeResponseError, typeSearchRequest } from 'app/api/types';
 import { typeSearchFilterStore } from '../../entities/stores/api/types';
 import { errorHandler } from 'app/utils/errorHandler';
@@ -27,13 +27,13 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
         return (
             <div ref={ ref } { ...others }>
                 <Group noWrap align={ 'center' }>
-                    <Flex align={ 'center' } sx={ {
+                    { selected &&  <Flex align={ 'center' } sx={ {
                         width: '20px',
                         height: '20px',
                         alignSelf: 'center',
                     } }>
-                        { selected && <IconCheck stroke={ 1.8 } size={ 18 } color={ theme.colors.primary[ 5 ] }/> }
-                    </Flex>
+                        <IconCheck stroke={ 1.8 } size={ 18 } color={ theme.colors.primary[ 5 ] }/>
+                    </Flex>}
                     <div>
                         <Text>{ label }</Text>
                     </div>
@@ -54,7 +54,8 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
 
     const dispatch = useAppDispatchT();
 
-    const [ searchStoreValue, onSearchStoreChange ] = useDebouncedState('', 200, { leading: true });
+    const [ searchStoreValue, onSearchStoreChange ] = useState('');
+    const [debouncedSearchValue] = useDebouncedValue(searchStoreValue, 500);
 
     const [ storesList, setStoresList ] = useState<{value: string, label: string}[]>([]);
 
@@ -83,6 +84,24 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
         }
 
     };
+    useEffect(() => {
+        const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
+            filter: {  archived: false, },
+            pagination: {
+                pageNumber: 0,
+                pageSize: 50,
+            },
+            sorts: [
+                {
+                    sort: 'NAME',
+                    direction: sortDirection.asc,
+                }
+            ],
+        };
+
+        getData(requestData).then();
+
+    }, []);
 
     useEffect(() => {
 
@@ -95,7 +114,7 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
                 },
                 pagination: {
                     pageNumber: 0,
-                    pageSize: 30,
+                    pageSize: 50,
                 },
                 sorts: [
                     {
@@ -122,7 +141,7 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
                 },
                 pagination: {
                     pageNumber: 0,
-                    pageSize: 30,
+                    pageSize: 50,
                 },
                 sorts: [
                     {
@@ -136,7 +155,7 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
 
         }
 
-    }, [ searchStoreValue ]);
+    }, [ debouncedSearchValue ]);
 
     return (
         <MultiSelect

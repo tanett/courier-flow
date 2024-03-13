@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro';
-import { isValidPhoneNumberByLength } from 'shared/helpers/isValidPhoneNumber';
+import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
 
 
 export const initialUsersCreateForm = {

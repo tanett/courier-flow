@@ -25,6 +25,7 @@ export enum pathSections {
     edit = 'edit',
     id = ':id',
     userId = ':userId',
+    userName = ':userName',
     storeId = ':storeId',
     storeName = ':storeName',
     terminalId = ':terminalId',
@@ -56,6 +57,7 @@ export enum pathNames {
     users = 'users',
     users_create = 'users_create',
     users_edit = 'users_edit',
+    users_details = 'users_details',
 
     settings='settings',
 }
@@ -86,6 +88,7 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.users]: createPath([ pathSections.dashboard, pathSections.users ]),
     [pathNames.users_create]: createPath([ pathSections.dashboard, pathSections.users, pathSections.create ]),
     [pathNames.users_edit]: createPath([ pathSections.dashboard, pathSections.users, pathSections.id, pathSections.edit ]),
+    [pathNames.users_details]: createPath([ pathSections.dashboard, pathSections.users, pathSections.id, pathSections.userName ]),
 
     [pathNames.roles]: createPath([ pathSections.dashboard, pathSections.roles ]),
 

@@ -1,21 +1,21 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { typeUser } from '../../../entities/user-profile/model/state-slice';
 import { sortDirection, typeSearchRequest } from 'app/api/types';
 import { accessScope, DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { useLazySearchUserQuery } from '../../../entities/users/api/api';
+import { useLazyExtendedSearchUserQuery } from '../../../entities/users/api/api';
 import { typeSearchFilter } from '../../../entities/users/api/types';
+import { typeUserWithStoresName } from 'entities/users/model/types';
 
 export function useUserList() {
 
     const location = useLocation();
     const urlParams = useUrlParams();
 
-    const [ getUserList, { isFetching } ] = useLazySearchUserQuery();
+    const [ getUserList, { isFetching } ] = useLazyExtendedSearchUserQuery();
     const [ refetch, setRefetch ] = useState(true);
-    const [ userList, setUserList ] = useState<typeUser[]>();
+    const [ userList, setUserList ] = useState<typeUserWithStoresName[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
     const filters: typeSearchFilter = {

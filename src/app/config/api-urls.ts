@@ -10,16 +10,7 @@ export enum API_URLS {
     USER_ARCHIVE = '/api/v1/users/archive',
     USER_GET = '/api/v1/users/{id}',
     USER_LIST_SEARCH = '/api/v1/users/search',
-
-    MERCHANT_SEARCH = '/api/v1/merchants/search',
-    MERCHANT_GET_MULTIPLE_COUNTS = '/api/v1/merchants/count/batch',
-    MERCHANT_CREATE = '/api/v1/merchants',
-    MERCHANT_PATCH = '/api/v1/merchants',
-    MERCHANT_ARCHIVE = '/api/v1/merchants/archive',
-    MERCHANT_BLOCK = '/api/v1/merchants/block',
-    MERCHANT_UNBLOCK = '/api/v1/merchants/unblock',
-    MERCHANT_GET = '/api/v1/merchants/{id}',
-    MERCHANT_IDENTIFIERS = 'api/v1/merchants/identifiers/info',
+    USER_LIST_EXTENDED_SEARCH = '/api/v1/users/extended-search',
 
     INDUSTRIES_SEARCH = '/api/v1/industries/search',
 
@@ -30,20 +21,13 @@ export enum API_URLS {
     TERMINAL_ARCHIVE = '/api/v1/terminals/archive',
     TERMINAL_GET = '/api/v1/terminals/{id}',
 
-    FM_CONFIG_LIST_SEARCH = '/api/v1/fiscal-configs/search',
-    FM_CONFIG_CREATE = '/api/v1/fiscal-configs',
-    FM_CONFIG_PATCH = '/api/v1/fiscal-configs',
-    FM_CONFIG_GET = '/api/v1/fiscal-configs/{id}',
-
 
     ROLES_SEARCH = '/api/v1/roles/search',
     ROLES_SEARCH_ONE = '/api/v1/roles/search/one',
     ROLES_SEARCH_EXTENDED = '/api/v1/roles/extended-search',
 
     STORES_SEARCH = '/api/v1/stores/search',
-    STORES_CREATE = '/api/v1/stores',
     STORES_PATCH= '/api/v1/stores',
-    STORES_ARCHIVE = '/api/v1/stores/archive',
     STORES_GET = '/api/v1/stores/{id}',
 
 }

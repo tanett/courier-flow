@@ -1,37 +1,22 @@
 import React from 'react';
-import { sortDirection } from '../../../app/api/types';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Table } from '../../../shared/ui/table/ui/table-new/table';
 import { t, Trans } from '@lingui/macro';
 import BadgeStatus from '../../../shared/ui/badgeStatus/badgeStatus';
 import { i18n } from '@lingui/core';
-import { useSelectorT } from '../../../app/state';
-import { Box, useMantineTheme } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { useTerminalList } from '../hooks/use-terminal-list';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import { perPageVariants } from '../../../app/config/api-constants';
 
 export const TerminalList: React.FC = () => {
 
-    const { terminalList, pagination, isLoading } = useTerminalList({
-        filter: { archived: false },
-        pagination: {
-            pageNumber: 0,
-            pageSize: perPageVariants.default,
-        },
-        sorts: [
-            {
-                sort: 'CREATED_AT',
-                direction: sortDirection.asc,
-            }
-        ],
-    });
+   const {terminalsList, pagination, setRefetch, isFetching } = useTerminalList()
 
 
     return (<>
-        {isLoading
+        {isFetching
             ? <TableSkeleton/>
-            : terminalList && <>
+            : terminalsList && <>
                 <Table variant="inTab">
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
@@ -52,7 +37,7 @@ export const TerminalList: React.FC = () => {
                     </Table.Header>
 
                     <Table.Body>
-                        {terminalList.length > 0 && terminalList.map((item) => {
+                        {terminalsList.length > 0 && terminalsList.map((item) => {
 
                             const createdDate = new Date(item.createdAt);
                             const status = item.blocked
@@ -74,7 +59,7 @@ export const TerminalList: React.FC = () => {
 
                         })}
 
-                        {terminalList.length === 0 && <Table.EmptyRow columnCount={6}>
+                        {terminalsList.length === 0 && <Table.EmptyRow columnCount={6}>
                             <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
                         </Table.EmptyRow>}
                     </Table.Body>

@@ -5,7 +5,7 @@ import { t } from '@lingui/macro';
 import { IconChevronDown } from '@tabler/icons-react';
 import { typeUsersFilterForm } from 'features/user-list-filter/types/types';
 import { useLazySearchStoreQuery } from '../../entities/stores/api/api';
-import { useDebouncedState } from '@mantine/hooks';
+import { useDebouncedState, useDebouncedValue } from '@mantine/hooks';
 import { sortDirection, typeResponseError, typeSearchRequest } from 'app/api/types';
 import { typeSearchFilterStore } from '../../entities/stores/api/types';
 import { errorHandler } from 'app/utils/errorHandler';
@@ -21,7 +21,8 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores<typeUsersFilte
 
     const dispatch = useAppDispatchT();
 
-    const [ searchStoreValue, onSearchStoreChange ] = useDebouncedState('', 200, { leading: true });
+    const [ searchStoreValue, onSearchStoreChange ] = useState('');
+    const [debouncedSearchValue] = useDebouncedValue(searchStoreValue, 500);
 
     const [ storesList, setStoresList ] = useState<{value: string, label: string}[]>([]);
 
@@ -41,6 +42,25 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores<typeUsersFilte
         }
 
     };
+
+    useEffect(() => {
+        const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
+            filter: {  archived: false, },
+            pagination: {
+                pageNumber: 0,
+                pageSize: 50,
+            },
+            sorts: [
+                {
+                    sort: 'NAME',
+                    direction: sortDirection.asc,
+                }
+            ],
+        };
+
+        getData(requestData).then();
+
+    }, []);
 
     useEffect(() => {
 
@@ -94,7 +114,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores<typeUsersFilte
 
         }
 
-    }, [ searchStoreValue ]);
+    }, [ debouncedSearchValue ]);
 
     return (
         <Select

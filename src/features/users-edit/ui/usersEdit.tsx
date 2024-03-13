@@ -23,6 +23,7 @@ import { PhoneInputWithCountrySelector } from 'shared/ui/phoneInput';
 import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search-store';
 import useGetRolesDataForSelector from '../../../entities/role/hooks/useGetRolesDataForSelector';
 import { isArrayEqual } from 'features/users-edit/helpers/isArrayEqual';
+import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
 
 
 export const UsersEdit: React.FC = () => {
@@ -71,11 +72,15 @@ export const UsersEdit: React.FC = () => {
         setIsInProgress(true);
         if (userData?.id) {
 
+            const phone = userForm.values.phone.trim() === ''
+                ? undefined
+                : userForm.values.phone.trim() === userData.phone ? undefined : convertPhoneNumberToStringForApi(userForm.values.phone);
+
             const dataObject: typeUsersEdit = {
                 id: userData.id,
                 fullName: userForm.values.fullName.trim() === userData.fullName.trim() ? undefined : userForm.values.fullName.trim(),
                 email: userForm.values.email.trim() === userData.email.trim() ? undefined : userForm.values.email.trim(),
-                phone: userForm.values.phone === userData.phone ? undefined : userForm.values.phone,
+                phone: phone,
                 roleId: userForm.values.roleId === userData.role.id ? undefined : userForm.values.roleId,
                 storeIds: isArrayEqual(userData.storeIds, userForm.values.storeIds) ? undefined : {
                     values: userForm.values.storeIds,
@@ -172,7 +177,7 @@ export const UsersEdit: React.FC = () => {
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(userForm.errors).length || isInProgress }
-                        type="submit">{ t`Save` }</Button>
+                            type="submit">{ t`Save` }</Button>
                 </Flex>
 
             </Flex>

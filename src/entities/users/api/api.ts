@@ -8,6 +8,7 @@ import {
     typeEditUserRequest,
     typeSearchFilter, typeSearchUserSortingNames, typeUserToArchiveRequest,
 } from 'entities/users/api/types';
+import { typeUserWithStoresName } from 'entities/users/model/types';
 
 export const usersApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -25,7 +26,18 @@ export const usersApi = baseApi.injectEndpoints({
             ),
         }),
 
-
+        // Search user
+        extendedSearchUser: builder.query<typeSearchResponse<typeUserWithStoresName>, typeSearchRequest<typeSearchFilter, typeSearchUserSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.USER_LIST_EXTENDED_SEARCH,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                    cache: 'no-cache',
+                }
+            ),
+        }),
         // create user
         createUser: builder.mutation<typeUser, typeCreateUserRequest >({
             query: (data) => (
@@ -82,6 +94,7 @@ export const {
     useLazyGetUserByIdQuery,
     usePatchUserMutation,
     useLazySearchUserQuery,
+    useLazyExtendedSearchUserQuery,
     useCreateUserMutation,
     useUserToArchiveMutation,
 } = usersApi;
