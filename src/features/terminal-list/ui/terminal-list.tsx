@@ -7,16 +7,27 @@ import { i18n } from '@lingui/core';
 import { Box } from '@mantine/core';
 import { useTerminalList } from '../hooks/use-terminal-list';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
+import { FilterPanel } from 'shared/ui/filter-panel';
+import { TerminalsListFilter } from 'features/terminals-list-filter';
 
 export const TerminalList: React.FC = () => {
 
-   const {terminalsList, pagination, setRefetch, isFetching } = useTerminalList()
+   const {
+       terminalsList,
+       pagination,
+     //  setRefetch,
+       isFetching
+   } = useTerminalList()
 
 
     return (<>
         {isFetching
             ? <TableSkeleton/>
             : terminalsList && <>
+            <FilterPanel
+            // withFind={ { placeholder: i18n._(t`Type part of serial number, fiscal card Id`) } }
+                filterComponent={ <TerminalsListFilter/> }
+            />
                 <Table variant="inTab">
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
@@ -65,7 +76,7 @@ export const TerminalList: React.FC = () => {
                     </Table.Body>
                 </Table>
 
-                <Pagination pagination={pagination} />
+             <Pagination pagination={ pagination } withPerPage={pagination ? pagination.totalPages > 1 : false}/>
             </>
         }
     </>);

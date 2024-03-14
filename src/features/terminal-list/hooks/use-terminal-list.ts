@@ -4,9 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { useEffect, useState } from 'react';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { accessScope, DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
-import { typeTerminalExtended } from 'entities/terminals/model/types';
-import { typeSearchTerminalsFilter } from 'entities/terminals/api/types';
+import { DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
+import { typeTerminalExtended } from '../../../entities/terminals/model/types';
+import { typeSearchTerminalsFilter } from '../../../entities/terminals/api/types';
 
 export const useTerminalList = () => {
 
@@ -15,7 +15,6 @@ export const useTerminalList = () => {
     const location = useLocation();
     const urlParams = useUrlParams();
 
-    const [ refetch, setRefetch ] = useState(true);
     const [ terminalsList, setTerminalsList ] = useState<typeTerminalExtended[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
@@ -25,6 +24,13 @@ export const useTerminalList = () => {
 
     const model = urlParams.getFilterValue('model');
     if (model && typeof model === 'string') filters.models = [ model ];
+
+    const serialNumber = urlParams.getFilterValue('serialNumber');
+    if (serialNumber && typeof serialNumber === 'string') filters.serialNumbers = [ serialNumber ];
+
+    const fiscalCardId = urlParams.getFilterValue('fiscalCardId');
+    if (fiscalCardId && typeof fiscalCardId === 'string') filters.fiscalCardIds = [ fiscalCardId ];
+
     const blocked = urlParams.getFilterValue('blocked');
     if (blocked && typeof blocked === 'string') filters.blocked = blocked === 'true';
 
@@ -47,7 +53,9 @@ export const useTerminalList = () => {
         try {
 
             const response = await getTerminalsList(requestData).unwrap();
+
             setTerminalsList(response.content);
+
             setPagination(response.totalPages
                 ? {
                     pageNumber: response.pageNumber,
@@ -69,30 +77,19 @@ export const useTerminalList = () => {
     useEffect(() => {
 
         if (location) {
-
+            console.log(location);
             getData().then();
 
         }
 
     }, [ location ]);
 
-    useEffect(() => {
-
-        if (location && refetch) {
-
-            getData().then();
-            setRefetch(false);
-
-        }
-
-    }, [ refetch ]);
 
 
     return {
         terminalsList,
         isFetching,
         pagination,
-        setRefetch
     };
 
 };

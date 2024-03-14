@@ -37,7 +37,7 @@ export const MerchantDetailsStores: React.FC = () => {
         }}>
             {/* <FilterPanel */}
             {/*     withFind={{ placeholder: i18n._(t`Type part of your username, email or phone number`) }} */}
-            {/*     filterComponent={<UserListFilter/>} */}
+            {/*     filterComponent={<TerminalsListFilter/>} */}
             {/* /> */}
 
             <Flex justify={'space-between'} p={16}

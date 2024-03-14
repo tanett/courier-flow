@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, SimpleGrid, Skeleton, useMantineTheme, Text, rem } from '@mantine/core';
+import { Box, Flex, SimpleGrid, Skeleton, useMantineTheme, Text, rem, Space } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
@@ -8,6 +8,7 @@ import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { Table } from 'shared/ui/table';
 import { useGetUserFromUrlWithStoresData } from 'features/users-details/hooks/use-get-user-from-url-with-stores-data';
+import { Pagination } from 'shared/ui/pagination/table-pagination';
 
 
 export const UsersDetails: React.FC = () => {
@@ -20,10 +21,11 @@ export const UsersDetails: React.FC = () => {
         userData,
         isUserFetching,
         storesList,
-        isStoresFetching
+        isStoresFetching,
+        pagination
     } = useGetUserFromUrlWithStoresData();
 
-
+pagination
     return (
         <>
             <SimpleGrid
@@ -140,7 +142,10 @@ export const UsersDetails: React.FC = () => {
                             </Table.EmptyRow> }
                         </Table.Body>
                     </Table> }
+
             </Box>
+            <Space h={20}/>
+            {pagination && <Pagination pagination={ pagination } withPerPage={ false }/> }
             { isUserFetching && <LoaderOverlay/> }
         </>
     );
