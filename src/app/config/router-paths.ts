@@ -10,11 +10,11 @@ export enum pathSections {
 
     // Header section
     dashboard = 'dashboard',
-    reports='reports',
-    products='products',
-    cashDesks='cash-desks',
+    reports = 'reports',
+    products = 'products',
+    cashDesks = 'cash-desks',
     terminals = 'terminals',
-    orders='orders',
+    orders = 'orders',
     supportCenters = 'support-centers',
     supportRequests = 'support-requests',
     users = 'users',
@@ -31,9 +31,9 @@ export enum pathSections {
     terminalId = ':terminalId',
     serialNumber = ':serialNumber',
     name = ':name',
-    stores='stores',
-    common='common',
-settings='settings',
+    stores = 'stores',
+    common = 'common',
+    settings = 'settings',
 }
 
 export enum pathNames {
@@ -44,14 +44,15 @@ export enum pathNames {
     restorePassword = 'restorePassword',
     dashboard = 'dashboard',
 
-    reports='reports',
-    products='products',
-    cashDesks='cashDesks',
+    reports = 'reports',
+    products = 'products',
+    cashDesks = 'cashDesks',
     terminals = 'terminals',
-    orders='orders',
+    terminals_details = 'terminals_details',
+    orders = 'orders',
     supportRequests = 'supportRequests',
     roles = 'roles',
-    stores='stores',
+    stores = 'stores',
     profile = 'profile',
 
     users = 'users',
@@ -59,7 +60,7 @@ export enum pathNames {
     users_edit = 'users_edit',
     users_details = 'users_details',
 
-    settings='settings',
+    settings = 'settings',
 }
 
 export const routerPaths: Record<pathNames, string> = {
@@ -81,6 +82,8 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.cashDesks]: createPath([ pathSections.dashboard, pathSections.cashDesks ]),
 
     [pathNames.terminals]: createPath([ pathSections.dashboard, pathSections.terminals ]),
+    [pathNames.terminals_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.id, pathSections.serialNumber]),
+
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),
 
     [pathNames.supportRequests]: createPath([ pathSections.dashboard, pathSections.supportRequests ]),

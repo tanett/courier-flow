@@ -23,6 +23,7 @@ import { LazyOrdersPage } from 'pages/orders-page';
 import { LazySettingsPage } from 'pages/settings-page';
 import { LazyRolesPage } from 'pages/roles-page';
 import { LazyUsersDetailsPage } from 'pages/users-details-page';
+import { LazyTerminalsDetailsPage } from 'pages/terminals-details-page';
 
 export const router = createBrowserRouter([
 
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.terminals,
                 element: <LazyTerminalsPage/>,
+            },
+            {
+                path: routerPaths.terminals_details,
+                element: <LazyTerminalsDetailsPage/>,
             },
             {
                 path: routerPaths.orders,

@@ -9,6 +9,8 @@ import { useTerminalList } from '../hooks/use-terminal-list';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { TerminalsListFilter } from 'features/terminals-list-filter';
+import { useNavigate } from 'react-router-dom';
+import { routerPaths } from 'app/config/router-paths';
 
 export const TerminalList: React.FC = () => {
 
@@ -19,6 +21,7 @@ export const TerminalList: React.FC = () => {
        isFetching
    } = useTerminalList()
 
+    const navigate = useNavigate();
 
     return (<>
         {isFetching
@@ -57,7 +60,7 @@ export const TerminalList: React.FC = () => {
 
 
                             return (
-                                <Table.Tr key={item.id} handler={() => console.log('######', item.id)}>
+                                <Table.Tr key={item.id} handler={() =>  navigate([ routerPaths.terminals, item.id.toString(), item.serialNumber ].join('/'))}>
                                     <Table.Td>{item.serialNumber}</Table.Td>
                                     <Table.Td>
                                         <Box maw={200} miw={150} sx={{ wordBreak: 'break-all' }}>{item.fiscalCardId}</Box>

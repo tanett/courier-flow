@@ -25,7 +25,7 @@ export const UsersDetails: React.FC = () => {
         pagination
     } = useGetUserFromUrlWithStoresData();
 
-pagination
+
     return (
         <>
             <SimpleGrid
