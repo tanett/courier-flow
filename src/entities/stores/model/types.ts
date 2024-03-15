@@ -29,3 +29,5 @@ export type typeStore = typeStoreCreate & {
     archivedBy: string,
     merchantId: string,
 }
+
+export type typeStoreToArchive = typeStore['id'][]

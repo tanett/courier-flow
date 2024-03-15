@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
+import { StoresList } from 'features/stores-list';
 
 const StoresPage: React.FC = () => {
 
@@ -16,7 +17,7 @@ const StoresPage: React.FC = () => {
                 ]}/>}
             />
 
-            stores
+            <StoresList/>
 
         </DashboardContent>
     );

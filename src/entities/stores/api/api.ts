@@ -2,8 +2,10 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeCreateStoreRequest, typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames } from 'entities/stores/api/types';
+import { typeCreateStoreRequest, typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from 'entities/stores/api/types';
 import { typeStore } from 'entities/stores/model/types';
+import { typeUser } from 'entities/user-profile/model/state-slice';
+import { typeUserToArchiveRequest } from 'entities/users/api/types';
 
 export const storesApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -49,6 +51,17 @@ export const storesApi = baseApi.injectEndpoints({
         }),
 
 
+        // store to archive
+        storeToArchive: builder.mutation<typeStore, typeStoreToArchiveRequest >({
+            query: (data) => (
+                {
+                    url: API_URLS.STORES_ARCHIVE,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
     }),
 });
 
@@ -58,4 +71,5 @@ export const {
     useGetStoreByIdQuery,
     useLazyGetStoreByIdQuery,
     usePatchStoreMutation,
+    useStoreToArchiveMutation
 } = storesApi;

@@ -24,6 +24,8 @@ import { LazySettingsPage } from 'pages/settings-page';
 import { LazyRolesPage } from 'pages/roles-page';
 import { LazyUsersDetailsPage } from 'pages/users-details-page';
 import { LazyTerminalsDetailsPage } from 'pages/terminals-details-page';
+import { LazyStoresEditPage } from 'pages/stores-edit-page';
+import { LazyStoresDetailsPage } from 'pages/stores-details-page';
 
 export const router = createBrowserRouter([
 
@@ -73,6 +75,14 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.stores,
                 element: <LazyStoresPage/>,
+            },
+            {
+                path: routerPaths.stores_edit,
+                element: <LazyStoresEditPage/>,
+            },
+            {
+                path: routerPaths.stores_details,
+                element: <LazyStoresDetailsPage/>,
             },
             {
                 path: routerPaths.cashDesks,

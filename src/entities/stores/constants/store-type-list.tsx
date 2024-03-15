@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro';
-import { STORE_TYPE } from 'entities/stores/model/types';
+import { STORE_TYPE } from '../model/types';
 
 export const getTransLabelForStoreType = (value: STORE_TYPE) => {
 

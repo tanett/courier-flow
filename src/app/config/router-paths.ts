@@ -53,6 +53,9 @@ export enum pathNames {
     supportRequests = 'supportRequests',
     roles = 'roles',
     stores = 'stores',
+    stores_edit = 'stores_edit',
+    stores_details = 'stores_details',
+
     profile = 'profile',
 
     users = 'users',
@@ -96,6 +99,8 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.roles]: createPath([ pathSections.dashboard, pathSections.roles ]),
 
     [pathNames.stores]: createPath([ pathSections.dashboard, pathSections.stores ]),
+    [pathNames.stores_edit]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.edit ]),
+    [pathNames.stores_details]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.storeName ]),
 
     [pathNames.settings]: createPath([ pathSections.dashboard, pathSections.settings ]),
 

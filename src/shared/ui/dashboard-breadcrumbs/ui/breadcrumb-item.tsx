@@ -10,8 +10,8 @@ export const BreadcrumbItem: React.FC<typeBreadcrumbsItemProps> = ({ name, path,
 
     return (
         path
-            ? <Link to={path} className={`${classes.item} ${classes.link}`}>{name}</Link>
-            : <Box className={isActive ? classes.activeItem : ''} >{name}</Box>
+            ? <Link to={path} className={`${classes.item} ${classes.link}`} >{name}</Link>
+            : <Box className={isActive ? classes.activeItem : ''} sx={{wordBreak: 'break-all'}}>{name}</Box>
     );
 
 };

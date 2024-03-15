@@ -1,4 +1,4 @@
-import { typeStoreCreate, typeStoreEdit, typeStoreType } from 'entities/stores/model/types';
+import { typeStoreCreate, typeStoreEdit, typeStoreToArchive, typeStoreType } from 'entities/stores/model/types';
 import { accessScope } from '../../../app/config/api-constants';
 
 export type typeCreateStoreRequest = typeStoreCreate
@@ -19,3 +19,5 @@ export interface typeSearchFilterStore {
 }
 
 export type typeSearchStoreSortingNames = 'NAME';
+
+export type typeStoreToArchiveRequest = typeStoreToArchive

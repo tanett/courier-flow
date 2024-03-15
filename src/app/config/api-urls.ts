@@ -29,5 +29,6 @@ export enum API_URLS {
     STORES_SEARCH = '/api/v1/stores/search',
     STORES_PATCH= '/api/v1/stores',
     STORES_GET = '/api/v1/stores/{id}',
+    STORES_ARCHIVE = '/api/v1/stores/archive',
 
 }
