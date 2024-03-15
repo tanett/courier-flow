@@ -12,6 +12,8 @@ export interface typeSearchFilterStore {
     nameContains?: string,
     names?: string[],
     merchantIds?: string[],
+    createdAtFrom?: string,
+    createdAtTo?: string,
     types?: typeStoreType[],
     _or_?: string[]
     _not_?: string

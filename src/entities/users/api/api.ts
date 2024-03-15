@@ -6,7 +6,7 @@ import { typeUser } from 'entities/user-profile/model/state-slice';
 import {
     typeCreateUserRequest,
     typeEditUserRequest,
-    typeSearchFilter, typeSearchUserSortingNames, typeUserToArchiveRequest,
+    typeSearchFilterUsers, typeSearchUserSortingNames, typeUserToArchiveRequest,
 } from 'entities/users/api/types';
 import { typeUserWithStoresName } from 'entities/users/model/types';
 
@@ -14,7 +14,7 @@ export const usersApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
 
         // Search user
-        searchUser: builder.query<typeSearchResponse<typeUser>, typeSearchRequest<typeSearchFilter, typeSearchUserSortingNames>>({
+        searchUser: builder.query<typeSearchResponse<typeUser>, typeSearchRequest<typeSearchFilterUsers, typeSearchUserSortingNames>>({
             query: (data) => (
                 {
                     url: API_URLS.USER_LIST_SEARCH,
@@ -27,7 +27,7 @@ export const usersApi = baseApi.injectEndpoints({
         }),
 
         // Search user
-        extendedSearchUser: builder.query<typeSearchResponse<typeUserWithStoresName>, typeSearchRequest<typeSearchFilter, typeSearchUserSortingNames>>({
+        extendedSearchUser: builder.query<typeSearchResponse<typeUserWithStoresName>, typeSearchRequest<typeSearchFilterUsers, typeSearchUserSortingNames>>({
             query: (data) => (
                 {
                     url: API_URLS.USER_LIST_EXTENDED_SEARCH,

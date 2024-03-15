@@ -20,8 +20,8 @@ export const useStyles = createStyles((theme) => ({
             },
         },
         '& .mantine-Tabs-panel': {
-            padding: '10px 16px',
-            border: `1px solid ${theme.colors.borderColor[ 0 ]}`,
+            // padding: '10px 16px',
+            borderTop: `1px solid ${theme.colors.borderColor[ 0 ]}`,
             borderBottomLeftRadius: rem(8),
             borderBottomRightRadius: rem(8),
             borderTopRightRadius: rem(8),

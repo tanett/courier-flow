@@ -5,6 +5,7 @@ import { t } from '@lingui/macro';
 import { useStyles } from './styles';
 import { useLingui } from '@lingui/react';
 import { StoreDetails } from 'features/stores-details/ui/storeDetails';
+import { StoresDetailsUsers } from 'features/stores-details-users';
 
 const StoresDetailsTabs: React.FC<{storeId: string}> = ({storeId}) => {
 
@@ -22,7 +23,7 @@ const StoresDetailsTabs: React.FC<{storeId: string}> = ({storeId}) => {
                 <Tabs.Tab value={'users'}>{i18n._(t`Employees list`)}</Tabs.Tab>
             </Tabs.List>
             <Tabs.Panel value={'common'}><StoreDetails storeId={storeId}/></Tabs.Panel>
-            <Tabs.Panel value={'users'}>users</Tabs.Panel>
+            <Tabs.Panel value={'users'}><StoresDetailsUsers storeId={storeId}/></Tabs.Panel>
         </Tabs>
     );
 

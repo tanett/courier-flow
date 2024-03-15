@@ -5,7 +5,7 @@ export type typeCreateUserRequest = typeUsersCreate
 
 export type typeEditUserRequest = typeUsersEdit
 
-export interface typeSearchFilter {
+export interface typeSearchFilterUsers {
     fullNameContains?: string
     logins?: string[]
     hasMerchant?: boolean

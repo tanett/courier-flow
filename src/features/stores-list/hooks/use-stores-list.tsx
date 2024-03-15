@@ -4,9 +4,9 @@ import { sortDirection, typeSearchRequest } from 'app/api/types';
 import { DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { typeSearchFilter } from '../../../entities/users/api/types';
-import { useLazySearchStoreQuery } from '../../../entities/stores/api/api';
-import { typeStore, typeStoreType } from '../../../entities/stores/model/types';
+import { typeSearchFilterUsers } from '../../../entities/users/api/types';
+import { useLazyExtendedSearchStoreQuery } from '../../../entities/stores/api/api';
+import { typeExtendedStore, typeStoreType } from '../../../entities/stores/model/types';
 import { typeSearchFilterStore } from '../../../entities/stores/api/types';
 
 export function useStoresList() {
@@ -14,9 +14,9 @@ export function useStoresList() {
     const location = useLocation();
     const urlParams = useUrlParams();
 
-    const [ getStoresList, { isFetching } ] = useLazySearchStoreQuery();
+    const [ getStoresList, { isFetching } ] = useLazyExtendedSearchStoreQuery();
     const [ refetch, setRefetch ] = useState(true);
-    const [ storesList, setStoresList ] = useState<typeStore[]>();
+    const [ storesList, setStoresList ] = useState<typeExtendedStore[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
     const filters: typeSearchFilterStore = { archived: false, };
@@ -27,7 +27,7 @@ export function useStoresList() {
     const createdAtTo = urlParams.getFilterValue('createdAtTo');
     if (createdAtTo && typeof createdAtTo === 'string' && createdAtFrom && typeof createdAtFrom === 'string') {
 
-        //   filters.createdAtFrom = createdAtFrom; filters.createdAtTo = createdAtTo;  todo fix it
+       filters.createdAtFrom = createdAtFrom; filters.createdAtTo = createdAtTo;
 
     }
 
@@ -35,7 +35,7 @@ export function useStoresList() {
     const type = urlParams.getFilterValue('type');
     if (type && typeof type === 'string') filters.types = [ type as typeStoreType ];
 
-    const requestData: typeSearchRequest<typeSearchFilter, 'NAME'> = {
+    const requestData: typeSearchRequest<typeSearchFilterUsers, 'NAME'> = {
         filter: filters,
         pagination: {
             pageNumber: urlParams.pageNumber && urlParams.pageNumber > 1 ? urlParams.pageNumber - 1 : 0,

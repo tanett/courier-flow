@@ -5,7 +5,7 @@ import { accessScope, DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-con
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { typeTablePagination } from 'shared/ui/table/types/type';
 import { useLazyExtendedSearchUserQuery } from '../../../entities/users/api/api';
-import { typeSearchFilter } from '../../../entities/users/api/types';
+import { typeSearchFilterUsers } from '../../../entities/users/api/types';
 import { typeUserWithStoresName } from 'entities/users/model/types';
 
 export function useUserList() {
@@ -18,7 +18,7 @@ export function useUserList() {
     const [ userList, setUserList ] = useState<typeUserWithStoresName[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
-    const filters: typeSearchFilter = {
+    const filters: typeSearchFilterUsers = {
         archived: false,
         accessScopes: [ accessScope.merchant, accessScope.store ],
     };
@@ -30,7 +30,7 @@ export function useUserList() {
     const storeId = urlParams.getFilterValue('storeId');
     if (storeId && typeof storeId === 'string') filters.storeIds = [ storeId ];
 
-    const requestData: typeSearchRequest<typeSearchFilter, 'FULL_NAME'> = {
+    const requestData: typeSearchRequest<typeSearchFilterUsers, 'FULL_NAME'> = {
         filter: filters,
         pagination: {
             pageNumber: urlParams.pageNumber && urlParams.pageNumber > 1 ? urlParams.pageNumber - 1 : 0,

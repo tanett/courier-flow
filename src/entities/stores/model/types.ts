@@ -30,4 +30,6 @@ export type typeStore = typeStoreCreate & {
     merchantId: string,
 }
 
+export type typeExtendedStore = typeStore & {usersCount: number}
+
 export type typeStoreToArchive = typeStore['id'][]

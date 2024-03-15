@@ -3,7 +3,7 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeCreateStoreRequest, typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from 'entities/stores/api/types';
-import { typeStore } from 'entities/stores/model/types';
+import { typeExtendedStore, typeStore } from 'entities/stores/model/types';
 import { typeUser } from 'entities/user-profile/model/state-slice';
 import { typeUserToArchiveRequest } from 'entities/users/api/types';
 
@@ -15,6 +15,21 @@ export const storesApi = baseApi.injectEndpoints({
             query: (data) => (
                 {
                     url: API_URLS.STORES_SEARCH,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+
+                    // cache: 'no-cache',
+                    // keepUnusedDataFor: 0,
+                }
+            ),
+        }),
+
+        // extended Search store with users count
+        extendedSearchStore: builder.query<typeSearchResponse<typeExtendedStore>, typeSearchRequest<typeSearchFilterStore, typeSearchStoreSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.STORES_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -67,6 +82,8 @@ export const storesApi = baseApi.injectEndpoints({
 
 export const {
     useSearchStoreQuery,
+    useExtendedSearchStoreQuery,
+    useLazyExtendedSearchStoreQuery,
     useLazySearchStoreQuery,
     useGetStoreByIdQuery,
     useLazyGetStoreByIdQuery,

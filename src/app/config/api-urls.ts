@@ -27,6 +27,7 @@ export enum API_URLS {
     ROLES_SEARCH_EXTENDED = '/api/v1/roles/extended-search',
 
     STORES_SEARCH = '/api/v1/stores/search',
+    STORES_SEARCH_EXTENDED = '/api/v1/stores/extended-search',
     STORES_PATCH= '/api/v1/stores',
     STORES_GET = '/api/v1/stores/{id}',
     STORES_ARCHIVE = '/api/v1/stores/archive',
