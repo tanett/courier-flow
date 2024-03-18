@@ -52,7 +52,7 @@ export function useGetStoresUsersList() {
 
             const filters: typeSearchFilterUsers = {
                 archived: false,
-                storeIds: [id],
+                storeIds: [ id ],
             };
             const requestData: typeSearchRequest<typeSearchFilterUsers, 'FULL_NAME'> = {
                 filter: filters,
@@ -81,7 +81,7 @@ export function useGetStoresUsersList() {
 
             const filters: typeSearchFilterUsers = {
                 archived: false,
-                storeIds: [id],
+                storeIds: [ id ],
             };
             const requestData: typeSearchRequest<typeSearchFilterUsers, 'FULL_NAME'> = {
                 filter: filters,

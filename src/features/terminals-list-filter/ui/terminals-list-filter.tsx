@@ -44,12 +44,12 @@ export const TerminalsListFilter: React.FC = () => {
             serialNumber: form.values.serialNumber.trim() === '' ? null : form.values.serialNumber.trim(),
             fiscalCardId: form.values.fiscalCardId.trim() === '' ? null : form.values.fiscalCardId.trim(),
             model: form.values.model.trim() === '' ? null : form.values.model.trim(),
-            blocked: form.values.blocked !== undefined ? form.values.blocked.toString() : null
+            blocked: form.values.blocked !== undefined ? form.values.blocked.toString() : null,
         };
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
         if (close) close();
@@ -59,8 +59,8 @@ export const TerminalsListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
         form.reset();
 

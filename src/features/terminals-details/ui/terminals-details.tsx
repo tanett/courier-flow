@@ -8,7 +8,6 @@ import { useGetTerminalByIdQuery } from '../../../entities/terminals/api/api';
 import { useLazyGetStoreByIdQuery } from '../../../entities/stores/api/api';
 import { typeStore } from '../../../entities/stores/model/types';
 import BadgeStatus from 'shared/ui/badgeStatus/badgeStatus';
-import { IconTag } from '@tabler/icons-react';
 
 
 export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }) => {
@@ -44,7 +43,7 @@ export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }
         <>
             <SimpleGrid
                 sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[0] }`,
+                    border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
                     borderRadius: '8px',
                     padding: '10px 16px',
                     marginTop: '-1px',
@@ -78,14 +77,14 @@ export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }
                     <InfoCardSmall label={ i18n._(t`Vendor & model`) } content={ `${ terminalData?.vendor } ${ terminalData?.model }` || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Fiscal ID`) } content={ terminalData?.fiscalCardId || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Blocking`) }
-                                   content={
-                                       terminalData
-                                           ? terminalData.blocked
-                                               ? <BadgeStatus type={ 'error' } label={ i18n._(t`Blocked`) }/>
-                                               : <BadgeStatus type={ 'success' } label={ i18n._(t`Not blocked`) }/>
-                                           : <div/>
-                                   }
-                                   withBottomBorder={ false }/>
+                        content={
+                            terminalData
+                                ? terminalData.blocked
+                                    ? <BadgeStatus type={ 'error' } label={ i18n._(t`Blocked`) }/>
+                                    : <BadgeStatus type={ 'success' } label={ i18n._(t`Not blocked`) }/>
+                                : <div/>
+                        }
+                        withBottomBorder={ false }/>
                     {/* { (terminalData && terminalData.blocked) */ }
                     {/*     ? <InfoCardSmall label={ i18n._(t`Reason for blocking`) } */ }
                     {/*                      content={ terminalData.blockReasons || '-' }/> */ }
@@ -97,12 +96,12 @@ export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }
                 </SimpleGrid>
                 <Box>
                     <InfoCardSmall label={ i18n._(t`Store name`) }
-                                   iconLabel={ <BuildingStorefrontIcon/> }
-                                   content={ storeData ? storeData.name : isLoadingStoreData ? <Loader size={ 16 }/> : '-' }/>
+                        iconLabel={ <BuildingStorefrontIcon/> }
+                        content={ storeData ? storeData.name : isLoadingStoreData ? <Loader size={ 16 }/> : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Store address`) }
-                                   content={ storeData ? storeData.address : isLoadingStoreData ? <Loader size={ 16 }/> : '-' }
-                                   iconLabel={ <MapPinIcon/> }
-                                   withBottomBorder={ false }/>
+                        content={ storeData ? storeData.address : isLoadingStoreData ? <Loader size={ 16 }/> : '-' }
+                        iconLabel={ <MapPinIcon/> }
+                        withBottomBorder={ false }/>
                     {/* <InfoCardSmall label={ i18n._(t`Contract number for using the terminal`) } */ }
                     {/*                content={ terminalData?.contractCode || '-' } */ }
                     {/*                iconLabel={ <IconTag/> } */ }

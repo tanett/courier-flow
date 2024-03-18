@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLingui } from '@lingui/react';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { t, Trans } from '@lingui/macro';
-import { MinusSmallIcon } from '@heroicons/react/24/outline';
 import { useRolesList } from 'features/roles-list/hooks/useRolesList';
 import { Flex, Text } from '@mantine/core';
 import { typeRolesExtended } from '../../../entities/role/model/types';
@@ -64,12 +63,12 @@ export const RolesList: React.FC = () => {
                     </Table.Header>
 
                     <Table.Body>
-                        {rolesList.length > 0 && rolesList.map((item, index) => {
+                        {rolesList.length > 0 && rolesList.map((item) => {
 
                             return (
                                 <Table.Tr key={item.id} handler={item.description ? () => onRoleClick(item.id) : undefined}>
                                     <Table.Td>{item.name}</Table.Td>
-                                    <Table.Td><Text lineClamp={1}>{item.description || <MinusSmallIcon width={14}/>}</Text></Table.Td>
+                                    <Table.Td><Text lineClamp={1}>{item.description || '-'}</Text></Table.Td>
                                     <Table.Td>{item.usersCount
                                         ? <Flex sx={{ flexGrow: 1, justifyContent: 'center' }}>{item.usersCount}</Flex>
                                         : <Flex sx={{ flexGrow: 1, justifyContent: 'center' }}>0</Flex>
@@ -85,7 +84,7 @@ export const RolesList: React.FC = () => {
                     </Table.Body>
                 </Table>
 
-            {pagination && <Pagination pagination={ pagination } withPerPage={pagination.totalPages > 1}/>}
+                {pagination && <Pagination pagination={ pagination } withPerPage={pagination.totalPages > 1}/>}
             </>
         }
 

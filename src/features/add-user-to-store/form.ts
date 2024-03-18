@@ -5,14 +5,14 @@ export type typeAddUserToStoreForm = {
 }
 
 export const initialForm = {
-    initialValues: {  userId: '', },
+    initialValues: { userId: '' },
     validate: {
         userId: (value: string | null) => {
 
-            return (!value || value.trim()==='')
+            return (!value || value.trim() === '')
                 ? t`Required field`
                 : null;
 
         },
     },
-}
+};

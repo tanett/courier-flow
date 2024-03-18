@@ -35,57 +35,57 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
         { isLoading
             ? <TableSkeleton/>
             : storesList && <>
-            <Table>
-                <Table.Header>
-                    <Table.Th withoutLeftDivider>
-                        <Trans>Name</Trans>
-                    </Table.Th>
-                    <Table.Th>
-                        <Trans>Address</Trans>
-                    </Table.Th>
-                    <Table.Th>
-                        <Trans>Phone number</Trans>
-                    </Table.Th>
+                <Table>
+                    <Table.Header>
+                        <Table.Th withoutLeftDivider>
+                            <Trans>Name</Trans>
+                        </Table.Th>
+                        <Table.Th>
+                            <Trans>Address</Trans>
+                        </Table.Th>
+                        <Table.Th>
+                            <Trans>Phone number</Trans>
+                        </Table.Th>
 
-                    <Table.Th>
-                        <Trans>The number of employees</Trans>
-                    </Table.Th>
-                    { isAllowedStoreEdit && <Table.Th>
-                        <Trans>Actions</Trans>
-                    </Table.Th> }
-                </Table.Header>
+                        <Table.Th>
+                            <Trans>The number of employees</Trans>
+                        </Table.Th>
+                        { isAllowedStoreEdit && <Table.Th>
+                            <Trans>Actions</Trans>
+                        </Table.Th> }
+                    </Table.Header>
 
-                <Table.Body>
-                    { storesList.length > 0 && storesList.map(item => {
+                    <Table.Body>
+                        { storesList.length > 0 && storesList.map(item => {
 
-                        const actions: typeAction[] = [
-                            {
-                                label: i18n._(t`Edit`),
-                                handler: () => goToEditStorePage(item.id),
-                                icon: <PencilSquareIcon color={ theme.colors.primary[5] } width={ 22 }/>
-                            }
-                        ];
+                            const actions: typeAction[] = [
+                                {
+                                    label: i18n._(t`Edit`),
+                                    handler: () => goToEditStorePage(item.id),
+                                    icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                                }
+                            ];
 
-                        return (
-                            <Table.Tr key={ item.id } handler={ () => goToDetailsStorePage(item.id, item.name) }>
-                                <Table.Td ><Box sx={{minWidth: rem(250), wordBreak: 'break-all'}}>{ item.name }</Box></Table.Td>
-                                <Table.Td><Box sx={{minWidth: rem(250), wordBreak: 'break-all'}}>{item.locality}, { item.address }</Box></Table.Td>
-                                <Table.Td><Box sx={{minWidth: rem(160)}}>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Box></Table.Td>
+                            return (
+                                <Table.Tr key={ item.id } handler={ () => goToDetailsStorePage(item.id, item.name) }>
+                                    <Table.Td ><Box sx={{ minWidth: rem(250), wordBreak: 'break-all' }}>{ item.name }</Box></Table.Td>
+                                    <Table.Td><Box sx={{ minWidth: rem(250), wordBreak: 'break-all' }}>{item.locality}, { item.address }</Box></Table.Td>
+                                    <Table.Td><Box sx={{ minWidth: rem(160) }}>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Box></Table.Td>
 
-                                <Table.Td><Box sx={{minWidth: rem(160), textAlign: 'center'}}>{ item.usersCount || '-' }</Box></Table.Td>
-                                { isAllowedStoreEdit && <Table.TdActions actions={ actions } align={'center'}/> }
-                            </Table.Tr>
-                        );
+                                    <Table.Td><Box sx={{ minWidth: rem(160), textAlign: 'center' }}>{ item.usersCount || '-' }</Box></Table.Td>
+                                    { isAllowedStoreEdit && <Table.TdActions actions={ actions } align={'center'}/> }
+                                </Table.Tr>
+                            );
 
-                    }) }
-                    { storesList.length === 0 && <Table.EmptyRow columnCount={ isAllowedStoreEdit ? 5 : 4 }>
-                        <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
-                    </Table.EmptyRow> }
-                </Table.Body>
-            </Table>
+                        }) }
+                        { storesList.length === 0 && <Table.EmptyRow columnCount={ isAllowedStoreEdit ? 5 : 4 }>
+                            <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
+                        </Table.EmptyRow> }
+                    </Table.Body>
+                </Table>
 
-            {pagination && <Pagination pagination={ pagination } withPerPage={pagination.totalPages > 1}/>}
-        </>
+                {pagination && <Pagination pagination={ pagination } withPerPage={pagination.totalPages > 1}/>}
+            </>
         }
 
     </>);

@@ -20,7 +20,7 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 
 export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: boolean) => void }> = ({
     storeId,
-    onClose
+    onClose,
 }) => {
 
     const { i18n } = useLingui();
@@ -47,7 +47,7 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
             const response = await getUsers(requestData).unwrap();
             setUsersList(response.content.map(user => ({
                 value: user.id,
-                label: user.fullName
+                label: user.fullName,
             })));
 
         } catch (err) {
@@ -59,10 +59,11 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
     };
 
     useEffect(() => {
+
         const requestData: typeSearchRequest<typeSearchFilterUsers, 'FULL_NAME'> = {
             filter: {
                 archived: false,
-                accessScopes: [ accessScope.merchant, accessScope.store ]
+                accessScopes: [ accessScope.merchant, accessScope.store ],
             },
             pagination: {
                 pageNumber: 0,
@@ -110,16 +111,19 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
     }, [ debouncedSearchValue ]);
 
     const onCancelClick = () => {
+
         form.reset();
         onClose(false);
+
     };
 
-    const [isInProgress,  setIsInProgress] = useState(false)
+    const [ isInProgress, setIsInProgress ] = useState(false);
 
     const onSubmit = async () => {
 
         if (form.values.userId) {
-            setIsInProgress(true)
+
+            setIsInProgress(true);
             const dataObject: typeUsersEdit = {
                 id: form.values.userId,
                 storeIds: {
@@ -146,7 +150,8 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
 
 
             }
-            setIsInProgress(false)
+            setIsInProgress(false);
+
         }
 
 
@@ -160,7 +165,7 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
                     padding: rem(15),
                     marginTop: rem(-10),
                     position: 'relative',
-                    overflow: 'visible'
+                    overflow: 'visible',
                 } }>
                 <Select
 
@@ -180,7 +185,7 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
                     rightSection={ (isFetching || !usersList) ? <Loader size="xs"/> : <IconChevronDown size="1rem"/> }
                     sx={ {
                         '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
-                        '&.mantine-InputWrapper-root': { width: '100%', maxWidth: 'none', zIndex:10000 }
+                        '&.mantine-InputWrapper-root': { width: '100%', maxWidth: 'none', zIndex: 10000 },
                     } }
                     withinPortal={true}
                     maxDropdownHeight={400}
@@ -198,11 +203,12 @@ export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: bool
                     },
                 } }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
-                    <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress  }
-                            type="submit">{ t`Add` }</Button>
+                    <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                        type="submit">{ t`Add` }</Button>
                 </Flex>
             </Box>
             {isEditUserLoading && <LoaderOverlay/>}
         </form>
     );
+
 };

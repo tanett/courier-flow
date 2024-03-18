@@ -3,7 +3,6 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
-import { UserArchiveButton } from 'features/user-archive-button';
 import { useParams } from 'react-router-dom';
 import { StoreEdit } from 'features/stores-edit';
 

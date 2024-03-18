@@ -2,7 +2,7 @@ import { typeFilterForm } from '../types/types';
 import React, { useContext, useEffect } from 'react';
 import { storesFilterForm } from '../forms/forms';
 import { useForm } from '@mantine/form';
-import { Loader, Select } from '@mantine/core';
+import { Select } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { FilterButtonsBar, FilterFormWrapper, DrawerContext } from '../../../shared/ui/filter-panel';
@@ -39,13 +39,13 @@ export const StoresListFilter: React.FC = () => {
 
         const filterObj: Record<string, unknown> = {
             type: form.values.type,
-            createdAtFrom: form.values.createdAt[0] ? (form.values.createdAt[0]).toISOString() : null,
-            createdAtTo: form.values.createdAt[1] ? (form.values.createdAt[1]).toISOString() : null,
+            createdAtFrom: form.values.createdAt[ 0 ] ? (form.values.createdAt[ 0 ]).toISOString() : null,
+            createdAtTo: form.values.createdAt[ 1 ] ? (form.values.createdAt[ 1 ]).toISOString() : null,
         };
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
         if (close) close();
@@ -55,8 +55,8 @@ export const StoresListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
         form.reset();
 

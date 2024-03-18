@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
-import { StoreDetails } from 'features/stores-details';
-import { Tabs } from '@mantine/core';
 import StoresDetailsTabs from 'features/stores-details/ui/tabs/stores-details-tabs';
 
 
@@ -13,7 +11,7 @@ const StoresDetailsPage: React.FC = () => {
 
     const {
         id,
-        storeName
+        storeName,
     } = useParams();
 
     const { i18n } = useLingui();

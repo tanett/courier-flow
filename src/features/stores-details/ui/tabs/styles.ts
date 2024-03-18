@@ -16,16 +16,17 @@ export const useStyles = createStyles((theme) => ({
                 color: theme.colors.primary[ 5 ],
                 fontWeight: 600,
                 backgroundColor: theme.white,
-                borderBottom: '1px solid transparent'
+                borderBottom: '1px solid transparent',
             },
         },
         '& .mantine-Tabs-panel': {
+
             // padding: '10px 16px',
             borderTop: `1px solid ${theme.colors.borderColor[ 0 ]}`,
             borderBottomLeftRadius: rem(8),
             borderBottomRightRadius: rem(8),
             borderTopRightRadius: rem(8),
-            backgroundColor: theme.white
+            backgroundColor: theme.white,
         },
 
     },

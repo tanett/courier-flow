@@ -19,7 +19,7 @@ export function useStoresList() {
     const [ storesList, setStoresList ] = useState<typeExtendedStore[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
-    const filters: typeSearchFilterStore = { archived: false, };
+    const filters: typeSearchFilterStore = { archived: false };
 
     if (urlParams.searchPhrase) filters.searchText = urlParams.searchPhrase;
 
@@ -27,7 +27,7 @@ export function useStoresList() {
     const createdAtTo = urlParams.getFilterValue('createdAtTo');
     if (createdAtTo && typeof createdAtTo === 'string' && createdAtFrom && typeof createdAtFrom === 'string') {
 
-       filters.createdAtFrom = createdAtFrom; filters.createdAtTo = createdAtTo;
+        filters.createdAtFrom = createdAtFrom; filters.createdAtTo = createdAtTo;
 
     }
 
@@ -98,7 +98,7 @@ export function useStoresList() {
         storesList,
         isLoading: isFetching,
         pagination,
-        setRefetch
+        setRefetch,
     };
 
 }

@@ -23,7 +23,7 @@ import { initialStoreEditForm } from 'features/stores-edit/form/form';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 
 
-export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId}) => {
+export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
 
     const { classes } = useStyles();
 
@@ -123,84 +123,84 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId}) => {
     };
 
     return ((isFetching || !storeData) ? <FormSkeleton/>
-            : <form onSubmit={ form.onSubmit(onSave) }>
+        : <form onSubmit={ form.onSubmit(onSave) }>
 
-                <Flex className={ classes.flexColumn }>
+            <Flex className={ classes.flexColumn }>
 
-                    <FieldsetForForm title={ <Trans>General Information</Trans> }>
+                <FieldsetForForm title={ <Trans>General Information</Trans> }>
 
-                        <TextInput
+                    <TextInput
+                        withAsterisk
+                        label={ <Trans>Name</Trans> }
+                        placeholder={ i18n._(t`Name`) }
+                        { ...form.getInputProps('name') }
+                        maxLength={ 150 }
+                    />
+                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                        <Select
                             withAsterisk
-                            label={ <Trans>Name</Trans> }
-                            placeholder={ i18n._(t`Name`) }
-                            { ...form.getInputProps('name') }
-                            maxLength={ 150 }
+                            label={ <Trans>Type</Trans> }
+                            data={ storeTypeList }
+                            { ...form.getInputProps('type') }
+                            rightSection={ <IconChevronDown size="1rem"/> }
+                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
                         />
-                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                            <Select
-                                withAsterisk
-                                label={ <Trans>Type</Trans> }
-                                data={ storeTypeList }
-                                { ...form.getInputProps('type') }
-                                rightSection={ <IconChevronDown size="1rem"/> }
-                                sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
-                            />
-                        </SimpleGrid>
-                    </FieldsetForForm>
-                    <FieldsetForForm title={ <Trans>Contacts</Trans> }>
+                    </SimpleGrid>
+                </FieldsetForForm>
+                <FieldsetForForm title={ <Trans>Contacts</Trans> }>
 
-                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                            <PhoneInputWithCountrySelector
-                                isRequired={ false }
-                                { ...form.getInputProps('phoneNumber') }
-                                value={ form.values.phoneNumber }
-                                onChange={ (value: string) => form.setFieldValue('phoneNumber', value) }
-                            />
-                            <TextInput
-                                label={ <Trans>Email</Trans> }
-                                placeholder="example@email.com"
-                                { ...form.getInputProps('email') }
-                                maxLength={ 100 }
-                            />
-
-                        </SimpleGrid>
-                        <TextInput
-                            withAsterisk
-                            label={ <Trans>Address</Trans> }
-                            value={ storeData.address }
-                            maxLength={ 250 }
-                            disabled
+                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                        <PhoneInputWithCountrySelector
+                            isRequired={ false }
+                            { ...form.getInputProps('phoneNumber') }
+                            value={ form.values.phoneNumber }
+                            onChange={ (value: string) => form.setFieldValue('phoneNumber', value) }
                         />
                         <TextInput
-                            withAsterisk
-                            label={ <Trans>locality</Trans> }
-                            placeholder={ i18n._(t`name of the locality`) }
-                            disabled
-                            value={ storeData.locality }
-                            maxLength={ 150 }
+                            label={ <Trans>Email</Trans> }
+                            placeholder="example@email.com"
+                            { ...form.getInputProps('email') }
+                            maxLength={ 100 }
                         />
-                    </FieldsetForForm>
-                    <FieldsetForForm title={ <Trans>Other</Trans> }>
 
-                        <Textarea
-                            label={ <Trans>Description</Trans> }
-                            placeholder={ i18n._(t`additional information`) }
-                            { ...form.getInputProps('description') }
-                            maxLength={ 500 }
-                            autosize
-                            minRows={2}
-                        />
-                    </FieldsetForForm>
-                    <Space h={ 10 }/>
-                    <Flex className={ classes.buttonsBar }>
-                        <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
-                        <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                                type="submit">{ t`Save` }</Button>
-                    </Flex>
+                    </SimpleGrid>
+                    <TextInput
+                        withAsterisk
+                        label={ <Trans>Address</Trans> }
+                        value={ storeData.address }
+                        maxLength={ 250 }
+                        disabled
+                    />
+                    <TextInput
+                        withAsterisk
+                        label={ <Trans>locality</Trans> }
+                        placeholder={ i18n._(t`name of the locality`) }
+                        disabled
+                        value={ storeData.locality }
+                        maxLength={ 150 }
+                    />
+                </FieldsetForForm>
+                <FieldsetForForm title={ <Trans>Other</Trans> }>
 
+                    <Textarea
+                        label={ <Trans>Description</Trans> }
+                        placeholder={ i18n._(t`additional information`) }
+                        { ...form.getInputProps('description') }
+                        maxLength={ 500 }
+                        autosize
+                        minRows={2}
+                    />
+                </FieldsetForForm>
+                <Space h={ 10 }/>
+                <Flex className={ classes.buttonsBar }>
+                    <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
+                    <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                        type="submit">{ t`Save` }</Button>
                 </Flex>
-                { (isInProgress || isLoading) && <LoaderOverlay/> }
-            </form>
+
+            </Flex>
+            { (isInProgress || isLoading) && <LoaderOverlay/> }
+        </form>
 
     );
 

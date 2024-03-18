@@ -13,7 +13,7 @@ export type typeUsersEdit = Partial<Omit<typeUsersCreate, 'phone' | 'storeIds'>>
 
 export type typeUserToArchive = string[]
 
-export type typeUserWithStoresName = Omit<typeUser,'storeIds'> & { stores: [
+export type typeUserWithStoresName = Omit<typeUser, 'storeIds'> & { stores: [
         {
             id: string,
             name:string,

@@ -26,27 +26,64 @@ msgstr "{0}"
 msgid "Access denied"
 msgstr "Access denied"
 
-#: src/shared/ui/table/ui/table/table.tsx:72
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:45
+#: src/features/stores-list/ui/stores-table.tsx:54
+#: src/features/user-list/ui/user-table.tsx:57
 msgid "Actions"
 msgstr "Actions"
 
-#: src/pages/users-page/ui/users-page.tsx:39
+#: src/features/terminal-list/ui/terminal-list.tsx:61
+msgid "Active"
+msgstr "Active"
+
+#: src/features/add-user-to-store/add-user-to-store.tsx:207
+#: src/features/stores-details-users/ui/stores-details-users.tsx:150
+#: src/pages/users-page/ui/users-page.tsx:43
 msgid "Add"
 msgstr "Add"
+
+#: src/features/stores-details-users/ui/stores-details-users.tsx:185
+msgid "Add an employee"
+msgstr "Add an employee"
+
+#: src/features/stores-details-users/ui/stores-details-users.tsx:140
+msgid "Add an existing employee to store"
+msgstr "Add an existing employee to store"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:187
+msgid "additional information"
+msgstr "additional information"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:169
+#: src/features/stores-list/ui/stores-table.tsx:44
+#: src/features/users-details/ui/users-details.tsx:120
+msgid "Address"
+msgstr "Address"
 
 #: src/shared/ui/filter-panel/ui/filter-buttons-bar.tsx:17
 msgid "Apply"
 msgstr "Apply"
 
-#: src/features/main-menu/config/main-menu.config.tsx:102
-#: src/features/user-list/ui/user-list.tsx:55
-#: src/pages/archive-page/ui/archive-page.tsx:15
+#: src/features/user-archive-button/userArchiveButton.tsx:40
+#: src/features/user-list/ui/user-table.tsx:74
 msgid "Archive"
 msgstr "Archive"
 
 #: src/features/user-list/ui/user-list.tsx:58
-msgid "Are you sure you want to archive the user \"#fullName#\"?"
-msgstr "Are you sure you want to archive the user \"#fullName#\"?"
+#~ msgid "Are you sure you want to archive the user \"#fullName#\"?"
+#~ msgstr "Are you sure you want to archive the user \"#fullName#\"?"
+
+#: src/features/user-list/ui/user-list.tsx:99
+msgid "Are you sure you want to archive<0/>the user"
+msgstr "Are you sure you want to archive<0/>the user"
+
+#: src/features/user-archive-button/userArchiveButton.tsx:52
+msgid "Are you sure you want to delete the current user?"
+msgstr "Are you sure you want to delete the current user?"
+
+#: src/features/stores-details-users/ui/stores-details-users.tsx:176
+msgid "Are you sure you want to remove <0/>the user"
+msgstr "Are you sure you want to remove <0/>the user"
 
 #: src/shared/ui/with-password-helper/with-password-helper.tsx:26
 msgid "At least 1 capital letter"
@@ -72,12 +109,32 @@ msgstr "Authorization"
 msgid "Authorization was successful!"
 msgstr "Authorization was successful!"
 
+#: src/features/terminal-list/ui/terminal-list.tsx:60
+#: src/features/terminals-details/ui/terminals-details.tsx:83
+#: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:94
+msgid "Blocked"
+msgstr "Blocked"
+
+#: src/features/terminals-details/ui/terminals-details.tsx:79
+#: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:93
+msgid "Blocking"
+msgstr "Blocking"
+
+#: src/features/add-user-to-store/add-user-to-store.tsx:205
 #: src/features/profile-show-edit/ui/profile.tsx:169
-#: src/features/user-list/ui/user-list.tsx:56
-#: src/features/users-create/ui/usersCreateNew.tsx:147
-#: src/features/users-edit/ui/usersEdit.tsx:169
+#: src/features/stores-details-users/ui/stores-details-users.tsx:168
+#: src/features/stores-edit/ui/storeEdit.tsx:196
+#: src/features/user-archive-button/userArchiveButton.tsx:48
+#: src/features/user-list/ui/user-list.tsx:91
+#: src/features/users-create/ui/usersCreateNew.tsx:157
+#: src/features/users-edit/ui/usersEdit.tsx:178
 msgid "Cancel"
 msgstr "Cancel"
+
+#: src/features/main-menu/config/main-menu.config.tsx:61
+#: src/pages/cash-desks-page/ui/cash-desks-page.tsx:15
+msgid "Cash desks"
+msgstr "Cash desks"
 
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:185
 #: src/features/restore-password/ui/restore-password.tsx:150
@@ -92,6 +149,15 @@ msgstr "Check if email is correct"
 #~ msgid "Click button to see custom focus ring"
 #~ msgstr "Click button to see custom focus ring"
 
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:31
+msgid "Click the \"Add\" button to add existing users to the store."
+msgstr "Click the \"Add\" button to add existing users to the store."
+
+#: src/features/stores-details-users/ui/stores-details-users.tsx:172
+#: src/features/user-list/ui/user-list.tsx:95
+msgid "Confirm"
+msgstr "Confirm"
+
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:166
 #: src/features/restore-password/ui/restore-password.tsx:131
 msgid "Confirm password"
@@ -101,11 +167,16 @@ msgstr "Confirm password"
 msgid "Contact Support"
 msgstr "Contact Support"
 
-#: src/features/profile-show-edit/ui/profile.tsx:138
-#: src/features/users-create/ui/usersCreateNew.tsx:128
-#: src/features/users-edit/ui/usersEdit.tsx:150
+#: src/features/profile-show-edit/ui/profile.tsx:135
+#: src/features/stores-edit/ui/storeEdit.tsx:150
+#: src/features/users-create/ui/usersCreateNew.tsx:137
+#: src/features/users-edit/ui/usersEdit.tsx:158
 msgid "Contacts"
 msgstr "Contacts"
+
+#: src/shared/ui/phoneInput/ui/countrySelector.tsx:52
+msgid "country code"
+msgstr "country code"
 
 #: src/pages/users-create-page/ui/users-create-page.tsx:17
 msgid "Create a new user"
@@ -115,28 +186,62 @@ msgstr "Create a new user"
 #~ msgid "Create new user"
 #~ msgstr "Create new user"
 
-#: src/features/roles-list/ui/roles-list.tsx:54
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:82
+#: src/features/terminal-list/ui/terminal-list.tsx:48
+msgid "Creation date"
+msgstr "Creation date"
+
+#: src/features/roles-list/ui/roles-list.tsx:56
+#: src/features/stores-details/ui/storeDetails.tsx:71
+#: src/features/stores-edit/ui/storeEdit.tsx:186
 msgid "Description"
 msgstr "Description"
 
-#: src/features/user-list/ui/user-list.tsx:46
-#: src/pages/users-edit-page/ui/users-edit-page.tsx:18
+#: src/features/stores-list/ui/stores-table.tsx:63
+#: src/features/user-list/ui/user-table.tsx:66
+#: src/pages/stores-edit-page/ui/stores-edit-page.tsx:21
+#: src/pages/users-edit-page/ui/users-edit-page.tsx:22
 msgid "Edit"
 msgstr "Edit"
 
 #: src/features/forgot-password/ui/forgot-password.tsx:76
 #: src/features/login/ui/login-form.tsx:136
-#: src/features/profile-show-edit/ui/profile.tsx:148
-#: src/features/user-list/ui/user-list.tsx:38
-#: src/features/users-create/ui/usersCreateNew.tsx:133
-#: src/features/users-edit/ui/usersEdit.tsx:155
+#: src/features/profile-show-edit/ui/profile.tsx:145
+#: src/features/stores-details/ui/storeDetails.tsx:67
+#: src/features/stores-edit/ui/storeEdit.tsx:160
+#: src/features/user-list/ui/user-table.tsx:48
+#: src/features/users-create/ui/usersCreateNew.tsx:142
+#: src/features/users-details/ui/users-details.tsx:68
+#: src/features/users-edit/ui/usersEdit.tsx:163
 msgid "Email"
 msgstr "Email"
+
+#: src/features/add-user-to-store/add-user-to-store.tsx:173
+msgid "Employees"
+msgstr "Employees"
+
+#: src/features/stores-details/ui/tabs/stores-details-tabs.tsx:22
+msgid "Employees list"
+msgstr "Employees list"
+
+#: src/shared/ui/empty-element/emptyElement.tsx:13
+msgid "empty list"
+msgstr "empty list"
+
+#: src/entities/stores/constants/store-type-list.tsx:13
+msgid "Fashion"
+msgstr "Fashion"
 
 #: src/shared/ui/filter-panel/ui/filter-block.tsx:24
 #: src/shared/ui/filter-panel/ui/filter-block.tsx:38
 msgid "Filter"
 msgstr "Filter"
+
+#: src/features/terminal-list/ui/terminal-list.tsx:42
+#: src/features/terminals-details/ui/terminals-details.tsx:78
+#: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:85
+msgid "Fiscal ID"
+msgstr "Fiscal ID"
 
 #: src/pages/forgot-password-page/ui/forgot-password-page.tsx:10
 #~ msgid "Forgot password"
@@ -146,11 +251,20 @@ msgstr "Filter"
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
-#: src/features/profile-show-edit/ui/profile.tsx:132
-#: src/features/users-create/ui/usersCreateNew.tsx:109
+#: src/entities/stores/constants/store-type-list.tsx:15
+msgid "Fuel"
+msgstr "Fuel"
+
+#: src/features/profile-show-edit/ui/profile.tsx:129
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:36
+#: src/features/users-create/ui/usersCreateNew.tsx:111
 #: src/features/users-edit/ui/usersEdit.tsx:131
 msgid "Full name"
 msgstr "Full name"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:130
+msgid "General Information"
+msgstr "General Information"
 
 #: src/shared/ui/support-link/support-link.tsx:29
 msgid "Have questions?"
@@ -160,13 +274,14 @@ msgstr "Have questions?"
 #~ msgid "Incorrect login or password"
 #~ msgstr "Incorrect login or password"
 
-#: src/features/profile-show-edit/ui/profile.tsx:160
+#: src/features/profile-show-edit/ui/profile.tsx:157
 msgid "Interface language"
 msgstr "Interface language"
 
 #: src/features/forgot-password/forms/forms.ts:17
-#: src/features/users-create/form/form.ts:29
-#: src/features/users-edit/form/form.ts:29
+#: src/features/stores-edit/form/form.ts:30
+#: src/features/users-create/form/form.ts:31
+#: src/features/users-edit/form/form.ts:31
 msgid "Invalid email"
 msgstr "Invalid email"
 
@@ -174,9 +289,10 @@ msgstr "Invalid email"
 msgid "Invalid password restore link. Request a password restore link again."
 msgstr "Invalid password restore link. Request a password restore link again."
 
-#: src/features/profile-show-edit/form/form.ts:37
-#: src/features/users-create/form/form.ts:35
-#: src/features/users-edit/form/form.ts:35
+#: src/features/profile-show-edit/form/form.ts:36
+#: src/features/stores-edit/form/form.ts:37
+#: src/features/users-create/form/form.ts:37
+#: src/features/users-edit/form/form.ts:37
 msgid "Invalid phone number format"
 msgstr "Invalid phone number format"
 
@@ -185,13 +301,17 @@ msgstr "Invalid phone number format"
 #: src/features/login/forms/forms.ts:24
 #: src/features/profile-show-edit/form/form.ts:19
 #: src/features/profile-show-edit/form/form.ts:28
-#: src/features/users-create/form/form.ts:17
-#: src/features/users-create/form/form.ts:26
-#: src/features/users-edit/form/form.ts:17
-#: src/features/users-edit/form/form.ts:26
+#: src/features/stores-edit/form/form.ts:19
+#: src/features/stores-edit/form/form.ts:27
+#: src/features/stores-edit/form/form.ts:47
+#: src/features/users-create/form/form.ts:19
+#: src/features/users-create/form/form.ts:28
+#: src/features/users-edit/form/form.ts:19
+#: src/features/users-edit/form/form.ts:28
 msgid "It's too long"
 msgstr "It's too long"
 
+#: src/shared/ui/pagination/table-pagination.tsx:38
 #: src/shared/ui/table/ui/table-pagination/table-pagination.tsx:35
 msgid "Items par page"
 msgstr "Items par page"
@@ -215,6 +335,14 @@ msgstr "Less than {MIN_NUMBERS_IN_PASSWORD} digit"
 msgid "Less than {MIN_UP_LETTERS_IN_PASSWORD} characters"
 msgstr "Less than {MIN_UP_LETTERS_IN_PASSWORD} characters"
 
+#: src/features/stores-edit/ui/storeEdit.tsx:176
+msgid "locality"
+msgstr "locality"
+
+#: src/features/stores-details/ui/storeDetails.tsx:73
+msgid "Locality"
+msgstr "Locality"
+
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:110
 #: src/features/login/ui/login-form.tsx:176
 #: src/features/restore-password/ui/restore-password.tsx:98
@@ -225,28 +353,67 @@ msgstr "Login"
 msgid "Logout"
 msgstr "Logout"
 
+#: src/entities/stores/constants/store-type-list.tsx:9
+msgid "Medicine"
+msgstr "Medicine"
+
+#: src/features/terminal-list/ui/terminal-list.tsx:45
+msgid "Merchant"
+msgstr "Merchant"
+
 #: src/features/main-menu/config/main-menu.config.tsx:27
 #: src/pages/merchants-page/ui/merchants-page.tsx:15
-msgid "Merchants"
-msgstr "Merchants"
+#~ msgid "Merchants"
+#~ msgstr "Merchants"
 
-#: src/features/user-list/ui/user-list.tsx:36
+#: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:75
+msgid "Model"
+msgstr "Model"
+
+#: src/features/user-archive-button/userArchiveButton.tsx:32
+msgid "Move to archive"
+msgstr "Move to archive"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:134
+#: src/features/stores-edit/ui/storeEdit.tsx:135
+#: src/features/stores-list/ui/stores-table.tsx:41
+#: src/features/user-list/ui/user-table.tsx:42
+#: src/features/users-details/ui/users-details.tsx:117
 msgid "Name"
 msgstr "Name"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:177
+msgid "name of the locality"
+msgstr "name of the locality"
 
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:147
 #: src/features/restore-password/ui/restore-password.tsx:112
 msgid "New password"
 msgstr "New password"
 
+#: src/features/terminals-details/ui/terminals-details.tsx:84
+msgid "Not blocked"
+msgstr "Not blocked"
+
 #: src/features/change-password-for-first-login/forms/forms.ts:27
 #: src/features/restore-password/forms/forms.ts:27
 msgid "Not contain special symbols"
 msgstr "Not contain special symbols"
 
+#: src/shared/ui/pagination/table-pagination.tsx:41
 #: src/shared/ui/table/ui/table-pagination/table-pagination.tsx:38
 msgid "of"
 msgstr "of"
+
+#: src/features/main-menu/config/main-menu.config.tsx:77
+#: src/pages/orders-page/ui/orders-page.tsx:15
+msgid "Orders"
+msgstr "Orders"
+
+#: src/entities/stores/constants/store-type-list.tsx:11
+#: src/features/stores-edit/ui/storeEdit.tsx:183
+msgid "Other"
+msgstr "Other"
 
 #: src/features/login/ui/login-form.tsx:150
 #: src/features/login/ui/login-form.tsx:152
@@ -281,23 +448,37 @@ msgstr "Password recovery"
 msgid "Password too long, maximum {MAX_CHARS_IN_PASSWORD} characters"
 msgstr "Password too long, maximum {MAX_CHARS_IN_PASSWORD} characters"
 
-#: src/features/profile-show-edit/ui/profile.tsx:129
-#: src/features/users-create/ui/usersCreateNew.tsx:105
+#: src/features/profile-show-edit/ui/profile.tsx:126
+#: src/features/users-create/ui/usersCreateNew.tsx:107
 #: src/features/users-edit/ui/usersEdit.tsx:127
 msgid "Personal Information"
 msgstr "Personal Information"
 
-#: src/features/user-list/ui/user-list.tsx:37
-#: src/shared/ui/phoneInput/ui/phoneInput.tsx:21
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:39
+#: src/features/stores-details/ui/storeDetails.tsx:64
+#: src/features/stores-list/ui/stores-table.tsx:47
+#: src/features/user-list/ui/user-table.tsx:45
+#: src/features/users-details/ui/users-details.tsx:64
+#: src/features/users-details/ui/users-details.tsx:123
+#: src/shared/ui/phoneInput/ui/phoneInputWithCountrySelector.tsx:138
 msgid "Phone number"
 msgstr "Phone number"
+
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:85
+msgid "Pick dates range"
+msgstr "Pick dates range"
+
+#: src/features/main-menu/config/main-menu.config.tsx:45
+#: src/pages/products-page/ui/products-page.tsx:15
+msgid "Products"
+msgstr "Products"
 
 #: src/pages/profile-page/ui/profile-page.tsx:17
 #: src/shared/ui/profile-button/profile-button.tsx:30
 msgid "Profile"
 msgstr "Profile"
 
-#: src/features/profile-show-edit/ui/profile.tsx:95
+#: src/features/profile-show-edit/ui/profile.tsx:92
 msgid "Profile changed successfully."
 msgstr "Profile changed successfully."
 
@@ -305,19 +486,31 @@ msgstr "Profile changed successfully."
 #~ msgid "Remember me"
 #~ msgstr "Remember me"
 
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:56
+msgid "Remove from store"
+msgstr "Remove from store"
+
+#: src/features/main-menu/config/main-menu.config.tsx:37
+#: src/pages/reports-page/ui/reports-page.tsx:15
+msgid "Reports"
+msgstr "Reports"
+
+#: src/features/add-user-to-store/form.ts:13
 #: src/features/forgot-password/forms/forms.ts:12
 #: src/features/login/forms/forms.ts:13
 #: src/features/login/forms/forms.ts:22
 #: src/features/profile-show-edit/form/form.ts:17
 #: src/features/profile-show-edit/form/form.ts:26
 #: src/features/profile-show-edit/form/form.ts:35
-#: src/features/profile-show-edit/form/form.ts:44
-#: src/features/users-create/form/form.ts:15
-#: src/features/users-create/form/form.ts:24
-#: src/features/users-create/form/form.ts:42
-#: src/features/users-edit/form/form.ts:15
-#: src/features/users-edit/form/form.ts:24
-#: src/features/users-edit/form/form.ts:42
+#: src/features/profile-show-edit/form/form.ts:42
+#: src/features/stores-edit/form/form.ts:17
+#: src/features/stores-edit/form/form.ts:53
+#: src/features/users-create/form/form.ts:17
+#: src/features/users-create/form/form.ts:26
+#: src/features/users-create/form/form.ts:44
+#: src/features/users-edit/form/form.ts:17
+#: src/features/users-edit/form/form.ts:26
+#: src/features/users-edit/form/form.ts:44
 msgid "Required field"
 msgstr "Required field"
 
@@ -334,38 +527,52 @@ msgstr "Resource Not Found"
 msgid "Restore password"
 msgstr "Restore password"
 
-#: src/features/user-list-filter/ui/user-list-filter.tsx:96
-#: src/features/user-list/ui/user-list.tsx:39
-#: src/features/users-create/ui/usersCreateNew.tsx:116
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:42
+#: src/features/user-list-filter/ui/user-list-filter.tsx:126
+#: src/features/user-list/ui/user-table.tsx:51
+#: src/features/users-create/ui/usersCreateNew.tsx:118
+#: src/features/users-details/ui/users-details.tsx:50
 #: src/features/users-edit/ui/usersEdit.tsx:138
 msgid "Role"
 msgstr "Role"
 
-#: src/features/roles-list/ui/roles-list.tsx:80
-msgid "Role Description"
-msgstr "Role Description"
+#: src/features/roles-list/ui/roles-list.tsx:94
+msgid "Role description"
+msgstr "Role description"
 
-#: src/features/roles-list/ui/roles-list.tsx:52
+#: src/features/roles-list/ui/roles-list.tsx:80
+#~ msgid "Role Description"
+#~ msgstr "Role Description"
+
+#: src/features/roles-list/ui/roles-list.tsx:53
 msgid "Role's name"
 msgstr "Role's name"
 
-#: src/features/main-menu/config/main-menu.config.tsx:86
+#: src/features/main-menu/config/main-menu.config.tsx:102
 #: src/pages/roles-page/ui/roles-page.tsx:16
 msgid "Roles"
 msgstr "Roles"
 
 #: src/features/profile-show-edit/ui/profile.tsx:170
-#: src/features/users-create/ui/usersCreateNew.tsx:149
-#: src/features/users-edit/ui/usersEdit.tsx:171
+#: src/features/stores-edit/ui/storeEdit.tsx:198
+#: src/features/users-create/ui/usersCreateNew.tsx:159
+#: src/features/users-edit/ui/usersEdit.tsx:180
 msgid "Save"
 msgstr "Save"
 
-#: src/features/users-create/ui/usersCreateNew.tsx:123
+#: src/features/users-create/ui/usersCreateNew.tsx:125
 #: src/features/users-edit/ui/usersEdit.tsx:145
 msgid "Select a role"
 msgstr "Select a role"
 
-#: src/features/profile-show-edit/ui/profile.tsx:157
+#: src/features/terminal-list/ui/terminal-list.tsx:39
+#: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:80
+msgid "Serial number"
+msgstr "Serial number"
+
+#: src/features/main-menu/config/main-menu.config.tsx:110
+#: src/features/profile-show-edit/ui/profile.tsx:154
+#: src/pages/settings-page/ui/settings-page.tsx:15
 msgid "Settings"
 msgstr "Settings"
 
@@ -374,8 +581,47 @@ msgstr "Settings"
 msgid "Spaces are not allowed"
 msgstr "Spaces are not allowed"
 
-#: src/features/main-menu/config/main-menu.config.tsx:41
-#: src/pages/terminals-page/ui/terminals-page.tsx:15
+#: src/features/terminal-list/ui/terminal-list.tsx:51
+msgid "Status"
+msgstr "Status"
+
+#: src/features/stores-details/ui/tabs/stores-details-tabs.tsx:21
+msgid "Store"
+msgstr "Store"
+
+#: src/features/stores-details/ui/storeDetails.tsx:76
+#: src/features/terminals-details/ui/terminals-details.tsx:101
+msgid "Store address"
+msgstr "Store address"
+
+#: src/features/terminals-details/ui/terminals-details.tsx:98
+msgid "Store name"
+msgstr "Store name"
+
+#: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:172
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:131
+msgid "Store not found"
+msgstr "Store not found"
+
+#: src/features/stores-details/ui/storeDetails.tsx:48
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:71
+msgid "Store type"
+msgstr "Store type"
+
+#: src/features/main-menu/config/main-menu.config.tsx:53
+#: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:126
+#: src/features/user-list/ui/user-table.tsx:54
+#: src/features/users-details/ui/users-details.tsx:95
+#: src/pages/stores-details-page/ui/stores-details-page.tsx:23
+#: src/pages/stores-edit-page/ui/stores-edit-page.tsx:20
+#: src/pages/stores-page/ui/stores-page.tsx:16
+msgid "Stores"
+msgstr "Stores"
+
+#: src/features/main-menu/config/main-menu.config.tsx:69
+#: src/pages/terminals-details-page/ui/terminals-details-page.tsx:20
+#: src/pages/terminals-page/ui/terminals-page.tsx:16
 msgid "Terminals"
 msgstr "Terminals"
 
@@ -383,13 +629,32 @@ msgstr "Terminals"
 msgid "The email has been sent to the email address you provided to reset your password. Check your email and follow the instructions in the email."
 msgstr "The email has been sent to the email address you provided to reset your password. Check your email and follow the instructions in the email."
 
-#: src/shared/ui/table/ui/table/table.tsx:167
+#: src/features/roles-list/ui/roles-list.tsx:82
+#: src/features/stores-list/ui/stores-table.tsx:82
+#: src/features/terminal-list/ui/terminal-list.tsx:79
+#: src/features/user-list/ui/user-table.tsx:100
 msgid "The list is empty, try changing your filtering or search conditions and try again."
 msgstr "The list is empty, try changing your filtering or search conditions and try again."
 
+#: src/features/stores-details-users/ui/table/table-stores-users.tsx:30
+msgid "The list of users is empty."
+msgstr "The list of users is empty."
+
+#: src/features/stores-list/ui/stores-table.tsx:51
+msgid "The number of employees"
+msgstr "The number of employees"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:99
+msgid "The store edited successfully."
+msgstr "The store edited successfully."
+
+#: src/features/users-details/ui/users-details.tsx:141
+msgid "This user is not associated with any store"
+msgstr "This user is not associated with any store"
+
 #: src/features/user-list/ui/user-list.tsx:51
-msgid "To archive"
-msgstr "To archive"
+#~ msgid "To archive"
+#~ msgstr "To archive"
 
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:134
 msgid "To continue, we ask you to change your password."
@@ -400,38 +665,84 @@ msgstr "To continue, we ask you to change your password."
 msgid "Too short password, minimum {MIN_CHARS_IN_PASSWORD} characters"
 msgstr "Too short password, minimum {MIN_CHARS_IN_PASSWORD} characters"
 
-#: src/features/roles-list/ui/roles-list.tsx:45
+#: src/features/stores-details-users/ui/stores-details-users.tsx:138
+msgid "total"
+msgstr "total"
+
+#: src/features/stores-edit/ui/storeEdit.tsx:142
+msgid "Type"
+msgstr "Type"
+
+#: src/features/add-user-to-store/add-user-to-store.tsx:184
+msgid "Type a name and select an employee"
+msgstr "Type a name and select an employee"
+
+#: src/features/roles-list/ui/roles-list.tsx:44
 msgid "Type part of role's name"
 msgstr "Type part of role's name"
 
-#: src/features/user-list/ui/user-list.tsx:28
+#: src/features/stores-list/ui/stores-table.tsx:31
+msgid "Type part of store name"
+msgstr "Type part of store name"
+
+#: src/features/user-list/ui/user-table.tsx:32
 msgid "Type part of your username, email or phone number"
 msgstr "Type part of your username, email or phone number"
 
-#: src/features/users-create/ui/usersCreateNew.tsx:77
+#: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:168
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:127
+msgid "Type store name and select"
+msgstr "Type store name and select"
+
+#: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:95
+msgid "Unblocked"
+msgstr "Unblocked"
+
+#: src/entities/users/hooks/use-archive-users.ts:27
+msgid "User archived successfully."
+msgstr "User archived successfully."
+
+#: src/features/users-create/ui/usersCreateNew.tsx:76
 msgid "User created successfully."
 msgstr "User created successfully."
 
-#: src/features/profile-show-edit/ui/profile.tsx:133
-#: src/features/users-create/ui/usersCreateNew.tsx:110
+#: src/features/profile-show-edit/ui/profile.tsx:130
+#: src/features/users-create/ui/usersCreateNew.tsx:112
 #: src/features/users-edit/ui/usersEdit.tsx:132
 msgid "User name"
 msgstr "User name"
 
-#: src/features/users-edit/ui/usersEdit.tsx:99
+#: src/features/add-user-to-store/add-user-to-store.tsx:142
+msgid "User was added successfully."
+msgstr "User was added successfully."
+
+#: src/features/users-edit/ui/usersEdit.tsx:98
 msgid "User was edited successfully."
 msgstr "User was edited successfully."
 
-#: src/features/main-menu/config/main-menu.config.tsx:73
+#: src/features/stores-details-users/ui/stores-details-users.tsx:104
+msgid "User was removed successfully."
+msgstr "User was removed successfully."
+
+#: src/features/main-menu/config/main-menu.config.tsx:94
 #: src/pages/users-create-page/ui/users-create-page.tsx:16
-#: src/pages/users-edit-page/ui/users-edit-page.tsx:17
-#: src/pages/users-page/ui/users-page.tsx:31
+#: src/pages/users-details-page/ui/users-details-page.tsx:20
+#: src/pages/users-edit-page/ui/users-edit-page.tsx:21
+#: src/pages/users-page/ui/users-page.tsx:35
 msgid "Users"
 msgstr "Users"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
-msgid "Users' count"
-msgstr "Users' count"
+#~ msgid "Users' count"
+#~ msgstr "Users' count"
+
+#: src/features/roles-list/ui/roles-list.tsx:60
+msgid "Users's count"
+msgstr "Users's count"
+
+#: src/features/terminals-details/ui/terminals-details.tsx:77
+msgid "Vendor & model"
+msgstr "Vendor & model"
 
 #: src/shared/ui/with-password-helper/with-password-helper.tsx:30
 msgid "Without spaces"

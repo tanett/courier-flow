@@ -22,39 +22,39 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
     const { onArchive } = useArchiveUsers({ onSuccess: () => navigate(generatePath(routerPaths.users), { replace: true }) });
 
     return (currentUser && currentUser.actor.id !== id ?
-            <>
-                <Button
-                    disabled={ !id }
-                    key={ 'archive-user' }
-                    variant={ 'outline' }
-                    className={ classes.button }
-                    onClick={ () => setIsOpenConfirm(true) }
-                    leftIcon={ <ArchiveBoxArrowDownIcon/> }><Trans>Move to archive</Trans>
-                </Button>
+        <>
+            <Button
+                disabled={ !id }
+                key={ 'archive-user' }
+                variant={ 'outline' }
+                className={ classes.button }
+                onClick={ () => setIsOpenConfirm(true) }
+                leftIcon={ <ArchiveBoxArrowDownIcon/> }><Trans>Move to archive</Trans>
+            </Button>
 
-                { isOpenConfirm && <Dialog
-                    opened={ true }
-                    onClose={ () => setIsOpenConfirm(false) }
-                    withCloseButton={ false }
-                    confirmButton={ {
-                        title: t`Archive`,
-                        handler: () => {
+            { isOpenConfirm && <Dialog
+                opened={ true }
+                onClose={ () => setIsOpenConfirm(false) }
+                withCloseButton={ false }
+                confirmButton={ {
+                    title: t`Archive`,
+                    handler: () => {
 
-                            if (id) onArchive(id);
+                        if (id) onArchive(id);
 
-                        },
-                    } }
-                    cancelButton={ {
-                        title: t`Cancel`,
-                        handler: () => setIsOpenConfirm(false),
-                    } }
-                >
-                    { t`Are you sure you want to delete the current user?` }
-                </Dialog> }
+                    },
+                } }
+                cancelButton={ {
+                    title: t`Cancel`,
+                    handler: () => setIsOpenConfirm(false),
+                } }
+            >
+                { t`Are you sure you want to delete the current user?` }
+            </Dialog> }
 
 
-            </>
-            : <div/>
+        </>
+        : <div/>
     );
 
 };

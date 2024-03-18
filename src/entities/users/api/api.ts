@@ -38,6 +38,7 @@ export const usersApi = baseApi.injectEndpoints({
                 }
             ),
         }),
+
         // create user
         createUser: builder.mutation<typeUser, typeCreateUserRequest >({
             query: (data) => (

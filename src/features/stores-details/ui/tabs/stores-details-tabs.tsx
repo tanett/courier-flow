@@ -1,13 +1,12 @@
 import React from 'react';
 import { Tabs } from '@mantine/core';
-import { generatePath, useNavigate, useParams } from 'react-router-dom';
 import { t } from '@lingui/macro';
 import { useStyles } from './styles';
 import { useLingui } from '@lingui/react';
 import { StoreDetails } from 'features/stores-details/ui/storeDetails';
 import { StoresDetailsUsers } from 'features/stores-details-users';
 
-const StoresDetailsTabs: React.FC<{storeId: string}> = ({storeId}) => {
+const StoresDetailsTabs: React.FC<{storeId: string}> = ({ storeId }) => {
 
     const { classes } = useStyles();
 

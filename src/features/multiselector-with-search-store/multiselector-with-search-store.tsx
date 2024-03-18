@@ -27,7 +27,7 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
         return (
             <div ref={ ref } { ...others }>
                 <Group noWrap align={ 'center' }>
-                    { selected &&  <Flex align={ 'center' } sx={ {
+                    { selected && <Flex align={ 'center' } sx={ {
                         width: '20px',
                         height: '20px',
                         alignSelf: 'center',
@@ -55,7 +55,7 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
     const dispatch = useAppDispatchT();
 
     const [ searchStoreValue, onSearchStoreChange ] = useState('');
-    const [debouncedSearchValue] = useDebouncedValue(searchStoreValue, 500);
+    const [ debouncedSearchValue ] = useDebouncedValue(searchStoreValue, 500);
 
     const [ storesList, setStoresList ] = useState<{value: string, label: string}[]>([]);
 
@@ -85,8 +85,9 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
 
     };
     useEffect(() => {
+
         const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
-            filter: {  archived: false, },
+            filter: { archived: false },
             pagination: {
                 pageNumber: 0,
                 pageSize: 50,

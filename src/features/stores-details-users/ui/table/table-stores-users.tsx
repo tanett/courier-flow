@@ -16,7 +16,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
     isLoading,
     setRefetchList,
     onOpenDialogRemoveUser,
-    isAllowEditUser
+    isAllowEditUser,
 }) => {
 
     const { i18n } = useLingui();

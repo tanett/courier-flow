@@ -1,5 +1,5 @@
 import {
-    typeChangePasswordRequest, typeChangePasswordByTokenRequest,
+    typeChangePasswordByTokenRequest,
     typeForgotPasswordRequest,
     typeGetCurrentUserResponse, typePatchCurrentUser, typeChangePasswordFirstLoginRequest,
 } from './types';

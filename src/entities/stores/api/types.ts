@@ -1,5 +1,4 @@
 import { typeStoreCreate, typeStoreEdit, typeStoreToArchive, typeStoreType } from 'entities/stores/model/types';
-import { accessScope } from '../../../app/config/api-constants';
 
 export type typeCreateStoreRequest = typeStoreCreate
 

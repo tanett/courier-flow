@@ -22,7 +22,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores<typeUsersFilte
     const dispatch = useAppDispatchT();
 
     const [ searchStoreValue, onSearchStoreChange ] = useState('');
-    const [debouncedSearchValue] = useDebouncedValue(searchStoreValue, 500);
+    const [ debouncedSearchValue ] = useDebouncedValue(searchStoreValue, 500);
 
     const [ storesList, setStoresList ] = useState<{value: string, label: string}[]>([]);
 
@@ -44,8 +44,9 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores<typeUsersFilte
     };
 
     useEffect(() => {
+
         const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
-            filter: {  archived: false, },
+            filter: { archived: false },
             pagination: {
                 pageNumber: 0,
                 pageSize: 50,

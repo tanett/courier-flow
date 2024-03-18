@@ -5,7 +5,7 @@ import { typeProfileForm } from '../types/types';
 import { initialProfileForm } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { LANGUAGES, locales } from 'app/config/languages';
-import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
+import { Button, Flex, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { errorHandler } from 'app/utils/errorHandler';

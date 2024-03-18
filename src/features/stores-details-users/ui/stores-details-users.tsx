@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Button, Flex, Loader, Tooltip, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router-dom';
 import { useGetStoresUsersList } from 'features/stores-details-users/hooks/use-get-stores-users-list';
 import { TableDetailsUsers } from 'features/stores-details-users/ui/table/table-stores-users';
 import { TablePagination } from 'shared/ui/table/ui/table-pagination/table-pagination';
@@ -26,8 +25,6 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
 
     const { i18n } = useLingui();
 
-    const navigate = useNavigate();
-
     const theme = useMantineTheme();
 
     const dispatchAppT = useAppDispatchT();
@@ -38,7 +35,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
         userList,
         pagination,
         isLoading,
-        setRefetch
+        setRefetch,
     } = useGetStoresUsersList();
 
     const [ editUser, { isLoading: isLoadingEditUser } ] = usePatchUserMutation();
@@ -52,7 +49,12 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
 
     };
     const onCloseDialogToAddUser = (refetch: boolean) => {
-        if (refetch) {setRefetch(true);}
+
+        if (refetch) {
+
+            setRefetch(true);
+
+        }
 
         setDialogToAddUser(false);
 
@@ -73,7 +75,11 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
 
             const user = userList.find(item => item.id === id);
 
-            if (user) { setDialogToRemoveUser(user); }
+            if (user) {
+
+                setDialogToRemoveUser(user);
+
+            }
 
         }
 
@@ -87,8 +93,8 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                 id: user.id,
                 storeIds: {
                     patchType: 'REMOVE',
-                    values: [ storeId ]
-                }
+                    values: [ storeId ],
+                },
             };
 
             await editUser(dataObject).unwrap();
@@ -98,7 +104,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                 message: i18n._(t`User was removed successfully.`),
             }));
 
-            onCloseDialogToRemoveUser()
+            onCloseDialogToRemoveUser();
             setRefetch(true);
 
 
@@ -107,11 +113,12 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
             errorHandler(err as typeResponseError, 'onRemoveUserFromStore', dispatchAppT);
 
         }
+
     };
 
     return (
         <Box sx={ {
-            borderTop: `1px solid ${ theme.colors.borderColor[0] }`,
+            borderTop: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
             borderTopRightRadius: '8px',
             marginTop: '-1px',
             backgroundColor: theme.white,
@@ -119,14 +126,14 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
         } }>
 
             <Flex justify={ 'space-between' } p={ 16 }
-                  sx={ {
-                      borderLeft: `1px solid ${ theme.colors.borderColor[0] }`,
-                      borderRight: `1px solid ${ theme.colors.borderColor[0] }`,
-                      borderTopRightRadius: '8px',
-                  } }
+                sx={ {
+                    borderLeft: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                    borderRight: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                    borderTopRightRadius: '8px',
+                } }
             >
                 { (userList && pagination && pagination.totalElements > 0) ? <Box sx={ {
-                    borderBottom: `2px solid ${ theme.colors.gray[5] }`,
+                    borderBottom: `2px solid ${ theme.colors.gray[ 5 ] }`,
                     alignSelf: 'center',
                 } }>{ i18n._(t`total`) }: { pagination?.totalElements || 0 }</Box> : <div/> }
 
@@ -137,7 +144,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                         fontWeight: 700,
                         fontSize: theme.fontSizes.md,
                         letterSpacing: '0.3px',
-                        '&:hover': { backgroundColor: theme.colors.primary[0] },
+                        '&:hover': { backgroundColor: theme.colors.primary[ 0 ] },
                     } }
                     onClick={ onAddClick }
                     leftIcon={ <IconPlus size={ 20 }/> }><Trans>Add</Trans>

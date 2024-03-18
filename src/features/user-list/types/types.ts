@@ -1,5 +1,4 @@
 import { typeGetCurrentUserResponse } from 'entities/user-profile/api/types';
-import { typeUser } from 'entities/user-profile/model/state-slice';
 import { typeTablePagination } from 'shared/ui/table/types/type';
 import { typeUserWithStoresName } from 'entities/users/model/types';
 

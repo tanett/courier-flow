@@ -14,12 +14,13 @@ import { routerPaths } from 'app/config/router-paths';
 
 export const TerminalList: React.FC = () => {
 
-   const {
-       terminalsList,
-       pagination,
-     //  setRefetch,
-       isFetching
-   } = useTerminalList()
+    const {
+        terminalsList,
+        pagination,
+
+        //  setRefetch,
+        isFetching,
+    } = useTerminalList();
 
     const navigate = useNavigate();
 
@@ -27,10 +28,11 @@ export const TerminalList: React.FC = () => {
         {isFetching
             ? <TableSkeleton/>
             : terminalsList && <>
-            <FilterPanel
-            // withFind={ { placeholder: i18n._(t`Type part of serial number, fiscal card Id`) } }
-                filterComponent={ <TerminalsListFilter/> }
-            />
+                <FilterPanel
+
+                    // withFind={ { placeholder: i18n._(t`Type part of serial number, fiscal card Id`) } }
+                    filterComponent={ <TerminalsListFilter/> }
+                />
                 <Table variant="inTab">
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
@@ -60,7 +62,7 @@ export const TerminalList: React.FC = () => {
 
 
                             return (
-                                <Table.Tr key={item.id} handler={() =>  navigate([ routerPaths.terminals, item.id.toString(), item.serialNumber ].join('/'))}>
+                                <Table.Tr key={item.id} handler={() => navigate([ routerPaths.terminals, item.id.toString(), item.serialNumber ].join('/'))}>
                                     <Table.Td>{item.serialNumber}</Table.Td>
                                     <Table.Td>
                                         <Box maw={200} miw={150} sx={{ wordBreak: 'break-all' }}>{item.fiscalCardId}</Box>
@@ -79,7 +81,7 @@ export const TerminalList: React.FC = () => {
                     </Table.Body>
                 </Table>
 
-             <Pagination pagination={ pagination } withPerPage={pagination ? pagination.totalPages > 1 : false}/>
+                <Pagination pagination={ pagination } withPerPage={pagination ? pagination.totalPages > 1 : false}/>
             </>
         }
     </>);

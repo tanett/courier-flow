@@ -18,12 +18,13 @@ export const useGetUserFromUrlWithStoresData = () => {
         isUserFetching,
     } = useGetUserDataByIdFromUrl();
 
-    const [ getStoresList, {isFetching: isStoresFetching} ] = useLazySearchStoreQuery();
+    const [ getStoresList, { isFetching: isStoresFetching } ] = useLazySearchStoreQuery();
 
-    const [storesList, setStoresList] = useState<typeStore[] | undefined>(undefined)
+    const [ storesList, setStoresList ] = useState<typeStore[] | undefined>(undefined);
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
     const getStoresData = async (storesIds: string[]) => {
+
         try {
 
             const response = await getStoresList({
@@ -55,23 +56,26 @@ export const useGetUserFromUrlWithStoresData = () => {
 
             console.log(err);
 
-        }}
+        }
+
+    };
 
     useEffect(() => {
 
-        if(userData && userData.storeIds.length>0){
+        if (userData && userData.storeIds.length > 0){
 
-            getStoresData(userData.storeIds).then()
+            getStoresData(userData.storeIds).then();
 
         }
 
-    }, [userData, location]);
+    }, [ userData, location ]);
 
     return {
         userData,
         isUserFetching,
         storesList,
         isStoresFetching,
-        pagination
-    }
-}
+        pagination,
+    };
+
+};

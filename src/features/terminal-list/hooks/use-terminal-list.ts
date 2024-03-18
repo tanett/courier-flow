@@ -18,7 +18,7 @@ export const useTerminalList = () => {
     const [ terminalsList, setTerminalsList ] = useState<typeTerminalExtended[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
-    const filters: typeSearchTerminalsFilter = {  archived: false, };
+    const filters: typeSearchTerminalsFilter = { archived: false };
 
     if (urlParams.searchPhrase) filters.searchText = urlParams.searchPhrase;
 
@@ -77,13 +77,13 @@ export const useTerminalList = () => {
     useEffect(() => {
 
         if (location) {
+
             console.log(location);
             getData().then();
 
         }
 
     }, [ location ]);
-
 
 
     return {

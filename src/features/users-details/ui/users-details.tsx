@@ -22,7 +22,7 @@ export const UsersDetails: React.FC = () => {
         isUserFetching,
         storesList,
         isStoresFetching,
-        pagination
+        pagination,
     } = useGetUserFromUrlWithStoresData();
 
 
@@ -30,7 +30,7 @@ export const UsersDetails: React.FC = () => {
         <>
             <SimpleGrid
                 sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[0] }`,
+                    border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
                     borderRadius: '8px',
                     padding: '10px 16px',
                     backgroundColor: theme.white,
@@ -62,12 +62,12 @@ export const UsersDetails: React.FC = () => {
                         }
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Phone number`) }
-                                   iconLabel={ <PhoneIcon/> }
-                                   content={ userData?.phone ? formatIncompletePhoneNumber(userData.phone) : '-' }
-                                   withBottomBorder={ false }/>
+                        iconLabel={ <PhoneIcon/> }
+                        content={ userData?.phone ? formatIncompletePhoneNumber(userData.phone) : '-' }
+                        withBottomBorder={ false }/>
                     <InfoCardSmall label={ i18n._(t`Email`) }
-                                   iconLabel={ <EnvelopeIcon/> }
-                                   content={ userData?.email || '-' } withBottomBorder={ false }/>
+                        iconLabel={ <EnvelopeIcon/> }
+                        content={ userData?.email || '-' } withBottomBorder={ false }/>
 
                 </SimpleGrid>
             </SimpleGrid>
@@ -80,13 +80,13 @@ export const UsersDetails: React.FC = () => {
             >
                 <Text
                     sx={ {
-                        borderTop: `1px solid ${ theme.colors.borderColor[0] }`,
-                        borderLeft: `1px solid ${ theme.colors.borderColor[0] }`,
-                        borderRight: `1px solid ${ theme.colors.borderColor[0] }`,
+                        borderTop: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                        borderLeft: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                        borderRight: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
                         borderTopLeftRadius: '8px',
                         borderTopRightRadius: '8px',
                         padding: `16px 16px 12px 16px`,
-                        color: theme.colors.primary[5],
+                        color: theme.colors.primary[ 5 ],
                         fontSize: theme.fontSizes.md,
                         fontWeight: 500,
                         lineHeight: rem(27),
@@ -129,7 +129,7 @@ export const UsersDetails: React.FC = () => {
 
                                 return (
                                     <Table.Tr key={ item.id }>
-                                        <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all' , color: theme.colors.primary[5]} }>{ item.name }</Flex></Table.Td>
+                                        <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all', color: theme.colors.primary[ 5 ] } }>{ item.name }</Flex></Table.Td>
                                         <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all' } }>{ item.address }</Flex></Table.Td>
                                         <Table.Td>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Table.Td>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStoresList } from 'features/stores-list/hooks/use-stores-list';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../../app/config/router-paths';

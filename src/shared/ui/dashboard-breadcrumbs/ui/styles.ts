@@ -12,7 +12,7 @@ export const useStyles = createStyles((theme) => ({
         textDecoration: 'none',
         paddingBottom: '0',
         marginBottom: rem(-2),
-        wordBreak: 'break-all'
+        wordBreak: 'break-all',
     },
     link: {
         '&:hover': {

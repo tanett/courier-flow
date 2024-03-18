@@ -25,7 +25,7 @@ export const StoreDetails: React.FC<{ storeId: string }> = ({ storeId }) => {
         <>
             <SimpleGrid
                 sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[0] }`,
+                    border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
                     borderTopRightRadius: '8px',
                     borderBottomRightRadius: '8px',
                     borderBottomLeftRadius: '8px',
@@ -62,21 +62,21 @@ export const StoreDetails: React.FC<{ storeId: string }> = ({ storeId }) => {
                     ] }>
 
                     <InfoCardSmall label={ i18n._(t`Phone number`) }
-                                   iconLabel={ <PhoneIcon/> }
-                                   content={ storeData?.phoneNumber ? formatIncompletePhoneNumber(storeData.phoneNumber) : '-' }/>
+                        iconLabel={ <PhoneIcon/> }
+                        content={ storeData?.phoneNumber ? formatIncompletePhoneNumber(storeData.phoneNumber) : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Email`) }
-                                   iconLabel={ <EnvelopeIcon/> }
-                                   content={ storeData?.email || '-' }/>
+                        iconLabel={ <EnvelopeIcon/> }
+                        content={ storeData?.email || '-' }/>
                 </SimpleGrid>
                 <InfoCardSmall label={ i18n._(t`Description`) } content={ storeData?.description || '-' } withBottomBorder={ false }/>
                 <Box>
                     <InfoCardSmall label={ i18n._(t`Locality`) }
-                                   iconLabel={ <MapIcon/> }
-                                   content={ storeData?.locality || '-' }/>
+                        iconLabel={ <MapIcon/> }
+                        content={ storeData?.locality || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Store address`) }
-                                   content={ storeData?.address || '-' }
-                                   iconLabel={ <MapPinIcon/> }
-                                   withBottomBorder={ false }/>
+                        content={ storeData?.address || '-' }
+                        iconLabel={ <MapPinIcon/> }
+                        withBottomBorder={ false }/>
 
                 </Box>
 
