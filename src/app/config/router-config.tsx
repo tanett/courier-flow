@@ -160,7 +160,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: routerPaths.profile,
-                element: <WithPermissionsRouts permissions={[...readProductsPermissions, ...editUserPermissions]}><LazyProfilePage/></WithPermissionsRouts>,
+                element: <LazyProfilePage/>,
             }
         ],
     },
