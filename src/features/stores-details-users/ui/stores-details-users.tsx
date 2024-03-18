@@ -15,7 +15,6 @@ import { Dialog } from 'shared/ui/dialog-new';
 import { usePatchUserMutation } from '../../../entities/users/api/api';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
-import { routerPaths } from 'app/config/router-paths';
 import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
 import { typeUsersEdit } from '../../../entities/users/model/types';
@@ -54,6 +53,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
     };
     const onCloseDialogToAddUser = (refetch: boolean) => {
         if (refetch) {setRefetch(true);}
+
         setDialogToAddUser(false);
 
     };
@@ -98,6 +98,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                 message: i18n._(t`User was removed successfully.`),
             }));
 
+            onCloseDialogToRemoveUser()
             setRefetch(true);
 
 

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { routerPaths } from './router-paths';
 import { LazyRestorePasswordPage } from 'pages/restore-password-page';
 import { LazyForgotPasswordPage } from 'pages/forgot-password-page';
@@ -26,6 +26,18 @@ import { LazyUsersDetailsPage } from 'pages/users-details-page';
 import { LazyTerminalsDetailsPage } from 'pages/terminals-details-page';
 import { LazyStoresEditPage } from 'pages/stores-edit-page';
 import { LazyStoresDetailsPage } from 'pages/stores-details-page';
+import { WithPermissionsRouts } from 'app/providers/with-permissions-routs/with-permissions-routs';
+import {
+    addUserPermissions,
+    editLimitedStoresPermissions,
+    editUserPermissions,
+    readCashDesksPermissions,
+    readOrdersPermissions,
+    readProductsPermissions, readRolesPermissions,
+    readStoresPermissions,
+    readTerminalPermissions,
+    readUserPermissions
+} from 'app/config/permissions-config';
 
 export const router = createBrowserRouter([
 
@@ -33,6 +45,28 @@ export const router = createBrowserRouter([
     {
         path: routerPaths.home,
         element: <MainPage/>,
+    },
+    {
+        path: routerPaths.login,
+        element: <AuthLayout/>,
+        children: [
+            {
+                index: true,
+                element: <LoginPage/>,
+            },
+            {
+                path: routerPaths.firstLogin,
+                element: <LazyFirstLoginPage/>,
+            },
+            {
+                path: routerPaths.forgotPassword,
+                element: <LazyForgotPasswordPage/>,
+            },
+            {
+                path: routerPaths.restorePassword,
+                element: <LazyRestorePasswordPage/>,
+            }
+        ],
     },
 
     // Auth routs
@@ -70,55 +104,55 @@ export const router = createBrowserRouter([
             },
             {
                 path: routerPaths.products,
-                element: <LazyProductsPage/>,
+                element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyProductsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.stores,
-                element: <LazyStoresPage/>,
+                element: <WithPermissionsRouts permissions={readStoresPermissions}><LazyStoresPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.stores_edit,
-                element: <LazyStoresEditPage/>,
+                element: <WithPermissionsRouts permissions={editLimitedStoresPermissions}><LazyStoresEditPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.stores_details,
-                element: <LazyStoresDetailsPage/>,
+                element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyStoresDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.cashDesks,
-                element: <LazyCashDesksPage/>,
+                element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDesksPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.terminals,
-                element: <LazyTerminalsPage/>,
+                element: <WithPermissionsRouts permissions={readTerminalPermissions}><LazyTerminalsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.terminals_details,
-                element: <LazyTerminalsDetailsPage/>,
+                element: <WithPermissionsRouts permissions={readTerminalPermissions}><LazyTerminalsDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.orders,
-                element: <LazyOrdersPage/>,
+                element: <WithPermissionsRouts permissions={readOrdersPermissions}><LazyOrdersPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.users,
-                element: <LazyUsersPage/>,
+                element: <WithPermissionsRouts permissions={readUserPermissions}><LazyUsersPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.users_create,
-                element: <LazyUsersCreatePage/>,
+                element: <WithPermissionsRouts permissions={addUserPermissions}><LazyUsersCreatePage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.users_edit,
-                element: <LazyUsersEditPage/>,
+                element: <WithPermissionsRouts permissions={editUserPermissions}><LazyUsersEditPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.users_details,
-                element: <LazyUsersDetailsPage/>,
+                element: <WithPermissionsRouts permissions={readUserPermissions}><LazyUsersDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.roles,
-                element: <LazyRolesPage/>,
+                element: <WithPermissionsRouts permissions={readRolesPermissions}><LazyRolesPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.settings,
@@ -126,7 +160,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: routerPaths.profile,
-                element: <LazyProfilePage/>,
+                element: <WithPermissionsRouts permissions={[...readProductsPermissions, ...editUserPermissions]}><LazyProfilePage/></WithPermissionsRouts>,
             }
         ],
     },

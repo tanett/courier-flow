@@ -6,10 +6,8 @@ import { t, Trans } from '@lingui/macro';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
-import { useIsAllowedPermissions } from '../../../../entities/users/hooks/use-is-allowed-permissions';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import { editUserPermissions } from 'app/config/permissions-config';
 import { typeStoresUsersTable } from 'features/stores-details-users/ui/table/types';
 
 
