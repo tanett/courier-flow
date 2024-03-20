@@ -98,7 +98,7 @@ export const UsersEdit: React.FC = () => {
                     message: i18n._(t`User was edited successfully.`),
                 }));
 
-                navigate(routerPaths.users, { replace: true });
+                navigate(-1);
 
             } catch (err) {
 
@@ -115,7 +115,7 @@ export const UsersEdit: React.FC = () => {
 
     const onCancel = () => {
 
-        navigate(routerPaths.users);
+        navigate(-1);
 
     };
 

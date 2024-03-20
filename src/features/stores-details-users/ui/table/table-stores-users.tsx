@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex } from '@mantine/core';
-import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
+import { Box, Flex, useMantineTheme } from '@mantine/core';
+import { ArrowRightStartOnRectangleIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
@@ -14,12 +14,14 @@ import { typeStoresUsersTable } from 'features/stores-details-users/ui/table/typ
 export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
     userList,
     isLoading,
-    setRefetchList,
     onOpenDialogRemoveUser,
+    goToEditUserPage,
     isAllowEditUser,
 }) => {
 
     const { i18n } = useLingui();
+
+    const theme = useMantineTheme()
 
     return (
         <>
@@ -50,6 +52,13 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
                                 { userList.map((item) => {
 
                                     const actions: typeAction[] = [
+
+                                        {
+                                            label: i18n._(t`Edit`),
+                                            handler: () => goToEditUserPage(item.id),
+                                            icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                                        },
+
                                         {
                                             icon: <ArrowRightStartOnRectangleIcon width={ 22 }/>,
                                             handler: () => onOpenDialogRemoveUser(item.id),

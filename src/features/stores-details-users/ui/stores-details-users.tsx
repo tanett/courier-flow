@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Flex, Loader, Tooltip, useMantineTheme } from '@mantine/core';
+import { Box, Button, Flex,  Tooltip, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { useGetStoresUsersList } from 'features/stores-details-users/hooks/use-get-stores-users-list';
@@ -20,6 +20,8 @@ import { typeUsersEdit } from '../../../entities/users/model/types';
 import { useAppDispatchT } from 'app/state';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { AddUserToStore } from 'features/add-user-to-store/add-user-to-store';
+import { routerPaths } from 'app/config/router-paths';
+import { useNavigate } from 'react-router-dom';
 
 export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) => {
 
@@ -28,6 +30,8 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
     const theme = useMantineTheme();
 
     const dispatchAppT = useAppDispatchT();
+
+    const navigate = useNavigate()
 
     const isAllowEditUser = useIsAllowedPermissions(editUserPermissions);
 
@@ -116,6 +120,8 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
 
     };
 
+    const goToEditUserPage = (id: string | number) => navigate([ routerPaths.users, id.toString(), 'edit' ].join('/'));
+
     return (
         <Box sx={ {
             borderTop: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
@@ -157,6 +163,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                 setRefetchList={ setRefetch }
                 onOpenDialogRemoveUser={ onOpenDialogRemoveUser }
                 isAllowEditUser={ isAllowEditUser }
+                goToEditUserPage={goToEditUserPage}
             />
 
             { pagination && <Flex py={ 16 }><TablePagination withPerPage={ pagination.totalPages > 1 } { ...pagination } /></Flex> }

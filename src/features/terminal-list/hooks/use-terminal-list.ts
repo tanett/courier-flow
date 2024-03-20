@@ -10,13 +10,15 @@ import { typeSearchTerminalsFilter } from '../../../entities/terminals/api/types
 
 export const useTerminalList = () => {
 
-    const [ getTerminalsList, { isFetching } ] = useLazySearchTerminalsExtendedQuery();
-
     const location = useLocation();
+
     const urlParams = useUrlParams();
 
     const [ terminalsList, setTerminalsList ] = useState<typeTerminalExtended[]>();
+
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
+
+    const [ getTerminalsList, { isFetching } ] = useLazySearchTerminalsExtendedQuery();
 
     const filters: typeSearchTerminalsFilter = { archived: false };
 
@@ -83,7 +85,7 @@ export const useTerminalList = () => {
 
         }
 
-    }, [ location ]);
+    }, [ location.search ]);
 
 
     return {

@@ -169,5 +169,8 @@
     "lint:fix": "eslint --fix ./src/**/*.{js,jsx,ts,tsx,json}",
     "extract": "lingui extract",
     "compile": "lingui compile"
+  },
+  "engines": {
+    "node": ">=20.10.0"
   }
 }
