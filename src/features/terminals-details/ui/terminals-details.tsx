@@ -7,7 +7,7 @@ import { BuildingStorefrontIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { useGetTerminalByIdQuery } from '../../../entities/terminals/api/api';
 import { useLazyGetStoreByIdQuery } from '../../../entities/stores/api/api';
 import { typeStore } from '../../../entities/stores/model/types';
-import BadgeStatus from 'shared/ui/badgeStatus/badgeStatus';
+import BadgeStatus from 'shared/ui/badge-status/badge-status';
 
 
 export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }) => {

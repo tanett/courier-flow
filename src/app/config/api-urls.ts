@@ -32,4 +32,17 @@ export enum API_URLS {
     STORES_GET = '/api/v1/stores/{id}',
     STORES_ARCHIVE = '/api/v1/stores/archive',
 
+    PRODUCTS_SEARCH = '/api/v1/products/search',
+    PRODUCTS_PATCH= '/api/v1/products',
+    PRODUCTS_CREATE= '/api/v1/products',
+    PRODUCTS_GET = '/api/v1/products/{id}',
+    PRODUCTS_ARCHIVE = '/api/v1/products/archive',
+    PRODUCTS_ADDITIONAL_FIELD_INFO_GET = 'api/v1/products/additional-fields/info',
+
+    CATEGORIES_SEARCH = '/api/v1/product-categories/search',
+    CATEGORIES_PATCH= '/api/v1/product-categories',
+    CATEGORIES_CREATE= '/api/v1/product-categories',
+    CATEGORIES_GET = '/api/v1/product-categories/{id}',
+    CATEGORIES_ARCHIVE = '/api/v1/product-categories/archive',
+
 }

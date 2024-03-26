@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
-import { typeUsersCreateForm } from '../types/types';
-import { initialUsersCreateForm } from '../form/form';
-import { useAppDispatchT, useSelectorT } from 'app/state';
+import { useAppDispatchT } from 'app/state';
 import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
-import { typeUsersCreate } from '../../../entities/users/model/types';
-import { useCreateUserMutation } from '../../../entities/users/api/api';
+import { typeUsersEdit } from '../../../entities/users/model/types';
+import { usePatchUserMutation } from '../../../entities/users/api/api';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
-import { routerPaths } from '../../../app/config/router-paths';
-import { isPossiblePhoneNumber } from 'libphonenumber-js';
+import { initialUsersEditForm } from '../form/form';
+import { typeUsersEditForm } from '../types/types';
+import { routerPaths } from 'app/config/router-paths';
+import useGetUserDataByIdFromUrl from '../../../entities/users/hooks/use-get-user-data-by-id-from-url';
 import { IconChevronDown } from '@tabler/icons-react';
+import { notificationActions } from '../../../entities/notification/model';
+import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search-store';
-import { PhoneInputWithCountrySelector } from 'shared/ui/phoneInput';
 import useGetRolesDataForSelector from '../../../entities/role/hooks/useGetRolesDataForSelector';
+import { isArrayEqual } from 'features/users-edit/helpers/isArrayEqual';
+import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
 
 
-export const UsersCreateNew: React.FC = () => {
+export const UsersEdit: React.FC = () => {
 
     const { classes } = useStyles();
 
@@ -34,67 +36,85 @@ export const UsersCreateNew: React.FC = () => {
 
     const dispatchAppT = useAppDispatchT();
 
-    const userForm = useForm<typeUsersCreateForm>(initialUsersCreateForm);
+    const userForm = useForm<typeUsersEditForm>(initialUsersEditForm);
 
-    const [ createUser, { isLoading } ] = useCreateUserMutation();
+    const {
+        userData,
+        isUserFetching,
+    } = useGetUserDataByIdFromUrl();
 
-    const [ isInProgress, setIsInProgress ] = useState(false);
+    useEffect(() => {
 
-    const currentUser = useSelectorT(state => state.userProfile.userProfile);
+        if (userData) {
 
+            userForm.setFieldValue('fullName', userData.fullName);
+            userForm.setFieldValue('phone', userData.phone ? userData.phone : '');
+            userForm.setFieldValue('email', userData.email);
+            userForm.setFieldValue('roleId', userData.role.id);
+            userForm.setFieldValue('storeIds', userData.storeIds);
 
-    // set roles
+        }
+
+    }, [ userData ]);
+
     const {
         roles,
         isRolesFetching,
     } = useGetRolesDataForSelector();
 
+    const [ editUser, { isLoading } ] = usePatchUserMutation();
+
+    const [ isInProgress, setIsInProgress ] = useState(false);
+
+
     const onSave = async () => {
 
-        if (currentUser) {
+        setIsInProgress(true);
+        if (userData?.id) {
 
-            setIsInProgress(true);
+            const phone = userForm.values.phone.trim() === ''
+                ? undefined
+                : userForm.values.phone.trim() === userData.phone ? undefined : convertPhoneNumberToStringForApi(userForm.values.phone);
 
-            const { phone } = userForm.values;
-
-            const dataObject: typeUsersCreate = {
-                fullName: userForm.values.fullName.trim(),
-                email: userForm.values.email.trim(),
-                phone: isPossiblePhoneNumber(phone) ? phone : undefined,
-                roleId: userForm.values.roleId,
-                temporaryPassword: true,
-                merchantId: currentUser.actor.merchantId,
-                storeIds: userForm.values.storeIds.length > 0 ? userForm.values.storeIds : undefined,
+            const dataObject: typeUsersEdit = {
+                id: userData.id,
+                fullName: userForm.values.fullName.trim() === userData.fullName.trim() ? undefined : userForm.values.fullName.trim(),
+                email: userForm.values.email.trim() === userData.email.trim() ? undefined : userForm.values.email.trim(),
+                phone: phone,
+                roleId: userForm.values.roleId === userData.role.id ? undefined : userForm.values.roleId,
+                storeIds: isArrayEqual(userData.storeIds, userForm.values.storeIds) ? undefined : {
+                    values: userForm.values.storeIds,
+                    patchType: 'REPLACE',
+                },
             };
+
 
             try {
 
-                await createUser(dataObject).unwrap();
+                await editUser(dataObject).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
-                    message: i18n._(t`User created successfully.`),
+                    message: i18n._(t`User was edited successfully.`),
                 }));
 
-                navigate(routerPaths.users, { replace: true });
+                navigate(-1);
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onCreateUser', dispatchAppT);
+                errorHandler(err as typeResponseError, 'onEditUser', dispatchAppT);
                 setIsInProgress(false);
 
             }
 
-
-            setIsInProgress(false);
-
         }
+
+        setIsInProgress(false);
 
     };
 
     const onCancel = () => {
 
-        userForm.reset();
         navigate(-1);
 
     };
@@ -123,14 +143,15 @@ export const UsersCreateNew: React.FC = () => {
                             } }
                             { ...userForm.getInputProps('roleId') }
                             placeholder={ i18n._(t`Select a role`) }
-                            rightSection={ isRolesFetching ? <Loader size="xs"/> : <IconChevronDown size="1rem"/> }
+                            rightSection={ (isRolesFetching || !userData) ? <Loader size="xs"/> : <IconChevronDown size="1rem"/> }
                             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+
                         />
                         <MultiSelectorWithSearchStore
-                            required={false}
-                            fieldName={'storeIds'}
-                            form={userForm}
-                            initialValue={null}
+                            required={ false }
+                            fieldName={ 'storeIds' }
+                            form={ userForm }
+                            initialValue={ (userData && userData.storeIds.length > 0) ? userData.storeIds : null }
                         />
                     </SimpleGrid>
                 </FieldsetForForm>
@@ -145,10 +166,10 @@ export const UsersCreateNew: React.FC = () => {
                             maxLength={ 100 }
                         />
                         <PhoneInputWithCountrySelector
-                            isRequired={false}
-                            {...userForm.getInputProps('phone')}
+                            isRequired={ false }
+                            { ...userForm.getInputProps('phone') }
                             value={ userForm.values.phone }
-                            onChange={(value: string) => userForm.setFieldValue('phone', value)}
+                            onChange={ (value: string) => userForm.setFieldValue('phone', value) }
                         />
                     </SimpleGrid>
                 </FieldsetForForm>
@@ -160,7 +181,7 @@ export const UsersCreateNew: React.FC = () => {
                 </Flex>
 
             </Flex>
-            { (isInProgress || isLoading) && <LoaderOverlay/> }
+            { (isInProgress || isLoading || isUserFetching) && <LoaderOverlay/> }
         </form>
     );
 

@@ -38,6 +38,7 @@ import {
     readTerminalPermissions,
     readUserPermissions
 } from 'app/config/permissions-config';
+import { LazyProductsCreatePage } from 'pages/products-create-page';
 
 export const router = createBrowserRouter([
 
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.products,
                 element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyProductsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.products_create,
+                element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyProductsCreatePage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.stores,

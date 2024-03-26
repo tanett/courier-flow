@@ -6,6 +6,8 @@ import { authApi } from 'app/api/auth-api';
 import { notificationStateReducer } from '../../entities/notification/model';
 import { authStateReducer } from '../../entities/auth/model/state-slice';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { productsStateActions, productsStateReducer } from '../../entities/products/model/state-slice';
+import { productsApi } from '../../entities/products/api/api';
 
 
 const ListenerMiddlewareCreate = createListenerMiddleware();
@@ -31,7 +33,18 @@ ListenerMiddlewareCreate.startListening({
             console.log('state.ts 35:', err);
 
         }
+        try {
 
+            const response = await listenerApi.dispatch(productsApi.endpoints.getAdditionalFieldInfo.initiate({}));
+
+            listenerApi.dispatch(productsStateActions.setAdditionalInfoList(response.data));
+
+        } catch (err) {
+
+            // TODO: error
+            console.log('state.ts 35:', err);
+
+        }
         // listenerApi.dispatch(resourceLoaded(res.data))
         // currentUserApi.trackUsage(action.type, user, specialData)
 
@@ -46,6 +59,7 @@ export const state = configureStore({
         notifications: notificationStateReducer,
         auth: authStateReducer,
         userProfile: userProfileStateReducer,
+        products: productsStateReducer,
 
     },
     devTools: process.env.NODE_ENV !== 'production',

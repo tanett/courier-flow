@@ -1,1 +1,1 @@
-export * from 'features/user-archive-button/userArchiveButton';
+export * from 'features/user-archive-button/user-archive-button';

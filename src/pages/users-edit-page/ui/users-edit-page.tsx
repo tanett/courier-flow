@@ -5,7 +5,7 @@ import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { UserArchiveButton } from 'features/user-archive-button';
 import { useParams } from 'react-router-dom';
-import { UsersEdit } from 'features/users-edit/ui/usersEdit';
+import { UsersEdit } from 'features/users-edit/ui/users-edit';
 
 
 const UsersEditPage: React.FC = () => {

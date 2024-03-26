@@ -1,1 +1,1 @@
-export * from 'features/stores-edit/ui/storeEdit';
+export * from 'features/stores-edit/ui/store-edit';

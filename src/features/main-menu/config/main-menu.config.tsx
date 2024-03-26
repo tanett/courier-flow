@@ -29,8 +29,8 @@ import {
     UsersIcon as UsersIconSolid
 } from '@heroicons/react/24/solid';
 import { readMerchantPermissions, readOrdersPermissions, readProductsPermissions, readStoresPermissions, readTerminalPermissions, readUserPermissions } from '../../../app/config/permissions-config';
-import { CashDeskIconSolid } from 'shared/ui/CashDesk-Icon-Solid/cash-desk-icon-solid';
-import { CashDeskIconOutline } from 'shared/ui/CashDesk-Icon-Outline/cash-desk-icon-outline';
+import { CashDeskIconSolid } from 'shared/ui/cashDesk-icon-solid/cash-desk-icon-solid';
+import { CashDeskIconOutline } from 'shared/ui/cashDesk-icon-outline/cash-desk-icon-outline';
 
 
 export const mainMenuConfig: typeMainMenuItemConfig[] = [

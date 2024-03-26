@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Flex, rem, Text, useMantineTheme } from '@mantine/core';
-import { typeButtonBlockForSelectBlockUnblock } from 'shared/ui/ButtonBlockForSelectBlockUnblockInFormFilter/types';
+import { typeButtonBlockForSelectBlockUnblock } from 'shared/ui/button-block-for-select-block-unblock-in-form-filter/types';
 
 export const ButtonBlockForSelectBlockUnblockInFilterForm: React.FC<typeButtonBlockForSelectBlockUnblock> = ({
     form,
@@ -20,30 +20,35 @@ export const ButtonBlockForSelectBlockUnblockInFilterForm: React.FC<typeButtonBl
             letterSpacing: rem(0.3),
         } }>
             <Text>{label}</Text>
-            <Flex gap={ 18 } wrap={ 'nowrap' } mt={ 6 }>
+            <Flex gap={ 18 } wrap={ 'nowrap' } mt={ 5 }>
                 <Button
                     key={ titleBtnLeft }
-                    variant={ form.values[ path ] === undefined ? 'outline' : form.values[ path ] ? 'filled' : 'outline' }
                     sx={ {
                         width: '100%',
                         border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                        backgroundColor: form.values[ path ] === undefined ? 'transparent': form.values[ path ] ? theme.fn.rgba(theme.colors.primary[5], 0.2): 'transparent',
                         borderRadius: rem(4),
                         fontWeight: 500,
                         fontSize: theme.fontSizes.md,
                         letterSpacing: '0.3px',
+                        color: theme.black,
+                        '&:hover':{backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.2)}
                     } }
                     onClick={ () => form.setFieldValue(path, form.values[ path ] === true ? undefined : true) }
                 >{titleBtnLeft}</Button>
                 <Button
                     key={ titleBtnRight }
-                    variant={ form.values[ path ] === undefined ? 'outline' : !form.values[ path ] ? 'filled' : 'outline' }
+                    variant={'outline'}
                     sx={ {
                         width: '100%',
                         border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                        backgroundColor: form.values[ path ] === undefined ? 'transparent': !form.values[ path ] ? theme.fn.rgba(theme.colors.primary[5], 0.2): 'transparent',
                         borderRadius: rem(4),
                         fontSize: theme.fontSizes.md,
                         letterSpacing: '0.3px',
                         fontWeight: 500,
+                        color: theme.black,
+                      '&:hover':{backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.2)}
                     } }
                     onClick={ () => form.setFieldValue(path, form.values[ path ] === false ? undefined : false) }
                 >{titleBtnRight}</Button>

@@ -1,1 +1,1 @@
-export * from './ui/usersEdit';
+export * from 'features/users-edit/ui/users-edit';

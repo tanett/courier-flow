@@ -1,1 +1,1 @@
-export * from 'features/selector-with-search-store/selector-with-search-store';
+export * from './selector-with-search-store';

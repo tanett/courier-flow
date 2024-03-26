@@ -5,7 +5,7 @@ import { t } from '@lingui/macro';
 import { IconChevronDown } from '@tabler/icons-react';
 import { typeUsersFilterForm } from 'features/user-list-filter/types/types';
 import { useLazySearchStoreQuery } from '../../entities/stores/api/api';
-import { useDebouncedState, useDebouncedValue } from '@mantine/hooks';
+import { useDebouncedValue } from '@mantine/hooks';
 import { sortDirection, typeResponseError, typeSearchRequest } from 'app/api/types';
 import { typeSearchFilterStore } from '../../entities/stores/api/types';
 import { errorHandler } from 'app/utils/errorHandler';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { typeBadgeStatus } from 'shared/ui/badgeStatus/types';
+import { typeBadgeStatus } from 'shared/ui/badge-status/types';
 import { Badge } from '@mantine/core';
 import { useStyles } from './styles';
 

@@ -1,1 +1,1 @@
-export * from './ui/usersCreateNew';
+export * from './ui/users-create-new';

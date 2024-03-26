@@ -1,1 +1,1 @@
-export * from './emptyElement';
+export * from './empty-element';

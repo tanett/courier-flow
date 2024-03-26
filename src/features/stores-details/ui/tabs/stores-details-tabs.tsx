@@ -3,7 +3,7 @@ import { Tabs } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from './styles';
 import { useLingui } from '@lingui/react';
-import { StoreDetails } from 'features/stores-details/ui/storeDetails';
+import { StoreDetails } from 'features/stores-details/ui/store-details';
 import { StoresDetailsUsers } from 'features/stores-details-users';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { queryParamsNames } from 'app/config/api-constants';

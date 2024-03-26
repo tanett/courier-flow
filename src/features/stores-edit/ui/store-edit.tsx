@@ -11,7 +11,7 @@ import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
 import { useNavigate } from 'react-router-dom';
-import { PhoneInputWithCountrySelector } from 'shared/ui/phoneInput/ui/phoneInputWithCountrySelector';
+import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input/ui/phoneInputWithCountrySelector';
 import { useGetStoreByIdQuery, usePatchStoreMutation } from '../../../entities/stores/api/api';
 import { typeStoreEdit } from '../../../entities/stores/model/types';
 import { storeTypeList } from '../../../entities/stores/constants/store-type-list';

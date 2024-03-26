@@ -46,6 +46,7 @@ export enum pathNames {
 
     reports = 'reports',
     products = 'products',
+    products_create = 'products_create',
     cashDesks = 'cashDesks',
     terminals = 'terminals',
     terminals_details = 'terminals_details',
@@ -81,6 +82,7 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.reports]: createPath([ pathSections.dashboard, pathSections.reports ]),
 
     [pathNames.products]: createPath([ pathSections.dashboard, pathSections.products ]),
+    [pathNames.products_create]: createPath([ pathSections.dashboard, pathSections.products , pathSections.create]),
 
     [pathNames.cashDesks]: createPath([ pathSections.dashboard, pathSections.cashDesks ]),
 

@@ -8,6 +8,7 @@ import { useStyles } from './styles';
 import { ReactComponent as Logo } from '../../images/logo/logo.svg';
 import { ProfileButton } from '../../ui/profile-button/profile-button';
 import { MainMenu } from '../../../features/main-menu';
+import ErrorBoundary from 'shared/error-boundary/ErrorBoundary';
 
 
 export const DashboardLayout: React.FC = () => {
@@ -16,27 +17,31 @@ export const DashboardLayout: React.FC = () => {
 
     return (
         <AppShell
-            navbar={<DashboardNavbar
+            navbar={ <DashboardNavbar
 
-                topBlock={<Flex className={classes.topWrapper}>
-                    <Logo className={classes.logo}/>
-                    {process.env.REACT_APP_NAME && <div className={classes.logoText}>{process.env.REACT_APP_NAME}</div>}
-                </Flex>}
+                topBlock={ <Flex className={ classes.topWrapper }>
+                    <Logo className={ classes.logo }/>
+                    { process.env.REACT_APP_NAME && <div className={ classes.logoText }>{ process.env.REACT_APP_NAME }</div> }
+                </Flex> }
 
-                bottomBlock={<Box className={classes.bottomWrapper}>
-                    <ProfileButton link={routerPaths.profile}/>
-                </Box>}
+                bottomBlock={ <Box className={ classes.bottomWrapper }>
+                    <ProfileButton link={ routerPaths.profile }/>
+                </Box> }
             >
-                <MainMenu/>
-            </DashboardNavbar>}
-            padding={0}
-            className={classes.dashboard}
+                <ErrorBoundary>
+                    <MainMenu/>
+                </ErrorBoundary>
+            </DashboardNavbar> }
+            padding={ 0 }
+            className={ classes.dashboard }
         >
-            <ScrollArea className={classes.scrollBox}>
-                <SuspenseProvider>
-                    <Outlet/>
-                </SuspenseProvider>
-            </ScrollArea>
+            <ErrorBoundary>
+                <ScrollArea className={ classes.scrollBox }>
+                    <SuspenseProvider>
+                        <Outlet/>
+                    </SuspenseProvider>
+                </ScrollArea>
+            </ErrorBoundary>
         </AppShell>
     );
 

@@ -18,7 +18,7 @@ import { userProfileActions } from '../../../entities/user-profile/model/state-s
 import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
 import { usePatchCurrentUserMutation } from '../../../entities/user-profile/api/api';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
-import { PhoneInputWithCountrySelector } from 'shared/ui/phoneInput';
+import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { IconChevronDown } from '@tabler/icons-react';
 
 

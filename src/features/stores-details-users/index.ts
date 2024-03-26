@@ -1,1 +1,1 @@
-export * from 'features/stores-details-users/ui/stores-details-users';
+export * from './ui/stores-details-users';

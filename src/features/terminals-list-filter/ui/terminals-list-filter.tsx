@@ -9,7 +9,8 @@ import { DrawerContext, FilterButtonsBar, FilterFormWrapper } from '../../../sha
 import { FilterSkeleton } from './filter-skeleton';
 import { queryParamsNames } from '../../../app/config/api-constants';
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
-import { ButtonBlockForSelectBlockUnblockInFilterForm } from 'shared/ui/ButtonBlockForSelectBlockUnblockInFormFilter/button-blpck-for-select-block-unblock-in-filter-form';
+import { ButtonBlockForSelectBlockUnblockInFilterForm } from 'shared/ui/button-block-for-select-block-unblock-in-form-filter/button-blpck-for-select-block-unblock-in-filter-form';
+import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
 
 
 export const TerminalsListFilter: React.FC = () => {

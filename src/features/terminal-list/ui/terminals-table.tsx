@@ -5,7 +5,7 @@ import { FilterPanel } from 'shared/ui/filter-panel';
 import { TerminalsListFilter } from 'features/terminals-list-filter';
 import { Table } from 'shared/ui/table';
 import { t, Trans } from '@lingui/macro';
-import BadgeStatus from 'shared/ui/badgeStatus/badgeStatus';
+import BadgeStatus from 'shared/ui/badge-status/badge-status';
 import { i18n } from '@lingui/core';
 import { Box } from '@mantine/core';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
