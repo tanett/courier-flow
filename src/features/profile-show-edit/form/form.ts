@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro';
 import { LANGUAGES } from '../../../app/config/languages';
 import { isPossiblePhoneNumber } from 'libphonenumber-js';
+import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
 
 
 export const initialProfileForm = {
@@ -32,8 +33,8 @@ export const initialProfileForm = {
         phone: (value: string) => {
 
             return value.trim().length === 0
-                ? t`Required field`
-                : isPossiblePhoneNumber(value) ? null : t`Invalid phone number format`;
+                ? null
+                : isValidPhoneNumberByLength(value) ? null : t`Invalid phone number format`;
 
         },
         locale: (value: string) => {

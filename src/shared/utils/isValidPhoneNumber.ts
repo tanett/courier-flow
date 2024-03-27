@@ -12,7 +12,7 @@ export const isValidPhoneNumberByLength = (value: string): boolean => {
 
         if (number){
 
-            return isPossiblePhoneNumber(value);
+            return isPossiblePhoneNumber(value, country);
 
         } else {
 

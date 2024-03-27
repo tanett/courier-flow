@@ -11,7 +11,11 @@ export enum pathSections {
     // Header section
     dashboard = 'dashboard',
     reports = 'reports',
+    sales = 'sales',
+    refunds = 'refunds',
     products = 'products',
+    products_list = 'products_list',
+    categories = 'categories',
     cashDesks = 'cash-desks',
     terminals = 'terminals',
     orders = 'orders',
@@ -45,14 +49,27 @@ export enum pathNames {
     dashboard = 'dashboard',
 
     reports = 'reports',
+    sales = 'sales',
+    refunds = 'refunds',
+
     products = 'products',
+    products_list = 'products_list',
     products_create = 'products_create',
+    products_edit = 'products_edit',
+    products_categories = 'products_categories',
+    products_categories_create = 'products_categories_create',
+    products_categories_edit = 'products_categories_edit',
+
     cashDesks = 'cashDesks',
+
     terminals = 'terminals',
     terminals_details = 'terminals_details',
+
     orders = 'orders',
+
     supportRequests = 'supportRequests',
     roles = 'roles',
+
     stores = 'stores',
     stores_edit = 'stores_edit',
     stores_details = 'stores_details',
@@ -79,32 +96,56 @@ export const routerPaths: Record<pathNames, string> = {
     // Header section
     [pathNames.dashboard]: createPath([ pathSections.dashboard ]),
 
+    // reports
     [pathNames.reports]: createPath([ pathSections.dashboard, pathSections.reports ]),
 
-    [pathNames.products]: createPath([ pathSections.dashboard, pathSections.products ]),
-    [pathNames.products_create]: createPath([ pathSections.dashboard, pathSections.products , pathSections.create]),
+    // sales
+    [pathNames.sales]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.sales ]),
 
+    // refunds
+    [pathNames.refunds]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.refunds ]),
+
+    // products
+    [pathNames.products]: createPath([ pathSections.dashboard, pathSections.products ]),
+    [pathNames.products_list]: createPath([ pathSections.dashboard, pathSections.products, pathSections.products_list ]),
+    [pathNames.products_create]: createPath([ pathSections.dashboard, pathSections.products , pathSections.create]),
+    [pathNames.products_edit]: createPath([ pathSections.dashboard, pathSections.products, pathSections.id,  pathSections.edit]),
+
+    // category
+    [pathNames.products_categories]: createPath([ pathSections.dashboard, pathSections.products, pathSections.categories ]),
+    [pathNames.products_categories_create]: createPath([ pathSections.dashboard, pathSections.products, pathSections.categories, pathSections.create]),
+    [pathNames.products_categories_edit]: createPath([ pathSections.dashboard, pathSections.products, pathSections.categories, pathSections.id, pathSections.edit]),
+
+    // cash desks
     [pathNames.cashDesks]: createPath([ pathSections.dashboard, pathSections.cashDesks ]),
 
+    // terminals
     [pathNames.terminals]: createPath([ pathSections.dashboard, pathSections.terminals ]),
     [pathNames.terminals_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.id, pathSections.serialNumber]),
 
+    // orders
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),
 
+    // support
     [pathNames.supportRequests]: createPath([ pathSections.dashboard, pathSections.supportRequests ]),
 
+    // users
     [pathNames.users]: createPath([ pathSections.dashboard, pathSections.users ]),
     [pathNames.users_create]: createPath([ pathSections.dashboard, pathSections.users, pathSections.create ]),
     [pathNames.users_edit]: createPath([ pathSections.dashboard, pathSections.users, pathSections.id, pathSections.edit ]),
     [pathNames.users_details]: createPath([ pathSections.dashboard, pathSections.users, pathSections.id, pathSections.userName ]),
 
+    // roles
     [pathNames.roles]: createPath([ pathSections.dashboard, pathSections.roles ]),
 
+    //stores
     [pathNames.stores]: createPath([ pathSections.dashboard, pathSections.stores ]),
     [pathNames.stores_edit]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.edit ]),
     [pathNames.stores_details]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.storeName ]),
 
+    //settings
     [pathNames.settings]: createPath([ pathSections.dashboard, pathSections.settings ]),
 
+    // profile
     [pathNames.profile]: createPath([ pathSections.dashboard, pathSections.profile ]),
 };

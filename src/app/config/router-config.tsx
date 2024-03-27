@@ -28,17 +28,21 @@ import { LazyStoresEditPage } from 'pages/stores-edit-page';
 import { LazyStoresDetailsPage } from 'pages/stores-details-page';
 import { WithPermissionsRouts } from 'app/providers/with-permissions-routs/with-permissions-routs';
 import {
-    addUserPermissions,
+    addCategoryPermissions,
+    addUserPermissions, editCategoryPermissions,
     editLimitedStoresPermissions,
     editUserPermissions,
-    readCashDesksPermissions,
+    readCashDesksPermissions, readCategoryPermissions,
     readOrdersPermissions,
-    readProductsPermissions, readRolesPermissions,
+    readProductsPermissions, readRefundsPermissions, readRolesPermissions, readSalesPermissions,
     readStoresPermissions,
     readTerminalPermissions,
     readUserPermissions
 } from 'app/config/permissions-config';
 import { LazyProductsCreatePage } from 'pages/products-create-page';
+import { LazyCategoriesPage } from 'pages/categories-page';
+import { LazyCategoriesCreatePage } from 'pages/categories-create-page';
+import { LazyCategoriesEditPage } from 'pages/categories-edit-page';
 
 export const router = createBrowserRouter([
 
@@ -104,12 +108,32 @@ export const router = createBrowserRouter([
                 element: <LazyReportsPage/>,
             },
             {
-                path: routerPaths.products,
+                path: routerPaths.sales,
+                element: <WithPermissionsRouts permissions={readSalesPermissions}>sales</WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.refunds,
+                element: <WithPermissionsRouts permissions={readRefundsPermissions}>refunds</WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.products_list,
                 element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyProductsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.products_create,
                 element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyProductsCreatePage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.products_categories,
+                element: <WithPermissionsRouts permissions={readCategoryPermissions}><LazyCategoriesPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.products_categories_create,
+                element: <WithPermissionsRouts permissions={addCategoryPermissions}><LazyCategoriesCreatePage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.products_categories_edit,
+                element: <WithPermissionsRouts permissions={editCategoryPermissions}><LazyCategoriesEditPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.stores,

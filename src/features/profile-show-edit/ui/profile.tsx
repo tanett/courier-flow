@@ -4,7 +4,7 @@ import { useForm } from '@mantine/form';
 import { typeProfileForm } from '../types/types';
 import { initialProfileForm } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
-import { LANGUAGES, locales } from 'app/config/languages';
+import { DEFAULT_LANGUAGE, LANGUAGES, locales } from 'app/config/languages';
 import { Button, Flex, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -42,7 +42,7 @@ export const Profile: React.FC = () => {
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
             profileForm.setFieldValue('email', profileData.email ?? '');
             profileForm.setFieldValue('phone', profileData.phone ?? '');
-            profileForm.setFieldValue('locale', profileData.userSettings?.locale || LANGUAGES.EN);
+            profileForm.setFieldValue('locale', profileData.userSettings?.locale || DEFAULT_LANGUAGE);
 
         }
 
@@ -112,7 +112,7 @@ export const Profile: React.FC = () => {
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
             profileForm.setFieldValue('email', profileData.email ?? '');
             profileForm.setFieldValue('phone', profileData.phone ?? '');
-            profileForm.setFieldValue('locale', profileData.userSettings?.locale || LANGUAGES.EN);
+            profileForm.setFieldValue('locale', profileData.userSettings?.locale || DEFAULT_LANGUAGE);
 
         }
 

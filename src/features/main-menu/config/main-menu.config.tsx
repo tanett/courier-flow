@@ -2,33 +2,36 @@ import { typeMainMenuItemConfig } from '../types/types';
 import { pathNames, routerPaths } from '../../../app/config/router-paths';
 import { Trans } from '@lingui/macro';
 import {
-    ArchiveBoxIcon as ArchiveBoxIconOutline,
-    // BellIcon as BellIconOutline,
     ChartBarIcon as ReportsIconOutline,
     CalculatorIcon as CalculatorIconOutline,
     Squares2X2Icon as ProductsIconOutline,
-
-    // LifebuoyIcon as LifebuoyIconOutline,
     ShoppingCartIcon as ShoppingCartIconOutline,
-    BanknotesIcon as BanknotesIconOutline,
     TruckIcon as TruckIconOutline,
     UserIcon as UserIconOutline,
     UsersIcon as UsersIconOutline,
+    Cog6ToothIcon as Cog6ToothIconOutline
 } from '@heroicons/react/24/outline';
 import {
-    ArchiveBoxIcon as ArchiveBoxIconSolid,
-    // BellIcon as BellIconSolid,
     ChartBarIcon as ReportsIconSolid,
     Squares2X2Icon as ProductsIconSolid,
-    BanknotesIcon as BanknotesIconSolid,
     CalculatorIcon as CalculatorIconSolid,
-    // LifebuoyIcon as LifebuoyIconSolid,
     ShoppingCartIcon as ShoppingCartIconSolid,
     TruckIcon as TruckIconSolid,
     UserIcon as UserIconSolid,
-    UsersIcon as UsersIconSolid
+    UsersIcon as UsersIconSolid,
+    Cog6ToothIcon as Cog6ToothIconSolid
 } from '@heroicons/react/24/solid';
-import { readMerchantPermissions, readOrdersPermissions, readProductsPermissions, readStoresPermissions, readTerminalPermissions, readUserPermissions } from '../../../app/config/permissions-config';
+import {
+    readCategoryPermissions,
+    readMerchantPermissions,
+    readOrdersPermissions,
+    readProductsPermissions,
+    readRefundsPermissions,
+    readSalesPermissions,
+    readStoresPermissions,
+    readTerminalPermissions,
+    readUserPermissions
+} from '../../../app/config/permissions-config';
 import { CashDeskIconSolid } from 'shared/ui/cashDesk-icon-solid/cash-desk-icon-solid';
 import { CashDeskIconOutline } from 'shared/ui/cashDesk-icon-outline/cash-desk-icon-outline';
 
@@ -41,6 +44,18 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         activeIcon: <ReportsIconSolid/>,
         path: routerPaths.reports,
         allowPermissions: [],
+        children: [
+            {  id: pathNames.sales,
+                name: <Trans>Sales</Trans>,
+                path: routerPaths.sales,
+                allowPermissions: readSalesPermissions,
+            },
+            {  id: pathNames.refunds,
+                name: <Trans>Refunds</Trans>,
+                path: routerPaths.refunds,
+                allowPermissions: readRefundsPermissions,
+            },
+        ]
     },
     {
         id: pathNames.products,
@@ -49,6 +64,20 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         activeIcon: <ProductsIconSolid/>,
         path: routerPaths.products,
         allowPermissions: readProductsPermissions,
+        children: [
+            {
+                id: pathNames.products_list,
+                name: <Trans>Products</Trans>,
+                path: routerPaths.products_list,
+                allowPermissions: readProductsPermissions,
+            },
+            {
+                id: pathNames.products_categories,
+                name: <Trans>Categories</Trans>,
+                path: routerPaths.products_categories,
+                allowPermissions: readCategoryPermissions,
+            },
+        ]
     },
     {
         id: pathNames.stores,
@@ -110,8 +139,8 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
     {
         id: pathNames.settings,
         name: <Trans>Settings</Trans>,
-        icon: <UserIconOutline/>,
-        activeIcon: <UserIconSolid/>,
+        icon: <Cog6ToothIconOutline/>,
+        activeIcon: <Cog6ToothIconSolid/>,
         path: routerPaths.settings,
         allowPermissions: [] // todo fix it
     },
