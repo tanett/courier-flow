@@ -2,19 +2,15 @@ import React from 'react';
 import { useLingui } from '@lingui/react';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
-import { t, Trans } from '@lingui/macro';
-import { Button } from '@mantine/core';
+import { t } from '@lingui/macro';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
-import { IconPlus } from '@tabler/icons-react';
 import { UserList } from '../../../features/user-list';
-import { useStyles } from './styles';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { addUserPermissions } from '../../../app/config/permissions-config';
+import { CreateButtonFilled } from 'shared/ui/create-button-filled/create-button-filled';
 
 const UsersPage: React.FC = () => {
-
-    const { classes } = useStyles();
 
     const { i18n } = useLingui();
 
@@ -36,12 +32,10 @@ const UsersPage: React.FC = () => {
                 ] }
                 /> }
                 rightSide={
-                    isAllowAddUser && <Button
-                        key={'create-new-user'}
-                        className={classes.button}
-                        onClick={onCreateNewUser}
-                        leftIcon={<IconPlus size={20}/>}><Trans>Add</Trans>
-                    </Button>}
+                    isAllowAddUser && <CreateButtonFilled
+                        id={'create-new-user'}
+                        handler={onCreateNewUser}
+                     />}
             />
             <UserList/>
         </DashboardContent>

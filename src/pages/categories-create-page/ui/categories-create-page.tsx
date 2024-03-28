@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
+import { CategoriesCreate } from 'features/categories-create';
 
 const CategoriesCreatePage: React.FC = () => {
 
@@ -16,7 +17,7 @@ const CategoriesCreatePage: React.FC = () => {
                     { name: i18n._(t`Create a new category`) }
                 ]}/>}
             />
-           new category
+          <CategoriesCreate/>
         </DashboardContent>
     );
 

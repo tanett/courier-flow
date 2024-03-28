@@ -3,7 +3,7 @@ import { typeTablePagination } from 'shared/ui/table/types/type';
 import { typeProductCategory } from 'entities/productsCategory/model/types';
 
 export type typeCategoriesListTable = {
-    isAllowedCategoryEdit: boolean,
+    isAllowedCategoryEdit: boolean | null,
     currentUser: typeGetCurrentUserResponse | undefined,
     goToEditCategoryPage: (id: string) => void
     onConfirmArchiveCategory: (id: string) => void

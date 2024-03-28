@@ -7,5 +7,5 @@ export type typeStoresUsersTable = {
     setRefetchList: React.Dispatch<React.SetStateAction<boolean>>
     onOpenDialogRemoveUser: (id: string)=>void
     goToEditUserPage: (id: string)=>void
-    isAllowEditUser: boolean
+    isAllowEditUser: boolean | null,
 }

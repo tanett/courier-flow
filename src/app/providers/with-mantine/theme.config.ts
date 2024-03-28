@@ -109,6 +109,13 @@ export const theme: MantineThemeOverride = {
                 '&:hover': { backgroundColor: '#E9EFFF' },
             },
         },
+        '.mantine-Tooltip-tooltip': {
+            color: theme.black,
+            boxShadow: '0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)',
+            fontSize: rem(14),
+            padding: `${rem(12)} ${rem(16)}`,
+            backgroundColor: theme.white,
+        },
 
     }),
     colorScheme: 'light',

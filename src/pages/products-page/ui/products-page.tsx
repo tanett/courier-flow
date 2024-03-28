@@ -2,15 +2,14 @@ import React from 'react';
 import { useLingui } from '@lingui/react';
 import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
-import { t, Trans } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { ProductsList } from 'features/products-list';
-import { Button } from '@mantine/core';
-import { IconPlus } from '@tabler/icons-react';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { addProductsPermissions } from 'app/config/permissions-config';
 import { useStyles } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
+import { CreateButtonFilled } from 'shared/ui/create-button-filled/create-button-filled';
 
 const ProductsPage: React.FC = () => {
 
@@ -35,12 +34,10 @@ const ProductsPage: React.FC = () => {
                     { name: i18n._(t`Products`) }
                 ]}/>}
                 rightSide={
-                    isAllowAddProduct && <Button
-                        key={'create-new-product'}
-                        className={classes.button}
-                        onClick={onCreateNewProduct}
-                        leftIcon={<IconPlus size={20}/>}><Trans>Add</Trans>
-                    </Button>}
+                    isAllowAddProduct && <CreateButtonFilled
+                        id={'create-new-product'}
+                        handler={onCreateNewProduct}
+                       />}
             />
 
            <ProductsList/>

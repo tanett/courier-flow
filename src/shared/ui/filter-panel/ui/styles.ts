@@ -12,6 +12,12 @@ export const useStyles = createStyles((theme) => ({
             paddingTop: rem(18),
             paddingBottom: rem(18),
             height: rem(44),
+            '&::placeholder': {
+                fontSize: theme.fontSizes.lg,
+                color: theme.colors.gray[ 3 ],
+                lineHeight: rem(20),
+                letterSpacing: 0.3,
+            },
         },
     },
     iconFind: {

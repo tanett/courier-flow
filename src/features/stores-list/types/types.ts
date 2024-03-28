@@ -3,7 +3,7 @@ import { typeTablePagination } from 'shared/ui/table/types/type';
 import { typeExtendedStore } from 'entities/stores/model/types';
 
 export type typeStoresListTable = {
-    isAllowedStoreEdit: boolean,
+    isAllowedStoreEdit: boolean | null,
     currentUser: typeGetCurrentUserResponse | undefined,
     goToEditStorePage: (id: string) => void
     goToDetailsStorePage: (id: string, name: string) => void

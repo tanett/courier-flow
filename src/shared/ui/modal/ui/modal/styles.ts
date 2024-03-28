@@ -1,10 +1,7 @@
 import { createStyles, rem } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-    popup: {
-        '& .mantine-Modal-body': { padding: `${rem(24)} ${rem(30)}` },
-        '& .mantine-Modal-content': { marginTop: `calc(140px - 5dvh)` },
-    },
+    popup: { '& .mantine-Modal-body': { padding: `${rem(24)} ${rem(30)}` } },
     content: {
         flexDirection: 'column',
         position: 'relative',

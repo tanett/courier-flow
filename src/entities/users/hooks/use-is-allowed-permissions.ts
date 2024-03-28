@@ -1,10 +1,10 @@
-import { useUserPermissions } from '../../../entities/users/hooks/use-user-permissions';
 import { isHavePermissions } from 'shared/utils/is-have-permissions';
+import { useSelectorT } from 'app/state';
 
 export const useIsAllowedPermissions = (availablePermissions: string[]) => {
 
-    const userPermissions = useUserPermissions();
+    const userPermissions = useSelectorT(state => state.userProfile.userProfile?.permissions);
 
-    return isHavePermissions(userPermissions, availablePermissions);
+    return userPermissions ? isHavePermissions(userPermissions, availablePermissions) : null;
 
 };
