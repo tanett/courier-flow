@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
 import { useAppDispatchT } from 'app/state';
-import { useLazyGetProductCategoryByIdQuery } from '../api/api';
-import { typeProductCategory } from '../model/types';
+import { useLazyGetCategoryByIdQuery } from '../api/api';
+import { typeCategory } from '../model/types';
 
 
 const useGetCategoryDataByIdFromUrl = () => {
@@ -13,9 +13,9 @@ const useGetCategoryDataByIdFromUrl = () => {
 
     const { id } = useParams();
 
-    const [ data, setData ] = useState<typeProductCategory>();
+    const [ data, setData ] = useState<typeCategory>();
 
-    const [ productCategoryData, { isFetching } ] = useLazyGetProductCategoryByIdQuery();
+    const [ productCategoryData, { isFetching } ] = useLazyGetCategoryByIdQuery();
 
     const getData = async (id: string) => {
 
@@ -26,7 +26,7 @@ const useGetCategoryDataByIdFromUrl = () => {
 
         } catch (err){
 
-            errorHandler(err as typeResponseError, 'onGetProductCategory', dispatchAppT);
+            errorHandler(err as typeResponseError, 'onGetCategory', dispatchAppT);
 
         }
 

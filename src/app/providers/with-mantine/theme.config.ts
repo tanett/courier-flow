@@ -29,8 +29,9 @@ export const theme: MantineThemeOverride = {
                 paddingTop: rem(10),
                 paddingBottom: rem(10),
                 paddingLeft: rem(12),
-                paddingRight: rem(12),
+                paddingRight: rem(55),
                 height: rem(40),
+                textOverflow: 'ellipsis',
                 '&:active, &:focus': { borderColor: '#3B82F6', boxShadow: ` 0 0 0 3px #DBEAFE` },
             },
             '& textarea': {
@@ -116,7 +117,16 @@ export const theme: MantineThemeOverride = {
             padding: `${rem(12)} ${rem(16)}`,
             backgroundColor: theme.white,
         },
-
+'.mantine-Checkbox-inner input':{
+            width: rem(24),
+    height: rem(24),
+    border: `1px solid #DDD6FE`,
+    borderRadius: rem(4),
+    '&:focus, &:focus-within, &:active': {
+        borderColor: '#3B82F6',
+        boxShadow: `0 0 0 3px #DBEAFE`,
+    },
+}
     }),
     colorScheme: 'light',
     colors: {

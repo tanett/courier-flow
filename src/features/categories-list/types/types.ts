@@ -1,13 +1,13 @@
 import { typeGetCurrentUserResponse } from 'entities/user-profile/api/types';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { typeProductCategory } from 'entities/productsCategory/model/types';
+import { typeCategory } from 'entities/category/model/types';
 
 export type typeCategoriesListTable = {
     isAllowedCategoryEdit: boolean | null,
     currentUser: typeGetCurrentUserResponse | undefined,
     goToEditCategoryPage: (id: string) => void
     onConfirmArchiveCategory: (id: string) => void
-    categoriesList: typeProductCategory[] | undefined
+    categoriesList: typeCategory[] | undefined
     pagination: typeTablePagination | undefined,
     isLoading: boolean
 }

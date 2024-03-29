@@ -1,11 +1,11 @@
-import { TYPE_PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo } from 'entities/products/model/state-slice';
+import { PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo } from 'entities/products/model/state-slice';
 import { typeProductForm } from 'features/product-create/types/types';
 import { t } from '@lingui/macro';
 import { initialProductForm } from 'features/product-create/form/form';
 
 export const createInitialFormHelper = (additionalFieldsList: typeProductAdditionalFieldInfo[]) => {
 
-    const additionalFieldsObject: Record<string, {type: TYPE_PRODUCT_ADDITIONAL_FIELD, value: string} > = {};
+    const additionalFieldsObject: Record<string, {type: PRODUCT_ADDITIONAL_FIELD, value: string} > = {};
     const additionalFieldsValidateObj: Record<string, { value: (value: string, values: typeProductForm ) => string | null }> = {};
 
     additionalFieldsList.forEach((item) => {

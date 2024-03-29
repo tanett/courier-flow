@@ -5,6 +5,7 @@ export const useStyles = createStyles((theme) => ({
         padding: `${rem(8)} ${rem(39)} ${rem(10)}`,
         flexDirection: 'column',
     },
+    withoutPadding: { padding: 0 },
     iconWrapper: {
         justifyContent: 'center',
         alignItems: 'center',

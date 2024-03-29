@@ -43,6 +43,6 @@ export enum API_URLS {
     CATEGORIES_PATCH= '/api/v1/product-categories',
     CATEGORIES_CREATE= '/api/v1/product-categories',
     CATEGORIES_GET = '/api/v1/product-categories/{id}',
-    CATEGORIES_ARCHIVE = '/api/v1/product-categories/archive',
+    CATEGORIES_DELETE = '/api/v1/product-categories',
 
 }

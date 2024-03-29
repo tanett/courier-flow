@@ -14,8 +14,8 @@ import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
-import { typeProductCategoryCreate } from '../../../entities/productsCategory/model/types';
-import { useCreateProductCategoryMutation } from '../../../entities/productsCategory/api/api';
+import { typeCategoryCreate } from '../../../entities/category/model/types';
+import { useCreateCategoryMutation } from '../../../entities/category/api/api';
 
 
 export const CategoriesCreate: React.FC = () => {
@@ -30,7 +30,7 @@ export const CategoriesCreate: React.FC = () => {
 
     const form = useForm<typeCategoriesCreateForm>(initialCategoryCreateForm);
 
-    const [ createCategory, { isLoading } ] = useCreateProductCategoryMutation();
+    const [ createCategory, { isLoading } ] = useCreateCategoryMutation();
 
     const [ isInProgress, setIsInProgress ] = useState(false);
 
@@ -44,7 +44,7 @@ export const CategoriesCreate: React.FC = () => {
             setIsInProgress(true);
 
 
-            const dataObject: typeProductCategoryCreate = {
+            const dataObject: typeCategoryCreate = {
                 name: form.values.name.trim(),
                 merchantId: currentUser.actor.merchantId,
             };

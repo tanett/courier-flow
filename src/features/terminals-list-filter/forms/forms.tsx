@@ -4,7 +4,7 @@ export const initialTerminalsFilterForm: typeTerminalsFilterForm = {
     serialNumber: '',
     fiscalCardId: '',
     model: '',
-    blocked: undefined,
+    blocked: null,
 };
 
 export const terminalsFilterForm = { initialValues: initialTerminalsFilterForm };

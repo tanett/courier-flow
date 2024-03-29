@@ -3,7 +3,7 @@ import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeProductForm } from '../types/types';
 import { useAppDispatchT, useSelectorT } from 'app/state';
-import { ActionIcon, Alert, Box, Button, Checkbox, Flex, Input, Loader, NumberInput, Select, SimpleGrid, Space, Text, TextInput, UnstyledButton, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Alert, Box, Button, Flex, Input, Loader, NumberInput, Select, SimpleGrid, Space, Text, TextInput, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
@@ -12,9 +12,15 @@ import { useNavigate } from 'react-router-dom';
 import { IconAlertCircle, IconChevronDown, IconX } from '@tabler/icons-react';
 import { useCreateProductMutation } from '../../../entities/products/api/api';
 import { createInitialFormHelper } from '../../../entities/products/helpers/createInitialForm';
-import { TYPE_PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo } from '../../../entities/products/model/state-slice';
+import { PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo, typeProductCreate } from '../../../entities/products/model/state-slice';
 import { productUnitValueListForSelector } from '../../../entities/products/constants/product-unit-value-list-for-selector';
 import { SelectorWithSearchProductCategory } from 'features/selector-with-search-product-category';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
+import { notificationActions } from '../../../entities/notification/model';
+import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
+import { errorHandler } from 'app/utils/errorHandler';
+import { typeResponseError } from 'app/api/types';
+import { CheckBoxForForm } from 'shared/ui/check-box-for-form/check-box-for-form';
 
 
 export const ProductCreate: React.FC = () => {
@@ -44,39 +50,38 @@ export const ProductCreate: React.FC = () => {
 
     const onSave = async () => {
 
-        if (currentUser) {
+        if (currentUser && form.values.unit) {
 
             setIsInProgress(true);
 
-            // const { phone } = form.values;
-            //
-            // const dataObject: typeUsersCreate = {
-            //     fullName: userForm.values.fullName.trim(),
-            //     email: userForm.values.email.trim(),
-            //     phone: isPossiblePhoneNumber(phone) ? phone : undefined,
-            //     roleId: userForm.values.roleId,
-            //     temporaryPassword: true,
-            //     merchantId: currentUser.actor.merchantId,
-            //     storeIds: userForm.values.storeIds.length > 0 ? userForm.values.storeIds : undefined,
-            // };
+            const dataObject: typeProductCreate = {
+                barcodes: form.values.barcodes,
+                marked: form.values.marked,
+                unit: form.values.unit,
+                vat: form.values.vat,
+                name: form.values.name.trim(),
+                merchantId: currentUser.actor.merchantId,
+                productAdditionalFields: Object.values(form.values.productAdditionalFields).filter(item => item.value !== ''),
+                productCategoryId: form.values.productCategoryId
+            };
 
-            // try {
-            //
-            //     await createProduct(dataObject).unwrap();
-            //
-            //     dispatchAppT(notificationActions.addNotification({
-            //         type: NOTIFICATION_TYPES.SUCCESS,
-            //         message: i18n._(t`User created successfully.`),
-            //     }));
-            //
-            //     navigate(routerPaths.users, { replace: true });
-            //
-            // } catch (err) {
-            //
-            //     errorHandler(err as typeResponseError, 'onCreateUser', dispatchAppT);
-            //     setIsInProgress(false);
-            //
-            // }
+            try {
+
+                await createProduct(dataObject).unwrap();
+
+                dispatchAppT(notificationActions.addNotification({
+                    type: NOTIFICATION_TYPES.SUCCESS,
+                    message: i18n._(t`User created successfully.`),
+                }));
+
+                navigate(-1);
+
+            } catch (err) {
+
+                errorHandler(err as typeResponseError, 'onCreateProduct', dispatchAppT);
+                setIsInProgress(false);
+
+            }
 
 
             setIsInProgress(false);
@@ -112,11 +117,11 @@ export const ProductCreate: React.FC = () => {
                         maxLength={ 150 }
                     />
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === TYPE_PRODUCT_ADDITIONAL_FIELD.PSID) && <TextInput
+                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.PSID) && <TextInput
                             withAsterisk
                             label={ <Trans>Psid</Trans> }
                             //  placeholder={ i18n._(t`User name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ TYPE_PRODUCT_ADDITIONAL_FIELD.PSID }.value`) }
+                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PSID }.value`) }
                             maxLength={ 150 }
                         /> }
                         <div/>
@@ -132,18 +137,18 @@ export const ProductCreate: React.FC = () => {
                             rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
                             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
                         />
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === TYPE_PRODUCT_ADDITIONAL_FIELD.UNIT_CODE) && <TextInput
+                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.UNIT_CODE) && <TextInput
                             label={ <Trans>Unit code</Trans> }
-                            withAsterisk
                             // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ TYPE_PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }.value`) }
+                            withAsterisk
+                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }.value`) }
                             maxLength={ 150 }
                         /> }
                     </SimpleGrid>
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <Box>
                             <SelectorWithSearchProductCategory
-                                form={ form }
+                                form={ form as unknown as typeReturnForm }
                                 fieldName={ 'productCategoryId' }
                                 required={ false }
                                 initialValue={ null }
@@ -165,16 +170,17 @@ export const ProductCreate: React.FC = () => {
                             />
                         </Box>
                         <Box>
-                            <Text><Trans>Marked product</Trans></Text>
-                                <Checkbox
-                                    label={ form.values.marked ? <Trans>marked</Trans> : <Trans>not marked</Trans> }
-                                    { ...form.getInputProps('marked') }
-                                />
+                            <CheckBoxForForm
+                                generallabel={ i18n._(t`Marked product`) }
+                                size={ 'md' }
+                                label={ form.values.marked ? <Trans>marked</Trans> : <Trans>not marked</Trans> }
+                                { ...form.getInputProps('marked') }
+                            />
 
                             { (form.values.barcodes.length === 0 && form.values.marked) &&
-                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] }>
-                                    <Trans>Штрихкод обязателен для маркированных товаров.</Trans>
-                                    <Trans>Маркированные товары должны продаваться поштучно</Trans>
+                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
+                                    <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
+                                    <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
                                 </Alert>
                             }
                         </Box>
@@ -218,23 +224,23 @@ export const ProductCreate: React.FC = () => {
                 </FieldsetForForm>
                 <FieldsetForForm title={ <Trans>Other</Trans> }>
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === TYPE_PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE) && <TextInput
+                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE) && <TextInput
                             label={ <Trans>Package code</Trans> }
                             // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ TYPE_PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value`) }
+                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value`) }
                             maxLength={ 150 }
                         /> }
                         <div/>
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === TYPE_PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN) && <TextInput
+                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN) && <TextInput
                             label={ <Trans>Comission TIN</Trans> }
                             // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ TYPE_PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value`) }
+                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value`) }
                             maxLength={ 50 }
                         /> }
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === TYPE_PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL) && <TextInput
+                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL) && <TextInput
                             label={ <Trans>Comission PINFL</Trans> }
                             // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ TYPE_PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value`) }
+                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value`) }
                             maxLength={ 50 }
                         /> }
 

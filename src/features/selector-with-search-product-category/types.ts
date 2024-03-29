@@ -1,8 +1,13 @@
-import { type UseFormReturnType } from '@mantine/form';
+import type { UseFormInput } from '@mantine/form/lib/types';
+import type { UseFormReturnType } from '@mantine/form';
 
-export type typeSelectorProductCategory<T> = {
+type formType = UseFormInput<Record<string, unknown>>
+
+export type typeReturnForm = UseFormReturnType<formType, (values:formType)=>formType>
+
+export type typeSelectorProductCategory = {
     required: boolean,
     fieldName: string,
-    form: UseFormReturnType<T, (values: T) => T>,
+    form: typeReturnForm,
     initialValue: string | null
 }

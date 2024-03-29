@@ -9,9 +9,10 @@ import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { Box, rem, Text, useMantineTheme } from '@mantine/core';
 import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import { typeProductsListTable } from 'features/products-list/types/types';
-import { TYPE_PRODUCT_ADDITIONAL_FIELD, typeProduct, typeProductAdditionalField } from '../../../entities/products/model/state-slice/types';
+import { typeProductAdditionalField } from '../../../entities/products/model/state-slice/types';
 import { useSelectorT } from 'app/state';
 import { additionalFieldInTable } from '../../../entities/products/constants/additional-field-in-table';
+import { ProductsListFilter } from 'features/products-list-filter';
 
 export const ProductsListTable: React.FC<typeProductsListTable> = ({
     isAllowedEdit,
@@ -41,7 +42,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Type part of a product name`) } }
-            //  filterComponent={ <UserListFilter/> }
+              filterComponent={ <ProductsListFilter/> }
         />
 
         { isLoading
@@ -92,7 +93,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                             <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
                                 <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.name || '-' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.productCategory.name || '-' }</Box></Table.Td>
+                                <Table.Td><Box sx={ { width: rem(114) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '-' }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '- ' }</Box></Table.Td>
                                 { isAllowedEdit && <Table.TdActions actions={ actions }/> }

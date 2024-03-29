@@ -2,14 +2,14 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeProductCategory } from '../model/types';
-import { typeCreateProductCategoryRequest, typeEditProductCategoryRequest, typeProductCategoryToArchiveRequest, typeSearchFilterProductCategory, typeSearchProductCategorySortingNames } from './types';
+import { typeCategory } from '../model/types';
+import { typeCreateCategoryRequest, typeEditCategoryRequest, typeSearchFilterCategory, typeSearchCategorySortingNames, typeCategoryDeleteRequest } from './types';
 
 export const productsCategoryApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
 
         // Search product category
-        searchProductCategory: builder.query<typeSearchResponse<typeProductCategory>, typeSearchRequest<typeSearchFilterProductCategory, typeSearchProductCategorySortingNames>>({
+        searchCategory: builder.query<typeSearchResponse<typeCategory>, typeSearchRequest<typeSearchFilterCategory, typeSearchCategorySortingNames>>({
             query: (data) => (
                 {
                     url: API_URLS.CATEGORIES_SEARCH,
@@ -22,7 +22,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         }),
 
         // create Product category
-        createProductCategory: builder.mutation<typeProductCategory, typeCreateProductCategoryRequest >({
+        createCategory: builder.mutation<typeCategory, typeCreateCategoryRequest >({
             query: (data) => (
                 {
                     url: API_URLS.CATEGORIES_CREATE,
@@ -34,7 +34,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         }),
 
         // patch Product Category
-        patchProductCategory: builder.mutation<typeProductCategory, typeEditProductCategoryRequest >({
+        patchCategory: builder.mutation<typeCategory, typeEditCategoryRequest >({
             query: (data) => (
                 {
                     url: API_URLS.CATEGORIES_PATCH,
@@ -45,12 +45,12 @@ export const productsCategoryApi = baseApi.injectEndpoints({
             ),
         }),
 
-        // Category  to archive
-        categoryToArchive: builder.mutation<typeProductCategory, typeProductCategoryToArchiveRequest >({
+        // Category  delete
+        categoryDelete: builder.mutation<typeCategory, typeCategoryDeleteRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.CATEGORIES_ARCHIVE,
-                    method: 'PATCH',
+                    url: API_URLS.CATEGORIES_DELETE,
+                    method: 'DELETE',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
                 }
@@ -58,7 +58,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         }),
 
         // get Category by id
-        getProductCategoryById: builder.query({
+        getCategoryById: builder.query({
             query: (id) => (
                 {
                     url: API_URLS.CATEGORIES_GET.replace('{id}', id),
@@ -73,11 +73,11 @@ export const productsCategoryApi = baseApi.injectEndpoints({
 });
 
 export const {
-    useGetProductCategoryByIdQuery,
-    useLazyGetProductCategoryByIdQuery,
-    usePatchProductCategoryMutation,
-    useLazySearchProductCategoryQuery,
-    useCreateProductCategoryMutation,
-    useSearchProductCategoryQuery,
-    useCategoryToArchiveMutation
+    useGetCategoryByIdQuery,
+    useLazyGetCategoryByIdQuery,
+    usePatchCategoryMutation,
+    useLazySearchCategoryQuery,
+    useCreateCategoryMutation,
+    useSearchCategoryQuery,
+    useCategoryDeleteMutation
 } =productsCategoryApi;

@@ -9,8 +9,8 @@ import { Dialog } from '../../../shared/ui/dialog-new';
 import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editCategoryPermissions } from 'app/config/permissions-config';
-import { typeProductCategory } from '../../../entities/productsCategory/model/types';
-import { useArchiveCategory } from '../../../entities/productsCategory/hooks/use-archive-category';
+import { typeCategory } from '../../../entities/category/model/types';
+import { useDeleteCategory } from '../../../entities/category/hooks/use-delete-category';
 import { CategoriesListTable } from 'features/categories-list/ui/categories-table';
 
 export const CategoriesList: React.FC = () => {
@@ -19,7 +19,7 @@ export const CategoriesList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const [ confirmToArchiveData, setConfirmToArchiveData ] = useState<null | typeProductCategory>(null);
+    const [ confirmToArchiveData, setConfirmToArchiveData ] = useState<null | typeCategory>(null);
 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
@@ -57,7 +57,7 @@ export const CategoriesList: React.FC = () => {
 
     const goToEditPage = (id: string | number) => navigate([ routerPaths.products_categories, id.toString(), 'edit' ].join('/'));
 
-    const { onArchive } = useArchiveCategory({
+    const { onDelete } = useDeleteCategory({
         onSuccess: () => {
 
             onCloseConfirmToArchive();
@@ -89,7 +89,7 @@ export const CategoriesList: React.FC = () => {
                     } }
                     confirmButton={ {
                         title: i18n._(t`Confirm`),
-                        handler: () => onArchive(confirmToArchiveData?.id),
+                        handler: () => onDelete(confirmToArchiveData?.id),
                     } }
                 >
                     <Trans>Are you sure you want to archive<br/>the category</Trans> &quot;{ confirmToArchiveData.name }&quot;?

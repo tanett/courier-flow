@@ -8,11 +8,10 @@ import { sortDirection, typeResponseError, typeSearchRequest } from 'app/api/typ
 import { typeSearchFilterStore } from '../../entities/stores/api/types';
 import { errorHandler } from 'app/utils/errorHandler';
 import { useAppDispatchT } from 'app/state';
-import { typeProductForm } from 'features/product-create/types/types';
-import { useLazySearchProductCategoryQuery } from '../../entities/productsCategory/api/api';
-import { typeSearchFilterProductCategory } from '../../entities/productsCategory/api/types';
+import { useLazySearchCategoryQuery } from '../../entities/category/api/api';
+import { typeSearchFilterCategory } from '../../entities/category/api/types';
 
-export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCategory<typeProductForm>> = ({
+export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCategory> = ({
     form,
     fieldName,
     required,
@@ -27,9 +26,9 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
 
     const [ list, setList ] = useState<{value: string, label: string}[]>([]);
 
-    const [ getCategories, { isLoading } ] = useLazySearchProductCategoryQuery();
+    const [ getCategories, { isLoading } ] = useLazySearchCategoryQuery();
 
-    const getData = async (requestData: typeSearchRequest<typeSearchFilterProductCategory, 'NAME'>) => {
+    const getData = async (requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'>) => {
 
         try {
 
@@ -46,7 +45,7 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
 
     useEffect(() => {
 
-        const requestData: typeSearchRequest<typeSearchFilterProductCategory, 'NAME'> = {
+        const requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'> = {
             filter: { },
             pagination: {
                 pageNumber: 0,
@@ -68,7 +67,7 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
 
         if (initialValue){
 
-            const requestData: typeSearchRequest<typeSearchFilterProductCategory, 'NAME'> = {
+            const requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'> = {
                 filter: { ids: [ initialValue ], },
                 pagination: {
                     pageNumber: 0,
@@ -130,9 +129,10 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             { ...form.getInputProps(fieldName) }
             maxLength={ 20 }
 
-            // itemComponent={ SelectItem }
-            rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined :  <IconChevronDown size="1rem"/> }
+            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': {transform: 'rotate(180deg)', },}}
         />
     );
 

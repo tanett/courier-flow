@@ -1,4 +1,4 @@
-import { typeProductCategory } from 'entities/productsCategory/model/types';
+import { typeCategory } from 'entities/category/model/types';
 
 
 export type typeProduct = {
@@ -9,7 +9,7 @@ export type typeProduct = {
     archivedAt: string
     archivedBy: string
     name: string
-    productCategory: typeProductCategory
+    productCategory: typeCategory
     unit: PRODUCT_UNIT_VALUE
     marked: boolean
     vat: number
@@ -26,7 +26,7 @@ export enum PRODUCT_UNIT_VALUE {
     PIECE = 'PIECE'
 }
 
-export enum TYPE_PRODUCT_ADDITIONAL_FIELD {
+export enum PRODUCT_ADDITIONAL_FIELD {
     PSID = 'PSID',
     UNIT_CODE = 'UNIT_CODE',
     PACKAGE_CODE = 'PACKAGE_CODE',
@@ -38,7 +38,7 @@ export type typeProductAdditionalField = {
     id: string
     createdAt: string
     createdBy: string
-    type: TYPE_PRODUCT_ADDITIONAL_FIELD
+    type: PRODUCT_ADDITIONAL_FIELD
     value: string
 }
 
@@ -79,7 +79,7 @@ export type typeProductToArchive = string[]
 
 export type typeProductAdditionalFieldInfo = {
     name: string
-    code: TYPE_PRODUCT_ADDITIONAL_FIELD
+    code: PRODUCT_ADDITIONAL_FIELD
     pattern: string
     patternDescription: string
     required: boolean

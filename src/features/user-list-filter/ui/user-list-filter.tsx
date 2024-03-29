@@ -2,7 +2,7 @@ import { typeRoleItemSelect, typeUsersFilterForm } from '../types/types';
 import React, { useContext, useEffect, useState } from 'react';
 import { userFilterForm } from '../forms/forms';
 import { useForm } from '@mantine/form';
-import { Loader, Select } from '@mantine/core';
+import { Flex, Loader, Select } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { DrawerContext, FilterButtonsBar, FilterFormWrapper } from '../../../shared/ui/filter-panel';
@@ -15,6 +15,7 @@ import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-param
 import { useSelectorT } from 'app/state';
 import { SelectorWithSearchStore } from 'features/selector-with-search-store';
 import { IconChevronDown } from '@tabler/icons-react';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 export const UserListFilter: React.FC = () => {
 
@@ -50,7 +51,10 @@ export const UserListFilter: React.FC = () => {
         try {
 
             const rolesListResponse = await getRoles(requestData).unwrap();
-            const roleList: typeRoleItemSelect[] = rolesListResponse.content.map(item => ({ value: item.id, label: item.name }));
+            const roleList: typeRoleItemSelect[] = rolesListResponse.content.map(item => ({
+                value: item.id,
+                label: item.name
+            }));
             setRoleList(roleList);
             const roleId = urlParams.getFilterValue('roleId');
             if (roleId && typeof roleId === 'string') form.setValues({ roleId: roleId });
@@ -95,11 +99,14 @@ export const UserListFilter: React.FC = () => {
 
     const setFilterHandler = () => {
 
-        const filterObj: Record<string, unknown> = { roleId: form.values.roleId, storeId: form.values.storeId };
+        const filterObj: Record<string, unknown> = {
+            roleId: form.values.roleId,
+            storeId: form.values.storeId
+        };
 
         urlParams.setSearchParams({
-            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
-            [ queryParamsNames.pageNumber ]: undefined,
+            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
+            [queryParamsNames.pageNumber]: undefined,
         });
 
         if (close) close();
@@ -109,8 +116,8 @@ export const UserListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
-            [ queryParamsNames.pageNumber ]: undefined,
+            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
+            [queryParamsNames.pageNumber]: undefined,
         });
         form.reset();
 
@@ -118,23 +125,25 @@ export const UserListFilter: React.FC = () => {
 
     return (
         <FilterFormWrapper>
-            {(!urlParams)
+            { (!urlParams)
                 ? <FilterSkeleton/>
-                : <form onSubmit={form.onSubmit(setFilterHandler)} onReset={form.onReset}>
-                    <Select
-                        clearable
-                        label={i18n._(t`Role`)}
-                        data={roleList}
-                        {...form.getInputProps('roleId')}
-                        rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
-                        sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
-                    />
-                    <SelectorWithSearchStore
-                        required={ false }
-                        fieldName={ 'storeId' }
-                        initialValue={form.values.storeId !== null ? form.values.storeId : null}
-                        form={ form }/>
-                    <FilterButtonsBar onReset={onReset}/>
+                : <form onSubmit={ form.onSubmit(setFilterHandler) } onReset={ form.onReset }>
+                    <Flex rowGap={ 16 } direction={ 'column' }>
+                        <Select
+                            clearable
+                            label={ i18n._(t`Role`) }
+                            data={ roleList }
+                            { ...form.getInputProps('roleId') }
+                            rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
+                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+                        />
+                        <SelectorWithSearchStore
+                            required={ false }
+                            fieldName={ 'storeId' }
+                            initialValue={ form.values.storeId !== null ? form.values.storeId : null }
+                            form={ form as unknown as typeReturnForm }/>
+                    </Flex>
+                    <FilterButtonsBar onReset={ onReset }/>
                 </form>
             }
         </FilterFormWrapper>

@@ -1,12 +1,12 @@
 import { t } from '@lingui/macro';
-import { PRODUCT_UNIT_VALUE, TYPE_PRODUCT_ADDITIONAL_FIELD } from 'entities/products/model/state-slice';
+import { PRODUCT_UNIT_VALUE, PRODUCT_ADDITIONAL_FIELD } from 'entities/products/model/state-slice';
 
 
 export const initialProductForm = {
     initialValues: {
         name: '',
         productCategoryId: '',
-        unit: '',
+        unit: undefined,
         marked: false,
         vat: 0,
         barcodes: [],
@@ -22,9 +22,9 @@ export const initialProductForm = {
                     : null;
 
         },
-        unit: (value: PRODUCT_UNIT_VALUE | string) => {
+        unit: (value: PRODUCT_UNIT_VALUE | undefined) => {
 
-            return value === ''
+            return !value
                 ? t`Required field`
                 : null
 
