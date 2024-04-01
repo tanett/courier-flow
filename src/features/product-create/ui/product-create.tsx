@@ -21,6 +21,7 @@ import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
 import { CheckBoxForForm } from 'shared/ui/check-box-for-form/check-box-for-form';
+import { CreateInputForAdditionalField } from 'entities/products/helpers/createInputForAdditionalField';
 
 
 export const ProductCreate: React.FC = () => {
@@ -98,164 +99,166 @@ export const ProductCreate: React.FC = () => {
     };
 
     return (
-        <form onSubmit={ form.onSubmit(onSave) }>
+        additionalFields ?
+            <form onSubmit={ form.onSubmit(onSave) }>
 
-            <Flex className={ classes.flexColumn }>
+                <Flex className={ classes.flexColumn }>
 
-                <FieldsetForForm title={ <Trans>General information</Trans> }>
-                    <TextInput
-                        withAsterisk
-                        label={ <Trans>Product name</Trans> }
-                        // placeholder={ i18n._(t`product name`) }
-                        sx={ {
-                            '&.mantine-InputWrapper-root': {
-                                maxWidth: '100%',
-                                width: '100%'
-                            }
-                        } }
-                        { ...form.getInputProps('name') }
-                        maxLength={ 150 }
-                    />
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.PSID) && <TextInput
+                    <FieldsetForForm title={ <Trans>General information</Trans> }>
+                        <TextInput
                             withAsterisk
-                            label={ <Trans>Psid</Trans> }
-                            //  placeholder={ i18n._(t`User name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PSID }.value`) }
-                            maxLength={ 150 }
-                        /> }
-                        <div/>
-                        <Select
-                            withAsterisk
-                            label={ <Trans>Unit</Trans> }
-                            data={ productUnitValueListForSelector }
-                            transitionProps={ {
-                                duration: 80,
-                                timingFunction: 'ease',
-                            } }
-                            { ...form.getInputProps('unit') }
-                            rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
-                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
-                        />
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.UNIT_CODE) && <TextInput
-                            label={ <Trans>Unit code</Trans> }
+                            label={ <Trans>Product name</Trans> }
                             // placeholder={ i18n._(t`product name`) }
-                            withAsterisk
-                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }.value`) }
-                            maxLength={ 150 }
-                        /> }
-                    </SimpleGrid>
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        <Box>
-                            <SelectorWithSearchProductCategory
-                                form={ form as unknown as typeReturnForm }
-                                fieldName={ 'productCategoryId' }
-                                required={ false }
-                                initialValue={ null }
-                            />
-                            <NumberInput
-                                withAsterisk
-                                hideControls
-                                label={ <Trans>Vat</Trans> }
-                                // placeholder={ i18n._(t`product name`) }
-                                { ...form.getInputProps('vat') }
-                                min={ 0 }
-                                parser={ (value) => value.replace(/\s?|(,*)/g, '') }  // todo make the limiting for inputs
-                                formatter={ (value) =>
-                                    !Number.isNaN(parseFloat(value))
-                                        ? `${ value }`.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
-                                        : ''
+                            sx={ {
+                                '&.mantine-InputWrapper-root': {
+                                    maxWidth: '100%',
+                                    width: '100%'
                                 }
-                                mt={ 16 }
-                            />
-                        </Box>
-                        <Box>
-                            <CheckBoxForForm
-                                generallabel={ i18n._(t`Marked product`) }
-                                size={ 'md' }
-                                label={ form.values.marked ? <Trans>marked</Trans> : <Trans>not marked</Trans> }
-                                { ...form.getInputProps('marked') }
-                            />
-
-                            { (form.values.barcodes.length === 0 && form.values.marked) &&
-                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
-                                    <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
-                                    <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
-                                </Alert>
-                            }
-                        </Box>
-
-                    </SimpleGrid>
-
-                    <Input.Wrapper
-                        id="input-barcodes"
-                        label={ <Trans>Barcodes</Trans> }
-                        // error={form.validateField('barcodes')}
-                        sx={ {
-                            '&.mantine-InputWrapper-root': {
-                                maxWidth: '100%',
-                                width: '100%'
-                            }
-                        } }
-                    >
-                        <Flex wrap={ 'nowrap' } gap={ 10 }>
-                            <Flex wrap={ 'wrap' } gap={ 10 } sx={ { flexGrow: 1 } }>
-                                { form.values.barcodes.map((item, index) => {
-                                    return <div key={ index }>
-                                        <Flex wrap={ 'nowrap' } gap={ 6 }>
-                                            <Text>item</Text>
-                                            <ActionIcon variant={ 'subtle' }
-                                                        onClick={ () => form.setFieldValue('barcodes', form.values.barcodes.filter(code => item !== code)) }
-                                            ><IconX size={ 16 }/> </ActionIcon>
-                                        </Flex>
-                                    </div>;
-                                }) }
-                                <Input id="input-demo" placeholder="Your email"
-                                       sx={ {
-                                           width: '100%',
-                                           '&.mantine-Input-wrapper input': { border: 'none' },
-                                       } }/>
-                            </Flex>
-                            <UnstyledButton>Add barcode</UnstyledButton>
-                        </Flex>
-
-
-                    </Input.Wrapper>
-                </FieldsetForForm>
-                <FieldsetForForm title={ <Trans>Other</Trans> }>
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE) && <TextInput
-                            label={ <Trans>Package code</Trans> }
-                            // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value`) }
+                            } }
+                            { ...form.getInputProps('name') }
                             maxLength={ 150 }
-                        /> }
-                        <div/>
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN) && <TextInput
-                            label={ <Trans>Comission TIN</Trans> }
-                            // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value`) }
-                            maxLength={ 50 }
-                        /> }
-                        { additionalFields?.find((field: typeProductAdditionalFieldInfo) => field.code === PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL) && <TextInput
-                            label={ <Trans>Comission PINFL</Trans> }
-                            // placeholder={ i18n._(t`product name`) }
-                            { ...form.getInputProps(`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value`) }
-                            maxLength={ 50 }
-                        /> }
+                        />
+                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                            <CreateInputForAdditionalField
+                                path={`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PSID }.value`}
+                                form={form}
+                                additionalFields={additionalFields}
+                                code={PRODUCT_ADDITIONAL_FIELD.PSID}
+                            />
+                            <div/>
+                            <Select
+                                withAsterisk
+                                label={ <Trans>Unit</Trans> }
+                                data={ productUnitValueListForSelector }
+                                transitionProps={ {
+                                    duration: 80,
+                                    timingFunction: 'ease',
+                                } }
+                                { ...form.getInputProps('unit') }
+                                rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
+                                sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+                            />
+                            <CreateInputForAdditionalField
+                                path={`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }.value`}
+                                form={form}
+                                additionalFields={additionalFields}
+                                code={PRODUCT_ADDITIONAL_FIELD.UNIT_CODE}
+                            />
+                        </SimpleGrid>
+                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                            <Box>
+                                <SelectorWithSearchProductCategory
+                                    form={ form as unknown as typeReturnForm }
+                                    fieldName={ 'productCategoryId' }
+                                    required={ false }
+                                    initialValue={ null }
+                                />
+                                <NumberInput
+                                    withAsterisk
+                                    hideControls
+                                    label={ <Trans>Vat</Trans> }
+                                   // pattern={'/^\\d{1,2}(.\\d{1,2})?$/gm'}
+                                    // placeholder={ i18n._(t`product name`) }
+                                    { ...form.getInputProps('vat') }
+                                    min={ 0 }
+                                    parser={ (value) => value.replace(/\s?|(,*)/g, '') }  // todo make the limiting for inputs
+                                    formatter={ (value) =>
+                                        !Number.isNaN(parseFloat(value))
+                                            ? `${ value }`.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
+                                            : ''
+                                    }
+                                    mt={ 16 }
+                                />
+                            </Box>
+                            <Box>
+                                <CheckBoxForForm
+                                    generallabel={ i18n._(t`Marked product`) }
+                                    size={ 'md' }
+                                    label={ form.values.marked ? <Trans>marked</Trans> : <Trans>not marked</Trans> }
+                                    { ...form.getInputProps('marked') }
+                                />
 
-                    </SimpleGrid>
-                </FieldsetForForm>
-                <Space h={ 10 }/>
-                <Flex className={ classes.buttonsBar }>
-                    <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
-                    <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Save` }</Button>
+                                { (form.values.barcodes.length === 0 && form.values.marked) &&
+                                    <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
+                                        <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
+                                        <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
+                                    </Alert>
+                                }
+                            </Box>
+
+                        </SimpleGrid>
+
+                        <Input.Wrapper
+                            id="input-barcodes"
+                            label={ <Trans>Barcodes</Trans> }
+                            // error={form.validateField('barcodes')}
+                            sx={ {
+                                '&.mantine-InputWrapper-root': {
+                                    maxWidth: '100%',
+                                    width: '100%'
+                                }
+                            } }
+                        >
+                            <Flex wrap={ 'nowrap' } gap={ 10 }>
+                                <Flex wrap={ 'wrap' } gap={ 10 } sx={ { flexGrow: 1 } }>
+                                    { form.values.barcodes.map((item, index) => {
+                                        return <div key={ index }>
+                                            <Flex wrap={ 'nowrap' } gap={ 6 }>
+                                                <Text>item</Text>
+                                                <ActionIcon variant={ 'subtle' }
+                                                            onClick={ () => form.setFieldValue('barcodes', form.values.barcodes.filter(code => item !== code)) }
+                                                ><IconX size={ 16 }/> </ActionIcon>
+                                            </Flex>
+                                        </div>;
+                                    }) }
+                                    <Input id="input-demo" placeholder="Your email"
+                                           sx={ {
+                                               width: '100%',
+                                               '&.mantine-Input-wrapper input': { border: 'none' },
+                                           } }/>
+                                </Flex>
+                                <UnstyledButton>Add barcode</UnstyledButton>
+                            </Flex>
+
+
+                        </Input.Wrapper>
+                    </FieldsetForForm>
+                    <FieldsetForForm title={ <Trans>Other</Trans> }>
+                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                            <CreateInputForAdditionalField
+                                path={`productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value`}
+                                form={form}
+                                additionalFields={additionalFields}
+                                code={PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE}
+                            />
+                            <div/>
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }
+                            />
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }
+                            />
+
+
+                        </SimpleGrid>
+                    </FieldsetForForm>
+                    <Space h={ 10 }/>
+                    <Flex className={ classes.buttonsBar }>
+                        <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
+                        <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                                type="submit">{ t`Save` }</Button>
+                    </Flex>
+
                 </Flex>
-
-            </Flex>
-            { (isInProgress || isLoading) && <LoaderOverlay/> }
-        </form>
+                { (isInProgress || isLoading) && <LoaderOverlay/> }
+            </form>
+            : <LoaderOverlay/>
     );
 
 };
