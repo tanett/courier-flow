@@ -5,7 +5,7 @@ export type typeProductForm = {
     productCategoryId: string
     unit: PRODUCT_UNIT_VALUE | undefined
     marked: boolean
-    vat: number
+    vat: string
     barcodes: string[]
     productAdditionalFields: Record<string, typeAdditionalFieldForCreate>
 }

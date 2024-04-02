@@ -8,8 +8,9 @@ export const initialProductForm = {
         productCategoryId: '',
         unit: undefined,
         marked: false,
-        vat: 0,
+        vat: '',
         barcodes: [],
+        productAdditionalFields: {}
 
     },
     validate: {
@@ -26,14 +27,16 @@ export const initialProductForm = {
 
             return !value
                 ? t`Required field`
-                : null
+                : null;
 
         },
-        vat: (value: number) => {
+        vat: (value: string) => {
 
-            return value === null
+            return value.trim() === ''
                 ? t`Required field`
-                : null
+                : +value.trim() > 100
+                    ? t`Too match`
+                    : null;
 
         },
 

@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         fontSize: theme.fontSizes.sm,
-        fontWeight: 500
+        fontWeight: 500,
     },
     alignCenter: { justifyContent: 'center' },
     alignRight: { justifyContent: 'end' },

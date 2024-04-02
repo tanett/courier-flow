@@ -31,18 +31,18 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
 
     const additionalFields = useSelectorT(state => state.products.additionalFieldInfo);
 
-    const [firstColumnName, setFirstColumnName] = useState('')
+    const [ firstColumnName, setFirstColumnName ] = useState('');
 
     useEffect(() => {
-        if(additionalFields){
-            setFirstColumnName(additionalFields.find(item=>item.code === additionalFieldInTable)?.name || '')
+        if (additionalFields) {
+            setFirstColumnName(additionalFields.find(item => item.code === additionalFieldInTable)?.name || '');
         }
-    }, [additionalFields]);
+    }, [ additionalFields ]);
 
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Type part of a product name`) } }
-              filterComponent={ <ProductsListFilter/> }
+            filterComponent={ <ProductsListFilter/> }
         />
 
         { isLoading
@@ -51,10 +51,10 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
             <Table>
                 <Table.Header>
                     <Table.Th withoutLeftDivider>
-                        {firstColumnName}
+                        { firstColumnName }
                     </Table.Th>
                     <Table.Th>
-                        <Trans>Name</Trans>
+                        <Trans id={ 'item-name' }>Name</Trans>
                     </Table.Th>
                     <Table.Th>
                         <Trans>Category</Trans>
@@ -87,7 +87,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                             icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[5] } width={ 22 }/>,
                         });
 
-                        const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField )=> item.type === additionalFieldInTable);
+                        const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
 
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>

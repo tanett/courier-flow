@@ -2,7 +2,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { SuspenseProvider } from '../../providers/suspense-provider/suspense-provider';
 import { useStyles } from './styles';
-import { LanguageSelectorWelcome } from '../../../features/change-language';
 import { Box, rem, Space, Text } from '@mantine/core';
 import { ReactComponent as Logo } from '../../../shared/images/logo/logo.svg';
 import { AnimatedLayout } from 'shared/layouts/auth-layout/animatedLayout';
@@ -21,9 +20,9 @@ export const AuthLayout: React.FC = () => {
                     <Box className={classes.form}>
 
                         <Box className={classes.formContainer}>
-                            <Box pos={'relative'}>
-                                <LanguageSelectorWelcome/>
-                            </Box>
+                            {/* <Box pos={'relative'}> */}
+                            {/*     <LanguageSelectorWelcome/> */}
+                            {/* </Box> */}
                             <Box className={ classes.logoWrapper }>
                                 <Logo/>
                                 <Text>{title}</Text>
