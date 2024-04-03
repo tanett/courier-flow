@@ -100,5 +100,5 @@ deploy:
     - podname=$(rancher kubectl get pods -n $NAMESPACE -o=name | sed "s/^.\{4\}//"| grep $POD_NAME)
     - rancher kubectl delete pod -n $NAMESPACE $podname
   only:
-    - develop1
+    - develop
     - test
