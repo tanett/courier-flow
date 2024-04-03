@@ -1,4 +1,4 @@
-import { typeCategory } from 'entities/category/model/types';
+import { typeCategory } from '../../../category/model/types';
 
 
 export type typeProduct = {

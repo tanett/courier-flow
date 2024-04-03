@@ -32,7 +32,10 @@ export const theme: MantineThemeOverride = {
                 paddingRight: rem(55),
                 height: rem(40),
                 textOverflow: 'ellipsis',
-                '&:active, &:focus': { borderColor: '#3B82F6', boxShadow: ` 0 0 0 3px #DBEAFE` },
+                '&:active, &:focus': {
+                    borderColor: '#3B82F6',
+                    boxShadow: ` 0 0 0 3px #DBEAFE`
+                },
             },
             '& textarea': {
                 border: `1px solid #DDD6FE`,
@@ -46,16 +49,27 @@ export const theme: MantineThemeOverride = {
                 paddingLeft: rem(12),
                 paddingRight: rem(12),
                 height: rem(80),
-                '&:active, &:focus': { borderColor: '#3B82F6', boxShadow: ` 0 0 0 3px #DBEAFE` },
+                '&:active, &:focus': {
+                    borderColor: '#3B82F6',
+                    boxShadow: ` 0 0 0 3px #DBEAFE`
+                },
             },
-            '& .mantine-Select-input': { '&:focus, &:active': { borderColor: '#3B82F6', boxShadow: ` 0 0 0 3px #DBEAFE` } },
+            '& .mantine-Select-input': {
+                '&:focus, &:active': {
+                    borderColor: '#3B82F6',
+                    boxShadow: ` 0 0 0 3px #DBEAFE`
+                }
+            },
         },
         '.mantine-MultiSelect-wrapper': {
             border: `none`,
             borderRadius: rem(4),
 
             '& .mantine-Input-wrapper': {
-                '& .mantine-MultiSelect-input': { border: 'none', boxShadow: `none` },
+                '& .mantine-MultiSelect-input': {
+                    border: 'none',
+                    boxShadow: `none`
+                },
 
                 border: `1px solid #DDD6FE`,
                 borderRadius: rem(4),
@@ -66,7 +80,10 @@ export const theme: MantineThemeOverride = {
                 '& input': {
                     border: 'none',
                     paddingLeft: 0,
-                    '&:active, &:focus': { border: 'none', boxShadow: `none` },
+                    '&:active, &:focus': {
+                        border: 'none',
+                        boxShadow: `none`
+                    },
                     '&::placeholder': {
                         fontSize: rem(16),
                         fontWeight: 400,
@@ -99,7 +116,12 @@ export const theme: MantineThemeOverride = {
                 boxShadow: `0 0 0 3px #DBEAFE`,
             },
         },
-        '.mantine-PasswordInput-input': { '& input:active, input:focus': { borderColor: 'none', boxShadow: 'none' } },
+        '.mantine-PasswordInput-input': {
+            '& input:active, input:focus': {
+                borderColor: 'none',
+                boxShadow: 'none'
+            }
+        },
         '.mantine-Select-dropdown, .mantine-MultiSelect-dropdown': {
             '& .mantine-Select-item, .mantine-MultiSelect-item': {
                 '&[data-selected="true"]': {
@@ -114,19 +136,19 @@ export const theme: MantineThemeOverride = {
             color: theme.black,
             boxShadow: '0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)',
             fontSize: rem(14),
-            padding: `${rem(12)} ${rem(16)}`,
+            padding: `${ rem(12) } ${ rem(16) }`,
             backgroundColor: theme.white,
         },
-'.mantine-Checkbox-inner input':{
-            width: rem(24),
-    height: rem(24),
-    border: `1px solid #DDD6FE`,
-    borderRadius: rem(4),
-    '&:focus, &:focus-within, &:active': {
-        borderColor: '#3B82F6',
-        boxShadow: `0 0 0 3px #DBEAFE`,
-    },
-}
+        '.mantine-Checkbox-inner input': {
+            // width: rem(24),
+            // height: rem(24),
+            border: `1px solid #DDD6FE`,
+            borderRadius: rem(4),
+            '&:focus, &:focus-within, &:active': {
+                borderColor: '#3B82F6',
+                boxShadow: `0 0 0 3px #DBEAFE`,
+            },
+        }
     }),
     colorScheme: 'light',
     colors: {
@@ -200,7 +222,10 @@ export const theme: MantineThemeOverride = {
     black: '#111827',
     white: '#FFFFFF',
     primaryColor: 'primary',
-    primaryShade: { light: 5, dark: 8 },
+    primaryShade: {
+        light: 5,
+        dark: 8
+    },
     fontFamily: 'Gilroy, sans-serif',
     fontFamilyMonospace: 'Gilroy, sans-serif',
     headings: {

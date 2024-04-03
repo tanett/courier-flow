@@ -11,7 +11,7 @@ import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-al
 import { editProductsPermissions } from 'app/config/permissions-config';
 import { typeProduct } from '../../../entities/products/model/state-slice/types';
 import { useArchiveProducts } from '../../../entities/products/hooks/use-archive-products';
-import { ProductsListTable } from '../../../features/products-list/ui/products-table';
+import { ProductsListTable } from './table/products-table';
 
 export const ProductsList: React.FC = () => {
 

@@ -7,6 +7,7 @@ import { typeTablePagination } from 'shared/ui/table/types/type';
 import { useLazySearchProductQuery } from '../../../entities/products/api/api';
 import { typeSearchFilterProduct } from '../../../entities/products/api/types';
 import { typeProduct } from '../../../entities/products/model/state-slice/types';
+import { typeProductWithCheckBox } from 'features/products-list/types/types';
 
 export function useProductsList() {
 
