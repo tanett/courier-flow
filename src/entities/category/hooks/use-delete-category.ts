@@ -16,15 +16,15 @@ export const useDeleteCategory = ({
 
     const [ categoryDelete, { isLoading: isDeleteLoading } ] = useCategoryDeleteMutation();
 
-    const onDelete = async (id: string) => {
+    const onDelete = async (ids: string[]) => {
 
         try {
 
-            await categoryDelete([ id ]).unwrap();
+            await categoryDelete(ids).unwrap();
 
             dispatchAppT(notificationActions.addNotification({
                 type: NOTIFICATION_TYPES.SUCCESS,
-                message: t`Category delete successfully.`,
+                message: ids.length === 1 ? t`Category delete successfully.` : t`Categories delete successfully.`,
             }));
             if (onSuccess) onSuccess();
 

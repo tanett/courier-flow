@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { Checkbox, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
-import { typeProductListTableHeader } from 'features/products-list/types/types';
-import { additionalFieldInTable } from '../../../../entities/products/constants/additional-field-in-table';
+import { typeCategoriesListTableHeader } from '../../types/types';
 
 
-export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
+export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> = ({
     onCheckedAllHandler,
     indeterminate,
     allChecked,
-    additionalFields,
     isAllowedEdit,
     headerActions
 }) => {
     const theme = useMantineTheme();
-
-    const [ firstColumnName, setFirstColumnName ] = useState('');
-
-    useEffect(() => {
-        if (additionalFields) {
-            setFirstColumnName(additionalFields.find(item => item.code === additionalFieldInTable)?.name || '');
-        }
-    }, [ additionalFields ]);
-
 
     return (
         <Table.Header>
@@ -68,24 +57,16 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
 
                 </>
                 : <>
-                    <Table.Th>
-                        { firstColumnName }
+                    <Table.Th withoutLeftDivider>
+                        <Trans id={'item-name'}>Name</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Trans id={ 'item-name' }>Name</Trans>
-                    </Table.Th>
-                    <Table.Th>
-                        <Trans>Category</Trans>
-                    </Table.Th>
-                    <Table.Th>
-                        <Trans>Range of price</Trans>
-                    </Table.Th>
-                    <Table.Th>
-                        <Trans>Amount of stores</Trans>
+                        <Trans>Number of products</Trans>
                     </Table.Th>
                     { isAllowedEdit && <Table.Th>
                         <Trans>Actions</Trans>
-                    </Table.Th> }</> }
+                    </Table.Th> }
+                </> }
         </Table.Header>
     );
 

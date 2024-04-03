@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCategoriesList } from 'features/categories-list/hooks/use-categories-list';
 import { useNavigate } from 'react-router-dom';
-import { t, Trans } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
 import { routerPaths } from '../../../app/config/router-paths';
-import { Modal } from '../../../shared/ui/modal';
-import { Dialog } from '../../../shared/ui/dialog-new';
 import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editCategoryPermissions } from 'app/config/permissions-config';
 import { typeCategory } from '../../../entities/category/model/types';
 import { useDeleteCategory } from '../../../entities/category/hooks/use-delete-category';
-import { CategoriesListTable } from 'features/categories-list/ui/categories-table';
+import { CategoriesListTable } from 'features/categories-list/ui/table/categories-table';
+import { ArchiveItemModal } from 'features/categories-list/modals/archive-item-modal';
+import { typeCategoryWithCheckBox, typeHeadersAction } from 'features/categories-list/types/types';
+import { ArchiveSelectedItemModal } from 'features/categories-list/modals/archive-selected-item-modal';
+import { useListState } from '@mantine/hooks';
+import { t } from '@lingui/macro';
+import { useLingui } from '@lingui/react';
 
 export const CategoriesList: React.FC = () => {
 
@@ -19,33 +21,9 @@ export const CategoriesList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const [ confirmToArchiveData, setConfirmToArchiveData ] = useState<null | typeCategory>(null);
-
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
     const isAllowedEdit = useIsAllowedPermissions(editCategoryPermissions);
-
-    const onCloseConfirmToArchive = () => {
-
-        setConfirmToArchiveData(null);
-
-    };
-
-    const onConfirmArchive = (id: string) => {
-
-        if (categoriesList?.length) {
-
-            const category = categoriesList.find(item => item.id === id);
-
-            if (category) {
-
-                setConfirmToArchiveData(category);
-
-            }
-
-        }
-
-    };
 
     const {
         categoriesList,
@@ -55,17 +33,58 @@ export const CategoriesList: React.FC = () => {
     } = useCategoriesList();
 
 
+    // product list with checked
+    const [ values, handlers ] = useListState<typeCategoryWithCheckBox>(undefined);
+
+    useEffect(() => {
+        if (categoriesList) {
+            handlers.setState(categoriesList.map(item => ({
+                ...item,
+                checked: false
+            })));
+        }
+
+    }, [ categoriesList ]);
+
+    // modals
+    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeCategory>(null);
+    const [ isOpenModalSelectedItemArchive, setIsOpenSelectedItemArchive ] = useState(false);
+
+
+    const onCloseModalToArchiveItem = () => {
+
+        setModalArchiveItemData(null);
+
+    };
+
+    const onClickRowActionsArchiveItem = (category: typeCategoryWithCheckBox) => {
+
+        setModalArchiveItemData(category);
+
+    };
+
+
     const goToEditPage = (id: string | number) => navigate([ routerPaths.products_categories, id.toString(), 'edit' ].join('/'));
 
     const { onDelete } = useDeleteCategory({
         onSuccess: () => {
 
-            onCloseConfirmToArchive();
+            if (modalArchiveItemData) onCloseModalToArchiveItem();
+            if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
+
             setRefetch(true);
 
         },
-        onError: () => onCloseConfirmToArchive(),
+        onError: () => onCloseModalToArchiveItem(),
     });
+
+    const headerActions: typeHeadersAction[] = [
+        {
+            id: 'selected-archive-btn',
+            label: i18n._(t`Archive`),
+            handler: (event) => setIsOpenSelectedItemArchive(true)
+        },
+    ];
 
 
     return (<>
@@ -73,29 +92,28 @@ export const CategoriesList: React.FC = () => {
             currentUser={ currentUser }
             isAllowedCategoryEdit={ isAllowedEdit }
             goToEditCategoryPage={ goToEditPage }
-            onConfirmArchiveCategory={ onConfirmArchive }
-            categoriesList={ categoriesList }
+            onClickRowActionsArchiveItem={ onClickRowActionsArchiveItem }
+            categoriesList={ values }
+            handlersListState={ handlers }
             pagination={ pagination }
             isLoading={ isLoading }
+            headerActions={ headerActions }
         />
 
 
-        { confirmToArchiveData && <Modal modalWidth="dialog" opened={ true }>
-            <Modal.Body>
-                <Dialog
-                    cancelButton={ {
-                        title: i18n._(t`Cancel`),
-                        handler: onCloseConfirmToArchive,
-                    } }
-                    confirmButton={ {
-                        title: i18n._(t`Confirm`),
-                        handler: () => onDelete(confirmToArchiveData?.id),
-                    } }
-                >
-                    <Trans>Are you sure you want to archive<br/>the category</Trans> &quot;{ confirmToArchiveData.name }&quot;?
-                </Dialog>
-            </Modal.Body>
-        </Modal> }
+        { modalArchiveItemData
+            && <ArchiveItemModal
+                onClose={ onCloseModalToArchiveItem }
+                onConfirm={ () => onDelete([ modalArchiveItemData.id ]) }
+                itemName={ modalArchiveItemData.name }/>
+        }
+
+        { isOpenModalSelectedItemArchive
+            && <ArchiveSelectedItemModal
+                onClose={ () => setIsOpenSelectedItemArchive(false) }
+                onConfirm={ () => onDelete(values.filter(item => item.checked).map(item => item.id)) }
+            />
+        }
 
     </>);
 
