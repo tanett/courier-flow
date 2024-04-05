@@ -94,7 +94,7 @@ export const CategoriesList: React.FC = () => {
 
 
     return (<>
-        <CategoriesListTable
+        {values && <CategoriesListTable
             currentUser={ currentUser }
             isAllowedCategoryEdit={ isAllowedEdit }
             goToEditCategoryPage={ goToEditPage }
@@ -102,9 +102,9 @@ export const CategoriesList: React.FC = () => {
             categoriesList={ values }
             handlersListState={ handlers }
             pagination={ pagination }
-            isLoading={ isLoading }
+            isLoading={ isLoading || !values }
             headerActions={ headerActions }
-        />
+        /> }
 
 
         { modalArchiveItemData

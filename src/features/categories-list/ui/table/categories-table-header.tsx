@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import { Checkbox, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
+import { Box, Checkbox, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { typeCategoriesListTableHeader } from '../../types/types';
 
 
@@ -61,8 +61,8 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                     <Table.Th withoutLeftDivider>
                         <Trans id={'item-name'}>Name</Trans>
                     </Table.Th>
-                    <Table.Th>
-                        <Trans>Number of products</Trans>
+                    <Table.Th align={'center'}>
+                            <Trans>Number of products</Trans>
                     </Table.Th>
                     { isAllowedEdit && <Table.Th>
                         <Trans>Actions</Trans>

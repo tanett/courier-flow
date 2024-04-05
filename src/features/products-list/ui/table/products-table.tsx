@@ -36,7 +36,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
 
 
     // observer for checkbox in header - if all checked
-    const allChecked = productsList?.every((value) => value?.checked);
+    const allChecked = (productsList && productsList.length >0) ? productsList?.every((value) => value?.checked) : false;
 
     // observer for checkbox in header - if something checked
     const indeterminate = productsList?.some((value) => value?.checked) && !allChecked;
@@ -71,7 +71,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                     <ProductsListTableHeader
                         additionalFields={ additionalFields }
                         indeterminate={ indeterminate || false }
-                        allChecked={ allChecked || false }
+                        allChecked={ allChecked }
                         headerActions={ headerActions }
                         isAllowedEdit={ isAllowedEdit }
                         onCheckedAllHandler={ onCheckedAllHandler }/>

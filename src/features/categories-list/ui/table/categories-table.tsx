@@ -29,10 +29,10 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
 
 
     // observer for checkbox in header - if all checked
-    const allChecked = categoriesList?.every((value) => value?.checked);
+    const allChecked =(categoriesList && categoriesList.length>0 )? categoriesList.every((value) => value?.checked) : false;
 
     // observer for checkbox in header - if something checked
-    const indeterminate = categoriesList?.some((value) => value?.checked) && !allChecked;
+    const indeterminate =  (categoriesList?.some((value) => value?.checked) && !allChecked) || false;
 
     const onCheckedAllHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -57,9 +57,9 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
 
         />
 
-        { isLoading
+        { (isLoading || !categoriesList)
             ? <TableSkeleton/>
-            : categoriesList && <>
+            : <>
                 <Table>
                     <CategoriesListTableHeader
                         indeterminate={ indeterminate || false }
@@ -98,8 +98,8 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
                                             onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
                                     </td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.name }</Box></Table.Td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.productsCount }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { minWidth: rem(600) } }>{ item.name }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { minWidth: rem(160), textAlign: 'center' } } >{ item.productsCount }</Box></Table.Td>
                                     { isAllowedCategoryEdit && <Table.TdActions actions={ actions }/> }
                                 </Table.Tr>
                             );
