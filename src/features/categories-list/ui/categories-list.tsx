@@ -8,9 +8,9 @@ import { editCategoryPermissions } from 'app/config/permissions-config';
 import { typeCategory } from '../../../entities/category/model/types';
 import { useDeleteCategory } from '../../../entities/category/hooks/use-delete-category';
 import { CategoriesListTable } from 'features/categories-list/ui/table/categories-table';
-import { ArchiveItemModal } from 'features/categories-list/modals/archive-item-modal';
+import { ArchiveItemModal } from 'features/categories-list/ui/modals/archive-item-modal';
 import { typeCategoryWithCheckBox, typeHeadersAction } from 'features/categories-list/types/types';
-import { ArchiveSelectedItemModal } from 'features/categories-list/modals/archive-selected-item-modal';
+import { ArchiveSelectedItemModal } from 'features/categories-list/ui/modals/archive-selected-item-modal';
 import { useListState } from '@mantine/hooks';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -75,7 +75,10 @@ export const CategoriesList: React.FC = () => {
             setRefetch(true);
 
         },
-        onError: () => onCloseModalToArchiveItem(),
+        onError: () => {
+            if (modalArchiveItemData) onCloseModalToArchiveItem();
+            if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
+        }
     });
 
     const headerActions: typeHeadersAction[] = [

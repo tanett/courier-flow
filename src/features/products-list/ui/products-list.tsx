@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useProductsList } from 'features/products-list/hooks/use-products-list';
 import { useNavigate } from 'react-router-dom';
 import { t, Trans } from '@lingui/macro';
@@ -12,6 +12,9 @@ import { editProductsPermissions } from 'app/config/permissions-config';
 import { typeProduct } from '../../../entities/products/model/state-slice/types';
 import { useArchiveProducts } from '../../../entities/products/hooks/use-archive-products';
 import { ProductsListTable } from './table/products-table';
+import { typeProductWithCheckBox, typeHeadersAction } from '../types/types';
+import { useListState } from '@mantine/hooks';
+
 
 export const ProductsList: React.FC = () => {
 
@@ -19,33 +22,9 @@ export const ProductsList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const [ confirmToArchiveData, setConfirmToArchiveData ] = useState<null | typeProduct>(null);
-
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
     const isAllowedEdit = useIsAllowedPermissions(editProductsPermissions);
-
-    const onCloseConfirmToArchive = () => {
-
-        setConfirmToArchiveData(null);
-
-    };
-
-    const onConfirmArchiveProduct = (id: string) => {
-
-        if (productsList?.length) {
-
-            const product = productsList.find(item => item.id === id);
-
-            if (product) {
-
-                setConfirmToArchiveData(product);
-
-            }
-
-        }
-
-    };
 
     const {
         productsList,
@@ -53,6 +32,36 @@ export const ProductsList: React.FC = () => {
         isLoading,
         setRefetch,
     } = useProductsList();
+
+    // product list with checked
+    const [ values, handlers ] = useListState<typeProductWithCheckBox>(undefined);
+
+    useEffect(() => {
+        if (productsList) {
+            handlers.setState(productsList.map(item => ({
+                ...item,
+                checked: false
+            })));
+        }
+
+    }, [ productsList ]);
+
+// modals
+    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeProduct>(null);
+    const [ isOpenModalSelectedItemArchive, setIsOpenSelectedItemArchive ] = useState(false);
+
+
+    const onCloseModalToArchiveItem = () => {
+
+        setModalArchiveItemData(null);
+
+    };
+
+    const onClickRowActionsArchiveItem = (product: typeProductWithCheckBox) => {
+
+        setModalArchiveItemData(product);
+
+    };
 
 
     const goToEditProductPage = (id: string | number) => navigate([ routerPaths.products, id.toString(), 'edit' ].join('/'));
@@ -62,12 +71,36 @@ export const ProductsList: React.FC = () => {
     const { onArchive } = useArchiveProducts({
         onSuccess: () => {
 
-            onCloseConfirmToArchive();
+            if (modalArchiveItemData) onCloseModalToArchiveItem();
+            if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
             setRefetch(true);
 
         },
-        onError: () => onCloseConfirmToArchive(),
+        onError: () => {
+            if (modalArchiveItemData) onCloseModalToArchiveItem();
+            if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
+        },
     });
+
+    const headerActions: typeHeadersAction[] = [
+
+        {
+            id: 'selected-export-btn',
+            label: i18n._(t`Selected export`),
+            handler: (event) => console.log('click')
+        },
+        {
+            id: 'change-category-btn',
+            label: i18n._(t`Change category`),
+            handler: (event) => console.log('click')
+        },
+
+        {
+            id: 'selected-archive-btn',
+            label: i18n._(t`Archive`),
+            handler: (event) => setIsOpenSelectedItemArchive(true)
+        },
+    ];
 
 
     return (<>
@@ -75,27 +108,29 @@ export const ProductsList: React.FC = () => {
             currentUser={ currentUser }
             isAllowedEdit={ isAllowedEdit }
             goToEditProductPage={ goToEditProductPage }
-            onConfirmArchiveProduct={ onConfirmArchiveProduct }
-            productsList={productsList}
-            pagination={pagination}
-            isLoading={isLoading}
-            goToDetailsProductPage={goToDetailsProductPage}
+            onClickRowActionsArchiveItem={ onClickRowActionsArchiveItem }
+            productsList={ values }
+            pagination={ pagination }
+            isLoading={ isLoading }
+            goToDetailsProductPage={ goToDetailsProductPage }
+            headerActions={ headerActions }
+            handlersListState={handlers}
         />
 
 
-        { confirmToArchiveData && <Modal modalWidth="dialog" opened={ true }>
+        { modalArchiveItemData && <Modal modalWidth="dialog" opened={ true }>
             <Modal.Body>
                 <Dialog
                     cancelButton={ {
                         title: i18n._(t`Cancel`),
-                        handler: onCloseConfirmToArchive,
+                        handler: onCloseModalToArchiveItem,
                     } }
                     confirmButton={ {
                         title: i18n._(t`Confirm`),
-                        handler: () => onArchive(confirmToArchiveData?.id),
+                        handler: () => onArchive(modalArchiveItemData?.id),
                     } }
                 >
-                    <Trans>Are you sure you want to archive<br/>the product</Trans> &quot;{ confirmToArchiveData.name }&quot;?
+                    <Trans>Are you sure you want to archive<br/>the product</Trans> &quot;{ modalArchiveItemData.name }&quot;?
                 </Dialog>
             </Modal.Body>
         </Modal> }
