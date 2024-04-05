@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useProductsList } from 'features/products-list/hooks/use-products-list';
 import { useNavigate } from 'react-router-dom';
-import { t, Trans } from '@lingui/macro';
+import { plural, t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { routerPaths } from '../../../app/config/router-paths';
 import { Modal } from '../../../shared/ui/modal';
@@ -86,18 +86,18 @@ export const ProductsList: React.FC = () => {
 
         {
             id: 'selected-export-btn',
-            label: i18n._(t`Selected export`),
+            label: <Trans >Selected export</Trans>,
             handler: (event) => console.log('click')
         },
         {
             id: 'change-category-btn',
-            label: i18n._(t`Change category`),
+            label: <Trans >Change category</Trans>,
             handler: (event) => console.log('click')
         },
 
         {
             id: 'selected-archive-btn',
-            label: i18n._(t`Archive`),
+            label: <Trans id={'action-archive'}>Archive</Trans>,
             handler: (event) => setIsOpenSelectedItemArchive(true)
         },
     ];
@@ -131,6 +131,7 @@ export const ProductsList: React.FC = () => {
                     } }
                 >
                     <Trans>Are you sure you want to archive<br/>the product</Trans> &quot;{ modalArchiveItemData.name }&quot;?
+
                 </Dialog>
             </Modal.Body>
         </Modal> }

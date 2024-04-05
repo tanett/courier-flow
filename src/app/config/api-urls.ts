@@ -40,6 +40,7 @@ export enum API_URLS {
     PRODUCTS_ADDITIONAL_FIELD_INFO_GET = 'api/v1/products/additional-fields/info',
 
     CATEGORIES_SEARCH = '/api/v1/product-categories/search',
+    CATEGORIES_SEARCH_EXTENDED = '/api/v1/product-categories/extended-search',
     CATEGORIES_PATCH= '/api/v1/product-categories',
     CATEGORIES_CREATE= '/api/v1/product-categories',
     CATEGORIES_GET = '/api/v1/product-categories/{id}',

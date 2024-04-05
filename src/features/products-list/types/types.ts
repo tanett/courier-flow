@@ -3,14 +3,14 @@ import { typeTablePagination } from 'shared/ui/table/types/type';
 import { typeProduct, typeProductAdditionalFieldInfo } from '../../../entities/products/model/state-slice/types';
 import React from 'react';
 import { UseListStateHandlers } from '@mantine/hooks';
-import { typeCategory } from 'entities/category/model/types';
+import { TransProps } from '@lingui/react';
 
 
 export type typeProductWithCheckBox = typeProduct & {checked: boolean}
 
 export type typeHeadersAction = {
     id: string,
-    label: string,
+    label: React.ReactElement<TransProps>
     handler: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -32,7 +32,7 @@ export type typeProductListTableHeader = {
     onCheckedAllHandler: (event: React.ChangeEvent<HTMLInputElement>) =>void,
     indeterminate: boolean
     allChecked: boolean
-    headerActions: {id: string,label: string, handler: (event: React.MouseEvent<HTMLButtonElement>)=>void}[]
+    headerActions: typeHeadersAction[]
     additionalFields: typeProductAdditionalFieldInfo[] | undefined
     isAllowedEdit:  boolean | null,
 }

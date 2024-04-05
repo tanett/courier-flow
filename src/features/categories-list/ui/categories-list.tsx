@@ -5,19 +5,17 @@ import { routerPaths } from '../../../app/config/router-paths';
 import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editCategoryPermissions } from 'app/config/permissions-config';
-import { typeCategory } from '../../../entities/category/model/types';
+import { typeCategory, typeCategoryExtended } from '../../../entities/category/model/types';
 import { useDeleteCategory } from '../../../entities/category/hooks/use-delete-category';
 import { CategoriesListTable } from 'features/categories-list/ui/table/categories-table';
 import { ArchiveItemModal } from 'features/categories-list/ui/modals/archive-item-modal';
 import { typeCategoryWithCheckBox, typeHeadersAction } from 'features/categories-list/types/types';
 import { ArchiveSelectedItemModal } from 'features/categories-list/ui/modals/archive-selected-item-modal';
 import { useListState } from '@mantine/hooks';
-import { t } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
+import { Trans } from '@lingui/macro';
+import { getProductCountFromSelectedCategories } from 'features/categories-list/helpers/getProductCountFromSelectedCategories';
 
 export const CategoriesList: React.FC = () => {
-
-    const { i18n } = useLingui();
 
     const navigate = useNavigate();
 
@@ -47,7 +45,7 @@ export const CategoriesList: React.FC = () => {
     }, [ categoriesList ]);
 
     // modals
-    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeCategory>(null);
+    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeCategoryExtended>(null);
     const [ isOpenModalSelectedItemArchive, setIsOpenSelectedItemArchive ] = useState(false);
 
 
@@ -84,7 +82,7 @@ export const CategoriesList: React.FC = () => {
     const headerActions: typeHeadersAction[] = [
         {
             id: 'selected-archive-btn',
-            label: i18n._(t`Archive`),
+            label: <Trans id={ 'action-archive' }>Archive</Trans>,
             handler: (event) => setIsOpenSelectedItemArchive(true)
         },
     ];
@@ -108,13 +106,16 @@ export const CategoriesList: React.FC = () => {
             && <ArchiveItemModal
                 onClose={ onCloseModalToArchiveItem }
                 onConfirm={ () => onDelete([ modalArchiveItemData.id ]) }
-                itemName={ modalArchiveItemData.name }/>
+                itemName={ modalArchiveItemData.name }
+                productsCount={ modalArchiveItemData.productsCount }
+            />
         }
 
         { isOpenModalSelectedItemArchive
             && <ArchiveSelectedItemModal
                 onClose={ () => setIsOpenSelectedItemArchive(false) }
                 onConfirm={ () => onDelete(values.filter(item => item.checked).map(item => item.id)) }
+                productsCount={ getProductCountFromSelectedCategories(values) }
             />
         }
 

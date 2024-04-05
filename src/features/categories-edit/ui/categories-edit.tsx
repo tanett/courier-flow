@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
-import { typeCategoriesCreateForm } from '../types/types';
-import { initialCategoryCreateForm } from '../form/form';
+import { typeCategoriesEditForm } from '../types/types';
+import { initialCategoryEditForm } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
-import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
+import { Button, Flex, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { errorHandler } from 'app/utils/errorHandler';
@@ -14,11 +14,11 @@ import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
-import { typeCategoryCreate } from '../../../entities/category/model/types';
-import { useCreateCategoryMutation } from '../../../entities/category/api/api';
+import { typeCategoryEdit } from '../../../entities/category/model/types';
+import { useGetCategoryByIdQuery, usePatchCategoryMutation } from '../../../entities/category/api/api';
 
 
-export const CategoriesCreate: React.FC = () => {
+export const CategoriesEdit: React.FC<{categoryId: string}> = ({categoryId}) => {
 
     const { classes } = useStyles();
 
@@ -28,9 +28,20 @@ export const CategoriesCreate: React.FC = () => {
 
     const dispatchAppT = useAppDispatchT();
 
-    const form = useForm<typeCategoriesCreateForm>(initialCategoryCreateForm);
+    const {
+        data,
+        isFetching,
+    } = useGetCategoryByIdQuery(categoryId);
 
-    const [ createCategory, { isLoading } ] = useCreateCategoryMutation();
+    const form = useForm<typeCategoriesEditForm>(initialCategoryEditForm);
+
+    useEffect(() => {
+        if(data){
+            form.setFieldValue('name', data.name)
+        }
+    }, [data]);
+
+    const [ editCategory ] = usePatchCategoryMutation();
 
     const [ isInProgress, setIsInProgress ] = useState(false);
 
@@ -39,30 +50,30 @@ export const CategoriesCreate: React.FC = () => {
 
     const onSave = async () => {
 
-        if (currentUser) {
+        if (currentUser && data) {
 
             setIsInProgress(true);
 
 
-            const dataObject: typeCategoryCreate = {
+            const dataObject: typeCategoryEdit = {
+                id: data.id,
                 name: form.values.name.trim(),
-                merchantId: currentUser.actor.merchantId,
             };
 
             try {
 
-                await createCategory(dataObject).unwrap();
+                await editCategory(dataObject).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
-                    message: i18n._(t`Category created successfully.`),
+                    message: i18n._(t`Category edited successfully.`),
                 }));
 
                 navigate(-1);
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onCreateCategory', dispatchAppT);
+                errorHandler(err as typeResponseError, 'onEditCategory', dispatchAppT);
                 setIsInProgress(false);
 
             }
@@ -111,7 +122,7 @@ export const CategoriesCreate: React.FC = () => {
                 </Flex>
 
             </Flex>
-            { (isInProgress || isLoading) && <LoaderOverlay/> }
+            { (isInProgress || isFetching) && <LoaderOverlay/> }
         </form>
     );
 

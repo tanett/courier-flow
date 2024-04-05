@@ -4,8 +4,8 @@ import { sortDirection, typeSearchRequest } from 'app/api/types';
 import { DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { useLazySearchCategoryQuery } from '../../../entities/category/api/api';
-import { typeCategory } from '../../../entities/category/model/types';
+import { useLazySearchCategoryExtendedQuery, useLazySearchCategoryQuery } from '../../../entities/category/api/api';
+import { typeCategory, typeCategoryExtended } from '../../../entities/category/model/types';
 import { typeSearchFilterCategory } from '../../../entities/category/api/types';
 
 export function useCategoriesList() {
@@ -13,9 +13,9 @@ export function useCategoriesList() {
     const location = useLocation();
     const urlParams = useUrlParams();
 
-    const [ getCategoriesList, { isFetching } ] = useLazySearchCategoryQuery();
+    const [ getCategoriesList, { isFetching } ] = useLazySearchCategoryExtendedQuery();
     const [ refetch, setRefetch ] = useState(true);
-    const [ categoriesList, setCategoriesList ] = useState<typeCategory[]>();
+    const [ categoriesList, setCategoriesList ] = useState<typeCategoryExtended[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
     const filters: typeSearchFilterCategory= {};

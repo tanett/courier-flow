@@ -81,7 +81,7 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
                         if (currentUser?.actor.id !== item.id) {
 
                             actions.push({
-                                label: i18n._(t`Archive`),
+                                label: i18n._({id:'action-archive', message: `Archive` }),
                                 handler: () => onClickRowActionsArchiveItem(item),
                                 icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[5] } width={ 22 }/>,
                             });
@@ -99,7 +99,7 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
 
                                 </td>
                                 <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.name }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '??' }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.productsCount }</Box></Table.Td>
                                 { isAllowedCategoryEdit && <Table.TdActions actions={ actions }/> }
                             </Table.Tr>
                         );

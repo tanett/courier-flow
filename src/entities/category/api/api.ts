@@ -2,7 +2,7 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeCategory } from '../model/types';
+import { typeCategory, typeCategoryExtended } from '../model/types';
 import { typeCreateCategoryRequest, typeEditCategoryRequest, typeSearchFilterCategory, typeSearchCategorySortingNames, typeCategoryDeleteRequest } from './types';
 
 export const productsCategoryApi = baseApi.injectEndpoints({
@@ -13,6 +13,19 @@ export const productsCategoryApi = baseApi.injectEndpoints({
             query: (data) => (
                 {
                     url: API_URLS.CATEGORIES_SEARCH,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                    cache: 'no-cache',
+                }
+            ),
+        }),
+
+        // Extended Search product category
+        searchCategoryExtended: builder.query<typeSearchResponse<typeCategoryExtended>, typeSearchRequest<typeSearchFilterCategory, typeSearchCategorySortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.CATEGORIES_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -77,6 +90,7 @@ export const {
     useLazyGetCategoryByIdQuery,
     usePatchCategoryMutation,
     useLazySearchCategoryQuery,
+    useLazySearchCategoryExtendedQuery,
     useCreateCategoryMutation,
     useSearchCategoryQuery,
     useCategoryDeleteMutation

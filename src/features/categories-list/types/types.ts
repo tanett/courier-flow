@@ -1,15 +1,15 @@
 import { typeGetCurrentUserResponse } from 'entities/user-profile/api/types';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { typeCategory } from 'entities/category/model/types';
-import React from 'react';
-import { typeProductAdditionalFieldInfo } from 'entities/products/model/state-slice';
+import { typeCategory, typeCategoryExtended } from 'entities/category/model/types';
+import React, { FC } from 'react';
 import { UseListStateHandlers } from '@mantine/hooks';
+import { TransProps } from '@lingui/react';
 
-export type typeCategoryWithCheckBox = typeCategory & { checked: boolean }
+export type typeCategoryWithCheckBox = typeCategoryExtended & { checked: boolean }
 
 export type typeHeadersAction = {
     id: string,
-    label: string,
+    label: React.ReactElement<TransProps>,
     handler: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -19,7 +19,7 @@ export type typeCategoriesListTable = {
     goToEditCategoryPage: (id: string) => void
     onClickRowActionsArchiveItem: (category: typeCategoryWithCheckBox) => void
     categoriesList: typeCategoryWithCheckBox[] | undefined
-    handlersListState: UseListStateHandlers<typeCategory & { checked: boolean }>
+    handlersListState: UseListStateHandlers<typeCategoryExtended & { checked: boolean }>
     pagination: typeTablePagination | undefined,
     isLoading: boolean
     headerActions: typeHeadersAction[]
