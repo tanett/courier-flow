@@ -1,8 +1,8 @@
 import { typeGetCurrentUserResponse } from 'entities/user-profile/api/types';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { typeCategory, typeCategoryExtended } from 'entities/category/model/types';
-import React, { FC } from 'react';
-import { UseListStateHandlers } from '@mantine/hooks';
+import { typeCategoryExtended } from 'entities/category/model/types';
+import React from 'react';
+import { type UseListStateHandlers } from '@mantine/hooks';
 import { TransProps } from '@lingui/react';
 
 export type typeCategoryWithCheckBox = typeCategoryExtended & { checked: boolean }

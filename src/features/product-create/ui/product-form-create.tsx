@@ -31,7 +31,7 @@ export const ProductFormCreate: React.FC<{
     currentUser: typeGetCurrentUserResponse
 }> = ({
     additionalFields,
-    currentUser
+    currentUser,
 }) => {
 
     const { classes } = useStyles();
@@ -67,7 +67,7 @@ export const ProductFormCreate: React.FC<{
                 name: form.values.name.trim(),
                 merchantId: currentUser.actor.merchantId,
                 productAdditionalFields: Object.values(form.values.productAdditionalFields).filter(item => item.value !== ''),
-                productCategoryId: form.values.productCategoryId
+                productCategoryId: form.values.productCategoryId,
             };
 
             try {
@@ -111,12 +111,13 @@ export const ProductFormCreate: React.FC<{
                     <TextInput
                         withAsterisk
                         label={ <Trans>Product name</Trans> }
+
                         // placeholder={ i18n._(t`product name`) }
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
-                                width: '100%'
-                            }
+                                width: '100%',
+                            },
                         } }
                         { ...form.getInputProps('name') }
                         maxLength={ 150 }
@@ -164,10 +165,10 @@ export const ProductFormCreate: React.FC<{
                                 <Input<any>
                                     component={ IMaskInput }
                                     mask={ Number }
-                                    scale={ 2 }  // digits after point, 0 for integers
+                                    scale={ 2 } // digits after point, 0 for integers
                                     padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale
-                                    normalizeZeros={ true }  // appends or removes zeros at ends
-                                    radix={ '.' }   // fractional delimiter
+                                    normalizeZeros={ true } // appends or removes zeros at ends
+                                    radix={ '.' } // fractional delimiter
                                     mapToRadix={ [ ',' ] } // symbols to process as radix
 
                                     // additional number interval options (e.g.)
@@ -175,6 +176,7 @@ export const ProductFormCreate: React.FC<{
                                     max = {100}
                                     autofix={ true }
                                     id={ 'vat-input' }
+
                                     // lazy={false}
                                     // unmask={true}
                                     // overwrite={true}
@@ -193,7 +195,7 @@ export const ProductFormCreate: React.FC<{
                             />
 
                             { (form.values.barcodes.length === 0 && form.values.marked) &&
-                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
+                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[ 5 ] } mb={ -32 }>
                                     <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
                                     <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
                                 </Alert>
@@ -205,31 +207,34 @@ export const ProductFormCreate: React.FC<{
                     <Input.Wrapper
                         id="input-barcodes"
                         label={ <Trans>Barcodes</Trans> }
+
                         // error={form.validateField('barcodes')}
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
-                                width: '100%'
-                            }
+                                width: '100%',
+                            },
                         } }
                     >
                         <Flex wrap={ 'nowrap' } gap={ 10 }>
                             <Flex wrap={ 'wrap' } gap={ 10 } sx={ { flexGrow: 1 } }>
                                 { form.values.barcodes.map((item, index) => {
+
                                     return <div key={ index }>
                                         <Flex wrap={ 'nowrap' } gap={ 6 }>
                                             <Text>item</Text>
                                             <ActionIcon variant={ 'subtle' }
-                                                        onClick={ () => form.setFieldValue('barcodes', form.values.barcodes.filter(code => item !== code)) }
+                                                onClick={ () => form.setFieldValue('barcodes', form.values.barcodes.filter(code => item !== code)) }
                                             ><IconX size={ 16 }/> </ActionIcon>
                                         </Flex>
                                     </div>;
+
                                 }) }
                                 <Input id="input-demo" placeholder="Your email"
-                                       sx={ {
-                                           width: '100%',
-                                           '&.mantine-Input-wrapper input': { border: 'none' },
-                                       } }/>
+                                    sx={ {
+                                        width: '100%',
+                                        '&.mantine-Input-wrapper input': { border: 'none' },
+                                    } }/>
                             </Flex>
                             <UnstyledButton>Add barcode</UnstyledButton>
                         </Flex>
@@ -266,7 +271,7 @@ export const ProductFormCreate: React.FC<{
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Save` }</Button>
+                        type="submit">{ t`Save` }</Button>
                 </Flex>
 
             </Flex>

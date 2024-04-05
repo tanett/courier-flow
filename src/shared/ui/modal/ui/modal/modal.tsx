@@ -28,7 +28,7 @@ const Modal: typeModalExtensions & React.FC<typeModalProps> = ({ modalWidth = 'a
             centered={centered}
         >
             <MantineModal.Overlay opacity={0.4} color={theme.colors.gray[ 3 ]} />
-            <MantineModal.Content className={widthClass} sx={{ '&.mantine-Modal-content': { marginTop: centered ?  undefined : `calc(140px - 5dvh)` } }}>
+            <MantineModal.Content className={widthClass} sx={{ '&.mantine-Modal-content': { marginTop: centered ? undefined : `calc(140px - 5dvh)` } }}>
                 <MantineModal.Body>
                     <Flex className={classes.content}>
                         {children}

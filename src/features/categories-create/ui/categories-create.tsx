@@ -4,7 +4,7 @@ import { useForm } from '@mantine/form';
 import { typeCategoriesCreateForm } from '../types/types';
 import { initialCategoryCreateForm } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
-import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
+import { Button, Flex, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { errorHandler } from 'app/utils/errorHandler';
@@ -96,8 +96,8 @@ export const CategoriesCreate: React.FC = () => {
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
-                                width: '100%'
-                            }
+                                width: '100%',
+                            },
                         } }
                     />
 
@@ -107,7 +107,7 @@ export const CategoriesCreate: React.FC = () => {
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Save` }</Button>
+                        type="submit">{ t`Save` }</Button>
                 </Flex>
 
             </Flex>

@@ -39,7 +39,7 @@ export const ProductsListFilter: React.FC = () => {
         const marked = urlParams.getFilterValue('marked');
         if (marked && typeof marked === 'string') form.setValues({ marked: marked === 'true' });
         const unit = urlParams.getFilterValue('unit');
-        if (unit && typeof unit === 'string') form.setValues({ unit: PRODUCT_UNIT_VALUE[unit as PRODUCT_UNIT_VALUE] });
+        if (unit && typeof unit === 'string') form.setValues({ unit: PRODUCT_UNIT_VALUE[ unit as PRODUCT_UNIT_VALUE ] });
 
     }, []);
 
@@ -54,7 +54,7 @@ export const ProductsListFilter: React.FC = () => {
             categoryId: form.values.categoryId ? form.values.categoryId : undefined,
             marked: form.values.marked !== null ? form.values.marked.toString() : null,
             barcode: (form.values.barcode && form.values.barcode.trim() !== '') ? form.values.barcode.trim() : undefined,
-            unit: form.values.unit !== undefined ? form.values.unit:undefined
+            unit: form.values.unit !== undefined ? form.values.unit : undefined,
         };
 
         urlParams.setSearchParams({
@@ -118,7 +118,7 @@ export const ProductsListFilter: React.FC = () => {
                             data={productUnitValueListForSelector}
                             {...form.getInputProps('unit')}
                             rightSection={form.values.unit ? undefined : <IconChevronDown size="1rem"/> }
-                            sx={ {'&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': {transform: 'rotate(180deg)', }, }}
+                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
                         />
                         <FilterButtonPanel
                             value={form.values.marked}

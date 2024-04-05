@@ -4,7 +4,7 @@ import { typeTerminalExtended } from 'entities/terminals/model/types';
 
 export type typeTerminalsListTable = {
     goToDetailsTerminalPage: (item: typeTerminalExtended) => void
-    terminalsList:  typeTerminalExtended[] | undefined
+    terminalsList: typeTerminalExtended[] | undefined
     pagination: typeTablePagination | undefined,
     isFetching: boolean
 }

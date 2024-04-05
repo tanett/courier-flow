@@ -21,7 +21,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
 
     const { i18n } = useLingui();
 
-    const theme = useMantineTheme()
+    const theme = useMantineTheme();
 
     return (
         <>

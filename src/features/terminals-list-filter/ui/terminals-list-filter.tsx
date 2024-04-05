@@ -48,8 +48,8 @@ export const TerminalsListFilter: React.FC = () => {
         };
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
         if (close) close();
@@ -62,14 +62,14 @@ export const TerminalsListFilter: React.FC = () => {
 
             form.setValues((prev) => ({
                 ...prev,
-                blocked: null
+                blocked: null,
             }));
 
         } else {
 
             form.setValues((prev) => ({
                 ...prev,
-                blocked: newValue as boolean | null
+                blocked: newValue as boolean | null,
             }));
 
         }
@@ -79,8 +79,8 @@ export const TerminalsListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
         form.reset();
 
@@ -113,10 +113,10 @@ export const TerminalsListFilter: React.FC = () => {
                             onChange={ onChangeBlockedTerminalHandler }
                             data={ [ {
                                 value: true,
-                                label: i18n._(t`Blocked`)
+                                label: i18n._(t`Blocked`),
                             }, {
                                 value: false,
-                                label: i18n._(t`Not bocked`)
+                                label: i18n._(t`Not bocked`),
                             } ] }
                         />
                     </Flex>

@@ -4,7 +4,7 @@ import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { t } from '@lingui/macro';
 import { typeResponseError } from 'app/api/types';
 import { errorHandler } from 'app/utils/errorHandler';
-import { useCategoryDeleteMutation} from '../api/api';
+import { useCategoryDeleteMutation } from '../api/api';
 
 
 export const useDeleteCategory = ({

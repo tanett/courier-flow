@@ -1,14 +1,11 @@
 import { dialogIcon } from '../../../../shared/ui/dialog-new/types';
 import { i18n } from '@lingui/core';
-import { t, Trans } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { Dialog } from '../../../../shared/ui/dialog-new';
 import React from 'react';
-import { useStyles } from '../styles';
 import { typeArchiveProductsDialogProps } from '../../types/type';
 
 export const ArchiveProductsDialog: React.FC<typeArchiveProductsDialogProps> = ({ onCancel }) => {
-
-    const { classes } = useStyles();
 
 
     return (

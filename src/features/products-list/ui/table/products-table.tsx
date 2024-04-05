@@ -25,7 +25,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
     pagination,
     isLoading,
     headerActions,
-    handlersListState
+    handlersListState,
 }) => {
 
     const { i18n } = useLingui();
@@ -44,18 +44,18 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
     const onCheckedAllHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         event.stopPropagation();
-        handlersListState.setState((current) =>
-            current.map((value) => ({
-                ...value,
-                checked: !allChecked
-            }))
-        );
+        handlersListState.setState((current) => current.map((value) => ({
+            ...value,
+            checked: !allChecked,
+        })));
+
     };
 
     const onCheckedItemHandler = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
 
         event.stopPropagation();
         handlersListState.setItemProp(index, 'checked', event.currentTarget.checked);
+
     };
 
     return (<>
@@ -67,62 +67,62 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
         { isLoading
             ? <TableSkeleton/>
             : productsList && <>
-            <Table>
-                <ProductsListTableHeader
-                    additionalFields={ additionalFields }
-                    indeterminate={ indeterminate || false }
-                    allChecked={ allChecked || false }
-                    headerActions={ headerActions }
-                    isAllowedEdit={ isAllowedEdit }
-                    onCheckedAllHandler={ onCheckedAllHandler }/>
+                <Table>
+                    <ProductsListTableHeader
+                        additionalFields={ additionalFields }
+                        indeterminate={ indeterminate || false }
+                        allChecked={ allChecked || false }
+                        headerActions={ headerActions }
+                        isAllowedEdit={ isAllowedEdit }
+                        onCheckedAllHandler={ onCheckedAllHandler }/>
 
-                <Table.Body>
-                    { productsList.length > 0 && productsList.map((item, index) => {
+                    <Table.Body>
+                        { productsList.length > 0 && productsList.map((item, index) => {
 
-                        const actions: typeAction[] = [
-                            {
-                                label: i18n._(t`Edit`),
-                                handler: () => goToEditProductPage(item.id),
-                                icon: <PencilSquareIcon color={ theme.colors.primary[5] } width={ 22 }/>,
-                            }
-                        ];
+                            const actions: typeAction[] = [
+                                {
+                                    label: i18n._(t`Edit`),
+                                    handler: () => goToEditProductPage(item.id),
+                                    icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                                }
+                            ];
 
-                        actions.push({
-                            label: i18n._(t`Archive`),
-                            handler: () => onClickRowActionsArchiveItem(item),
-                            icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[5] } width={ 22 }/>,
-                        });
+                            actions.push({
+                                label: i18n._(t`Archive`),
+                                handler: () => onClickRowActionsArchiveItem(item),
+                                icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                            });
 
-                        const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
+                            const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
 
-                        return (
-                            <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
-                                <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }>
+                            return (
+                                <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
+                                    <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }>
 
-                                    <Checkbox size={ 'sm' }
-                                              sx={ { '& input': { cursor: 'pointer' } } }
-                                              checked={ item.checked }
-                                              onChange={ (event) => onCheckedItemHandler(event, index) }/>
+                                        <Checkbox size={ 'sm' }
+                                            sx={ { '& input': { cursor: 'pointer' } } }
+                                            checked={ item.checked }
+                                            onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
-                                </td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.name || '-' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { width: rem(114) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '-' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '- ' }</Box></Table.Td>
-                                { isAllowedEdit && <Table.TdActions actions={ actions }/> }
-                            </Table.Tr>
-                        );
+                                    </td>
+                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.name || '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { width: rem(114) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
+                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '- ' }</Box></Table.Td>
+                                    { isAllowedEdit && <Table.TdActions actions={ actions }/> }
+                                </Table.Tr>
+                            );
 
-                    }) }
-                    { productsList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 7 : 6 }>
-                        <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
-                    </Table.EmptyRow> }
-                </Table.Body>
-            </Table>
+                        }) }
+                        { productsList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 7 : 6 }>
+                            <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
+                        </Table.EmptyRow> }
+                    </Table.Body>
+                </Table>
 
-            { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
-        </>
+                { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
+            </>
         }
 
     </>);

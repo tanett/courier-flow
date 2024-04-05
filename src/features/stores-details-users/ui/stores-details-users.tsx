@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Flex,  Tooltip, useMantineTheme } from '@mantine/core';
+import { Box, Button, Flex, Tooltip, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { useGetStoresUsersList } from 'features/stores-details-users/hooks/use-get-stores-users-list';
@@ -31,7 +31,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
 
     const dispatchAppT = useAppDispatchT();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const isAllowEditUser = useIsAllowedPermissions(editUserPermissions);
 

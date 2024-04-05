@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro';
-import { PRODUCT_UNIT_VALUE, PRODUCT_ADDITIONAL_FIELD } from 'entities/products/model/state-slice';
+import { PRODUCT_UNIT_VALUE } from 'entities/products/model/state-slice';
 
 
 export const initialProductForm = {
@@ -10,7 +10,7 @@ export const initialProductForm = {
         marked: false,
         vat: '',
         barcodes: [],
-        productAdditionalFields: {}
+        productAdditionalFields: {},
 
     },
     validate: {

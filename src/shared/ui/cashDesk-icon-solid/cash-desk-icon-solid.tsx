@@ -15,4 +15,5 @@ export const CashDeskIconSolid: React.FC = () => {
         </svg>
 
     );
+
 };

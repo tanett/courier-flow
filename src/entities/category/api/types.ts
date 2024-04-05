@@ -18,4 +18,3 @@ export type typeSearchFilterCategory = {
 export type typeSearchCategorySortingNames = 'NAME';
 
 export type typeCategoryDeleteRequest = typeCategoryToArchive
-

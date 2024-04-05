@@ -1,9 +1,7 @@
 import { t } from '@lingui/macro';
-import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
-
 
 export const initialCategoryCreateForm = {
-    initialValues: {  name: '', },
+    initialValues: { name: '' },
     validate: {
         name: (value: string) => {
 

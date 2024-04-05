@@ -4,7 +4,6 @@ import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { useParams } from 'react-router-dom';
-import { TerminalDetails } from 'features/terminals-details/ui/terminals-details';
 
 
 const ProductsDetailsPage: React.FC = () => {
@@ -22,7 +21,7 @@ const ProductsDetailsPage: React.FC = () => {
                 ] }/> }
 
             />
-            {id && "products details" }
+            {id && 'products details' }
         </DashboardContent>
     );
 

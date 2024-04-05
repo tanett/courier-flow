@@ -6,7 +6,7 @@ import { initialProductForm } from 'features/product-create/form/form';
 export const createInitialFormHelper = (additionalFieldsList: typeProductAdditionalFieldInfo[]) => {
 
     const additionalFieldsObject: Record<string, {type: PRODUCT_ADDITIONAL_FIELD, value: string} > = {};
-    const additionalFieldsValidateObj: Record<string, { value: (value: string, values: typeProductForm ) => string | null }> = {};
+    const additionalFieldsValidateObj: Record<string, { value: (value: string, values: typeProductForm) => string | null }> = {};
 
     additionalFieldsList.forEach((item) => {
 
@@ -18,10 +18,10 @@ export const createInitialFormHelper = (additionalFieldsList: typeProductAdditio
         additionalFieldsValidateObj[ item.code ] = {
             value: (value: string, values: typeProductForm) => {
 
-                return  value.trim().length === 0
-                        ? item.required ? t`Required field` : null
-                        : RegExp(item.pattern).test(value)
-                            ? null : t`Invalid format`
+                return value.trim().length === 0
+                    ? item.required ? t`Required field` : null
+                    : RegExp(item.pattern).test(value)
+                        ? null : t`Invalid format`;
 
 
             },

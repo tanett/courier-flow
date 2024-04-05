@@ -5,7 +5,7 @@ import { routerPaths } from '../../../app/config/router-paths';
 import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editCategoryPermissions } from 'app/config/permissions-config';
-import { typeCategory, typeCategoryExtended } from '../../../entities/category/model/types';
+import { typeCategoryExtended } from '../../../entities/category/model/types';
 import { useDeleteCategory } from '../../../entities/category/hooks/use-delete-category';
 import { CategoriesListTable } from 'features/categories-list/ui/table/categories-table';
 import { ArchiveItemModal } from 'features/categories-list/ui/modals/archive-item-modal';
@@ -35,11 +35,14 @@ export const CategoriesList: React.FC = () => {
     const [ values, handlers ] = useListState<typeCategoryWithCheckBox>(undefined);
 
     useEffect(() => {
+
         if (categoriesList) {
+
             handlers.setState(categoriesList.map(item => ({
                 ...item,
-                checked: false
+                checked: false,
             })));
+
         }
 
     }, [ categoriesList ]);
@@ -74,17 +77,19 @@ export const CategoriesList: React.FC = () => {
 
         },
         onError: () => {
+
             if (modalArchiveItemData) onCloseModalToArchiveItem();
             if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
-        }
+
+        },
     });
 
     const headerActions: typeHeadersAction[] = [
         {
             id: 'selected-archive-btn',
             label: <Trans id={ 'action-archive' }>Archive</Trans>,
-            handler: (event) => setIsOpenSelectedItemArchive(true)
-        },
+            handler: (event) => setIsOpenSelectedItemArchive(true),
+        }
     ];
 
 

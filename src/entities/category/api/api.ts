@@ -93,5 +93,5 @@ export const {
     useLazySearchCategoryExtendedQuery,
     useCreateCategoryMutation,
     useSearchCategoryQuery,
-    useCategoryDeleteMutation
-} =productsCategoryApi;
+    useCategoryDeleteMutation,
+} = productsCategoryApi;

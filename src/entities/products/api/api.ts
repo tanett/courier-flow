@@ -89,4 +89,4 @@ export const {
     useLazySearchProductQuery,
     useCreateProductMutation,
     useProductToArchiveMutation,
-} =productsApi;
+} = productsApi;

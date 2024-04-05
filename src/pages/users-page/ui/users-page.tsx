@@ -35,7 +35,7 @@ const UsersPage: React.FC = () => {
                     isAllowAddUser && <CreateButtonFilled
                         id={'create-new-user'}
                         handler={onCreateNewUser}
-                     />}
+                    />}
             />
             <UserList/>
         </DashboardContent>

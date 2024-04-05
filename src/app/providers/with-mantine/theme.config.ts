@@ -34,7 +34,7 @@ export const theme: MantineThemeOverride = {
                 textOverflow: 'ellipsis',
                 '&:active, &:focus': {
                     borderColor: '#3B82F6',
-                    boxShadow: ` 0 0 0 3px #DBEAFE`
+                    boxShadow: ` 0 0 0 3px #DBEAFE`,
                 },
             },
             '& textarea': {
@@ -51,14 +51,14 @@ export const theme: MantineThemeOverride = {
                 height: rem(80),
                 '&:active, &:focus': {
                     borderColor: '#3B82F6',
-                    boxShadow: ` 0 0 0 3px #DBEAFE`
+                    boxShadow: ` 0 0 0 3px #DBEAFE`,
                 },
             },
             '& .mantine-Select-input': {
                 '&:focus, &:active': {
                     borderColor: '#3B82F6',
-                    boxShadow: ` 0 0 0 3px #DBEAFE`
-                }
+                    boxShadow: ` 0 0 0 3px #DBEAFE`,
+                },
             },
         },
         '.mantine-MultiSelect-wrapper': {
@@ -68,7 +68,7 @@ export const theme: MantineThemeOverride = {
             '& .mantine-Input-wrapper': {
                 '& .mantine-MultiSelect-input': {
                     border: 'none',
-                    boxShadow: `none`
+                    boxShadow: `none`,
                 },
 
                 border: `1px solid #DDD6FE`,
@@ -82,7 +82,7 @@ export const theme: MantineThemeOverride = {
                     paddingLeft: 0,
                     '&:active, &:focus': {
                         border: 'none',
-                        boxShadow: `none`
+                        boxShadow: `none`,
                     },
                     '&::placeholder': {
                         fontSize: rem(16),
@@ -119,8 +119,8 @@ export const theme: MantineThemeOverride = {
         '.mantine-PasswordInput-input': {
             '& input:active, input:focus': {
                 borderColor: 'none',
-                boxShadow: 'none'
-            }
+                boxShadow: 'none',
+            },
         },
         '.mantine-Select-dropdown, .mantine-MultiSelect-dropdown': {
             '& .mantine-Select-item, .mantine-MultiSelect-item': {
@@ -140,6 +140,7 @@ export const theme: MantineThemeOverride = {
             backgroundColor: theme.white,
         },
         '.mantine-Checkbox-inner input': {
+
             // width: rem(24),
             // height: rem(24),
             border: `1px solid #DDD6FE`,
@@ -148,7 +149,7 @@ export const theme: MantineThemeOverride = {
                 borderColor: '#3B82F6',
                 boxShadow: `0 0 0 3px #DBEAFE`,
             },
-        }
+        },
     }),
     colorScheme: 'light',
     colors: {
@@ -224,7 +225,7 @@ export const theme: MantineThemeOverride = {
     primaryColor: 'primary',
     primaryShade: {
         light: 5,
-        dark: 8
+        dark: 8,
     },
     fontFamily: 'Gilroy, sans-serif',
     fontFamilyMonospace: 'Gilroy, sans-serif',

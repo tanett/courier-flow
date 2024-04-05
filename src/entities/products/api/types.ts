@@ -23,4 +23,3 @@ export type typeSearchFilterProduct = {
 export type typeSearchProductSortingNames = 'NAME';
 
 export type typeProductToArchiveRequest = typeProductToArchive
-

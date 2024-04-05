@@ -9,7 +9,7 @@ export const MenuItem: React.FC<typeMenuItemProps> = ({ label, icon, onClick, pr
     const { classes } = useStyles();
 
     return (
-        <Menu.Item className={cn([classes.menuItem, (primaryColor && classes.menuItemPrimaryColor)])} icon={icon} onClick={onClick}>
+        <Menu.Item className={cn([ classes.menuItem, (primaryColor && classes.menuItemPrimaryColor) ])} icon={icon} onClick={onClick}>
             {label}
         </Menu.Item>
     );

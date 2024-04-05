@@ -7,7 +7,6 @@ import { typeTablePagination } from 'shared/ui/table/types/type';
 import { useLazySearchProductQuery } from '../../../entities/products/api/api';
 import { typeSearchFilterProduct } from '../../../entities/products/api/types';
 import { typeProduct } from '../../../entities/products/model/state-slice/types';
-import { typeProductWithCheckBox } from 'features/products-list/types/types';
 
 export function useProductsList() {
 
@@ -19,9 +18,10 @@ export function useProductsList() {
     const [ productsList, setProductsList ] = useState<typeProduct[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
-    const filters: typeSearchFilterProduct = { archived: false,  };
+    const filters: typeSearchFilterProduct = { archived: false };
 
     if (urlParams.searchPhrase) filters.searchText = urlParams.searchPhrase;
+
     //
     // const roleId = urlParams.getFilterValue('roleId');
     // if (roleId && typeof roleId === 'string') filters.roleIds = [ roleId ]; todo fix it
@@ -91,7 +91,7 @@ export function useProductsList() {
         productsList,
         isLoading: isFetching,
         pagination,
-        setRefetch
+        setRefetch,
     };
 
 }

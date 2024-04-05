@@ -10,8 +10,9 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
     indeterminate,
     allChecked,
     isAllowedEdit,
-    headerActions
+    headerActions,
 }) => {
+
     const theme = useMantineTheme();
 
     return (
@@ -28,7 +29,7 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
             { (indeterminate || allChecked)
                 ? <>
                     { headerActions.map((actions, index) => (
-                        <Table.Th  key={ index }>
+                        <Table.Th key={ index }>
                             <UnstyledButton
                                 id={ actions.id }
                                 onClick={ actions.handler }
@@ -45,9 +46,9 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                                     textWrap: 'nowrap',
                                     borderBottom: '1px solid transparent',
                                     '&:hover': {
-                                        backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.1),
-                                        borderBottomColor: theme.colors.primary[3]
-                                    }
+                                        backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1),
+                                        borderBottomColor: theme.colors.primary[ 3 ],
+                                    },
                                 } }
                             >
                                 { actions.label }

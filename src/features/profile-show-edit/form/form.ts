@@ -1,6 +1,5 @@
 import { t } from '@lingui/macro';
 import { LANGUAGES } from '../../../app/config/languages';
-import { isPossiblePhoneNumber } from 'libphonenumber-js';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
 
 

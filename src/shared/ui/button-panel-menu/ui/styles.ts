@@ -21,5 +21,5 @@ export const useStyles = createStyles((theme) => ({
         fontSize: rem(14),
         color: theme.colors.gray[ 6 ],
     },
-    menuItemPrimaryColor: { color: theme.colors.primary[ 5 ]}
+    menuItemPrimaryColor: { color: theme.colors.primary[ 5 ] },
 }));

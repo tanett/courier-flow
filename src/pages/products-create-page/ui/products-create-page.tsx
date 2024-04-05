@@ -14,11 +14,11 @@ const ProductsCreatePage: React.FC = () => {
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
                     { name: i18n._(t`Products`) },
-                    { name: i18n._(t`Create`) },
+                    { name: i18n._(t`Create`) }
                 ]}/>}
             />
 
-           <ProductCreate/>
+            <ProductCreate/>
 
         </DashboardContent>
     );

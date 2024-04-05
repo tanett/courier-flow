@@ -5,7 +5,7 @@ export const initialProductsFilterForm: typeProductsFilterForm = {
     storeId: undefined,
     categoryId: undefined,
     unit: undefined,
-    marked: null
+    marked: null,
 };
 
 export const productsFilterForm = { initialValues: initialProductsFilterForm };

@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro';
 
 export const initialCategoryEditForm = {
-    initialValues: {  name: '', },
+    initialValues: { name: '' },
     validate: {
         name: (value: string) => {
 

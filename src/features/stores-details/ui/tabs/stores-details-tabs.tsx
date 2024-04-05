@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Tabs } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from './styles';
@@ -27,7 +27,9 @@ const StoresDetailsTabs: React.FC<{ storeId: string }> = ({ storeId }) => {
 
     const tabFromUrl = urlParams.getFilterValue('tab');
     if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {
+
         setTab(tabFromUrl as TYPE_TABS);
+
     }
 
 
@@ -37,7 +39,11 @@ const StoresDetailsTabs: React.FC<{ storeId: string }> = ({ storeId }) => {
             className={ classes.tab }
             variant="outline"
             value={ tab }
-            onTabChange={(value) => { urlParams.setSearchParams(  {[ queryParamsNames.filtersString ]: urlParams.filtersToUri({tab: value}) }) }}
+            onTabChange={(value) => {
+
+                urlParams.setSearchParams({ [ queryParamsNames.filtersString ]: urlParams.filtersToUri({ tab: value }) });
+
+            }}
         >
             <Tabs.List>
                 <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`Store`) }</Tabs.Tab>

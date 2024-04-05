@@ -14,7 +14,7 @@ export const CreateInputForAdditionalField: React.FC<{
     additionalFields,
     code,
     form,
-    path
+    path,
 }) => {
 
     const field = additionalFields.find((field: typeProductAdditionalFieldInfo) => field.code === code);
@@ -42,6 +42,7 @@ export const CreateInputForAdditionalField: React.FC<{
                         placeholder={ field.patternDescription ?? '' }
                         mask={ regexp && RegExp(regexp) }
                         id={ 'input' + path }
+
                         // lazy={false}
                         // unmask={true}
                         { ...form.getInputProps(path) }
@@ -51,4 +52,5 @@ export const CreateInputForAdditionalField: React.FC<{
 
             : null
     );
+
 };

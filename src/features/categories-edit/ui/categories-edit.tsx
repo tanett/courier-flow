@@ -18,7 +18,7 @@ import { typeCategoryEdit } from '../../../entities/category/model/types';
 import { useGetCategoryByIdQuery, usePatchCategoryMutation } from '../../../entities/category/api/api';
 
 
-export const CategoriesEdit: React.FC<{categoryId: string}> = ({categoryId}) => {
+export const CategoriesEdit: React.FC<{categoryId: string}> = ({ categoryId }) => {
 
     const { classes } = useStyles();
 
@@ -36,10 +36,14 @@ export const CategoriesEdit: React.FC<{categoryId: string}> = ({categoryId}) => 
     const form = useForm<typeCategoriesEditForm>(initialCategoryEditForm);
 
     useEffect(() => {
-        if(data){
-            form.setFieldValue('name', data.name)
+
+        if (data){
+
+            form.setFieldValue('name', data.name);
+
         }
-    }, [data]);
+
+    }, [ data ]);
 
     const [ editCategory ] = usePatchCategoryMutation();
 
@@ -107,8 +111,8 @@ export const CategoriesEdit: React.FC<{categoryId: string}> = ({categoryId}) => 
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
-                                width: '100%'
-                            }
+                                width: '100%',
+                            },
                         } }
                     />
 
@@ -118,7 +122,7 @@ export const CategoriesEdit: React.FC<{categoryId: string}> = ({categoryId}) => 
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Save` }</Button>
+                        type="submit">{ t`Save` }</Button>
                 </Flex>
 
             </Flex>

@@ -12,16 +12,21 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
     allChecked,
     additionalFields,
     isAllowedEdit,
-    headerActions
+    headerActions,
 }) => {
+
     const theme = useMantineTheme();
 
     const [ firstColumnName, setFirstColumnName ] = useState('');
 
     useEffect(() => {
+
         if (additionalFields) {
+
             setFirstColumnName(additionalFields.find(item => item.code === additionalFieldInTable)?.name || '');
+
         }
+
     }, [ additionalFields ]);
 
 
@@ -39,7 +44,7 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
             { (indeterminate || allChecked)
                 ? <>
                     { headerActions.map((actions, index) => (
-                        <Table.Th  key={ index }>
+                        <Table.Th key={ index }>
                             <UnstyledButton
                                 id={ actions.id }
                                 onClick={ actions.handler }
@@ -56,9 +61,9 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
                                     textWrap: 'nowrap',
                                     borderBottom: '1px solid transparent',
                                     '&:hover': {
-                                        backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.1),
-                                        borderBottomColor: theme.colors.primary[3]
-                                    }
+                                        backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1),
+                                        borderBottomColor: theme.colors.primary[ 3 ],
+                                    },
                                 } }
                             >
                                 { actions.label }

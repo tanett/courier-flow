@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Flex, Menu } from '@mantine/core';
+import { Button, Flex } from '@mantine/core';
 import { useStyles } from './styles';
 import { t, Trans } from '@lingui/macro';
 import { ArchiveBoxXMarkIcon, ArrowDownTrayIcon, ArrowUpTrayIcon, CurrencyDollarIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
@@ -13,7 +13,6 @@ import { routerPaths } from 'app/config/router-paths';
 import { useNavigate } from 'react-router-dom';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { addProductsPermissions } from 'app/config/permissions-config';
-import { IconCurrencyDollar } from '@tabler/icons-react';
 import cn from 'classnames';
 
 
@@ -81,7 +80,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 />
                 <ButtonPanelMenu.MenuItem
                     label={i18n._(t`Archive`)}
-                    icon={ <ArchiveBoxXMarkIcon className={cn([classes.menuButtonIcon, classes.colorPrimary5])  } />}
+                    icon={ <ArchiveBoxXMarkIcon className={cn([ classes.menuButtonIcon, classes.colorPrimary5 ]) } />}
                     onClick={onArchive}
                     primaryColor={true}
                 />

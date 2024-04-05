@@ -17,7 +17,7 @@ const CategoriesCreatePage: React.FC = () => {
                     { name: i18n._(t`Create a new category`) }
                 ]}/>}
             />
-          <CategoriesCreate/>
+            <CategoriesCreate/>
         </DashboardContent>
     );
 

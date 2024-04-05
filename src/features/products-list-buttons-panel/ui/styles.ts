@@ -13,7 +13,7 @@ export const useStyles = createStyles((theme) => ({
         width: rem(20),
         height: rem(20),
     },
-    colorPrimary5:{color: theme.colors.primary[5]},
+    colorPrimary5: { color: theme.colors.primary[ 5 ] },
     draZoneWrapper: {
         flexDirection: 'column',
         justifyContent: 'center',

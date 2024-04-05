@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useProductsList } from 'features/products-list/hooks/use-products-list';
 import { useNavigate } from 'react-router-dom';
-import { plural, t, Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { routerPaths } from '../../../app/config/router-paths';
 import { Modal } from '../../../shared/ui/modal';
@@ -37,16 +37,19 @@ export const ProductsList: React.FC = () => {
     const [ values, handlers ] = useListState<typeProductWithCheckBox>(undefined);
 
     useEffect(() => {
+
         if (productsList) {
+
             handlers.setState(productsList.map(item => ({
                 ...item,
-                checked: false
+                checked: false,
             })));
+
         }
 
     }, [ productsList ]);
 
-// modals
+    // modals
     const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeProduct>(null);
     const [ isOpenModalSelectedItemArchive, setIsOpenSelectedItemArchive ] = useState(false);
 
@@ -77,8 +80,10 @@ export const ProductsList: React.FC = () => {
 
         },
         onError: () => {
+
             if (modalArchiveItemData) onCloseModalToArchiveItem();
             if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
+
         },
     });
 
@@ -87,19 +92,19 @@ export const ProductsList: React.FC = () => {
         {
             id: 'selected-export-btn',
             label: <Trans >Selected export</Trans>,
-            handler: (event) => console.log('click')
+            handler: (event) => console.log('click'),
         },
         {
             id: 'change-category-btn',
             label: <Trans >Change category</Trans>,
-            handler: (event) => console.log('click')
+            handler: (event) => console.log('click'),
         },
 
         {
             id: 'selected-archive-btn',
             label: <Trans id={'action-archive'}>Archive</Trans>,
-            handler: (event) => setIsOpenSelectedItemArchive(true)
-        },
+            handler: (event) => setIsOpenSelectedItemArchive(true),
+        }
     ];
 
 

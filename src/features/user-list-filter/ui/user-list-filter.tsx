@@ -53,7 +53,7 @@ export const UserListFilter: React.FC = () => {
             const rolesListResponse = await getRoles(requestData).unwrap();
             const roleList: typeRoleItemSelect[] = rolesListResponse.content.map(item => ({
                 value: item.id,
-                label: item.name
+                label: item.name,
             }));
             setRoleList(roleList);
             const roleId = urlParams.getFilterValue('roleId');
@@ -101,12 +101,12 @@ export const UserListFilter: React.FC = () => {
 
         const filterObj: Record<string, unknown> = {
             roleId: form.values.roleId,
-            storeId: form.values.storeId
+            storeId: form.values.storeId,
         };
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
         if (close) close();
@@ -116,8 +116,8 @@ export const UserListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
         form.reset();
 

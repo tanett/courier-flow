@@ -14,7 +14,7 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
     terminalsList,
     goToDetailsTerminalPage,
     pagination,
-    isFetching
+    isFetching,
 }) => {
 
     return isFetching
@@ -62,7 +62,7 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
                                 <Table.Td>{ createdDate.toLocaleDateString(undefined, {
                                     day: 'numeric',
                                     month: 'numeric',
-                                    year: 'numeric'
+                                    year: 'numeric',
                                 }) }</Table.Td>
                                 <Table.Td>{ status }</Table.Td>
                             </Table.Tr>

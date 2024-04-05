@@ -35,7 +35,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             const response = await getStores(requestData).unwrap();
             setStoresList(response.content.map(store => ({
                 value: store.id,
-                label:  store.name
+                label: store.name,
             })));
 
         } catch (err) {
@@ -137,9 +137,9 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': {transform: 'rotate(180deg)', },  }}
-                />
-                );
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
+            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+        />
+    );
 
-            };
+};

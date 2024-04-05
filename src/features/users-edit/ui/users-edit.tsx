@@ -15,7 +15,6 @@ import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
 import { initialUsersEditForm } from '../form/form';
 import { typeUsersEditForm } from '../types/types';
-import { routerPaths } from 'app/config/router-paths';
 import useGetUserDataByIdFromUrl from '../../../entities/users/hooks/use-get-user-data-by-id-from-url';
 import { IconChevronDown } from '@tabler/icons-react';
 import { notificationActions } from '../../../entities/notification/model';

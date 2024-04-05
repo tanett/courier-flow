@@ -2,7 +2,7 @@ import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/t
 import { typeTablePagination } from 'shared/ui/table/types/type';
 import { typeProduct, typeProductAdditionalFieldInfo } from '../../../entities/products/model/state-slice/types';
 import React from 'react';
-import { UseListStateHandlers } from '@mantine/hooks';
+import { type UseListStateHandlers } from '@mantine/hooks';
 import { TransProps } from '@lingui/react';
 
 
@@ -34,5 +34,5 @@ export type typeProductListTableHeader = {
     allChecked: boolean
     headerActions: typeHeadersAction[]
     additionalFields: typeProductAdditionalFieldInfo[] | undefined
-    isAllowedEdit:  boolean | null,
+    isAllowedEdit: boolean | null,
 }

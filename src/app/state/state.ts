@@ -45,6 +45,7 @@ ListenerMiddlewareCreate.startListening({
             console.log('state.ts 35:', err);
 
         }
+
         // listenerApi.dispatch(resourceLoaded(res.data))
         // currentUserApi.trackUsage(action.type, user, specialData)
 
