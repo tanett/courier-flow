@@ -1,0 +1,104 @@
+stages:
+  - build
+  - deploy
+
+.before_build: &before_build
+  - apk add --update bash curl wget docker
+  - export NODE_OPTIONS="--max-old-space-size=7000"
+  - export CI=false
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+
+after_script:
+  - docker logout $CI_REGISTRY
+
+
+
+dev-front:
+  stage: build
+  image: node:18-alpine
+  before_script:
+    - *before_build
+  after_script:
+    - ''
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - export REACT_APP_BASE_API_URL=$DEV_REACT_APP_BASE_API_URL
+    - export REACT_APP_LANGUAGE=$DEV_REACT_APP_LANGUAGE
+    - export REACT_APP_SUPPORT_EMAIL=$DEV_REACT_APP_SUPPORT_EMAIL
+    - export REACT_APP_AUTH_API_URL=$DEV_REACT_APP_AUTH_API_URL
+    - export REACT_APP_NAME=$DEV_REACT_APP_NAME
+    - npm install
+    - npm run build
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    - docker push "$CI_REGISTRY_IMAGE${tag}"
+  only:
+    - develop
+
+test-front:
+  stage: build
+  image: node:18-alpine
+  before_script:
+    - *before_build
+  after_script:
+    - ''
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - export REACT_APP_BASE_API_URL=$DEV_REACT_APP_BASE_API_URL
+    - export REACT_APP_LANGUAGE=$DEV_REACT_APP_LANGUAGE
+    - export REACT_APP_SUPPORT_EMAIL=$DEV_REACT_APP_SUPPORT_EMAIL
+    - export REACT_APP_AUTH_API_URL=$DEV_REACT_APP_AUTH_API_URL
+    - export REACT_APP_NAME=$DEV_REACT_APP_NAME
+    - npm install
+    - npm run build
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    - docker push "$CI_REGISTRY_IMAGE${tag}"
+  only:
+    - test
+
+
+
+
+deploy:
+  image: git.sksoldev.com:5050/tinda/rancherctl:latest
+  stage: deploy
+  before_script:
+    - []
+  after_script:
+    - []
+  script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "develop" ]]; then
+        export NAMESPACE="ecr-dev-front"
+      else
+        export NAMESPACE="ecr-${CI_COMMIT_BRANCH}-front"
+      fi
+    - export POD_NAME="merchant-front-"
+    - rancher login --token $RANCHER_TOKEN --context $RANCHER_PROJECT_ID $RANCHER_URL --skip-verify
+    - podname=$(rancher kubectl get pods -n $NAMESPACE -o=name | sed "s/^.\{4\}//"| grep $POD_NAME)
+    - rancher kubectl delete pod -n $NAMESPACE $podname
+  only:
+    - develop
+    - test
