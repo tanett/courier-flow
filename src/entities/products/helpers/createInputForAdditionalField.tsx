@@ -1,21 +1,26 @@
 import React from 'react';
 import { PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo } from '../model/state-slice';
-import { Input } from '@mantine/core';
+import { Flex, Input, useMantineTheme } from '@mantine/core';
 import { type UseFormReturnType } from '@mantine/form';
 import { typeProductForm } from 'features/product-create/types/types';
 import { IMaskInput } from 'react-imask';
+
 
 export const CreateInputForAdditionalField: React.FC<{
     additionalFields: typeProductAdditionalFieldInfo[]
     code: PRODUCT_ADDITIONAL_FIELD,
     form: UseFormReturnType<typeProductForm>,
-    path: string
+    path: string,
+    additionalLabel?: React.ReactNode
 }> = ({
     additionalFields,
     code,
     form,
     path,
+    additionalLabel
 }) => {
+
+    const theme = useMantineTheme();
 
     const field = additionalFields.find((field: typeProductAdditionalFieldInfo) => field.code === code);
 
@@ -24,19 +29,15 @@ export const CreateInputForAdditionalField: React.FC<{
     return (
         field ?
             <>
-                {/* <TextInput */ }
-                {/*     withAsterisk={ field.required } */ }
-                {/*     label={ field.name } */ }
-                {/*     placeholder={ field.patternDescription ?? '' } */ }
-                {/*     { ...form.getInputProps(path) } */ }
-                {/*     maxLength={ 50 } */ }
-                {/* /> */ }
                 <Input.Wrapper
                     id={ path }
-                    label={ field.name }
                     required={ field.required }
                     error={ form.getInputProps(path).error }
                 >
+                    <Flex direction={ 'row' } gap={ 5 } align={ 'baseline' }>
+                        <Input.Label required={ field.required }>{ field.name }</Input.Label>
+                        { additionalLabel &&  additionalLabel  }
+                    </Flex>
                     <Input<any>
                         component={ IMaskInput }
                         placeholder={ field.patternDescription ?? '' }

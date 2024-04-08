@@ -3,7 +3,7 @@ import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeProductForm } from '../types/types';
 import { useAppDispatchT } from 'app/state';
-import { ActionIcon, Alert, Box, Button, Flex, Input, Loader, Select, SimpleGrid, Space, Text, TextInput, UnstyledButton, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Alert, Box, Button, Flex, Input, Loader, Select, SimpleGrid, Space, Text, TextInput, UnstyledButton, useMantineTheme, NavLink } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
@@ -24,6 +24,7 @@ import { CheckBoxForForm } from 'shared/ui/check-box-for-form/check-box-for-form
 import { CreateInputForAdditionalField } from '../../../entities/products/helpers/createInputForAdditionalField';
 import { IMaskInput } from 'react-imask';
 import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
+import { BarcodesInputForProductForm } from 'features/barcodes-input-for-product-form/barcodes-input-for-product-form';
 
 
 export const ProductFormCreate: React.FC<{
@@ -111,8 +112,6 @@ export const ProductFormCreate: React.FC<{
                     <TextInput
                         withAsterisk
                         label={ <Trans>Product name</Trans> }
-
-                        // placeholder={ i18n._(t`product name`) }
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
@@ -128,8 +127,45 @@ export const ProductFormCreate: React.FC<{
                             form={ form }
                             additionalFields={ additionalFields }
                             code={ PRODUCT_ADDITIONAL_FIELD.PSID }
+                            additionalLabel={ <Text size={ 12 } color={ theme.colors.gray[5] } sx={ { letterSpacing: 0.3 } }>
+                                <Trans>Check the psid on </Trans>&nbsp;
+                                <NavLink
+                                    component={ 'a' }
+                                    href={ 'https://tasnif.soliq.uz' }
+                                    target="_blank"
+                                    label={ 'tasnif.soliq.uz' }
+
+                                    sx={ {
+                                        display: 'inline',
+                                        textDecoration: 'none',
+                                        color: theme.colors.primary[5],
+                                        cursor: 'pointer',
+                                        marginLeft: 5,
+                                        marginRight: 0,
+                                        padding: 0,
+                                        fontSize: '14px',
+                                        '&:hover': { textDecoration: 'underline' },
+                                    } }/>
+                            </Text> }
                         />
-                        <div/>
+                        <CreateInputForAdditionalField
+                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value` }
+                            form={ form }
+                            additionalFields={ additionalFields }
+                            code={ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }
+                        />
+                        <CreateInputForAdditionalField
+                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value` }
+                            form={ form }
+                            additionalFields={ additionalFields }
+                            code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }
+                        />
+                        <CreateInputForAdditionalField
+                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value` }
+                            form={ form }
+                            additionalFields={ additionalFields }
+                            code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }
+                        />
                         <Select
                             withAsterisk
                             label={ <Trans>Unit</Trans> }
@@ -170,10 +206,10 @@ export const ProductFormCreate: React.FC<{
                                     normalizeZeros={ true } // appends or removes zeros at ends
                                     radix={ '.' } // fractional delimiter
                                     mapToRadix={ [ ',' ] } // symbols to process as radix
-
+                                    placeholder={ '0.00-100%' }
                                     // additional number interval options (e.g.)
                                     min={ 0 }
-                                    max = {100}
+                                    max={ 100 }
                                     autofix={ true }
                                     id={ 'vat-input' }
 
@@ -195,7 +231,7 @@ export const ProductFormCreate: React.FC<{
                             />
 
                             { (form.values.barcodes.length === 0 && form.values.marked) &&
-                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[ 5 ] } mb={ -32 }>
+                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
                                     <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
                                     <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
                                 </Alert>
@@ -204,74 +240,15 @@ export const ProductFormCreate: React.FC<{
 
                     </SimpleGrid>
 
-                    <Input.Wrapper
-                        id="input-barcodes"
-                        label={ <Trans>Barcodes</Trans> }
+                    <BarcodesInputForProductForm form={ form }/>
 
-                        // error={form.validateField('barcodes')}
-                        sx={ {
-                            '&.mantine-InputWrapper-root': {
-                                maxWidth: '100%',
-                                width: '100%',
-                            },
-                        } }
-                    >
-                        <Flex wrap={ 'nowrap' } gap={ 10 }>
-                            <Flex wrap={ 'wrap' } gap={ 10 } sx={ { flexGrow: 1 } }>
-                                { form.values.barcodes.map((item, index) => {
-
-                                    return <div key={ index }>
-                                        <Flex wrap={ 'nowrap' } gap={ 6 }>
-                                            <Text>item</Text>
-                                            <ActionIcon variant={ 'subtle' }
-                                                onClick={ () => form.setFieldValue('barcodes', form.values.barcodes.filter(code => item !== code)) }
-                                            ><IconX size={ 16 }/> </ActionIcon>
-                                        </Flex>
-                                    </div>;
-
-                                }) }
-                                <Input id="input-demo" placeholder="Your email"
-                                    sx={ {
-                                        width: '100%',
-                                        '&.mantine-Input-wrapper input': { border: 'none' },
-                                    } }/>
-                            </Flex>
-                            <UnstyledButton>Add barcode</UnstyledButton>
-                        </Flex>
-
-
-                    </Input.Wrapper>
                 </FieldsetForForm>
-                <FieldsetForForm title={ <Trans>Other</Trans> }>
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }
-                        />
-                        <div/>
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }
-                        />
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }
-                        />
 
-
-                    </SimpleGrid>
-                </FieldsetForForm>
                 <Space h={ 10 }/>
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                        type="submit">{ t`Save` }</Button>
+                            type="submit">{ t`Save` }</Button>
                 </Flex>
 
             </Flex>
