@@ -142,7 +142,7 @@ export const BarcodesInputForProductForm: React.FC<typeBarcodesInputForProductFo
                     <Button variant={ 'outline' } type={ 'button' } miw={ 140 }
                             sx={ {
                                 flexShrink: 0,
-                                fontSize: theme.fontSizes.sm,
+                                fontSize: theme.fontSizes.md,
                                 fontWeight: 700,
                                 lineHeight: '19px',
                                 letterSpacing: 0.3,
