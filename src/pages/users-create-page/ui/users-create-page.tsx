@@ -14,7 +14,7 @@ const UsersCreatePage: React.FC = () => {
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
                     { name: i18n._(t`Users`) },
-                    { name: i18n._(t`Create a new user`) }
+                    { name: i18n._(t`Create`) }
                 ]}/>}
             />
             <UsersCreateNew/>

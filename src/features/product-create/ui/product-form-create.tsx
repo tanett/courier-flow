@@ -3,13 +3,13 @@ import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeProductForm } from '../types/types';
 import { useAppDispatchT } from 'app/state';
-import { ActionIcon, Alert, Box, Button, Flex, Input, Loader, Select, SimpleGrid, Space, Text, TextInput, UnstyledButton, useMantineTheme, NavLink } from '@mantine/core';
+import { Alert, Box, Button, Flex, Input, Loader, Select, SimpleGrid, Space, Text, TextInput, useMantineTheme, NavLink } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
-import { IconAlertCircle, IconChevronDown, IconX } from '@tabler/icons-react';
+import { IconAlertCircle, IconChevronDown } from '@tabler/icons-react';
 import { useCreateProductMutation } from '../../../entities/products/api/api';
 import { createInitialFormHelper } from '../../../entities/products/helpers/createInitialForm';
 import { PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo, typeProductCreate } from '../../../entities/products/model/state-slice';
@@ -195,7 +195,7 @@ export const ProductFormCreate: React.FC<{
                             />
                             <Input.Wrapper
                                 id={ 'vat-input-wrapper' }
-                                label={ <Trans>Vat</Trans> }
+                                label={ <Trans>Vat in %</Trans> }
                                 required
                                 mt={ 16 }>
                                 <Input<any>
@@ -226,7 +226,7 @@ export const ProductFormCreate: React.FC<{
                             <CheckBoxForForm
                                 generallabel={ i18n._(t`Marked product`) }
                                 size={ 'md' }
-                                label={ form.values.marked ? <Trans>marked</Trans> : <Trans>not marked</Trans> }
+                                label={ form.values.marked ? <Trans>Marked</Trans> : <Trans>Not marked</Trans> }
                                 { ...form.getInputProps('marked') }
                             />
 

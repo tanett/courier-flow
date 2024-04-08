@@ -14,7 +14,7 @@ const CategoriesCreatePage: React.FC = () => {
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
                     { name: i18n._(t`Categories`) },
-                    { name: i18n._(t`Create a new category`) }
+                    { name: i18n._(t`Create`) }
                 ]}/>}
             />
             <CategoriesCreate/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PRODUCT_ADDITIONAL_FIELD, typeProductAdditionalFieldInfo } from '../model/state-slice';
-import { Flex, Input, useMantineTheme } from '@mantine/core';
+import { Flex, Input } from '@mantine/core';
 import { type UseFormReturnType } from '@mantine/form';
 import { typeProductForm } from 'features/product-create/types/types';
 import { IMaskInput } from 'react-imask';
@@ -19,8 +19,6 @@ export const CreateInputForAdditionalField: React.FC<{
     path,
     additionalLabel
 }) => {
-
-    const theme = useMantineTheme();
 
     const field = additionalFields.find((field: typeProductAdditionalFieldInfo) => field.code === code);
 

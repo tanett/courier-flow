@@ -12,7 +12,7 @@ export const CheckBoxForForm: React.FC<CheckboxProps & {generallabel: string}> =
 
     return (
         <>
-            <Text mb={10}>{props.generallabel}</Text>
+            <Text mb={10} fw={500}>{props.generallabel}</Text>
             <Checkbox
                 size={'md'}
                 { ...props }
