@@ -42,17 +42,17 @@ export type typeProductAdditionalField = {
     value: string
 }
 
-export type typeAdditionalFieldForCreate = Pick<typeProductAdditionalField, 'type' | 'value'>
+export type typeAdditionalFieldForForm = Pick<typeProductAdditionalField, 'type' | 'value'> & {id?: string}
 
 export type typeProductCreate = Pick<typeProduct, 'name' | 'unit' | 'vat' | 'merchantId'>
     & Partial<Pick<typeProduct, 'marked' | 'barcodes'>>
     & { productCategoryId?: string }
-    & { productAdditionalFields?: typeAdditionalFieldForCreate[] }
+    & { productAdditionalFields?: typeAdditionalFieldForForm[] }
 
 export type typeProductEdit = {
     id: typeProduct['id'],
     name?: typeProduct['name'],
-    productCategoryId?: string
+    productCategoryId?: string | null,
     unit?: typeProduct['unit'],
     marked?: typeProduct['marked'],
     vat?: typeProduct['vat'],
@@ -64,10 +64,10 @@ export type typeProductEdit = {
 }
 
 type typeAdditionalFieldForEdit = {
-    deleteAllExisting: boolean;
-    create: typeAdditionalFieldForCreate[];
-    patch: Patch[];
-    delete: string[];
+    deleteAllExisting?: boolean;  // use together with create for replace existing data
+    create?: typeAdditionalFieldForForm[];
+    patch?: Patch[];
+    delete?: string[];
 }
 
 interface Patch {

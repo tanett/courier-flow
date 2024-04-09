@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
+import { ProductEdit } from 'features/product-edit';
 
 const ProductsEditPage: React.FC = () => {
 
@@ -17,7 +18,7 @@ const ProductsEditPage: React.FC = () => {
                 ]}/>}
             />
 
-           products edit
+           <ProductEdit/>
 
         </DashboardContent>
     );

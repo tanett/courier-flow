@@ -24,16 +24,25 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
     const [ searchValue, onSearchChange ] = useState('');
     const [ debouncedSearchValue ] = useDebouncedValue(searchValue, 500);
 
-    const [ list, setList ] = useState<{value: string, label: string}[]>([]);
+    const [ list, setList ] = useState<{ value: string, label: string }[]>([]);
+
+    const [ firstRequest, setFirstRequest ] = useState<{ value: string, label: string }[]>([]);
 
     const [ getCategories, { isLoading } ] = useLazySearchCategoryQuery();
 
-    const getData = async (requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'>) => {
+    const getData = async (requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'>, isFirst?: boolean) => {
 
         try {
 
             const response = await getCategories(requestData).unwrap();
-            setList(response.content.map(item => ({ value: item.id, label: item.name })));
+            const mapResponse = response.content.map(item => ({
+                value: item.id,
+                label: item.name
+            }));
+
+            setList(mapResponse);
+
+            if (isFirst) {setFirstRequest(mapResponse);}
 
         } catch (err) {
 
@@ -46,7 +55,7 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
     useEffect(() => {
 
         const requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'> = {
-            filter: { },
+            filter: {},
             pagination: {
                 pageNumber: 0,
                 pageSize: 50,
@@ -59,13 +68,13 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             ],
         };
 
-        getData(requestData).then();
+        getData(requestData, true).then();
 
     }, []);
 
     useEffect(() => {
 
-        if (initialValue){
+        if (initialValue) {
 
             const requestData: typeSearchRequest<typeSearchFilterCategory, 'NAME'> = {
                 filter: { ids: [ initialValue ] },
@@ -110,6 +119,8 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
 
             getData(requestData).then();
 
+        } else {
+           setList(firstRequest)
         }
 
     }, [ debouncedSearchValue ]);
@@ -121,18 +132,18 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             searchable
             limit={ 40 }
             label={ t`Category` }
-            placeholder={ t`Type category name and select` }
+            placeholder={ t`Type name and select` }
             data={ list }
             searchValue={ searchValue }
-            onSearchChange={(query) => onSearchChange(query) }
+            onSearchChange={ (query) => onSearchChange(query) }
             nothingFound={ t`Product category not found` }
             { ...form.getInputProps(fieldName) }
             maxLength={ 20 }
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
+            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );
 
