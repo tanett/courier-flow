@@ -1,12 +1,12 @@
 import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { typeProduct, typeProductAdditionalFieldInfo } from '../../../entities/products/model/state-slice/types';
+import { typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
 import React from 'react';
 import { type UseListStateHandlers } from '@mantine/hooks';
 import { TransProps } from '@lingui/react';
 
 
-export type typeProductWithCheckBox = typeProduct & {checked: boolean}
+export type typeProductExtendedWithCheckBox = typeProductExtended & {checked: boolean}
 
 export type typeHeadersAction = {
     id: string,
@@ -20,12 +20,12 @@ export type typeProductsListTable = {
     currentUser: typeGetCurrentUserResponse | undefined,
     goToEditProductPage: (id: string) => void
     goToDetailsProductPage: (id: string, name: string) => void
-    onClickRowActionsArchiveItem: (product: typeProductWithCheckBox) => void
-    productsList: typeProductWithCheckBox[] | undefined
+    onClickRowActionsArchiveItem: (product: typeProductExtendedWithCheckBox) => void
+    productsList: typeProductExtendedWithCheckBox[] | undefined
     pagination: typeTablePagination | undefined,
     isLoading: boolean
     headerActions: typeHeadersAction[]
-    handlersListState: UseListStateHandlers<typeProduct & { checked: boolean }>
+    handlersListState: UseListStateHandlers<typeProductExtendedWithCheckBox>
 }
 
 export type typeProductListTableHeader = {

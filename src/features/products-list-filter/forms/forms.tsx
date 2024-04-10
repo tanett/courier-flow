@@ -4,7 +4,7 @@ export const initialProductsFilterForm: typeProductsFilterForm = {
     barcode: undefined,
     storeId: undefined,
     categoryId: undefined,
-    unit: undefined,
+    piece: null,
     marked: null,
 };
 

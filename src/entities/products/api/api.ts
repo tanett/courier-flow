@@ -2,7 +2,7 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeProduct, typeProductAdditionalFieldInfo } from '../../../entities/products/model/state-slice/types';
+import { typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
 import { typeCreateProductRequest, typeEditProductRequest, typeProductToArchiveRequest, typeSearchFilterProduct, typeSearchProductSortingNames } from '../../../entities/products/api/types';
 
 export const productsApi = baseApi.injectEndpoints({
@@ -20,7 +20,18 @@ export const productsApi = baseApi.injectEndpoints({
                 }
             ),
         }),
-
+// Search product extended with counters
+        searchProductExtended: builder.query<typeSearchResponse<typeProductExtended>, typeSearchRequest<typeSearchFilterProduct, typeSearchProductSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.PRODUCTS_SEARCH_EXTENDED,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                    cache: 'no-cache',
+                }
+            ),
+        }),
         // create Product
         createProduct: builder.mutation<typeProduct, typeCreateProductRequest >({
             query: (data) => (
@@ -58,7 +69,7 @@ export const productsApi = baseApi.injectEndpoints({
         }),
 
         // get Product by id
-        getProductById: builder.query({
+        getProductById: builder.query<typeProduct, string>({
             query: (id) => (
                 {
                     url: API_URLS.PRODUCTS_GET.replace('{id}', id),
@@ -87,6 +98,8 @@ export const {
     useLazyGetProductByIdQuery,
     usePatchProductMutation,
     useLazySearchProductQuery,
+    useLazySearchProductExtendedQuery,
+    useSearchProductExtendedQuery,
     useCreateProductMutation,
     useProductToArchiveMutation,
 } = productsApi;

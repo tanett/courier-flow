@@ -4,6 +4,8 @@ import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { useParams } from 'react-router-dom';
+import ProductsDetailsTabs from 'features/products-details/ui/tabs/products-details-tabs';
+import { ProductArchiveButton } from 'features/product-archive-button';
 
 
 const ProductsDetailsPage: React.FC = () => {
@@ -19,9 +21,10 @@ const ProductsDetailsPage: React.FC = () => {
                     { name: i18n._(t`Products`) },
                     { name: name || '------' }
                 ] }/> }
+                rightSide={<ProductArchiveButton id={id}/>}
 
             />
-            {id && 'products details' }
+            {id && <ProductsDetailsTabs productId={id}/> }
         </DashboardContent>
     );
 

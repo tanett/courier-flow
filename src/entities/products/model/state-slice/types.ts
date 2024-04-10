@@ -18,6 +18,11 @@ export type typeProduct = {
     merchantId: string
 }
 
+export type typeProductExtended = typeProduct & {
+    minPrice: number
+    maxPrice: number
+    storesCount: number
+}
 export enum PRODUCT_UNIT_VALUE {
     KILOGRAM = 'KILOGRAM',
     GRAM = 'GRAM',

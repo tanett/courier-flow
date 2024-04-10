@@ -25,18 +25,21 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
     const [ debouncedSearchValue ] = useDebouncedValue(searchStoreValue, 500);
 
     const [ storesList, setStoresList ] = useState<{ value: string, label: string }[]>([]);
+    const [ firstRequest, setFirstRequest ] = useState<{ value: string, label: string }[]>([]);
 
     const [ getStores, { isLoading } ] = useLazySearchStoreQuery();
 
-    const getData = async (requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'>) => {
+    const getData = async (requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'>, isFirst?: boolean) => {
 
         try {
 
             const response = await getStores(requestData).unwrap();
-            setStoresList(response.content.map(store => ({
-                value: store.id,
-                label: store.name,
-            })));
+            const mapResponse = response.content.map(item => ({
+                value: item.id,
+                label: item.name
+            }));
+            setStoresList(mapResponse);
+            if (isFirst) {setFirstRequest(mapResponse);}
 
         } catch (err) {
 
@@ -62,7 +65,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             ],
         };
 
-        getData(requestData).then();
+        getData(requestData, true).then();
 
     }, []);
 
@@ -116,12 +119,15 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
 
             getData(requestData).then();
 
+        } else {
+            setStoresList(firstRequest)
         }
 
     }, [ debouncedSearchValue ]);
 
     return (
         <Select
+            withinPortal
             withAsterisk={ required }
             clearable
             searchable

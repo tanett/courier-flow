@@ -12,7 +12,7 @@ import { editProductsPermissions } from 'app/config/permissions-config';
 import { typeProduct } from '../../../entities/products/model/state-slice/types';
 import { useArchiveProducts } from '../../../entities/products/hooks/use-archive-products';
 import { ProductsListTable } from './table/products-table';
-import { typeProductWithCheckBox, typeHeadersAction } from '../types/types';
+import { typeHeadersAction, typeProductExtendedWithCheckBox } from '../types/types';
 import { useListState } from '@mantine/hooks';
 
 
@@ -34,7 +34,7 @@ export const ProductsList: React.FC = () => {
     } = useProductsList();
 
     // product list with checked
-    const [ values, handlers ] = useListState<typeProductWithCheckBox>(undefined);
+    const [ values, handlers ] = useListState<typeProductExtendedWithCheckBox>(undefined);
 
     useEffect(() => {
 
@@ -60,7 +60,7 @@ export const ProductsList: React.FC = () => {
 
     };
 
-    const onClickRowActionsArchiveItem = (product: typeProductWithCheckBox) => {
+    const onClickRowActionsArchiveItem = (product: typeProductExtendedWithCheckBox) => {
 
         setModalArchiveItemData(product);
 
@@ -131,7 +131,7 @@ export const ProductsList: React.FC = () => {
                         handler: onCloseModalToArchiveItem,
                     } }
                     confirmButton={ {
-                        title: i18n._(t`Confirm`),
+                        title: i18n._('action-archive'),
                         handler: () => onArchive(modalArchiveItemData?.id),
                     } }
                 >

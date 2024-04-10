@@ -6,9 +6,9 @@ import { FilterPanel } from 'shared/ui/filter-panel';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
-import { Box, Checkbox, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Checkbox, Divider, Flex, rem, Text, useMantineTheme } from '@mantine/core';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
-import { typeProductsListTable } from 'features/products-list/types/types';
+import { typeProductExtendedWithCheckBox, typeProductsListTable } from 'features/products-list/types/types';
 import { typeProductAdditionalField } from '../../../../entities/products/model/state-slice/types';
 import { useSelectorT } from 'app/state';
 import { additionalFieldInTable } from '../../../../entities/products/constants/additional-field-in-table';
@@ -36,7 +36,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
 
 
     // observer for checkbox in header - if all checked
-    const allChecked = (productsList && productsList.length >0) ? productsList?.every((value) => value?.checked) : false;
+    const allChecked = (productsList && productsList.length > 0) ? productsList?.every((value) => value?.checked) : false;
 
     // observer for checkbox in header - if something checked
     const indeterminate = productsList?.some((value) => value?.checked) && !allChecked;
@@ -67,62 +67,79 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
         { isLoading
             ? <TableSkeleton/>
             : productsList && <>
-                <Table>
-                    <ProductsListTableHeader
-                        additionalFields={ additionalFields }
-                        indeterminate={ indeterminate || false }
-                        allChecked={ allChecked }
-                        headerActions={ headerActions }
-                        isAllowedEdit={ isAllowedEdit }
-                        onCheckedAllHandler={ onCheckedAllHandler }/>
+            <Table>
+                <ProductsListTableHeader
+                    additionalFields={ additionalFields }
+                    indeterminate={ indeterminate || false }
+                    allChecked={ allChecked }
+                    headerActions={ headerActions }
+                    isAllowedEdit={ isAllowedEdit }
+                    onCheckedAllHandler={ onCheckedAllHandler }/>
 
-                    <Table.Body>
-                        { productsList.length > 0 && productsList.map((item, index) => {
+                <Table.Body>
+                    { productsList.length > 0 && productsList.map((item, index) => {
 
-                            const actions: typeAction[] = [
-                                {
-                                    label: i18n._(t`Edit`),
-                                    handler: () => goToEditProductPage(item.id),
-                                    icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
-                                }
-                            ];
+                        const actions: typeAction[] = [
+                            {
+                                label: i18n._(t`Edit`),
+                                handler: () => goToEditProductPage(item.id),
+                                icon: <PencilSquareIcon color={ theme.colors.primary[5] } width={ 22 }/>,
+                            }
+                        ];
 
-                            actions.push({
-                                label: i18n._(t`Archive`),
-                                handler: () => onClickRowActionsArchiveItem(item),
-                                icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
-                            });
+                        actions.push({
+                            label: i18n._(t`Archive`),
+                            handler: () => onClickRowActionsArchiveItem(item),
+                            icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[5] } width={ 22 }/>,
+                        });
 
-                            const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
+                        const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
 
-                            return (
-                                <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
-                                    <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }>
+                        const getPriceElement = (item: typeProductExtendedWithCheckBox) => {
+                            if (item.minPrice && item.maxPrice) {
+                                return item.maxPrice === item.minPrice
+                                    ? <Box> { item.minPrice || item.maxPrice || '-' }</Box>
+                                    : <><Box><Trans>from</Trans> { item.minPrice }</Box>
+                                        <Divider/>
+                                        <Box><Trans>to</Trans> { item.maxPrice }</Box>
+                                    </>;
+                            } else {
+                                return '-';
+                            }
+                        };
 
-                                        <Checkbox size={ 'sm' }
-                                            sx={ { '& input': { cursor: 'pointer' } } }
-                                            checked={ item.checked }
-                                            onChange={ (event) => onCheckedItemHandler(event, index) }/>
+                        return (
+                            <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
+                                <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }>
 
-                                    </td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.name || '-' }</Box></Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(114) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '-' }</Box></Table.Td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ '- ' }</Box></Table.Td>
-                                    { isAllowedEdit && <Table.TdActions actions={ actions }/> }
-                                </Table.Tr>
-                            );
+                                    <Checkbox size={ 'sm' }
+                                              sx={ { '& input': { cursor: 'pointer' } } }
+                                              checked={ item.checked }
+                                              onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
-                        }) }
-                        { productsList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 7 : 6 }>
-                            <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
-                        </Table.EmptyRow> }
-                    </Table.Body>
-                </Table>
+                                </td>
+                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(300) } }>{ item.name || '-' }</Box></Table.Td>
+                                <Table.Td><Box sx={ { width: rem(150) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
+                                <Table.Td><Flex sx={ {
+                                    minWidth: rem(160),
+                                    flexDirection: 'column'
+                                } }>{ getPriceElement(item) }</Flex>
+                                </Table.Td>
+                                <Table.Td align={'center'}><Box sx={ { minWidth: rem(80), textAlign: 'center' } }>{ item.storesCount  }</Box></Table.Td>
+                                { isAllowedEdit && <Table.TdActions actions={ actions }/> }
+                            </Table.Tr>
+                        );
 
-                { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
-            </>
+                    }) }
+                    { productsList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 7 : 6 }>
+                        <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
+                    </Table.EmptyRow> }
+                </Table.Body>
+            </Table>
+
+            { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
+        </>
         }
 
     </>);

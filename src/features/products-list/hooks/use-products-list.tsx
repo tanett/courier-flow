@@ -1,48 +1,42 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { sortDirection, typeSearchRequest } from 'app/api/types';
-import { DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import { useLazySearchProductQuery } from '../../../entities/products/api/api';
+import { useLazySearchProductExtendedQuery } from '../../../entities/products/api/api';
+import { typeProductExtended } from '../../../entities/products/model/state-slice/types';
+import { getProductsFiltersFromUrl } from '../../../entities/products/helpers/get-products-filters-from-url';
+import { sortDirection, typeSearchRequest } from 'app/api/types';
 import { typeSearchFilterProduct } from '../../../entities/products/api/types';
-import { typeProduct } from '../../../entities/products/model/state-slice/types';
+import { DEFAULT_ITEMS_PER_PAGE_IN_TABLE } from 'app/config/api-constants';
 
 export function useProductsList() {
 
     const location = useLocation();
     const urlParams = useUrlParams();
 
-    const [ getProductsList, { isFetching } ] = useLazySearchProductQuery();
+    const [ getProductsList, { isFetching } ] = useLazySearchProductExtendedQuery();
     const [ refetch, setRefetch ] = useState(true);
-    const [ productsList, setProductsList ] = useState<typeProduct[]>();
+    const [ productsList, setProductsList ] = useState<typeProductExtended[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
 
-    const filters: typeSearchFilterProduct = { archived: false };
-
-    if (urlParams.searchPhrase) filters.searchText = urlParams.searchPhrase;
-
-    //
-    // const roleId = urlParams.getFilterValue('roleId');
-    // if (roleId && typeof roleId === 'string') filters.roleIds = [ roleId ]; todo fix it
-    // const storeId = urlParams.getFilterValue('storeId');
-    // if (storeId && typeof storeId === 'string') filters.storeIds = [ storeId ];
-
-    const requestData: typeSearchRequest<typeSearchFilterProduct, 'NAME'> = {
-        filter: filters,
-        pagination: {
-            pageNumber: urlParams.pageNumber && urlParams.pageNumber > 1 ? urlParams.pageNumber - 1 : 0,
-            pageSize: urlParams.itemsPerPage ?? DEFAULT_ITEMS_PER_PAGE_IN_TABLE,
-        },
-        sorts: [
-            {
-                sort: 'NAME',
-                direction: sortDirection.asc,
-            }
-        ],
-    };
 
     const getData = async () => {
+
+        const filters = getProductsFiltersFromUrl(urlParams);
+
+        const requestData: typeSearchRequest<typeSearchFilterProduct, 'NAME'> = {
+            filter: filters,
+            pagination: {
+                pageNumber: urlParams.pageNumber && urlParams.pageNumber > 1 ? urlParams.pageNumber - 1 : 0,
+                pageSize: urlParams.itemsPerPage ?? DEFAULT_ITEMS_PER_PAGE_IN_TABLE,
+            },
+            sorts: [
+                {
+                    sort: 'NAME',
+                    direction: sortDirection.asc,
+                }
+            ],
+        };
 
         try {
 

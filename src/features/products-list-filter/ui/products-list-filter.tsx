@@ -11,12 +11,10 @@ import { queryParamsNames } from '../../../app/config/api-constants';
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
 import { useSelectorT } from 'app/state';
 import { SelectorWithSearchStore } from 'features/selector-with-search-store';
-import { IconChevronDown } from '@tabler/icons-react';
-import { productUnitValueListForSelector } from '../../../entities/products/constants/product-unit-value-list-for-selector';
 import { SelectorWithSearchProductCategory } from 'features/selector-with-search-product-category';
 import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
-import { PRODUCT_UNIT_VALUE } from '../../../entities/products/model/state-slice';
+
 
 export const ProductsListFilter: React.FC = () => {
 
@@ -38,8 +36,8 @@ export const ProductsListFilter: React.FC = () => {
         if (barcode && typeof barcode === 'string') form.setValues({ barcode: barcode });
         const marked = urlParams.getFilterValue('marked');
         if (marked && typeof marked === 'string') form.setValues({ marked: marked === 'true' });
-        const unit = urlParams.getFilterValue('unit');
-        if (unit && typeof unit === 'string') form.setValues({ unit: PRODUCT_UNIT_VALUE[ unit as PRODUCT_UNIT_VALUE ] });
+        const piece = urlParams.getFilterValue('piece');
+        if (piece && typeof piece === 'string') form.setValues({ piece: piece === 'true' });
 
     }, []);
 
@@ -54,7 +52,7 @@ export const ProductsListFilter: React.FC = () => {
             categoryId: form.values.categoryId ? form.values.categoryId : undefined,
             marked: form.values.marked !== null ? form.values.marked.toString() : null,
             barcode: (form.values.barcode && form.values.barcode.trim() !== '') ? form.values.barcode.trim() : undefined,
-            unit: form.values.unit !== undefined ? form.values.unit : undefined,
+            piece: form.values.piece !== null ? form.values.piece.toString() : null,
         };
 
         urlParams.setSearchParams({
@@ -75,6 +73,20 @@ export const ProductsListFilter: React.FC = () => {
         } else {
 
             form.setValues((prev) => ({ ...prev, marked: newValue as boolean | null }));
+
+        }
+
+    };
+
+    const onChangePieceHandler = (newValue: null | boolean | number | string) => {
+
+        if (form.values.piece === newValue) {
+
+            form.setValues((prev) => ({ ...prev, piece: null }));
+
+        } else {
+
+            form.setValues((prev) => ({ ...prev, piece: newValue as boolean | null }));
 
         }
 
@@ -112,15 +124,14 @@ export const ProductsListFilter: React.FC = () => {
                             form={ form as unknown as typeReturnForm }
                             initialValue={null}
                         />
-                        <Select
-                            clearable
-                            label={i18n._(t`Unit`)}
-                            data={productUnitValueListForSelector}
-                            {...form.getInputProps('unit')}
-                            rightSection={form.values.unit ? undefined : <IconChevronDown size="1rem"/> }
-                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+                        <FilterButtonPanel
+                            label={i18n._(t`Piece products`)}
+                            value={form.values.piece}
+                            onChange={onChangePieceHandler}
+                            data={[ { value: true, label: i18n._(t`Piece`) }, { value: false, label: i18n._(t`Not piece`) } ]}
                         />
                         <FilterButtonPanel
+                            label={i18n._(t`Blocking`)}
                             value={form.values.marked}
                             onChange={onChangeMarkedHandler}
                             data={[ { value: true, label: i18n._(t`Marked`) }, { value: false, label: i18n._(t`Not marked`) } ]}

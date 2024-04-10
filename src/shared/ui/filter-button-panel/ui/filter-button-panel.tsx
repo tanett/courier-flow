@@ -5,14 +5,14 @@ import { useStyles } from './styles';
 import cn from 'classnames';
 import { Trans } from '@lingui/macro';
 
-export const FilterButtonPanel: React.FC<typeFilterButtonPanelProps> = ({ value, onChange, data }) => {
+export const FilterButtonPanel: React.FC<typeFilterButtonPanelProps> = ({ value, onChange, data, label }) => {
 
     if (!data.length) return null;
 
     const { classes } = useStyles();
 
     return (<div>
-        <div className={classes.label}><Trans>Blocking</Trans></div>
+        {label && <div className={ classes.label }>{ label }</div> }
         <Flex className={classes.wrapper}>
             {data.map(item => <button
                 key={item.label}
