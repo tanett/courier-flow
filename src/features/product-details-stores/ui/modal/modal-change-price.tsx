@@ -31,7 +31,7 @@ export const ModalChangePrice: React.FC<{
     };
 
     return (
-        <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogChangePrice(false) }>
+        <Modal modalWidth="auto" opened={ true } centered onCloseByOverlay={ () => onCloseDialogChangePrice(false) }>
             <Modal.Body>
                 <>
                     <Modal.Header title={ i18n._(t`Change price`) } onClose={ () => onCloseDialogChangePrice(false) }/>

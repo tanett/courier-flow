@@ -29,7 +29,7 @@ export const ModalAdd: React.FC<{
     };
 
     return (
-        <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogToAdd(false) }>
+        <Modal modalWidth="auto" opened={ true } centered onCloseByOverlay={ () => onCloseDialogToAdd(false) }>
             <Modal.Body>
                 <>
                     <Modal.Header title={ i18n._(t`Add a store`) } onClose={ () => onCloseDialogToAdd(false) }/>

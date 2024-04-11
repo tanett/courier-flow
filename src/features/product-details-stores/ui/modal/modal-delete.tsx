@@ -55,7 +55,7 @@ export const ModalDelete: React.FC<{
     };
 
     return (
-        <Modal modalWidth="dialog" opened={ true }>
+        <Modal modalWidth="dialog" opened={ true } centered>
             <Modal.Body>
                 <Dialog
                     cancelButton={ {

@@ -38,6 +38,7 @@ msgstr "{productsCount, plural, one {# product} few {# products} other {# produc
 #~ msgstr "{productsCount, plural, one {# product} other {# products}}"
 
 #: src/features/product-create/ui/product-form-create.tsx:235
+#: src/features/product-edit/ui/product-form-edit.tsx:265
 msgid "A barcode is required for labeled goods."
 msgstr "A barcode is required for labeled goods."
 
@@ -46,6 +47,7 @@ msgid "Access denied"
 msgstr "Access denied"
 
 #: src/features/categories-list/ui/table/categories-table-header.tsx:68
+#: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:43
 #: src/features/products-list/ui/table/products-table-header.tsx:92
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:47
 #: src/features/stores-list/ui/stores-table.tsx:54
@@ -57,15 +59,21 @@ msgstr "Actions"
 msgid "Active"
 msgstr "Active"
 
-#: src/features/add-user-to-store/add-user-to-store.tsx:207
+#: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:113
 #: src/features/stores-details-users/ui/stores-details-users.tsx:156
+#: src/features/user-add-to-store/user-add-to-store.tsx:207
 msgid "Add"
 msgstr "Add"
+
+#: src/features/product-details-stores/ui/modal/modal-add.tsx:35
+msgid "Add a store"
+msgstr "Add a store"
 
 #: src/features/stores-details-users/ui/stores-details-users.tsx:192
 msgid "Add an employee"
 msgstr "Add an employee"
 
+#: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:103
 #: src/features/stores-details-users/ui/stores-details-users.tsx:146
 msgid "Add an existing employee to store"
 msgstr "Add an existing employee to store"
@@ -103,13 +111,16 @@ msgstr "Apply"
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:20
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:20
 #: src/features/categories-list/ui/table/categories-table.tsx:84
+#: src/features/product-archive-button/product-archive-button.tsx:35
+#: src/features/product-archive-button/product-archive-button.tsx:43
 #: src/features/products-list/ui/products-list.tsx:105
+#: src/features/products-list/ui/products-list.tsx:134
 msgid "action-archive"
 msgstr "Archive"
 
 #: src/features/products-list-buttons-panel/ui/dialogs/archive-products-dialog.tsx:20
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:82
-#: src/features/products-list/ui/table/products-table.tsx:91
+#: src/features/products-list/ui/table/products-table.tsx:92
 #: src/features/user-archive-button/user-archive-button.tsx:40
 #: src/features/user-list/ui/user-table.tsx:75
 msgid "Archive"
@@ -118,6 +129,10 @@ msgstr "Archive"
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:35
 msgid "Archive products"
 msgstr "Archive products"
+
+#: src/features/product-archive-button/product-archive-button.tsx:55
+msgid "Are you sure you want to archive the current product?"
+msgstr "Are you sure you want to archive the current product?"
 
 #: src/features/user-list/ui/user-list.tsx:58
 #~ msgid "Are you sure you want to archive the user \"#fullName#\"?"
@@ -138,6 +153,10 @@ msgstr "Are you sure you want to archive<0/>the selected categories"
 #: src/features/user-list/ui/user-list.tsx:99
 msgid "Are you sure you want to archive<0/>the user"
 msgstr "Are you sure you want to archive<0/>the user"
+
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
+msgid "Are you sure you want to delete <0/>the product"
+msgstr "Are you sure you want to delete <0/>the product"
 
 #: src/features/user-archive-button/user-archive-button.tsx:52
 msgid "Are you sure you want to delete the current user?"
@@ -171,7 +190,7 @@ msgstr "Authorization"
 msgid "Authorization was successful!"
 msgstr "Authorization was successful!"
 
-#: src/features/products-list-filter/ui/products-list-filter.tsx:105
+#: src/features/products-list-filter/ui/products-list-filter.tsx:117
 msgid "Barcode"
 msgstr "Barcode"
 
@@ -185,22 +204,27 @@ msgstr "Barcodes"
 msgid "Blocked"
 msgstr "Blocked"
 
+#: src/features/products-list-filter/ui/products-list-filter.tsx:134
 #: src/features/terminals-details/ui/terminals-details.tsx:79
-#: src/shared/ui/filter-button-panel/ui/filter-button-panel.tsx:15
 msgid "Blocking"
 msgstr "Blocking"
 
-#: src/features/add-user-to-store/add-user-to-store.tsx:205
 #: src/features/categories-create/ui/categories-create.tsx:108
 #: src/features/categories-edit/ui/categories-edit.tsx:123
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:16
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:16
+#: src/features/product-archive-button/product-archive-button.tsx:51
 #: src/features/product-create/ui/product-form-create.tsx:249
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:62
+#: src/features/product-edit/ui/product-form-edit.tsx:279
 #: src/features/products-list-buttons-panel/ui/dialogs/archive-products-dialog.tsx:16
 #: src/features/products-list/ui/products-list.tsx:130
 #: src/features/profile-show-edit/ui/profile.tsx:169
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:134
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:128
 #: src/features/stores-details-users/ui/stores-details-users.tsx:175
 #: src/features/stores-edit/ui/store-edit.tsx:196
+#: src/features/user-add-to-store/user-add-to-store.tsx:205
 #: src/features/user-archive-button/user-archive-button.tsx:48
 #: src/features/user-list/ui/user-list.tsx:91
 #: src/features/users-create/ui/users-create-new.tsx:157
@@ -224,8 +248,10 @@ msgstr "Categories"
 msgid "Categories delete successfully."
 msgstr "Categories delete successfully."
 
+#: src/features/products-details/ui/product-details.tsx:65
+#: src/features/products-details/ui/product-details.tsx:117
 #: src/features/products-list/ui/table/products-table-header.tsx:83
-#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:123
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:134
 msgid "Category"
 msgstr "Category"
 
@@ -241,6 +267,10 @@ msgstr "Category delete successfully."
 msgid "Category edited successfully."
 msgstr "Category edited successfully."
 
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
+msgid "Change"
+msgstr "Change"
+
 #: src/features/products-list/ui/products-list.tsx:99
 msgid "Change category"
 msgstr "Change category"
@@ -249,6 +279,10 @@ msgstr "Change category"
 #: src/features/restore-password/ui/restore-password.tsx:150
 msgid "Change password"
 msgstr "Change password"
+
+#: src/features/product-details-stores/ui/modal/modal-change-price.tsx:37
+msgid "Change price"
+msgstr "Change price"
 
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:72
 msgid "Change prices"
@@ -259,6 +293,7 @@ msgid "Change vat"
 msgstr "Change vat"
 
 #: src/features/product-create/ui/product-form-create.tsx:234
+#: src/features/product-edit/ui/product-form-edit.tsx:264
 msgid "Check for the barcode!"
 msgstr "Check for the barcode!"
 
@@ -267,6 +302,7 @@ msgid "Check if email is correct"
 msgstr "Check if email is correct"
 
 #: src/features/product-create/ui/product-form-create.tsx:131
+#: src/features/product-edit/ui/product-form-edit.tsx:159
 msgid "Check the psid on"
 msgstr "Check the psid on"
 
@@ -282,7 +318,14 @@ msgstr "Click the \"Add\" button to add existing users to the store."
 msgid "Click to view full list"
 msgstr "Click to view full list"
 
-#: src/features/products-list/ui/products-list.tsx:134
+#: src/features/products-details/ui/product-details.tsx:81
+msgid "Comission PINFL"
+msgstr "Comission PINFL"
+
+#: src/features/products-details/ui/product-details.tsx:80
+msgid "Comission TIN"
+msgstr "Comission TIN"
+
 #: src/features/stores-details-users/ui/stores-details-users.tsx:179
 #: src/features/user-list/ui/user-list.tsx:95
 msgid "Confirm"
@@ -333,6 +376,11 @@ msgstr "Create"
 msgid "Creation date"
 msgstr "Creation date"
 
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:66
+#: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
+msgid "Delete"
+msgstr "Delete"
+
 #: src/features/roles-list/ui/roles-list.tsx:56
 #: src/features/stores-details/ui/store-details.tsx:71
 #: src/features/stores-edit/ui/store-edit.tsx:186
@@ -340,16 +388,20 @@ msgid "Description"
 msgstr "Description"
 
 #: src/features/categories-list/ui/table/categories-table.tsx:76
-#: src/features/products-list/ui/table/products-table.tsx:84
+#: src/features/products-list/ui/table/products-table.tsx:85
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:57
 #: src/features/stores-list/ui/stores-table.tsx:63
 #: src/features/user-list/ui/user-table.tsx:67
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:21
-#: src/pages/products-edit-page/ui/products-edit-page.tsx:16
+#: src/pages/products-edit-page/ui/products-edit-page.tsx:17
 #: src/pages/stores-edit-page/ui/stores-edit-page.tsx:21
 #: src/pages/users-edit-page/ui/users-edit-page.tsx:22
 msgid "Edit"
 msgstr "Edit"
+
+#: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:53
+msgid "Edit the price"
+msgstr "Edit the price"
 
 #: src/features/forgot-password/ui/forgot-password.tsx:76
 #: src/features/login/ui/login-form.tsx:136
@@ -363,7 +415,7 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
-#: src/features/add-user-to-store/add-user-to-store.tsx:173
+#: src/features/user-add-to-store/user-add-to-store.tsx:173
 msgid "Employees"
 msgstr "Employees"
 
@@ -402,6 +454,10 @@ msgstr "Fiscal ID"
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
+#: src/features/products-list/ui/table/products-table.tsx:103
+msgid "from"
+msgstr "from"
+
 #: src/entities/stores/constants/store-type-list.tsx:15
 msgid "Fuel"
 msgstr "Fuel"
@@ -416,6 +472,8 @@ msgstr "Full name"
 #: src/features/categories-create/ui/categories-create.tsx:89
 #: src/features/categories-edit/ui/categories-edit.tsx:104
 #: src/features/product-create/ui/product-form-create.tsx:111
+#: src/features/product-edit/ui/product-form-edit.tsx:139
+#: src/features/products-details/ui/tabs/products-details-tabs.tsx:49
 msgid "General information"
 msgstr "General information"
 
@@ -467,6 +525,7 @@ msgstr "Invalid phone number format"
 #: src/features/login/forms/forms.ts:15
 #: src/features/login/forms/forms.ts:24
 #: src/features/product-create/form/form.ts:22
+#: src/features/product-edit/form/form.ts:22
 #: src/features/profile-show-edit/form/form.ts:19
 #: src/features/profile-show-edit/form/form.ts:28
 #: src/features/stores-edit/form/form.ts:19
@@ -485,6 +544,7 @@ msgid "Items par page"
 msgstr "Items par page"
 
 #: src/features/product-create/ui/product-form-create.tsx:236
+#: src/features/product-edit/ui/product-form-edit.tsx:266
 msgid "Labeled items must be sold individually ??"
 msgstr "Labeled items must be sold individually ??"
 
@@ -530,11 +590,13 @@ msgstr "Logout"
 #~ msgstr "marked"
 
 #: src/features/product-create/ui/product-form-create.tsx:229
-#: src/features/products-list-filter/ui/products-list-filter.tsx:126
+#: src/features/product-edit/ui/product-form-edit.tsx:258
+#: src/features/products-list-filter/ui/products-list-filter.tsx:137
 msgid "Marked"
 msgstr "Marked"
 
 #: src/features/product-create/ui/product-form-create.tsx:227
+#: src/features/product-edit/ui/product-form-edit.tsx:256
 msgid "Marked product"
 msgstr "Marked product"
 
@@ -563,6 +625,7 @@ msgstr "Move to archive"
 #: src/features/categories-create/ui/categories-create.tsx:93
 #: src/features/categories-edit/ui/categories-edit.tsx:108
 #: src/features/categories-list/ui/table/categories-table-header.tsx:62
+#: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:37
 #: src/features/products-list/ui/table/products-table-header.tsx:80
 msgid "item-name"
 msgstr "Name"
@@ -602,9 +665,14 @@ msgstr "Not contain special symbols"
 #~ msgstr "not marked"
 
 #: src/features/product-create/ui/product-form-create.tsx:229
-#: src/features/products-list-filter/ui/products-list-filter.tsx:126
+#: src/features/product-edit/ui/product-form-edit.tsx:258
+#: src/features/products-list-filter/ui/products-list-filter.tsx:137
 msgid "Not marked"
 msgstr "Not marked"
+
+#: src/features/products-list-filter/ui/products-list-filter.tsx:131
+msgid "Not piece"
+msgstr "Not piece"
 
 #: src/features/categories-list/ui/table/categories-table-header.tsx:65
 msgid "Number of products"
@@ -619,6 +687,10 @@ msgstr "of"
 msgid "Only one file can be attached."
 msgstr "Only one file can be attached."
 
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:42
+msgid "Operation was successful."
+msgstr "Operation was successful."
+
 #: src/features/main-menu/config/main-menu.config.tsx:108
 #: src/pages/orders-page/ui/orders-page.tsx:15
 msgid "Orders"
@@ -628,6 +700,10 @@ msgstr "Orders"
 #: src/features/stores-edit/ui/store-edit.tsx:183
 msgid "Other"
 msgstr "Other"
+
+#: src/features/products-details/ui/product-details.tsx:63
+msgid "Package code"
+msgstr "Package code"
 
 #: src/features/login/ui/login-form.tsx:150
 #: src/features/login/ui/login-form.tsx:152
@@ -682,11 +758,29 @@ msgstr "Phone number"
 msgid "Pick dates range"
 msgstr "Pick dates range"
 
+#: src/features/products-list-filter/ui/products-list-filter.tsx:131
+msgid "Piece"
+msgstr "Piece"
+
+#: src/features/products-list-filter/ui/products-list-filter.tsx:128
+msgid "Piece products"
+msgstr "Piece products"
+
+#: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:40
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:101
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:96
+msgid "Price"
+msgstr "Price"
+
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:60
+msgid "Price was changed successfully."
+msgstr "Price was changed successfully."
+
 #: src/entities/products/hooks/use-archive-products.ts:27
 msgid "Product archived successfully."
 msgstr "Product archived successfully."
 
-#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:128
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:139
 msgid "Product category not found"
 msgstr "Product category not found"
 
@@ -694,15 +788,20 @@ msgstr "Product category not found"
 msgid "Product created successfully."
 msgstr "Product created successfully."
 
+#: src/features/product-edit/ui/product-form-edit.tsx:106
+msgid "Product edited successfully."
+msgstr "Product edited successfully."
+
 #: src/features/product-create/ui/product-form-create.tsx:114
+#: src/features/product-edit/ui/product-form-edit.tsx:142
 msgid "Product name"
 msgstr "Product name"
 
 #: src/features/main-menu/config/main-menu.config.tsx:62
 #: src/features/main-menu/config/main-menu.config.tsx:70
 #: src/pages/products-create-page/ui/products-create-page.tsx:16
-#: src/pages/products-details-page/ui/products-details-page.tsx:19
-#: src/pages/products-edit-page/ui/products-edit-page.tsx:15
+#: src/pages/products-details-page/ui/products-details-page.tsx:21
+#: src/pages/products-edit-page/ui/products-edit-page.tsx:16
 #: src/pages/products-page/ui/products-page.tsx:18
 msgid "Products"
 msgstr "Products"
@@ -715,6 +814,10 @@ msgstr "Profile"
 #: src/features/profile-show-edit/ui/profile.tsx:92
 msgid "Profile changed successfully."
 msgstr "Profile changed successfully."
+
+#: src/features/products-details/ui/product-details.tsx:62
+msgid "PSID"
+msgstr "PSID"
 
 #: src/features/products-list/ui/table/products-table-header.tsx:86
 msgid "Range of price"
@@ -738,7 +841,6 @@ msgid "Reports"
 msgstr "Reports"
 
 #: src/entities/products/helpers/createInitialForm.tsx:22
-#: src/features/add-user-to-store/form.ts:13
 #: src/features/categories-create/form/form.ts:9
 #: src/features/categories-edit/form/form.ts:9
 #: src/features/forgot-password/forms/forms.ts:12
@@ -747,11 +849,18 @@ msgstr "Reports"
 #: src/features/product-create/form/form.ts:20
 #: src/features/product-create/form/form.ts:29
 #: src/features/product-create/form/form.ts:36
+#: src/features/product-edit/form/form.ts:20
+#: src/features/product-edit/form/form.ts:29
+#: src/features/product-edit/form/form.ts:36
 #: src/features/profile-show-edit/form/form.ts:17
 #: src/features/profile-show-edit/form/form.ts:26
 #: src/features/profile-show-edit/form/form.ts:42
+#: src/features/retail-product-add-to-store/form.ts:14
+#: src/features/retail-product-add-to-store/form.ts:21
+#: src/features/retail-product-edit-price/form.ts:13
 #: src/features/stores-edit/form/form.ts:17
 #: src/features/stores-edit/form/form.ts:53
+#: src/features/user-add-to-store/form.ts:13
 #: src/features/users-create/form/form.ts:17
 #: src/features/users-create/form/form.ts:26
 #: src/features/users-create/form/form.ts:44
@@ -807,7 +916,9 @@ msgstr "Sales"
 #: src/features/categories-create/ui/categories-create.tsx:110
 #: src/features/categories-edit/ui/categories-edit.tsx:125
 #: src/features/product-create/ui/product-form-create.tsx:251
+#: src/features/product-edit/ui/product-form-edit.tsx:281
 #: src/features/profile-show-edit/ui/profile.tsx:170
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:136
 #: src/features/stores-edit/ui/store-edit.tsx:198
 #: src/features/users-create/ui/users-create-new.tsx:159
 #: src/features/users-edit/ui/users-edit.tsx:179
@@ -847,6 +958,7 @@ msgstr "Spaces are not allowed"
 msgid "Status"
 msgstr "Status"
 
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:90
 #: src/features/stores-details/ui/tabs/stores-details-tabs.tsx:49
 msgid "Store"
 msgstr "Store"
@@ -861,7 +973,7 @@ msgid "Store name"
 msgstr "Store name"
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:172
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:134
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:141
 msgid "Store not found"
 msgstr "Store not found"
 
@@ -870,9 +982,13 @@ msgstr "Store not found"
 msgid "Store type"
 msgstr "Store type"
 
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:64
+msgid "Store with price was added successfully."
+msgstr "Store with price was added successfully."
+
 #: src/features/main-menu/config/main-menu.config.tsx:84
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:129
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:136
 #: src/features/user-list/ui/user-table.tsx:55
 #: src/features/users-details/ui/users-details.tsx:95
 #: src/pages/stores-details-page/ui/stores-details-page.tsx:23
@@ -880,6 +996,10 @@ msgstr "Store type"
 #: src/pages/stores-page/ui/stores-page.tsx:16
 msgid "Stores"
 msgstr "Stores"
+
+#: src/features/products-details/ui/tabs/products-details-tabs.tsx:50
+msgid "Stores and prices"
+msgstr "Stores and prices"
 
 #: src/features/main-menu/config/main-menu.config.tsx:100
 #: src/pages/terminals-details-page/ui/terminals-details-page.tsx:20
@@ -892,7 +1012,7 @@ msgid "The email has been sent to the email address you provided to reset your p
 msgstr "The email has been sent to the email address you provided to reset your password. Check your email and follow the instructions in the email."
 
 #: src/features/categories-list/ui/table/categories-table.tsx:109
-#: src/features/products-list/ui/table/products-table.tsx:119
+#: src/features/products-list/ui/table/products-table.tsx:137
 #: src/features/roles-list/ui/roles-list.tsx:82
 #: src/features/stores-list/ui/stores-table.tsx:82
 #: src/features/terminal-list/ui/terminals-table.tsx:74
@@ -920,9 +1040,17 @@ msgstr "The store edited successfully."
 msgid "This barcode already added"
 msgstr "This barcode already added"
 
+#: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:32
+msgid "This product is not sold in any store."
+msgstr "This product is not sold in any store."
+
 #: src/features/users-details/ui/users-details.tsx:141
 msgid "This user is not associated with any store"
 msgstr "This user is not associated with any store"
+
+#: src/features/products-list/ui/table/products-table.tsx:105
+msgid "to"
+msgstr "to"
 
 #: src/features/user-list/ui/user-list.tsx:51
 #~ msgid "To archive"
@@ -937,6 +1065,7 @@ msgid "Too long"
 msgstr "Too long"
 
 #: src/features/product-create/form/form.ts:38
+#: src/features/product-edit/form/form.ts:38
 msgid "Too match"
 msgstr "Too match"
 
@@ -945,6 +1074,7 @@ msgstr "Too match"
 msgid "Too short password, minimum {MIN_CHARS_IN_PASSWORD} characters"
 msgstr "Too short password, minimum {MIN_CHARS_IN_PASSWORD} characters"
 
+#: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:101
 #: src/features/stores-details-users/ui/stores-details-users.tsx:144
 msgid "total"
 msgstr "total"
@@ -953,15 +1083,19 @@ msgstr "total"
 msgid "Type"
 msgstr "Type"
 
-#: src/features/add-user-to-store/add-user-to-store.tsx:184
+#: src/features/user-add-to-store/user-add-to-store.tsx:184
 msgid "Type a name and select an employee"
 msgstr "Type a name and select an employee"
 
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:124
-msgid "Type category name and select"
-msgstr "Type category name and select"
+#~ msgid "Type category name and select"
+#~ msgstr "Type category name and select"
 
-#: src/features/products-list/ui/table/products-table.tsx:63
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:135
+msgid "Type name and select"
+msgstr "Type name and select"
+
+#: src/features/products-list/ui/table/products-table.tsx:64
 msgid "Type part of a product name"
 msgstr "Type part of a product name"
 
@@ -986,7 +1120,7 @@ msgid "Type part of your username, email or phone number"
 msgstr "Type part of your username, email or phone number"
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:168
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:130
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:137
 msgid "Type store name and select"
 msgstr "Type store name and select"
 
@@ -995,9 +1129,14 @@ msgstr "Type store name and select"
 #~ msgstr "Unblocked"
 
 #: src/features/product-create/ui/product-form-create.tsx:171
-#: src/features/products-list-filter/ui/products-list-filter.tsx:117
+#: src/features/product-edit/ui/product-form-edit.tsx:199
+#: src/features/products-details/ui/product-details.tsx:114
 msgid "Unit"
 msgstr "Unit"
+
+#: src/features/products-details/ui/product-details.tsx:115
+msgid "Unit code"
+msgstr "Unit code"
 
 #: src/entities/users/hooks/use-archive-users.ts:27
 msgid "User archived successfully."
@@ -1013,7 +1152,7 @@ msgstr "User created successfully."
 msgid "User name"
 msgstr "User name"
 
-#: src/features/add-user-to-store/add-user-to-store.tsx:142
+#: src/features/user-add-to-store/user-add-to-store.tsx:142
 msgid "User was added successfully."
 msgstr "User was added successfully."
 
@@ -1041,11 +1180,12 @@ msgstr "Users"
 msgid "Users's count"
 msgstr "Users's count"
 
-#: src/features/product-create/ui/product-form-create.tsx:198
-#~ msgid "Vat"
-#~ msgstr "Vat"
+#: src/features/products-details/ui/product-details.tsx:97
+msgid "Vat"
+msgstr "Vat"
 
 #: src/features/product-create/ui/product-form-create.tsx:198
+#: src/features/product-edit/ui/product-form-edit.tsx:226
 msgid "Vat in %"
 msgstr "Vat in %"
 
