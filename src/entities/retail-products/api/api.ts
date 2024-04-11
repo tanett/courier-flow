@@ -50,7 +50,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
             query: (data) => (
                 {
                     url: API_URLS.RETAIL_PRODUCTS_DELETE,
-                    method: 'PATCH',
+                    method: 'DELETE',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
                 }

@@ -17,7 +17,7 @@ import { IMaskInput } from 'react-imask';
 import { typeCreateRetailProduct } from '../../entities/retail-products/model/types';
 
 
-export const AddRetailProductToStore: React.FC<{ productId: string, onClose: (refetch: boolean) => void }> = ({
+export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (refetch: boolean) => void }> = ({
     productId,
     onClose,
 }) => {
@@ -50,11 +50,10 @@ export const AddRetailProductToStore: React.FC<{ productId: string, onClose: (re
             setIsInProgress(true);
             const dataObject: typeCreateRetailProduct = {
                 storeId: form.values.storeId,
-                price: parseFloat(form.values.price),
+                price: parseFloat(form.values.price),  // from masked input we get the value as string with,
                 productId: productId,
                 merchantId: merchantId
             };
-
 
             try {
 
@@ -108,6 +107,7 @@ export const AddRetailProductToStore: React.FC<{ productId: string, onClose: (re
                         scale={ 2 } // digits after point, 0 for integers
                         padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale
                         normalizeZeros={ true } // appends or removes zeros at ends
+                        // thousandsSeparator = { ' ' }  // any single char  // thousand separator work badly !
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '' }
@@ -115,6 +115,7 @@ export const AddRetailProductToStore: React.FC<{ productId: string, onClose: (re
                         min={ 0 }
                         max={ 100000000000 }
                         autofix={ true }
+                        overwrite = {true}
                         id={ 'price-input' }
                         { ...form.getInputProps('price') }
 

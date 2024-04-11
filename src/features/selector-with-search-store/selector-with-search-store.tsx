@@ -16,6 +16,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
     fieldName,
     required,
     initialValue,
+    disabled
 
 }) => {
 
@@ -120,7 +121,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             getData(requestData).then();
 
         } else {
-            setStoresList(firstRequest)
+            setStoresList(firstRequest);
         }
 
     }, [ debouncedSearchValue ]);
@@ -140,11 +141,11 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             nothingFound={ t`Store not found` }
             { ...form.getInputProps(fieldName) }
             maxLength={ 20 }
-
+            disabled={ disabled }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
+            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );
 

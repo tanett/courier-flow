@@ -14,6 +14,7 @@ import { useSelectorT } from 'app/state';
 import { additionalFieldInTable } from '../../../../entities/products/constants/additional-field-in-table';
 import { ProductsListFilter } from 'features/products-list-filter';
 import { ProductsListTableHeader } from './products-table-header';
+import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 
 export const ProductsListTable: React.FC<typeProductsListTable> = ({
     isAllowedEdit,
@@ -99,9 +100,9 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                             if (item.minPrice && item.maxPrice) {
                                 return item.maxPrice === item.minPrice
                                     ? <Box> { item.minPrice || item.maxPrice || '-' }</Box>
-                                    : <><Box><Trans>from</Trans> { item.minPrice }</Box>
+                                    : <><Box><Trans>from</Trans> {numberCurrencyFormat(item.minPrice || 0)  }</Box>
                                         <Divider/>
-                                        <Box><Trans>to</Trans> { item.maxPrice }</Box>
+                                        <Box><Trans>to</Trans> { numberCurrencyFormat(item.maxPrice || 0) }</Box>
                                     </>;
                             } else {
                                 return '-';

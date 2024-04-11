@@ -6,31 +6,18 @@ import { TablePagination } from 'shared/ui/table/ui/table-pagination/table-pagin
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editRetailProductPermissions } from 'app/config/permissions-config';
 import { IconPlus } from '@tabler/icons-react';
-import { Modal } from 'shared/ui/modal';
-import { Dialog } from 'shared/ui/dialog-new';
-import { notificationActions } from '../../../entities/notification/model';
-import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
-import { errorHandler } from 'app/utils/errorHandler';
-import { typeResponseError } from 'app/api/types';
-import { useAppDispatchT } from 'app/state';
-import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { routerPaths } from 'app/config/router-paths';
-import { useNavigate } from 'react-router-dom';
 import { useGetRetailProductsList } from 'features/product-details-stores/hooks/use-get-retail-products-list';
-import { useDeleteRetailProductMutation, usePatchRetailProductMutation } from '../../../entities/retail-products/api/api';
 import { typeRetailProduct } from '../../../entities/retail-products/model/types';
 import {  TableDetailsStoresInProduct } from 'features/product-details-stores/ui/table/table-stores-in-product';
-import { AddRetailProductToStore } from 'features/add-retail-product-to-store/add-retail-product-to-store';
+import { ModalDelete } from 'features/product-details-stores/ui/modal/modal-delete';
+import { ModalAdd } from 'features/product-details-stores/ui/modal/modal-add';
+import { ModalChangePrice } from 'features/product-details-stores/ui/modal/modal-change-price';
 
 export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = ({ productId }) => {
 
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
-
-    const dispatchAppT = useAppDispatchT();
-
-    const navigate = useNavigate();
 
     const isAllowEditRetailProduct = useIsAllowedPermissions(editRetailProductPermissions);
 
@@ -41,10 +28,8 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
         setRefetch,
     } = useGetRetailProductsList();
 
-    const [ editRetailProduct, { isLoading: isLoadingEditRetailProduct } ] = usePatchRetailProductMutation();
-    const [ deleteRetailProduct, { isLoading: isLoadingDeleteRetailProduct } ] = useDeleteRetailProductMutation();
 
-
+// popup add store && price
     const [ dialogToAdd, setDialogToAdd ] = useState<boolean>(false);
 
     const onAddClick = () => {
@@ -52,26 +37,10 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
         setDialogToAdd(true);
 
     };
-    const onCloseDialogToAdd = (refetch: boolean) => {
-
-        if (refetch) {
-
-            setRefetch(true);
-
-        }
-
-        setDialogToAdd(false);
-
-    };
 
 
+    // popup delete store && price
     const [ dialogToDelete, setDialogToDelete ] = useState<null | typeRetailProduct>(null);
-
-    const onCloseDialogToDelete = () => {
-
-        setDialogToDelete(null);
-
-    };
 
     const onOpenDialogToDelete = (id: string) => {
 
@@ -89,30 +58,26 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
 
     };
 
-    const onConfirmDelete= async (product: typeRetailProduct) => {
-
-        try {
-
-            await deleteRetailProduct([product.id]).unwrap();
-
-            dispatchAppT(notificationActions.addNotification({
-                type: NOTIFICATION_TYPES.SUCCESS,
-                message: i18n._(t`Operation was successful.`),
-            }));
-
-            onCloseDialogToDelete();
-            setRefetch(true);
+    // popup change price in store
+    const [ dialogChangePrice, setDialogChangePrice ] = useState<null | typeRetailProduct>(null);
 
 
-        } catch (err) {
+    const onOpenDialogChangePrice = (id: string) => {
 
-            errorHandler(err as typeResponseError, 'onDeleteRetailProduct', dispatchAppT);
+        if (list?.length) {
+
+            const item = list.find(item => item.id === id);
+
+            if (item) {
+
+                setDialogChangePrice(item);
+
+            }
 
         }
 
     };
 
-    const goToEditUserPage = (id: string | number) => navigate([ routerPaths.users, id.toString(), 'edit' ].join('/'));
 
     return (
         <Box sx={ {
@@ -155,37 +120,16 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
                 setRefetchList={ setRefetch }
                 onOpenDialogDeleteRetailProduct={ onOpenDialogToDelete }
                 isAllowEditProduct={ isAllowEditRetailProduct }
-                onOpenDialogChangePriceRetailProduct={onOpenDialogToDelete}
+                onOpenDialogChangePriceRetailProduct={onOpenDialogChangePrice}
             />
 
             { pagination && <Flex py={ 16 }><TablePagination withPerPage={ pagination.totalPages > 1 } { ...pagination } /></Flex> }
 
-            { dialogToDelete && <Modal modalWidth="dialog" opened={ true }>
-                <Modal.Body>
-                    <Dialog
-                        cancelButton={ {
-                            title: i18n._(t`Cancel`),
-                            handler: onCloseDialogToDelete,
-                        } }
-                        confirmButton={ {
-                            title: i18n._('action-archive'),
-                            handler: () => onConfirmDelete(dialogToDelete),
-                        } }
-                    >
-                        <Trans>Are you sure you want to delete <br/>the product</Trans>  &quot;{ dialogToDelete.product.name }&quot;  from the store?
-                    </Dialog>
-                    { isLoadingDeleteRetailProduct && <LoaderOverlay/> }
-                </Modal.Body>
-            </Modal> }
+            { dialogToDelete && <ModalDelete data={dialogToDelete} setOpen={setDialogToDelete}  setRefetch={setRefetch}/> }
 
-            { dialogToAdd && <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogToAdd(false) }>
-                <Modal.Body>
-                    <>
-                        <Modal.Header title={ i18n._(t`Add a store`) } onClose={ () => onCloseDialogToAdd(false) }/>
-                        <AddRetailProductToStore productId={ productId } onClose={  onCloseDialogToAdd }/>
-                    </>
-                </Modal.Body>
-            </Modal> }
+            { dialogToAdd && <ModalAdd setOpen={setDialogToAdd} productId={productId} setRefetch={setRefetch}/> }
+
+            { dialogChangePrice && <ModalChangePrice setOpen={setDialogChangePrice} data={dialogChangePrice} setRefetch={setRefetch}/> }
         </Box>);
 
 };

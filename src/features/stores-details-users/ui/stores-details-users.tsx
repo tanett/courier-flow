@@ -19,7 +19,7 @@ import { typeResponseError } from 'app/api/types';
 import { typeUsersEdit } from '../../../entities/users/model/types';
 import { useAppDispatchT } from 'app/state';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { AddUserToStore } from 'features/add-user-to-store/add-user-to-store';
+import { UserAddToStore } from 'features/user-add-to-store/user-add-to-store';
 import { routerPaths } from 'app/config/router-paths';
 import { useNavigate } from 'react-router-dom';
 
@@ -190,7 +190,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                 <Modal.Body>
                     <>
                         <Modal.Header title={ i18n._(t`Add an employee`) } onClose={ () => onCloseDialogToAddUser(false) }/>
-                        <AddUserToStore storeId={ storeId } onClose={ () => onCloseDialogToAddUser(true) }/>
+                        <UserAddToStore storeId={ storeId } onClose={ () => onCloseDialogToAddUser(true) }/>
                     </>
                 </Modal.Body>
             </Modal> }

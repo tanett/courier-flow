@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from '@mantine/form';
-import { initialForm, typeAddUserToStoreForm } from 'features/add-user-to-store/form';
+import { initialForm, typeAddUserToStoreForm } from 'features/user-add-to-store/form';
 import { Box, Button, Flex, Loader, rem, Select, Space, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -18,7 +18,7 @@ import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 
 
-export const AddUserToStore: React.FC<{ storeId: string, onClose: (refetch: boolean) => void }> = ({
+export const UserAddToStore: React.FC<{ storeId: string, onClose: (refetch: boolean) => void }> = ({
     storeId,
     onClose,
 }) => {

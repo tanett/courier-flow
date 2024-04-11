@@ -10,5 +10,6 @@ export type typeSelectorStores = {
     required: boolean,
     fieldName: string,
     form: typeReturnForm,
-    initialValue: string | null
+    initialValue: string | null,
+    disabled?: boolean
 }
