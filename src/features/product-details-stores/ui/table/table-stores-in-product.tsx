@@ -65,7 +65,7 @@ export const TableDetailsStoresInProduct: React.FC<typeProductStoresAndPricesTab
                                     return (
                                         <Table.Tr key={ item.id } >
                                             <Table.Td><Box sx={{ minWidth: '300px', maxWidth:'800px', }}><Text truncate>{ item?.store?.name || '-' }</Text></Box></Table.Td>
-                                            <Table.Td><Box maw={220} miw={100} >{ item?.price ? numberCurrencyFormat(item.price) : '-' }</Box></Table.Td>
+                                            <Table.Td ><Box maw={220} miw={100} >{ item?.price ? numberCurrencyFormat(item.price) : '-' }</Box></Table.Td>
                                             { isAllowEditProduct && <Table.TdActions align={'center'} actions={ actions }/>}
                                         </Table.Tr>
                                     );

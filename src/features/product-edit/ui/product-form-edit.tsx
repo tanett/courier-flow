@@ -253,9 +253,9 @@ export const ProductFormEdit: React.FC<{
                         <Box>
                             <CheckBoxForForm
 
-                                generallabel={ i18n._(t`Marked product`) }
+                                generallabel={ i18n._(t`Marking`) }
                                 size={ 'md' }
-                                label={ form.values.marked ? <Trans>Marked</Trans> : <Trans>Not marked</Trans> }
+                                label={ <Trans>Marked</Trans> }
                                 checked={ form.values.marked }
                                 { ...form.getInputProps('marked') }
                             />

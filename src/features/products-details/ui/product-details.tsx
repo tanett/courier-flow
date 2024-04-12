@@ -116,7 +116,7 @@ export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) =
                     <InfoCardSmall label={ i18n._(t`Unit`) } content={ productData?.unit || '-' } withBottomBorder={ false }/>
                     <InfoCardSmall label={ i18n._(t`Unit code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'UNIT_CODE') : '-' } withBottomBorder={ false }/>
                 </SimpleGrid>
-                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={ productData?.barcodes.join(', ') || '' } withBottomBorder={ false }/>
+                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={( productData?.barcodes || productData?.barcodes.length === 0 )? '-': productData?.barcodes.join(', ')  } withBottomBorder={ false }/>
 
             </SimpleGrid>
             { isFetching && <LoaderOverlay/> }

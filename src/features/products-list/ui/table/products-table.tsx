@@ -6,7 +6,7 @@ import { FilterPanel } from 'shared/ui/filter-panel';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
-import { Box, Checkbox, Divider, Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Checkbox, Flex, rem, Text, useMantineTheme } from '@mantine/core';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
 import { typeProductExtendedWithCheckBox, typeProductsListTable } from 'features/products-list/types/types';
 import { typeProductAdditionalField } from '../../../../entities/products/model/state-slice/types';
@@ -99,11 +99,11 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                         const getPriceElement = (item: typeProductExtendedWithCheckBox) => {
                             if (item.minPrice && item.maxPrice) {
                                 return item.maxPrice === item.minPrice
-                                    ? <Box> { item.minPrice || item.maxPrice || '-' }</Box>
-                                    : <><Box><Trans>from</Trans> {numberCurrencyFormat(item.minPrice || 0)  }</Box>
-                                        <Divider/>
-                                        <Box><Trans>to</Trans> { numberCurrencyFormat(item.maxPrice || 0) }</Box>
-                                    </>;
+                                    ? <Flex gap={ 10 } justify={ 'end' }> { item.minPrice || item.maxPrice || '-' }</Flex>
+                                    : <Box>
+                                        <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[5] }><Trans>from</Trans></Text> { numberCurrencyFormat(item.minPrice || 0) }</Flex>
+                                        <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[5] }><Trans>to</Trans></Text> { numberCurrencyFormat(item.maxPrice || 0) }</Flex>
+                                    </Box>;
                             } else {
                                 return '-';
                             }
@@ -124,10 +124,14 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                                 <Table.Td><Box sx={ { width: rem(150) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
                                 <Table.Td><Flex sx={ {
                                     minWidth: rem(160),
-                                    flexDirection: 'column'
+                                    flexDirection: 'column',
+                                    alignItems: 'end',
                                 } }>{ getPriceElement(item) }</Flex>
                                 </Table.Td>
-                                <Table.Td align={'center'}><Box sx={ { minWidth: rem(80), textAlign: 'center' } }>{ item.storesCount  }</Box></Table.Td>
+                                <Table.Td align={ 'center' }><Box sx={ {
+                                    minWidth: rem(80),
+                                    textAlign: 'center'
+                                } }>{ item.storesCount }</Box></Table.Td>
                                 { isAllowedEdit && <Table.TdActions actions={ actions }/> }
                             </Table.Tr>
                         );

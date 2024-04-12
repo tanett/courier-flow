@@ -3,7 +3,7 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
-import { typeCreateProductRequest, typeEditProductRequest, typeProductToArchiveRequest, typeSearchFilterProduct, typeSearchProductSortingNames } from '../../../entities/products/api/types';
+import { typeCreateProductRequest, typeEditProductRequest, typeProductToArchiveRequest, typeSearchFilterProduct, typeSearchFilterProductExtended, typeSearchProductSortingNames } from '../../../entities/products/api/types';
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -21,7 +21,7 @@ export const productsApi = baseApi.injectEndpoints({
             ),
         }),
 // Search product extended with counters
-        searchProductExtended: builder.query<typeSearchResponse<typeProductExtended>, typeSearchRequest<typeSearchFilterProduct, typeSearchProductSortingNames>>({
+        searchProductExtended: builder.query<typeSearchResponse<typeProductExtended>, typeSearchRequest<typeSearchFilterProductExtended, typeSearchProductSortingNames>>({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCTS_SEARCH_EXTENDED,

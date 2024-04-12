@@ -81,7 +81,7 @@ export const ProductFormCreate: React.FC<{
                     message: i18n._(t`Product created successfully.`),
                 }));
 
-                navigate(generatePath(routerPaths.products_details,{id: resp.id}));
+                navigate(generatePath(routerPaths.products_details,{id: resp.id, name: resp.name}));
 
             } catch (err) {
 
@@ -225,9 +225,9 @@ export const ProductFormCreate: React.FC<{
                         </Box>
                         <Box>
                             <CheckBoxForForm
-                                generallabel={ i18n._(t`Marked product`) }
+                                generallabel={ i18n._(t`Marking`) }
                                 size={ 'md' }
-                                label={ form.values.marked ? <Trans>Marked</Trans> : <Trans>Not marked</Trans> }
+                                label={ <Trans>Marked</Trans> }
                                 { ...form.getInputProps('marked') }
                             />
 

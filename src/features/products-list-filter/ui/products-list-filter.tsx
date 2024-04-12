@@ -131,7 +131,7 @@ export const ProductsListFilter: React.FC = () => {
                             data={[ { value: true, label: i18n._(t`Piece`) }, { value: false, label: i18n._(t`Not piece`) } ]}
                         />
                         <FilterButtonPanel
-                            label={i18n._(t`Blocking`)}
+                            label={i18n._(t`Marking`)}
                             value={form.values.marked}
                             onChange={onChangeMarkedHandler}
                             data={[ { value: true, label: i18n._(t`Marked`) }, { value: false, label: i18n._(t`Not marked`) } ]}

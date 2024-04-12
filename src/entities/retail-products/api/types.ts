@@ -6,7 +6,7 @@ export type typeEditRetailProductRequest = typeEditRetailProduct
 
 export type typeSearchFilterRetailProduct = {
     ids?: string[]
-    productsIds?: string[]
+    productIds?: string[]
     storeIds?: string[]
     _or_?: string[]
     _not_?: string

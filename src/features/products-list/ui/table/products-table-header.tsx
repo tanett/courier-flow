@@ -60,10 +60,7 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
                                     borderTopRightRadius: rem(4),
                                     textWrap: 'nowrap',
                                     borderBottom: '1px solid transparent',
-                                    '&:hover': {
-                                        backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1),
-                                        borderBottomColor: theme.colors.primary[ 3 ],
-                                    },
+                                    '&:hover': {  backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1), },
                                 } }
                             >
                                 { actions.label }
