@@ -45,6 +45,7 @@ export enum API_URLS {
     RETAIL_PRODUCTS_CREATE= '/api/v1/retail-products',
     RETAIL_PRODUCTS_GET = '/api/v1/retail-products/{id}',
     RETAIL_PRODUCTS_DELETE = '/api/v1/retail-products',
+    RETAIL_PRODUCTS_CHANGE_PRICES_IN_ALL_STORES= '/api/v1/retail-products/change-price',
 
     CATEGORIES_SEARCH = '/api/v1/product-categories/search',
     CATEGORIES_SEARCH_EXTENDED = '/api/v1/product-categories/extended-search',

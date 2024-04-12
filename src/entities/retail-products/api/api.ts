@@ -3,7 +3,14 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeRetailProduct } from '../../../entities/retail-products/model/types';
-import { typeCreateRetailProductRequest, typeEditRetailProductRequest, typeRetailProductDeleteRequest, typeSearchFilterRetailProduct, typeSearchRetailProductSortingNames } from '../../../entities/retail-products/api/types';
+import {
+    typeChangePricesInAllStoresRequest,
+    typeCreateRetailProductRequest,
+    typeEditRetailProductRequest,
+    typeRetailProductDeleteRequest,
+    typeSearchFilterRetailProduct,
+    typeSearchRetailProductSortingNames
+} from '../../../entities/retail-products/api/types';
 
 export const retailProductsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -68,7 +75,17 @@ export const retailProductsApi = baseApi.injectEndpoints({
             ),
         }),
 
-
+        // change prices in all stores retail Product
+        changePricesInAllStores: builder.mutation<typeRetailProduct, typeChangePricesInAllStoresRequest >({
+            query: (data) => (
+                {
+                    url: API_URLS.RETAIL_PRODUCTS_CHANGE_PRICES_IN_ALL_STORES,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
     }),
 });
 
@@ -78,5 +95,6 @@ export const {
     useSearchRetailProductQuery,
     useLazySearchRetailProductQuery,
     useDeleteRetailProductMutation,
-    useGetRetailProductByIdQuery
+    useGetRetailProductByIdQuery,
+    useChangePricesInAllStoresMutation
 } = retailProductsApi;

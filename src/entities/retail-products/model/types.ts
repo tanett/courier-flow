@@ -20,3 +20,9 @@ export type typeCreateRetailProduct = {
 }
 
 export type typeEditRetailProduct = Pick<typeRetailProduct, 'id' | 'price'>
+
+
+export type typeChangePricesInAllStores= {
+    productId: string
+    newPrice: number
+}

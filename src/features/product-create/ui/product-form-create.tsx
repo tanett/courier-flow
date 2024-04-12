@@ -8,7 +8,7 @@ import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { IconAlertCircle, IconChevronDown } from '@tabler/icons-react';
 import { useCreateProductMutation } from '../../../entities/products/api/api';
 import { createInitialFormHelper } from '../../../entities/products/helpers/createInitialForm';
@@ -25,6 +25,7 @@ import { CreateInputForAdditionalField } from '../../../entities/products/helper
 import { IMaskInput } from 'react-imask';
 import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
 import { BarcodesInputForProductForm } from 'features/barcodes-input-for-product-form/barcodes-input-for-product-form';
+import { routerPaths } from 'app/config/router-paths';
 
 
 export const ProductFormCreate: React.FC<{
@@ -73,14 +74,14 @@ export const ProductFormCreate: React.FC<{
 
             try {
 
-                await createProduct(dataObject).unwrap();
+               const resp =  await createProduct(dataObject).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
                     message: i18n._(t`Product created successfully.`),
                 }));
 
-                navigate(-1);
+                navigate(generatePath(routerPaths.products_details,{id: resp.id}));
 
             } catch (err) {
 

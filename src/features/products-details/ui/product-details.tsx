@@ -21,11 +21,13 @@ export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) =
         isFetching,
     } = useGetProductByIdQuery(productId);
 
+    const vat = productData ? (productData.vat * 100).toFixed(2)+ ' %' : '';
+
     return (
         <>
-                <SimpleGrid
-                    sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+            <SimpleGrid
+                sx={ {
+                    border: `1px solid ${ theme.colors.borderColor[0] }`,
                     borderTopRightRadius: '8px',
                     borderBottomRightRadius: '8px',
                     borderBottomLeftRadius: '8px',
@@ -33,88 +35,88 @@ export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) =
                     marginTop: '-1px',
                     backgroundColor: theme.white,
                 } }
+                breakpoints={ [
+                    {
+                        minWidth: 'md',
+                        cols: 1,
+                        spacing: 10,
+                    },
+                    {
+                        minWidth: 1200,
+                        cols: 2,
+                        spacing: 60,
+                    }
+                ] }>
+                <SimpleGrid
                     breakpoints={ [
-                {
-                    minWidth: 'md',
-                    cols: 1,
-                    spacing: 10,
-                },
-                {
-                    minWidth: 1200,
-                    cols: 2,
-                    spacing: 60,
-                }
-                    ] }>
-                    <SimpleGrid
-                        breakpoints={ [
-                            {
-                                minWidth: 'md',
-                                cols: 2,
-                                spacing: 10,
-                            },
-                            {
-                                minWidth: 1200,
-                                cols: 2,
-                                spacing: 60,
-                            }
-                        ] }
-                    >
-                        <InfoCardSmall label={ i18n._(t`PSID`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'PSID') : '-' } withBottomBorder={ true }/>
-                        <InfoCardSmall label={ i18n._(t`Package code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'PACKAGE_CODE') : '-' } withBottomBorder={ true }/>
-                    </SimpleGrid>
-                    <InfoCardSmall label={ i18n._(t`Category`) } iconLabel={<FolderIcon/>} content={ productData?.productCategory?.name || '-' } withBottomBorder={ true }/>
-                    <SimpleGrid
-                        breakpoints={ [
-                            {
-                                minWidth: 'md',
-                                cols: 2,
-                                spacing: 10,
-                            },
-                            {
-                                minWidth: 1200,
-                                cols: 2,
-                                spacing: 60,
-                            }
-                        ] }
-                    >
-                        <InfoCardSmall label={ i18n._(t`Comission TIN`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'COMMISSION_TIN') : '-' } withBottomBorder={ true }/>
-                        <InfoCardSmall label={ i18n._(t`Comission PINFL`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'COMMISSION_PINFL') : '-' } withBottomBorder={ true }/>
-                    </SimpleGrid>
-                    <SimpleGrid
-                        breakpoints={ [
-                            {
-                                minWidth: 'md',
-                                cols: 2,
-                                spacing: 10,
-                            },
-                            {
-                                minWidth: 1200,
-                                cols: 2,
-                                spacing: 60,
-                            }
-                        ] }
-                    >
-                        <InfoCardSmall label={ i18n._(t`Vat`) } iconLabel={<ReceiptPercentIcon/>} content={ productData?.vat || '-' } withBottomBorder={ true }/>
-                        <div/>
-                    </SimpleGrid>
-                    <SimpleGrid
-                        breakpoints={ [
-                            {
-                                minWidth: 'md',
-                                cols: 2,
-                                spacing: 10,
-                            },
-                            {
-                                minWidth: 1200,
-                                cols: 2,
-                                spacing: 60,
-                            }
-                        ] }
-                    >
-                        <InfoCardSmall label={ i18n._(t`Unit`) } content={ productData?.unit ||  '-' } withBottomBorder={ false }/>
-                        <InfoCardSmall label={ i18n._(t`Unit code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'UNIT_CODE') : '-' } withBottomBorder={ false }/>
-                    </SimpleGrid>
-                    <InfoCardSmall label={ i18n._(t`Category`) } iconLabel={<BarcodeScanIconOutline/>} content={ productData?.barcodes.join(', ') || '' } withBottomBorder={ false }/>
+                        {
+                            minWidth: 'md',
+                            cols: 2,
+                            spacing: 10,
+                        },
+                        {
+                            minWidth: 1200,
+                            cols: 2,
+                            spacing: 60,
+                        }
+                    ] }
+                >
+                    <InfoCardSmall label={ i18n._(t`PSID`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'PSID') : '-' } withBottomBorder={ true }/>
+                    <InfoCardSmall label={ i18n._(t`Package code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'PACKAGE_CODE') : '-' } withBottomBorder={ true }/>
+                </SimpleGrid>
+                <InfoCardSmall label={ i18n._(t`Category`) } iconLabel={ <FolderIcon/> } content={ productData?.productCategory?.name || '-' } withBottomBorder={ true }/>
+                <SimpleGrid
+                    breakpoints={ [
+                        {
+                            minWidth: 'md',
+                            cols: 2,
+                            spacing: 10,
+                        },
+                        {
+                            minWidth: 1200,
+                            cols: 2,
+                            spacing: 60,
+                        }
+                    ] }
+                >
+                    <InfoCardSmall label={ i18n._(t`Comission TIN`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'COMMISSION_TIN') : '-' } withBottomBorder={ true }/>
+                    <InfoCardSmall label={ i18n._(t`Comission PINFL`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'COMMISSION_PINFL') : '-' } withBottomBorder={ true }/>
+                </SimpleGrid>
+                <SimpleGrid
+                    breakpoints={ [
+                        {
+                            minWidth: 'md',
+                            cols: 2,
+                            spacing: 10,
+                        },
+                        {
+                            minWidth: 1200,
+                            cols: 2,
+                            spacing: 60,
+                        }
+                    ] }
+                >
+                    <InfoCardSmall label={ i18n._(t`Vat`) } iconLabel={ <ReceiptPercentIcon/> } content={ vat } withBottomBorder={ true }/>
+                    <div/>
+                </SimpleGrid>
+                <SimpleGrid
+                    breakpoints={ [
+                        {
+                            minWidth: 'md',
+                            cols: 2,
+                            spacing: 10,
+                        },
+                        {
+                            minWidth: 1200,
+                            cols: 2,
+                            spacing: 60,
+                        }
+                    ] }
+                >
+                    <InfoCardSmall label={ i18n._(t`Unit`) } content={ productData?.unit || '-' } withBottomBorder={ false }/>
+                    <InfoCardSmall label={ i18n._(t`Unit code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'UNIT_CODE') : '-' } withBottomBorder={ false }/>
+                </SimpleGrid>
+                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={ productData?.barcodes.join(', ') || '' } withBottomBorder={ false }/>
 
             </SimpleGrid>
             { isFetching && <LoaderOverlay/> }

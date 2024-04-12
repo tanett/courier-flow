@@ -1,4 +1,4 @@
-import { typeCreateRetailProduct, typeEditRetailProduct } from 'entities/retail-products/model/types';
+import { typeChangePricesInAllStores, typeCreateRetailProduct, typeEditRetailProduct } from 'entities/retail-products/model/types';
 
 export type typeCreateRetailProductRequest = typeCreateRetailProduct
 
@@ -16,3 +16,5 @@ export type typeSearchFilterRetailProduct = {
 export type typeSearchRetailProductSortingNames = 'PRODUCT_NAME' | 'STORE_NAME' ;
 
 export type typeRetailProductDeleteRequest = string[]
+
+export type typeChangePricesInAllStoresRequest = typeChangePricesInAllStores;

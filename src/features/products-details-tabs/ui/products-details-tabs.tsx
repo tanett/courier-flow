@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs } from '@mantine/core';
 import { t } from '@lingui/macro';
-import { useStyles } from './styles';
+import { useStyles } from 'features/products-details-tabs/ui/styles';
 import { useLingui } from '@lingui/react';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { queryParamsNames } from 'app/config/api-constants';
