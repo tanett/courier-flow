@@ -15,11 +15,11 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
         value,
         ...others
     }: ItemProps, ref) => (
-        <Box ref={ ref } { ...others } px={5}>
-            <Group noWrap px={0}>
+        <Box ref={ ref } { ...others } px={ 5 }>
+            <Group noWrap px={ 0 }>
                 <Text size="md">{ label }</Text>
                 <Text size="sm" opacity={ 0.65 }>
-                    { value}
+                    { value }
                 </Text>
             </Group>
         </Box>
@@ -49,16 +49,27 @@ export const CountrySelect: React.FC<typeCountrySelect> = ({
         <Select
             placeholder="Country code"
             itemComponent={ SelectItem }
-            data={[ { value: '', label: t`country code` }, ...data ] }
+            data={ [ {
+                value: '',
+                label: t`country code`
+            }, ...data ] }
             value={ value }
             onChange={ onChange }
             maxDropdownHeight={ 400 }
             rightSection={ <IconChevronDown size="1rem"/> }
             rightSectionWidth={ 30 }
-            styles={{ rightSection: { pointerEvents: 'none', pointer: 'pointer' } }}
-            sx={{ '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+            styles={ {
+                rightSection: {
+                    pointerEvents: 'none',
+                    pointer: 'pointer'
+                }
+            } }
+            sx={ {
+                '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
+                '&.mantine-Select-root  input': { paddingRight: '25px' },
+            } }
             { ...rest }
-            className={className}
+            className={ className }
         />);
 
 };

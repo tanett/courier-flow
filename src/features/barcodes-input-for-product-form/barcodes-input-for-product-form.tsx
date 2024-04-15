@@ -148,7 +148,7 @@ export const BarcodesInputForProductForm: React.FC<typeBarcodesInputForProductFo
                                 letterSpacing: 0.3,
                                 marginTop: '2px'
                             } }
-                            onClick={  onSubmit }>Add barcode</Button>
+                            onClick={  onSubmit }><Trans>Add barcode</Trans></Button>
                 </Flex>
 
                 <Input.Error mt={ 6 }>{ form.getInputProps('barcodes').error }</Input.Error>

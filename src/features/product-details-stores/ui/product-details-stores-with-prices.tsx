@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ActionIcon, Box, Button, Flex, Tooltip, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
-import { TablePagination } from 'shared/ui/table/ui/table-pagination/table-pagination';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editRetailProductPermissions } from 'app/config/permissions-config';
 import { IconPlus } from '@tabler/icons-react';
@@ -14,6 +13,7 @@ import { ModalAdd } from 'features/product-details-stores/ui/modal/modal-add';
 import { ModalChangePrice } from 'features/product-details-stores/ui/modal/modal-change-price';
 import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
 import { ModalAllPricesChange } from 'features/product-details-stores/ui/modal/modal-all-prices-change';
+import { Pagination } from 'shared/ui/pagination/table-pagination';
 
 export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = ({ productId }) => {
 
@@ -136,7 +136,7 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
                 onOpenDialogChangePriceRetailProduct={ onOpenDialogChangePrice }
             />
 
-            { pagination && <Flex py={ 16 }><TablePagination withPerPage={ pagination.totalPages > 1 } { ...pagination } /></Flex> }
+            { pagination && <Flex py={ 16 }><Pagination pagination={ pagination } withPerPage={ true }/></Flex> }
 
             { dialogToDelete && <ModalDelete data={ dialogToDelete } setOpen={ setDialogToDelete } setRefetch={ setRefetch }/> }
 

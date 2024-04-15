@@ -4,7 +4,6 @@ import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { useGetStoresUsersList } from 'features/stores-details-users/hooks/use-get-stores-users-list';
 import { TableDetailsUsers } from 'features/stores-details-users/ui/table/table-stores-users';
-import { TablePagination } from 'shared/ui/table/ui/table-pagination/table-pagination';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editUserPermissions } from 'app/config/permissions-config';
 import { IconPlus } from '@tabler/icons-react';
@@ -22,6 +21,7 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { UserAddToStore } from 'features/user-add-to-store/user-add-to-store';
 import { routerPaths } from 'app/config/router-paths';
 import { useNavigate } from 'react-router-dom';
+import { Pagination } from 'shared/ui/pagination/table-pagination';
 
 export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) => {
 
@@ -166,7 +166,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
                 goToEditUserPage={goToEditUserPage}
             />
 
-            { pagination && <Flex py={ 16 }><TablePagination withPerPage={ pagination.totalPages > 1 } { ...pagination } /></Flex> }
+            { pagination && <Flex py={ 16 }><Pagination pagination={ pagination } withPerPage={ true }/></Flex> }
 
             { dialogToRemoveUser && <Modal modalWidth="dialog" opened={ true }>
                 <Modal.Body>

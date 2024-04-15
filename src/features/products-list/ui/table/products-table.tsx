@@ -99,13 +99,13 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                         const getPriceElement = (item: typeProductExtendedWithCheckBox) => {
                             if (item.minPrice && item.maxPrice) {
                                 return item.maxPrice === item.minPrice
-                                    ? <Flex gap={ 10 } justify={ 'end' }> { item.minPrice || item.maxPrice || '-' }</Flex>
+                                    ? <Flex gap={ 10 } justify={ 'end' }> { item.minPrice || item.maxPrice || '' }</Flex>
                                     : <Box>
                                         <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[5] }><Trans>from</Trans></Text> { numberCurrencyFormat(item.minPrice || 0) }</Flex>
                                         <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[5] }><Trans>to</Trans></Text> { numberCurrencyFormat(item.maxPrice || 0) }</Flex>
                                     </Box>;
                             } else {
-                                return '-';
+                                return '';
                             }
                         };
 
@@ -143,7 +143,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                 </Table.Body>
             </Table>
 
-            { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
+            { pagination && <Pagination pagination={ pagination } withPerPage={ true }/> }
         </>
         }
 

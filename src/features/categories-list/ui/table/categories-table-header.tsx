@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import { Box, Checkbox, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
+import { Box, Checkbox, Divider, Flex, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { typeCategoriesListTableHeader } from '../../types/types';
 
 
@@ -27,36 +27,39 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                 />
             </Table.Th>
             { (indeterminate || allChecked)
-                ? <>
-                    { headerActions.map((actions, index) => (
-                        <Table.Th key={ index }>
-                            <UnstyledButton
-                                id={ actions.id }
-                                onClick={ actions.handler }
-                                sx={ {
-                                    fontWeight: 600,
-                                    fontSize: theme.fontSizes.md,
-                                    letterSpacing: 0.3,
-                                    lineHeight: '20px',
-                                    color: theme.black,
-                                    cursor: 'pointer',
-                                    padding: '2px 4px',
-                                    borderTopLeftRadius: rem(4),
-                                    borderTopRightRadius: rem(4),
-                                    textWrap: 'nowrap',
-                                    borderBottom: '1px solid transparent',
-                                    '&:hover': {
-                                        backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1),
-                                        borderBottomColor: theme.colors.primary[ 3 ],
-                                    },
-                                } }
-                            >
-                                { actions.label }
-                            </UnstyledButton>
-                        </Table.Th>
-                    )) }
+                ? <Table.Th  colSpan={isAllowedEdit ? 3 : 2 }>
+                    <Flex sx={ { flexWrap: 'nowrap'} }>
+                        { headerActions.map((actions, index) => (
+                            <React.Fragment  key={ actions.id }>
+                                <UnstyledButton
 
-                </>
+                                    id={ actions.id }
+                                    onClick={ actions.handler }
+                                    sx={ {
+                                        fontWeight: 600,
+                                        fontSize: theme.fontSizes.md,
+                                        letterSpacing: 0.3,
+                                        lineHeight: '20px',
+                                        color: theme.black,
+                                        cursor: 'pointer',
+                                        padding: '6px 6px',
+                                        marginLeft: index === 0 ? 0 : rem(16),
+                                        marginRight: rem(16),
+                                        borderTopLeftRadius: rem(4),
+                                        borderTopRightRadius: rem(4),
+                                        textWrap: 'nowrap',
+                                        borderBottom: '1px solid transparent',
+                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.1), },
+                                    } }
+                                >
+                                    { actions.label }
+                                </UnstyledButton>
+                                { index < headerActions.length-1  && <Divider orientation={'vertical'} sx={{borderColor: theme.colors.borderColor[0]}}/> }
+                            </React.Fragment>
+
+                        )) }
+                    </Flex>
+                </Table.Th>
                 : <>
                     <Table.Th withoutLeftDivider>
                         <Trans id={'item-name'}>Name</Trans>

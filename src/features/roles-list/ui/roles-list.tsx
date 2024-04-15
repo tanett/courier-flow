@@ -84,7 +84,7 @@ export const RolesList: React.FC = () => {
                     </Table.Body>
                 </Table>
 
-                {pagination && <Pagination pagination={ pagination } withPerPage={pagination.totalPages > 1}/>}
+                {pagination && <Pagination pagination={ pagination } withPerPage={true}/>}
             </>
         }
 

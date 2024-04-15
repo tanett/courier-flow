@@ -8,6 +8,7 @@ import { Dialog } from 'shared/ui/dialog/dialog';
 import { useArchiveUsers } from '../../entities/users/hooks/use-archive-users';
 import { useStyles } from './styles';
 import { useSelectorT } from 'app/state';
+import { useLingui } from '@lingui/react';
 
 export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) => {
 
@@ -16,6 +17,8 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
     const navigate = useNavigate();
+
+    const {i18n}=useLingui()
 
     const [ isOpenConfirm, setIsOpenConfirm ] = useState(false);
 
@@ -37,7 +40,7 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
                 onClose={ () => setIsOpenConfirm(false) }
                 withCloseButton={ false }
                 confirmButton={ {
-                    title: t`Archive`,
+                    title: i18n._('action-archive'),
                     handler: () => {
 
                         if (id) onArchive(id);

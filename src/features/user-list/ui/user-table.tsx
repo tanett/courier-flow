@@ -40,7 +40,7 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
-                            <Trans>Name</Trans>
+                            <Trans>Full name</Trans>
                         </Table.Th>
                         <Table.Th>
                             <Trans>Phone number</Trans>
@@ -100,7 +100,7 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                     </Table.Body>
                 </Table>
 
-                { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
+                { pagination && <Pagination pagination={ pagination } withPerPage={true}/> }
             </>
         }
 
