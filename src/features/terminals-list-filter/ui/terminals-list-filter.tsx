@@ -109,6 +109,7 @@ export const TerminalsListFilter: React.FC = () => {
                         />
 
                         <FilterButtonPanel
+                            label={i18n._(t`Blocking`)}
                             value={ form.values.blocked }
                             onChange={ onChangeBlockedTerminalHandler }
                             data={ [ {
@@ -116,7 +117,7 @@ export const TerminalsListFilter: React.FC = () => {
                                 label: i18n._(t`Blocked`),
                             }, {
                                 value: false,
-                                label: i18n._(t`Not bocked`),
+                                label: i18n._(t`Not blocked`),
                             } ] }
                         />
                     </Flex>

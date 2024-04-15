@@ -11,7 +11,7 @@ export const CloseButton: React.FC<typeModelCloseButtonProps> = ({ onClick }) =>
     const { classes } = useStyles();
 
     return (
-        <ActionIcon variant="outline" onClick={onClick} className={classes.closeButton} color={theme.colors.primary[ 5 ]}>
+        <ActionIcon variant="outline" onClick={onClick} className={classes.closeButton}>
             <IconX className={classes.icon}/>
         </ActionIcon>
     );

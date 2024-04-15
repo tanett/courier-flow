@@ -80,7 +80,6 @@ export const useTerminalList = () => {
 
         if (location) {
 
-            console.log(location);
             getData().then();
 
         }

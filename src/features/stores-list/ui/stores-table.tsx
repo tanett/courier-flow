@@ -17,6 +17,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
     currentUser,
     goToEditStorePage,
     goToDetailsStorePage,
+    goToDetailsStoreTabUsers,
     storesList,
     pagination,
     isLoading,
@@ -47,8 +48,8 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                             <Trans>Phone number</Trans>
                         </Table.Th>
 
-                        <Table.Th>
-                            <Trans>The number of employees</Trans>
+                        <Table.Th align={'center'}>
+                            <Trans>The number<br/> of employees</Trans>
                         </Table.Th>
                         { isAllowedStoreEdit && <Table.Th>
                             <Trans>Actions</Trans>
@@ -72,7 +73,8 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                                     <Table.Td><Box sx={{ minWidth: rem(250), wordBreak: 'break-all' }}>{item.locality}, { item.address }</Box></Table.Td>
                                     <Table.Td><Box sx={{ minWidth: rem(160) }}>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Box></Table.Td>
 
-                                    <Table.Td><Box sx={{ minWidth: rem(160), textAlign: 'center', color: theme.colors.primary[ 5 ] }}>{ item.usersCount || '-' }</Box></Table.Td>
+                                    <Table.Td align={'center'}><Box sx={{ minWidth: rem(160), textAlign: 'center', color: theme.colors.primary[ 5 ] }}
+                                    onClick={ (event) => goToDetailsStoreTabUsers(event, item.id, item.name) }>{ item.usersCount || '-' }</Box></Table.Td>
                                     { isAllowedStoreEdit && <Table.TdActions actions={ actions } align={'center'}/> }
                                 </Table.Tr>
                             );

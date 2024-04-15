@@ -9,6 +9,8 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { Table } from 'shared/ui/table';
 import { useGetUserFromUrlWithStoresData } from 'features/users-details/hooks/use-get-user-from-url-with-stores-data';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
+import { routerPaths } from 'app/config/router-paths';
+import { useNavigate } from 'react-router-dom';
 
 
 export const UsersDetails: React.FC = () => {
@@ -25,6 +27,7 @@ export const UsersDetails: React.FC = () => {
         pagination,
     } = useGetUserFromUrlWithStoresData();
 
+const navigate = useNavigate()
 
     return (
         <>
@@ -128,8 +131,9 @@ export const UsersDetails: React.FC = () => {
                             { storesList && storesList.length > 0 && storesList.map(item => {
 
                                 return (
-                                    <Table.Tr key={ item.id }>
-                                        <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all', color: theme.colors.primary[ 5 ] } }>{ item.name }</Flex></Table.Td>
+                                    <Table.Tr key={ item.id } >
+                                        <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all', color: theme.colors.primary[ 5 ], cursor: 'pointer' } }
+                                        onClick={()=>{navigate([routerPaths.stores, item.id, item.name].join('/'))}}>{ item.name }</Flex></Table.Td>
                                         <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all' } }>{ item.address }</Flex></Table.Td>
                                         <Table.Td>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Table.Td>
 

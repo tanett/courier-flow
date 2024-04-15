@@ -60,7 +60,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
                                         },
 
                                         {
-                                            icon: <ArrowRightStartOnRectangleIcon width={ 22 }/>,
+                                            icon: <ArrowRightStartOnRectangleIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
                                             handler: () => onOpenDialogRemoveUser(item.id),
                                             label: i18n._(t`Remove from store`),
                                         }

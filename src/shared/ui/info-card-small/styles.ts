@@ -15,9 +15,10 @@ export const useStyles = createStyles((theme) => ({
         lineHeight: rem(19),
         letterSpacing: rem(0.3),
         marginBottom: rem(12),
+        alignItems: 'center',
         '& svg': {
-            width: rem(20),
-            height: rem(20),
+            width: rem(24),
+            height: rem(24),
             color: theme.colors.primary[ 5 ],
         },
     },

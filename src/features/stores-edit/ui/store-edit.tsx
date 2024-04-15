@@ -131,7 +131,7 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
 
                     <TextInput
                         withAsterisk
-                        label={ <Trans>Name</Trans> }
+                        label={ <Trans id={'item-name'}>Name</Trans> }
                         placeholder={ i18n._(t`Name`) }
                         { ...form.getInputProps('name') }
                         maxLength={ 150 }
@@ -139,7 +139,7 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <Select
                             withAsterisk
-                            label={ <Trans>Type</Trans> }
+                            label={ <Trans>Store type</Trans> }
                             data={ storeTypeList }
                             { ...form.getInputProps('type') }
                             rightSection={ <IconChevronDown size="1rem"/> }
@@ -166,19 +166,20 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
                     </SimpleGrid>
                     <TextInput
                         withAsterisk
-                        label={ <Trans>Address</Trans> }
-                        value={ storeData.address }
-                        maxLength={ 250 }
-                        disabled
-                    />
-                    <TextInput
-                        withAsterisk
-                        label={ <Trans>locality</Trans> }
+                        label={ <Trans>Locality</Trans> }
                         placeholder={ i18n._(t`name of the locality`) }
                         disabled
                         value={ storeData.locality }
                         maxLength={ 150 }
                     />
+                    <TextInput
+                        withAsterisk
+                        label={ <Trans>Address</Trans> }
+                        value={ storeData.address }
+                        maxLength={ 250 }
+                        disabled
+                    />
+
                 </FieldsetForForm>
                 <FieldsetForForm title={ <Trans>Other</Trans> }>
 

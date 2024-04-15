@@ -7,6 +7,7 @@ export type typeStoresListTable = {
     currentUser: typeGetCurrentUserResponse | undefined,
     goToEditStorePage: (id: string) => void
     goToDetailsStorePage: (id: string, name: string) => void
+    goToDetailsStoreTabUsers: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string, name: string) => void
     storesList: typeExtendedStore[] | undefined
     pagination: typeTablePagination | undefined,
     isLoading: boolean

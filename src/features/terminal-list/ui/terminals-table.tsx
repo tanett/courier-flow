@@ -7,7 +7,7 @@ import { Table } from 'shared/ui/table';
 import { t, Trans } from '@lingui/macro';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
 import { i18n } from '@lingui/core';
-import { Box } from '@mantine/core';
+import { Box, Text } from '@mantine/core';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 
 export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
@@ -30,13 +30,13 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
                         <Trans>Serial number</Trans>
                     </Table.Th>
                     <Table.Th>
+                        <Trans>Model</Trans>
+                    </Table.Th>
+                    <Table.Th>
                         <Trans>Fiscal ID</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Trans>Merchant</Trans>
-                    </Table.Th>
-                    <Table.Th>
-                        <Trans>Creation date</Trans>
+                        <Trans>Store</Trans>
                     </Table.Th>
                     <Table.Th>
                         <Trans>Status</Trans>
@@ -55,15 +55,13 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsTerminalPage(item) }>
                                 <Table.Td>{ item.serialNumber }</Table.Td>
+                                <Table.Td>{ item.model }</Table.Td>
                                 <Table.Td>
                                     <Box maw={ 200 } miw={ 150 } sx={ { wordBreak: 'break-all' } }>{ item.fiscalCardId }</Box>
                                 </Table.Td>
-                                <Table.Td>{ item.merchantName }</Table.Td>
-                                <Table.Td>{ createdDate.toLocaleDateString(undefined, {
-                                    day: 'numeric',
-                                    month: 'numeric',
-                                    year: 'numeric',
-                                }) }</Table.Td>
+                                <Table.Td>
+                                    <Box maw={ 350 } miw={ 250 } ><Text truncate>{ item.storeName }</Text></Box>
+                                </Table.Td>
                                 <Table.Td>{ status }</Table.Td>
                             </Table.Tr>
                         );
@@ -76,7 +74,7 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
                 </Table.Body>
             </Table>
 
-            { pagination && <Pagination pagination={ pagination } withPerPage={ pagination.totalPages > 1 }/> }
+            { pagination && <Pagination pagination={ pagination } withPerPage={ true }/> }
         </> }</>;
 
 };

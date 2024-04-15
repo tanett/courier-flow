@@ -8,6 +8,7 @@ import { useGetTerminalByIdQuery } from '../../../entities/terminals/api/api';
 import { useLazyGetStoreByIdQuery } from '../../../entities/stores/api/api';
 import { typeStore } from '../../../entities/stores/model/types';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
+import { LoaderOverlay } from 'shared/ui/loader-overlay';
 
 
 export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }) => {
@@ -74,7 +75,7 @@ export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }
                             spacing: 30,
                         }
                     ] }>
-                    <InfoCardSmall label={ i18n._(t`Vendor & model`) } content={ `${ terminalData?.vendor } ${ terminalData?.model }` || '-' }/>
+                    <InfoCardSmall label={ i18n._(t`Vendor & model`) } content={ `${ terminalData?.vendor || '' } ${ terminalData?.model || '' }` }/>
                     <InfoCardSmall label={ i18n._(t`Fiscal ID`) } content={ terminalData?.fiscalCardId || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Blocking`) }
                         content={
@@ -112,38 +113,7 @@ export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }
 
             </SimpleGrid>
 
-            {/* <SimpleGrid breakpoints={ [ */ }
-            {/*     { */ }
-            {/*         minWidth: 'md', */ }
-            {/*         cols: 1, */ }
-            {/*         spacing: 10, */ }
-            {/*     }, */ }
-            {/*     { */ }
-            {/*         minWidth: 1200, */ }
-            {/*         cols: 2, */ }
-            {/*         spacing: 30, */ }
-            {/*     } */ }
-            {/* ] } */ }
-            {/*             sx={ { */ }
-            {/*                 border: `1px solid ${ theme.colors.borderColor[0] }`, */ }
-            {/*                 borderRadius: '8px', */ }
-            {/*                 padding: '10px 16px', */ }
-            {/*                 marginTop: '-1px', */ }
-            {/*                 backgroundColor: theme.white, */ }
-            {/*             } }> */ }
-
-            {/*     <InfoCardSmall label={ i18n._(t`Creation date`) } */ }
-            {/*                    content={ terminalData?.createdAt }/> */ }
-
-            {/*     <div/> */ }
-            {/*     <InfoCardSmall label={ i18n._(t`Cash application version`) } */ }
-            {/*                    content={ terminalData?.cashAppVersion } */ }
-            {/*                    withBottomBorder={ false }/> */ }
-            {/*     <InfoCardSmall label={ i18n._(t`Payment application version`) } */ }
-            {/*                    content={ terminalData?.paymentAppVersion } */ }
-            {/*                    withBottomBorder={ false }/> */ }
-            {/* </SimpleGrid> */ }
-
+            {isFetching && <LoaderOverlay/>}
         </>
     );
 
