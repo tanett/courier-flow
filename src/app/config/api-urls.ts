@@ -35,10 +35,12 @@ export enum API_URLS {
     PRODUCTS_SEARCH = '/api/v1/products/search',
     PRODUCTS_SEARCH_EXTENDED = '/api/v1/products/extended-search',
     PRODUCTS_PATCH= '/api/v1/products',
+    PRODUCTS_PATCH_BATCH= '/api/v1/products/batch',
     PRODUCTS_CREATE= '/api/v1/products',
     PRODUCTS_GET = '/api/v1/products/{id}',
     PRODUCTS_ARCHIVE = '/api/v1/products/archive',
     PRODUCTS_ADDITIONAL_FIELD_INFO_GET = 'api/v1/products/additional-fields/info',
+    PRODUCT_CHANGE_ALL_VAT = '/api/v1/products/change-all-vat',
 
     RETAIL_PRODUCTS_SEARCH = '/api/v1/retail-products/search',
     RETAIL_PRODUCTS_PATCH= '/api/v1/retail-products',

@@ -1,70 +1,66 @@
 import React, { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { initialForm, typeEditRetailProductToStoreForm, } from './form';
-import { Box, Button, Flex, Input, rem, Space, TextInput, useMantineTheme } from '@mantine/core';
+import { initialForm, typeChangeVatForAllForm, } from './form';
+import { Box, Button, Flex, Input, rem, Space, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { useAppDispatchT } from 'app/state';
+import { useAppDispatchT, useSelectorT } from 'app/state';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { usePatchRetailProductMutation } from '../../entities/retail-products/api/api';
 import { IMaskInput } from 'react-imask';
-import { typeEditRetailProduct, typeRetailProduct } from '../../entities/retail-products/model/types';
 import { notificationActions } from '../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
+import { useChangeVatForALlMutation } from '../../entities/products/api/api';
+import { typeChangeVatForAll } from '../../entities/products/model/state-slice';
 
 
-export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose: (refetch: boolean) => void }> = ({
-    data,
-    onClose,
-}) => {
+export const ProductChangeVatForAll: React.FC<{ onClose: () => void, }> = ({ onClose }) => {
 
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
-
-    const form = useForm<typeEditRetailProductToStoreForm>({
-        ...initialForm,
-        initialValues: { price: data.price.toString() }
-    });
+    const merchantId = useSelectorT(state => state.userProfile.userProfile?.actor.merchantId);
+    const form = useForm<typeChangeVatForAllForm>(initialForm);
 
     const dispatchAppT = useAppDispatchT();
 
-    const [ editRetailProduct, { isLoading } ] = usePatchRetailProductMutation();
+    const [ changeVat, { isLoading } ] = useChangeVatForALlMutation();
 
     const onCancelClick = () => {
 
         form.reset();
-        onClose(false);
+        onClose();
 
     };
 
     const [ isInProgress, setIsInProgress ] = useState(false);
 
     const onSubmit = async () => {
-
-        if (form.values.price) {
+        console.log('merchantId, ', merchantId);
+        if (merchantId) {
 
             setIsInProgress(true);
-            const dataObject: typeEditRetailProduct = {
-                id: data.id,
-                price: parseFloat(form.values.price)  // from masked input we get the value as string with ,
+
+            const dataObject: typeChangeVatForAll = {
+                merchantId: merchantId,
+                newVat: +((parseFloat(form.values.newVat) / 100).toFixed(4)), // from masked input we get the value as string with ,
             };
+
             try {
 
-                await editRetailProduct(dataObject).unwrap();
+                await changeVat(dataObject).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
-                    message: i18n._(t`Price was changed successfully.`),
+                    message: i18n._(t`Vats were changed successfully.`),
                 }));
 
-                onClose(true);
+                onClose();
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditRetailProduct', dispatchAppT);
+                errorHandler(err as typeResponseError, 'onChangeAllVat', dispatchAppT);
 
 
             }
@@ -86,18 +82,14 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
                     overflow: 'visible',
                     '& .mantine-InputWrapper-root': { maxWidth: 'none' }
                 } }>
-                <TextInput
-                    label={ <Trans>Store</Trans> }
-                    value={ data.store.name || '' }
-                    disabled
-                />
+
                 <Input.Wrapper
-                    id={ 'change-price-input-wrapper' }
-                    label={ <Trans>Price</Trans> }
-                    error={ form.getInputProps('price').error }
+                    id={ 'vat-input-wrapper' }
+                    label={ <Trans>Vat</Trans> }
+                    error={ form.getInputProps('newVat').error }
                     required
                     mt={ 16 }>
-                    <Input<any> // thousand separator work badly
+                    <Input<any>
                         component={ IMaskInput }
                         mask={ Number }
                         scale={ 2 } // digits after point, 0 for integers
@@ -105,14 +97,17 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
                         normalizeZeros={ true } // appends or removes zeros at ends
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
-                        placeholder={ '' }
+                        placeholder={ '0.00-100%' }
                         // additional number interval options (e.g.)
                         min={ 0 }
-                        max={ 100000000000 }
+                        max={ 100 }
                         autofix={ true }
+                        id={ 'vat-all-input' }
 
-                        id={ 'price-input-change' }
-                        { ...form.getInputProps('price') }
+                        // lazy={false}
+                        // unmask={true}
+                        // overwrite={true}
+                        { ...form.getInputProps('newVat') }
 
                     />
                 </Input.Wrapper>

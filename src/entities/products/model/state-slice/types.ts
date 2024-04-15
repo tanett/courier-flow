@@ -94,3 +94,10 @@ export type typeProductAdditionalFieldInfo = {
 export interface typeProductsState {
     additionalFieldInfo?: typeProductAdditionalFieldInfo[];
 }
+
+export type typeChangeCategoryForProduct = Pick<typeProductEdit, 'id' | 'productCategoryId'>
+
+export type typeChangeVatForAll = {
+    merchantId: string,
+    newVat: number
+}

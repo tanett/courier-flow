@@ -2,8 +2,8 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
-import { typeCreateProductRequest, typeEditProductRequest, typeProductToArchiveRequest, typeSearchFilterProduct, typeSearchFilterProductExtended, typeSearchProductSortingNames } from '../../../entities/products/api/types';
+import { typeChangeVatForAll, typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
+import { typeBatchEditProductRequest, typeCreateProductRequest, typeEditProductRequest, typeProductToArchiveRequest, typeSearchFilterProduct, typeSearchFilterProductExtended, typeSearchProductSortingNames } from '../../../entities/products/api/types';
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -56,8 +56,32 @@ export const productsApi = baseApi.injectEndpoints({
             ),
         }),
 
+        // batch patch Product
+        batchPatchProduct: builder.mutation<unknown, typeBatchEditProductRequest >({
+            query: (data) => (
+                {
+                    url: API_URLS.PRODUCTS_PATCH_BATCH,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
+
+        // change vat for all products
+        changeVatForALl: builder.mutation<unknown, typeChangeVatForAll >({
+            query: (data) => (
+                {
+                    url: API_URLS.PRODUCT_CHANGE_ALL_VAT,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
+
         // Product to archive
-        ProductToArchive: builder.mutation<typeProduct, typeProductToArchiveRequest >({
+        productToArchive: builder.mutation<typeProduct, typeProductToArchiveRequest >({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCTS_ARCHIVE,
@@ -102,4 +126,6 @@ export const {
     useSearchProductExtendedQuery,
     useCreateProductMutation,
     useProductToArchiveMutation,
+    useBatchPatchProductMutation,
+    useChangeVatForALlMutation
 } = productsApi;

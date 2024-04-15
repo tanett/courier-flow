@@ -224,6 +224,7 @@ export const ProductFormEdit: React.FC<{
                             <Input.Wrapper
                                 id={ 'vat-input-wrapper' }
                                 label={ <Trans>Vat in %</Trans> }
+                                error={ form.getInputProps('vat').error }
                                 required
                                 mt={ 16 }>
                                 <Input<any>

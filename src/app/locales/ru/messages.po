@@ -264,7 +264,7 @@ msgstr "Категория успешно изменена."
 
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
 msgid "Change"
-msgstr ""
+msgstr "Изменить"
 
 #: src/features/products-list/ui/products-list.tsx:99
 msgid "Change category"
@@ -277,7 +277,7 @@ msgstr "Изменить пароль"
 
 #: src/features/product-details-stores/ui/modal/modal-change-price.tsx:37
 msgid "Change price"
-msgstr ""
+msgstr "Изменить цену"
 
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:72
 msgid "Change prices"
@@ -315,11 +315,11 @@ msgstr "Нажмите для просмотра всего списка"
 
 #: src/features/products-details/ui/product-details.tsx:81
 msgid "Comission PINFL"
-msgstr ""
+msgstr "Комиссионный PINFL"
 
 #: src/features/products-details/ui/product-details.tsx:80
 msgid "Comission TIN"
-msgstr ""
+msgstr "Комиссионный TIN"
 
 #: src/features/stores-details-users/ui/stores-details-users.tsx:179
 #: src/features/user-list/ui/user-list.tsx:95
@@ -374,7 +374,7 @@ msgstr "Дата создания"
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:66
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: src/features/roles-list/ui/roles-list.tsx:56
 #: src/features/stores-details/ui/store-details.tsx:71
@@ -396,7 +396,7 @@ msgstr "Редактировать"
 
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:53
 msgid "Edit the price"
-msgstr ""
+msgstr "Изменить цену"
 
 #: src/features/forgot-password/ui/forgot-password.tsx:76
 #: src/features/login/ui/login-form.tsx:136
@@ -451,7 +451,7 @@ msgstr "Забыли пароль?"
 
 #: src/features/products-list/ui/table/products-table.tsx:103
 msgid "from"
-msgstr ""
+msgstr "от"
 
 #: src/entities/stores/constants/store-type-list.tsx:15
 msgid "Fuel"
@@ -651,8 +651,8 @@ msgid "Not blocked"
 msgstr "Не заблокирован"
 
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:119
-msgid "Not bocked"
-msgstr ""
+msgid "Not blocked"
+msgstr "Не заблокирован"
 
 #: src/features/change-password-for-first-login/forms/forms.ts:27
 #: src/features/restore-password/forms/forms.ts:27
@@ -671,7 +671,7 @@ msgstr "Не маркированный"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:131
 msgid "Not piece"
-msgstr ""
+msgstr "Не штучный"
 
 #: src/features/categories-list/ui/table/categories-table-header.tsx:65
 msgid "Number of products"
@@ -688,7 +688,7 @@ msgstr "Только один файл может быть добавлен."
 
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:42
 msgid "Operation was successful."
-msgstr ""
+msgstr "Операция была успешна"
 
 #: src/features/main-menu/config/main-menu.config.tsx:108
 #: src/pages/orders-page/ui/orders-page.tsx:15
@@ -702,7 +702,7 @@ msgstr "Другое"
 
 #: src/features/products-details/ui/product-details.tsx:63
 msgid "Package code"
-msgstr ""
+msgstr "Код упаковки"
 
 #: src/features/login/ui/login-form.tsx:150
 #: src/features/login/ui/login-form.tsx:152
@@ -759,21 +759,21 @@ msgstr "Выберите диапазон дат"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:131
 msgid "Piece"
-msgstr ""
+msgstr "Штучный"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:128
 msgid "Piece products"
-msgstr ""
+msgstr "Штучные товары"
 
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:40
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:101
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:96
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:60
 msgid "Price was changed successfully."
-msgstr ""
+msgstr "Цена была изменена успешно."
 
 #: src/entities/products/hooks/use-archive-products.ts:27
 msgid "Product archived successfully."
@@ -789,7 +789,7 @@ msgstr "Товар успешно создан."
 
 #: src/features/product-edit/ui/product-form-edit.tsx:106
 msgid "Product edited successfully."
-msgstr ""
+msgstr "Товар успешно изменен."
 
 #: src/features/product-create/ui/product-form-create.tsx:114
 #: src/features/product-edit/ui/product-form-edit.tsx:142
@@ -983,7 +983,7 @@ msgstr "Тип магазина"
 
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:64
 msgid "Store with price was added successfully."
-msgstr ""
+msgstr "Магазин и цена успешно добавлены."
 
 #: src/features/main-menu/config/main-menu.config.tsx:84
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
@@ -998,7 +998,7 @@ msgstr "Магазины"
 
 #: src/features/products-details/ui/tabs/products-details-tabs.tsx:50
 msgid "Stores and prices"
-msgstr ""
+msgstr "Магазины и цены"
 
 #: src/features/main-menu/config/main-menu.config.tsx:100
 #: src/pages/terminals-details-page/ui/terminals-details-page.tsx:20
@@ -1041,7 +1041,7 @@ msgstr "Этот баркоде уже добавлен"
 
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:32
 msgid "This product is not sold in any store."
-msgstr ""
+msgstr "Этот товар не продается ни в одном магазине."
 
 #: src/features/users-details/ui/users-details.tsx:141
 msgid "This user is not associated with any store"
@@ -1049,7 +1049,7 @@ msgstr "Этот пользователь не относится ни к одн
 
 #: src/features/products-list/ui/table/products-table.tsx:105
 msgid "to"
-msgstr ""
+msgstr "до"
 
 #: src/features/user-list/ui/user-list.tsx:51
 #~ msgid "To archive"
@@ -1092,7 +1092,7 @@ msgstr "Напечатайте имя и выберите сотрудника"
 
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:135
 msgid "Type name and select"
-msgstr ""
+msgstr "Печатайте название и выбирайте"
 
 #: src/features/products-list/ui/table/products-table.tsx:64
 msgid "Type part of a product name"
@@ -1135,7 +1135,7 @@ msgstr "Единица измерения"
 
 #: src/features/products-details/ui/product-details.tsx:115
 msgid "Unit code"
-msgstr ""
+msgstr "Код единицы измерения"
 
 #: src/entities/users/hooks/use-archive-users.ts:27
 msgid "User archived successfully."

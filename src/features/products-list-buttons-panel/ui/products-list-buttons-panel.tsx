@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { Button, Flex } from '@mantine/core';
 import { useStyles } from './styles';
 import { t, Trans } from '@lingui/macro';
-import { ArchiveBoxXMarkIcon, ArrowDownTrayIcon, ArrowUpTrayIcon, CurrencyDollarIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
+import { ArrowDownTrayIcon, ArrowUpTrayIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
 import { Modal } from '../../../shared/ui/modal';
 import { i18n } from '@lingui/core';
 import { typeModalContent } from '../types/type';
-import { ArchiveProductsDialog } from 'features/products-list-buttons-panel/ui/dialogs/archive-products-dialog';
 import { ButtonPanelMenu } from '../../../shared/ui/button-panel-menu';
 import { CreateButtonFilled } from 'shared/ui/create-button-filled/create-button-filled';
 import { routerPaths } from 'app/config/router-paths';
 import { useNavigate } from 'react-router-dom';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { addProductsPermissions } from 'app/config/permissions-config';
-import cn from 'classnames';
+import { ProductChangeVatForAll } from 'features/product-change-vat-fo-all/product-change-vat-for-all';
 
 
 export const ProductsListButtonsPanel: React.FC = () => {
@@ -29,11 +28,11 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
     const onCloseModal = () => setModalContent(null);
 
-    const onArchive = () => {
+    const onChangeVat= () => {
 
         setModalContent({
-            title: i18n._(t`Archive products`),
-            content: <ArchiveProductsDialog onCancel={onCloseModal}/>,
+            title: i18n._(t`Change VAT`),
+            content: <ProductChangeVatForAll onClose={onCloseModal}/>,
         });
 
     };
@@ -50,7 +49,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 variant="outline"
                 color="gray"
                 leftIcon={<ArrowDownTrayIcon className={classes.menuButtonIcon}/>}
-                onClick={() => console.log('Import list')}
+                onClick={() => console.log('Import')}
             >
                 <Trans>Import</Trans>
             </Button>
@@ -58,7 +57,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 variant="outline"
                 color="gray"
                 leftIcon={<ArrowUpTrayIcon className={classes.menuButtonIcon}/>}
-                onClick={() => console.log('Export list')}
+                onClick={() => console.log('Export')}
             >
                 <Trans>Export</Trans>
             </Button>
@@ -69,21 +68,27 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
             <ButtonPanelMenu>
                 <ButtonPanelMenu.MenuItem
-                    label={i18n._(t`Change prices`)}
-                    icon={<CurrencyDollarIcon className={classes.menuButtonIcon}/>}
-                    onClick={() => console.log('Change prices`')}
+                    label={i18n._(t`Exports list`)}
+                    icon={<ArrowUpTrayIcon className={classes.menuButtonIcon}/>}
+                    onClick={() => console.log('export list`')}
+                />
+                <ButtonPanelMenu.MenuItem
+                    label={i18n._(t`Imports list`)}
+                    icon={<ArrowDownTrayIcon className={classes.menuButtonIcon}/>}
+                    onClick={() => console.log('imports list`')}
                 />
                 <ButtonPanelMenu.MenuItem
                     label={i18n._(t`Change vat`)}
                     icon={<ReceiptPercentIcon className={classes.menuButtonIcon}/>}
-                    onClick={() => console.log('change vat')}
-                />
-                <ButtonPanelMenu.MenuItem
-                    label={i18n._(t`Archive`)}
-                    icon={ <ArchiveBoxXMarkIcon className={cn([ classes.menuButtonIcon, classes.colorPrimary5 ]) } />}
-                    onClick={onArchive}
+                    onClick={onChangeVat}
                     primaryColor={true}
                 />
+                {/* <ButtonPanelMenu.MenuItem */}
+                {/*     label={i18n._(t`Archive`)} */}
+                {/*     icon={ <ArchiveBoxXMarkIcon className={cn([ classes.menuButtonIcon, classes.colorPrimary5 ]) } />} */}
+                {/*     onClick={onArchive} */}
+                {/*     primaryColor={true} */}
+                {/* /> */}
             </ButtonPanelMenu>
 
         </Flex>

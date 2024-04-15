@@ -2,7 +2,7 @@ import React from 'react';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Modal } from 'shared/ui/modal';
-import { RetailProductEditPriceForAllStores } from 'features/retail-product-edit-price-for all-stores/retail-product-edit price-for-all-stores';
+import { RetailProductEditPriceForAllStores } from 'features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores';
 
 export const ModalAllPricesChange: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,

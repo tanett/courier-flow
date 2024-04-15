@@ -198,6 +198,7 @@ export const ProductFormCreate: React.FC<{
                                 id={ 'vat-input-wrapper' }
                                 label={ <Trans>Vat in %</Trans> }
                                 required
+                                error={ form.getInputProps('vat').error }
                                 mt={ 16 }>
                                 <Input<any>
                                     component={ IMaskInput }

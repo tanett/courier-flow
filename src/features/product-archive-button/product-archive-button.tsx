@@ -43,7 +43,7 @@ export const ProductArchiveButton: React.FC<{ id: string | undefined }> = ({ id 
                     title: i18n._('action-archive'),
                     handler: () => {
 
-                        if (id) onArchive(id);
+                        if (id) onArchive([id]);
 
                     },
                 } }

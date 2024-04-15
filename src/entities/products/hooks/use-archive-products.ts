@@ -16,15 +16,15 @@ export const useArchiveProducts = ({
 
     const [ productToArchive, { isLoading: isArchiveLoading } ] = useProductToArchiveMutation();
 
-    const onArchive = async (id: string) => {
+    const onArchive = async (ids: string[]) => {
 
         try {
 
-            await productToArchive([ id ]).unwrap();
+            await productToArchive(ids).unwrap();
 
             dispatchAppT(notificationActions.addNotification({
                 type: NOTIFICATION_TYPES.SUCCESS,
-                message: t`Product archived successfully.`,
+                message: t`Products archived successfully.`,
             }));
             if (onSuccess) onSuccess();
 

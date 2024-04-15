@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useProductsList } from 'features/products-list/hooks/use-products-list';
 import { useNavigate } from 'react-router-dom';
-import { t, Trans } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
+import { Trans } from '@lingui/macro';
 import { routerPaths } from '../../../app/config/router-paths';
-import { Modal } from '../../../shared/ui/modal';
-import { Dialog } from '../../../shared/ui/dialog-new';
 import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editProductsPermissions } from 'app/config/permissions-config';
-import { typeProduct } from '../../../entities/products/model/state-slice/types';
-import { useArchiveProducts } from '../../../entities/products/hooks/use-archive-products';
 import { ProductsListTable } from './table/products-table';
 import { typeHeadersAction, typeProductExtendedWithCheckBox } from '../types/types';
 import { useListState } from '@mantine/hooks';
+import { ModalArchiveItem } from 'features/products-list/ui/modal/modal-archive-item';
+import { ModalArchiveSelectedItem } from 'features/products-list/ui/modal/modal-archive-selected-item';
+import { ModalChangeCategorySelectedItem } from 'features/products-list/ui/modal/modal-change-category-selected-item';
 
 
 export const ProductsList: React.FC = () => {
-
-    const { i18n } = useLingui();
 
     const navigate = useNavigate();
 
@@ -49,16 +45,17 @@ export const ProductsList: React.FC = () => {
 
     }, [ productsList ]);
 
-    // modals
-    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeProduct>(null);
-    const [ isOpenModalSelectedItemArchive, setIsOpenSelectedItemArchive ] = useState(false);
+    // modals archive item product
+    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeProductExtendedWithCheckBox>(null);
 
 
-    const onCloseModalToArchiveItem = () => {
+    // modals archive selected product
+    const [ isModalSelectedItemArchive, setIsModalSelectedItemArchive ] = useState(false);
 
-        setModalArchiveItemData(null);
+    // modals change category selected product
+    const [ isModalChangeCategorySelectedItem, setIsModalChangeCategorySelectedItem ] = useState(false);
 
-    };
+
 
     const onClickRowActionsArchiveItem = (product: typeProductExtendedWithCheckBox) => {
 
@@ -71,21 +68,6 @@ export const ProductsList: React.FC = () => {
 
     const goToDetailsProductPage = (id: string | number, name: string) => navigate([ routerPaths.products, id.toString(), name ].join('/'));
 
-    const { onArchive } = useArchiveProducts({
-        onSuccess: () => {
-
-            if (modalArchiveItemData) onCloseModalToArchiveItem();
-            if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
-            setRefetch(true);
-
-        },
-        onError: () => {
-
-            if (modalArchiveItemData) onCloseModalToArchiveItem();
-            if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
-
-        },
-    });
 
     const headerActions: typeHeadersAction[] = [
 
@@ -97,13 +79,13 @@ export const ProductsList: React.FC = () => {
         {
             id: 'change-category-btn',
             label: <Trans >Change category</Trans>,
-            handler: (event) => console.log('click'),
+            handler: (event) => setIsModalChangeCategorySelectedItem(true),
         },
 
         {
             id: 'selected-archive-btn',
             label: <Trans id={'action-archive'}>Archive</Trans>,
-            handler: (event) => setIsOpenSelectedItemArchive(true),
+            handler: (event) => setIsModalSelectedItemArchive(true),
         }
     ];
 
@@ -123,23 +105,11 @@ export const ProductsList: React.FC = () => {
         />
 
 
-        { modalArchiveItemData && <Modal modalWidth="dialog" opened={ true }>
-            <Modal.Body>
-                <Dialog
-                    cancelButton={ {
-                        title: i18n._(t`Cancel`),
-                        handler: onCloseModalToArchiveItem,
-                    } }
-                    confirmButton={ {
-                        title: i18n._('action-archive'),
-                        handler: () => onArchive(modalArchiveItemData?.id),
-                    } }
-                >
-                    <Trans>Are you sure you want to archive<br/>the product</Trans> &quot;{ modalArchiveItemData.name }&quot;?
+        { modalArchiveItemData && <ModalArchiveItem data={modalArchiveItemData} setRefetch={setRefetch} setOpen={setModalArchiveItemData}/> }
 
-                </Dialog>
-            </Modal.Body>
-        </Modal> }
+        { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={values || []} setRefetch={setRefetch} setOpen={setIsModalSelectedItemArchive}/> }
+
+        { isModalChangeCategorySelectedItem && <ModalChangeCategorySelectedItem list={values || []} setRefetch={setRefetch} setOpen={setIsModalChangeCategorySelectedItem}/> }
 
     </>);
 

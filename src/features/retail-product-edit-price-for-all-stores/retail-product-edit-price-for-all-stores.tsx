@@ -87,6 +87,7 @@ export const RetailProductEditPriceForAllStores: React.FC<{ onClose: (refetch: b
                 <Input.Wrapper
                     id={ 'change-price-input-wrapper' }
                     label={ <Trans>Price</Trans> }
+                    error={ form.getInputProps('price').error }
                     required
                     mt={ 16 }>
                     <Input<any> // thousand separator work badly

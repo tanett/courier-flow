@@ -26,3 +26,4 @@ export type typeChangePricesInAllStores= {
     productId: string
     newPrice: number
 }
+

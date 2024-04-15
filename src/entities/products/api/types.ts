@@ -1,9 +1,13 @@
-import { typeProductCreate, typeProductEdit, typeProductToArchive } from '../model/state-slice/types';
+import { typeChangeCategoryForProduct, typeProductCreate, typeProductEdit, typeProductToArchive } from '../model/state-slice/types';
 
 
 export type typeCreateProductRequest = typeProductCreate
 
 export type typeEditProductRequest = typeProductEdit
+
+export type typeBatchEditProductRequest = typeProductEdit[]
+
+export type typeChangeCategoryForSelectedProductsRequest = typeChangeCategoryForProduct[]
 
 export type typeSearchFilterProduct = {
     ids?: string[]
