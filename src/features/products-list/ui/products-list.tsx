@@ -45,17 +45,14 @@ export const ProductsList: React.FC = () => {
 
     }, [ productsList ]);
 
-    // modals archive item product
+    // modal archive item product
     const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeProductExtendedWithCheckBox>(null);
 
-
-    // modals archive selected product
+    // modal archive selected product
     const [ isModalSelectedItemArchive, setIsModalSelectedItemArchive ] = useState(false);
 
-    // modals change category selected product
+    // modal change category selected product
     const [ isModalChangeCategorySelectedItem, setIsModalChangeCategorySelectedItem ] = useState(false);
-
-
 
     const onClickRowActionsArchiveItem = (product: typeProductExtendedWithCheckBox) => {
 

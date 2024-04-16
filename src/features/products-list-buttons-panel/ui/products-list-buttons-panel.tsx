@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { addProductsPermissions } from 'app/config/permissions-config';
 import { ProductChangeVatForAll } from 'features/product-change-vat-fo-all/product-change-vat-for-all';
+import { ProductsImport } from 'features/products-import';
 
 
 export const ProductsListButtonsPanel: React.FC = () => {
@@ -36,6 +37,14 @@ export const ProductsListButtonsPanel: React.FC = () => {
         });
 
     };
+    const onImport= () => {
+
+        setModalContent({
+            title: i18n._(t`Products import`),
+            content: <ProductsImport onClose={onCloseModal}/>,
+        });
+
+    };
 
     const onCreateNewProduct = () => {
 
@@ -49,7 +58,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 variant="outline"
                 color="gray"
                 leftIcon={<ArrowDownTrayIcon className={classes.menuButtonIcon}/>}
-                onClick={() => console.log('Import')}
+                onClick={onImport}
             >
                 <Trans>Import</Trans>
             </Button>
