@@ -5,20 +5,25 @@ import { typeButtonMenuExtensions, typeButtonPanelMenu } from '../types/types';
 import { MenuItem } from './menu-item';
 
 // eslint-disable-next-line react/prop-types
-const ButtonPanelMenu: typeButtonPanelMenu & typeButtonMenuExtensions = ({ children }) => {
+const ButtonPanelMenu: typeButtonPanelMenu & typeButtonMenuExtensions = ({
+    /* eslint-disable react/prop-types */
+    children,
+    sxForMainButton,
+    trigger='click'
+}) => {
 
     const { classes } = useStyles();
 
     return (
-        <Menu shadow="md" width={200} position="bottom-end">
+        <Menu shadow="md" width={ 200 } position="bottom-end" trigger={trigger}>
             <Menu.Target>
-                <UnstyledButton className={classes.menuButton}>
-                    <EllipsisVerticalIcon className={classes.menuButtonIcon}/>
+                <UnstyledButton className={ classes.menuButton } sx={ sxForMainButton || undefined }>
+                    <EllipsisVerticalIcon className={ classes.menuButtonIcon }/>
                 </UnstyledButton>
             </Menu.Target>
 
             <Menu.Dropdown>
-                {children}
+                { children }
             </Menu.Dropdown>
         </Menu>
 

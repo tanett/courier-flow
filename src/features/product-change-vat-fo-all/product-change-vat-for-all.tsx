@@ -37,7 +37,7 @@ export const ProductChangeVatForAll: React.FC<{ onClose: () => void, }> = ({ onC
     const [ isInProgress, setIsInProgress ] = useState(false);
 
     const onSubmit = async () => {
-        console.log('merchantId, ', merchantId);
+
         if (merchantId) {
 
             setIsInProgress(true);
