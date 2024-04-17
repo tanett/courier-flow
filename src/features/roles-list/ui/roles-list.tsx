@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { t, Trans } from '@lingui/macro';
 import { useRolesList } from 'features/roles-list/hooks/useRolesList';
-import { Flex, Text } from '@mantine/core';
+import { Box, Flex, Text } from '@mantine/core';
 import { typeRolesExtended } from '../../../entities/role/model/types';
 import { useStyles } from './styles';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
@@ -19,7 +19,6 @@ export const RolesList: React.FC = () => {
 
     const { rolesList, pagination, isLoading } = useRolesList();
 
-    // const [ openRoleDescription, setOpenRoleDescription ] = useState<boolean>(false);
     const [ selectedRole, setSelectedRole ] = useState<typeRolesExtended | null>(null);
 
     const onRoleClick = (id: string | number) => {
@@ -92,7 +91,7 @@ export const RolesList: React.FC = () => {
             <Modal.Body>
                 <>
                     <Modal.Header title={`${i18n._(t`Role description`)} ${selectedRole.name}`} onClose={onCloseDescription}/>
-                    {selectedRole.description}
+                    <Box px={16}>{selectedRole.description}</Box>
                 </>
             </Modal.Body>
         </Modal>}

@@ -102,7 +102,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
         </Flex>
 
-        <Modal opened={!!modalContent}>
+        <Modal opened={!!modalContent} modalWidth={'auto'}>
             <Modal.Header title={modalContent?.title} onClose={onCloseModal}/>
             <Modal.Body>
                 {modalContent?.content}

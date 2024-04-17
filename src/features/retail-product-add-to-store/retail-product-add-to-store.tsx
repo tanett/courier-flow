@@ -84,8 +84,10 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
             <Box
                 sx={ {
                     minWidth: '50vw',
-                    padding: rem(15),
-                    marginTop: rem(-10),
+                    paddingBottom: rem(15),
+                    paddingLeft: rem(16),
+                    paddingRight: rem(16),
+                  //  marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
                     '& .mantine-InputWrapper-root': { maxWidth: 'none' }

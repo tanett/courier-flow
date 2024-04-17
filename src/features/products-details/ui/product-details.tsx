@@ -1,9 +1,9 @@
 import React from 'react';
 import { SimpleGrid, useMantineTheme } from '@mantine/core';
-import { t } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
-import { FolderIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
+import { BookmarkIcon, FolderIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { useGetProductByIdQuery } from '../../../entities/products/api/api';
 import { BarcodeScanIconOutline } from 'shared/ui/barcodescan-icon-outline/barcode-scan-icon-outline';
@@ -96,8 +96,9 @@ export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) =
                         }
                     ] }
                 >
+                    <InfoCardSmall label={ i18n._(t`Marking`) } iconLabel={ <BookmarkIcon/> } content={ productData ? productData.marked ? <Trans>Yes</Trans> : <Trans>No</Trans> : ''} withBottomBorder={ true }/>
                     <InfoCardSmall label={ i18n._(t`Vat`) } iconLabel={ <ReceiptPercentIcon/> } content={ vat } withBottomBorder={ true }/>
-                    <div/>
+
                 </SimpleGrid>
                 <SimpleGrid
                     breakpoints={ [

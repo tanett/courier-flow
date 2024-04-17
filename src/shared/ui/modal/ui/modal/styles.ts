@@ -5,8 +5,11 @@ export const useStyles = createStyles((theme) => ({
     content: {
         flexDirection: 'column',
         position: 'relative',
+        padding: rem(16),
+        paddingRight: rem(16),
     },
     auto: { width: 'auto' },
     dialog: { width: rem(504) },
     roleDetails: { width: rem(630) },
+    '70%': { width: '70%' },
 }));

@@ -17,7 +17,7 @@ const StoresDetailsPage: React.FC = () => {
     const { i18n } = useLingui();
 
     return (
-        <DashboardContent withForm>
+        <DashboardContent>
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
                     { name: i18n._(t`Stores`) },
