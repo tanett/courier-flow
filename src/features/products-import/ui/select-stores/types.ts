@@ -4,6 +4,7 @@ import { typeImportOptions } from 'features/products-import/types/types';
 
 export type typeSelectStores = {
     setStep: React.Dispatch<React.SetStateAction<0 | 1 | 2>>
+    importOptions: typeImportOptions | null
     setImportOptions: React.Dispatch<React.SetStateAction<typeImportOptions | null>>
 }
 

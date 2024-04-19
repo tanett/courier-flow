@@ -1,11 +1,17 @@
 export interface typeResponseError {
     status: number,
     originalStatus: number,
-    data: {
-        errorCode: string,
-        errorMessage: string,
-        validationErrors?:typeValidationError[]
-    } | string | undefined
+    data: typeErrorData | string | undefined
+}
+export type typeErrorData = {
+    errorCode: string,
+    errorMessage: string,
+    validationErrors?:typeValidationError[]
+}
+export type typeImportErrorResponse = {
+    status: number,
+    originalStatus: number,
+    data: typeErrorData
 }
 
 export type typeValidationError = {

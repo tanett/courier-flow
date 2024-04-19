@@ -2,9 +2,12 @@ import { createStyles, rem } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
     dialogWrapper: {
+        position: 'relative',
         padding: `${rem(8)} ${rem(39)} ${rem(10)}`,
         flexDirection: 'column',
     },
+    withMarginTopFat: { marginTop: rem(12) },
+    scrollHeight: { maxHeight: '50vh' },
     withoutPadding: { padding: 0 },
     iconWrapper: {
         justifyContent: 'center',
@@ -12,6 +15,7 @@ export const useStyles = createStyles((theme) => ({
         height: rem(112),
     },
     iconAttention: { width: rem(112) },
+    iconSuccess: { width: rem(94) },
     contentWrapper: {
         flexDirection: 'column',
         alignItems: 'center',
@@ -23,6 +27,7 @@ export const useStyles = createStyles((theme) => ({
         marginTop: rem(30),
         alignItems: 'center',
         gap: rem(24),
+        paddingBottom: rem(2),
     },
     button: {},
     primary: {

@@ -5,7 +5,7 @@ import {
 } from './types';
 import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
-import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
+import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 
 
 export const userProfileApi = baseApi.injectEndpoints({

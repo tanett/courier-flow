@@ -1,9 +1,20 @@
 import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
-import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
+import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeChangeVatForAll, typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
-import { typeBatchEditProductRequest, typeCreateProductRequest, typeEditProductRequest, typeProductToArchiveRequest, typeSearchFilterProduct, typeSearchFilterProductExtended, typeSearchProductSortingNames } from '../../../entities/products/api/types';
+import { PRODUCT_IMPORT_TYPE_FOR_TEMPLATE, typeChangeVatForAll, typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
+import {
+    typeBatchEditProductRequest,
+    typeCreateProductRequest,
+    typeEditProductRequest,
+    typeImportResponse,
+    typeProductToArchiveRequest,
+    typeSearchFilterProduct,
+    typeSearchFilterProductExtended,
+    typeSearchProductSortingNames
+} from '../../../entities/products/api/types';
+import { expectedFileType, responseToBlobDownload } from 'shared/utils/response-to-blob-dowload';
+import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -33,7 +44,7 @@ export const productsApi = baseApi.injectEndpoints({
             ),
         }),
         // create Product
-        createProduct: builder.mutation<typeProduct, typeCreateProductRequest >({
+        createProduct: builder.mutation<typeProduct, typeCreateProductRequest>({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCTS_CREATE,
@@ -45,7 +56,7 @@ export const productsApi = baseApi.injectEndpoints({
         }),
 
         // patch Product
-        patchProduct: builder.mutation<typeProduct, typeEditProductRequest >({
+        patchProduct: builder.mutation<typeProduct, typeEditProductRequest>({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCTS_PATCH,
@@ -57,7 +68,7 @@ export const productsApi = baseApi.injectEndpoints({
         }),
 
         // batch patch Product
-        batchPatchProduct: builder.mutation<unknown, typeBatchEditProductRequest >({
+        batchPatchProduct: builder.mutation<unknown, typeBatchEditProductRequest>({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCTS_PATCH_BATCH,
@@ -69,7 +80,7 @@ export const productsApi = baseApi.injectEndpoints({
         }),
 
         // change vat for all products
-        changeVatForALl: builder.mutation<unknown, typeChangeVatForAll >({
+        changeVatForALl: builder.mutation<unknown, typeChangeVatForAll>({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCT_CHANGE_ALL_VAT,
@@ -81,7 +92,7 @@ export const productsApi = baseApi.injectEndpoints({
         }),
 
         // Product to archive
-        productToArchive: builder.mutation<typeProduct, typeProductToArchiveRequest >({
+        productToArchive: builder.mutation<typeProduct, typeProductToArchiveRequest>({
             query: (data) => (
                 {
                     url: API_URLS.PRODUCTS_ARCHIVE,
@@ -114,6 +125,47 @@ export const productsApi = baseApi.injectEndpoints({
             ),
         }),
 
+        // import product to server with file
+        importProductFile: builder.mutation<typeImportResponse, FormData>({
+            query: (file) => (
+                {
+                    url: API_URLS.PRODUCT_IMPORT,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: file,
+                }
+            ),
+        }),
+
+        // download template files for import
+        downloadTemplateFile: builder.query<unknown, PRODUCT_IMPORT_TYPE_FOR_TEMPLATE>({
+            query: (type) => (
+                {
+                    url: API_URLS.PRODUCT_DOWNLOAD_TEMPLATE.replace('{type}', type),
+                    method: 'GET',
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator()
+
+                    },
+                    cache: 'no-cache',
+
+                    responseHandler: async (response) => {
+
+                        if (response.status === 200) {
+
+                            await responseToBlobDownload(response, expectedFileType.xlsx);
+
+                        } else {
+
+                            return response.json();
+
+                        }
+
+                    },
+                }
+            ),
+        }),
     }),
 });
 
@@ -127,5 +179,7 @@ export const {
     useCreateProductMutation,
     useProductToArchiveMutation,
     useBatchPatchProductMutation,
-    useChangeVatForALlMutation
+    useChangeVatForALlMutation,
+    useImportProductFileMutation,
+    useLazyDownloadTemplateFileQuery,
 } = productsApi;

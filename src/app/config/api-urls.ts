@@ -41,6 +41,9 @@ export enum API_URLS {
     PRODUCTS_ARCHIVE = '/api/v1/products/archive',
     PRODUCTS_ADDITIONAL_FIELD_INFO_GET = 'api/v1/products/additional-fields/info',
     PRODUCT_CHANGE_ALL_VAT = '/api/v1/products/change-all-vat',
+    PRODUCT_IMPORT = '/api/v1/products/import',
+    PRODUCT_DOWNLOAD_TEMPLATE = '/api/v1/products/import/template?importType={type}',
+
 
     RETAIL_PRODUCTS_SEARCH = '/api/v1/retail-products/search',
     RETAIL_PRODUCTS_PATCH= '/api/v1/retail-products',
@@ -48,6 +51,9 @@ export enum API_URLS {
     RETAIL_PRODUCTS_GET = '/api/v1/retail-products/{id}',
     RETAIL_PRODUCTS_DELETE = '/api/v1/retail-products',
     RETAIL_PRODUCTS_CHANGE_PRICES_IN_ALL_STORES= '/api/v1/retail-products/change-price',
+
+    IMPORTS_BY_ID = '/api/v1/imports/{id}',
+    IMPORTS_SEARCH = '/api/v1/imports/search',
 
     CATEGORIES_SEARCH = '/api/v1/product-categories/search',
     CATEGORIES_SEARCH_EXTENDED = '/api/v1/product-categories/extended-search',

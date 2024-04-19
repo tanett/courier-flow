@@ -1,6 +1,6 @@
 import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
-import { protectedRoutsAPIHeaderCreator } from 'app/utils/protectedRoutsAPIHeaderCreator';
+import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from 'entities/stores/api/types';
 import { typeExtendedStore, typeStore } from 'entities/stores/model/types';

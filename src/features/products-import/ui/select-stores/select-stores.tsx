@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Flex, useMantineTheme, Text, Button, Space, Input, ActionIcon } from '@mantine/core';
+import { ActionIcon, Box, Button, Flex, Input, Space, Text, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { ArrowLongLeftIcon } from '@heroicons/react/16/solid';
@@ -14,10 +14,14 @@ import { errorHandler } from 'app/utils/errorHandler';
 import cn from 'classnames';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { typeSelectStores, typeStoreListChecked } from './types';
+import { PRODUCT_IMPORT_TYPE_REQUEST } from '../../../../entities/products/api/types';
 
 
-
-export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOptions }) => {
+export const SelectStores: React.FC<typeSelectStores> = ({
+    setStep,
+    importOptions,
+    setImportOptions
+}) => {
 
     const { i18n } = useLingui();
     const { classes } = useStyles();
@@ -28,17 +32,19 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
 
     const [ debouncedSearchValue ] = useDebouncedValue(searchStoreValue, 500);
 
-    const [ storesList, setStoresList ] = useState<typeStoreListChecked[]>([]);
+    const [ storesList, setStoresList ] = useState<typeStoreListChecked[] | null>(null);
 
     const [ firstList, setFirstList ] = useState<typeStoreListChecked[]>([]);
 
-    const [ selectedStores, setSelectedStores ] = useState<typeStoreListChecked[]>([]);
+    const [ selectedStores, setSelectedStores ] = useState<typeStoreListChecked[]>(importOptions?.options ? importOptions.options.selectedStores : []);
 
-    const [ isAllChecked, setIsAllChecked ] = useState(false);
+    const [ isAllChecked, setIsAllChecked ] = useState(importOptions?.options ? importOptions.options.isAllSelected : false);
+
+    const [ countAllStores, setCountAllStores ] = useState(0);
 
     const [ isError, setIsError ] = useState<string | null>(null);
 
-    const [ getStores, { isLoading, isFetching } ] = useLazySearchStoreQuery();
+    const [ getStores, {   isFetching   } ] = useLazySearchStoreQuery();
 
     const getData = async (requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'>, isFirst?: boolean) => {
 
@@ -52,12 +58,21 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
                 ...item,
                 checked: isAllChecked ? true : selectedIds.includes(item.id),
             }));
+
+            setCountAllStores(response.totalElements);
+
             if (isAllChecked) {
                 setSelectedStores(prevState => ([ ...prevState, ...mapResponse ]));
             }
             setStoresList(mapResponse);
 
-            if (isFirst) {setFirstList(mapResponse);}
+            if (isFirst) {
+
+                setFirstList(response.content.map(item => ({
+                    ...item,
+                    checked: false,
+                })));
+            }
 
         } catch (err) {
 
@@ -120,10 +135,10 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
     }, [ debouncedSearchValue ]);
 
     useEffect(() => {
-        if(isError && (selectedStores.length !== 0 || isAllChecked)) {
+        if (isError && (selectedStores.length !== 0 || isAllChecked)) {
             setIsError(null);
         }
-    }, [selectedStores, isAllChecked]);
+    }, [ selectedStores, isAllChecked ]);
 
     const {
         ref: inputRef,
@@ -143,10 +158,12 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
 
             const newFirstList = [ ...selectedStores, ...firstList.filter(item => !selectedIds.includes(item.id)) ];
 
-            setFirstList(newFirstList);
-            setStoresList(newFirstList);
+            setFirstList([ ...newFirstList ]);
+            setStoresList([ ...newFirstList ]);
 
-        } else { setStoresList([ ...firstList ]); }
+        } else {
+            setStoresList([ ...firstList ]);
+        }
     };
 
     const closeHandler = () => {
@@ -158,21 +175,23 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
     };
 
     const onStoreClick = (store: typeStoreListChecked) => {
-        if (store.checked) {
-            if (isAllChecked) setIsAllChecked(false);
-            setSelectedStores(prevState => prevState.filter(item => item.id !== store.id));
-        } else {
-            setSelectedStores(prev => ([ ...prev, {
-                ...store,
-                checked: true
-            } ]));
-        }
-        setStoresList(storesList.map(item => (item.id === store.id
-            ? {
-                ...item,
-                checked: !item.checked
+        if (storesList) {
+            if (store.checked) {
+                if (isAllChecked) setIsAllChecked(false);
+                setSelectedStores(prevState => selectedStores.filter(item => item.id !== store.id));
+            } else {
+                setSelectedStores(prev => ([ ...prev, {
+                    ...store,
+                    checked: true
+                } ]));
             }
-            : item)));
+            setStoresList(storesList.map(item => (item.id === store.id
+                ? {
+                    ...item,
+                    checked: !item.checked
+                }
+                : item)));
+        }
     };
 
     const onNextClick = () => {
@@ -180,31 +199,44 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
             setIsError(i18n._(t`Select at least one store`));
             return;
         }
+
+        setImportOptions({
+            importType: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER,
+            options: {
+                isAllSelected: isAllChecked,
+                countStores: isAllChecked ? countAllStores : storesList?.filter(item => item.checked).length || 0,
+                selectedStores: isAllChecked ? [] : selectedStores
+            }
+        });
         setStep(2);
     };
 
     const onResetClick = () => {
-        if (isAllChecked) setIsAllChecked(false);
-        setSelectedStores([]);
-        setStoresList(storesList.map(item => ({
-            ...item,
-            checked: false
-        })));
-        setFirstList(firstList.map(item => ({
-            ...item,
-            checked: false
-        })));
-        onSearchStoreChange('');
+        if (storesList) {
+            if (isAllChecked) setIsAllChecked(false);
+            setSelectedStores([]);
+            setStoresList(storesList.map(item => ({
+                ...item,
+                checked: false
+            })));
+            setFirstList(firstList.map(item => ({
+                ...item,
+                checked: false
+            })));
+            onSearchStoreChange('');
+        }
     };
 
     const onSelectAllClick = () => {
-        setIsAllChecked(true);
-        const checkedList = storesList.map(item => ({
-            ...item,
-            checked: true
-        }));
-        setStoresList(checkedList);
-        setSelectedStores(checkedList);
+        if (storesList) {
+            setIsAllChecked(true);
+            const checkedList = storesList.map(item => ({
+                ...item,
+                checked: true
+            }));
+            setStoresList(checkedList);
+            setSelectedStores(checkedList);
+        }
     };
 
     return (
@@ -233,25 +265,27 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
                     rightSection={ searchStoreValue && <ActionIcon onClick={ closeHandler }>
                         <XMarkIcon className={ classes.iconClose }/>
                     </ActionIcon> }
-                    maxLength={100}
+                    maxLength={ 100 }
                 />
                 <Box className={ classes.listContainer }>
-                    { storesList?.length > 0
-                        ? storesList?.map((item, index) => {
-                            return <Flex
-                                key={ item.id }
-                                onClick={ () => onStoreClick(item) }
-                                className={ cn([ classes.listItem, item.checked && classes.listItemChecked ]) }>
-                                <CheckIcon/>
-                                <Text truncate>{ item.name }</Text>
-                            </Flex>;
+                    { storesList
+                        ? storesList?.length > 0
+                            ? storesList.map((item, index) => {
+                                return <Flex
+                                    key={ item.id }
+                                    onClick={ () => onStoreClick(item) }
+                                    className={ cn([ classes.listItem, item.checked && classes.listItemChecked ]) }>
+                                    <CheckIcon/>
+                                    <Text truncate>{ item.name }</Text>
+                                </Flex>;
 
-                        })
-                        : !isLoading && <Flex align={ 'center' } justify={ 'center' } sx={ {
-                            textAlign: 'center',
-                            height: '100%',
-                            backgroundColor: theme.colors.gray[0]
-                        } }><Trans>No stores with this name</Trans></Flex>
+                            })
+                            : <Flex align={ 'center' } justify={ 'center' } sx={ {
+                                textAlign: 'center',
+                                height: '100%',
+                                backgroundColor: theme.colors.gray[0]
+                            } }><Trans>No stores with this name</Trans></Flex>
+                        : <LoaderOverlay/>
                     }
                     { isFetching && <LoaderOverlay/> }
                 </Box>
@@ -261,7 +295,10 @@ export const SelectStores: React.FC<typeSelectStores> = ({ setStep, setImportOpt
             <div className={ classes.btnPanel }>
                 <Button
                     leftIcon={ <ArrowLongLeftIcon strokeWidth={ 0.8 }/> }
-                    onClick={ () => {setStep(0);} }
+                    onClick={ () => {
+                        setStep(0);
+                        setImportOptions(null);
+                    } }
                     variant={ 'outline' }
                     className={ classes.button }
                 >

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { useAppDispatchT } from 'app/state';
-import { SelectTypeOfImport } from './select-type-of-import';
+import { SelectTypeOfImport } from 'features/products-import/ui/select-type-of-import/select-type-of-import';
 import { SelectStores } from './select-stores/select-stores';
-import { SelectFile } from './select-file';
+import { SelectFile } from 'features/products-import/ui/select-file/select-file';
 import { typeImportOptions, typeProductImport } from '../types/types';
 
 
@@ -27,7 +27,7 @@ export const ProductsImport: React.FC<typeProductImport> = ({ onClose, }) => {
             maxWidth: '890px'
         } }>
             { step === 0 && <SelectTypeOfImport setStep={ setStep } setImportOptions={setImportOptions}/> }
-            { step === 1 && <SelectStores setStep={ setStep } setImportOptions={setImportOptions}/> }
+            { step === 1 && <SelectStores setStep={ setStep } setImportOptions={setImportOptions}  importOptions={importOptions}/> }
             { step === 2 && importOptions && <SelectFile setStep={ setStep } importOptions={importOptions}/> }
         </div>
     );

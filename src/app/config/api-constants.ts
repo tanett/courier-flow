@@ -46,3 +46,5 @@ export const perPageVariantList: {value: string, label: string}[] = [
     { value: perPageVariants.second.toString(), label: perPageVariants.second.toString() },
     { value: perPageVariants.third.toString(), label: perPageVariants.third.toString() },
 ]
+
+export const REFETCH_INTERVAL = 1000;

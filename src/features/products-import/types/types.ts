@@ -1,19 +1,9 @@
-import React from 'react';
 import { typeStoreListChecked } from 'features/products-import/ui/select-stores/types';
+import { PRODUCT_IMPORT_TYPE_REQUEST } from 'entities/products/api/types';
 
 export type typeProductImport = { onClose: () => void }
 
-export type typeSelectTypeOfImport = {
-    setStep: React.Dispatch<React.SetStateAction<0 | 1 | 2>>,
-    setImportOptions: React.Dispatch<React.SetStateAction<typeImportOptions | null>>
-}
-
-export type typeSelectFile = {
-    setStep: React.Dispatch<React.SetStateAction<0 | 1 | 2>>,
-    importOptions: typeImportOptions
-}
-
 export type typeImportOptions = {
-    importType: string,
-    options?: { isAllSelected: boolean, countAllStores: number } | { selectedStores: typeStoreListChecked[] }
+    importType: PRODUCT_IMPORT_TYPE_REQUEST,
+    options?: { isAllSelected: boolean, countStores: number, selectedStores: typeStoreListChecked[] }
 }

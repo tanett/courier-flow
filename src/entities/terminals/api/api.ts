@@ -1,7 +1,7 @@
 import { baseApi } from '../../../app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from '../../../app/api/types';
 import { API_URLS } from '../../../app/config/api-urls';
-import { protectedRoutsAPIHeaderCreator } from '../../../app/utils/protectedRoutsAPIHeaderCreator';
+import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeTerminal, typeTerminalExtended } from '../model/types';
 import { typeCreateTerminalRequest, typeEditTerminalRequest, typeSearchTerminalsExtendedFilter, typeSearchTerminalsFilter, typeSearchTerminalSortingNames } from './types';
 
