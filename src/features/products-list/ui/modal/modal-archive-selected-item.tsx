@@ -10,11 +10,9 @@ import { typeProductExtendedWithCheckBox } from 'features/products-list/types/ty
 export const ModalArchiveSelectedItem: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     list: typeProductExtendedWithCheckBox[]
-    setRefetch: React.Dispatch<React.SetStateAction<boolean>>
 }> = ({
     setOpen,
     list,
-    setRefetch
 }) => {
 
     const { i18n } = useLingui();
@@ -25,7 +23,6 @@ export const ModalArchiveSelectedItem: React.FC<{
     } = useArchiveProducts({
         onSuccess: () => {
             onCloseDialogToDelete();
-            setRefetch(true);
         }
     });
 

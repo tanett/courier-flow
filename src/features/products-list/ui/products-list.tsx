@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useProductsList } from 'features/products-list/hooks/use-products-list';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import { routerPaths } from '../../../app/config/router-paths';
@@ -8,10 +7,10 @@ import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-al
 import { editProductsPermissions } from 'app/config/permissions-config';
 import { ProductsListTable } from './table/products-table';
 import { typeHeadersAction, typeProductExtendedWithCheckBox } from '../types/types';
-import { useListState } from '@mantine/hooks';
 import { ModalArchiveItem } from 'features/products-list/ui/modal/modal-archive-item';
 import { ModalArchiveSelectedItem } from 'features/products-list/ui/modal/modal-archive-selected-item';
 import { ModalChangeCategorySelectedItem } from 'features/products-list/ui/modal/modal-change-category-selected-item';
+import { useGetCheckedProductsList } from 'features/products-list/hooks/use-get-checked-products-list';
 
 
 export const ProductsList: React.FC = () => {
@@ -23,27 +22,11 @@ export const ProductsList: React.FC = () => {
     const isAllowedEdit = useIsAllowedPermissions(editProductsPermissions);
 
     const {
-        productsList,
+        productsCheckedList,
         pagination,
         isLoading,
-        setRefetch,
-    } = useProductsList();
-
-    // product list with checked
-    const [ values, handlers ] = useListState<typeProductExtendedWithCheckBox>(undefined);
-
-    useEffect(() => {
-
-        if (productsList) {
-
-            handlers.setState(productsList.map(item => ({
-                ...item,
-                checked: false,
-            })));
-
-        }
-
-    }, [ productsList ]);
+        handlers
+    } = useGetCheckedProductsList();
 
     // modal archive item product
     const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeProductExtendedWithCheckBox>(null);
@@ -93,7 +76,7 @@ export const ProductsList: React.FC = () => {
             isAllowedEdit={ isAllowedEdit }
             goToEditProductPage={ goToEditProductPage }
             onClickRowActionsArchiveItem={ onClickRowActionsArchiveItem }
-            productsList={ values }
+            productsList={  productsCheckedList }
             pagination={ pagination }
             isLoading={ isLoading }
             goToDetailsProductPage={ goToDetailsProductPage }
@@ -102,11 +85,11 @@ export const ProductsList: React.FC = () => {
         />
 
 
-        { modalArchiveItemData && <ModalArchiveItem data={modalArchiveItemData} setRefetch={setRefetch} setOpen={setModalArchiveItemData}/> }
+        { modalArchiveItemData && <ModalArchiveItem data={modalArchiveItemData}  setOpen={setModalArchiveItemData}/> }
 
-        { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={values || []} setRefetch={setRefetch} setOpen={setIsModalSelectedItemArchive}/> }
+        { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={productsCheckedList || []}  setOpen={setIsModalSelectedItemArchive}/> }
 
-        { isModalChangeCategorySelectedItem && <ModalChangeCategorySelectedItem list={values || []} setRefetch={setRefetch} setOpen={setIsModalChangeCategorySelectedItem}/> }
+        { isModalChangeCategorySelectedItem && <ModalChangeCategorySelectedItem list={productsCheckedList || []}  setOpen={setIsModalChangeCategorySelectedItem}/> }
 
     </>);
 

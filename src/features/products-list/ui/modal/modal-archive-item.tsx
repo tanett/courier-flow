@@ -1,6 +1,5 @@
 import React from 'react';
 import { t, Trans } from '@lingui/macro';
-import { useAppDispatchT } from 'app/state';
 import { useLingui } from '@lingui/react';
 import { Modal } from 'shared/ui/modal';
 import { Dialog } from 'shared/ui/dialog-new';
@@ -11,14 +10,10 @@ import { typeProductExtendedWithCheckBox } from 'features/products-list/types/ty
 export const ModalArchiveItem: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<typeProductExtendedWithCheckBox | null>>,
     data: typeProductExtendedWithCheckBox
-    setRefetch: React.Dispatch<React.SetStateAction<boolean>>
 }> = ({
     setOpen,
     data,
-    setRefetch
 }) => {
-
-    const dispatchAppT = useAppDispatchT();
 
     const { i18n } = useLingui();
 
@@ -28,7 +23,6 @@ export const ModalArchiveItem: React.FC<{
     } = useArchiveProducts({
         onSuccess: () => {
             onCloseDialogToDelete();
-            setRefetch(true);
         }
     });
 

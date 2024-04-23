@@ -65,7 +65,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
             filterComponent={ <ProductsListFilter/> }
         />
 
-        { isLoading
+        { (isLoading  )
             ? <TableSkeleton/>
             : productsList && <>
             <Table>

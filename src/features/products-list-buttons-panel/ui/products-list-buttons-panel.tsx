@@ -41,7 +41,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
         setModalContent({
             title: i18n._(t`Products import`),
-            content: <ProductsImport onClose={onCloseModal}/>,
+            content: <ProductsImport onClose={onCloseModal} />,
         });
 
     };

@@ -10,6 +10,7 @@ import { REFETCH_INTERVAL } from '../../../app/config/api-constants';
 import { useLazyGetImportByIdQuery } from '../../../entities/imports/api/api';
 import { useImportProductFileMutation } from '../../../entities/products/api/api';
 import { PRODUCT_IMPORT_TYPE_REQUEST, typeImportProductRequestData } from '../../../entities/products/api/types';
+import { useProductsListRefetch } from '../../../entities/products/hooks/use-products-list-refetch';
 
 export const useImportProductsFile = () => {
 
@@ -30,12 +31,13 @@ export const useImportProductsFile = () => {
     const [ importErrorList, setImportErrorList ] = useState<typeImportError[] | null>(null);
     const [ responseFullError, setResponseFullError ] = useState<typeErrorData| null>(null);
 
+    const { productsListRefetch } = useProductsListRefetch();
 
     const [ sendFile ] = useImportProductFileMutation();
 
     const [ getImportById ] = useLazyGetImportByIdQuery();
 
-    // const { refetchTerminalList } = useTerminalListRefetch();
+
 
     // Get import by id handler
     const refetchGetImportById = async (importedFileId: string) => {
@@ -51,7 +53,7 @@ export const useImportProductsFile = () => {
                     setTimeout(() => setProcessStep('done'), 500);
                     setImportProcessRange(100);
 
-                    // refetchTerminalList(); todo
+                    productsListRefetch();
 
                 }
                 if (response.status.code === importFileStatuses.ERROR) {
@@ -82,7 +84,6 @@ export const useImportProductsFile = () => {
 
             intervalId = setInterval(() => {
 
-                console.log('counter', importedFileId);
                 refetchGetImportById(importedFileId).then();
 
             }, REFETCH_INTERVAL);

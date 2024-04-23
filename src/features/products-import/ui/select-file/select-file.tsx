@@ -21,7 +21,8 @@ import { ImportFileDialogErrorListForValidationError } from 'shared/ui/import-fi
 
 export const SelectFile: React.FC<typeSelectFile> = ({
     setStep,
-    importOptions
+    importOptions,
+   // setRefetch
 }) => {
 
     const { i18n } = useLingui();
@@ -118,9 +119,9 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                 withoutPadding={true}
                 withMarginTopFat={true}
             >
-                <ImportFileDialogMessage title={i18n._(t`Terminals blocked successfully`)}>
+                <ImportFileDialogMessage title={i18n._(t`Products imported successfully`)}>
                     <Box>
-                        <Trans>All terminals listed in the file are successfully blocked.</Trans>
+                        <Trans>All products listed in the file are successfully imported.</Trans>
                     </Box>
                 </ImportFileDialogMessage>
             </Dialog>
@@ -137,11 +138,13 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                 withScroll={!!(importErrorList && importErrorList.length > 2)}
                 withMarginTopFat={true}
             >
-                <ImportFileDialogMessage isWide title={i18n._(t`Terminal blocking error`)}>
+                <ImportFileDialogMessage isWide title={i18n._(t`Import error`)}>
                     <Box>
                         <Trans>File processing completed with errors. Correct the file and upload it again.</Trans>
                     </Box>
-                    {(!importErrorList && responseFullError?.errorMessage)  && <Box>{responseFullError.errorMessage || ''}</Box>}
+                    {(!importErrorList && responseFullError?.errorMessage)  && <Box>{
+                        responseFullError?.errorMessage?.split('\n').map((item, index)=><div key={index}>{item}</div>) }
+                    </Box>}
                     {(!importErrorList && responseFullError?.validationErrors?.length)  && <ImportFileDialogErrorListForValidationError errorList={responseFullError.validationErrors} />}
                     {importErrorList?.length && <ImportFileDialogErrorList errorList={importErrorList}/>}
                 </ImportFileDialogMessage>

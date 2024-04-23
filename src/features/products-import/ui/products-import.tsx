@@ -6,6 +6,8 @@ import { SelectTypeOfImport } from 'features/products-import/ui/select-type-of-i
 import { SelectStores } from './select-stores/select-stores';
 import { SelectFile } from 'features/products-import/ui/select-file/select-file';
 import { typeImportOptions, typeProductImport } from '../types/types';
+import { useProductsList } from 'entities/products/hooks/use-products-list';
+import { useProductsListRefetch } from 'entities/products/hooks/use-products-list-refetch';
 
 
 export const ProductsImport: React.FC<typeProductImport> = ({ onClose, }) => {
@@ -26,9 +28,9 @@ export const ProductsImport: React.FC<typeProductImport> = ({ onClose, }) => {
             minWidth: '300px',
             maxWidth: '890px'
         } }>
-            { step === 0 && <SelectTypeOfImport setStep={ setStep } setImportOptions={setImportOptions}/> }
-            { step === 1 && <SelectStores setStep={ setStep } setImportOptions={setImportOptions}  importOptions={importOptions}/> }
-            { step === 2 && importOptions && <SelectFile setStep={ setStep } importOptions={importOptions}/> }
+            { step === 0 && <SelectTypeOfImport setStep={ setStep } setImportOptions={ setImportOptions }/> }
+            { step === 1 && <SelectStores setStep={ setStep } setImportOptions={ setImportOptions } importOptions={ importOptions }/> }
+            { step === 2 && importOptions && <SelectFile setStep={ setStep } importOptions={ importOptions } /> }
         </div>
     );
 

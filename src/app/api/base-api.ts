@@ -1,8 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { customBaseQuery } from './custom-base-query';
 import { apiTagTypesUser } from '../../entities/users/api/types';
+import { tagTypesProductsList } from '../../entities/products/api/types';
 
-const tagTypes: Record<string, { type: string, id: string }> = { ...apiTagTypesUser };
+const tagTypes: Record<string, { type: string, id: string }> = { ...apiTagTypesUser, ...tagTypesProductsList };
 
 export const baseApi = createApi({
     reducerPath: 'baseAPI',

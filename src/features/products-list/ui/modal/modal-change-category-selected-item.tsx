@@ -8,32 +8,24 @@ import { ProductsChangeCategory } from 'features/products-change-category/produc
 export const ModalChangeCategorySelectedItem: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     list: typeProductExtendedWithCheckBox[]
-    setRefetch: React.Dispatch<React.SetStateAction<boolean>>
 }> = ({
     setOpen,
     list,
-    setRefetch
 }) => {
 
     const { i18n } = useLingui();
 
-    const onCloseDialogToAdd = (refetch: boolean) => {
-
-        if (refetch) {
-
-            setRefetch(true);
-
-        }
+    const onCloseDialogToAdd = () => {
 
         setOpen(false);
 
     };
 
     return (
-        <Modal modalWidth="auto" opened={ true }  onCloseByOverlay={ () => onCloseDialogToAdd(false) }>
+        <Modal modalWidth="auto" opened={ true }  onCloseByOverlay={ () => onCloseDialogToAdd() }>
             <Modal.Body>
                 <>
-                    <Modal.Header title={ i18n._(t`Change category`) } onClose={ () => onCloseDialogToAdd(false) }/>
+                    <Modal.Header title={ i18n._(t`Change category`) } onClose={ () => onCloseDialogToAdd() }/>
                     <ProductsChangeCategory onClose={  onCloseDialogToAdd } list={list}/>
                 </>
             </Modal.Body>
