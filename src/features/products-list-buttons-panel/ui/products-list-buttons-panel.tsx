@@ -17,6 +17,8 @@ import { ProductsImport } from 'features/products-import';
 import { SidebarTitle } from 'shared/ui/sidebar-title';
 import { ImportProductsList } from 'features/import-products-list';
 import { SidePanel } from 'shared/ui/side-panel';
+import { ExportProductsList } from 'features/export-products-list';
+import { ProductsExport } from 'features/products-export';
 
 
 export const ProductsListButtonsPanel: React.FC = () => {
@@ -46,7 +48,16 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
         setModalContent({
             title: i18n._(t`Products import`),
-            content: <ProductsImport onClose={onCloseModal} />,
+            content: <ProductsImport />,
+        });
+
+    };
+
+    const onExport= () => {
+
+        setModalContent({
+            title: i18n._(t`Products export`),
+            content: <ProductsExport />,
         });
 
     };
@@ -64,6 +75,13 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
     };
 
+    const onOpenExportsList = () => {
+
+        setSidePanelTitle(<SidebarTitle><Trans>Export products</Trans></SidebarTitle>);
+        setSidePanelContent(<ExportProductsList/>);
+
+    };
+
     return (<>
         <Flex className={classes.wrapper}>
             <Button
@@ -78,7 +96,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 variant="outline"
                 color="gray"
                 leftIcon={<ArrowUpTrayIcon className={classes.menuButtonIcon}/>}
-                onClick={() => console.log('Export')}
+                onClick={onExport}
             >
                 <Trans>Export</Trans>
             </Button>
@@ -91,7 +109,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 <ButtonPanelMenu.MenuItem
                     label={i18n._(t`Exports list`)}
                     icon={<ArrowUpTrayIcon className={classes.menuButtonIcon}/>}
-                    onClick={() => console.log('export list`')}
+                    onClick={onOpenExportsList}
                 />
                 <ButtonPanelMenu.MenuItem
                     label={i18n._(t`Imports list`)}

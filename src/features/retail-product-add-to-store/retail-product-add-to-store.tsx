@@ -113,7 +113,7 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '' }
-                        // additional number interval options (e.g.)
+                        // additional number interval stores (e.g.)
                         min={ 0 }
                         max={ 100000000000 }
                         autofix={ true }

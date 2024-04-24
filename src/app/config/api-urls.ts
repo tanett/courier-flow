@@ -55,6 +55,11 @@ export enum API_URLS {
     IMPORTS_BY_ID = '/api/v1/imports/{id}',
     IMPORTS_SEARCH = '/api/v1/imports/search',
 
+    EXPORTS_SEARCH = '/api/v1/exports/search',
+    EXPORTS_BY_ID = '/api/v1/exports/{id}',
+
+    DOWNLOAD_EXPORT_FILE_BY_ID = '/api/v1/exports/{id}/download-file',
+
     CATEGORIES_SEARCH = '/api/v1/product-categories/search',
     CATEGORIES_SEARCH_EXTENDED = '/api/v1/product-categories/extended-search',
     CATEGORIES_PATCH= '/api/v1/product-categories',

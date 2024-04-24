@@ -1,7 +1,7 @@
 import React from 'react';
-import { typeImportOptions } from 'features/products-import/types/types';
+import { typeOptions } from 'features/products-import/types/types';
 
 export type typeSelectTypeOfImport = {
     setStep: React.Dispatch<React.SetStateAction<0 | 1 | 2>>,
-    setImportOptions: React.Dispatch<React.SetStateAction<typeImportOptions | null>>
+    setOptions: React.Dispatch<React.SetStateAction<typeOptions | null>>
 }

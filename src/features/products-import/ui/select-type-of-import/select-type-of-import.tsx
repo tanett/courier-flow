@@ -4,7 +4,7 @@ import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { ButtonPanelMenu } from 'shared/ui/button-panel-menu';
 import { BuildingStorefrontIcon, DocumentTextIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
-import { CardImport } from 'features/products-import/ui/select-type-of-import/card-import';
+import { CardImportExport } from 'shared/ui/card-import-export';
 import { typeSelectTypeOfImport } from 'features/products-import/ui/select-type-of-import/types';
 import { useGetFileTemplateForImportProduct } from 'features/products-import/hooks/use-get-file-template-for-import-product';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
@@ -13,7 +13,7 @@ import { PRODUCT_IMPORT_TYPE_REQUEST, PRODUCT_IMPORT_CODE } from '../../../../en
 
 export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
     setStep,
-    setImportOptions
+    setOptions
 }) => {
 
     const { i18n } = useLingui();
@@ -57,28 +57,28 @@ export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
                 {isLoadingTemplate && <LoaderOverlay/>}
             </Box>
             <Flex direction={ 'row' } wrap={ 'wrap' } gap={ 16 } justify={ 'center' }>
-                <CardImport icon={ <DocumentTextIcon/> }
-                            label={ i18n._(t`To the stores indicated in the Excel file`) }
-                            description={ i18n._(t`Stores and prices for each product are indicated in the import file`) }
-                            onClick={ () => {
+                <CardImportExport icon={ <DocumentTextIcon/> }
+                                  label={ i18n._(t`To the stores indicated in the Excel file`) }
+                                  description={ i18n._(t`Stores and prices for each product are indicated in the import file`) }
+                                  onClick={ () => {
                                 setStep(2);
-                                setImportOptions({ importType: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_EXCEL });
+                                setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_EXCEL });
                             } }
                 />
-                <CardImport icon={ <BuildingStorefrontIcon/> }
-                            label={ i18n._(t`To selected stores`) }
-                            description={ i18n._(t`Uploading products to selected stores with a price from the import file`) }
-                            onClick={ () => {
+                <CardImportExport icon={ <BuildingStorefrontIcon/> }
+                                  label={ i18n._(t`To selected stores`) }
+                                  description={ i18n._(t`Uploading products to selected stores with a price from the import file`) }
+                                  onClick={ () => {
                                 setStep(1);
-                                setImportOptions({ importType: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER });
+                                setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER });
                             } }
                 />
-                <CardImport icon={ <Squares2X2Icon/> }
-                            label={ i18n._(t`To catalog`) }
-                            description={ i18n._(t`Uploading products to the catalog without indicating prices or attaching them to stores`) }
-                            onClick={ () => {
+                <CardImportExport icon={ <Squares2X2Icon/> }
+                                  label={ i18n._(t`To catalog`) }
+                                  description={ i18n._(t`Uploading products to the catalog without indicating prices or attaching them to stores`) }
+                                  onClick={ () => {
                                 setStep(2);
-                                setImportOptions({ importType: PRODUCT_IMPORT_TYPE_REQUEST.PRODUCT_CATALOG });
+                                setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.PRODUCT_CATALOG });
                             } }
                 />
             </Flex>

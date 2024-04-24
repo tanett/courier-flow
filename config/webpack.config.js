@@ -121,7 +121,7 @@ module.exports = function (webpackEnv) {
         options: cssOptions,
       },
       {
-        // Options for PostCSS as we reference these options twice
+        // Options for PostCSS as we reference these stores twice
         // Adds vendor prefixing based on your specified browser support in
         // package.json
         loader: require.resolve('postcss-loader'),
@@ -143,7 +143,7 @@ module.exports = function (webpackEnv) {
                       stage: 3,
                     },
                   ],
-                  // Adds PostCSS Normalize as the reset css with default options,
+                  // Adds PostCSS Normalize as the reset css with default stores,
                   // so that it honors browserslist config in package.json
                   // which in turn let's users customize the target behavior as per their needs.
                   'postcss-normalize',
@@ -454,7 +454,7 @@ module.exports = function (webpackEnv) {
                 cacheCompression: false,
 
                 // Babel sourcemaps are needed for debugging into node_modules
-                // code.  Without the options below, debuggers like VSCode
+                // code.  Without the stores below, debuggers like VSCode
                 // show incorrect code and set breakpoints on the wrong lines.
                 sourceMaps: shouldUseSourceMap,
                 inputSourceMap: shouldUseSourceMap,
@@ -622,8 +622,8 @@ module.exports = function (webpackEnv) {
       isEnvDevelopment && new CaseSensitivePathsPlugin(),
       isEnvProduction &&
         new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
+          // Options similar to the same stores in webpackOptions.output
+          // both stores are optional
           filename: 'static/css/[name].[contenthash:8].css',
           chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }),
@@ -723,7 +723,7 @@ module.exports = function (webpackEnv) {
         }),
       !disableESLintPlugin &&
         new ESLintPlugin({
-          // Plugin options
+          // Plugin stores
           extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
           formatter: require.resolve('react-dev-utils/eslintFormatter'),
           eslintPath: require.resolve('eslint'),
@@ -734,7 +734,7 @@ module.exports = function (webpackEnv) {
             paths.appNodeModules,
             '.cache/.eslintcache'
           ),
-          // ESLint class options
+          // ESLint class stores
           cwd: paths.appPath,
           resolvePluginsRelativeTo: __dirname,
           baseConfig: {

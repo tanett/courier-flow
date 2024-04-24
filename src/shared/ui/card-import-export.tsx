@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, rem, Text, useMantineTheme } from '@mantine/core';
 
-export const CardImport: React.FC<{ icon: React.ReactNode, label: string, description: string, onClick: () => void }> = ({
+export const CardImportExport: React.FC<{ icon: React.ReactNode, label: string, description: string, onClick: () => void }> = ({
     icon,
     description,
     label,

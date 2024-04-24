@@ -21,8 +21,8 @@ import { ImportFileDialogErrorListForValidationError } from 'shared/ui/import-fi
 
 export const SelectFile: React.FC<typeSelectFile> = ({
     setStep,
-    importOptions,
-   // setRefetch
+    options,
+
 }) => {
 
     const { i18n } = useLingui();
@@ -44,10 +44,10 @@ export const SelectFile: React.FC<typeSelectFile> = ({
     } =useImportProductsFile()
 
     const onImportClick = () => {
-        const storeIds = importOptions.options
-            ? importOptions.options.isAllSelected ? []: importOptions.options.selectedStores.map(item=>item.id)
+        const storeIds = options.stores
+            ? options.stores.isAllSelected ? []: options.stores.selectedStores.map(item=>item.id)
             : []
-        onSendFile(importOptions.importType, storeIds).then()
+        onSendFile(options.type, storeIds).then()
     };
 
 
@@ -56,8 +56,8 @@ export const SelectFile: React.FC<typeSelectFile> = ({
         return (
             <Flex className={ classes.container }>
                 <Alert icon={ <InformationCircleIcon /> } className={classes.alert}>
-                    <Text ><Trans>Selected import option</Trans>:&nbsp;<b>{ getTranslatedTypeForImports(importOptions.importType) }</b></Text>
-                    { importOptions.importType === PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER && <Text><Trans>Number of selected stores</Trans>:&nbsp; <b>{ importOptions.options?.countStores || '' }</b></Text> }
+                    <Text ><Trans>Selected import option</Trans>:&nbsp;<b>{ getTranslatedTypeForImports(options.type) }</b></Text>
+                    { options.type === PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER && <Text><Trans>Number of selected stores</Trans>:&nbsp; <b>{ options.stores?.countStores || '' }</b></Text> }
                 </Alert>
                 <Space h={ 12 }/>
                 <DragDropFileUpload
@@ -78,7 +78,7 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                 <div className={ classes.btnPanel }>
                     <Button
                         leftIcon={ <ArrowLongLeftIcon strokeWidth={ 0.8 }/> }
-                        onClick={ () => {setStep(importOptions.options ? 1 : 0); } }
+                        onClick={ () => {setStep(options.stores ? 1 : 0); } }
                         variant={ 'outline' }
                         className={ classes.button }
                     >

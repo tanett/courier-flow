@@ -98,7 +98,7 @@ export const ProductChangeVatForAll: React.FC<{ onClose: () => void, }> = ({ onC
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '0.00-100%' }
-                        // additional number interval options (e.g.)
+                        // additional number interval stores (e.g.)
                         min={ 0 }
                         max={ 100 }
                         autofix={ true }
