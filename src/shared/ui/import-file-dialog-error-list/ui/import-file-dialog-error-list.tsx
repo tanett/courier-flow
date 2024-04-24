@@ -12,8 +12,8 @@ export const ImportFileDialogErrorList: React.FC<typeImportFileDialogErrorListPr
 
     return (
         <Flex className={classes.errorListWrapper}>
-            {errorList.map((item, index) => <Flex key={item.rowNumber} className={classes.rowWrapper}>
-                <Box>{index + 1}.</Box>
+            {errorList.map((item, index) => <Flex key={index} className={classes.rowWrapper}>
+                <Box className={classes.bigFont}>{index + 1}.</Box>
                 <Flex className={cn(classes.contentWrapper, { [ classes.bigFont ]: isSidePanel })}>
                     <Box>{item.errorMessage}</Box>
                     {(item.rowNumber || item.invalidValue) && <Flex className={classes.bottomRow}>

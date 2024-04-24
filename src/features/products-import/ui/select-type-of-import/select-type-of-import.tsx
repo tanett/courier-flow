@@ -6,10 +6,9 @@ import { ButtonPanelMenu } from 'shared/ui/button-panel-menu';
 import { BuildingStorefrontIcon, DocumentTextIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import { CardImport } from 'features/products-import/ui/select-type-of-import/card-import';
 import { typeSelectTypeOfImport } from 'features/products-import/ui/select-type-of-import/types';
-import { PRODUCT_IMPORT_TYPE_FOR_TEMPLATE } from '../../../../entities/products/model/state-slice';
 import { useGetFileTemplateForImportProduct } from 'features/products-import/hooks/use-get-file-template-for-import-product';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { PRODUCT_IMPORT_TYPE_REQUEST } from '../../../../entities/products/api/types';
+import { PRODUCT_IMPORT_TYPE_REQUEST, PRODUCT_IMPORT_CODE } from '../../../../entities/products/api/types';
 
 
 export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
@@ -44,15 +43,15 @@ export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
                     } }>
                     <ButtonPanelMenu.MenuItem
                         label={ i18n._(t`Import file template for stores specified in the Excel file`) }
-                        onClick={ () => onTemplateBlockTerminalsDownload(PRODUCT_IMPORT_TYPE_FOR_TEMPLATE.RETAIL_PRODUCT_EXCEL_IMPORT) }
+                        onClick={ () => onTemplateBlockTerminalsDownload(PRODUCT_IMPORT_CODE.RETAIL_PRODUCT_EXCEL_IMPORT) }
                     />
                     <ButtonPanelMenu.MenuItem
                         label={ i18n._(t`Import file template for selected stores`) }
-                        onClick={ () => onTemplateBlockTerminalsDownload(PRODUCT_IMPORT_TYPE_FOR_TEMPLATE.RETAIL_PRODUCT_FILTER_IMPORT) }
+                        onClick={ () => onTemplateBlockTerminalsDownload(PRODUCT_IMPORT_CODE.RETAIL_PRODUCT_FILTER_IMPORT) }
                     />
                     <ButtonPanelMenu.MenuItem
                         label={ i18n._(t`Template file for import into catalog`) }
-                        onClick={ () => onTemplateBlockTerminalsDownload(PRODUCT_IMPORT_TYPE_FOR_TEMPLATE.PRODUCT_IMPORT_CATALOG) }
+                        onClick={ () => onTemplateBlockTerminalsDownload(PRODUCT_IMPORT_CODE.PRODUCT_IMPORT_CATALOG) }
                     />
                 </ButtonPanelMenu>
                 {isLoadingTemplate && <LoaderOverlay/>}

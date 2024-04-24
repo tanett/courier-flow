@@ -14,6 +14,9 @@ import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-al
 import { addProductsPermissions } from 'app/config/permissions-config';
 import { ProductChangeVatForAll } from 'features/product-change-vat-fo-all/product-change-vat-for-all';
 import { ProductsImport } from 'features/products-import';
+import { SidebarTitle } from 'shared/ui/sidebar-title';
+import { ImportProductsList } from 'features/import-products-list';
+import { SidePanel } from 'shared/ui/side-panel';
 
 
 export const ProductsListButtonsPanel: React.FC = () => {
@@ -22,6 +25,8 @@ export const ProductsListButtonsPanel: React.FC = () => {
     const { classes } = useStyles();
 
     const [ modalContent, setModalContent ] = useState<null | typeModalContent>(null);
+    const [ sidePanelContent, setSidePanelContent ] = useState<null | React.ReactNode>(null);
+    const [ sidePanelTitle, setSidePanelTitle ] = useState<null | React.ReactNode>(null);
 
     const navigate = useNavigate();
 
@@ -49,6 +54,13 @@ export const ProductsListButtonsPanel: React.FC = () => {
     const onCreateNewProduct = () => {
 
         navigate(routerPaths.products_create);
+
+    };
+
+    const onOpenImportList = () => {
+
+        setSidePanelTitle(<SidebarTitle><Trans>Import terminals</Trans></SidebarTitle>);
+        setSidePanelContent(<ImportProductsList onTitleChange={setSidePanelTitle}/>);
 
     };
 
@@ -84,7 +96,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 <ButtonPanelMenu.MenuItem
                     label={i18n._(t`Imports list`)}
                     icon={<ArrowDownTrayIcon className={classes.menuButtonIcon}/>}
-                    onClick={() => console.log('imports list`')}
+                    onClick={onOpenImportList}
                 />
                 <ButtonPanelMenu.MenuItem
                     label={i18n._(t`Change vat`)}
@@ -108,6 +120,14 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 {modalContent?.content}
             </Modal.Body>
         </Modal>
+
+        <SidePanel
+            title={sidePanelTitle ?? ''}
+            isOpened={!!sidePanelContent}
+            onClose={() => setSidePanelContent(null)}
+        >
+            {sidePanelContent}
+        </SidePanel>
     </>);
 
 };

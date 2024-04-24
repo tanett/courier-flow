@@ -9,7 +9,7 @@ export const importsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
 
         // Get import list
-        getImportTerminalList: builder.query<typeSearchResponse<typeImport>, typeSearchRequest<typeSearchImportFilter, typeSearchImportSortingNames>>({
+        getImportProductsList: builder.query<typeSearchResponse<typeImport>, typeSearchRequest<typeSearchImportFilter, typeSearchImportSortingNames>>({
             query: (data) => (
                 {
                     url: API_URLS.IMPORTS_SEARCH,
@@ -36,5 +36,5 @@ export const importsApi = baseApi.injectEndpoints({
 
 export const {
     useLazyGetImportByIdQuery,
-    useGetImportTerminalListQuery,
+    useGetImportProductsListQuery,
 } = importsApi;

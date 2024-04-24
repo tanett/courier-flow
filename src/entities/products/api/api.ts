@@ -2,8 +2,9 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { PRODUCT_IMPORT_TYPE_FOR_TEMPLATE, typeChangeVatForAll, typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
+import { typeChangeVatForAll, typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
 import {
+    PRODUCT_IMPORT_CODE,
     tagTypesProductsList,
     typeBatchEditProductRequest,
     typeCreateProductRequest,
@@ -154,7 +155,7 @@ export const productsApi = baseApi.injectEndpoints({
         }),
 
         // download template files for import
-        downloadTemplateFile: builder.query<unknown, PRODUCT_IMPORT_TYPE_FOR_TEMPLATE>({
+        downloadTemplateFile: builder.query<unknown, PRODUCT_IMPORT_CODE>({
             query: (type) => (
                 {
                     url: API_URLS.PRODUCT_DOWNLOAD_TEMPLATE.replace('{type}', type),
