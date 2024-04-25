@@ -5,7 +5,7 @@ export type typeEditPricesForAllStoresForm = {
 }
 
 export const initialForm = {
-    initialValues: {  price: null },
+    initialValues: { price: null },
     validate: {
         price: (value: string | null) => {
 

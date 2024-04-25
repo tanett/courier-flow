@@ -13,7 +13,7 @@ import { PRODUCT_IMPORT_TYPE_REQUEST, PRODUCT_IMPORT_CODE } from '../../../../en
 
 export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
     setStep,
-    setOptions
+    setOptions,
 }) => {
 
     const { i18n } = useLingui();
@@ -27,7 +27,7 @@ export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
             <Box sx={ {
                 alignSelf: 'end',
                 marginBottom: '8px',
-                position:'relative'
+                position: 'relative',
             } }>
                 <ButtonPanelMenu
                     trigger={ 'hover' }
@@ -36,10 +36,10 @@ export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
                         width: '36px',
                         height: '36px',
                         '&:hover, &:active, &:focus, &[aria-expanded="true"]': {
-                            backgroundColor: theme.colors.primary[0],
-                            border: `1px solid ${ theme.colors.gray[5] }`,
-                            borderRadius: '4px'
-                        }
+                            backgroundColor: theme.colors.primary[ 0 ],
+                            border: `1px solid ${ theme.colors.gray[ 5 ] }`,
+                            borderRadius: '4px',
+                        },
                     } }>
                     <ButtonPanelMenu.MenuItem
                         label={ i18n._(t`Import file template for stores specified in the Excel file`) }
@@ -58,28 +58,34 @@ export const SelectTypeOfImport: React.FC<typeSelectTypeOfImport> = ({
             </Box>
             <Flex direction={ 'row' } wrap={ 'wrap' } gap={ 16 } justify={ 'center' }>
                 <CardImportExport icon={ <DocumentTextIcon/> }
-                                  label={ i18n._(t`To the stores indicated in the Excel file`) }
-                                  description={ i18n._(t`Stores and prices for each product are indicated in the import file`) }
-                                  onClick={ () => {
-                                setStep(2);
-                                setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_EXCEL });
-                            } }
+                    label={ i18n._(t`To the stores indicated in the Excel file`) }
+                    description={ i18n._(t`Stores and prices for each product are indicated in the import file`) }
+                    onClick={ () => {
+
+                        setStep(2);
+                        setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_EXCEL });
+
+                    } }
                 />
                 <CardImportExport icon={ <BuildingStorefrontIcon/> }
-                                  label={ i18n._(t`To selected stores`) }
-                                  description={ i18n._(t`Uploading products to selected stores with a price from the import file`) }
-                                  onClick={ () => {
-                                setStep(1);
-                                setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER });
-                            } }
+                    label={ i18n._(t`To selected stores`) }
+                    description={ i18n._(t`Uploading products to selected stores with a price from the import file`) }
+                    onClick={ () => {
+
+                        setStep(1);
+                        setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER });
+
+                    } }
                 />
                 <CardImportExport icon={ <Squares2X2Icon/> }
-                                  label={ i18n._(t`To catalog`) }
-                                  description={ i18n._(t`Uploading products to the catalog without indicating prices or attaching them to stores`) }
-                                  onClick={ () => {
-                                setStep(2);
-                                setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.PRODUCT_CATALOG });
-                            } }
+                    label={ i18n._(t`To catalog`) }
+                    description={ i18n._(t`Uploading products to the catalog without indicating prices or attaching them to stores`) }
+                    onClick={ () => {
+
+                        setStep(2);
+                        setOptions({ type: PRODUCT_IMPORT_TYPE_REQUEST.PRODUCT_CATALOG });
+
+                    } }
                 />
             </Flex>
         </Flex>

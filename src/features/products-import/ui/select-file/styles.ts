@@ -6,20 +6,20 @@ export const useStyles = createStyles((theme) => ({
         paddingBottom: '8px',
         paddingLeft: '15px',
         paddingRight: '15px',
-        minWidth: '45vw'
+        minWidth: '45vw',
     },
     alert: {
-        color: theme.colors.primary[5],
+        color: theme.colors.primary[ 5 ],
         '& .mantine-Alert-icon': {
             width: '24px',
-            height: '24px'
+            height: '24px',
         },
         '& .mantine-Alert-message': {
             fontSize: theme.fontSizes.md,
             letterSpacing: 0.3,
-            color: theme.colors.gray[5],
-            '& b': { color: theme.colors.gray[8], fontWeight: 500}
-        }
+            color: theme.colors.gray[ 5 ],
+            '& b': { color: theme.colors.gray[ 8 ], fontWeight: 500 },
+        },
     },
     alertWrapper: {
         marginTop: rem(16),
@@ -52,7 +52,7 @@ export const useStyles = createStyles((theme) => ({
         '& .mantine-Button-leftIcon': {
             width: '24px',
             height: '24px',
-            color: theme.colors.primary[5],
-        }
-    }
+            color: theme.colors.primary[ 5 ],
+        },
+    },
 }));

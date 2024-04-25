@@ -1,4 +1,4 @@
-import { PRODUCT_UNIT_VALUE, typeAdditionalFieldForForm} from 'entities/products/model/state-slice';
+import { PRODUCT_UNIT_VALUE, typeAdditionalFieldForForm } from 'entities/products/model/state-slice';
 
 export type typeProductForm = {
     name: string

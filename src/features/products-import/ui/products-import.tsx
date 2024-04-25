@@ -14,10 +14,10 @@ export const ProductsImport: React.FC = () => {
     return (
         <div style={ {
             minWidth: '300px',
-            maxWidth: '890px'
+            maxWidth: '890px',
         } }>
             { step === 0 && <SelectTypeOfImport setStep={ setStep } setOptions={ setOptions }/> }
-            { step === 1 && options &&  <SelectStores setStep={ setStep } setOptions={ setOptions } options={ options }/> }
+            { step === 1 && options && <SelectStores setStep={ setStep } setOptions={ setOptions } options={ options }/> }
             { step === 2 && options && <SelectFile setStep={ setStep } options={ options } /> }
         </div>
     );

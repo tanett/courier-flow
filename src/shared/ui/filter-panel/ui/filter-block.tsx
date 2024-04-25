@@ -15,13 +15,13 @@ export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent }) => {
     const theme = useMantineTheme();
     const [ opened, {
         open,
-        close
+        close,
     } ] = useDisclosure(false);
 
     return (
         <DrawerContext.Provider value={ close }>
             <Button onClick={ open } variant={ 'outline' } className={ classes.filterOpenButton }
-                    leftIcon={ <FunnelIcon/> }
+                leftIcon={ <FunnelIcon/> }
             >
                 <Trans>Filter</Trans>
             </Button>
@@ -33,7 +33,7 @@ export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent }) => {
                 withCloseButton={ false }
                 overlayProps={ {
                     opacity: 0.5,
-                    bg: '#D1D5DB70'
+                    bg: '#D1D5DB70',
                 } }
                 padding={ 0 }
             >
@@ -44,7 +44,7 @@ export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent }) => {
                         </div>
                         <ActionIcon onClick={ close } variant="outline" size="2.625rem" radius="md" sx={ {
                             borderColor: 'transparent',
-                            color: theme.colors.gray[5]
+                            color: theme.colors.gray[ 5 ],
                         } }>
                             <IconX size="1.85rem" stroke={ 1.5 }/>
                         </ActionIcon>

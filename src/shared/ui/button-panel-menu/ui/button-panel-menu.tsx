@@ -9,7 +9,7 @@ const ButtonPanelMenu: typeButtonPanelMenu & typeButtonMenuExtensions = ({
     /* eslint-disable react/prop-types */
     children,
     sxForMainButton,
-    trigger='click'
+    trigger = 'click',
 }) => {
 
     const { classes } = useStyles();

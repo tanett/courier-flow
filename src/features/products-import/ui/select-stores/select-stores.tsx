@@ -11,14 +11,14 @@ import { SelectStoresForImportExport } from 'features/select-stores-for-import-e
 export const SelectStores: React.FC<typeSelectStores> = ({
     setStep,
     options,
-    setOptions
+    setOptions,
 }) => {
 
     const { i18n } = useLingui();
 
     const { classes } = useStyles();
 
-    const [ selectedStores, setSelectedStores ] = useState<typeStoreListChecked[]>( []);
+    const [ selectedStores, setSelectedStores ] = useState<typeStoreListChecked[]>([]);
 
     const [ isAllChecked, setIsAllChecked ] = useState(false);
 
@@ -28,16 +28,23 @@ export const SelectStores: React.FC<typeSelectStores> = ({
 
 
     useEffect(() => {
+
         if (isError && (selectedStores.length !== 0 || isAllChecked)) {
+
             setIsError(null);
+
         }
+
     }, [ selectedStores, isAllChecked ]);
 
 
     const onNextClick = () => {
+
         if (selectedStores.length === 0 && !isAllChecked) {
+
             setIsError(i18n._(t`Select at least one store`));
             return;
+
         }
 
         setOptions({
@@ -45,10 +52,11 @@ export const SelectStores: React.FC<typeSelectStores> = ({
             stores: {
                 isAllSelected: isAllChecked,
                 countStores: isAllChecked ? countAllStores : selectedStores.length || 0,
-                selectedStores: isAllChecked ? [] : selectedStores
-            }
+                selectedStores: isAllChecked ? [] : selectedStores,
+            },
         });
         setStep(2);
+
     };
 
     return (
@@ -67,8 +75,10 @@ export const SelectStores: React.FC<typeSelectStores> = ({
                 <Button
                     leftIcon={ <ArrowLongLeftIcon strokeWidth={ 0.8 }/> }
                     onClick={ () => {
+
                         setStep(0);
                         setOptions(null);
+
                     } }
                     variant={ 'outline' }
                     className={ classes.button }

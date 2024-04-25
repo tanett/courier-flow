@@ -9,8 +9,11 @@ import {
     typeEditRetailProductRequest,
     typeRetailProductDeleteRequest,
     typeSearchFilterRetailProduct,
-    typeSearchRetailProductSortingNames
+    typeSearchRetailProductSortingNames,
 } from '../../../entities/retail-products/api/types';
+import { localeHeaderCreator } from 'app/utils/locale-header-creator';
+import { typeExport } from '../../../entities/exports/api/types';
+import { typeSearchFilterProductExtended } from '../../../entities/products/api/types';
 
 export const retailProductsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -86,15 +89,35 @@ export const retailProductsApi = baseApi.injectEndpoints({
                 }
             ),
         }),
+
+        // export product catalog - with stores and prices
+        exportRetailProductCatalog: builder.query<typeExport, { filter: typeSearchFilterProductExtended }>({
+            query: (data) => (
+                {
+                    url: API_URLS.RETAIL_PRODUCTS_EXPORT,
+                    method: 'POST',
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
+
+                    },
+                    body: data,
+                    cache: 'no-cache',
+
+                }
+            ),
+        }),
     }),
 });
 
 export const {
-  useCreateRetailProductMutation,
+    useCreateRetailProductMutation,
     usePatchRetailProductMutation,
     useSearchRetailProductQuery,
     useLazySearchRetailProductQuery,
     useDeleteRetailProductMutation,
     useGetRetailProductByIdQuery,
-    useChangePricesInAllStoresMutation
+    useChangePricesInAllStoresMutation,
+    useExportRetailProductCatalogQuery,
+    useLazyExportRetailProductCatalogQuery,
 } = retailProductsApi;

@@ -19,17 +19,24 @@ export const ModalArchiveSelectedItem: React.FC<{
 
     const {
         onArchive,
-        isArchiveLoading
+        isArchiveLoading,
     } = useArchiveProducts({
         onSuccess: () => {
+
             onCloseDialogToDelete();
-        }
+
+        },
     });
 
-    const onCloseDialogToDelete = () => { setOpen(false); };
+    const onCloseDialogToDelete = () => {
+
+        setOpen(false);
+
+    };
 
 
     const onConfirmDelete = async () => {
+
         const selectedIds = list.filter(item => item.checked).map(item => item.id);
         await onArchive(selectedIds);
 
@@ -54,4 +61,5 @@ export const ModalArchiveSelectedItem: React.FC<{
             </Modal.Body>
         </Modal>
     );
+
 };

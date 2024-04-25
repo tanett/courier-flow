@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { initialForm, typeEditRetailProductToStoreForm, } from './form';
+import { initialForm, typeEditRetailProductToStoreForm } from './form';
 import { Box, Button, Flex, Input, rem, Space, TextInput, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -26,7 +26,7 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
 
     const form = useForm<typeEditRetailProductToStoreForm>({
         ...initialForm,
-        initialValues: { price: data.price.toString() }
+        initialValues: { price: data.price.toString() },
     });
 
     const dispatchAppT = useAppDispatchT();
@@ -49,7 +49,7 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
             setIsInProgress(true);
             const dataObject: typeEditRetailProduct = {
                 id: data.id,
-                price: parseFloat(form.values.price)  // from masked input we get the value as string with ,
+                price: parseFloat(form.values.price), // from masked input we get the value as string with ,
             };
             try {
 
@@ -84,7 +84,7 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
                     marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
-                    '& .mantine-InputWrapper-root': { maxWidth: 'none' }
+                    '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                 } }>
                 <TextInput
                     label={ <Trans>Store</Trans> }
@@ -106,6 +106,7 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '' }
+
                         // additional number interval stores (e.g.)
                         min={ 0 }
                         max={ 100000000000 }
@@ -128,7 +129,7 @@ export const RetailProductEditPrice: React.FC<{ data: typeRetailProduct, onClose
                 } }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Change` }</Button>
+                        type="submit">{ t`Change` }</Button>
                 </Flex>
             </Box>
             { isLoading && <LoaderOverlay/> }

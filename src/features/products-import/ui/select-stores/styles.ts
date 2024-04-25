@@ -8,7 +8,7 @@ export const useStyles = createStyles((theme) => ({
         paddingRight: '15px',
     },
     error: {
-        color: theme.colors.red[5],
+        color: theme.colors.red[ 5 ],
         fontSize: theme.fontSizes.sm,
         marginTop: '5px',
     },
@@ -25,7 +25,7 @@ export const useStyles = createStyles((theme) => ({
         '& .mantine-Button-leftIcon': {
             width: '24px',
             height: '24px',
-            color: theme.colors.primary[5],
-        }
-    }
+            color: theme.colors.primary[ 5 ],
+        },
+    },
 }));

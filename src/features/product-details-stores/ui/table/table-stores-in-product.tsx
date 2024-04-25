@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, useMantineTheme , Text} from '@mantine/core';
+import { Box, Flex, useMantineTheme, Text } from '@mantine/core';
 import { ArchiveBoxXMarkIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
@@ -16,7 +16,7 @@ export const TableDetailsStoresInProduct: React.FC<typeProductStoresAndPricesTab
     isLoading,
     onOpenDialogChangePriceRetailProduct,
     onOpenDialogDeleteRetailProduct,
-    isAllowEditProduct
+    isAllowEditProduct,
 }) => {
 
     const { i18n } = useLingui();
@@ -56,7 +56,7 @@ export const TableDetailsStoresInProduct: React.FC<typeProductStoresAndPricesTab
                                         },
 
                                         {
-                                            icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[5] } width={ 22 }/>,
+                                            icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
                                             handler: () => onOpenDialogDeleteRetailProduct(item.id),
                                             label: i18n._(t`Delete`),
                                         }
@@ -64,7 +64,7 @@ export const TableDetailsStoresInProduct: React.FC<typeProductStoresAndPricesTab
 
                                     return (
                                         <Table.Tr key={ item.id } >
-                                            <Table.Td><Box sx={{ minWidth: '300px', maxWidth:'800px', }}><Text truncate>{ item?.store?.name || '-' }</Text></Box></Table.Td>
+                                            <Table.Td><Box sx={{ minWidth: '300px', maxWidth: '800px' }}><Text truncate>{ item?.store?.name || '-' }</Text></Box></Table.Td>
                                             <Table.Td ><Box maw={220} miw={100} >{ item?.price ? numberCurrencyFormat(item.price) : '-' }</Box></Table.Td>
                                             { isAllowEditProduct && <Table.TdActions align={'center'} actions={ actions }/>}
                                         </Table.Tr>

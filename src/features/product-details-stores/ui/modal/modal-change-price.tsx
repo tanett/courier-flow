@@ -13,7 +13,7 @@ export const ModalChangePrice: React.FC<{
 }> = ({
     setOpen,
     data,
-    setRefetch
+    setRefetch,
 }) => {
 
     const { i18n } = useLingui();
@@ -31,13 +31,14 @@ export const ModalChangePrice: React.FC<{
     };
 
     return (
-        <Modal modalWidth="auto" opened={ true }  onCloseByOverlay={ () => onCloseDialogChangePrice(false) }>
+        <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogChangePrice(false) }>
             <Modal.Body>
                 <>
                     <Modal.Header title={ i18n._(t`Change price`) } onClose={ () => onCloseDialogChangePrice(false) }/>
-                    <RetailProductEditPrice data={ data } onClose={  onCloseDialogChangePrice }/>
+                    <RetailProductEditPrice data={ data } onClose={ onCloseDialogChangePrice }/>
                 </>
             </Modal.Body>
         </Modal>
     );
+
 };

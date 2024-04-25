@@ -4,6 +4,7 @@ import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-he
 import { typeExport, typeSearchExportFilter, typeSearchExportSortingNames } from './types';
 import { typeSearchRequest, typeSearchResponse } from '../../../app/api/types';
 import { expectedFileType, responseToBlobDownload } from 'shared/utils/response-to-blob-dowload';
+import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 
 
 export const exportApi = baseApi.injectEndpoints({
@@ -37,7 +38,10 @@ export const exportApi = baseApi.injectEndpoints({
                 {
                     url: API_URLS.DOWNLOAD_EXPORT_FILE_BY_ID.replace('{id}', id),
                     method: 'GET',
-                    headers: protectedRoutsAPIHeaderCreator(),
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
+                    },
                     cache: 'no-cache',
                     responseHandler: async (response) => {
 

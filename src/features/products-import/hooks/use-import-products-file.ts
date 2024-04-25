@@ -38,7 +38,6 @@ export const useImportProductsFile = () => {
     const [ getImportById ] = useLazyGetImportByIdQuery();
 
 
-
     // Get import by id handler
     const refetchGetImportById = async (importedFileId: string) => {
 
@@ -59,7 +58,7 @@ export const useImportProductsFile = () => {
                 if (response.status.code === importFileStatuses.ERROR) {
 
                     setProcessStep('error');
-                     setImportErrorList(response.errors);
+                    setImportErrorList(response.errors);
 
                 }
 
@@ -118,7 +117,7 @@ export const useImportProductsFile = () => {
         if (files.length === 1) {
 
             setAttachedFilesErrors(null);
-            setAttachedFile(files[0]);
+            setAttachedFile(files[ 0 ]);
 
         } else {
 
@@ -136,13 +135,17 @@ export const useImportProductsFile = () => {
 
         if (files.length > 1) errorList.push(t`Only one file can be attached.`);
 
-        if (files[0].errors[0].code === 'file-too-large') errorList.push(t`The maximum file size has been exceeded. Please select another file.`);
-        if (files[0].errors[0].code === 'file-invalid-type') errorList.push(t`Wrong file type. Please select another file.`);
+        if (files[ 0 ].errors[ 0 ].code === 'file-too-large') errorList.push(t`The maximum file size has been exceeded. Please select another file.`);
+        if (files[ 0 ].errors[ 0 ].code === 'file-invalid-type') errorList.push(t`Wrong file type. Please select another file.`);
 
         if (errorList.length) {
+
             setAttachedFilesErrors(errorList);
+
         } else {
+
             setAttachedFilesErrors(null);
+
         }
 
         setAttachedFile(null);
@@ -157,7 +160,11 @@ export const useImportProductsFile = () => {
 
             const requestData: typeImportProductRequestData = { importType: type };
 
-            if (type === PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER) {requestData.storeIds = storeIds;}
+            if (type === PRODUCT_IMPORT_TYPE_REQUEST.RETAIL_PRODUCT_FROM_FILTER) {
+
+                requestData.storeIds = storeIds;
+
+            }
 
             const formData = new FormData();
             formData.append('file', attachedFile);
@@ -176,10 +183,12 @@ export const useImportProductsFile = () => {
                 }
 
             } catch (err) {
+
                 if ((err as typeImportErrorResponse).status === 400) {
 
                     setProcessStep('error');
                     setResponseFullError((err as typeImportErrorResponse).data || null);
+
                 }
                 errorHandler(err as typeResponseError, 'sendFile', dispatchAppT);
 
@@ -205,7 +214,7 @@ export const useImportProductsFile = () => {
         processStep,
         importProcessRange,
         importErrorList,
-        responseFullError
+        responseFullError,
     };
 
 };

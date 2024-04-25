@@ -5,14 +5,13 @@ import { useLingui } from '@lingui/react';
 import { ArrowLongLeftIcon } from '@heroicons/react/16/solid';
 import { useStyles } from 'features/products-import/ui/select-stores/styles';
 import { typeSelectStores, typeStoreListChecked } from './types';
-import { PRODUCT_IMPORT_TYPE_REQUEST } from '../../../../entities/products/api/types';
 import { SelectStoresForImportExport } from 'features/select-stores-for-import-export/select-stores-for-import-export';
 
 
 export const SelectStores: React.FC<typeSelectStores> = ({
     setStep,
     options,
-    setOptions
+    setOptions,
 }) => {
 
     const { i18n } = useLingui();
@@ -27,16 +26,23 @@ export const SelectStores: React.FC<typeSelectStores> = ({
     const [ isError, setIsError ] = useState<string | null>(null);
 
     useEffect(() => {
+
         if (isError && (selectedStores.length !== 0 || isAllChecked)) {
+
             setIsError(null);
+
         }
+
     }, [ selectedStores, isAllChecked ]);
 
 
     const onNextClick = () => {
+
         if (selectedStores.length === 0 && !isAllChecked) {
+
             setIsError(i18n._(t`Select at least one store`));
             return;
+
         }
 
         setOptions({
@@ -44,10 +50,12 @@ export const SelectStores: React.FC<typeSelectStores> = ({
             stores: {
                 isAllSelected: isAllChecked,
                 countStores: isAllChecked ? countAllStores : selectedStores.length || 0,
-                selectedStores: isAllChecked ? [] : selectedStores
-            }
+                selectedStores: isAllChecked ? [] : selectedStores,
+            },
         });
-        console.log('export');  // todo
+
+        setStep(2);
+
     };
 
 
@@ -70,8 +78,10 @@ export const SelectStores: React.FC<typeSelectStores> = ({
                 <Button
                     leftIcon={ <ArrowLongLeftIcon strokeWidth={ 0.8 }/> }
                     onClick={ () => {
+
                         setStep(0);
                         setOptions(null);
+
                     } }
                     variant={ 'outline' }
                     className={ classes.button }

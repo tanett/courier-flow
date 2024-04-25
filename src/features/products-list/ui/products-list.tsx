@@ -11,6 +11,7 @@ import { ModalArchiveItem } from 'features/products-list/ui/modal/modal-archive-
 import { ModalArchiveSelectedItem } from 'features/products-list/ui/modal/modal-archive-selected-item';
 import { ModalChangeCategorySelectedItem } from 'features/products-list/ui/modal/modal-change-category-selected-item';
 import { useGetCheckedProductsList } from 'features/products-list/hooks/use-get-checked-products-list';
+import { ModalExportSelectedProduct } from 'features/products-list/ui/modal/modal-export-selected-product';
 
 
 export const ProductsList: React.FC = () => {
@@ -25,7 +26,7 @@ export const ProductsList: React.FC = () => {
         productsCheckedList,
         pagination,
         isLoading,
-        handlers
+        handlers,
     } = useGetCheckedProductsList();
 
     // modal archive item product
@@ -36,6 +37,10 @@ export const ProductsList: React.FC = () => {
 
     // modal change category selected product
     const [ isModalChangeCategorySelectedItem, setIsModalChangeCategorySelectedItem ] = useState(false);
+
+    // export selected modals
+    const [ isModalExportSelectedProducts, setIsModalExportSelectedProducts ] = useState(false);
+
 
     const onClickRowActionsArchiveItem = (product: typeProductExtendedWithCheckBox) => {
 
@@ -54,7 +59,7 @@ export const ProductsList: React.FC = () => {
         {
             id: 'selected-export-btn',
             label: <Trans >Selected export</Trans>,
-            handler: (event) => console.log('click'),
+            handler: (event) => setIsModalExportSelectedProducts(true),
         },
         {
             id: 'change-category-btn',
@@ -76,7 +81,7 @@ export const ProductsList: React.FC = () => {
             isAllowedEdit={ isAllowedEdit }
             goToEditProductPage={ goToEditProductPage }
             onClickRowActionsArchiveItem={ onClickRowActionsArchiveItem }
-            productsList={  productsCheckedList }
+            productsList={ productsCheckedList }
             pagination={ pagination }
             isLoading={ isLoading }
             goToDetailsProductPage={ goToDetailsProductPage }
@@ -85,11 +90,13 @@ export const ProductsList: React.FC = () => {
         />
 
 
-        { modalArchiveItemData && <ModalArchiveItem data={modalArchiveItemData}  setOpen={setModalArchiveItemData}/> }
+        { modalArchiveItemData && <ModalArchiveItem data={modalArchiveItemData} setOpen={setModalArchiveItemData}/> }
 
-        { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={productsCheckedList || []}  setOpen={setIsModalSelectedItemArchive}/> }
+        { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={productsCheckedList || []} setOpen={setIsModalSelectedItemArchive}/> }
 
-        { isModalChangeCategorySelectedItem && <ModalChangeCategorySelectedItem list={productsCheckedList || []}  setOpen={setIsModalChangeCategorySelectedItem}/> }
+        { isModalChangeCategorySelectedItem && <ModalChangeCategorySelectedItem list={productsCheckedList || []} setOpen={setIsModalChangeCategorySelectedItem}/> }
+
+        { isModalExportSelectedProducts && <ModalExportSelectedProduct list={productsCheckedList || []} setOpen={setIsModalExportSelectedProducts}/> }
 
     </>);
 

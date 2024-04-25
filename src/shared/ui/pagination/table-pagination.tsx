@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStyles } from './styles';
-import { Box, Flex, Loader, Pagination as MantinePagination, Select } from '@mantine/core';
+import { Box, Flex, Pagination as MantinePagination, Select } from '@mantine/core';
 import { perPageVariantList, queryParamsNames } from '../../../app/config/api-constants';
 import { Trans } from '@lingui/macro';
 import { useUrlParams } from '../../hooks/use-url-params/use-url-params';
@@ -9,8 +9,9 @@ import { IconChevronDown } from '@tabler/icons-react';
 
 export const Pagination: React.FC<typeTablePaginationProps> = ({
     withPerPage = true,
-    pagination
+    pagination,
 }) => {
+
     if (!pagination) return null;
 
     const { classes } = useStyles();
@@ -20,15 +21,15 @@ export const Pagination: React.FC<typeTablePaginationProps> = ({
     const setItemsPerPage = (itemsPerPage: string) => {
 
         searchParams.setSearchParams({
-            [queryParamsNames.itemsPerPage]: itemsPerPage,
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.itemsPerPage ]: itemsPerPage,
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
     };
 
     const setPageNumber = (pageNumber: number) => {
 
-        searchParams.setSearchParams({ [queryParamsNames.pageNumber]: pageNumber.toString() });
+        searchParams.setSearchParams({ [ queryParamsNames.pageNumber ]: pageNumber.toString() });
 
     };
 

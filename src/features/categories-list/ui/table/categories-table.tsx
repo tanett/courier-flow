@@ -29,10 +29,10 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
 
 
     // observer for checkbox in header - if all checked
-    const allChecked =(categoriesList && categoriesList.length>0 )? categoriesList.every((value) => value?.checked) : false;
+    const allChecked = (categoriesList && categoriesList.length > 0) ? categoriesList.every((value) => value?.checked) : false;
 
     // observer for checkbox in header - if something checked
-    const indeterminate =  (categoriesList?.some((value) => value?.checked) && !allChecked) || false;
+    const indeterminate = (categoriesList?.some((value) => value?.checked) && !allChecked) || false;
 
     const onCheckedAllHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -81,7 +81,7 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
                             if (currentUser?.actor.id !== item.id) {
 
                                 actions.push({
-                                    label: i18n._( 'action-archive'),
+                                    label: i18n._('action-archive'),
                                     handler: () => onClickRowActionsArchiveItem(item),
                                     icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
                                 });

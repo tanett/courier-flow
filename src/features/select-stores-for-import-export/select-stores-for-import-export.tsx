@@ -20,7 +20,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
     setSelectedStores,
     selectedStores,
     setIsAllChecked,
-    isAllChecked
+    isAllChecked,
 
 }) => {
 
@@ -47,7 +47,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
 
             const mapResponse = response.content.map(item => ({
                 ...item,
-                checked: isAllChecked
+                checked: isAllChecked,
             }));
 
             setCountAllStores(response.totalElements);
@@ -60,6 +60,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
                     ...item,
                     checked: false,
                 })));
+
             }
 
         } catch (err) {
@@ -125,7 +126,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
 
     const {
         ref: inputRef,
-        focused: inputFocused
+        focused: inputFocused,
     } = useFocusWithin();
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,6 +136,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
     };
 
     const onEmptySearchHandler = () => {
+
         const selectedIds = selectedStores.map(item => item.id);
 
         if (selectedIds.length > 0) {
@@ -144,8 +146,11 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
             setStoresList([ ...newFirstList ]);
 
         } else {
+
             setStoresList([ ...firstList ]);
+
         }
+
     };
 
     const closeHandler = () => {
@@ -157,53 +162,69 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
     };
 
     const onStoreClick = (store: typeStoreListChecked) => {
+
         if (storesList) {
+
             if (store.checked) {
+
                 if (isAllChecked) setIsAllChecked(false);
                 setSelectedStores(prevState => prevState.filter(item => item.id !== store.id));
+
             } else {
+
                 setSelectedStores(prev => ([ ...prev, {
                     ...store,
-                    checked: true
+                    checked: true,
                 } ]));
+
             }
             setStoresList(storesList.map(item => (item.id === store.id
                 ? {
                     ...item,
-                    checked: !item.checked
+                    checked: !item.checked,
                 }
                 : item)));
+
         }
+
     };
 
 
     const onResetClick = () => {
+
         if (storesList) {
+
             if (isAllChecked) setIsAllChecked(false);
             setSelectedStores([]);
             setStoresList(storesList.map(item => ({
                 ...item,
-                checked: false
+                checked: false,
             })));
             setFirstList(firstList.map(item => ({
                 ...item,
-                checked: false
+                checked: false,
             })));
             onSearchStoreChange('');
+
         }
+
     };
 
     const onSelectAllClick = () => {
+
         if (storesList) {
+
             setIsAllChecked(true);
             const checkedList = storesList.map(item => ({
                 ...item,
-                checked: true
+                checked: true,
             }));
             setStoresList(checkedList);
             const selectedIds = selectedStores.map(item => item.id);
             setSelectedStores([ ...selectedStores, ...checkedList.filter(item => !selectedIds.includes(item.id)) ]);
+
         }
+
     };
 
     return (
@@ -212,12 +233,12 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
                 <Text className={ classes.title }><Trans>Select stores</Trans></Text>
                 <Flex direction="row" gap={ 10 } align={ 'center' }>
                     <Button onClick={ () => onResetClick() }
-                            variant={ 'subtle' }
-                            className={ classes.btnLink }
+                        variant={ 'subtle' }
+                        className={ classes.btnLink }
                     ><Trans>Reset</Trans></Button>
                     <Button onClick={ () => onSelectAllClick() }
-                            variant={ 'subtle' }
-                            className={ classes.btnLink }
+                        variant={ 'subtle' }
+                        className={ classes.btnLink }
                     ><Trans>Select all</Trans></Button>
                 </Flex>
             </Flex>
@@ -238,6 +259,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
                     { storesList
                         ? storesList?.length > 0
                             ? storesList.map((item) => {
+
                                 return <Flex
                                     key={ item.id }
                                     onClick={ () => onStoreClick(item) }
@@ -250,7 +272,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
                             : <Flex align={ 'center' } justify={ 'center' } sx={ {
                                 textAlign: 'center',
                                 height: '100%',
-                                backgroundColor: theme.colors.gray[0]
+                                backgroundColor: theme.colors.gray[ 0 ],
                             } }><Trans>No stores with this name</Trans></Flex>
                         : <LoaderOverlay/>
                     }

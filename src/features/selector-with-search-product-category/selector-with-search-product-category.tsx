@@ -37,12 +37,16 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             const response = await getCategories(requestData).unwrap();
             const mapResponse = response.content.map(item => ({
                 value: item.id,
-                label: item.name
+                label: item.name,
             }));
 
             setList(mapResponse);
 
-            if (isFirst) {setFirstRequest(mapResponse);}
+            if (isFirst) {
+
+                setFirstRequest(mapResponse);
+
+            }
 
         } catch (err) {
 
@@ -120,7 +124,9 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             getData(requestData).then();
 
         } else {
-           setList(firstRequest)
+
+            setList(firstRequest);
+
         }
 
     }, [ debouncedSearchValue ]);
@@ -142,7 +148,7 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );

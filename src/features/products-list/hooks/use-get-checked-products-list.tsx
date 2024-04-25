@@ -4,6 +4,7 @@ import { typeProductExtendedWithCheckBox } from 'features/products-list/types/ty
 import { useEffect } from 'react';
 
 export const useGetCheckedProductsList = () => {
+
     const {
         productsList,
         pagination,
@@ -27,9 +28,9 @@ export const useGetCheckedProductsList = () => {
     }, [ productsList ]);
     return {
         productsCheckedList: values,
-        isLoading:  isLoading || (isLoading && values.length===0) || (!!productsList && productsList.length>0 && values.length === 0) ,
+        isLoading: isLoading || (isLoading && values.length === 0) || (!!productsList && productsList.length > 0 && values.length === 0),
         pagination,
-        handlers
+        handlers,
     };
 
-}
+};

@@ -18,7 +18,7 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
 
     const navigate = useNavigate();
 
-    const {i18n}=useLingui()
+    const { i18n } = useLingui();
 
     const [ isOpenConfirm, setIsOpenConfirm ] = useState(false);
 

@@ -14,7 +14,7 @@ export const ProductArchiveButton: React.FC<{ id: string | undefined }> = ({ id 
 
     const { classes } = useStyles();
 
-    const {i18n} = useLingui()
+    const { i18n } = useLingui();
 
     const isAllowDelete = useIsAllowedPermissions(editProductsPermissions);
 
@@ -24,7 +24,7 @@ export const ProductArchiveButton: React.FC<{ id: string | undefined }> = ({ id 
 
     const { onArchive } = useArchiveProducts({ onSuccess: () => navigate(-1) });
 
-    return (isAllowDelete  ?
+    return (isAllowDelete ?
         <>
             <Button
                 disabled={ !id }
@@ -43,7 +43,7 @@ export const ProductArchiveButton: React.FC<{ id: string | undefined }> = ({ id 
                     title: i18n._('action-archive'),
                     handler: () => {
 
-                        if (id) onArchive([id]);
+                        if (id) onArchive([ id ]);
 
                     },
                 } }

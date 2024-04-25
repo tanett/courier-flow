@@ -22,24 +22,24 @@ export const useStyles = createStyles((theme) => ({
         '&.mantine-UnstyledButton-root': {
             padding: '0px 2px',
             minWidth: 'auto',
-            height: '22px'
-        }
+            height: '22px',
+        },
     },
     dataContainer: {
-        border: `1px solid ${ theme.colors.gray[3] }`,
+        border: `1px solid ${ theme.colors.gray[ 3 ] }`,
         borderRadius: '4px',
         padding: '16px',
-        overflowX: 'hidden'
+        overflowX: 'hidden',
     },
     inputField: {
         '& input': {
-            borderColor: theme.colors.borderColor[0],
+            borderColor: theme.colors.borderColor[ 0 ],
             paddingTop: rem(18),
             paddingBottom: rem(18),
             height: rem(44),
             '&::placeholder': {
                 fontSize: theme.fontSizes.lg,
-                color: theme.colors.gray[3],
+                color: theme.colors.gray[ 3 ],
                 lineHeight: rem(20),
                 letterSpacing: 0.3,
             },
@@ -68,22 +68,22 @@ export const useStyles = createStyles((theme) => ({
         position: 'relative',
         '& .mantine-Text-root': { width: '90%' },
         '&:hover': {
-            backgroundColor: theme.colors.gray[0],
-            cursor: 'pointer'
+            backgroundColor: theme.colors.gray[ 0 ],
+            cursor: 'pointer',
         },
-        '& svg': { display: 'none' }
+        '& svg': { display: 'none' },
     },
     listItemChecked: {
-        backgroundColor: theme.colors.primary[0],
-        color: theme.colors.primary[5],
+        backgroundColor: theme.colors.primary[ 0 ],
+        color: theme.colors.primary[ 5 ],
         '& svg': {
             display: 'block',
             width: '24px',
-            height: '24px'
-        }
+            height: '24px',
+        },
     },
     error: {
-        color: theme.colors.red[5],
+        color: theme.colors.red[ 5 ],
         fontSize: theme.fontSizes.sm,
         marginTop: '5px',
     },

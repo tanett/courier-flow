@@ -16,7 +16,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
     fieldName,
     required,
     initialValue,
-    disabled
+    disabled,
 
 }) => {
 
@@ -37,10 +37,14 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             const response = await getStores(requestData).unwrap();
             const mapResponse = response.content.map(item => ({
                 value: item.id,
-                label: item.name
+                label: item.name,
             }));
             setStoresList(mapResponse);
-            if (isFirst) {setFirstRequest(mapResponse);}
+            if (isFirst) {
+
+                setFirstRequest(mapResponse);
+
+            }
 
         } catch (err) {
 
@@ -121,7 +125,9 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             getData(requestData).then();
 
         } else {
+
             setStoresList(firstRequest);
+
         }
 
     }, [ debouncedSearchValue ]);
@@ -144,7 +150,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             disabled={ disabled }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );

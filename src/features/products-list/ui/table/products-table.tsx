@@ -65,86 +65,92 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
             filterComponent={ <ProductsListFilter/> }
         />
 
-        { (isLoading  )
+        { (isLoading)
             ? <TableSkeleton/>
             : productsList && <>
-            <Table>
-                <ProductsListTableHeader
-                    additionalFields={ additionalFields }
-                    indeterminate={ indeterminate || false }
-                    allChecked={ allChecked }
-                    headerActions={ headerActions }
-                    isAllowedEdit={ isAllowedEdit }
-                    onCheckedAllHandler={ onCheckedAllHandler }/>
+                <Table>
+                    <ProductsListTableHeader
+                        additionalFields={ additionalFields }
+                        indeterminate={ indeterminate || false }
+                        allChecked={ allChecked }
+                        headerActions={ headerActions }
+                        isAllowedEdit={ isAllowedEdit }
+                        onCheckedAllHandler={ onCheckedAllHandler }/>
 
-                <Table.Body>
-                    { productsList.length > 0 && productsList.map((item, index) => {
+                    <Table.Body>
+                        { productsList.length > 0 && productsList.map((item, index) => {
 
-                        const actions: typeAction[] = [
-                            {
-                                label: i18n._(t`Edit`),
-                                handler: () => goToEditProductPage(item.id),
-                                icon: <PencilSquareIcon color={ theme.colors.primary[5] } width={ 22 }/>,
-                            }
-                        ];
+                            const actions: typeAction[] = [
+                                {
+                                    label: i18n._(t`Edit`),
+                                    handler: () => goToEditProductPage(item.id),
+                                    icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                                }
+                            ];
 
-                        actions.push({
-                            label: i18n._(t`Archive`),
-                            handler: () => onClickRowActionsArchiveItem(item),
-                            icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[5] } width={ 22 }/>,
-                        });
+                            actions.push({
+                                label: i18n._(t`Archive`),
+                                handler: () => onClickRowActionsArchiveItem(item),
+                                icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                            });
 
-                        const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
+                            const firstColumnValue = item.productAdditionalFields.find((item: typeProductAdditionalField) => item.type === additionalFieldInTable);
 
-                        const getPriceElement = (item: typeProductExtendedWithCheckBox) => {
-                            if (item.minPrice && item.maxPrice) {
-                                return item.maxPrice === item.minPrice
-                                    ? <Flex gap={ 10 } justify={ 'end' }> { item.minPrice || item.maxPrice || '' }</Flex>
-                                    : <Box>
-                                        <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[5] }><Trans>from</Trans></Text> { numberCurrencyFormat(item.minPrice || 0) }</Flex>
-                                        <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[5] }><Trans>to</Trans></Text> { numberCurrencyFormat(item.maxPrice || 0) }</Flex>
-                                    </Box>;
-                            } else {
-                                return '';
-                            }
-                        };
+                            const getPriceElement = (item: typeProductExtendedWithCheckBox) => {
 
-                        return (
-                            <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
-                                <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }>
+                                if (item.minPrice && item.maxPrice) {
 
-                                    <Checkbox size={ 'sm' }
-                                              sx={ { '& input': { cursor: 'pointer' } } }
-                                              checked={ item.checked }
-                                              onChange={ (event) => onCheckedItemHandler(event, index) }/>
+                                    return item.maxPrice === item.minPrice
+                                        ? <Flex gap={ 10 } justify={ 'end' }> { item.minPrice || item.maxPrice || '' }</Flex>
+                                        : <Box>
+                                            <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[ 5 ] }><Trans>from</Trans></Text> { numberCurrencyFormat(item.minPrice || 0) }</Flex>
+                                            <Flex gap={ 10 } justify={ 'end' }><Text span c={ theme.colors.gray[ 5 ] }><Trans>to</Trans></Text> { numberCurrencyFormat(item.maxPrice || 0) }</Flex>
+                                        </Box>;
 
-                                </td>
-                                <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(300) } }>{ item.name || '-' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { width: rem(150) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
-                                <Table.Td><Flex sx={ {
-                                    minWidth: rem(160),
-                                    flexDirection: 'column',
-                                    alignItems: 'end',
-                                } }>{ getPriceElement(item) }</Flex>
-                                </Table.Td>
-                                <Table.Td align={ 'center' }><Box sx={ {
-                                    minWidth: rem(80),
-                                    textAlign: 'center'
-                                } }>{ item.storesCount }</Box></Table.Td>
-                                { isAllowedEdit && <Table.TdActions actions={ actions }/> }
-                            </Table.Tr>
-                        );
+                                } else {
 
-                    }) }
-                    { productsList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 7 : 6 }>
-                        <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
-                    </Table.EmptyRow> }
-                </Table.Body>
-            </Table>
+                                    return '';
 
-            { pagination && <Pagination pagination={ pagination } withPerPage={ true }/> }
-        </>
+                                }
+
+                            };
+
+                            return (
+                                <Table.Tr key={ item.id } handler={ () => goToDetailsProductPage(item.id, item.name) }>
+                                    <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }>
+
+                                        <Checkbox size={ 'sm' }
+                                            sx={ { '& input': { cursor: 'pointer' } } }
+                                            checked={ item.checked }
+                                            onChange={ (event) => onCheckedItemHandler(event, index) }/>
+
+                                    </td>
+                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ firstColumnValue?.value || '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { minWidth: rem(300) } }>{ item.name || '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { width: rem(150) } }><Text truncate>{ item.productCategory?.name || '-' }</Text></Box></Table.Td>
+                                    <Table.Td><Flex sx={ {
+                                        minWidth: rem(160),
+                                        flexDirection: 'column',
+                                        alignItems: 'end',
+                                    } }>{ getPriceElement(item) }</Flex>
+                                    </Table.Td>
+                                    <Table.Td align={ 'center' }><Box sx={ {
+                                        minWidth: rem(80),
+                                        textAlign: 'center',
+                                    } }>{ item.storesCount }</Box></Table.Td>
+                                    { isAllowedEdit && <Table.TdActions actions={ actions }/> }
+                                </Table.Tr>
+                            );
+
+                        }) }
+                        { productsList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 7 : 6 }>
+                            <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
+                        </Table.EmptyRow> }
+                    </Table.Body>
+                </Table>
+
+                { pagination && <Pagination pagination={ pagination } withPerPage={ true }/> }
+            </>
         }
 
     </>);

@@ -4,7 +4,6 @@ import { useInterval } from '@mantine/hooks';
 import { REFETCH_INTERVAL } from '../../../app/config/api-constants';
 import { useGetImportProductsListQuery } from '../../../entities/imports/api/api';
 import { importFileStatuses } from '../../../entities/imports/api/types';
-import { PRODUCT_IMPORT_CODE } from '../../../entities/products/api/types';
 import { PRODUCT_IMPORT_CATALOG_CODE, RETAIL_PRODUCT_EXCEL_IMPORT_CODE, RETAIL_PRODUCT_FILTER_IMPORT_CODE } from 'app/config/export-import-codes';
 
 export const useImportsProductsList = () => {

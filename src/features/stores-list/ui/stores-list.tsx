@@ -26,7 +26,11 @@ export const StoresList: React.FC = () => {
     const goToEditStorePage = (id: string | number) => navigate([ routerPaths.stores, id.toString(), 'edit' ].join('/'));
 
     const goToDetailsStorePage = (id: string | number, name: string) => navigate([ routerPaths.stores, id.toString(), name ].join('/'));
-    const goToDetailsStoreTabUsers = (event:  React.MouseEvent<HTMLDivElement, MouseEvent>,id: string | number, name: string) => {event.stopPropagation();navigate([ routerPaths.stores, id.toString(), name, '?f=tab.users' ].join('/'));};
+    const goToDetailsStoreTabUsers = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string | number, name: string) => {
+
+        event.stopPropagation(); navigate([ routerPaths.stores, id.toString(), name, '?f=tab.users' ].join('/'));
+
+    };
 
     return (
         <>

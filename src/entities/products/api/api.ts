@@ -13,10 +13,11 @@ import {
     typeProductToArchiveRequest,
     typeSearchFilterProduct,
     typeSearchFilterProductExtended,
-    typeSearchProductSortingNames
+    typeSearchProductSortingNames,
 } from '../../../entities/products/api/types';
 import { expectedFileType, responseToBlobDownload } from 'shared/utils/response-to-blob-dowload';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
+import { typeExport } from '../../../entities/exports/api/types';
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -33,7 +34,8 @@ export const productsApi = baseApi.injectEndpoints({
                 }
             ),
         }),
-// Search product extended with counters
+
+        // Search product extended with counters
         searchProductExtended: builder.query<typeSearchResponse<typeProductExtended>, typeSearchRequest<typeSearchFilterProductExtended, typeSearchProductSortingNames>>({
             query: (data) => (
                 {
@@ -54,6 +56,7 @@ export const productsApi = baseApi.injectEndpoints({
                 ]
                 : [ tagTypesProductsList.productsList ],
         }),
+
         // create Product
         createProduct: builder.mutation<typeProduct, typeCreateProductRequest>({
             query: (data) => (
@@ -64,7 +67,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesProductsList.productsList]
+            invalidatesTags: [ tagTypesProductsList.productsList ],
         }),
 
         // patch Product
@@ -77,7 +80,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesProductsList.productsList]
+            invalidatesTags: [ tagTypesProductsList.productsList ],
         }),
 
         // batch patch Product
@@ -90,20 +93,20 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesProductsList.productsList]
+            invalidatesTags: [ tagTypesProductsList.productsList ],
         }),
 
         // change vat for all products
         changeVatForALl: builder.mutation<unknown, typeChangeVatForAll>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCT_CHANGE_ALL_VAT,
+                    url: API_URLS.PRODUCTS_CHANGE_ALL_VAT,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesProductsList.productsList]
+            invalidatesTags: [ tagTypesProductsList.productsList ],
         }),
 
         // Product to archive
@@ -116,7 +119,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesProductsList.productsList]
+            invalidatesTags: [ tagTypesProductsList.productsList ],
         }),
 
         // get Product by id
@@ -145,7 +148,7 @@ export const productsApi = baseApi.injectEndpoints({
         importProductFile: builder.mutation<typeImportResponse, FormData>({
             query: (file) => (
                 {
-                    url: API_URLS.PRODUCT_IMPORT,
+                    url: API_URLS.PRODUCTS_IMPORT,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: file,
@@ -158,11 +161,11 @@ export const productsApi = baseApi.injectEndpoints({
         downloadTemplateFile: builder.query<unknown, PRODUCT_IMPORT_CODE>({
             query: (type) => (
                 {
-                    url: API_URLS.PRODUCT_DOWNLOAD_TEMPLATE.replace('{type}', type),
+                    url: API_URLS.PRODUCTS_DOWNLOAD_TEMPLATE.replace('{type}', type),
                     method: 'GET',
                     headers: {
                         ...protectedRoutsAPIHeaderCreator(),
-                        ...localeHeaderCreator()
+                        ...localeHeaderCreator(),
 
                     },
                     cache: 'no-cache',
@@ -183,6 +186,23 @@ export const productsApi = baseApi.injectEndpoints({
                 }
             ),
         }),
+
+        // export product catalog - without stores and prices
+        exportProductCatalog: builder.query<typeExport, { filter: typeSearchFilterProductExtended }>({
+            query: (data) => (
+                {
+                    url: API_URLS.PRODUCTS_EXPORT,
+                    method: 'POST',
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
+
+                    },
+                    body: data,
+                    cache: 'no-cache',
+                }
+            ),
+        }),
     }),
 });
 
@@ -199,4 +219,6 @@ export const {
     useChangeVatForALlMutation,
     useImportProductFileMutation,
     useLazyDownloadTemplateFileQuery,
+    useExportProductCatalogQuery,
+    useLazyExportProductCatalogQuery,
 } = productsApi;

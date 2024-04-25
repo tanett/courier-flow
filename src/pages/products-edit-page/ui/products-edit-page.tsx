@@ -18,7 +18,7 @@ const ProductsEditPage: React.FC = () => {
                 ]}/>}
             />
 
-           <ProductEdit/>
+            <ProductEdit/>
 
         </DashboardContent>
     );

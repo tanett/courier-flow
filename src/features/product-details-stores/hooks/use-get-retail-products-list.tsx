@@ -51,7 +51,7 @@ export function useGetRetailProductsList() {
 
         if (location && id) {
 
-            const filters: typeSearchFilterRetailProduct = {productIds: [id] };
+            const filters: typeSearchFilterRetailProduct = { productIds: [ id ] };
 
             const requestData: typeSearchRequest<typeSearchFilterRetailProduct, 'STORE_NAME'> = {
                 filter: filters,
@@ -78,7 +78,7 @@ export function useGetRetailProductsList() {
 
         if (location && id && refetch) {
 
-            const filters: typeSearchFilterRetailProduct = {productIds: [id] };
+            const filters: typeSearchFilterRetailProduct = { productIds: [ id ] };
             const requestData: typeSearchRequest<typeSearchFilterUsers, 'STORE_NAME'> = {
                 filter: filters,
                 pagination: {

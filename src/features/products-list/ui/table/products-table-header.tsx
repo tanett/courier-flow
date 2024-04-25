@@ -42,10 +42,10 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
                 />
             </Table.Th>
             { (indeterminate || allChecked)
-                ?  <Table.Th colSpan={isAllowedEdit ? 6 : 5 }>
+                ? <Table.Th colSpan={isAllowedEdit ? 6 : 5 }>
                     <Flex sx={ { flexWrap: 'nowrap' } }>
                         { headerActions.map((actions, index) => (
-                            <React.Fragment  key={ actions.id }>
+                            <React.Fragment key={ actions.id }>
                                 <UnstyledButton
 
                                     id={ actions.id }
@@ -64,12 +64,12 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
                                         borderTopRightRadius: rem(4),
                                         textWrap: 'nowrap',
                                         borderBottom: '1px solid transparent',
-                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.1), },
+                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1) },
                                     } }
                                 >
                                     { actions.label }
                                 </UnstyledButton>
-                                { index < headerActions.length-1  && <Divider orientation={'vertical'} sx={{borderColor: theme.colors.borderColor[0]}}/> }
+                                { index < headerActions.length - 1 && <Divider orientation={'vertical'} sx={{ borderColor: theme.colors.borderColor[ 0 ] }}/> }
                             </React.Fragment>
 
                         )) }
@@ -90,7 +90,7 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
                         <Trans>Range of price</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Box sx={{lineHeight: '16px'}}>
+                        <Box sx={{ lineHeight: '16px' }}>
                             <Trans>Amount of stores</Trans>
                         </Box>
                     </Table.Th>

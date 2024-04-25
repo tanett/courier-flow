@@ -69,7 +69,7 @@ export type typeProductEdit = {
 }
 
 type typeAdditionalFieldForEdit = {
-    deleteAllExisting?: boolean;  // use together with create for replace existing data
+    deleteAllExisting?: boolean; // use together with create for replace existing data
     create?: typeAdditionalFieldForForm[];
     patch?: Patch[];
     delete?: string[];
@@ -101,6 +101,3 @@ export type typeChangeVatForAll = {
     merchantId: string,
     newVat: number
 }
-
-
-

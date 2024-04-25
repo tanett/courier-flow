@@ -32,6 +32,6 @@ export const useStyles = createStyles((theme) => ({
     attachedFileNameColor: {
         color: theme.colors.green[ 5 ],
         fontWeight: 500,
-        wordBreak: 'break-all'
+        wordBreak: 'break-all',
     },
 }));

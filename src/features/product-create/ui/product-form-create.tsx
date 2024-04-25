@@ -74,14 +74,14 @@ export const ProductFormCreate: React.FC<{
 
             try {
 
-               const resp =  await createProduct(dataObject).unwrap();
+                const resp = await createProduct(dataObject).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
                     message: i18n._(t`Product created successfully.`),
                 }));
 
-                navigate(generatePath(routerPaths.products_details,{id: resp.id, name: resp.name}));
+                navigate(generatePath(routerPaths.products_details, { id: resp.id, name: resp.name }));
 
             } catch (err) {
 
@@ -128,7 +128,7 @@ export const ProductFormCreate: React.FC<{
                             form={ form }
                             additionalFields={ additionalFields }
                             code={ PRODUCT_ADDITIONAL_FIELD.PSID }
-                            additionalLabel={ <Text size={ 12 } color={ theme.colors.gray[5] } sx={ { letterSpacing: 0.3 } }>
+                            additionalLabel={ <Text size={ 12 } color={ theme.colors.gray[ 5 ] } sx={ { letterSpacing: 0.3 } }>
                                 <Trans>Check the psid on </Trans>&nbsp;
                                 <NavLink
                                     component={ 'a' }
@@ -139,7 +139,7 @@ export const ProductFormCreate: React.FC<{
                                     sx={ {
                                         display: 'inline',
                                         textDecoration: 'none',
-                                        color: theme.colors.primary[5],
+                                        color: theme.colors.primary[ 5 ],
                                         cursor: 'pointer',
                                         marginLeft: 5,
                                         marginRight: 0,
@@ -209,6 +209,7 @@ export const ProductFormCreate: React.FC<{
                                     radix={ '.' } // fractional delimiter
                                     mapToRadix={ [ ',' ] } // symbols to process as radix
                                     placeholder={ '0.00-100%' }
+
                                     // additional number interval stores (e.g.)
                                     min={ 0 }
                                     max={ 100 }
@@ -233,7 +234,7 @@ export const ProductFormCreate: React.FC<{
                             />
 
                             { (form.values.barcodes.length === 0 && form.values.marked) &&
-                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
+                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[ 5 ] } mb={ -32 }>
                                     <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
                                     <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
                                 </Alert>
@@ -250,7 +251,7 @@ export const ProductFormCreate: React.FC<{
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Save` }</Button>
+                        type="submit">{ t`Save` }</Button>
                 </Flex>
 
             </Flex>

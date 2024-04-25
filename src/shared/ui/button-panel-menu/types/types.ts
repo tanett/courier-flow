@@ -1,6 +1,6 @@
 import { MenuItem } from '../ui/menu-item';
 import React from 'react';
-import { Sx } from '@mantine/core';
+import { type Sx } from '@mantine/core';
 
 export type typeButtonMenuExtensions = {
     MenuItem: typeof MenuItem

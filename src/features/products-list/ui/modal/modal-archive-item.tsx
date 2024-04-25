@@ -19,14 +19,20 @@ export const ModalArchiveItem: React.FC<{
 
     const {
         onArchive,
-        isArchiveLoading
+        isArchiveLoading,
     } = useArchiveProducts({
         onSuccess: () => {
+
             onCloseDialogToDelete();
-        }
+
+        },
     });
 
-    const onCloseDialogToDelete = () => { setOpen(null); };
+    const onCloseDialogToDelete = () => {
+
+        setOpen(null);
+
+    };
 
 
     const onConfirmDelete = async () => {
@@ -54,4 +60,5 @@ export const ModalArchiveItem: React.FC<{
             </Modal.Body>
         </Modal>
     );
+
 };

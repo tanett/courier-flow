@@ -11,7 +11,7 @@ export const useStyles = createStyles((theme) => ({
             marginRight: rem(4),
             fontSize: theme.fontSizes.md,
             lineHeight: rem(20),
-            '&:hover': {color: theme.colors.primary[5]},
+            '&:hover': { color: theme.colors.primary[ 5 ] },
             '&[data-active=true]': {
                 borderColor: theme.colors.borderColor[ 0 ],
                 color: theme.colors.primary[ 5 ],

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { initialForm, typeEditPricesForAllStoresForm, } from './form';
+import { initialForm, typeEditPricesForAllStoresForm } from './form';
 import { Box, Button, Flex, Input, rem, Space, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -17,7 +17,7 @@ import { typeResponseError } from 'app/api/types';
 
 export const RetailProductEditPriceForAllStores: React.FC<{ onClose: (refetch: boolean) => void, productId: string }> = ({
     onClose,
-    productId
+    productId,
 }) => {
 
     const { i18n } = useLingui();
@@ -46,7 +46,7 @@ export const RetailProductEditPriceForAllStores: React.FC<{ onClose: (refetch: b
             setIsInProgress(true);
             const dataObject: typeChangePricesInAllStores = {
                 productId: productId,
-                newPrice: parseFloat(form.values.price)  // from masked input we get the value as string with ,
+                newPrice: parseFloat(form.values.price), // from masked input we get the value as string with ,
             };
             try {
 
@@ -81,7 +81,7 @@ export const RetailProductEditPriceForAllStores: React.FC<{ onClose: (refetch: b
                     marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
-                    '& .mantine-InputWrapper-root': { maxWidth: 'none' }
+                    '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                 } }>
 
                 <Input.Wrapper
@@ -99,6 +99,7 @@ export const RetailProductEditPriceForAllStores: React.FC<{ onClose: (refetch: b
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '' }
+
                         // additional number interval stores (e.g.)
                         min={ 0 }
                         max={ 100000000000 }
@@ -121,7 +122,7 @@ export const RetailProductEditPriceForAllStores: React.FC<{ onClose: (refetch: b
                 } }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Change` }</Button>
+                        type="submit">{ t`Change` }</Button>
                 </Flex>
             </Box>
             { isLoading && <LoaderOverlay/> }

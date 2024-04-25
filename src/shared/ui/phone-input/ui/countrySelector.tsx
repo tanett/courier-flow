@@ -51,7 +51,7 @@ export const CountrySelect: React.FC<typeCountrySelect> = ({
             itemComponent={ SelectItem }
             data={ [ {
                 value: '',
-                label: t`country code`
+                label: t`country code`,
             }, ...data ] }
             value={ value }
             onChange={ onChange }
@@ -61,8 +61,8 @@ export const CountrySelect: React.FC<typeCountrySelect> = ({
             styles={ {
                 rightSection: {
                     pointerEvents: 'none',
-                    pointer: 'pointer'
-                }
+                    pointer: 'pointer',
+                },
             } }
             sx={ {
                 '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useInterval } from '@mantine/hooks';
 import { REFETCH_INTERVAL } from '../../../app/config/api-constants';
 import { exportFileStatuses } from '../../../entities/exports/api/types';
+import { EXPORT_PRODUCT_CATALOG, EXPORT_RETAIL_PRODUCT } from 'app/config/export-import-codes';
 
 export const useExportsProductsList = () => {
 
@@ -18,7 +19,7 @@ export const useExportsProductsList = () => {
 
     const { data, isLoading, refetch } = useGetExportProductsListQuery({
         filter: {
-          //  typeCodes: [ EXPORT_TERMINALS_CODE ], todo
+            typeCodes: [ EXPORT_PRODUCT_CATALOG, EXPORT_RETAIL_PRODUCT ],
             fileRemoved: false,
         },
         pagination: {

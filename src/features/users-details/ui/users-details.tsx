@@ -27,7 +27,7 @@ export const UsersDetails: React.FC = () => {
         pagination,
     } = useGetUserFromUrlWithStoresData();
 
-const navigate = useNavigate()
+    const navigate = useNavigate();
 
     return (
         <>
@@ -133,7 +133,11 @@ const navigate = useNavigate()
                                 return (
                                     <Table.Tr key={ item.id } >
                                         <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all', color: theme.colors.primary[ 5 ], cursor: 'pointer' } }
-                                        onClick={()=>{navigate([routerPaths.stores, item.id, item.name].join('/'))}}>{ item.name }</Flex></Table.Td>
+                                            onClick={() => {
+
+                                                navigate([ routerPaths.stores, item.id, item.name ].join('/'));
+
+                                            }}>{ item.name }</Flex></Table.Td>
                                         <Table.Td><Flex maw={ 400 } wrap={ 'wrap' } sx={ { wordBreak: 'break-all' } }>{ item.address }</Flex></Table.Td>
                                         <Table.Td>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Table.Td>
 

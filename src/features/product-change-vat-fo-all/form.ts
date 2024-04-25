@@ -1,11 +1,11 @@
 import { t } from '@lingui/macro';
 
 export type typeChangeVatForAllForm = {
-    newVat: string ,
+    newVat: string,
 }
 
 export const initialForm = {
-    initialValues: {  newVat: '' },
+    initialValues: { newVat: '' },
     validate: {
         newVat: (value: string) => {
 

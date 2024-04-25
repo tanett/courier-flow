@@ -17,7 +17,7 @@ export const CreateInputForAdditionalField: React.FC<{
     code,
     form,
     path,
-    additionalLabel
+    additionalLabel,
 }) => {
 
     const field = additionalFields.find((field: typeProductAdditionalFieldInfo) => field.code === code);
@@ -34,7 +34,7 @@ export const CreateInputForAdditionalField: React.FC<{
                 >
                     <Flex direction={ 'row' } gap={ 5 } align={ 'baseline' }>
                         <Input.Label required={ field.required }>{ field.name }</Input.Label>
-                        { additionalLabel &&  additionalLabel  }
+                        { additionalLabel && additionalLabel }
                     </Flex>
                     <Input<any>
                         component={ IMaskInput }

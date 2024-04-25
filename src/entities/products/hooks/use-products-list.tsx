@@ -1,4 +1,4 @@
-import {  useSearchProductExtendedQuery } from '../api/api';
+import { useSearchProductExtendedQuery } from '../api/api';
 import { useProductsRequestData } from './use-products-request-data';
 
 
@@ -6,7 +6,7 @@ export function useProductsList() {
 
     const { requestData } = useProductsRequestData();
 
-    const  { data,  isFetching, isLoading, refetch } = useSearchProductExtendedQuery(requestData);
+    const { data, isFetching, isLoading, refetch } = useSearchProductExtendedQuery(requestData);
 
     const pagination = data?.totalPages
         ? {

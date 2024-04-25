@@ -74,7 +74,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                                     <Table.Td><Box sx={{ minWidth: rem(160) }}>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Box></Table.Td>
 
                                     <Table.Td align={'center'}><Box sx={{ minWidth: rem(160), textAlign: 'center', color: theme.colors.primary[ 5 ] }}
-                                    onClick={ (event) => goToDetailsStoreTabUsers(event, item.id, item.name) }>{ item.usersCount || '-' }</Box></Table.Td>
+                                        onClick={ (event) => goToDetailsStoreTabUsers(event, item.id, item.name) }>{ item.usersCount || '-' }</Box></Table.Td>
                                     { isAllowedStoreEdit && <Table.TdActions actions={ actions } align={'center'}/> }
                                 </Table.Tr>
                             );

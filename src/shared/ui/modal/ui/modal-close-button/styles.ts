@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         width: rem(42),
         height: rem(42),
         borderColor: 'transparent',
-        color: theme.colors.gray[5],
+        color: theme.colors.gray[ 5 ],
     },
     icon: {
         width: rem(28),

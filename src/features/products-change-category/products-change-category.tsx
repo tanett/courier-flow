@@ -19,7 +19,7 @@ import { typeChangeCategoryForSelectedProductsRequest } from '../../entities/pro
 
 export const ProductsChangeCategory: React.FC<{ onClose: (refetch: boolean) => void, list: typeProductExtendedWithCheckBox[] }> = ({
     onClose,
-    list
+    list,
 }) => {
 
     const { i18n } = useLingui();
@@ -50,10 +50,11 @@ export const ProductsChangeCategory: React.FC<{ onClose: (refetch: boolean) => v
             const selectedMap: typeChangeCategoryForSelectedProductsRequest = list.filter(item => item.checked)
                 .map(product => ({
                     id: product.id,
-                    productCategoryId: form.values.categoryId
+                    productCategoryId: form.values.categoryId,
                 }));
 
             if (selectedMap.length > 0) {
+
                 try {
 
                     await batchPatchProduct(selectedMap).unwrap();
@@ -71,6 +72,7 @@ export const ProductsChangeCategory: React.FC<{ onClose: (refetch: boolean) => v
 
 
                 }
+
             }
             setIsInProgress(false);
 
@@ -88,7 +90,7 @@ export const ProductsChangeCategory: React.FC<{ onClose: (refetch: boolean) => v
                     marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
-                    '& .mantine-InputWrapper-root': { maxWidth: 'none' }
+                    '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                 } }>
 
                 <SelectorWithSearchProductCategory
@@ -110,7 +112,7 @@ export const ProductsChangeCategory: React.FC<{ onClose: (refetch: boolean) => v
                 } }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Change` }</Button>
+                        type="submit">{ t`Change` }</Button>
                 </Flex>
             </Box>
             { isLoading && <LoaderOverlay/> }

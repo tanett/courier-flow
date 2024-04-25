@@ -19,7 +19,7 @@ export const ModalDelete: React.FC<{
 }> = ({
     setOpen,
     data,
-    setRefetch
+    setRefetch,
 }) => {
 
     const dispatchAppT = useAppDispatchT();
@@ -28,14 +28,18 @@ export const ModalDelete: React.FC<{
 
     const [ deleteRetailProduct, { isLoading: isLoadingDeleteRetailProduct } ] = useDeleteRetailProductMutation();
 
-    const onCloseDialogToDelete = () => { setOpen(null); };
+    const onCloseDialogToDelete = () => {
+
+        setOpen(null);
+
+    };
 
 
-    const onConfirmDelete= async (product: typeRetailProduct) => {
+    const onConfirmDelete = async (product: typeRetailProduct) => {
 
         try {
 
-            await deleteRetailProduct([product.id]).unwrap();
+            await deleteRetailProduct([ product.id ]).unwrap();
 
             dispatchAppT(notificationActions.addNotification({
                 type: NOTIFICATION_TYPES.SUCCESS,
@@ -73,4 +77,5 @@ export const ModalDelete: React.FC<{
             </Modal.Body>
         </Modal>
     );
+
 };

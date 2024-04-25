@@ -31,7 +31,7 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
     } = useGetRetailProductsList();
 
 
-// popup add store && price
+    // popup add store && price
     const [ dialogToAdd, setDialogToAdd ] = useState<boolean>(false);
 
     const onAddClick = () => {
@@ -80,12 +80,12 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
 
     };
 
- // popup change price in all store
-    const [dialogChangeAllPrices, setDialogChangeAllPrices] = useState(false)
+    // popup change price in all store
+    const [ dialogChangeAllPrices, setDialogChangeAllPrices ] = useState(false);
 
     return (
         <Box sx={ {
-            borderTop: `1px solid ${ theme.colors.borderColor[0] }`,
+            borderTop: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
             borderTopRightRadius: '8px',
             marginTop: '-1px',
             backgroundColor: theme.white,
@@ -93,14 +93,14 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
         } }>
 
             <Flex justify={ 'space-between' } p={ 16 }
-                  sx={ {
-                      borderLeft: `1px solid ${ theme.colors.borderColor[0] }`,
-                      borderRight: `1px solid ${ theme.colors.borderColor[0] }`,
-                      borderTopRightRadius: '8px',
-                  } }
+                sx={ {
+                    borderLeft: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                    borderRight: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                    borderTopRightRadius: '8px',
+                } }
             >
                 { (list && pagination && pagination.totalElements > 0) ? <Box sx={ {
-                    borderBottom: `2px solid ${ theme.colors.gray[5] }`,
+                    borderBottom: `2px solid ${ theme.colors.gray[ 5 ] }`,
                     alignSelf: 'center',
                 } }>{ i18n._(t`total`) }: { pagination?.totalElements || 0 }</Box> : <div/> }
                 { isAllowEditRetailProduct &&
@@ -112,15 +112,15 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
                                 fontWeight: 700,
                                 fontSize: theme.fontSizes.md,
                                 letterSpacing: '0.3px',
-                                '&:hover': { backgroundColor: theme.colors.primary[0] },
+                                '&:hover': { backgroundColor: theme.colors.primary[ 0 ] },
                             } }
                             onClick={ onAddClick }
                             leftIcon={ <IconPlus size={ 20 }/> }><Trans>Add</Trans>
                         </Button>
                         </Tooltip>
                         <Tooltip label={ i18n._(t`Change prices in all stores`) } disabled={ !list || list.length === 0 } withArrow arrowSize={ 6 } radius="md">
-                            <ActionIcon variant={ 'outline' } size={ 'lg' } sx={ {padding: '4px', '&:hover': { backgroundColor: theme.colors.gray[1] } } }
-                                        onClick={ () => setDialogChangeAllPrices(true) }
+                            <ActionIcon variant={ 'outline' } size={ 'lg' } sx={ { padding: '4px', '&:hover': { backgroundColor: theme.colors.gray[ 1 ] } } }
+                                onClick={ () => setDialogChangeAllPrices(true) }
                             ><CurrencyDollarIcon /></ActionIcon>
                         </Tooltip>
                     </Flex>

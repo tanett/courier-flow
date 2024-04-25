@@ -2,6 +2,7 @@ import { typeUseUrlParams } from 'shared/hooks/use-url-params/types';
 import { typeSearchFilterProductExtended } from '../../../entities/products/api/types';
 
 export const getProductsFiltersFromUrl = (urlParams: typeUseUrlParams) => {
+
     const tempFilter: typeSearchFilterProductExtended = { archived: false };
 
     if (urlParams.searchPhrase) tempFilter.searchText = urlParams.searchPhrase;
@@ -17,5 +18,6 @@ export const getProductsFiltersFromUrl = (urlParams: typeUseUrlParams) => {
     const marked = urlParams.getFilterValue('marked');
     if (marked && typeof marked === 'string') tempFilter.marked = marked === 'true';
 
-    return tempFilter
-}
+    return tempFilter;
+
+};

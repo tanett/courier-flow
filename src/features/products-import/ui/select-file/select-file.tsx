@@ -40,14 +40,16 @@ export const SelectFile: React.FC<typeSelectFile> = ({
         processStep,
         importProcessRange,
         importErrorList,
-        responseFullError
-    } =useImportProductsFile()
+        responseFullError,
+    } = useImportProductsFile();
 
     const onImportClick = () => {
+
         const storeIds = options.stores
-            ? options.stores.isAllSelected ? []: options.stores.selectedStores.map(item=>item.id)
-            : []
-        onSendFile(options.type, storeIds).then()
+            ? options.stores.isAllSelected ? [] : options.stores.selectedStores.map(item => item.id)
+            : [];
+        onSendFile(options.type, storeIds).then();
+
     };
 
 
@@ -78,7 +80,11 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                 <div className={ classes.btnPanel }>
                     <Button
                         leftIcon={ <ArrowLongLeftIcon strokeWidth={ 0.8 }/> }
-                        onClick={ () => {setStep(options.stores ? 1 : 0); } }
+                        onClick={ () => {
+
+                            setStep(options.stores ? 1 : 0);
+
+                        } }
                         variant={ 'outline' }
                         className={ classes.button }
                     >
@@ -87,7 +93,7 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                         onClick={ onImportClick }
                         variant={ 'filled' }
                         className={ classes.button }
-                        disabled={!attachedFile|| !!importErrorList}
+                        disabled={!attachedFile || !!importErrorList}
                     >
                         <Trans>Import</Trans></Button>
                 </div>
@@ -142,10 +148,10 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                     <Box>
                         <Trans>File processing completed with errors. Correct the file and upload it again.</Trans>
                     </Box>
-                    {(!importErrorList && responseFullError?.errorMessage)  && <Box>{
-                        responseFullError?.errorMessage?.split('\n').map((item, index)=><div key={index}>{item}</div>) }
+                    {(!importErrorList && responseFullError?.errorMessage) && <Box>{
+                        responseFullError?.errorMessage?.split('\n').map((item, index) => <div key={index}>{item}</div>) }
                     </Box>}
-                    {(!importErrorList && responseFullError?.validationErrors?.length)  && <ImportFileDialogErrorListForValidationError errorList={responseFullError.validationErrors} />}
+                    {(!importErrorList && responseFullError?.validationErrors?.length) && <ImportFileDialogErrorListForValidationError errorList={responseFullError.validationErrors} />}
                     {importErrorList?.length && <ImportFileDialogErrorList errorList={importErrorList}/>}
                 </ImportFileDialogMessage>
             </Dialog>

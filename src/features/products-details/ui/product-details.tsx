@@ -21,13 +21,13 @@ export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) =
         isFetching,
     } = useGetProductByIdQuery(productId);
 
-    const vat = productData ? (productData.vat * 100).toFixed(2)+ ' %' : '';
+    const vat = productData ? (productData.vat * 100).toFixed(2) + ' %' : '';
 
     return (
         <>
             <SimpleGrid
                 sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[0] }`,
+                    border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
                     borderTopRightRadius: '8px',
                     borderBottomRightRadius: '8px',
                     borderBottomLeftRadius: '8px',
@@ -117,7 +117,7 @@ export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) =
                     <InfoCardSmall label={ i18n._(t`Unit`) } content={ productData?.unit || '-' } withBottomBorder={ false }/>
                     <InfoCardSmall label={ i18n._(t`Unit code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'UNIT_CODE') : '-' } withBottomBorder={ false }/>
                 </SimpleGrid>
-                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={( productData?.barcodes || productData?.barcodes.length === 0 )? '-': productData?.barcodes.join(', ')  } withBottomBorder={ false }/>
+                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={(productData?.barcodes || productData?.barcodes.length === 0) ? '-' : productData?.barcodes.join(', ') } withBottomBorder={ false }/>
 
             </SimpleGrid>
             { isFetching && <LoaderOverlay/> }

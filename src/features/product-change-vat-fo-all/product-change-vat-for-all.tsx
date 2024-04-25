@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { initialForm, typeChangeVatForAllForm, } from './form';
+import { initialForm, typeChangeVatForAllForm } from './form';
 import { Box, Button, Flex, Input, rem, Space, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -80,7 +80,7 @@ export const ProductChangeVatForAll: React.FC<{ onClose: () => void, }> = ({ onC
                     marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
-                    '& .mantine-InputWrapper-root': { maxWidth: 'none' }
+                    '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                 } }>
 
                 <Input.Wrapper
@@ -98,6 +98,7 @@ export const ProductChangeVatForAll: React.FC<{ onClose: () => void, }> = ({ onC
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '0.00-100%' }
+
                         // additional number interval stores (e.g.)
                         min={ 0 }
                         max={ 100 }
@@ -123,7 +124,7 @@ export const ProductChangeVatForAll: React.FC<{ onClose: () => void, }> = ({ onC
                 } }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Change` }</Button>
+                        type="submit">{ t`Change` }</Button>
                 </Flex>
             </Box>
             { isLoading && <LoaderOverlay/> }

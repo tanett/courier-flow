@@ -3,7 +3,6 @@ import { typeFilterButtonPanelProps } from '../types/types';
 import { Flex } from '@mantine/core';
 import { useStyles } from './styles';
 import cn from 'classnames';
-import { Trans } from '@lingui/macro';
 
 export const FilterButtonPanel: React.FC<typeFilterButtonPanelProps> = ({ value, onChange, data, label }) => {
 

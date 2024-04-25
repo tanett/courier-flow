@@ -9,7 +9,7 @@ export const useProductsRequestData = () => {
     const urlParams = useUrlParams();
 
     // Filters
-    const filter:  typeSearchFilterProductExtended = getProductsFiltersFromUrl(urlParams);
+    const filter: typeSearchFilterProductExtended = getProductsFiltersFromUrl(urlParams);
 
 
     const requestData: typeSearchRequest<typeSearchFilterProductExtended, typeSearchProductSortingNames> = {

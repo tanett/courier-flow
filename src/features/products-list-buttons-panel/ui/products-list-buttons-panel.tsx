@@ -36,7 +36,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
     const onCloseModal = () => setModalContent(null);
 
-    const onChangeVat= () => {
+    const onChangeVat = () => {
 
         setModalContent({
             title: i18n._(t`Change VAT`),
@@ -44,7 +44,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
         });
 
     };
-    const onImport= () => {
+    const onImport = () => {
 
         setModalContent({
             title: i18n._(t`Products import`),
@@ -53,7 +53,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
 
     };
 
-    const onExport= () => {
+    const onExport = () => {
 
         setModalContent({
             title: i18n._(t`Products export`),

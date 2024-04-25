@@ -58,6 +58,7 @@ export const ProductFormEdit: React.FC<{
     useEffect(() => {
 
         if (productData) {
+
             setIsInProgress(true);
             form.setFieldValue('name', productData.name);
             form.setFieldValue('productCategoryId', productData.productCategory?.id);
@@ -67,6 +68,7 @@ export const ProductFormEdit: React.FC<{
             form.setFieldValue('barcodes', productData.barcodes);
             form.setFieldValue('productAdditionalFields', mapAdditionalFieldsFromProductToForm(productData.productAdditionalFields, additionalFields));
             setIsInProgress(false);
+
         }
 
     }, [ productData ]);
@@ -75,7 +77,7 @@ export const ProductFormEdit: React.FC<{
 
     const form = useForm<typeProductForm>(initialValue);
 
-    const [ editProduct, ] = usePatchProductMutation();
+    const [ editProduct ] = usePatchProductMutation();
 
     const [ isInProgress, setIsInProgress ] = useState(false);
 
@@ -131,160 +133,161 @@ export const ProductFormEdit: React.FC<{
 
     return (
         isProductFetching
-        ? <LoaderOverlay/>
-        :<form onSubmit={ form.onSubmit(onSave) }>
+            ? <LoaderOverlay/>
+            : <form onSubmit={ form.onSubmit(onSave) }>
 
-            <Flex className={ classes.flexColumn }>
+                <Flex className={ classes.flexColumn }>
 
-                <FieldsetForForm title={ <Trans>General information</Trans> }>
-                    <TextInput
-                        withAsterisk
-                        label={ <Trans>Product name</Trans> }
-                        sx={ {
-                            '&.mantine-InputWrapper-root': {
-                                maxWidth: '100%',
-                                width: '100%',
-                            },
-                        } }
-                        { ...form.getInputProps('name') }
-                        maxLength={ 150 }
-                    />
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PSID }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.PSID }
-                            additionalLabel={ <Text size={ 12 } color={ theme.colors.gray[5] } sx={ { letterSpacing: 0.3 } }>
-                                <Trans>Check the psid on </Trans>&nbsp;
-                                <NavLink
-                                    component={ 'a' }
-                                    href={ 'https://tasnif.soliq.uz' }
-                                    target="_blank"
-                                    label={ 'tasnif.soliq.uz' }
-
-                                    sx={ {
-                                        display: 'inline',
-                                        textDecoration: 'none',
-                                        color: theme.colors.primary[5],
-                                        cursor: 'pointer',
-                                        marginLeft: 5,
-                                        marginRight: 0,
-                                        padding: 0,
-                                        fontSize: '14px',
-                                        '&:hover': { textDecoration: 'underline' },
-                                    } }/>
-                            </Text> }
-                        />
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }
-                        />
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }
-                        />
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }
-                        />
-                        <Select
+                    <FieldsetForForm title={ <Trans>General information</Trans> }>
+                        <TextInput
                             withAsterisk
-                            label={ <Trans>Unit</Trans> }
-                            data={ productUnitValueListForSelector }
-                            transitionProps={ {
-                                duration: 80,
-                                timingFunction: 'ease',
+                            label={ <Trans>Product name</Trans> }
+                            sx={ {
+                                '&.mantine-InputWrapper-root': {
+                                    maxWidth: '100%',
+                                    width: '100%',
+                                },
                             } }
-                            { ...form.getInputProps('unit') }
-                            rightSection={ isProductFetching ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
-                            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+                            { ...form.getInputProps('name') }
+                            maxLength={ 150 }
                         />
-                        <CreateInputForAdditionalField
-                            path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }.value` }
-                            form={ form }
-                            additionalFields={ additionalFields }
-                            code={ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }
-                        />
-                    </SimpleGrid>
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        <Box>
-                            <SelectorWithSearchProductCategory
-                                form={ form as unknown as typeReturnForm }
-                                fieldName={ 'productCategoryId' }
-                                required={ false }
-                                initialValue={ null }
+                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PSID }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.PSID }
+                                additionalLabel={ <Text size={ 12 } color={ theme.colors.gray[ 5 ] } sx={ { letterSpacing: 0.3 } }>
+                                    <Trans>Check the psid on </Trans>&nbsp;
+                                    <NavLink
+                                        component={ 'a' }
+                                        href={ 'https://tasnif.soliq.uz' }
+                                        target="_blank"
+                                        label={ 'tasnif.soliq.uz' }
+
+                                        sx={ {
+                                            display: 'inline',
+                                            textDecoration: 'none',
+                                            color: theme.colors.primary[ 5 ],
+                                            cursor: 'pointer',
+                                            marginLeft: 5,
+                                            marginRight: 0,
+                                            padding: 0,
+                                            fontSize: '14px',
+                                            '&:hover': { textDecoration: 'underline' },
+                                        } }/>
+                                </Text> }
                             />
-                            <Input.Wrapper
-                                id={ 'vat-input-wrapper' }
-                                label={ <Trans>Vat in %</Trans> }
-                                error={ form.getInputProps('vat').error }
-                                required
-                                mt={ 16 }>
-                                <Input<any>
-                                    component={ IMaskInput }
-                                    mask={ Number }
-                                    scale={ 2 } // digits after point, 0 for integers
-                                    padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale
-                                    normalizeZeros={ true } // appends or removes zeros at ends
-                                    radix={ '.' } // fractional delimiter
-                                    mapToRadix={ [ ',' ] } // symbols to process as radix
-                                    placeholder={ '0.00-100%' }
-                                    // additional number interval stores (e.g.)
-                                    min={ 0 }
-                                    max={ 100 }
-                                    autofix={ true }
-                                    id={ 'vat-input' }
-
-                                    // lazy={false}
-                                    // unmask={true}
-                                    // overwrite={true}
-                                    { ...form.getInputProps('vat') }
-
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.PACKAGE_CODE }
+                            />
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_TIN }
+                            />
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.COMMISSION_PINFL }
+                            />
+                            <Select
+                                withAsterisk
+                                label={ <Trans>Unit</Trans> }
+                                data={ productUnitValueListForSelector }
+                                transitionProps={ {
+                                    duration: 80,
+                                    timingFunction: 'ease',
+                                } }
+                                { ...form.getInputProps('unit') }
+                                rightSection={ isProductFetching ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
+                                sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+                            />
+                            <CreateInputForAdditionalField
+                                path={ `productAdditionalFields.${ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }.value` }
+                                form={ form }
+                                additionalFields={ additionalFields }
+                                code={ PRODUCT_ADDITIONAL_FIELD.UNIT_CODE }
+                            />
+                        </SimpleGrid>
+                        <SimpleGrid cols={ 2 } className={ classes.formGrid }>
+                            <Box>
+                                <SelectorWithSearchProductCategory
+                                    form={ form as unknown as typeReturnForm }
+                                    fieldName={ 'productCategoryId' }
+                                    required={ false }
+                                    initialValue={ null }
                                 />
-                            </Input.Wrapper>
+                                <Input.Wrapper
+                                    id={ 'vat-input-wrapper' }
+                                    label={ <Trans>Vat in %</Trans> }
+                                    error={ form.getInputProps('vat').error }
+                                    required
+                                    mt={ 16 }>
+                                    <Input<any>
+                                        component={ IMaskInput }
+                                        mask={ Number }
+                                        scale={ 2 } // digits after point, 0 for integers
+                                        padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale
+                                        normalizeZeros={ true } // appends or removes zeros at ends
+                                        radix={ '.' } // fractional delimiter
+                                        mapToRadix={ [ ',' ] } // symbols to process as radix
+                                        placeholder={ '0.00-100%' }
 
-                        </Box>
-                        <Box>
-                            <CheckBoxForForm
+                                        // additional number interval stores (e.g.)
+                                        min={ 0 }
+                                        max={ 100 }
+                                        autofix={ true }
+                                        id={ 'vat-input' }
 
-                                generallabel={ i18n._(t`Marking`) }
-                                size={ 'md' }
-                                label={ <Trans>Marked</Trans> }
-                                checked={ form.values.marked }
-                                { ...form.getInputProps('marked') }
-                            />
+                                        // lazy={false}
+                                        // unmask={true}
+                                        // overwrite={true}
+                                        { ...form.getInputProps('vat') }
 
-                            { (form.values.barcodes.length === 0 && form.values.marked) &&
-                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[5] } mb={ -32 }>
+                                    />
+                                </Input.Wrapper>
+
+                            </Box>
+                            <Box>
+                                <CheckBoxForForm
+
+                                    generallabel={ i18n._(t`Marking`) }
+                                    size={ 'md' }
+                                    label={ <Trans>Marked</Trans> }
+                                    checked={ form.values.marked }
+                                    { ...form.getInputProps('marked') }
+                                />
+
+                                { (form.values.barcodes.length === 0 && form.values.marked) &&
+                                <Alert icon={ <IconAlertCircle size="1rem"/> } title={ i18n._(t`Check for the barcode!`) } color={ theme.colors.primary[ 5 ] } mb={ -32 }>
                                     <Text><Trans>A barcode is required for labeled goods.</Trans></Text>
                                     <Text><Trans>Labeled items must be sold individually ??</Trans></Text>
                                 </Alert>
-                            }
-                        </Box>
+                                }
+                            </Box>
 
-                    </SimpleGrid>
+                        </SimpleGrid>
 
-                    <BarcodesInputForProductForm form={ form }/>
+                        <BarcodesInputForProductForm form={ form }/>
 
-                </FieldsetForForm>
+                    </FieldsetForForm>
 
-                <Space h={ 10 }/>
-                <Flex className={ classes.buttonsBar }>
-                    <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
-                    <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                    <Space h={ 10 }/>
+                    <Flex className={ classes.buttonsBar }>
+                        <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
+                        <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
                             type="submit">{ t`Save` }</Button>
-                </Flex>
+                    </Flex>
 
-            </Flex>
-            { (isInProgress) && <LoaderOverlay/> }
-        </form>
+                </Flex>
+                { (isInProgress) && <LoaderOverlay/> }
+            </form>
     );
 
 };

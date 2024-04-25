@@ -3,9 +3,9 @@ import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Modal } from 'shared/ui/modal';
 import { typeProductExtendedWithCheckBox } from 'features/products-list/types/types';
-import { ProductsChangeCategory } from 'features/products-change-category/products-change-category';
+import { ProductsExport } from 'features/products-export';
 
-export const ModalChangeCategorySelectedItem: React.FC<{
+export const ModalExportSelectedProduct: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     list: typeProductExtendedWithCheckBox[]
 }> = ({
@@ -25,8 +25,8 @@ export const ModalChangeCategorySelectedItem: React.FC<{
         <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogToAdd() }>
             <Modal.Body>
                 <>
-                    <Modal.Header title={ i18n._(t`Change category`) } onClose={ () => onCloseDialogToAdd() }/>
-                    <ProductsChangeCategory onClose={ onCloseDialogToAdd } list={list}/>
+                    <Modal.Header title={ i18n._(t`Export selected products`) } onClose={ () => onCloseDialogToAdd() }/>
+                    <ProductsExport productIds={list.filter(item => item.checked).map(item => item.id)} />
                 </>
             </Modal.Body>
         </Modal>

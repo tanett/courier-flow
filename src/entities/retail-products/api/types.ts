@@ -13,7 +13,7 @@ export type typeSearchFilterRetailProduct = {
     _and_?: string[]
 }
 
-export type typeSearchRetailProductSortingNames = 'PRODUCT_NAME' | 'STORE_NAME' ;
+export type typeSearchRetailProductSortingNames = 'PRODUCT_NAME' | 'STORE_NAME';
 
 export type typeRetailProductDeleteRequest = string[]
 

@@ -1,9 +1,13 @@
 import { typeStoreListChecked } from 'features/products-import/ui/select-stores/types';
-import { PRODUCT_IMPORT_TYPE_REQUEST } from '../../../entities/products/api/types';
 
+export enum PRODUCT_EXPORT_TYPE_REQUEST {
+    CATALOG='catalog',
+    RETAIL = 'retail'
+}
 
-export type typeOptions = {
-    type: PRODUCT_IMPORT_TYPE_REQUEST,
+export type typeExportOptions = {
+    type: PRODUCT_EXPORT_TYPE_REQUEST,
     stores?: { isAllSelected: boolean, countStores: number, selectedStores: typeStoreListChecked[] }
+    productIds?: string[]
 
 }

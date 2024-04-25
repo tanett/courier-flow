@@ -26,7 +26,7 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
 
     const theme = useMantineTheme();
 
-    const merchantId = useSelectorT(state => state.userProfile.userProfile?.actor.merchantId)
+    const merchantId = useSelectorT(state => state.userProfile.userProfile?.actor.merchantId);
 
     const form = useForm<typeAddRetailProductToStoreForm>(initialForm);
 
@@ -50,9 +50,9 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
             setIsInProgress(true);
             const dataObject: typeCreateRetailProduct = {
                 storeId: form.values.storeId,
-                price: parseFloat(form.values.price),  // from masked input we get the value as string with,
+                price: parseFloat(form.values.price), // from masked input we get the value as string with,
                 productId: productId,
-                merchantId: merchantId
+                merchantId: merchantId,
             };
 
             try {
@@ -87,10 +87,11 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
                     paddingBottom: rem(15),
                     paddingLeft: rem(16),
                     paddingRight: rem(16),
-                  //  marginTop: rem(-10),
+
+                    //  marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
-                    '& .mantine-InputWrapper-root': { maxWidth: 'none' }
+                    '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                 } }>
                 <SelectorWithSearchStore
                     required={ true }
@@ -113,6 +114,7 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
                         radix={ '.' } // fractional delimiter
                         mapToRadix={ [ ',' ] } // symbols to process as radix
                         placeholder={ '' }
+
                         // additional number interval stores (e.g.)
                         min={ 0 }
                         max={ 100000000000 }
@@ -135,10 +137,10 @@ export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (re
                 } }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                            type="submit">{ t`Save` }</Button>
+                        type="submit">{ t`Save` }</Button>
                 </Flex>
             </Box>
-           {isLoading && <LoaderOverlay/>}
+            {isLoading && <LoaderOverlay/>}
         </form>
     );
 

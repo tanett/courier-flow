@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import { Box, Checkbox, Divider, Flex, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
+import { Checkbox, Divider, Flex, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { typeCategoriesListTableHeader } from '../../types/types';
 
 
@@ -27,10 +27,10 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                 />
             </Table.Th>
             { (indeterminate || allChecked)
-                ? <Table.Th  colSpan={isAllowedEdit ? 3 : 2 }>
-                    <Flex sx={ { flexWrap: 'nowrap'} }>
+                ? <Table.Th colSpan={isAllowedEdit ? 3 : 2 }>
+                    <Flex sx={ { flexWrap: 'nowrap' } }>
                         { headerActions.map((actions, index) => (
-                            <React.Fragment  key={ actions.id }>
+                            <React.Fragment key={ actions.id }>
                                 <UnstyledButton
 
                                     id={ actions.id }
@@ -49,12 +49,12 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                                         borderTopRightRadius: rem(4),
                                         textWrap: 'nowrap',
                                         borderBottom: '1px solid transparent',
-                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.1), },
+                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1) },
                                     } }
                                 >
                                     { actions.label }
                                 </UnstyledButton>
-                                { index < headerActions.length-1  && <Divider orientation={'vertical'} sx={{borderColor: theme.colors.borderColor[0]}}/> }
+                                { index < headerActions.length - 1 && <Divider orientation={'vertical'} sx={{ borderColor: theme.colors.borderColor[ 0 ] }}/> }
                             </React.Fragment>
 
                         )) }
@@ -65,7 +65,7 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                         <Trans id={'item-name'}>Name</Trans>
                     </Table.Th>
                     <Table.Th align={'center'}>
-                            <Trans>Number of products</Trans>
+                        <Trans>Number of products</Trans>
                     </Table.Th>
                     { isAllowedEdit && <Table.Th>
                         <Trans>Actions</Trans>
