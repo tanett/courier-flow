@@ -1,5 +1,7 @@
 import { typeCategoryCreate, typeCategoryEdit, typeCategoryToArchive } from '../model/types';
 
+export const tagTypesCategoriesExtendedList = { categoriesExtendedList: { type: 'CategoriesExtendedList' as const, id: 'PARTIAL-LIST' } } as const;
+
 
 export type typeCreateCategoryRequest = typeCategoryCreate
 

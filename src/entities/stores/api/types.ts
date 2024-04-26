@@ -1,5 +1,8 @@
 import { typeStoreCreate, typeStoreEdit, typeStoreToArchive, typeStoreType } from 'entities/stores/model/types';
 
+export const tagTypesExtendedStoresList = { storesExtendedList: { type: 'StoresExtendedList' as const, id: 'PARTIAL-LIST' } } as const;
+
+
 export type typeCreateStoreRequest = typeStoreCreate
 
 export type typeEditStoreRequest = typeStoreEdit

@@ -1,5 +1,8 @@
 import { blockReasons, typeTerminal } from '../model/types';
 
+export const tagTypesTerminalsExtendedList = { terminalExtendedList: { type: 'TerminalExtendedList' as const, id: 'PARTIAL-LIST' } } as const;
+
+
 export type typeSearchTerminalsFilter = {
     ids?: string[]
     archived: boolean

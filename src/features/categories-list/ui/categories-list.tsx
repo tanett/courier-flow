@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useCategoriesList } from 'features/categories-list/hooks/use-categories-list';
+import React, { useState } from 'react';
+import { useGetCheckedCategoriesList } from 'features/categories-list/hooks/use-get-checked-categories-list';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../../app/config/router-paths';
 import { useSelectorT } from '../../../app/state';
@@ -11,7 +11,6 @@ import { CategoriesListTable } from 'features/categories-list/ui/table/categorie
 import { ArchiveItemModal } from 'features/categories-list/ui/modals/archive-item-modal';
 import { typeCategoryWithCheckBox, typeHeadersAction } from 'features/categories-list/types/types';
 import { ArchiveSelectedItemModal } from 'features/categories-list/ui/modals/archive-selected-item-modal';
-import { useListState } from '@mantine/hooks';
 import { Trans } from '@lingui/macro';
 import { getProductCountFromSelectedCategories } from 'features/categories-list/helpers/getProductCountFromSelectedCategories';
 
@@ -24,28 +23,14 @@ export const CategoriesList: React.FC = () => {
     const isAllowedEdit = useIsAllowedPermissions(editCategoryPermissions);
 
     const {
-        categoriesList,
+        categoriesCheckedList,
         pagination,
         isLoading,
-        setRefetch,
-    } = useCategoriesList();
+        handlers,
+    } = useGetCheckedCategoriesList();
 
 
-    // product list with checked
-    const [ values, handlers ] = useListState<typeCategoryWithCheckBox>(undefined);
 
-    useEffect(() => {
-
-        if (categoriesList) {
-
-            handlers.setState(categoriesList.map(item => ({
-                ...item,
-                checked: false,
-            })));
-
-        }
-
-    }, [ categoriesList ]);
 
     // modals
     const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeCategoryExtended>(null);
@@ -73,8 +58,6 @@ export const CategoriesList: React.FC = () => {
             if (modalArchiveItemData) onCloseModalToArchiveItem();
             if (isOpenModalSelectedItemArchive) setIsOpenSelectedItemArchive(false);
 
-            setRefetch(true);
-
         },
         onError: () => {
 
@@ -94,15 +77,15 @@ export const CategoriesList: React.FC = () => {
 
 
     return (<>
-        {values && <CategoriesListTable
+        {categoriesCheckedList && <CategoriesListTable
             currentUser={ currentUser }
             isAllowedCategoryEdit={ isAllowedEdit }
             goToEditCategoryPage={ goToEditPage }
             onClickRowActionsArchiveItem={ onClickRowActionsArchiveItem }
-            categoriesList={ values }
+            categoriesList={ categoriesCheckedList }
             handlersListState={ handlers }
             pagination={ pagination }
-            isLoading={ isLoading || !values }
+            isLoading={ isLoading }
             headerActions={ headerActions }
         /> }
 
@@ -119,8 +102,8 @@ export const CategoriesList: React.FC = () => {
         { isOpenModalSelectedItemArchive
             && <ArchiveSelectedItemModal
                 onClose={ () => setIsOpenSelectedItemArchive(false) }
-                onConfirm={ () => onDelete(values.filter(item => item.checked).map(item => item.id)) }
-                productsCount={ getProductCountFromSelectedCategories(values) }
+                onConfirm={ () => onDelete(categoriesCheckedList.filter(item => item.checked).map(item => item.id)) }
+                productsCount={ getProductCountFromSelectedCategories(categoriesCheckedList) }
             />
         }
 

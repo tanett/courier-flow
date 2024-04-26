@@ -1,12 +1,11 @@
-import { useSearchProductExtendedQuery } from '../api/api';
-import { useProductsRequestData } from './use-products-request-data';
+import { useUsersRequestData } from './use-users-request-data';
+import { useExtendedSearchUserQuery } from '../api/api';
 
+export function useExtendedUsersList() {
 
-export function useProductsList() {
+  const {requestData} = useUsersRequestData()
 
-    const { requestData } = useProductsRequestData();
-
-    const { data, isFetching, isLoading, refetch } = useSearchProductExtendedQuery(requestData);
+    const { data, isFetching, isLoading, refetch } = useExtendedSearchUserQuery(requestData);
 
     const pagination = data?.totalPages
         ? {
@@ -19,10 +18,11 @@ export function useProductsList() {
 
 
     return {
-        productsList: data?.content,
+        extendedUsersList: data?.content,
         isLoading: isFetching || isLoading,
         pagination,
         refetch,
     };
+
 
 }

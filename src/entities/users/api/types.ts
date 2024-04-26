@@ -31,4 +31,4 @@ export type typeSearchUserSortingNames = 'FULL_NAME';
 
 export type typeUserToArchiveRequest = typeUserToArchive
 
-export const apiTagTypesUser = { userList: { type: 'users', id: 'PARTIAL-LIST' } } as const;
+export const tagTypesExtendedUsersList = { extendedUsersList: { type: 'extendedUsersList', id: 'PARTIAL-LIST' } } as const;

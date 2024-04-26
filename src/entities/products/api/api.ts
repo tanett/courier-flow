@@ -5,7 +5,7 @@ import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeChangeVatForAll, typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
 import {
     PRODUCT_IMPORT_CODE,
-    tagTypesProductsList,
+    tagTypesProductsExtendedList,
     typeBatchEditProductRequest,
     typeCreateProductRequest,
     typeEditProductRequest,
@@ -51,10 +51,10 @@ export const productsApi = baseApi.injectEndpoints({
 
                     // Provides a tag for each group in the current page,
                     // as well as the 'PARTIAL-LIST' tag.
-                    ...result.content.map((item: typeProductExtended) => ({ type: tagTypesProductsList.productsList.type, id: item.id.toString() })),
-                    tagTypesProductsList.productsList
+                    ...result.content.map((item: typeProductExtended) => ({ type: tagTypesProductsExtendedList.productsExtendedList.type, id: item.id.toString() })),
+                    tagTypesProductsExtendedList.productsExtendedList
                 ]
-                : [ tagTypesProductsList.productsList ],
+                : [ tagTypesProductsExtendedList.productsExtendedList ],
         }),
 
         // create Product
@@ -67,7 +67,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesProductsList.productsList ],
+            invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
         }),
 
         // patch Product
@@ -80,7 +80,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesProductsList.productsList ],
+            invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
         }),
 
         // batch patch Product
@@ -93,7 +93,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesProductsList.productsList ],
+            invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
         }),
 
         // change vat for all products
@@ -106,7 +106,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesProductsList.productsList ],
+            invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
         }),
 
         // Product to archive
@@ -119,7 +119,7 @@ export const productsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesProductsList.productsList ],
+            invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
         }),
 
         // get Product by id

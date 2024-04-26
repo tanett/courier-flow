@@ -3,7 +3,8 @@ import { typeSearchRequest, typeSearchResponse } from '../../../app/api/types';
 import { API_URLS } from '../../../app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeTerminal, typeTerminalExtended } from '../model/types';
-import { typeCreateTerminalRequest, typeEditTerminalRequest, typeSearchTerminalsExtendedFilter, typeSearchTerminalsFilter, typeSearchTerminalSortingNames } from './types';
+import { tagTypesTerminalsExtendedList, typeSearchTerminalsExtendedFilter, typeSearchTerminalsFilter, typeSearchTerminalSortingNames } from './types';
+
 
 
 export const terminalsApi = baseApi.injectEndpoints({
@@ -31,42 +32,15 @@ export const terminalsApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-        }),
+            providesTags: (result) => result
+                ? [
 
-        // archive terminals
-        archiveTerminals: builder.mutation<unknown, string[]>({
-            query: (data) => (
-                {
-                    url: API_URLS.TERMINAL_ARCHIVE,
-                    method: 'PATCH',
-                    headers: protectedRoutsAPIHeaderCreator(),
-                    body: data,
-                }
-            ),
-        }),
-
-        // create terminal
-        createTerminal: builder.mutation<typeTerminal, typeCreateTerminalRequest>({
-            query: (data) => (
-                {
-                    url: API_URLS.TERMINAL_CREATE,
-                    method: 'POST',
-                    headers: protectedRoutsAPIHeaderCreator(),
-                    body: data,
-                }
-            ),
-        }),
-
-        // patch terminal
-        patchTerminal: builder.mutation<typeTerminal, typeEditTerminalRequest>({
-            query: (data) => (
-                {
-                    url: API_URLS.TERMINAL_PATCH,
-                    method: 'PATCH',
-                    headers: protectedRoutsAPIHeaderCreator(),
-                    body: data,
-                }
-            ),
+                    // Provides a tag for each group in the current page,
+                    // as well as the 'PARTIAL-LIST' tag.
+                    ...result.content.map((item: typeTerminalExtended) => ({ type: tagTypesTerminalsExtendedList.terminalExtendedList.type, id: item.id.toString() })),
+                    tagTypesTerminalsExtendedList.terminalExtendedList
+                ]
+                : [ tagTypesTerminalsExtendedList.terminalExtendedList ],
         }),
 
         // get terminal by id
@@ -85,9 +59,6 @@ export const terminalsApi = baseApi.injectEndpoints({
 export const {
     useSearchTerminalListQuery,
     useLazySearchTerminalListQuery,
-    useArchiveTerminalsMutation,
-    useCreateTerminalMutation,
-    usePatchTerminalMutation,
     useGetTerminalByIdQuery,
     useSearchTerminalsExtendedQuery,
     useLazySearchTerminalsExtendedQuery,

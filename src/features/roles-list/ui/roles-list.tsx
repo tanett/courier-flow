@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLingui } from '@lingui/react';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { t, Trans } from '@lingui/macro';
-import { useRolesList } from 'features/roles-list/hooks/useRolesList';
+import { useExtendedRolesList } from '../../../entities/role/hooks/use-extended-roles-list';
 import { Box, Flex, Text } from '@mantine/core';
 import { typeRolesExtended } from '../../../entities/role/model/types';
 import { useStyles } from './styles';
@@ -17,13 +17,13 @@ export const RolesList: React.FC = () => {
     const { classes } = useStyles();
     const { i18n } = useLingui();
 
-    const { rolesList, pagination, isLoading } = useRolesList();
+    const { extendedRolesList, pagination, isLoading } = useExtendedRolesList();
 
     const [ selectedRole, setSelectedRole ] = useState<typeRolesExtended | null>(null);
 
     const onRoleClick = (id: string | number) => {
 
-        const role = rolesList?.find(item => item.id === id);
+        const role = extendedRolesList?.find(item => item.id === id);
         if (role && role?.description && role?.description !== '') {
 
             setSelectedRole(role);
@@ -45,7 +45,7 @@ export const RolesList: React.FC = () => {
 
         {isLoading
             ? <TableSkeleton/>
-            : rolesList && <>
+            : extendedRolesList && <>
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
@@ -62,7 +62,7 @@ export const RolesList: React.FC = () => {
                     </Table.Header>
 
                     <Table.Body>
-                        {rolesList.length > 0 && rolesList.map((item) => {
+                        {extendedRolesList.length > 0 && extendedRolesList.map((item) => {
 
                             return (
                                 <Table.Tr key={item.id} handler={item.description ? () => onRoleClick(item.id) : undefined}>
@@ -77,7 +77,7 @@ export const RolesList: React.FC = () => {
 
                         })}
 
-                        {rolesList.length === 0 && <Table.EmptyRow columnCount={3}>
+                        {extendedRolesList.length === 0 && <Table.EmptyRow columnCount={3}>
                             <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
                         </Table.EmptyRow>}
                     </Table.Body>

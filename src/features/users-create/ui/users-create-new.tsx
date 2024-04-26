@@ -21,7 +21,7 @@ import { isPossiblePhoneNumber } from 'libphonenumber-js';
 import { IconChevronDown } from '@tabler/icons-react';
 import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search-store';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
-import useGetRolesDataForSelector from '../../../entities/role/hooks/useGetRolesDataForSelector';
+import useGetRolesDataForSelector from '../../../entities/role/hooks/use-get-roles-data-for-selector';
 
 
 export const UsersCreateNew: React.FC = () => {

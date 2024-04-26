@@ -2,13 +2,15 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeUser } from 'entities/user-profile/model/state-slice';
+import { typeUser } from '../../user-profile/model/state-slice';
 import {
+    tagTypesExtendedUsersList,
     typeCreateUserRequest,
     typeEditUserRequest,
     typeSearchFilterUsers, typeSearchUserSortingNames, typeUserToArchiveRequest,
-} from 'entities/users/api/types';
-import { typeUserWithStoresName } from 'entities/users/model/types';
+} from './types';
+import { typeUserWithStoresName } from '../model/types';
+
 
 export const usersApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -37,6 +39,15 @@ export const usersApi = baseApi.injectEndpoints({
                     cache: 'no-cache',
                 }
             ),
+            providesTags: (result) => result
+                ? [
+
+                    // Provides a tag for each group in the current page,
+                    // as well as the 'PARTIAL-LIST' tag.
+                    ...result.content.map((item: typeUserWithStoresName) => ({ type: tagTypesExtendedUsersList.extendedUsersList.type, id: item.id.toString() })),
+                    tagTypesExtendedUsersList.extendedUsersList
+                ]
+                : [ tagTypesExtendedUsersList.extendedUsersList ],
         }),
 
         // create user
@@ -49,6 +60,7 @@ export const usersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [tagTypesExtendedUsersList.extendedUsersList]
         }),
 
         // patch user
@@ -61,6 +73,7 @@ export const usersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [tagTypesExtendedUsersList.extendedUsersList]
         }),
 
         // user to archive
@@ -73,6 +86,7 @@ export const usersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [tagTypesExtendedUsersList.extendedUsersList]
         }),
 
         // get user by id
@@ -95,7 +109,7 @@ export const {
     useLazyGetUserByIdQuery,
     usePatchUserMutation,
     useLazySearchUserQuery,
-    useLazyExtendedSearchUserQuery,
+    useExtendedSearchUserQuery,
     useCreateUserMutation,
     useUserToArchiveMutation,
 } = usersApi;

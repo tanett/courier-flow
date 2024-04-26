@@ -2,7 +2,7 @@ import { typeChangeCategoryForProduct, typeProductCreate, typeProductEdit, typeP
 import { typeImportError, typeImportFileStatus, typeImportFileType } from 'entities/imports/api/types';
 import { LANGUAGES } from 'app/config/languages';
 
-export const tagTypesProductsList = { productsList: { type: 'ProductsList' as const, id: 'PARTIAL-LIST' } } as const;
+export const tagTypesProductsExtendedList = { productsExtendedList: { type: 'ProductsExtendedList' as const, id: 'PARTIAL-LIST' } } as const;
 
 
 export type typeCreateProductRequest = typeProductCreate

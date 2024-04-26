@@ -1,5 +1,8 @@
 import { accessScope } from 'app/config/api-constants';
 
+export const tagTypesRolesExtendedList = { rolesExtendedList: { type: 'RolesExtendedList' as const, id: 'PARTIAL-LIST' } } as const;
+
+
 export type typeSearchRolesFilter = {
         ids?: string[],
         archived?: boolean,

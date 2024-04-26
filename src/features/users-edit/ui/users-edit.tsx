@@ -20,7 +20,7 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { notificationActions } from '../../../entities/notification/model';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search-store';
-import useGetRolesDataForSelector from '../../../entities/role/hooks/useGetRolesDataForSelector';
+import useGetRolesDataForSelector from '../../../entities/role/hooks/use-get-roles-data-for-selector';
 import { isArrayEqual } from 'features/users-edit/helpers/isArrayEqual';
 import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
 

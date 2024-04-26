@@ -37,8 +37,8 @@ msgstr ""
 #~ msgid "{productsCount, plural, one {# product} other {# products}}"
 #~ msgstr ""
 
-#: src/features/product-create/ui/product-form-create.tsx:237
-#: src/features/product-edit/ui/product-form-edit.tsx:266
+#: src/features/product-create/ui/product-form-create.tsx:238
+#: src/features/product-edit/ui/product-form-edit.tsx:269
 msgid "A barcode is required for labeled goods."
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Add an existing employee to store"
 msgstr ""
 
-#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:151
+#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:172
 msgid "Add barcode"
 msgstr ""
 
@@ -102,6 +102,10 @@ msgstr ""
 #~ msgid "After archiving the category, {productsCount} products will remain without a category"
 #~ msgstr ""
 
+#: src/features/products-import/ui/select-file/select-file.tsx:130
+msgid "All products listed in the file are successfully imported."
+msgstr ""
+
 #: src/features/products-list/ui/table/products-table-header.tsx:94
 msgid "Amount of stores"
 msgstr ""
@@ -118,8 +122,8 @@ msgstr ""
 #: src/features/product-archive-button/product-archive-button.tsx:35
 #: src/features/product-archive-button/product-archive-button.tsx:43
 #: src/features/products-list/ui/modal/modal-archive-item.tsx:53
-#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:50
-#: src/features/products-list/ui/products-list.tsx:87
+#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:54
+#: src/features/products-list/ui/products-list.tsx:72
 #: src/features/user-archive-button/user-archive-button.tsx:43
 msgid "action-archive"
 msgstr ""
@@ -134,7 +138,7 @@ msgstr ""
 #~ msgid "Archive products"
 #~ msgstr ""
 
-#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:54
+#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:58
 msgid "Are you sure you want to archive <0/>selected products"
 msgstr ""
 
@@ -166,7 +170,7 @@ msgstr ""
 msgid "Are you sure you want to archive<0/>the user"
 msgstr ""
 
-#: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:74
 msgid "Are you sure you want to delete <0/>the product"
 msgstr ""
 
@@ -194,6 +198,14 @@ msgstr ""
 #~ msgid "At least 1 special character"
 #~ msgstr ""
 
+#: src/shared/ui/drag-drop-file-upload/ui/drag-drop-file-upload.tsx:46
+msgid "Attach another file"
+msgstr ""
+
+#: src/features/products-import/ui/select-file/select-file.tsx:72
+msgid "Attach or drag an XLSX file<0/>no larger than 10Mb into this area"
+msgstr ""
+
 #: src/pages/login-page/ui/login-page.tsx:11
 msgid "Authorization"
 msgstr ""
@@ -206,8 +218,8 @@ msgstr ""
 msgid "Barcode"
 msgstr ""
 
-#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:88
-#: src/features/products-details/ui/product-details.tsx:119
+#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:101
+#: src/features/products-details/ui/product-details.tsx:120
 msgid "Barcodes"
 msgstr ""
 
@@ -227,18 +239,18 @@ msgstr ""
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:16
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:16
 #: src/features/product-archive-button/product-archive-button.tsx:51
-#: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:124
-#: src/features/product-create/ui/product-form-create.tsx:251
-#: src/features/product-details-stores/ui/modal/modal-delete.tsx:62
-#: src/features/product-edit/ui/product-form-edit.tsx:280
-#: src/features/products-change-category/products-change-category.tsx:111
+#: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:125
+#: src/features/product-create/ui/product-form-create.tsx:252
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:66
+#: src/features/product-edit/ui/product-form-edit.tsx:283
+#: src/features/products-change-category/products-change-category.tsx:113
 #: src/features/products-list-buttons-panel/ui/dialogs/archive-products-dialog.tsx:16
 #: src/features/products-list/ui/modal/modal-archive-item.tsx:49
-#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:46
+#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:50
 #: src/features/profile-show-edit/ui/profile.tsx:169
-#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:134
-#: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:122
-#: src/features/retail-product-edit-price/retail-product-edit price.tsx:129
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:138
+#: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:123
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
 #: src/features/stores-details-users/ui/stores-details-users.tsx:175
 #: src/features/stores-edit/ui/store-edit.tsx:197
 #: src/features/user-add-to-store/user-add-to-store.tsx:205
@@ -247,6 +259,10 @@ msgstr ""
 #: src/features/users-create/ui/users-create-new.tsx:157
 #: src/features/users-edit/ui/users-edit.tsx:177
 msgid "Cancel"
+msgstr ""
+
+#: src/shared/ui/import-export-button/ui/import-export-button.tsx:61
+msgid "Canceled"
 msgstr ""
 
 #: src/features/main-menu/config/main-menu.config.tsx:92
@@ -267,11 +283,11 @@ msgstr ""
 
 #: src/features/products-details/ui/product-details.tsx:67
 #: src/features/products-list/ui/table/products-table-header.tsx:87
-#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:134
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:140
 msgid "Category"
 msgstr ""
 
-#: src/features/products-change-category/products-change-category.tsx:63
+#: src/features/products-change-category/products-change-category.tsx:64
 msgid "Category changed successfully."
 msgstr ""
 
@@ -287,15 +303,15 @@ msgstr ""
 msgid "Category edited successfully."
 msgstr ""
 
-#: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:126
-#: src/features/products-change-category/products-change-category.tsx:113
-#: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:124
-#: src/features/retail-product-edit-price/retail-product-edit price.tsx:131
+#: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:127
+#: src/features/products-change-category/products-change-category.tsx:115
+#: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:125
+#: src/features/retail-product-edit-price/retail-product-edit price.tsx:132
 msgid "Change"
 msgstr ""
 
-#: src/features/products-list/ui/modal/modal-change-category-selected-item.tsx:36
-#: src/features/products-list/ui/products-list.tsx:81
+#: src/features/products-list/ui/modal/modal-change-category-selected-item.tsx:28
+#: src/features/products-list/ui/products-list.tsx:66
 msgid "Change category"
 msgstr ""
 
@@ -320,16 +336,16 @@ msgstr ""
 msgid "Change prices in all stores"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:81
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:120
 msgid "Change vat"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:34
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:42
 msgid "Change VAT"
 msgstr ""
 
-#: src/features/product-create/ui/product-form-create.tsx:236
-#: src/features/product-edit/ui/product-form-edit.tsx:265
+#: src/features/product-create/ui/product-form-create.tsx:237
+#: src/features/product-edit/ui/product-form-edit.tsx:268
 msgid "Check for the barcode!"
 msgstr ""
 
@@ -338,7 +354,7 @@ msgid "Check if email is correct"
 msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:132
-#: src/features/product-edit/ui/product-form-edit.tsx:159
+#: src/features/product-edit/ui/product-form-edit.tsx:161
 msgid "Check the psid on"
 msgstr ""
 
@@ -352,6 +368,12 @@ msgstr ""
 
 #: src/shared/ui/item-list-with-counter/item-list-with-counter.tsx:27
 msgid "Click to view full list"
+msgstr ""
+
+#: src/features/products-export/ui/select-stores/select-stores.tsx:89
+#: src/features/products-import/ui/select-file/select-file.tsx:91
+#: src/features/products-import/ui/select-stores/select-stores.tsx:86
+msgid "Come back"
 msgstr ""
 
 #: src/features/products-details/ui/product-details.tsx:83
@@ -411,15 +433,29 @@ msgstr ""
 msgid "Creation date"
 msgstr ""
 
-#: src/features/product-details-stores/ui/modal/modal-delete.tsx:66
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
 msgid "Delete"
 msgstr ""
 
-#: src/features/roles-list/ui/roles-list.tsx:56
+#: src/features/roles-list/ui/roles-list.tsx:55
 #: src/features/stores-details/ui/store-details.tsx:71
 #: src/features/stores-edit/ui/store-edit.tsx:187
 msgid "Description"
+msgstr ""
+
+#: src/shared/ui/import-export-button/ui/import-export-button.tsx:33
+msgid "Done"
+msgstr ""
+
+#: src/shared/ui/download-file-buttons-panel/ui/download-file-buttons-panel.tsx:20
+#: src/shared/ui/download-file-buttons-panel/ui/download-file-buttons-panel.tsx:23
+#: src/shared/ui/import-export-button/ui/import-export-button.tsx:20
+msgid "Download"
+msgstr ""
+
+#: src/shared/ui/download-template-link/ui/download-template-link.tsx:15
+msgid "Download a file template"
 msgstr ""
 
 #: src/features/categories-list/ui/table/categories-table.tsx:76
@@ -462,16 +498,77 @@ msgstr ""
 msgid "empty list"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:62
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:250
+msgid "Enter a store name"
+msgstr ""
+
+#: src/shared/ui/import-export-button/ui/import-export-button.tsx:48
+msgid "Error"
+msgstr ""
+
+#: src/features/import-products-list/ui/import-products-list.tsx:27
+msgid "Error list"
+msgstr ""
+
+#: src/features/products-export/ui/select-stores/select-stores.tsx:95
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:101
 msgid "Export"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:71
+#: src/features/products-export/ui/export-product-dialog/export-products-dialog.tsx:63
+msgid "Export error"
+msgstr ""
+
+#: src/shared/ui/file-loader/ui/file-loader.tsx:34
+msgid "Export list"
+msgstr ""
+
+#: src/features/products-export/ui/select-type-of-export/select-type-of-export.tsx:24
+msgid "Export of goods"
+msgstr ""
+
+#: src/features/products-export/ui/select-type-of-export/select-type-of-export.tsx:35
+msgid "Export of goods with prices"
+msgstr ""
+
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:80
+msgid "Export products"
+msgstr ""
+
+#: src/features/products-export/ui/select-type-of-export/select-type-of-export.tsx:36
+msgid "Export products with associated stores and prices"
+msgstr ""
+
+#: src/features/products-list/ui/modal/modal-export-selected-product.tsx:28
+msgid "Export selected products"
+msgstr ""
+
+#: src/features/products-export/ui/select-type-of-export/select-type-of-export.tsx:25
+msgid "Exporting a product catalog without specifying links to stores and prices"
+msgstr ""
+
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:110
 msgid "Exports list"
 msgstr ""
 
 #: src/entities/stores/constants/store-type-list.tsx:13
 msgid "Fashion"
+msgstr ""
+
+#: src/shared/ui/file-loader/ui/file-loader.tsx:20
+msgid "File is loading"
+msgstr ""
+
+#: src/shared/ui/empy-export-import-list/ui/empy-file-list.tsx:27
+msgid "File list is empty"
+msgstr ""
+
+#: src/features/products-import/ui/select-file/select-file.tsx:149
+msgid "File processing completed with errors. Correct the file and upload it again."
+msgstr ""
+
+#: src/features/products-export/ui/export-product-dialog/export-products-dialog.tsx:65
+msgid "File processing completed with errors. Correct your selection and download it again."
 msgstr ""
 
 #: src/shared/ui/filter-panel/ui/filter-block.tsx:26
@@ -493,7 +590,7 @@ msgstr ""
 msgid "Forgot password?"
 msgstr ""
 
-#: src/features/products-list/ui/table/products-table.tsx:104
+#: src/features/products-list/ui/table/products-table.tsx:106
 msgid "from"
 msgstr ""
 
@@ -512,7 +609,7 @@ msgstr ""
 #: src/features/categories-create/ui/categories-create.tsx:89
 #: src/features/categories-edit/ui/categories-edit.tsx:104
 #: src/features/product-create/ui/product-form-create.tsx:112
-#: src/features/product-edit/ui/product-form-edit.tsx:139
+#: src/features/product-edit/ui/product-form-edit.tsx:141
 #: src/features/products-details-tabs/ui/products-details-tabs.tsx:49
 msgid "General information"
 msgstr ""
@@ -525,11 +622,32 @@ msgstr ""
 msgid "Have questions?"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:54
+#: src/features/products-import/ui/select-file/select-file.tsx:98
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:93
 msgid "Import"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:76
+#: src/features/products-import/ui/select-file/select-file.tsx:147
+msgid "Import error"
+msgstr ""
+
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:49
+msgid "Import file template for selected stores"
+msgstr ""
+
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:45
+msgid "Import file template for stores specified in the Excel file"
+msgstr ""
+
+#: src/features/import-products-list/ui/import-products-list.tsx:24
+msgid "Import terminal"
+msgstr ""
+
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:73
+msgid "Import terminals"
+msgstr ""
+
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:115
 msgid "Imports list"
 msgstr ""
 
@@ -582,13 +700,12 @@ msgstr ""
 msgid "It's too long"
 msgstr ""
 
-#: src/shared/ui/pagination/table-pagination.tsx:41
-#: src/shared/ui/table/ui/table-pagination/table-pagination.tsx:35
+#: src/shared/ui/pagination/table-pagination.tsx:42
 msgid "Items par page"
 msgstr ""
 
-#: src/features/product-create/ui/product-form-create.tsx:238
-#: src/features/product-edit/ui/product-form-edit.tsx:267
+#: src/features/product-create/ui/product-form-create.tsx:239
+#: src/features/product-edit/ui/product-form-edit.tsx:270
 msgid "Labeled items must be sold individually ??"
 msgstr ""
 
@@ -609,6 +726,10 @@ msgstr ""
 #: src/features/change-password-for-first-login/forms/forms.ts:23
 #: src/features/restore-password/forms/forms.ts:23
 msgid "Less than {MIN_UP_LETTERS_IN_PASSWORD} characters"
+msgstr ""
+
+#: src/shared/ui/import-file-dialog-error-list/ui/import-file-dialog-error-list.tsx:21
+msgid "Line number"
 msgstr ""
 
 #: src/features/stores-edit/ui/store-edit.tsx:176
@@ -634,8 +755,8 @@ msgstr ""
 #~ msgid "marked"
 #~ msgstr ""
 
-#: src/features/product-create/ui/product-form-create.tsx:231
-#: src/features/product-edit/ui/product-form-edit.tsx:259
+#: src/features/product-create/ui/product-form-create.tsx:232
+#: src/features/product-edit/ui/product-form-edit.tsx:262
 #: src/features/products-list-filter/ui/products-list-filter.tsx:137
 msgid "Marked"
 msgstr ""
@@ -645,8 +766,9 @@ msgstr ""
 #~ msgid "Marked product"
 #~ msgstr ""
 
-#: src/features/product-create/ui/product-form-create.tsx:229
-#: src/features/product-edit/ui/product-form-edit.tsx:257
+#: src/features/product-create/ui/product-form-create.tsx:230
+#: src/features/product-edit/ui/product-form-edit.tsx:260
+#: src/features/products-details/ui/product-details.tsx:99
 #: src/features/products-list-filter/ui/products-list-filter.tsx:134
 msgid "Marking"
 msgstr ""
@@ -698,6 +820,18 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
+#: src/features/products-import/ui/select-stores/select-stores.tsx:92
+msgid "Next"
+msgstr ""
+
+#: src/features/products-details/ui/product-details.tsx:99
+msgid "No"
+msgstr ""
+
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:276
+msgid "No stores with this name"
+msgstr ""
+
 #: src/features/terminals-details/ui/terminals-details.tsx:85
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:120
 msgid "Not blocked"
@@ -728,16 +862,19 @@ msgstr ""
 msgid "Number of products"
 msgstr ""
 
-#: src/shared/ui/pagination/table-pagination.tsx:55
-#: src/shared/ui/table/ui/table-pagination/table-pagination.tsx:38
+#: src/features/products-import/ui/select-file/select-file.tsx:62
+msgid "Number of selected stores"
+msgstr ""
+
+#: src/shared/ui/pagination/table-pagination.tsx:56
 msgid "of"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/hooks/use-block-terminals-by-file.ts:30
+#: src/features/products-import/hooks/use-import-products-file.ts:136
 msgid "Only one file can be attached."
 msgstr ""
 
-#: src/features/product-details-stores/ui/modal/modal-delete.tsx:42
+#: src/features/product-details-stores/ui/modal/modal-delete.tsx:46
 msgid "Operation was successful."
 msgstr ""
 
@@ -817,7 +954,7 @@ msgid "Piece products"
 msgstr ""
 
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:40
-#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:101
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:104
 #: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:89
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:96
 msgid "Price"
@@ -835,7 +972,7 @@ msgstr ""
 #~ msgid "Product archived successfully."
 #~ msgstr ""
 
-#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:139
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:145
 msgid "Product category not found"
 msgstr ""
 
@@ -843,12 +980,12 @@ msgstr ""
 msgid "Product created successfully."
 msgstr ""
 
-#: src/features/product-edit/ui/product-form-edit.tsx:106
+#: src/features/product-edit/ui/product-form-edit.tsx:108
 msgid "Product edited successfully."
 msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:115
-#: src/features/product-edit/ui/product-form-edit.tsx:142
+#: src/features/product-edit/ui/product-form-edit.tsx:144
 msgid "Product name"
 msgstr ""
 
@@ -863,6 +1000,18 @@ msgstr ""
 
 #: src/entities/products/hooks/use-archive-products.ts:27
 msgid "Products archived successfully."
+msgstr ""
+
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:59
+msgid "Products export"
+msgstr ""
+
+#: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:50
+msgid "Products import"
+msgstr ""
+
+#: src/features/products-import/ui/select-file/select-file.tsx:128
+msgid "Products imported successfully"
 msgstr ""
 
 #: src/pages/profile-page/ui/profile-page.tsx:17
@@ -932,6 +1081,7 @@ msgstr ""
 msgid "Required field"
 msgstr ""
 
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:238
 #: src/shared/ui/filter-panel/ui/filter-buttons-bar.tsx:14
 msgid "Reset"
 msgstr ""
@@ -954,7 +1104,7 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: src/features/roles-list/ui/roles-list.tsx:94
+#: src/features/roles-list/ui/roles-list.tsx:93
 msgid "Role description"
 msgstr ""
 
@@ -962,7 +1112,7 @@ msgstr ""
 #~ msgid "Role Description"
 #~ msgstr ""
 
-#: src/features/roles-list/ui/roles-list.tsx:53
+#: src/features/roles-list/ui/roles-list.tsx:52
 msgid "Role's name"
 msgstr ""
 
@@ -977,10 +1127,10 @@ msgstr ""
 
 #: src/features/categories-create/ui/categories-create.tsx:110
 #: src/features/categories-edit/ui/categories-edit.tsx:125
-#: src/features/product-create/ui/product-form-create.tsx:253
-#: src/features/product-edit/ui/product-form-edit.tsx:282
+#: src/features/product-create/ui/product-form-create.tsx:254
+#: src/features/product-edit/ui/product-form-edit.tsx:285
 #: src/features/profile-show-edit/ui/profile.tsx:170
-#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:136
+#: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:140
 #: src/features/stores-edit/ui/store-edit.tsx:199
 #: src/features/users-create/ui/users-create-new.tsx:159
 #: src/features/users-edit/ui/users-edit.tsx:179
@@ -992,8 +1142,25 @@ msgstr ""
 msgid "Select a role"
 msgstr ""
 
-#: src/features/products-list/ui/products-list.tsx:76
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:242
+msgid "Select all"
+msgstr ""
+
+#: src/features/products-export/ui/select-stores/select-stores.tsx:43
+#: src/features/products-import/ui/select-stores/select-stores.tsx:45
+msgid "Select at least one store"
+msgstr ""
+
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:233
+msgid "Select stores"
+msgstr ""
+
+#: src/features/products-list/ui/products-list.tsx:61
 msgid "Selected export"
+msgstr ""
+
+#: src/features/products-import/ui/select-file/select-file.tsx:61
+msgid "Selected import option"
 msgstr ""
 
 #: src/features/terminal-list/ui/terminals-table.tsx:30
@@ -1036,7 +1203,7 @@ msgid "Store name"
 msgstr ""
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:172
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:141
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:147
 msgid "Store not found"
 msgstr ""
 
@@ -1052,7 +1219,7 @@ msgstr ""
 
 #: src/features/main-menu/config/main-menu.config.tsx:84
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:136
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:142
 #: src/features/user-list/ui/user-table.tsx:55
 #: src/features/users-details/ui/users-details.tsx:98
 #: src/pages/stores-details-page/ui/stores-details-page.tsx:23
@@ -1063,6 +1230,14 @@ msgstr ""
 
 #: src/features/products-details-tabs/ui/products-details-tabs.tsx:50
 msgid "Stores and prices"
+msgstr ""
+
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:62
+msgid "Stores and prices for each product are indicated in the import file"
+msgstr ""
+
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:53
+msgid "Template file for import into catalog"
 msgstr ""
 
 #: src/features/main-menu/config/main-menu.config.tsx:100
@@ -1076,8 +1251,8 @@ msgid "The email has been sent to the email address you provided to reset your p
 msgstr ""
 
 #: src/features/categories-list/ui/table/categories-table.tsx:109
-#: src/features/products-list/ui/table/products-table.tsx:141
-#: src/features/roles-list/ui/roles-list.tsx:82
+#: src/features/products-list/ui/table/products-table.tsx:147
+#: src/features/roles-list/ui/roles-list.tsx:81
 #: src/features/stores-list/ui/stores-table.tsx:84
 #: src/features/terminal-list/ui/terminals-table.tsx:72
 #: src/features/user-list/ui/user-table.tsx:98
@@ -1088,7 +1263,7 @@ msgstr ""
 msgid "The list of users is empty."
 msgstr ""
 
-#: src/features/products-list-buttons-panel/hooks/use-block-terminals-by-file.ts:32
+#: src/features/products-import/hooks/use-import-products-file.ts:138
 msgid "The maximum file size has been exceeded. Please select another file."
 msgstr ""
 
@@ -1104,19 +1279,23 @@ msgstr ""
 msgid "The store edited successfully."
 msgstr ""
 
-#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:58
+#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:62
 msgid "This barcode already added"
+msgstr ""
+
+#: src/shared/ui/file-loader/ui/file-loader.tsx:37
+msgid "This feature can be useful if the export process takes a long time."
 msgstr ""
 
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:32
 msgid "This product is not sold in any store."
 msgstr ""
 
-#: src/features/users-details/ui/users-details.tsx:145
+#: src/features/users-details/ui/users-details.tsx:149
 msgid "This user is not associated with any store"
 msgstr ""
 
-#: src/features/products-list/ui/table/products-table.tsx:105
+#: src/features/products-list/ui/table/products-table.tsx:107
 msgid "to"
 msgstr ""
 
@@ -1124,11 +1303,30 @@ msgstr ""
 #~ msgid "To archive"
 #~ msgstr ""
 
+#: src/entities/products/helpers/get-translated-variant-for-import.tsx:9
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:81
+msgid "To catalog"
+msgstr ""
+
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:134
 msgid "To continue, we ask you to change your password."
 msgstr ""
 
-#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:62
+#: src/entities/products/helpers/get-translated-variant-for-import.tsx:13
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:71
+msgid "To selected stores"
+msgstr ""
+
+#: src/entities/products/helpers/get-translated-variant-for-import.tsx:11
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:61
+msgid "To the stores indicated in the Excel file"
+msgstr ""
+
+#: src/shared/utils/import-export-date-formatter.ts:26
+msgid "today"
+msgstr ""
+
+#: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:68
 msgid "Too long"
 msgstr ""
 
@@ -1160,7 +1358,7 @@ msgstr ""
 #~ msgid "Type category name and select"
 #~ msgstr ""
 
-#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:135
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:141
 msgid "Type name and select"
 msgstr ""
 
@@ -1172,7 +1370,7 @@ msgstr ""
 msgid "Type part of category name"
 msgstr ""
 
-#: src/features/roles-list/ui/roles-list.tsx:44
+#: src/features/roles-list/ui/roles-list.tsx:43
 msgid "Type part of role's name"
 msgstr ""
 
@@ -1189,7 +1387,7 @@ msgid "Type part of your username, email or phone number"
 msgstr ""
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:168
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:137
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:143
 msgid "Type store name and select"
 msgstr ""
 
@@ -1198,13 +1396,21 @@ msgstr ""
 #~ msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:172
-#: src/features/product-edit/ui/product-form-edit.tsx:199
-#: src/features/products-details/ui/product-details.tsx:116
+#: src/features/product-edit/ui/product-form-edit.tsx:201
+#: src/features/products-details/ui/product-details.tsx:117
 msgid "Unit"
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:117
+#: src/features/products-details/ui/product-details.tsx:118
 msgid "Unit code"
+msgstr ""
+
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:72
+msgid "Uploading products to selected stores with a price from the import file"
+msgstr ""
+
+#: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:82
+msgid "Uploading products to the catalog without indicating prices or attaching them to stores"
 msgstr ""
 
 #: src/entities/users/hooks/use-archive-users.ts:27
@@ -1245,17 +1451,22 @@ msgstr ""
 #~ msgid "Users' count"
 #~ msgstr ""
 
-#: src/features/roles-list/ui/roles-list.tsx:60
+#: src/features/roles-list/ui/roles-list.tsx:59
 msgid "Users's count"
 msgstr ""
 
+#: src/shared/ui/import-file-dialog-error-list-for-validation-error/ui/import-file-dialog-error-list-for-validation-error.tsx:22
+#: src/shared/ui/import-file-dialog-error-list/ui/import-file-dialog-error-list.tsx:24
+msgid "Value"
+msgstr ""
+
 #: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:88
-#: src/features/products-details/ui/product-details.tsx:99
+#: src/features/products-details/ui/product-details.tsx:100
 msgid "Vat"
 msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:199
-#: src/features/product-edit/ui/product-form-edit.tsx:226
+#: src/features/product-edit/ui/product-form-edit.tsx:228
 msgid "Vat in %"
 msgstr ""
 
@@ -1271,11 +1482,27 @@ msgstr ""
 msgid "Without spaces"
 msgstr ""
 
-#: src/features/products-list-buttons-panel/hooks/use-block-terminals-by-file.ts:33
+#: src/features/products-import/hooks/use-import-products-file.ts:139
 msgid "Wrong file type. Please select another file."
+msgstr ""
+
+#: src/features/products-details/ui/product-details.tsx:99
+msgid "Yes"
+msgstr ""
+
+#: src/shared/utils/import-export-date-formatter.ts:28
+msgid "yesterday"
+msgstr ""
+
+#: src/shared/ui/file-loader/ui/file-loader.tsx:22
+msgid "You can close this window and download the file later in the"
 msgstr ""
 
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:108
 #: src/features/restore-password/ui/restore-password.tsx:96
 msgid "You can log in."
+msgstr ""
+
+#: src/features/products-import/hooks/use-import-products-file.ts:201
+msgid "You didn't attach the file"
 msgstr ""

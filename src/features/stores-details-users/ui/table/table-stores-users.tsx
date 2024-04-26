@@ -71,7 +71,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.fullName }</Box></Table.Td>
                                             <Table.Td><Box miw={150} maw={250}>{ item.phone ? formatIncompletePhoneNumber(item.phone) : '-' }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.role.name ?? '-' }</Box></Table.Td>
-                                            { isAllowEditUser && <Flex justify={'center'}><Table.TdActions align={'center'} actions={ actions }/></Flex> }
+                                            { isAllowEditUser && <Table.TdActions align={'center'} actions={ actions }/> }
                                         </Table.Tr>
                                     );
 

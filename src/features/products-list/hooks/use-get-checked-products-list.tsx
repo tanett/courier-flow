@@ -1,4 +1,4 @@
-import { useProductsList } from '../../../entities/products/hooks/use-products-list';
+import { useExtendedProductsList } from '../../../entities/products/hooks/use-extended-products-list';
 import { useListState } from '@mantine/hooks';
 import { typeProductExtendedWithCheckBox } from 'features/products-list/types/types';
 import { useEffect } from 'react';
@@ -6,29 +6,30 @@ import { useEffect } from 'react';
 export const useGetCheckedProductsList = () => {
 
     const {
-        productsList,
+        extendedProductsList,
         pagination,
         isLoading,
-    } = useProductsList();
+    } = useExtendedProductsList();
 
     // product list with checked
     const [ values, handlers ] = useListState<typeProductExtendedWithCheckBox>(undefined);
 
     useEffect(() => {
 
-        if (productsList) {
+        if (extendedProductsList) {
 
-            handlers.setState(productsList.map(item => ({
+            handlers.setState(extendedProductsList.map(item => ({
                 ...item,
                 checked: false,
             })));
 
         }
 
-    }, [ productsList ]);
+    }, [ extendedProductsList ]);
+
     return {
         productsCheckedList: values,
-        isLoading: isLoading || (isLoading && values.length === 0) || (!!productsList && productsList.length > 0 && values.length === 0),
+        isLoading: isLoading || (isLoading && values.length === 0) || (!!extendedProductsList && extendedProductsList.length > 0 && values.length === 0),
         pagination,
         handlers,
     };

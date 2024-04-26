@@ -1,9 +1,9 @@
 import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { typeSearchRolesFilter, typeSearchRolesSortingNames } from 'entities/role/api/types';
+import { tagTypesRolesExtendedList, typeSearchRolesFilter, typeSearchRolesSortingNames } from './types';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeRole, typeRolesExtended } from 'entities/role/model/types';
+import { typeRole, typeRolesExtended } from '../model/types';
 
 
 export const rolesApi = baseApi.injectEndpoints({
@@ -43,6 +43,15 @@ export const rolesApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            providesTags: (result) => result
+                ? [
+
+                    // Provides a tag for each group in the current page,
+                    // as well as the 'PARTIAL-LIST' tag.
+                    ...result.content.map((item: typeRolesExtended) => ({ type: tagTypesRolesExtendedList.rolesExtendedList.type, id: item.id.toString() })),
+                    tagTypesRolesExtendedList.rolesExtendedList
+                ]
+                : [ tagTypesRolesExtendedList.rolesExtendedList ],
         }),
 
     }),
@@ -50,6 +59,6 @@ export const rolesApi = baseApi.injectEndpoints({
 
 export const {
     useLazySearchRolesQuery,
-    useLazySearchRolesExtendedQuery,
+    useSearchRolesExtendedQuery,
     useSearchRolesOneQuery,
 } = rolesApi;

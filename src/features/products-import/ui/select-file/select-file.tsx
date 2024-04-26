@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Box, Button, Flex, Space, Text } from '@mantine/core';
+import { Alert, Box, Button, Flex, Space, Text, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { ArrowLongLeftIcon, ExclamationTriangleIcon } from '@heroicons/react/16/solid';
@@ -24,7 +24,7 @@ export const SelectFile: React.FC<typeSelectFile> = ({
     options,
 
 }) => {
-
+    const theme = useMantineTheme();
     const { i18n } = useLingui();
     const { classes } = useStyles();
     const maxFileSize = 10 * 1024 * 1024;
@@ -145,11 +145,11 @@ export const SelectFile: React.FC<typeSelectFile> = ({
                 withMarginTopFat={true}
             >
                 <ImportFileDialogMessage isWide title={i18n._(t`Import error`)}>
-                    <Box>
+                    <Box  sx={ { color: theme.colors.gray[5] } }>
                         <Trans>File processing completed with errors. Correct the file and upload it again.</Trans>
                     </Box>
                     {(!importErrorList && responseFullError?.errorMessage) && <Box>{
-                        responseFullError?.errorMessage?.split('\n').map((item, index) => <div key={index}>{item}</div>) }
+                        responseFullError?.errorMessage?.split('\n').map((item, index) => <div key={index}>{index+1}. {item}</div>) }
                     </Box>}
                     {(!importErrorList && responseFullError?.validationErrors?.length) && <ImportFileDialogErrorListForValidationError errorList={responseFullError.validationErrors} />}
                     {importErrorList?.length && <ImportFileDialogErrorList errorList={importErrorList}/>}

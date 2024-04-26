@@ -8,7 +8,7 @@ import { DownloadFileButtonsPanel } from 'shared/ui/download-file-buttons-panel'
 import { typeExportProductsDialog } from 'features/products-export/ui/export-product-dialog/types';
 import { ImportFileDialogMessage } from 'shared/ui/import-file-dialog-message';
 import { t, Trans } from '@lingui/macro';
-import { Box } from '@mantine/core';
+import { Box, useMantineTheme } from '@mantine/core';
 import { ImportFileDialogErrorListForValidationError } from 'shared/ui/import-file-dialog-error-list-for-validation-error';
 import { useLingui } from '@lingui/react';
 
@@ -19,6 +19,8 @@ export const ExportProductsDialog: React.FC<typeExportProductsDialog> = ({
 }) => {
 
     const { i18n } = useLingui();
+
+    const theme = useMantineTheme();
 
     const {
         downloadFileId,
@@ -52,25 +54,26 @@ export const ExportProductsDialog: React.FC<typeExportProductsDialog> = ({
 
     if (processStep === 'error') {
 
-        console.log('-----', errorInfo);
         return (
             <Dialog
-                icon={dialogIcon.error}
-                withoutPadding={true}
-                withScroll={!!(errorInfo && typeof errorInfo.data === 'object' && errorInfo.data?.validationErrors && errorInfo.data?.validationErrors.length > 0)}
-                withMarginTopFat={true}
+                icon={ dialogIcon.error }
+                withoutPadding={ true }
+                withScroll={ !!(errorInfo && typeof errorInfo.data === 'object' && errorInfo.data?.validationErrors && errorInfo.data?.validationErrors.length > 0) }
+                withMarginTopFat={ true }
             >
-                <ImportFileDialogMessage isWide title={i18n._(t`Export error`)}>
-                    <Box>
+                <ImportFileDialogMessage isWide title={ i18n._(t`Export error`) }>
+                    <Box sx={ { color: theme.colors.gray[5] } }>
                         <Trans>File processing completed with errors. Correct your selection and download it again.</Trans>
                     </Box>
-                    {(errorInfo?.data && typeof errorInfo.data === 'string') && <Box>{
-                        errorInfo.data?.split('\n').map((item, index) => <div key={index}>{item}</div>) }
-                    </Box>}
-                    {(errorInfo?.data && typeof errorInfo.data === 'object' && errorInfo.data.errorMessage) && <Box>{
-                        errorInfo.data?.errorMessage.split('\n').map((item, index) => <div key={index}>{item}</div>) }
-                    </Box>}
-                    {(errorInfo?.data && typeof errorInfo.data === 'object' && errorInfo.data.validationErrors?.length) && <ImportFileDialogErrorListForValidationError errorList={errorInfo.data.validationErrors} />}
+                    { (errorInfo?.data && typeof errorInfo.data === 'string') &&
+                        <Box sx={{marginTop: '10px', textAlign: 'left'}}>{
+                        errorInfo.data?.split('\n').map((item, index) => <div key={ index }>{ index+1}. { item }</div>) }
+                    </Box>
+                    }
+                    { (errorInfo?.data && typeof errorInfo.data === 'object' && errorInfo.data.errorMessage) && <Box  sx={{marginTop: '10px', textAlign: 'left'}}>{
+                        errorInfo.data?.errorMessage.split('\n').map((item, index) => <div key={ index }>{ index+1}. { item }</div>) }
+                    </Box> }
+                    { (errorInfo?.data && typeof errorInfo.data === 'object' && errorInfo.data.validationErrors?.length) && <ImportFileDialogErrorListForValidationError errorList={ errorInfo.data.validationErrors }/> }
                 </ImportFileDialogMessage>
             </Dialog>
         );

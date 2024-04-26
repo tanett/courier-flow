@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useUserList } from '../hooks/use-user-list';
+import { useExtendedUsersList } from '../../../entities/users/hooks/use-extended-users-list';
 import { useNavigate } from 'react-router-dom';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -12,7 +12,7 @@ import { useArchiveUsers } from '../../../entities/users/hooks/use-archive-users
 import { UserListTable } from 'features/user-list/ui/user-table';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editUserPermissions } from 'app/config/permissions-config';
-import { typeUserWithStoresName } from 'entities/users/model/types';
+import { typeUserWithStoresName } from '../../../entities/users/model/types';
 
 export const UserList: React.FC = () => {
 
@@ -34,9 +34,9 @@ export const UserList: React.FC = () => {
 
     const onConfirmArchiveUser = (id: string) => {
 
-        if (userList?.length) {
+        if (extendedUsersList?.length) {
 
-            const user = userList.find(item => item.id === id);
+            const user = extendedUsersList.find(item => item.id === id);
 
             if (user) {
 
@@ -49,11 +49,10 @@ export const UserList: React.FC = () => {
     };
 
     const {
-        userList,
+        extendedUsersList,
         pagination,
         isLoading,
-        setRefetch,
-    } = useUserList();
+    } = useExtendedUsersList();
 
 
     const goToEditUserPage = (id: string | number) => navigate([ routerPaths.users, id.toString(), 'edit' ].join('/'));
@@ -64,7 +63,6 @@ export const UserList: React.FC = () => {
         onSuccess: () => {
 
             onCloseConfirmToArchive();
-            setRefetch(true);
 
         },
         onError: () => onCloseConfirmToArchive(),
@@ -77,7 +75,7 @@ export const UserList: React.FC = () => {
             isAllowedUserEdit={ isAllowedUserEdit }
             goToEditUserPage={ goToEditUserPage }
             onConfirmArchiveUser={ onConfirmArchiveUser }
-            userList={userList}
+            userList={extendedUsersList}
             pagination={pagination}
             isLoading={isLoading}
             goToDetailsUserPage={goToDetailsUserPage}

@@ -3,7 +3,8 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeCategory, typeCategoryExtended } from '../model/types';
-import { typeCreateCategoryRequest, typeEditCategoryRequest, typeSearchFilterCategory, typeSearchCategorySortingNames, typeCategoryDeleteRequest } from './types';
+import { typeCreateCategoryRequest, typeEditCategoryRequest, typeSearchFilterCategory, typeSearchCategorySortingNames, typeCategoryDeleteRequest, tagTypesCategoriesExtendedList } from './types';
+
 
 export const productsCategoryApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -32,6 +33,15 @@ export const productsCategoryApi = baseApi.injectEndpoints({
                     cache: 'no-cache',
                 }
             ),
+            providesTags: (result) => result
+                ? [
+
+                    // Provides a tag for each group in the current page,
+                    // as well as the 'PARTIAL-LIST' tag.
+                    ...result.content.map((item: typeCategoryExtended) => ({ type: tagTypesCategoriesExtendedList.categoriesExtendedList.type, id: item.id.toString() })),
+                    tagTypesCategoriesExtendedList.categoriesExtendedList
+                ]
+                : [ tagTypesCategoriesExtendedList.categoriesExtendedList ],
         }),
 
         // create Product category
@@ -44,6 +54,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [ tagTypesCategoriesExtendedList.categoriesExtendedList ],
         }),
 
         // patch Product Category
@@ -56,6 +67,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [ tagTypesCategoriesExtendedList.categoriesExtendedList ],
         }),
 
         // Category  delete
@@ -68,6 +80,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [ tagTypesCategoriesExtendedList.categoriesExtendedList ],
         }),
 
         // get Category by id
@@ -90,6 +103,7 @@ export const {
     useLazyGetCategoryByIdQuery,
     usePatchCategoryMutation,
     useLazySearchCategoryQuery,
+    useSearchCategoryExtendedQuery,
     useLazySearchCategoryExtendedQuery,
     useCreateCategoryMutation,
     useSearchCategoryQuery,

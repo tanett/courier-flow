@@ -2,8 +2,9 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from 'entities/stores/api/types';
-import { typeExtendedStore, typeStore } from 'entities/stores/model/types';
+import { tagTypesExtendedStoresList, typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from './types';
+import { typeExtendedStore, typeStore } from '../model/types';
+
 
 
 export const storesApi = baseApi.injectEndpoints({
@@ -17,9 +18,6 @@ export const storesApi = baseApi.injectEndpoints({
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
-
-                    // cache: 'no-cache',
-                    // keepUnusedDataFor: 0,
                 }
             ),
         }),
@@ -33,10 +31,17 @@ export const storesApi = baseApi.injectEndpoints({
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
 
-                    // cache: 'no-cache',
-                    // keepUnusedDataFor: 0,
                 }
             ),
+            providesTags: (result) => result
+                ? [
+
+                    // Provides a tag for each group in the current page,
+                    // as well as the 'PARTIAL-LIST' tag.
+                    ...result.content.map((item: typeExtendedStore) => ({ type: tagTypesExtendedStoresList.storesExtendedList.type, id: item.id.toString() })),
+                    tagTypesExtendedStoresList.storesExtendedList
+                ]
+                : [ tagTypesExtendedStoresList.storesExtendedList ],
         }),
 
 
@@ -50,6 +55,7 @@ export const storesApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [tagTypesExtendedStoresList.storesExtendedList]
         }),
 
 
@@ -75,6 +81,7 @@ export const storesApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            invalidatesTags: [tagTypesExtendedStoresList.storesExtendedList]
         }),
     }),
 });

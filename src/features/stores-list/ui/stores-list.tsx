@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStoresList } from 'features/stores-list/hooks/use-stores-list';
+import { useGetExtendedStoresList } from '../../../entities/stores/hooks/use-get-extended-stores-list';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../../app/config/router-paths';
 import { useSelectorT } from '../../../app/state';
@@ -16,11 +16,10 @@ export const StoresList: React.FC = () => {
     const isAllowedStoreEdit = useIsAllowedPermissions(editLimitedStoresPermissions);
 
     const {
-        storesList,
+        extendedStoresList,
         pagination,
         isLoading,
-        setRefetch,
-    } = useStoresList();
+    } = useGetExtendedStoresList();
 
 
     const goToEditStorePage = (id: string | number) => navigate([ routerPaths.stores, id.toString(), 'edit' ].join('/'));
@@ -39,7 +38,7 @@ export const StoresList: React.FC = () => {
                 isAllowedStoreEdit={ isAllowedStoreEdit }
                 goToEditStorePage={ goToEditStorePage }
                 goToDetailsStoreTabUsers={goToDetailsStoreTabUsers}
-                storesList={ storesList }
+                storesList={ extendedStoresList }
                 pagination={ pagination }
                 isLoading={ isLoading }
                 goToDetailsStorePage={ goToDetailsStorePage }

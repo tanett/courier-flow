@@ -1,17 +1,17 @@
 import React from 'react';
-import { useTerminalList } from '../hooks/use-terminal-list';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
-import { typeTerminalExtended } from 'entities/terminals/model/types';
+import { typeTerminalExtended } from '../../../entities/terminals/model/types';
 import { TerminalsTable } from 'features/terminal-list/ui/terminals-table';
+import { useExtendedTerminalsList } from '../../../entities/terminals/hooks/use-extended-terminals-list';
 
 export const TerminalList: React.FC = () => {
 
     const {
-        terminalsList,
+        extendedTerminalsList,
         pagination,
-        isFetching,
-    } = useTerminalList();
+        isLoading,
+    } = useExtendedTerminalsList();
 
     const navigate = useNavigate();
 
@@ -21,9 +21,9 @@ export const TerminalList: React.FC = () => {
         <>
             <TerminalsTable
                 goToDetailsTerminalPage={ goToDetailsTerminalPage }
-                terminalsList={ terminalsList }
+                terminalsList={ extendedTerminalsList }
                 pagination={ pagination }
-                isFetching={ isFetching }
+                isFetching={ isLoading }
             />
         </>);
 

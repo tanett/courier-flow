@@ -1,7 +1,7 @@
 import { useProductsRequestData } from './use-products-request-data';
 import { useLazySearchProductExtendedQuery } from '../api/api';
 
-export const useProductsListRefetch = () => {
+export const useExtendedProductsListRefetch = () => {
 
     const { requestData } = useProductsRequestData();
 

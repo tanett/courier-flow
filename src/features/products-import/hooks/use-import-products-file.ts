@@ -10,7 +10,7 @@ import { REFETCH_INTERVAL } from '../../../app/config/api-constants';
 import { useLazyGetImportByIdQuery } from '../../../entities/imports/api/api';
 import { useImportProductFileMutation } from '../../../entities/products/api/api';
 import { PRODUCT_IMPORT_TYPE_REQUEST, typeImportProductRequestData } from '../../../entities/products/api/types';
-import { useProductsListRefetch } from '../../../entities/products/hooks/use-products-list-refetch';
+import { useExtendedProductsListRefetch } from '../../../entities/products/hooks/use-extended-products-list-refetch';
 
 export const useImportProductsFile = () => {
 
@@ -31,7 +31,7 @@ export const useImportProductsFile = () => {
     const [ importErrorList, setImportErrorList ] = useState<typeImportError[] | null>(null);
     const [ responseFullError, setResponseFullError ] = useState<typeErrorData| null>(null);
 
-    const { productsListRefetch } = useProductsListRefetch();
+    const { productsListRefetch } = useExtendedProductsListRefetch();
 
     const [ sendFile ] = useImportProductFileMutation();
 
