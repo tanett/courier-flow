@@ -70,4 +70,8 @@ export enum API_URLS {
     CATEGORIES_GET = '/api/v1/product-categories/{id}',
     CATEGORIES_DELETE = '/api/v1/product-categories',
 
+    SALES_SHORT_SEARCH = '/api/v1/sales/search/short',
+    SALES_GET = '/api/v1/sales/{id}',
+    SALES_SHORT_GET = '/api/v1/sales/short/{id}',
+
 }

@@ -4,7 +4,7 @@ import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { ProductEdit } from 'features/product-edit';
-import { pathSections, routerPaths } from 'app/config/router-paths';
+import { routerPaths } from 'app/config/router-paths';
 
 const ProductsEditPage: React.FC = () => {
 

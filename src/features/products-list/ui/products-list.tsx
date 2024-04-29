@@ -6,12 +6,13 @@ import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editProductsPermissions } from 'app/config/permissions-config';
 import { ProductsListTable } from './table/products-table';
-import { typeHeadersAction, typeProductExtendedWithCheckBox } from '../types/types';
+import { typeProductExtendedWithCheckBox } from '../types/types';
 import { ModalArchiveItem } from 'features/products-list/ui/modal/modal-archive-item';
 import { ModalArchiveSelectedItem } from 'features/products-list/ui/modal/modal-archive-selected-item';
 import { ModalChangeCategorySelectedItem } from 'features/products-list/ui/modal/modal-change-category-selected-item';
 import { useGetCheckedProductsList } from 'features/products-list/hooks/use-get-checked-products-list';
 import { ModalExportSelectedProduct } from 'features/products-list/ui/modal/modal-export-selected-product';
+import { typeHeadersAction } from 'shared/ui/table/types/type';
 
 
 export const ProductsList: React.FC = () => {

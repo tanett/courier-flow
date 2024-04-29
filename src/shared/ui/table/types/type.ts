@@ -1,5 +1,6 @@
 import React from 'react';
 import { dialogIcon } from '../../dialog/types';
+import { TransProps } from '@lingui/react';
 
 export interface typeTablePagination {
     pageNumber: number
@@ -60,4 +61,10 @@ export interface typeTableDialog {
     message: string
     cancelButton?: { title: string, handler: () => void }
     confirmButton?: { title: string, handler: () => void }
+}
+
+export interface typeHeadersAction  {
+    id: string,
+    label: React.ReactElement<TransProps>
+    handler: (event: React.MouseEvent<HTMLButtonElement>) => void
 }

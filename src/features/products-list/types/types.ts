@@ -1,18 +1,11 @@
 import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
-import { typeTablePagination } from 'shared/ui/table/types/type';
-import { typeProduct, typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
+import { typeHeadersAction, typeTablePagination } from 'shared/ui/table/types/type';
+import { typeProductAdditionalFieldInfo, typeProductExtended } from '../../../entities/products/model/state-slice/types';
 import React from 'react';
 import { type UseListStateHandlers } from '@mantine/hooks';
-import { TransProps } from '@lingui/react';
 
 
 export type typeProductExtendedWithCheckBox = typeProductExtended & {checked: boolean}
-
-export type typeHeadersAction = {
-    id: string,
-    label: React.ReactElement<TransProps>
-    handler: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
 
 
 export type typeProductsListTable = {
