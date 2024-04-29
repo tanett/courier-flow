@@ -6,6 +6,7 @@ import { t } from '@lingui/macro';
 import { UserArchiveButton } from 'features/user-archive-button';
 import { useParams } from 'react-router-dom';
 import { UsersEdit } from 'features/users-edit/ui/users-edit';
+import { routerPaths } from 'app/config/router-paths';
 
 
 const UsersEditPage: React.FC = () => {
@@ -18,7 +19,7 @@ const UsersEditPage: React.FC = () => {
         <DashboardContent withForm>
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Users`) },
+                    { name: i18n._(t`Users`), path: routerPaths.users },
                     { name: i18n._(t`Edit`) }
                 ] }/> }
                 rightSide={

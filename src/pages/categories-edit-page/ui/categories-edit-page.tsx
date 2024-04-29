@@ -6,6 +6,7 @@ import { t } from '@lingui/macro';
 import { CategoriesEdit } from 'features/categories-edit';
 import { useParams } from 'react-router-dom';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
+import { routerPaths } from 'app/config/router-paths';
 
 const CategoriesEditPage: React.FC = () => {
 
@@ -17,7 +18,7 @@ const CategoriesEditPage: React.FC = () => {
         <DashboardContent withForm>
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
-                    { name: i18n._(t`Categories`) },
+                    { name: i18n._(t`Categories`) , path: routerPaths.products_categories },
                     { name: i18n._(t`Edit`) }
                 ]}/>}
             />

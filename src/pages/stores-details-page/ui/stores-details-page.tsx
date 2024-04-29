@@ -5,6 +5,7 @@ import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import StoresDetailsTabs from 'features/stores-details/ui/tabs/stores-details-tabs';
+import { pathSections, routerPaths } from 'app/config/router-paths';
 
 
 const StoresDetailsPage: React.FC = () => {
@@ -20,7 +21,7 @@ const StoresDetailsPage: React.FC = () => {
         <DashboardContent>
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Stores`) },
+                    { name: i18n._(t`Stores`), path: routerPaths.stores },
                     { name: storeName || '---' }
                 ] }/> }
 

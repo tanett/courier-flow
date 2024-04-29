@@ -4,6 +4,7 @@ import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { CategoriesCreate } from 'features/categories-create';
+import { routerPaths } from 'app/config/router-paths';
 
 const CategoriesCreatePage: React.FC = () => {
 
@@ -13,7 +14,7 @@ const CategoriesCreatePage: React.FC = () => {
         <DashboardContent withForm>
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
-                    { name: i18n._(t`Categories`) },
+                    { name: i18n._(t`Categories`), path: routerPaths.products_categories },
                     { name: i18n._(t`Create`) }
                 ]}/>}
             />

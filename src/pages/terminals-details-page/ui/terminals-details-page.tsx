@@ -5,6 +5,7 @@ import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { useParams } from 'react-router-dom';
 import { TerminalDetails } from 'features/terminals-details/ui/terminals-details';
+import { routerPaths } from 'app/config/router-paths';
 
 
 const TerminalsDetailsPage: React.FC = () => {
@@ -17,7 +18,7 @@ const TerminalsDetailsPage: React.FC = () => {
         <DashboardContent >
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Terminals`) },
+                    { name: i18n._(t`Terminals`), path: routerPaths.terminals },
                     { name: serialNumber || '------' }
                 ] }/> }
 

@@ -6,6 +6,7 @@ import { t } from '@lingui/macro';
 import { useParams } from 'react-router-dom';
 import { ProductArchiveButton } from 'features/product-archive-button';
 import ProductsDetailsTabs from 'features/products-details-tabs/ui/products-details-tabs';
+import { pathSections, routerPaths } from 'app/config/router-paths';
 
 
 const ProductsDetailsPage: React.FC = () => {
@@ -18,7 +19,7 @@ const ProductsDetailsPage: React.FC = () => {
         <DashboardContent >
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Products`) },
+                    { name: i18n._(t`Products`), path:routerPaths.products_list },
                     { name: name || '------' }
                 ] }/> }
                 rightSide={<ProductArchiveButton id={id}/>}
