@@ -1,28 +1,28 @@
 import { useRefundsRequestData } from './use-refunds-request-data';
-import {  } from '../api/api';
+import { useSearchRefundsQuery } from '../api/api';
 
 
-export function useShortSalesList() {
+export function useRefundsList() {
 
     const { requestData } = useRefundsRequestData();
 
-  //  const { data, isFetching, isLoading, refetch } = useSearchSalesShortQuery(requestData); todo
+  const { data, isFetching, isLoading, refetch } = useSearchRefundsQuery(requestData);
 
-    // const pagination = data?.totalPages
-    //     ? {
-    //         pageNumber: data.pageNumber,
-    //         totalPages: data.totalPages,
-    //         totalElements: data.totalElements,
-    //         pageSize: data.pageSize,
-    //     }
-    //     : undefined;
+    const pagination = data?.totalPages
+        ? {
+            pageNumber: data.pageNumber,
+            totalPages: data.totalPages,
+            totalElements: data.totalElements,
+            pageSize: data.pageSize,
+        }
+        : undefined;
 
 
     return {
-        // shortSalesList: data?.content,
-        // isLoading: isFetching || isLoading,
-        // pagination,
-        // refetch,
+        refundsList: data?.content,
+        isLoading: isFetching || isLoading,
+        pagination,
+        refetch,
     };
 
 }

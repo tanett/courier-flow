@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
 import { useAppDispatchT } from 'app/state';
-import { useLazyGetProductByIdQuery } from '../../../entities/products/api/api';
-import { typeProduct } from '../../../entities/products/model/state-slice/types';
+import { useLazyGetRefundByIdQuery } from '../api/api';
+import { typeRefund } from '../model/types';
 
 
 const useGetRefundDataByIdFromUrl = () => {
@@ -13,20 +13,20 @@ const useGetRefundDataByIdFromUrl = () => {
 
     const { id } = useParams();
 
-    const [ data, setData ] = useState<typeProduct>();
+    const [ data, setData ] = useState<typeRefund>();
 
-    const [ salesData, { isFetching } ] = useLazyGetProductByIdQuery();  // todo
+    const [ refundsData, { isFetching } ] = useLazyGetRefundByIdQuery();
 
     const getData = async (id: string) => {
 
         try {
 
-            const product = await salesData(id).unwrap();
+            const product = await refundsData(id).unwrap();
             setData(product);
 
         } catch (err){
 
-            errorHandler(err as typeResponseError, 'onGetSales', dispatchAppT);
+            errorHandler(err as typeResponseError, 'onGetRefund', dispatchAppT);
 
         }
 
@@ -44,8 +44,8 @@ const useGetRefundDataByIdFromUrl = () => {
 
 
     return {
-        productData: data,
-        isProductFetching: isFetching,
+        refundData: data,
+        isRefundFetching: isFetching,
     };
 
 };

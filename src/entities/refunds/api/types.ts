@@ -1,3 +1,7 @@
+
+export const tagTypesRefundsList = { refundsList: { type: 'RefundsList' as const, id: 'PARTIAL-LIST' } } as const;
+
+
 export interface typeSearchFilterRefunds {
     ids?: string[]
     merchantId?: string,

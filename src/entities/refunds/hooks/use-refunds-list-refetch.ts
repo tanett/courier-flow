@@ -1,14 +1,14 @@
 import { useRefundsRequestData } from './use-refunds-request-data';
-import {  } from '../api/api';
+import { useLazySearchRefundsQuery } from '../api/api';
 
 export const useRefundsListRefetch = () => {
 
     const { requestData } = useRefundsRequestData();
 
-//    const [ refetch ] = useLazySearchSalesShortQuery();  todo
+   const [ refetch ] = useLazySearchRefundsQuery();
 
-//    const salesListRefetch = () => refetch(requestData);
+   const refundsListRefetch = () => refetch(requestData);
 
-  //  return { salesListRefetch: salesListRefetch };
+   return { refundsListRefetch: refundsListRefetch };
 
 };

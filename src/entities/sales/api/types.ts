@@ -1,4 +1,7 @@
 
+export const tagTypesShortSalesList = { shortSalesList: { type: 'ShortSalesList' as const, id: 'PARTIAL-LIST' } } as const;
+
+
 export interface typeSearchFilterSales {
     ids?: string[]
     merchantId?: string,

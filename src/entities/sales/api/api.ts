@@ -3,7 +3,8 @@ import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSale, typeSaleShort } from '../model/types';
-import { typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
+import { tagTypesShortSalesList, typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
+
 
 export const salesApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -18,6 +19,15 @@ export const salesApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
+            providesTags: (result) => result
+                ? [
+
+                    // Provides a tag for each group in the current page,
+                    // as well as the 'PARTIAL-LIST' tag.
+                    ...result.content.map((item: typeSaleShort) => ({ type: tagTypesShortSalesList.shortSalesList.type, id: item.id.toString() })),
+                    tagTypesShortSalesList.shortSalesList
+                ]
+                : [ tagTypesShortSalesList.shortSalesList ],
         }),
 
         //get sale by id full
