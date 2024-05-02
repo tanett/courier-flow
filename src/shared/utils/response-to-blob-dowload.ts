@@ -5,13 +5,13 @@ export enum expectedFileType {
     xls= '.xls',
 }
 
-export const responseToBlobDownload = async (response: Response, expectedFileType: expectedFileType) => {
+export const responseToBlobDownload = async (response: Response, expectedFileType: expectedFileType, fileName?: string) => {
 
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = getFilenameFromContentDispositionHeader(response) ?? Date.now().toString() + expectedFileType;
+    a.download = (fileName ? fileName : getFilenameFromContentDispositionHeader(response) ?? Date.now().toString()) + expectedFileType;
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);

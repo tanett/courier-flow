@@ -30,7 +30,10 @@ export const ExportFilesList: React.FC<typeExportFilesListProps> = ({ dataList, 
                         handler={() => {
 
                             setDownloadId(item.id);
-                            onDownloadFile(item.id);
+                            onDownloadFile({
+                                id: item.id,
+                                fileName: item.type.name
+                            });
 
                         }}
                         inProcessHandler={isDownloadingFile && item.id === downloadId}

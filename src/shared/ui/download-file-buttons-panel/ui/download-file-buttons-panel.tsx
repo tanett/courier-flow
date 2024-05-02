@@ -5,16 +5,19 @@ import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { useStyles } from './styles';
 
-export const DownloadFileButtonsPanel: React.FC<typeDownloadFileButtonsPanelProps> = ({ isReadyToDownload, isFileLoading, fileId, onDownloadFile }) => {
+export const DownloadFileButtonsPanel: React.FC<typeDownloadFileButtonsPanelProps> = ({ isReadyToDownload, isFileLoading, fileId, onDownloadFile, downloadFileName }) => {
 
     const { classes } = useStyles();
 
     return (
         <Flex className={classes.buttonPanelWrapper}>
 
-            {isReadyToDownload && fileId
+            {(isReadyToDownload && fileId && downloadFileName)
                 ? <Button
-                    onClick={() => onDownloadFile(fileId)}
+                    onClick={() => onDownloadFile({
+                        id:fileId,
+                        fileName: downloadFileName
+                    } )}
                     loading={isFileLoading}
                 >
                     {i18n._(t`Download`)}

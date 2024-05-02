@@ -27,6 +27,7 @@ export const ExportProductsDialog: React.FC<typeExportProductsDialog> = ({
         processStep,
         importProcessRange,
         errorInfo,
+        downloadFileName
     } = useExportProducts(options, productIds);
 
     const [ onDownloadFile, { isFetching } ] = useLazyDownloadExportFileByIdQuery();
@@ -46,6 +47,7 @@ export const ExportProductsDialog: React.FC<typeExportProductsDialog> = ({
                     onDownloadFile={ onDownloadFile }
                     isReadyToDownload={ processStep === processSteps.done }
                     isFileLoading={ isFetching }
+                    downloadFileName={downloadFileName}
                 />
             </Dialog>
         );

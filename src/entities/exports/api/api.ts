@@ -33,8 +33,11 @@ export const exportApi = baseApi.injectEndpoints({
             ),
         }),
 
-        downloadExportFileById: builder.query<string, string>({
-            query: (id) => (
+        downloadExportFileById: builder.query<string, {id: string, fileName: string}>({
+            query: ({
+                id,
+                fileName
+            }) => (
                 {
                     url: API_URLS.DOWNLOAD_EXPORT_FILE_BY_ID.replace('{id}', id),
                     method: 'GET',
@@ -47,7 +50,7 @@ export const exportApi = baseApi.injectEndpoints({
 
                         if (response.status === 200) {
 
-                            await responseToBlobDownload(response, expectedFileType.xlsx);
+                            await responseToBlobDownload(response, expectedFileType.xlsx, fileName);
 
                         } else {
 

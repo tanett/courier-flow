@@ -31,11 +31,12 @@ export const useExportProducts = (options: typeExportOptions, productIds?: strin
 
     const [ exportedFileId, setExportedFileId ] = useState<string | null>(null);
     const [ downloadFileId, setDownloadFileId ] = useState<string | null>(null);
+    const [ downloadFileName, setDownloadFileName ] = useState<string | null>(null);
 
     const [ getExportById ] = useLazyGetExportByIdQuery();
 
     const filterCatalog: typeSearchFilterProductExtended = {};
-    const filterRetail: typeSearchFilterRetailProduct = {};
+    const filterRetail: typeSearchFilterRetailProduct = {archived: false};
 
 
     if (options.type === PRODUCT_EXPORT_TYPE_REQUEST.CATALOG) {
@@ -84,6 +85,7 @@ export const useExportProducts = (options: typeExportOptions, productIds?: strin
             const response = options.type === PRODUCT_EXPORT_TYPE_REQUEST.CATALOG ? await getProductCatalogExport({ filter: filterCatalog }).unwrap() : await getRetailProductExport({ filter: filterRetail }).unwrap();
 
             if (response?.id) setExportedFileId(response.id);
+            if (response?.type?.name) setDownloadFileName(response.type.name);
 
         } catch (error) {
 
@@ -156,6 +158,7 @@ export const useExportProducts = (options: typeExportOptions, productIds?: strin
 
     return {
         downloadFileId,
+        downloadFileName,
         processStep,
         importProcessRange,
         errorInfo,

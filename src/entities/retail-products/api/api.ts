@@ -91,7 +91,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         }),
 
         // export product catalog - with stores and prices
-        exportRetailProductCatalog: builder.query<typeExport, { filter: typeSearchFilterProductExtended }>({
+        exportRetailProductCatalog: builder.query<typeExport, { filter: typeSearchFilterRetailProduct }>({
             query: (data) => (
                 {
                     url: API_URLS.RETAIL_PRODUCTS_EXPORT,
