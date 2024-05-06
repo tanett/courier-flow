@@ -13,9 +13,10 @@ export const WithCheckRemoteControl:React.FC<React.PropsWithChildren>  = ({child
 
     if(remoteToken && refreshToken) {
         console.log('if-----------', remoteToken, refreshToken);
-        setAuthSessionStorageDate({accessToken: refreshToken, accessTokenExpiresAt: '', accessTokenIssuedAt: '', X_CSRF_TOKEN: refreshToken})
+        setAuthSessionStorageDate({accessToken: remoteToken, accessTokenExpiresAt: '', accessTokenIssuedAt: '', X_CSRF_TOKEN: refreshToken})
 
         dispatchAppT(authStateActions.setRemoteControl(true));
+        dispatchAppT(authStateActions.changeAuth(true));
 
     }
 
@@ -29,10 +30,10 @@ export const WithCheckRemoteControl:React.FC<React.PropsWithChildren>  = ({child
 
         };
 
-        window.addEventListener('unload', handlerUnload);
+        window.addEventListener('pagehide', handlerUnload);
 
         return () => {
-            window.removeEventListener('unload', handlerUnload);
+            window.removeEventListener('pagehide', handlerUnload);
         };
     }, []);
     console.log('end-----------', remoteToken, refreshToken);
