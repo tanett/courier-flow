@@ -6,6 +6,7 @@ import {
 import { initialAuthState } from './initialState';
 import { clearAuthSessionStorageDate } from 'features/login/helpers/setAuthSessionStorageDate';
 import { typeFirstLoginData } from 'entities/auth/model/state-slice/types';
+import { deleteCookie } from 'app/utils/actions-with-cookie';
 
 
 const authSlice = createSlice({
@@ -23,12 +24,20 @@ const authSlice = createSlice({
 
                 console.log('logout');
                 clearAuthSessionStorageDate();
-
+                deleteCookie('remoteToken')
+                deleteCookie('remoteRefreshToken')
                 localStorage.removeItem('i18nextLng');
 
                 dynamicActivate(getSystemLanguage()).then();
 
             }
+
+        },
+
+        // set remote control
+        setRemoteControl: (state, action: PayloadAction<boolean >) => {
+
+            state.remoteControl = action.payload;
 
         },
 

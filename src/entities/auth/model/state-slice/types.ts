@@ -1,6 +1,7 @@
 
 export interface typeAuthState {
     auth: boolean,
+    remoteControl?: boolean
     firstLoginData?: typeFirstLoginData
 }
 

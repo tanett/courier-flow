@@ -6,6 +6,7 @@ import { withMantine } from './providers/with-mantine/with-mantine';
 import { withLocales } from './providers/with-locales/with-locales';
 import { withState } from './providers/with-state/withState';
 import { PageNotification } from 'shared/ui/page-notification';
+import { WithCheckRemoteControl } from './providers/with-check-remote-control/with-check-remote-control';
 
 
 function AppRouter() {
@@ -18,12 +19,15 @@ function AppRouter() {
 
     return (
         <SuspenseProvider>
+            <WithCheckRemoteControl>
             <PageNotification/>
             <RouterProvider router={router} />
+            </WithCheckRemoteControl>
         </SuspenseProvider>
     );
 
 }
+
 
 const withLocalesApp = withLocales(AppRouter);
 

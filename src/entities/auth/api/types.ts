@@ -54,7 +54,7 @@ export interface iGetCurrentUserResponse {
         userName: string,
         email: string,
         phone: string,
-        userSettings:iUserSettings
+        userSettings: iUserSettings
     },
     permissions: string[]
 }
@@ -84,7 +84,7 @@ export interface iEditUser extends Omit<iCreateUser, 'username' | 'storeIds'> {
     username?: string,
     storeIds?: {
         values: string[],
-        patchType: [ 'REPLACE', 'ADD', 'REMOVE']
+        patchType: [ 'REPLACE', 'ADD', 'REMOVE' ]
     }
 }
 
@@ -105,3 +105,6 @@ export interface iChangePasswordByToken {
 export interface iForgotPasswordRequest {
     email: string,
 }
+
+
+
