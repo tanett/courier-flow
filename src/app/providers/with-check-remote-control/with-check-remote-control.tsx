@@ -6,13 +6,13 @@ import { authStateActions } from '../../../entities/auth/model/state-slice';
 
 
 export const WithCheckRemoteControl:React.FC<React.PropsWithChildren>  = ({children}) => {
-
+    console.log('cookie', document.cookie);
     const dispatchAppT = useAppDispatchT();
     const remoteToken = getCookie('remoteToken')
     const refreshToken = getCookie('remoteRefreshToken')
 
     if(remoteToken && refreshToken) {
-
+        console.log('if-----------', remoteToken, refreshToken);
         setAuthSessionStorageDate({accessToken: refreshToken, accessTokenExpiresAt: '', accessTokenIssuedAt: '', X_CSRF_TOKEN: refreshToken})
 
         dispatchAppT(authStateActions.setRemoteControl(true));
@@ -35,6 +35,7 @@ export const WithCheckRemoteControl:React.FC<React.PropsWithChildren>  = ({child
             window.removeEventListener('unload', handlerUnload);
         };
     }, []);
+    console.log('end-----------', remoteToken, refreshToken);
 
     return <>{children}</>
 
