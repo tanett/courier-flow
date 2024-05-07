@@ -25,9 +25,8 @@ export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ chil
         dispatchAppT(authStateActions.setRemoteControl(true));
         dispatchAppT(authStateActions.changeAuth(true));
 
-        const location = window.location;
-        document.cookie = `remoteToken=""; path=/; domain=${ location.hostname }; max-age=${ -1 }`;
-        document.cookie = `remoteRefreshToken=""; path=/; domain=${ location.hostname }; max-age=${ -1 }`;
+        document.cookie = `remoteToken=""; path=/; domain=${ process.env.REACT_APP_DOMAIN }; max-age=${ -1 }`;
+        document.cookie = `remoteRefreshToken=""; path=/; domain=${ process.env.REACT_APP_DOMAIN }; max-age=${ -1 }`;
 
     }
 
