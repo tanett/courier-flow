@@ -3,8 +3,8 @@ import { deleteCookie, getCookie } from 'app/utils/actions-with-cookie';
 import { setAuthSessionStorageDate } from 'features/login/helpers/setAuthSessionStorageDate';
 import { useAppDispatchT } from 'app/state';
 import { authStateActions } from '../../../entities/auth/model/state-slice';
-import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
+
 
 
 export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -13,7 +13,7 @@ export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ chil
     const remoteToken = getCookie('remoteToken');
     const refreshToken = getCookie('remoteRefreshToken');
 
-    const navigate = useNavigate();
+
 
     if (remoteToken && refreshToken) {
         console.log('if-----------', remoteToken, refreshToken);
@@ -27,8 +27,13 @@ export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ chil
         dispatchAppT(authStateActions.setRemoteControl(true));
         dispatchAppT(authStateActions.changeAuth(true));
 
+        deleteCookie('remoteToken');
 
-        navigate(routerPaths.dashboard, { replace: true });
+        deleteCookie('remoteRefreshToken');
+
+    const location = window.location;
+
+    location.replace(location.hostname + routerPaths.dashboard);
     }
 
     useEffect(() => {
