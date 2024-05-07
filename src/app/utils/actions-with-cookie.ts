@@ -35,6 +35,6 @@ export const setCookie = (name: string, value: string, options:Record<string, an
 
 
 export const deleteCookie = (name: string) => {
-    setCookie(name, "", {'max-age': -1})
+    setCookie(name, "", {'max-age': -1,})
 }
 

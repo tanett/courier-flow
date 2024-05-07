@@ -1,58 +1,36 @@
-import React, { useEffect } from 'react';
-import { deleteCookie, getCookie } from 'app/utils/actions-with-cookie';
+import React from 'react';
+import { getCookie } from 'app/utils/actions-with-cookie';
 import { setAuthSessionStorageDate } from 'features/login/helpers/setAuthSessionStorageDate';
 import { useAppDispatchT } from 'app/state';
 import { authStateActions } from '../../../entities/auth/model/state-slice';
-import { routerPaths } from 'app/config/router-paths';
-
 
 
 export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ children }) => {
-    console.log('cookie', document.cookie);
+
     const dispatchAppT = useAppDispatchT();
     const remoteToken = getCookie('remoteToken');
     const refreshToken = getCookie('remoteRefreshToken');
 
 
-
     if (remoteToken && refreshToken) {
-        console.log('if-----------', remoteToken, refreshToken);
+
         setAuthSessionStorageDate({
             accessToken: remoteToken,
             accessTokenExpiresAt: '',
             accessTokenIssuedAt: '',
             X_CSRF_TOKEN: refreshToken
+
         });
 
         dispatchAppT(authStateActions.setRemoteControl(true));
         dispatchAppT(authStateActions.changeAuth(true));
 
-        deleteCookie('remoteToken');
+        const location = window.location;
+        document.cookie = `remoteToken=""; path=/; domain=${ location.hostname }; max-age=${ -1 }`;
+        document.cookie = `remoteRefreshToken=""; path=/; domain=${ location.hostname }; max-age=${ -1 }`;
 
-        deleteCookie('remoteRefreshToken');
-
-    const location = window.location;
-        console.log('----location', location, location.hostname + '/' + routerPaths.dashboard);
-  //  location.replace(location.hostname + '/' + routerPaths.dashboard);
     }
 
-    useEffect(() => {
-
-        const handlerUnload = () => {
-
-            deleteCookie('remoteToken');
-
-            deleteCookie('remoteRefreshToken');
-
-        };
-
-        window.addEventListener('pagehide', handlerUnload);
-
-        return () => {
-            window.removeEventListener('pagehide', handlerUnload);
-        };
-    }, []);
-    console.log('end-----------', remoteToken, refreshToken);
 
     return <>{ children }</>;
 
