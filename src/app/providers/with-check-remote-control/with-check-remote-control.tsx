@@ -32,8 +32,8 @@ export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ chil
         deleteCookie('remoteRefreshToken');
 
     const location = window.location;
-        console.log('----location', location);
-  //  location.replace(location.hostname + routerPaths.dashboard);
+        console.log('----location', location, location.hostname + '/' + routerPaths.dashboard);
+  //  location.replace(location.hostname + '/' + routerPaths.dashboard);
     }
 
     useEffect(() => {
