@@ -177,6 +177,12 @@ export const ProductFormCreate: React.FC<{
                             } }
                             { ...form.getInputProps('unit') }
                             rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
+                            styles={ {
+                                rightSection: {
+                                    pointerEvents: 'none',
+                                    pointer: 'pointer',
+                                },
+                            } }
                             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
                         />
                         <CreateInputForAdditionalField

@@ -143,6 +143,12 @@ export const UsersEdit: React.FC = () => {
                             { ...userForm.getInputProps('roleId') }
                             placeholder={ i18n._(t`Select a role`) }
                             rightSection={ (isRolesFetching || !userData) ? <Loader size="xs"/> : <IconChevronDown size="1rem"/> }
+                            styles={ {
+                                rightSection: {
+                                    pointerEvents: 'none',
+                                    pointer: 'pointer',
+                                },
+                            } }
                             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
 
                         />

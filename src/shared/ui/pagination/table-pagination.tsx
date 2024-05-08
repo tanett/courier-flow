@@ -47,6 +47,12 @@ export const Pagination: React.FC<typeTablePaginationProps> = ({
                         value={ pagination.pageSize.toString() }
                         onChange={ setItemsPerPage }
                         rightSection={ <IconChevronDown size="1rem"/> }
+                        styles={ {
+                            rightSection: {
+                                pointerEvents: 'none',
+                                pointer: 'pointer',
+                            },
+                        } }
                         sx={ {
                             '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
                             '&.mantine-Select-root  input': { paddingRight: '15px' },
