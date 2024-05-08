@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, Input } from '@mantine/core';
-import { AsYouType, getCountryCallingCode } from 'libphonenumber-js';
+import { AsYouType, type CountryCode, getCountryCallingCode } from 'libphonenumber-js';
 import { Trans } from '@lingui/macro';
 import { useStyles } from './styles';
-import { CountrySelect } from './countrySelector';
+import { CountrySelect } from './country-selector';
 import cn from 'classnames';
 
 
-export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: any, isRequired: boolean, error?: any, onFocus?: any, onBlur?: any }> = ({
+export const PhoneInputWithCountrySelector: React.FC<{id?: string, value: string, onChange: any, isRequired: boolean, error?: any, onFocus?: any, onBlur?: any }> = ({
+    id,
     value,
     onChange,
     isRequired,
@@ -18,7 +19,7 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
 
     const { classes } = useStyles();
 
-    const [ country, setCountry ] = useState<any>('');
+    const [ country, setCountry ] = useState<CountryCode | ''>('');
 
     useEffect(() => {
 
@@ -29,11 +30,30 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
                 const asYouType = new AsYouType();
                 asYouType.input(value);
                 const parsedCountry = asYouType.getCountry();
-                setCountry(parsedCountry);
+                if (!parsedCountry){
+
+                    if (asYouType.getCallingCode() === '1') setCountry('US');
+                    if (asYouType.getCallingCode() === '7') setCountry('RU');
+
+
+                } else {
+
+                    setCountry(parsedCountry);
+
+                }
 
             }
 
         }
+        // else {
+        //
+        //     if (defaultCountryForPhoneInput && country === ''){ // todo fix it
+        //
+        //         setCountry(defaultCountryForPhoneInput);
+        //
+        //     }
+        //
+        // }
 
     }, [ value ]);
 
@@ -49,6 +69,13 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
 
                 const subStart = asYouType.getNumber()?.countryCallingCode.length || value.length;
                 onChangeLocal(asYouType.getChars().substring(subStart + 1));
+
+            }
+            if (!parsedCountry){
+
+                if (asYouType.getCallingCode() === '1') setCountry('US');
+                if (asYouType.getCallingCode() === '7') setCountry('RU');
+                onChangeLocal(asYouType.getChars().substring(1));
 
             }
 
@@ -104,6 +131,11 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
 
         } else {
 
+            if (value !== '') {
+
+                return value.substring(1);
+
+            }
             return '';
 
         }
@@ -131,9 +163,10 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
 
     };
 
+
     return (
         <Input.Wrapper
-            id="input-phone"
+            id={id ? id : Math.random().toString() }
             withAsterisk={ isRequired }
             label={ <Trans>Phone number</Trans> }
             error={ error }
@@ -144,7 +177,7 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
             <Flex className={ cn([ classes.inputWrapper, (error && classes.inputWrapperError) ]) }>
                 <CountrySelect
                     value={ country }
-                    onChange={ (value: string) => setCountry(value) }
+                    onChange={ (value: CountryCode | '') => setCountry(value) }
                     className={ classes.countrySelector }
                 />
                 <input
@@ -152,7 +185,7 @@ export const PhoneInputWithCountrySelector: React.FC<{ value: string, onChange: 
                     onChange={ (e) => onChangeLocal(e.currentTarget.value) }
                     onInput={ (e) => onInputLocal(e) }
                     onPaste={ (e) => onPastLocal(e) }
-                    maxLength={ 13 }
+                    maxLength={ 14 }
                     className={ classes.inputPhone }
                 />
                 {/* error={ value ? (isValidPhoneNumber(value) ? undefined : 'Invalid phone number') : 'Phone number required' } */ }
