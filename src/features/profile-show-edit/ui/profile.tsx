@@ -154,11 +154,17 @@ export const Profile: React.FC = () => {
             <FieldsetForForm title={<Trans>Settings</Trans>}>
                 <SimpleGrid cols={2} className={classes.formGrid}>
                     <Select
-                        label={<Trans>Interface language</Trans>}
+                        label={<Trans>Language</Trans>}
                         data={locales}
                         transitionProps={{ duration: 80, timingFunction: 'ease' }}
                         {...profileForm.getInputProps('locale')}
                         rightSection={ <IconChevronDown size="1rem"/> }
+                        styles={ {
+                            rightSection: {
+                                pointerEvents: 'none',
+                                pointer: 'pointer',
+                            },
+                        } }
                         sx={{ '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
 
                     />

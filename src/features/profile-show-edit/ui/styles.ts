@@ -22,6 +22,7 @@ export const useStyles = createStyles((theme) => ({
         gap: theme.spacing.xl,
         justifyContent: 'end',
         '& .mantine-Button-root': {
+            marginRight: rem(3),
             minWidth: rem(165),
             fontSize: theme.fontSizes.md,
             fontWeight: 700,
