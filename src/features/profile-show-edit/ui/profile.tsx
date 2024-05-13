@@ -20,6 +20,7 @@ import { usePatchCurrentUserMutation } from '../../../entities/user-profile/api/
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { IconChevronDown } from '@tabler/icons-react';
+import { getLocaleForProfile } from 'features/profile-show-edit/helpers/get-locale-for-profile';
 
 
 export const Profile: React.FC = () => {
@@ -42,14 +43,14 @@ export const Profile: React.FC = () => {
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
             profileForm.setFieldValue('email', profileData.email ?? '');
             profileForm.setFieldValue('phone', profileData.phone ?? '');
-            profileForm.setFieldValue('locale', profileData.userSettings?.locale || DEFAULT_LANGUAGE);
-
+            profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
         }
 
     }, [ profileData ]);
 
     const [ patchUser, { isLoading } ] = usePatchCurrentUserMutation();
     const [ isInProgress, setIsInProgress ] = useState(false);
+
     const onSave = async () => {
 
         setIsInProgress(true);
@@ -112,8 +113,7 @@ export const Profile: React.FC = () => {
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
             profileForm.setFieldValue('email', profileData.email ?? '');
             profileForm.setFieldValue('phone', profileData.phone ?? '');
-            profileForm.setFieldValue('locale', profileData.userSettings?.locale || DEFAULT_LANGUAGE);
-
+            profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
         }
 
     };
