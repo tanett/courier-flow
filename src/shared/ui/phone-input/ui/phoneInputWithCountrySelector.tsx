@@ -5,9 +5,10 @@ import { Trans } from '@lingui/macro';
 import { useStyles } from './styles';
 import { CountrySelect } from './country-selector';
 import cn from 'classnames';
+import { defaultCountryForPhoneInput } from 'app/config/default-country';
 
 
-export const PhoneInputWithCountrySelector: React.FC<{id?: string, value: string, onChange: any, isRequired: boolean, error?: any, onFocus?: any, onBlur?: any }> = ({
+export const PhoneInputWithCountrySelector: React.FC<{ id?: string, value: string, onChange: any, isRequired: boolean, error?: any, onFocus?: any, onBlur?: any }> = ({
     id,
     value,
     onChange,
@@ -19,18 +20,19 @@ export const PhoneInputWithCountrySelector: React.FC<{id?: string, value: string
 
     const { classes } = useStyles();
 
-    const [ country, setCountry ] = useState<CountryCode | ''>('');
+    const [ country, setCountry ] = useState<CountryCode | ''>(defaultCountryForPhoneInput || '');
 
     useEffect(() => {
 
         if (value && value !== '') {
+            const asYouType = new AsYouType();
+            asYouType.input(value);
+            const parsedCountry = asYouType.getCountry();
 
             if (country === '') {
 
-                const asYouType = new AsYouType();
-                asYouType.input(value);
-                const parsedCountry = asYouType.getCountry();
-                if (!parsedCountry){
+
+                if (!parsedCountry) {
 
                     if (asYouType.getCallingCode() === '1') setCountry('US');
                     if (asYouType.getCallingCode() === '7') setCountry('RU');
@@ -42,18 +44,22 @@ export const PhoneInputWithCountrySelector: React.FC<{id?: string, value: string
 
                 }
 
+            } else {
+
+                if (!parsedCountry) {
+
+                    if (asYouType.getCallingCode() === '1' && country !== 'US') setCountry('US');
+                    if (asYouType.getCallingCode() === '7' && country !== 'RU') setCountry('RU');
+
+
+                } else {
+
+                    if (parsedCountry && parsedCountry !== country) setCountry(parsedCountry);
+
+                }
             }
 
         }
-        // else {
-        //
-        //     if (defaultCountryForPhoneInput && country === ''){ // todo fix it
-        //
-        //         setCountry(defaultCountryForPhoneInput);
-        //
-        //     }
-        //
-        // }
 
     }, [ value ]);
 
@@ -71,13 +77,11 @@ export const PhoneInputWithCountrySelector: React.FC<{id?: string, value: string
                 onChangeLocal(asYouType.getChars().substring(subStart + 1));
 
             }
-            if (!parsedCountry){
+         //   if (!parsedCountry) {
 
-                if (asYouType.getCallingCode() === '1') setCountry('US');
-                if (asYouType.getCallingCode() === '7') setCountry('RU');
-                onChangeLocal(asYouType.getChars().substring(1));
+             //   if (asYouType.getCallingCode() === '1' || asYouType.getCallingCode() === '7') onChangeLocal(asYouType.getChars().substring(1));
 
-            }
+        //    }
 
         }
 
@@ -166,7 +170,7 @@ export const PhoneInputWithCountrySelector: React.FC<{id?: string, value: string
 
     return (
         <Input.Wrapper
-            id={id ? id : Math.random().toString() }
+            id={ id ? id : Math.random().toString() }
             withAsterisk={ isRequired }
             label={ <Trans>Phone number</Trans> }
             error={ error }
