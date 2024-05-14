@@ -4,6 +4,7 @@ import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-he
 import { tagTypesRolesExtendedList, typeSearchRolesFilter, typeSearchRolesSortingNames } from './types';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeRole, typeRolesExtended } from '../model/types';
+import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 
 
 export const rolesApi = baseApi.injectEndpoints({
@@ -15,7 +16,10 @@ export const rolesApi = baseApi.injectEndpoints({
                 {
                     url: API_URLS.ROLES_SEARCH,
                     method: 'POST',
-                    headers: protectedRoutsAPIHeaderCreator(),
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
+                    },
                     body: data,
                 }
             ),
@@ -39,7 +43,10 @@ export const rolesApi = baseApi.injectEndpoints({
                 {
                     url: API_URLS.ROLES_SEARCH_EXTENDED,
                     method: 'POST',
-                    headers: protectedRoutsAPIHeaderCreator(),
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
+                    },
                     body: data,
                 }
             ),
