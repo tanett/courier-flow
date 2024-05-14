@@ -3,8 +3,8 @@ import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeProfileForm } from '../types/types';
 import { initialProfileForm } from '../form/form';
-import { useAppDispatchT, useSelectorT } from 'app/state';
-import { DEFAULT_LANGUAGE, LANGUAGES, locales } from 'app/config/languages';
+import { useAppDispatchT } from 'app/state';
+import { LANGUAGES, locales } from 'app/config/languages';
 import { Button, Flex, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -16,7 +16,7 @@ import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
 import { userProfileActions } from '../../../entities/user-profile/model/state-slice';
 import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
-import { usePatchCurrentUserMutation } from '../../../entities/user-profile/api/api';
+import { useGetCurrentUserQuery, usePatchCurrentUserMutation } from '../../../entities/user-profile/api/api';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -31,14 +31,19 @@ export const Profile: React.FC = () => {
 
     const dispatchAppT = useAppDispatchT();
 
-    const profileData = useSelectorT(state => state.userProfile.userProfile?.actor);
+    const {
+        data,
+        isFetching
+    } = useGetCurrentUserQuery({});
 
     const profileForm = useForm<typeProfileForm>(initialProfileForm);
 
 
     useEffect(() => {
 
-        if (profileData) {
+        if (data) {
+            dispatchAppT(userProfileActions.changeUserProfile(data))
+            const profileData = data.actor;
 
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
             profileForm.setFieldValue('email', profileData.email ?? '');
@@ -46,7 +51,7 @@ export const Profile: React.FC = () => {
             profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
         }
 
-    }, [ profileData ]);
+    }, [ data ]);
 
     const [ patchUser, { isLoading } ] = usePatchCurrentUserMutation();
     const [ isInProgress, setIsInProgress ] = useState(false);
@@ -55,8 +60,8 @@ export const Profile: React.FC = () => {
 
         setIsInProgress(true);
 
-        if (profileData) {
-
+        if (data) {
+            const profileData = data.actor;
             const editObject: typePatchCurrentUser = {
                 id: profileData.id,
                 fullName: profileForm.values.fullName.trim() === profileData.fullName ? undefined : profileForm.values.fullName.trim(),
@@ -65,17 +70,17 @@ export const Profile: React.FC = () => {
                 userSettings: profileForm.values.locale === profileData?.userSettings?.locale ? undefined : { locale: profileForm.values.locale as LANGUAGES },
             };
 
-            for (const key of Object.keys(editObject)){
+            for (const key of Object.keys(editObject)) {
 
-                if (editObject[ key as keyof typePatchCurrentUser ] === undefined){
+                if (editObject[key as keyof typePatchCurrentUser] === undefined) {
 
-                    delete editObject[ key as keyof typePatchCurrentUser ];
+                    delete editObject[key as keyof typePatchCurrentUser];
 
                 }
 
             }
 
-            if (Object.values(editObject).length === 1){
+            if (Object.values(editObject).length === 1) {
 
                 setIsInProgress(false);
                 return;
@@ -107,7 +112,7 @@ export const Profile: React.FC = () => {
     };
 
     const onCancel = () => {
-
+        const profileData = data?.actor;
         if (profileData) {
 
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
@@ -119,45 +124,48 @@ export const Profile: React.FC = () => {
     };
 
     return (
-        <form onSubmit={profileForm.onSubmit(onSave)}>
+        <form onSubmit={ profileForm.onSubmit(onSave) }>
 
-            <Flex className={classes.flexColumn}>
+            <Flex className={ classes.flexColumn }>
 
-                <FieldsetForForm title={<Trans>Personal Information</Trans>}>
+                <FieldsetForForm title={ <Trans>Personal Information</Trans> }>
                     <TextInput
                         withAsterisk
-                        label={<Trans>Full name</Trans>}
-                        placeholder={i18n._(t`User name`)}
-                        {...profileForm.getInputProps('fullName')}
-                        maxLength={150}
+                        label={ <Trans>Full name</Trans> }
+                        placeholder={ i18n._(t`User name`) }
+                        { ...profileForm.getInputProps('fullName') }
+                        maxLength={ 150 }
                     />
                 </FieldsetForForm>
-                <FieldsetForForm title={<Trans>Contacts</Trans>}>
-                    <SimpleGrid cols={2} className={classes.formGrid}>
+                <FieldsetForForm title={ <Trans>Contacts</Trans> }>
+                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <PhoneInputWithCountrySelector
-                            isRequired={false}
-                            {...profileForm.getInputProps('phone')}
+                            isRequired={ false }
+                            { ...profileForm.getInputProps('phone') }
                             value={ profileForm.values.phone }
-                            onChange={(value: string) => profileForm.setFieldValue('phone', value)}
+                            onChange={ (value: string) => profileForm.setFieldValue('phone', value) }
                         />
                         <TextInput
                             withAsterisk
-                            label={<Trans>Email</Trans>}
+                            label={ <Trans>Email</Trans> }
                             placeholder="example@email.com"
-                            {...profileForm.getInputProps('email')}
+                            { ...profileForm.getInputProps('email') }
                         />
                     </SimpleGrid>
                 </FieldsetForForm>
             </Flex>
-            <Space h={25}/>
+            <Space h={ 25 }/>
 
-            <FieldsetForForm title={<Trans>Settings</Trans>}>
-                <SimpleGrid cols={2} className={classes.formGrid}>
+            <FieldsetForForm title={ <Trans>Settings</Trans> }>
+                <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                     <Select
-                        label={<Trans>Language</Trans>}
-                        data={locales}
-                        transitionProps={{ duration: 80, timingFunction: 'ease' }}
-                        {...profileForm.getInputProps('locale')}
+                        label={ <Trans>Language</Trans> }
+                        data={ locales }
+                        transitionProps={ {
+                            duration: 80,
+                            timingFunction: 'ease'
+                        } }
+                        { ...profileForm.getInputProps('locale') }
                         rightSection={ <IconChevronDown size="1rem"/> }
                         styles={ {
                             rightSection: {
@@ -165,19 +173,19 @@ export const Profile: React.FC = () => {
                                 pointer: 'pointer',
                             },
                         } }
-                        sx={{ '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } }}
+                        sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
 
                     />
                 </SimpleGrid>
             </FieldsetForForm>
-            <Space h={42}/>
-            <Flex className={classes.buttonsBar}>
-                <Button key="cancel" type="reset" variant="outline" onClick={onCancel}>{t`Cancel`}</Button>
-                <Button key="submit" disabled={!!Object.values(profileForm.errors).length} type="submit">{t`Save`}</Button>
+            <Space h={ 42 }/>
+            <Flex className={ classes.buttonsBar }>
+                <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
+                <Button key="submit" disabled={ !!Object.values(profileForm.errors).length } type="submit">{ t`Save` }</Button>
             </Flex>
 
 
-            {(isInProgress || isLoading) && <LoaderOverlay/>}
+            { (isInProgress || isLoading || isFetching) && <LoaderOverlay/> }
         </form>
     );
 
