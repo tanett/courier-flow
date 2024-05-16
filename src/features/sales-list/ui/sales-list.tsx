@@ -12,8 +12,6 @@ export const SalesList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const currentUser = useSelectorT(state => state.userProfile.userProfile);
-
     const isAllowedExport = useIsAllowedPermissions([]);
 
     const {

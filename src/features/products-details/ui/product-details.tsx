@@ -6,7 +6,7 @@ import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BookmarkIcon, FolderIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { useGetProductByIdQuery } from '../../../entities/products/api/api';
-import { BarcodeScanIconOutline } from 'shared/ui/barcodescan-icon-outline/barcode-scan-icon-outline';
+import { BarcodeScanIconOutline } from 'shared/ui/icons/barcodescan-icon-outline/barcode-scan-icon-outline';
 import { getValueFromAdditionalField } from 'features/products-details/helpers/get-value-from-additional-field';
 
 

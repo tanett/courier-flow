@@ -12,6 +12,9 @@ import { typeSalesListTable } from 'features/sales-list/types/types';
 import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-header';
 import { IconReceipt } from '@tabler/icons-react';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
+import dayjs from 'dayjs';
+import PaymentsList from 'features/sales-list/ui/payments/payments-list';
+import { Receipt1IconOutline } from 'shared/ui/icons/receipt-1-icon-outline/receipt-1-icon-outline';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
     salesList,
@@ -51,7 +54,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
     };
     return (<>
         <FilterPanel
-            withFind={ { placeholder: i18n._(t`Type part of store name`) } }
+            withFind={ { placeholder: i18n._(t`Search by receipt number or total cost`) } }
             filterComponent={ <StoresListFilter/> }
         />
 
@@ -71,12 +74,24 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
 
                         const actions: typeAction[] = [
                             {
-                                label: i18n._(t`Selected export`),
-                                handler: () => console.log('click export in row'),
-                                icon: <IconReceipt color={ theme.colors.primary[5] } width={ 22 }/>
+                                label: i18n._(t`Print a check for this sale`),
+                                handler: () => console.log('click print check'),
+                                icon: <Box color={ theme.colors.primary[5] }><Receipt1IconOutline/></Box>
                             },
 
                         ];
+                        const data = (date: string) => {
+                            const dateStr = dayjs(date).format('DD.MM.YYYY');
+                            const timeStr = dayjs(date).format('HH:mm:ss');
+                            return (<Box>
+                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr }</Text>
+                                <Text sx={ {
+                                    color: theme.colors.gray[5],
+                                    lineHeight: rem(16)
+                                } }>{ timeStr }</Text>
+
+                            </Box>);
+                        };
 
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsSalePage(item.id, item.publicId) }>
@@ -88,16 +103,17 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                               onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
                                 </td>
-                                <Table.Td><Box sx={ { minWidth: rem(155) } }>{ item.createdAt }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(95) } }>{ item.receiptNumber }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(155) } }>{ data(item.createdAt) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(65) } }>{ item.receiptNumber }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.productsCount }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.soldByName }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.totalCost) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>payments</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ 'total-price' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ 'refund' }</Box></Table.Td>
-
-                                { isAllowedExport && <Table.TdActions actions={ actions } align={ 'center' }/> }
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item }/></Box></Table.Td>
+                                <Table.Td><Box sx={ {
+                                    minWidth: rem(55),
+                                    textAlign: 'center'
+                                } }>{ 'ref' }</Box></Table.Td>{/* todo fix it */ }
+                                <Table.TdActions actions={ actions } align={ 'center' }/>
                             </Table.Tr>
                         );
 

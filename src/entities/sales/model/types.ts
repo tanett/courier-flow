@@ -22,7 +22,7 @@ export type typeSale = {
     fiscalSign: string
     fiscalModuleId: string
     receiptNumber: number
-    paymentType: string
+    paymentType: 'USUAL' | 'ADVANCE' | 'CREDIT'
     orderId: string
     servicePayment: number
     totalDiscountAmount: number
@@ -60,7 +60,7 @@ export type typePayment = {
     amount: number
     createdOnTerminalAt: string
     cashDeskId: string
-    method: string
+    method: 'CASH' | 'CARD' |  'QR' | 'TRANSFER' | 'OTHER'
     rrn: string
     stan: string
     transactionId: string
