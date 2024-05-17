@@ -15,10 +15,11 @@ export const useRefundsRequestData = () => {
     if (searchPhrase && !isNaN(Number(searchPhrase))) {
         const searchPhraseNumber = Number(searchPhrase)
         if (Number.isInteger(searchPhraseNumber)) {
-            filter.receiptNumber = searchPhraseNumber
-            filter._or_ = ['receiptNumber', 'totalPaymentsAmount']
+            filter._or_ = [{receiptNumber: searchPhraseNumber}, {totalPaymentsAmount: searchPhraseNumber}]
+        } else {
+            filter.totalPaymentsAmount = searchPhraseNumber
         }
-        filter.totalPaymentsAmount = searchPhraseNumber
+
     }
     console.log('Number(searchPhrase)', filter)
 
