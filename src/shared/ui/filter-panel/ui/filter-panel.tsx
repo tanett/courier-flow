@@ -14,6 +14,7 @@ export const FilterPanel: React.FC<typeFilterPanel> = ({ filterComponent, withFi
             <Box className={classes.findWrapper}>
                 {withFind && <FindBlock
                     placeholder={typeof withFind === 'object' ? withFind.placeholder : undefined}
+                    minValueLength={typeof withFind === 'object' ? withFind.minValueLength : undefined}
                 />}
             </Box>
             {filterComponent && <Box>

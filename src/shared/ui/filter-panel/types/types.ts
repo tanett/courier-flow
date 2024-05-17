@@ -1,12 +1,16 @@
 import React from 'react';
 
 export interface typeFilterPanel {
-    withFind?: {placeholder: string} | boolean
+    withFind?: {
+        placeholder: string,
+        minValueLength?: number
+    } | boolean
     filterComponent?: React.ReactNode
 }
 
 export interface typeFindBlock {
     placeholder?: string
+    minValueLength?: number
 }
 
 export interface typeFilterBlock {

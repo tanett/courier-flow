@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 import { useUrlParams } from '../../../hooks/use-url-params/use-url-params';
 import { queryParamsNames } from '../../../../app/config/api-constants';
 
-export const FindBlock: React.FC<typeFindBlock> = ({ placeholder }) => {
+export const FindBlock: React.FC<typeFindBlock> = ({ placeholder, minValueLength = 3 }) => {
 
     const { classes } = useStyles();
 
@@ -34,7 +34,7 @@ export const FindBlock: React.FC<typeFindBlock> = ({ placeholder }) => {
 
     useEffect(() => {
 
-        if ((debounced.length === 0 && inputFocused) || debounced.length >= 3) {
+        if ((debounced.length === 0 && inputFocused) || debounced.length >= minValueLength) {
 
             urlParams.setSearchParams({
                 [ queryParamsNames.searchPhrase ]: debounced ? debounced : undefined,

@@ -46,6 +46,7 @@ import { LazyCategoriesEditPage } from 'pages/categories-edit-page';
 import { LazyProductsEditPage } from 'pages/products-edit-page';
 import { LazyProductsDetailsPage } from 'pages/products-details-page';
 import { LazySalesPage } from 'pages/sales-page';
+import {LazyRefundsPage} from "../../pages/refunds-page";
 
 export const router = createBrowserRouter([
 
@@ -116,7 +117,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: routerPaths.refunds,
-                element: <WithPermissionsRouts permissions={readRefundsPermissions}>refunds</WithPermissionsRouts>,
+                element: <WithPermissionsRouts permissions={readRefundsPermissions}><LazyRefundsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.products_list,
