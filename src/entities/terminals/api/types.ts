@@ -14,9 +14,9 @@ export type typeSearchTerminalsFilter = {
     fiscalCardIds?: string[]
     blocked?: boolean
     blockReasons?: blockReasons[]
-    _and_?: string[]
-    _or_?: string[]
-    _not_?: string[]
+    _or_?:  Omit<typeSearchTerminalsFilter, '_or_' | '_not_' | '_and_'>[]
+    _not_?: string
+    _and_?: Omit<typeSearchTerminalsFilter, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchTerminalsExtendedFilter = typeSearchTerminalsFilter & {

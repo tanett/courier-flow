@@ -14,7 +14,7 @@ export interface typeSearchFilterSales {
     receiptNumber?: number,
     totalCost?: number,
     isTest?: true,
-    _or_?: Omit<typeSearchFilterSales, '_or_' | '_not_' | '_and_'>[]
+    _or_?:  Omit<typeSearchFilterSales, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
     _and_?: Omit<typeSearchFilterSales, '_or_' | '_not_' | '_and_'>[]
 }

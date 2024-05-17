@@ -63,9 +63,9 @@ export interface typeSearchImportFilter {
     ids?: string[]
     typeCodes?: string[]
     fileRemoved?: boolean
-    _and_?: string[]
-    _or_?: string[]
+    _or_?:  Omit<typeSearchImportFilter, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
+    _and_?: Omit<typeSearchImportFilter, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchImportSortingNames = 'CREATED_AT';

@@ -12,7 +12,7 @@ import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-al
 import { readSalesPermissions } from 'app/config/permissions-config';
 import { SidebarTitle } from 'shared/ui/sidebar-title';
 import { SidePanel } from 'shared/ui/side-panel';
-import { ExportProductsList } from 'features/export-products-list';
+import { ExportSalesList } from 'features/export-sales-list';
 
 
 export const SalesListButtonsPanel: React.FC = () => {
@@ -43,7 +43,7 @@ export const SalesListButtonsPanel: React.FC = () => {
     const onOpenExportsList = () => {
 
         setSidePanelTitle(<SidebarTitle><Trans>Export sales</Trans></SidebarTitle>);
-        setSidePanelContent(<ExportProductsList/>);
+        setSidePanelContent(<ExportSalesList/>);
 
     };
 

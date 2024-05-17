@@ -6,15 +6,15 @@ import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, rem, useMantineTheme, Text } from '@mantine/core';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
-import { StoresListFilter } from 'features/stores-list-filter';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { typeSalesListTable } from 'features/sales-list/types/types';
 import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-header';
-import { IconReceipt } from '@tabler/icons-react';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import dayjs from 'dayjs';
 import PaymentsList from 'features/sales-list/ui/payments/payments-list';
-import { Receipt1IconOutline } from 'shared/ui/icons/receipt-1-icon-outline/receipt-1-icon-outline';
+import { Receipt1IconOutline } from 'shared/ui/svg-custom-icons/receipt-1-icon-outline/receipt-1-icon-outline';
+import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
+import { SalesListFilter } from 'features/sales-list-filter';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
     salesList,
@@ -52,10 +52,15 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
         handlersListState.setItemProp(index, 'checked', event.currentTarget.checked);
 
     };
+
+    const onRefundCounterClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.stopPropagation()
+        console.log('add go to refunds');
+    }
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by receipt number or total cost`) } }
-            filterComponent={ <StoresListFilter/> }
+            filterComponent={ <SalesListFilter/> }
         />
 
         { isLoading
@@ -76,7 +81,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                             {
                                 label: i18n._(t`Print a check for this sale`),
                                 handler: () => console.log('click print check'),
-                                icon: <Box color={ theme.colors.primary[5] }><Receipt1IconOutline/></Box>
+                                icon: <Receipt1IconOutline color={theme.colors.primary[5] }/>
                             },
 
                         ];
@@ -112,7 +117,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                 <Table.Td><Box sx={ {
                                     minWidth: rem(55),
                                     textAlign: 'center'
-                                } }>{ 'ref' }</Box></Table.Td>{/* todo fix it */ }
+                                } }>{ item.refundsCount ? <ButtonAsLink onClick={onRefundCounterClick} label={item.refundsCount.toString()}/> : '-' }</Box></Table.Td>
                                 <Table.TdActions actions={ actions } align={ 'center' }/>
                             </Table.Tr>
                         );

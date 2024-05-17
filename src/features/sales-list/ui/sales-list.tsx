@@ -25,7 +25,7 @@ export const SalesList: React.FC = () => {
     const [ isModalExportSelectedProducts, setIsModalExportSelectedProducts ] = useState(false);
 
 
-    const goToDetailsSalePage = (id: string | number) => navigate([ routerPaths.sales, id.toString() ].join('/'));
+    const goToDetailsSalePage = (id: string | number, publicId: string | number) => navigate([ routerPaths.sales, id.toString(), publicId.toString()  ].join('/'));
 
     const headerActions: typeHeadersAction[] = [
 

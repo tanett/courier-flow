@@ -10,9 +10,9 @@ export interface typeSearchFilterRefunds {
     refundedAtFrom?: string,
     refundedAtTo?: string,
     isTest?: true,
-    _or_?: string[]
+    _or_?:  Omit<typeSearchFilterRefunds, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
-    _and_?: string[]
+    _and_?: Omit<typeSearchFilterRefunds, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchRefundsSortingNames = 'REFUNDED_AT';

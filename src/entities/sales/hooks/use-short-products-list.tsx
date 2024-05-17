@@ -1,12 +1,12 @@
 import { useSalesRequestData } from '../hooks/use-sales-request-data';
-import { useSearchSalesShortQuery } from '../api/api';
+import { useSearchSalesShortExtendedQuery } from '../api/api';
 
 
 export function useShortSalesList() {
 
     const { requestData } = useSalesRequestData();
 
-    const { data, isFetching, isLoading, refetch } = useSearchSalesShortQuery(requestData);
+    const { data, isFetching, isLoading, refetch } = useSearchSalesShortExtendedQuery(requestData);
 
     const pagination = data?.totalPages
         ? {

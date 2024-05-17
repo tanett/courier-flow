@@ -76,3 +76,5 @@ export type typeSaleShort = Omit<typeSale, 'storeAddress'
     | 'fiscalModuleId'
     | 'isTest'
     | 'products'>
+
+export type typeSaleShortExtended = typeSaleShort & {refundsCount: number}

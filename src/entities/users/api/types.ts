@@ -22,9 +22,9 @@ export interface typeSearchFilterUsers {
     roleCodes?: string[]
     linkedToMerchant?: boolean
     storeIds?: string[]
-    _or_?: string[]
+    _or_?:  Omit<typeSearchFilterUsers, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
-    _and_?: string[]
+    _and_?: Omit<typeSearchFilterUsers, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchUserSortingNames = 'FULL_NAME';

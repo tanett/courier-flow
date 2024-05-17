@@ -23,7 +23,7 @@ export const ArchiveProductsDialog: React.FC<typeArchiveProductsDialogProps> = (
         >
 
 
-            {/* {attachedFilesErrors && <Alert className={classes.alertWrapper} color="red" icons={<ExclamationTriangleIcon/>}> */}
+            {/* {attachedFilesErrors && <Alert className={classes.alertWrapper} color="red" svg-custom-icons={<ExclamationTriangleIcon/>}> */}
             {/*     <Flex className={classes.alertMessage}>{attachedFilesErrors?.map(item => <div key={item} className={classes.alertMessage}>{item}</div>)}</Flex> */}
             {/* </Alert>} */}
 

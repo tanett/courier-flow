@@ -3,20 +3,22 @@ import { typeSearchFilterSales } from '../api/types';
 
 export const getSalesFiltersFromUrl = (urlParams: typeUseUrlParams) => {
 
-    const tempFilter: typeSearchFilterSales = {  };
+    const tempFilter: typeSearchFilterSales = {};
 
     if (urlParams.searchPhrase) {
         const searchPhrase = Number(urlParams.searchPhrase);
         if (!isNaN(searchPhrase)) {
-            tempFilter.receiptNumber = searchPhrase;
-            tempFilter._or_ = [{totalCost: searchPhrase}]
+            const orFilter: typeSearchFilterSales['_or_'] = [];
+            if (Number.isInteger(searchPhrase)) {orFilter.push({ receiptNumber: searchPhrase });}
+            orFilter.push({ totalCost: searchPhrase });
+            tempFilter._or_ = orFilter
         }
 
     }
 
     const storeId = urlParams.getFilterValue('storeId');
     if (storeId && typeof storeId === 'string') tempFilter.storeIds = [ storeId ];
-    const employee = urlParams.getFilterValue('employee');
+    const employee = urlParams.getFilterValue('employeeId');
     if (employee && typeof employee === 'string') tempFilter.soldByIds = [ employee ];
     const terminalId = urlParams.getFilterValue('terminalId');
     if (terminalId && typeof terminalId === 'string') tempFilter.terminalIds = [ terminalId ];

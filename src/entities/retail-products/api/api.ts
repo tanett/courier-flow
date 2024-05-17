@@ -13,7 +13,6 @@ import {
 } from '../../../entities/retail-products/api/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 import { typeExport } from '../../../entities/exports/api/types';
-import { typeSearchFilterProductExtended } from '../../../entities/products/api/types';
 
 export const retailProductsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
