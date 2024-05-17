@@ -84,7 +84,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                             })
 
                             return (
-                                <Table.Tr key={ item.id } handler={ () => goToDetailsReceiptPage(item.id) }>
+                                <Table.Tr key={ item.id } handler={ () => goToDetailsReceiptPage(item.id, item.receiptNumber) }>
                                     <Table.Td><Box>
                                         <div>{ date }</div>
                                         <div className={classes.time}>{ time }</div>

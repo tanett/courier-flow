@@ -121,7 +121,7 @@ export const router = createBrowserRouter([
                 element: <WithPermissionsRouts permissions={readRefundsPermissions}><LazyRefundsPage/></WithPermissionsRouts>,
             },
             {
-                path: routerPaths.refunds,
+                path: routerPaths.refunds_details,
                 element: <WithPermissionsRouts permissions={readRefundsPermissions}><LazyRefundDetailsPage/></WithPermissionsRouts>,
             },
             {

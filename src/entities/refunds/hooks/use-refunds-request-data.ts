@@ -21,7 +21,6 @@ export const useRefundsRequestData = () => {
         }
 
     }
-    console.log('Number(searchPhrase)', filter)
 
     //if (urlParams.searchPhrase) filter.receiptNumber = urlParams.searchPhrase; TODO: add filters
 

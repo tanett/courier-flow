@@ -8,6 +8,7 @@ import {RefundListTable} from "./refund-table";
 import {useRefundsList} from "../../../entities/refunds/hooks/use-refunds-list";
 import {Button, Flex} from "@mantine/core";
 import {useStyles} from "./styles";
+import {routerPaths} from "../../../app/config/router-paths";
 
 export const RefundList: React.FC = () => {
 
@@ -31,7 +32,7 @@ export const RefundList: React.FC = () => {
 
     const onCloseReceipt = () => setIsOpenReceipt(null);
 
-    // const goToDetailsUserPage = (id: string | number, name: string) => navigate([ routerPaths.users, id.toString(), name ].join('/'));
+    const goToDetailsUserPage = (id: string | number, refundNumber: number) => navigate([ routerPaths.refunds, id.toString(), refundNumber].join('/'));
 
 
     return (<>
@@ -39,7 +40,7 @@ export const RefundList: React.FC = () => {
             refundList={refundsList}
             pagination={pagination}
             isLoading={isLoading}
-            goToDetailsReceiptPage={() => console.log('details')}
+            goToDetailsReceiptPage={goToDetailsUserPage}
             onOpenReceipt={onOpenReceipt}
         />
 
