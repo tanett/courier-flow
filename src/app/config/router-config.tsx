@@ -46,10 +46,8 @@ import { LazyCategoriesEditPage } from 'pages/categories-edit-page';
 import { LazyProductsEditPage } from 'pages/products-edit-page';
 import { LazyProductsDetailsPage } from 'pages/products-details-page';
 import { LazySalesPage } from 'pages/sales-page';
-import {LazyRefundsPage} from "../../pages/refunds-page";
-import {LazyRefundDetailsPage} from "../../pages/refund-detais-page";
-import {LazyRefundsPage} from "../../pages/refunds-page";
-import {LazyRefundDetailsPage} from "../../pages/refund-detais-page";
+import { LazyRefundsPage } from "../../pages/refunds-page";
+import { LazyRefundDetailsPage } from "../../pages/refund-detais-page";
 import { LazySalesDetailsPage } from 'pages/sales-details-page';
 
 export const router = createBrowserRouter([

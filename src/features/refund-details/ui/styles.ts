@@ -14,8 +14,8 @@ export const useStyles = createStyles((theme) => ({
             '&[data-active=true]': {
                 borderColor: theme.colors.borderColor[ 0 ],
                 color: theme.colors.primary[ 5 ],
-                backgroundColor: theme.white,
                 fontWeight: 600,
+                backgroundColor: theme.white,
                 borderBottom: '1px solid transparent',
             },
         },
@@ -26,6 +26,7 @@ export const useStyles = createStyles((theme) => ({
             borderBottomLeftRadius: rem(8),
             borderBottomRightRadius: rem(8),
             borderTopRightRadius: rem(8),
+            backgroundColor: theme.white,
         },
 
     },

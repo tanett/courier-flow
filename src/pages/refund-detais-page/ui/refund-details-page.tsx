@@ -4,6 +4,7 @@ import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import {useParams} from "react-router-dom";
+import RefundsDetailsTabs from "../../../features/refund-details/ui/refunds-details-tabs";
 
 const RefundDetailsPage: React.FC = () => {
 
@@ -20,7 +21,7 @@ const RefundDetailsPage: React.FC = () => {
                 ] }
                 /> }
             />
-            Refund details
+            {id && <RefundsDetailsTabs refundId={id}/>}
         </DashboardContent>
     );
 
