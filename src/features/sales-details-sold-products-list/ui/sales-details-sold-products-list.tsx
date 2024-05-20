@@ -3,9 +3,10 @@ import { Box, Flex, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { useAppDispatchT } from 'app/state';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { typeSale } from 'entities/sales/model/types';
 import { TableSoldProducts } from 'features/sales-details-sold-products-list/ui/table/table-sold-products';
+import { routerPaths } from 'app/config/router-paths';
 
 export const SalesDetailsSoldProductsList: React.FC<{ saleData: typeSale | undefined, isFetching: boolean }> = ({ saleData, isFetching }) => {
 
@@ -17,7 +18,11 @@ export const SalesDetailsSoldProductsList: React.FC<{ saleData: typeSale | undef
 
     const navigate = useNavigate();
 
-
+const onProductNameClick = (soldProductName: string)=>{
+    if(saleData) {
+        navigate(generatePath(routerPaths.sold_product_details, { id: saleData.id, publicId: saleData.publicId, name: soldProductName }));
+    }
+}
 
     return (
         <Box sx={ {
@@ -46,6 +51,7 @@ export const SalesDetailsSoldProductsList: React.FC<{ saleData: typeSale | undef
             <TableSoldProducts
                 productList={ saleData?.products }
                 isLoading={ isFetching }
+                onSoldProductClick={onProductNameClick}
             />
 
             {/* { pagination && <Flex py={ 16 }><Pagination pagination={ pagination } withPerPage={ true }/></Flex> } */}

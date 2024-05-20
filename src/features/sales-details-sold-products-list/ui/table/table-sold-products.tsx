@@ -1,25 +1,31 @@
 import React from 'react';
-import { Box, Flex, useMantineTheme } from '@mantine/core';
-import { ArrowRightStartOnRectangleIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import { Box, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
-import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { typeSoldProductsTable } from 'features/sales-details-sold-products-list/ui/table/types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
+import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
+import { useNavigate } from 'react-router-dom';
 
 
 export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
     productList,
     isLoading,
+    onSoldProductClick
 }) => {
 
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
+    const navigate = useNavigate()
+
+    const onProductNameClick = (e:  React.MouseEvent<HTMLButtonElement, MouseEvent>, soldProductName: string)=>{
+        e.stopPropagation();
+        onSoldProductClick(soldProductName)
+    }
 
     return (
         <>
@@ -52,13 +58,13 @@ export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
                             </Table.Header>
 
                             <Table.Body>
-                                { productList.map((item) => {
+                                { productList.map((item , index) => {
 
                                     return (
-                                        <Table.Tr key={ item.id } >
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.name }</Box></Table.Td>
+                                        <Table.Tr key={ index} >
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}><ButtonAsLink onClick={(e)=>onProductNameClick(e, item.name)} label={ item.name }/></Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.quantity }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.priceInStore }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.priceInStore)  }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.vatPercent }% / {numberCurrencyFormat(item.vatAmount)}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ '--??' }% / {numberCurrencyFormat(item.discountAmount)}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.totalCost)}</Box></Table.Td>

@@ -11,7 +11,7 @@ import { SalesDetailsSoldProductsList } from 'features/sales-details-sold-produc
 import { SalesDetailsPaymentsList } from 'features/sales-details-payments-list';
 import { PrintReceiptButton } from 'features/print-receipt-button';
 
-const enum TYPE_TABS {
+export const enum TYPE_TABS {
     COMMON = 'common',
     SOLD_PRODUCTS = 'sold-products',
     PAYMENTS = 'payments'

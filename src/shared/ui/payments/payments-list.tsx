@@ -11,10 +11,10 @@ const PaymentsList: React.FC<{ sale: typeCheckedShortSalesExtended }> = ({ sale 
     const { classes } = useStyles();
 
     return (<>
-            <PaymentType sale={ sale}/>
+            {sale.paymentType !== 'USUAL' && <PaymentType sale={ sale }/> }
             { sale.payments.map((payment, index) => {
                 return (<Flex key={ index } className={ classes.flexRow }>
-                    {<PaymentMethodIcon method={payment.method}/> }
+                     {<PaymentMethodIcon method={payment.method}/> }
                     <Text>{ numberCurrencyFormat(payment.amount) }</Text>
                 </Flex>);
             }) }
