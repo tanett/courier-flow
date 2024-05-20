@@ -8,7 +8,21 @@ export const useRefundsRequestData = () => {
     const urlParams = useUrlParams();
 
     // Filters
-    const filter: typeSearchFilterRefunds = {}; // todo
+    const filter: typeSearchFilterRefunds = {};
+
+    const searchPhrase = urlParams.searchPhrase?.replace(',', '.')
+
+    if (searchPhrase && !isNaN(Number(searchPhrase))) {
+        const searchPhraseNumber = Number(searchPhrase)
+        if (Number.isInteger(searchPhraseNumber)) {
+            filter._or_ = [{receiptNumber: searchPhraseNumber}, {totalPaymentsAmount: searchPhraseNumber}]
+        } else {
+            filter.totalPaymentsAmount = searchPhraseNumber
+        }
+
+    }
+
+    //if (urlParams.searchPhrase) filter.receiptNumber = urlParams.searchPhrase; TODO: add filters
 
 
     const requestData: typeSearchRequest<typeSearchFilterRefunds, typeSearchRefundsSortingNames> = {

@@ -9,8 +9,10 @@ export interface typeSearchFilterRefunds {
     terminalIds?: string[],
     refundedAtFrom?: string,
     refundedAtTo?: string,
+    receiptNumber?: number
+    totalPaymentsAmount?: number
     isTest?: true,
-    _or_?: string[]
+    _or_?: ({receiptNumber: number} | {totalPaymentsAmount: number})[]
     _not_?: string
     _and_?: string[]
 }
