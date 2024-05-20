@@ -3,6 +3,7 @@ import { createStyles, rem } from '@mantine/core';
 export const useStyles = createStyles((theme) => ({
 
     tab: {
+position: 'relative',
         '& .mantine-Tabs-tabsList': { border: 'none' },
         '& .mantine-Tabs-tab': {
             borderColor: theme.colors.gray[ 3 ],
@@ -29,5 +30,10 @@ export const useStyles = createStyles((theme) => ({
             backgroundColor: theme.white,
         },
 
+    },
+    tabsButtonsBlock: {
+        position:'absolute',
+        top: 0,
+        right: 0
     },
 }));

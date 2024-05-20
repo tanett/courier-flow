@@ -118,7 +118,7 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                                content={ saleData?.fiscalModuleId || '-' }/>
                 <InfoCardSmall label={ i18n._(t`Terminal label`) }
                                alignSelfStretch={ true }
-                               content={ '-' }/> {/* // todo terminal label ! */ }
+                               content={ saleData?.terminalLabel || '-' }/>
                 <div/>
                 <InfoCardSmall label={ i18n._(t`Cashier app version`) }
                                content={ saleData?.cashAppVersion || '-' } withBottomBorder={ false }/>
