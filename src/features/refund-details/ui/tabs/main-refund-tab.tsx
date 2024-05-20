@@ -81,11 +81,10 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
                 ] }>
 
                     <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> } content={ refundData?.storeName || '-' } withBottomBorder={ false }/>
-                    <InfoCardSmall label={ i18n._(t`Sale`) } content={ refundData ? <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.sales_details, {
-                        id: refundData?.saleId,
-                        publicId: refundData?.saleId
-                        // TODO: userName: refundData?.publicId
-                    })) } label={ refundData.saleId }/> : '-' } withBottomBorder={ false }/>
+                    <InfoCardSmall label={ i18n._(t`Sale`) } content={ refundData?.salePublicId ? <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.sales_details, {
+                        id: refundData?.salePublicId,
+                        publicId: refundData?.salePublicId
+                    })) } label={ refundData.salePublicId }/> : '-' } withBottomBorder={ false }/>
 
                 </SimpleGrid>
             </Box>

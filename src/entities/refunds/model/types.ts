@@ -29,5 +29,6 @@ export type typeRefund = {
     payments: typePayment[]
     zreportNumber: number
     productsCount: number
+    salePublicId?: string
 }
 
