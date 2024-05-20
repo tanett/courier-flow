@@ -32,7 +32,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                 placeholder: i18n._(t`Search by receipt number or total cost`),
                 minValueLength: 1
             } }
-            filterComponent={ <UserListFilter/> }
+            // filterComponent={ <UserListFilter/> }
         />
 
         { isLoading
