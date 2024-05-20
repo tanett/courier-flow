@@ -12,9 +12,11 @@ import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-h
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import dayjs from 'dayjs';
 import PaymentsList from 'shared/ui/payments/payments-list';
-import { Receipt1IconOutline } from 'shared/ui/svg-custom-icons/receipt-1-icon-outline/receipt-1-icon-outline';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { SalesListFilter } from 'features/sales-list-filter';
+import { ReceiptIcon } from 'shared/images/icons/receipt';
+import { generatePath, useNavigate } from 'react-router-dom';
+import { routerPaths } from 'app/config/router-paths';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
     salesList,
@@ -24,11 +26,14 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
     handlersListState,
     isAllowedExport,
     isLoading,
+    onOpenReceipt
 }) => {
 
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
+
+    const navigate = useNavigate();
 
     // observer for checkbox in header - if all checked
     const allChecked = (salesList && salesList.length > 0) ? salesList?.every((value) => value?.checked) : false;
@@ -53,9 +58,9 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
 
     };
 
-    const onRefundCounterClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const onRefundCounterClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, receiptNumber: string,) => {
         e.stopPropagation()
-        console.log('add go to refunds');
+        navigate([routerPaths.refunds, `?q=${receiptNumber}` ].join('/'))
     }
     return (<>
         <FilterPanel
@@ -79,9 +84,9 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
 
                         const actions: typeAction[] = [
                             {
-                                label: i18n._(t`Print a check for this sale`),
-                                handler: () => console.log('click print check'),
-                                icon: <Receipt1IconOutline color={theme.colors.primary[5] }/>
+                                label: i18n._(t`Receipt`),
+                                handler: () => onOpenReceipt(item.id),
+                                icon: <ReceiptIcon color={theme.colors.primary[4]} width={22} height={22}/>,
                             },
 
                         ];
@@ -92,6 +97,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                 <Text sx={ { lineHeight: rem(20) } }>{ dateStr }</Text>
                                 <Text sx={ {
                                     color: theme.colors.gray[5],
+                                    fontWeight: 400,
                                     lineHeight: rem(16)
                                 } }>{ timeStr }</Text>
 
@@ -117,7 +123,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                 <Table.Td><Box sx={ {
                                     minWidth: rem(55),
                                     textAlign: 'center'
-                                } }>{ item.refundsCount ? <ButtonAsLink onClick={onRefundCounterClick} label={item.refundsCount.toString()}/> : '-' }</Box></Table.Td>
+                                } }>{ item.refundsCount ? <ButtonAsLink onClick={(e)=>onRefundCounterClick(e, item.receiptNumber.toString())} label={item.refundsCount.toString()}/> : '-' }</Box></Table.Td>
                                 <Table.TdActions actions={ actions } align={ 'center' }/>
                             </Table.Tr>
                         );

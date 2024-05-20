@@ -7,6 +7,8 @@ import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { queryParamsNames } from 'app/config/api-constants';
 import { useGetSaleByIdQuery } from '../../../entities/sales/api/api';
 import { SalesDetailsCommon } from 'features/sales-details-common';
+import { SalesDetailsSoldProductsList } from 'features/sales-details-sold-products-list';
+import { SalesDetailsPaymentsList } from 'features/sales-details-payments-list';
 
 const enum TYPE_TABS {
     COMMON = 'common',
@@ -57,7 +59,9 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
                 <Tabs.Tab value={ TYPE_TABS.PAYMENTS }>{ i18n._(t`Payments`) }</Tabs.Tab>
             </Tabs.List>
             <Tabs.Panel value={ TYPE_TABS.COMMON }><SalesDetailsCommon saleData={ saleData } isFetching={isFetching}/></Tabs.Panel>
-            {/* <Tabs.Panel value={ TYPE_TABS.USERS }><StoresDetailsUsers storeId={ storeId }/></Tabs.Panel> */}
+            <Tabs.Panel value={ TYPE_TABS.SOLD_PRODUCTS }><SalesDetailsSoldProductsList saleData={ saleData } isFetching={isFetching}/></Tabs.Panel>
+            <Tabs.Panel value={ TYPE_TABS.PAYMENTS }><SalesDetailsPaymentsList saleData={ saleData } isFetching={isFetching}/></Tabs.Panel>
+            {/* <Tabs.Panel value={ TYPE_TABS.USERS }><SalesDetailsPaymentsList storeId={ storeId }/></Tabs.Panel> */}
         </Tabs>
     );
 

@@ -10,6 +10,11 @@ export const useStyles = createStyles((theme) => ({
             padding: '0px 2px',
             minWidth: 'auto',
             height: 'auto',
+            '&[data-disabled="true"]':{
+                backgroundColor: 'transparent',
+                color: theme.black,
+                fontWeight: 400,
+            },
         },
         '&:hover': {color: theme.colors.primary[7],},
         '& .mantine-Text-root': {whiteSpace: 'pre-wrap',   wordBreak: 'break-all',},
