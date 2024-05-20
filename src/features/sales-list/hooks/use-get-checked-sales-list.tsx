@@ -1,7 +1,7 @@
 import { useListState } from '@mantine/hooks';
 import { useEffect } from 'react';
 import { useShortSalesList } from '../../../entities/sales/hooks/use-short-products-list';
-import { typeCheckedShortSales } from '../types/types';
+import { typeCheckedShortSalesExtended } from '../types/types';
 
 export const useGetCheckedSalesList = () => {
 
@@ -12,7 +12,7 @@ export const useGetCheckedSalesList = () => {
     } = useShortSalesList();
 
     // product list with checked
-    const [ values, handlers ] = useListState<typeCheckedShortSales>(undefined);
+    const [ values, handlers ] = useListState<typeCheckedShortSalesExtended>(undefined);
 
     useEffect(() => {
 

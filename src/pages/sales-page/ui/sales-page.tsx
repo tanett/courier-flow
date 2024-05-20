@@ -4,6 +4,7 @@ import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { SalesList } from 'features/sales-list';
+import { SalesListButtonsPanel } from 'features/sales-list-buttons-panel';
 
 const SalesPage: React.FC = () => {
 
@@ -16,7 +17,7 @@ const SalesPage: React.FC = () => {
                 leftSide={ <DashboardBreadcrumbs dataList={ [
                     { name: i18n._(t`Sales`) }
                 ] }/> }
-              //  rightSide={<ProductsListButtonsPanel/>} todo
+              rightSide={<SalesListButtonsPanel/>}
             />
 
             <SalesList/>

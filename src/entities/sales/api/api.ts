@@ -2,7 +2,7 @@ import { baseApi } from 'app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { typeSale, typeSaleShort } from '../model/types';
+import { typeSale, typeSaleShort, typeSaleShortExtended } from '../model/types';
 import { tagTypesShortSalesList, typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
 
 
@@ -18,13 +18,27 @@ export const salesApi = baseApi.injectEndpoints({
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
                 }
+            )
+        }),
+// Search sales with refunds count
+        searchSalesShortExtended: builder.query<typeSearchResponse<typeSaleShortExtended>, typeSearchRequest<typeSearchFilterSales, typeSearchSalesSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.SALES_SHORT_SEARCH_EXTENDED,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
             ),
             providesTags: (result) => result
                 ? [
 
                     // Provides a tag for each group in the current page,
                     // as well as the 'PARTIAL-LIST' tag.
-                    ...result.content.map((item: typeSaleShort) => ({ type: tagTypesShortSalesList.shortSalesList.type, id: item.id.toString() })),
+                    ...result.content.map((item: typeSaleShort) => ({
+                        type: tagTypesShortSalesList.shortSalesList.type,
+                        id: item.id.toString()
+                    })),
                     tagTypesShortSalesList.shortSalesList
                 ]
                 : [ tagTypesShortSalesList.shortSalesList ],
@@ -51,11 +65,15 @@ export const salesApi = baseApi.injectEndpoints({
             ),
         }),
 
+
     }),
 });
 
 export const {
     useSearchSalesShortQuery,
     useLazySearchSalesShortQuery,
-    useGetSaleByIdShortQuery
+    useSearchSalesShortExtendedQuery,
+    useLazySearchSalesShortExtendedQuery,
+    useGetSaleByIdShortQuery,
+    useGetSaleByIdQuery
 } = salesApi;

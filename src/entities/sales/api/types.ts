@@ -9,11 +9,14 @@ export interface typeSearchFilterSales {
     terminalIds?: string[],
     soldAtFrom?: string,
     soldAtTo?: string,
+    soldByIds?: string[],
     publicId?: string,
+    receiptNumber?: number,
+    totalCost?: number,
     isTest?: true,
-    _or_?: string[]
+    _or_?:  Omit<typeSearchFilterSales, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
-    _and_?: string[]
+    _and_?: Omit<typeSearchFilterSales, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchSalesSortingNames = 'SOLD_AT';

@@ -23,9 +23,9 @@ export type typeSearchFilterProduct = {
     categoriesIds?: string[]
     marked?: boolean
     piece?: boolean
-    _or_?: string[]
+    _or_?:  Omit<typeSearchFilterProduct, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
-    _and_?: string[]
+    _and_?: Omit<typeSearchFilterProduct, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchFilterProductExtended = typeSearchFilterProduct & {storeIds?: string[]}

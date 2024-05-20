@@ -9,9 +9,9 @@ export type typeSearchFilterRetailProduct = {
     productIds?: string[]
     storeIds?: string[]
     archived?: boolean
-    _or_?: string[]
+    _or_?:  Omit<typeSearchFilterRetailProduct, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
-    _and_?: string[]
+    _and_?: Omit<typeSearchFilterRetailProduct, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchRetailProductSortingNames = 'PRODUCT_NAME' | 'STORE_NAME';

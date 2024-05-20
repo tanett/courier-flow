@@ -2,13 +2,14 @@ import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-param
 import { typeSearchFilterSales, typeSearchSalesSortingNames } from '../api/types';
 import { sortDirection, typeSearchRequest } from '../../../app/api/types';
 import { perPageVariants } from '../../../app/config/api-constants';
+import { getSalesFiltersFromUrl } from '../helpers/get-sales-filters-from-url';
 
 export const useSalesRequestData = () => {
 
     const urlParams = useUrlParams();
 
     // Filters
-    const filter: typeSearchFilterSales = {};
+    const filter: typeSearchFilterSales = getSalesFiltersFromUrl(urlParams);
 
 
     const requestData: typeSearchRequest<typeSearchFilterSales, typeSearchSalesSortingNames> = {
@@ -20,7 +21,7 @@ export const useSalesRequestData = () => {
         sorts: [
             {
                 sort: 'SOLD_AT',
-                direction: sortDirection.asc,
+                direction: sortDirection.dec,
             }
         ],
     };
