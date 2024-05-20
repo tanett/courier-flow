@@ -9,6 +9,7 @@ import {MainRefundTab} from "./tabs/main-refund-tab";
 import {useGetRefundByIdQuery} from "../../../entities/refunds/api/api";
 import {RefundPaymentsList} from "./tabs/payments-refund-tab";
 import {TableSoldProducts} from "./tabs/products-refund-tab/ui/table/table-sold-products";
+import {PrintReceiptButton} from "../../print-receipt-button";
 
 const enum TYPE_TABS {
     MAIN = 'main',
@@ -43,24 +44,27 @@ const RefundsDetailsTabs: React.FC<{ refundId: string }> = ({ refundId }) => {
 
     return (
         <Tabs
-            defaultValue={ TYPE_TABS.MAIN }
-            className={ classes.tab }
+            defaultValue={TYPE_TABS.MAIN}
+            className={classes.tab}
             variant="outline"
-            value={ tab }
+            value={tab}
             onTabChange={(value) => {
 
-                urlParams.setSearchParams({ [ queryParamsNames.filtersString ]: urlParams.filtersToUri({ tab: value }) });
+                urlParams.setSearchParams({[queryParamsNames.filtersString]: urlParams.filtersToUri({tab: value})});
 
             }}
         >
+            <div className={classes.tabsButtonsBlock}><PrintReceiptButton id={'print-receipt'}/></div>
             <Tabs.List>
-                <Tabs.Tab value={ TYPE_TABS.MAIN }>{ i18n._(t`Main`) }</Tabs.Tab>
-                <Tabs.Tab value={ TYPE_TABS.REFUND_PRODUCTS }>{ i18n._(t`Refunded products`) }</Tabs.Tab>
-                <Tabs.Tab value={ TYPE_TABS.PAYMENTS }>{ i18n._(t`Payments`) }</Tabs.Tab>
+                <Tabs.Tab value={TYPE_TABS.MAIN}>{i18n._(t`Main`)}</Tabs.Tab>
+                <Tabs.Tab value={TYPE_TABS.REFUND_PRODUCTS}>{i18n._(t`Refunded products`)}</Tabs.Tab>
+                <Tabs.Tab value={TYPE_TABS.PAYMENTS}>{i18n._(t`Payments`)}</Tabs.Tab>
             </Tabs.List>
-            <Tabs.Panel value={ TYPE_TABS.MAIN }><MainRefundTab refundData={data} isFetching={isFetching}/></Tabs.Panel>
-            <Tabs.Panel value={ TYPE_TABS.REFUND_PRODUCTS }><TableSoldProducts productList={data?.products} isLoading={isFetching}/></Tabs.Panel>
-            <Tabs.Panel value={ TYPE_TABS.PAYMENTS }><RefundPaymentsList refundData={data} isFetching={isFetching}/></Tabs.Panel>
+            <Tabs.Panel value={TYPE_TABS.MAIN}><MainRefundTab refundData={data} isFetching={isFetching}/></Tabs.Panel>
+            <Tabs.Panel value={TYPE_TABS.REFUND_PRODUCTS}><TableSoldProducts productList={data?.products}
+                                                                             isLoading={isFetching}/></Tabs.Panel>
+            <Tabs.Panel value={TYPE_TABS.PAYMENTS}><RefundPaymentsList refundData={data}
+                                                                       isFetching={isFetching}/></Tabs.Panel>
         </Tabs>
     );
 
