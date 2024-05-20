@@ -5,11 +5,10 @@ import { useStyles } from 'features/sales-details/ui/styles';
 import { useLingui } from '@lingui/react';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { queryParamsNames } from 'app/config/api-constants';
-import { useGetSaleByIdQuery } from '../../../entities/sales/api/api';
-import { SalesDetailsCommon } from 'features/sales-details-common';
 import {MainRefundTab} from "./tabs/main-refund-tab";
 import {useGetRefundByIdQuery} from "../../../entities/refunds/api/api";
-import {typeRefund} from "../../../entities/refunds/model/types";
+import {RefundPaymentsList} from "./tabs/payments-refund-tab";
+import {TableSoldProducts} from "./tabs/products-refund-tab/ui/table/table-sold-products";
 
 const enum TYPE_TABS {
     MAIN = 'main',
@@ -60,8 +59,8 @@ const RefundsDetailsTabs: React.FC<{ refundId: string }> = ({ refundId }) => {
                 <Tabs.Tab value={ TYPE_TABS.PAYMENTS }>{ i18n._(t`Payments`) }</Tabs.Tab>
             </Tabs.List>
             <Tabs.Panel value={ TYPE_TABS.MAIN }><MainRefundTab refundData={data} isFetching={isFetching}/></Tabs.Panel>
-            <Tabs.Panel value={ TYPE_TABS.REFUND_PRODUCTS }>refund products</Tabs.Panel>
-            <Tabs.Panel value={ TYPE_TABS.PAYMENTS }>refund products</Tabs.Panel>
+            <Tabs.Panel value={ TYPE_TABS.REFUND_PRODUCTS }><TableSoldProducts productList={data?.products} isLoading={isFetching}/></Tabs.Panel>
+            <Tabs.Panel value={ TYPE_TABS.PAYMENTS }><RefundPaymentsList refundData={data} isFetching={isFetching}/></Tabs.Panel>
         </Tabs>
     );
 
