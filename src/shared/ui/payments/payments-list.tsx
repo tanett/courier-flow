@@ -1,12 +1,10 @@
 import React from 'react';
+import { Flex, Text } from '@mantine/core';
+import { useStyles } from './styles';
 import { typeCheckedShortSalesExtended } from 'features/sales-list/types/types';
-import { Box, Flex, Text } from '@mantine/core';
-import { BanknotesIcon, CreditCardIcon, CurrencyDollarIcon, QrCodeIcon } from '@heroicons/react/24/outline';
-import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import { useStyles } from 'shared/ui/payments/styles';
-import { useLingui } from '@lingui/react';
-import { TransferIconOutline } from 'shared/ui/svg-custom-icons/transfer-icon-outline/transfer-icon-outline';
 import PaymentType from 'shared/ui/payment-type/payment-type';
+import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
+import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
 
 const PaymentsList: React.FC<{ sale: typeCheckedShortSalesExtended }> = ({ sale }) => {
 
@@ -16,11 +14,7 @@ const PaymentsList: React.FC<{ sale: typeCheckedShortSalesExtended }> = ({ sale 
             <PaymentType sale={ sale}/>
             { sale.payments.map((payment, index) => {
                 return (<Flex key={ index } className={ classes.flexRow }>
-                    { payment.method === 'CASH' && <BanknotesIcon className={ classes.iconContainer }/> }
-                    { payment.method === 'QR' && <QrCodeIcon className={ classes.iconContainer }/> }
-                    { payment.method === 'CARD' && <CreditCardIcon className={ classes.iconContainer }/> }
-                    { payment.method === 'TRANSFER' && <Box  className={ classes.iconContainer }><TransferIconOutline/></Box> }
-                    { payment.method === 'OTHER' && <CurrencyDollarIcon className={ classes.iconContainer }/> }
+                    {<PaymentMethodIcon method={payment.method}/> }
                     <Text>{ numberCurrencyFormat(payment.amount) }</Text>
                 </Flex>);
             }) }

@@ -14,6 +14,7 @@ export type typeSale = {
     terminalId: string
     terminalSerialNumber: string
     terminalContractCode: string
+    terminalLabel: string
     advanceId: string
     latitude: number
     longitude: number
@@ -60,7 +61,7 @@ export type typePayment = {
     amount: number
     createdOnTerminalAt: string
     cashDeskId: string
-    method: 'CASH' | 'CARD' |  'QR' | 'TRANSFER' | 'OTHER'
+    method: 'CASH' | 'CARD' | 'QR' | 'TRANSFER' | 'OTHER'
     rrn: string
     stan: string
     transactionId: string
@@ -75,6 +76,8 @@ export type typeSaleShort = Omit<typeSale, 'storeAddress'
     | 'fiscalSign'
     | 'fiscalModuleId'
     | 'isTest'
-    | 'products'>
+    | 'products'
+    | 'terminalLabel'
+>
 
-export type typeSaleShortExtended = typeSaleShort & {refundsCount: number}
+export type typeSaleShortExtended = typeSaleShort & { refundsCount: number }

@@ -9,6 +9,7 @@ import { useGetSaleByIdQuery } from '../../../entities/sales/api/api';
 import { SalesDetailsCommon } from 'features/sales-details-common';
 import { SalesDetailsSoldProductsList } from 'features/sales-details-sold-products-list';
 import { SalesDetailsPaymentsList } from 'features/sales-details-payments-list';
+import { PrintReceiptButton } from 'features/print-receipt-button';
 
 const enum TYPE_TABS {
     COMMON = 'common',
@@ -53,6 +54,7 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
 
             }}
         >
+            <div className={classes.tabsButtonsBlock}><PrintReceiptButton id={'print-receipt'}/></div>
             <Tabs.List>
                 <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`Main`) }</Tabs.Tab>
                 <Tabs.Tab value={ TYPE_TABS.SOLD_PRODUCTS }>{ i18n._(t`Sold products`) }</Tabs.Tab>
@@ -61,7 +63,6 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
             <Tabs.Panel value={ TYPE_TABS.COMMON }><SalesDetailsCommon saleData={ saleData } isFetching={isFetching}/></Tabs.Panel>
             <Tabs.Panel value={ TYPE_TABS.SOLD_PRODUCTS }><SalesDetailsSoldProductsList saleData={ saleData } isFetching={isFetching}/></Tabs.Panel>
             <Tabs.Panel value={ TYPE_TABS.PAYMENTS }><SalesDetailsPaymentsList saleData={ saleData } isFetching={isFetching}/></Tabs.Panel>
-            {/* <Tabs.Panel value={ TYPE_TABS.USERS }><SalesDetailsPaymentsList storeId={ storeId }/></Tabs.Panel> */}
         </Tabs>
     );
 

@@ -8,6 +8,8 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import dayjs from 'dayjs';
 import { typePaymentsTable } from './types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
+import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
+import { getTranslatedVariantForPaymentsMethod } from '../../../../entities/sales/helpers/get-translated-variant-for-payments-method';
 
 
 export const TablePayments: React.FC<typePaymentsTable> = ({
@@ -70,7 +72,7 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
                                         <Table.Tr key={ item.id } >
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ data(item.createdOnTerminalAt) }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ numberCurrencyFormat(item.amount)  }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.method }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}><Flex gap={10} align={'center'}> <PaymentMethodIcon method={item.method}/>  { getTranslatedVariantForPaymentsMethod(item.method)}</Flex></Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.rrn }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.stan}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item.transactionId}</Box></Table.Td>
