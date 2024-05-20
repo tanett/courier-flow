@@ -2,7 +2,7 @@ import { createStyles, rem } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
     container: {
-        alignSelf: 'flex-start',
+
         minHeight: rem(80),
         flexDirection: 'column',
         paddingTop: rem(16),
@@ -28,5 +28,6 @@ export const useStyles = createStyles((theme) => ({
         lineHeight: rem(19),
         letterSpacing: rem(0.3),
         wordBreak: 'break-all',
+
     },
 }));

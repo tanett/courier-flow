@@ -52,7 +52,7 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
             }}
         >
             <Tabs.List>
-                <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`Store`) }</Tabs.Tab>
+                <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`Main`) }</Tabs.Tab>
                 <Tabs.Tab value={ TYPE_TABS.SOLD_PRODUCTS }>{ i18n._(t`Sold products`) }</Tabs.Tab>
                 <Tabs.Tab value={ TYPE_TABS.PAYMENTS }>{ i18n._(t`Payments`) }</Tabs.Tab>
             </Tabs.List>

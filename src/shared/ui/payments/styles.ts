@@ -2,17 +2,25 @@ import { createStyles, rem } from '@mantine/core';
 
 
 export const useStyles = createStyles((theme) => ({
+        iconContainer: {
+            width: '16px',
+            height: '16px',
+            color: theme.colors.gray[5],
+        },
+        flexRow: {
+            flexWrap: 'nowrap',
+            gap: rem(6),
+            alignItems: 'center',
+            lineHeight: rem(20),
+        },
     btnLink: {
         fontWeight: 500,
-        color: theme.colors.primary[5],
         fontSize: theme.fontSizes.md,
         '&.mantine-UnstyledButton-root': {
             padding: '0px 2px',
             minWidth: 'auto',
-            height: 'auto',
+            height: '22px',
         },
-        '&:hover': {color: theme.colors.primary[7],},
-        '& .mantine-Text-root': {whiteSpace: 'pre-wrap',   wordBreak: 'break-all',},
     },
 
     })

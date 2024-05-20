@@ -11,7 +11,7 @@ import { typeSalesListTable } from 'features/sales-list/types/types';
 import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-header';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import dayjs from 'dayjs';
-import PaymentsList from 'features/sales-list/ui/payments/payments-list';
+import PaymentsList from 'shared/ui/payments/payments-list';
 import { Receipt1IconOutline } from 'shared/ui/svg-custom-icons/receipt-1-icon-outline/receipt-1-icon-outline';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { SalesListFilter } from 'features/sales-list-filter';
