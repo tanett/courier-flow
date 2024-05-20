@@ -17,9 +17,9 @@ export interface typeSearchFilterStore {
     createdAtFrom?: string,
     createdAtTo?: string,
     types?: typeStoreType[],
-    _or_?: string[]
+    _or_?:  Omit<typeSearchFilterStore, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
-    _and_?: string[]
+    _and_?: Omit<typeSearchFilterStore, '_or_' | '_not_' | '_and_'>[]
 }
 
 export type typeSearchStoreSortingNames = 'NAME';

@@ -32,8 +32,8 @@ import {
     readTerminalPermissions,
     readUserPermissions
 } from '../../../app/config/permissions-config';
-import { CashDeskIconSolid } from 'shared/ui/cashDesk-icon-solid/cash-desk-icon-solid';
-import { CashDeskIconOutline } from 'shared/ui/cashDesk-icon-outline/cash-desk-icon-outline';
+import { CashDeskIconSolid } from 'shared/ui/svg-custom-icons/cashDesk-icon-solid/cash-desk-icon-solid';
+import { CashDeskIconOutline } from 'shared/ui/svg-custom-icons/cashDesk-icon-outline/cash-desk-icon-outline';
 
 
 export const mainMenuConfig: typeMainMenuItemConfig[] = [
@@ -114,7 +114,7 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
     /* {
         id: pathNames.supportCenters,
         name: <Trans>CTS</Trans>,
-        icon: <LifebuoyIconOutline/>,
+        svg-custom-icons: <LifebuoyIconOutline/>,
         activeIcon: <LifebuoyIconSolid/>,
         path: routerPaths.supportCenters,
         allowPermissions: ,

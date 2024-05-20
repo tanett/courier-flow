@@ -9,12 +9,11 @@ export const SalesListTableHeader: React.FC<typeSalesListTableHeader> = ({
     onCheckedAllHandler,
     indeterminate,
     allChecked,
-   isAllowedExport,
+    isAllowedExport,
     headerActions,
 }) => {
 
     const theme = useMantineTheme();
-
 
 
     return (
@@ -29,7 +28,7 @@ export const SalesListTableHeader: React.FC<typeSalesListTableHeader> = ({
                 />
             </Table.Th>
             { (indeterminate || allChecked)
-                ? <Table.Th colSpan={isAllowedExport ? 10 : 9 }>
+                ? <Table.Th colSpan={ isAllowedExport ? 9 : 8 }>
                     <Flex sx={ { flexWrap: 'nowrap' } }>
                         { headerActions.map((actions, index) => (
                             <React.Fragment key={ actions.id }>
@@ -51,12 +50,12 @@ export const SalesListTableHeader: React.FC<typeSalesListTableHeader> = ({
                                         borderTopRightRadius: rem(4),
                                         textWrap: 'nowrap',
                                         borderBottom: '1px solid transparent',
-                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1) },
+                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[5], 0.1) },
                                     } }
                                 >
                                     { actions.label }
                                 </UnstyledButton>
-                                { index < headerActions.length - 1 && <Divider orientation={'vertical'} sx={{ borderColor: theme.colors.borderColor[ 0 ] }}/> }
+                                { index < headerActions.length - 1 && <Divider orientation={ 'vertical' } sx={ { borderColor: theme.colors.borderColor[0] } }/> }
                             </React.Fragment>
 
                         )) }
@@ -65,10 +64,13 @@ export const SalesListTableHeader: React.FC<typeSalesListTableHeader> = ({
 
                 : <>
                     <Table.Th>
-                        <Trans>Date & time </Trans>
+                        <Box sx={ { lineHeight: '16px' } }>
+                            <Trans>Date & time </Trans>
+                        </Box>
+
                     </Table.Th>
-                    <Table.Th>
-                        <Box sx={{ lineHeight: '16px' }}>
+                    <Table.Th >
+                        <Box sx={ { lineHeight: '16px', textAlign: 'left' } }>
                             <Trans>Receipt number</Trans>
                         </Box>
                     </Table.Th>
@@ -76,24 +78,23 @@ export const SalesListTableHeader: React.FC<typeSalesListTableHeader> = ({
                         <Trans>Store</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Box sx={{ lineHeight: '16px' }}>
-                            <Trans>Receipt position</Trans>
+                        <Box sx={ { lineHeight: '16px' } }>
+                            <Trans>Employer</Trans>
                         </Box>
                     </Table.Th>
                     <Table.Th>
-                        <Trans>Total cost</Trans>
+                        <Box sx={ { lineHeight: '16px' } }>
+                            <Trans>Total cost</Trans>
+                        </Box>
                     </Table.Th>
                     <Table.Th>
                         <Trans>Payment</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Trans>Total price</Trans>
-                    </Table.Th>
-                    <Table.Th>
                         <Trans>Refund</Trans>
                     </Table.Th>
-                    { isAllowedExport&& <Table.Th>
-                        <Trans>Actions</Trans>
+                    { <Table.Th>
+                        <Trans>Actions</Trans> {/* // todo fix it */ }
                     </Table.Th> }</> }
         </Table.Header>
     );

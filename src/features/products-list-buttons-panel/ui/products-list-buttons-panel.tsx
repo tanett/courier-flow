@@ -124,7 +124,7 @@ export const ProductsListButtonsPanel: React.FC = () => {
                 />
                 {/* <ButtonPanelMenu.MenuItem */}
                 {/*     label={i18n._(t`Archive`)} */}
-                {/*     icon={ <ArchiveBoxXMarkIcon className={cn([ classes.menuButtonIcon, classes.colorPrimary5 ]) } />} */}
+                {/*     svg-custom-icons={ <ArchiveBoxXMarkIcon className={cn([ classes.menuButtonIcon, classes.colorPrimary5 ]) } />} */}
                 {/*     onClick={onArchive} */}
                 {/*     primaryColor={true} */}
                 {/* /> */}

@@ -6,12 +6,15 @@ import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, rem, useMantineTheme, Text } from '@mantine/core';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
-import { StoresListFilter } from 'features/stores-list-filter';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { typeSalesListTable } from 'features/sales-list/types/types';
 import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-header';
-import { IconReceipt } from '@tabler/icons-react';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
+import dayjs from 'dayjs';
+import PaymentsList from 'shared/ui/payments/payments-list';
+import { Receipt1IconOutline } from 'shared/ui/svg-custom-icons/receipt-1-icon-outline/receipt-1-icon-outline';
+import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
+import { SalesListFilter } from 'features/sales-list-filter';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
     salesList,
@@ -49,10 +52,15 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
         handlersListState.setItemProp(index, 'checked', event.currentTarget.checked);
 
     };
+
+    const onRefundCounterClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.stopPropagation()
+        console.log('add go to refunds');
+    }
     return (<>
         <FilterPanel
-            withFind={ { placeholder: i18n._(t`Type part of store name`) } }
-            filterComponent={ <StoresListFilter/> }
+            withFind={ { placeholder: i18n._(t`Search by receipt number or total cost`) } }
+            filterComponent={ <SalesListFilter/> }
         />
 
         { isLoading
@@ -71,12 +79,24 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
 
                         const actions: typeAction[] = [
                             {
-                                label: i18n._(t`Selected export`),
-                                handler: () => console.log('click export in row'),
-                                icon: <IconReceipt color={ theme.colors.primary[5] } width={ 22 }/>
+                                label: i18n._(t`Print a check for this sale`),
+                                handler: () => console.log('click print check'),
+                                icon: <Receipt1IconOutline color={theme.colors.primary[5] }/>
                             },
 
                         ];
+                        const data = (date: string) => {
+                            const dateStr = dayjs(date).format('DD.MM.YYYY');
+                            const timeStr = dayjs(date).format('HH:mm:ss');
+                            return (<Box>
+                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr }</Text>
+                                <Text sx={ {
+                                    color: theme.colors.gray[5],
+                                    lineHeight: rem(16)
+                                } }>{ timeStr }</Text>
+
+                            </Box>);
+                        };
 
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsSalePage(item.id, item.publicId) }>
@@ -88,16 +108,17 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                               onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
                                 </td>
-                                <Table.Td><Box sx={ { minWidth: rem(155) } }>{ item.createdAt }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(95) } }>{ item.receiptNumber }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(155) } }>{ data(item.createdAt) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(65) } }>{ item.receiptNumber }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.productsCount }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.soldByName }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.totalCost) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>payments</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ 'total-price' }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ 'refund' }</Box></Table.Td>
-
-                                { isAllowedExport && <Table.TdActions actions={ actions } align={ 'center' }/> }
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item }/></Box></Table.Td>
+                                <Table.Td><Box sx={ {
+                                    minWidth: rem(55),
+                                    textAlign: 'center'
+                                } }>{ item.refundsCount ? <ButtonAsLink onClick={onRefundCounterClick} label={item.refundsCount.toString()}/> : '-' }</Box></Table.Td>
+                                <Table.TdActions actions={ actions } align={ 'center' }/>
                             </Table.Tr>
                         );
 

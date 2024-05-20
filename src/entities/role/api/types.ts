@@ -12,8 +12,9 @@ export type typeSearchRolesFilter = {
         codes?: string[],
         accessScopes?: accessScope[],
         merchantIds?: string[],
-        _or_?: string[],
-        _not_?: string,
+        _or_?:  Omit<typeSearchRolesFilter, '_or_' | '_not_' >[]
+        _not_?: string
+
     }
 
 export type typeSearchRolesSortingNames = 'NAME'

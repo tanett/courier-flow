@@ -71,6 +71,7 @@ export enum API_URLS {
     CATEGORIES_DELETE = '/api/v1/product-categories',
 
     SALES_SHORT_SEARCH = '/api/v1/sales/search/short',
+    SALES_SHORT_SEARCH_EXTENDED = '/api/v1/sales/extended-search',
     SALES_GET = '/api/v1/sales/{id}',
     SALES_SHORT_GET = '/api/v1/sales/short/{id}',
 

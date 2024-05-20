@@ -48,6 +48,7 @@ import { LazyProductsDetailsPage } from 'pages/products-details-page';
 import { LazySalesPage } from 'pages/sales-page';
 import {LazyRefundsPage} from "../../pages/refunds-page";
 import {LazyRefundDetailsPage} from "../../pages/refund-detais-page";
+import { LazySalesDetailsPage } from 'pages/sales-details-page';
 
 export const router = createBrowserRouter([
 
@@ -115,6 +116,10 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.sales,
                 element: <WithPermissionsRouts permissions={readSalesPermissions}><LazySalesPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.sales_details,
+                element: <WithPermissionsRouts permissions={readSalesPermissions}><LazySalesDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.refunds,

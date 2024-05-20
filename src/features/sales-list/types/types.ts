@@ -1,15 +1,15 @@
 import { typeHeadersAction, typeTablePagination } from 'shared/ui/table/types/type';
-import { typeSaleShort } from '../../../entities/sales/model/types';
+import { typeSaleShortExtended } from '../../../entities/sales/model/types';
 import React from 'react';
 import type { UseListStateHandlers } from '@mantine/hooks';
 
 export type typeSalesListTable = {
-    goToDetailsSalePage: (id: string, name: string) => void
-    salesList: typeCheckedShortSales[] | undefined
+    goToDetailsSalePage: (id: string, publicId: string) => void
+    salesList: typeCheckedShortSalesExtended[] | undefined
     pagination: typeTablePagination | undefined,
     isLoading: boolean
     headerActions: typeHeadersAction[]
-    handlersListState: UseListStateHandlers<typeCheckedShortSales>
+    handlersListState: UseListStateHandlers<typeCheckedShortSalesExtended>
     isAllowedExport: boolean | null,
 }
 
@@ -24,4 +24,4 @@ export type typeSalesListTableHeader = {
 }
 
 
-export type typeCheckedShortSales = typeSaleShort & {checked: boolean}
+export type typeCheckedShortSalesExtended = typeSaleShortExtended & {checked: boolean}
