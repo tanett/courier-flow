@@ -118,7 +118,7 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                                content={ saleData?.fiscalModuleId || '-' }/>
                 <InfoCardSmall label={ i18n._(t`Terminal label`) }
                                alignSelfStretch={ true }
-                               content={ saleData?.terminalContractCode || '-' }/> {/* // todo terminal label ! */ }
+                               content={ '-' }/> {/* // todo terminal label ! */ }
                 <div/>
                 <InfoCardSmall label={ i18n._(t`Cashier app version`) }
                                content={ saleData?.cashAppVersion || '-' } withBottomBorder={ false }/>
@@ -149,7 +149,7 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
 
                 <InfoCardSmall label={ i18n._(t`Order`) }
                                alignSelfStretch={ true }
-                               content={ saleData?.orderId || '-' }/>
+                               content={ saleData?.orderId ?  <ButtonAsLink onClick={ ()=>console.log('go to order') } label={saleData?.orderId}/> : '-' }/>
                 <InfoCardSmall label={ i18n._(t`Payment type`) }
                                alignSelfStretch={ true }
                                content={ saleData? <PaymentType sale={ saleData}/> : '-' }/>

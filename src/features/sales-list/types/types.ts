@@ -11,6 +11,7 @@ export type typeSalesListTable = {
     headerActions: typeHeadersAction[]
     handlersListState: UseListStateHandlers<typeCheckedShortSalesExtended>
     isAllowedExport: boolean | null,
+    onOpenReceipt: (id: string) => void,
 }
 
 
