@@ -45,9 +45,10 @@ export type typeSoldProduct = {
     unit: string
     barcodes: string[]
     markedLabels: string[]
-    priceInStore: number
+    unitPrice: number
     quantity: number
     discountAmount: number
+    discountPercent: number
     totalCost: number
     vatPercent: number
     vatAmount: number

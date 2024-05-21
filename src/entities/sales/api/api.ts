@@ -4,6 +4,9 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSale, typeSaleShort, typeSaleShortExtended } from '../model/types';
 import { tagTypesShortSalesList, typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
+import { typeExport } from 'entities/exports/api/types';
+import { typeSearchFilterProductExtended } from 'entities/products/api/types';
+import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 
 
 export const salesApi = baseApi.injectEndpoints({
@@ -65,7 +68,22 @@ export const salesApi = baseApi.injectEndpoints({
             ),
         }),
 
+        // export sales
+        exportSales: builder.query<typeExport, { filter: typeSearchFilterSales }>({
+            query: (data) => (
+                {
+                    url: API_URLS.SALES_EXPORT,
+                    method: 'POST',
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
 
+                    },
+                    body: data,
+                    cache: 'no-cache',
+                }
+            ),
+        }),
     }),
 });
 
@@ -75,5 +93,6 @@ export const {
     useSearchSalesShortExtendedQuery,
     useLazySearchSalesShortExtendedQuery,
     useGetSaleByIdShortQuery,
-    useGetSaleByIdQuery
+    useGetSaleByIdQuery,
+    useLazyExportSalesQuery,
 } = salesApi;

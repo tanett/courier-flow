@@ -13,6 +13,7 @@ import { readSalesPermissions } from 'app/config/permissions-config';
 import { SidebarTitle } from 'shared/ui/sidebar-title';
 import { SidePanel } from 'shared/ui/side-panel';
 import { ExportSalesList } from 'features/export-sales-list';
+import { ExportSalesDialog } from 'features/sales-list-buttons-panel/ui/dialogs/export-sales-dialog';
 
 
 export const SalesListButtonsPanel: React.FC = () => {
@@ -34,7 +35,7 @@ export const SalesListButtonsPanel: React.FC = () => {
 
         setModalContent({
             title: i18n._(t`Sales export`),
-            content: <div/>,
+            content: <ExportSalesDialog/>,
         });
 
     };
@@ -49,14 +50,14 @@ export const SalesListButtonsPanel: React.FC = () => {
 
     return (<>
         <Flex className={classes.wrapper}>
-            <Button
+            {isAllowExportSales && <Button
                 variant="outline"
                 color="gray"
-                leftIcon={<ArrowUpTrayIcon className={classes.menuButtonIcon}/>}
-                onClick={onExport}
+                leftIcon={ <ArrowUpTrayIcon className={ classes.menuButtonIcon }/> }
+                onClick={ onExport }
             >
                 <Trans>Export</Trans>
-            </Button>
+            </Button> }
 
             <ButtonPanelMenu>
                 <ButtonPanelMenu.MenuItem

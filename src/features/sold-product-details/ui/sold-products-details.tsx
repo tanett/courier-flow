@@ -67,27 +67,27 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
                                    content={ product ?  product.quantity : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Price for unit`) }
                                    alignSelfStretch={ true }
-                                   content={ product? numberCurrencyFormat(product.priceInStore) : '-' }/>
+                                   content={ product?.unitPrice ? numberCurrencyFormat(product.unitPrice) : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Total price`) }
                                    alignSelfStretch={ true }
-                                   content={ product? numberCurrencyFormat(product.quantity *  product.priceInStore) : '-' }/>
+                                   content={ (product?.quantity && product?.unitPrice) ? numberCurrencyFormat(product.quantity *  product.unitPrice) : '-' }/>
                     <div/>
                     <InfoCardSmall label={ i18n._(t`Discount %/sum`) }
                     alignSelfStretch={ true }
-                    content={ product ? <Text>{'--??'}% / {numberCurrencyFormat(product.discountAmount)}</Text>  : '-' }/>
+                    content={ product ? <Text>{product?.discountPercent && numberCurrencyFormat(product.discountPercent)}% / {product?.discountAmount && numberCurrencyFormat(product.discountAmount)}</Text>  : '-' }/>
                     <InfoCardSmall label={ i18n._(t`VAT %/sum`) }
                                    alignSelfStretch={ true }
-                                   content={ product? <Text>{numberCurrencyFormat(product.vatPercent)}% / {numberCurrencyFormat(product.vatAmount)}</Text>: '-' }/>
+                                   content={ product? <Text>{product?.vatPercent && numberCurrencyFormat(product.vatPercent)}% / {product?.vatAmount && numberCurrencyFormat(product.vatAmount)}</Text>: '-' }/>
                     <InfoCardSmall label={ i18n._(t`Total cost`) }
                                    alignSelfStretch={ true }
-                                   content={ product? numberCurrencyFormat(product.totalCost) : '-' }/>
+                                   content={ product?.totalCost ? numberCurrencyFormat(product.totalCost) : '-' }/>
                     <div/>
 
                 </SimpleGrid>
                 <InfoCardSmall label={ i18n._(t`Marked labels`) }
                                alignSelfStretch={ true }
                                withBottomBorder={false}
-                               content={ product ?  product.markedLabels.join(' , ') : '-' }/>
+                               content={ product?.markedLabels ?  product.markedLabels.join(' , ') : '-' }/>
 
             </Box>
 

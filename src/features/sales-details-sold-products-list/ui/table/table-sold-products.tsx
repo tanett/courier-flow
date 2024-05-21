@@ -63,11 +63,11 @@ export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
                                     return (
                                         <Table.Tr key={ index} >
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}><ButtonAsLink onClick={(e)=>onProductNameClick(e, item.name)} label={ item.name }/></Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.quantity }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.priceInStore)  }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.vatPercent }% / {numberCurrencyFormat(item.vatAmount)}</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ '--??' }% / {numberCurrencyFormat(item.discountAmount)}</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.totalCost)}</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item?.quantity || '-' }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item?.unitPrice  ? numberCurrencyFormat(item?.unitPrice ) : '-' }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item?.vatPercent || '-' }% / {numberCurrencyFormat(item.vatAmount)}</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ numberCurrencyFormat(item?.discountPercent || 0) }% / {numberCurrencyFormat(item.discountAmount)}</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.totalCost )}</Box></Table.Td>
                                         </Table.Tr>
                                     );
 
