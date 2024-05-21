@@ -2,11 +2,9 @@ import { useGetSaleByIdQuery } from '../../../entities/sales/api/api';
 import { useEffect, useState } from 'react';
 import { typeSoldProduct } from '../../../entities/sales/model/types';
 import { typeResponseError } from 'app/api/types';
-import { useNavigate } from 'react-router-dom';
 
 export const useGetData = (id: string, productName: string) => {
 
-    const navigate = useNavigate();
     const {
         data: saleData,
         isFetching,
