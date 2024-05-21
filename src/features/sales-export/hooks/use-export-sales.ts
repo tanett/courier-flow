@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useAppDispatchT } from '../../../app/state';
+import { useAppDispatchT } from 'app/state';
 import { useLazyGetExportByIdQuery } from '../../../entities/exports/api/api';
 import { exportFileStatuses } from '../../../entities/exports/api/types';
-import { errorHandler } from '../../../app/utils/errorHandler';
-import { typeResponseError } from '../../../app/api/types';
-import { REFETCH_INTERVAL } from '../../../app/config/api-constants';
+import { errorHandler } from 'app/utils/errorHandler';
+import { typeResponseError } from 'app/api/types';
+import { REFETCH_INTERVAL } from 'app/config/api-constants';
 import { useLazyExportSalesQuery } from '../../../entities/sales/api/api';
 import { typeSearchFilterSales } from '../../../entities/sales/api/types';
 import { getSalesFiltersFromUrl } from '../../../entities/sales/helpers/get-sales-filters-from-url';

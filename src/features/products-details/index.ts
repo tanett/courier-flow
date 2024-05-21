@@ -1,1 +1,1 @@
-export * from './ui/product-details';
+export * from './ui/products-details-tabs';

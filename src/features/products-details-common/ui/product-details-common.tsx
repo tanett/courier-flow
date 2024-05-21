@@ -5,21 +5,16 @@ import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BookmarkIcon, FolderIcon, ReceiptPercentIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { useGetProductByIdQuery } from '../../../entities/products/api/api';
 import { BarcodeScanIconOutline } from 'shared/ui/svg-custom-icons/barcodescan-icon-outline/barcode-scan-icon-outline';
-import { getValueFromAdditionalField } from 'features/products-details/helpers/get-value-from-additional-field';
+import { getValueFromAdditionalField } from 'features/products-details-common/helpers/get-value-from-additional-field';
+import { typeProduct } from '../../../entities/products/model/state-slice';
 
 
-export const ProductDetails: React.FC<{ productId: string }> = ({ productId }) => {
+export const ProductDetailsCommon: React.FC<{ productData: typeProduct | undefined, isFetching: boolean }> = ({ productData, isFetching }) => {
 
     const theme = useMantineTheme();
 
     const { i18n } = useLingui();
-
-    const {
-        data: productData,
-        isFetching,
-    } = useGetProductByIdQuery(productId);
 
     const vat = productData ? (productData.vat * 100).toFixed(2) + ' %' : '';
 

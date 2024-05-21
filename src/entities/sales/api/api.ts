@@ -5,7 +5,6 @@ import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-he
 import { typeSale, typeSaleShort, typeSaleShortExtended } from '../model/types';
 import { tagTypesShortSalesList, typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
 import { typeExport } from 'entities/exports/api/types';
-import { typeSearchFilterProductExtended } from 'entities/products/api/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 
 

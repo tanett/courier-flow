@@ -4,28 +4,26 @@ import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { EnvelopeIcon, MapIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline';
-import { useGetStoreByIdQuery } from '../../../entities/stores/api/api';
 import { getTransLabelForStoreType } from '../../../entities/stores/constants/store-type-list';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
+import { typeStore } from '../../../entities/stores/model/types';
 
 
-export const StoreDetails: React.FC<{ storeId: string }> = ({ storeId }) => {
+export const StoreDetailsCommon: React.FC<{ storeData: typeStore | undefined, isFetching: boolean }> = ({
+    storeData,
+    isFetching
+}) => {
 
     const theme = useMantineTheme();
 
     const { i18n } = useLingui();
 
-    const {
-        data: storeData,
-        isFetching,
-    } = useGetStoreByIdQuery(storeId);
-
     return (
         <>
             <SimpleGrid
                 sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+                    border: `1px solid ${ theme.colors.borderColor[0] }`,
                     borderTopRightRadius: '8px',
                     borderBottomRightRadius: '8px',
                     borderBottomLeftRadius: '8px',
@@ -62,21 +60,21 @@ export const StoreDetails: React.FC<{ storeId: string }> = ({ storeId }) => {
                     ] }>
 
                     <InfoCardSmall label={ i18n._(t`Phone number`) }
-                        iconLabel={ <PhoneIcon/> }
-                        content={ storeData?.phoneNumber ? formatIncompletePhoneNumber(storeData.phoneNumber) : '-' }/>
+                                   iconLabel={ <PhoneIcon/> }
+                                   content={ storeData?.phoneNumber ? formatIncompletePhoneNumber(storeData.phoneNumber) : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Email`) }
-                        iconLabel={ <EnvelopeIcon/> }
-                        content={ storeData?.email || '-' }/>
+                                   iconLabel={ <EnvelopeIcon/> }
+                                   content={ storeData?.email || '-' }/>
                 </SimpleGrid>
                 <InfoCardSmall label={ i18n._(t`Description`) } content={ storeData?.description || '-' } withBottomBorder={ false }/>
                 <Box>
                     <InfoCardSmall label={ i18n._(t`Locality`) }
-                        iconLabel={ <MapIcon/> }
-                        content={ storeData?.locality || '-' }/>
+                                   iconLabel={ <MapIcon/> }
+                                   content={ storeData?.locality || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Store address`) }
-                        content={ storeData?.address || '-' }
-                        iconLabel={ <MapPinIcon/> }
-                        withBottomBorder={ false }/>
+                                   content={ storeData?.address || '-' }
+                                   iconLabel={ <MapPinIcon/> }
+                                   withBottomBorder={ false }/>
 
                 </Box>
 

@@ -2,7 +2,7 @@ import useGetUserDataByIdFromUrl from '../../../entities/users/hooks/use-get-use
 import { useEffect, useState } from 'react';
 import { typeStore } from '../../../entities/stores/model/types';
 import { useLazySearchStoreQuery } from '../../../entities/stores/api/api';
-import { sortDirection } from 'app/api/types';
+import { sortDirection, typeResponseError } from 'app/api/types';
 import { useLocation } from 'react-router-dom';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { typeTablePagination } from 'shared/ui/table/types/type';
@@ -16,6 +16,7 @@ export const useGetUserFromUrlWithStoresData = () => {
     const {
         userData,
         isUserFetching,
+        error
     } = useGetUserDataByIdFromUrl();
 
     const [ getStoresList, { isFetching: isStoresFetching } ] = useLazySearchStoreQuery();
@@ -70,12 +71,26 @@ export const useGetUserFromUrlWithStoresData = () => {
 
     }, [ userData, location ]);
 
+    const [ isNotFound, setIsNotFound ] = useState(false);
+
+
+    useEffect(() => {
+        if (error) {
+            if ((error as typeResponseError).status === 404) {
+                setIsNotFound(true);
+            }
+        }
+
+    }, [ error ]);
+
     return {
         userData,
         isUserFetching,
         storesList,
         isStoresFetching,
         pagination,
+        isNotFound
+
     };
 
 };

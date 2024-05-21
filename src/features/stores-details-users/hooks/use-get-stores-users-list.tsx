@@ -16,7 +16,7 @@ export function useGetStoresUsersList() {
 
     const { id } = useParams();
 
-    const [ getUserList, { isFetching } ] = useLazySearchUserQuery();
+    const [ getUserList, { isFetching, error } ] = useLazySearchUserQuery();
     const [ refetch, setRefetch ] = useState(true);
     const [ userList, setUserList ] = useState<typeUser[]>();
     const [ pagination, setPagination ] = useState<typeTablePagination | undefined>(undefined);
@@ -107,6 +107,7 @@ export function useGetStoresUsersList() {
     return {
         userList,
         isLoading: isFetching,
+        error,
         pagination,
         setRefetch,
     };

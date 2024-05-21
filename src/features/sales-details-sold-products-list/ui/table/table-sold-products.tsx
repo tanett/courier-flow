@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useMantineTheme } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
@@ -8,8 +8,6 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { typeSoldProductsTable } from 'features/sales-details-sold-products-list/ui/table/types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
-import { useNavigate } from 'react-router-dom';
-
 
 export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
     productList,
@@ -18,9 +16,6 @@ export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
 }) => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
-    const navigate = useNavigate()
 
     const onProductNameClick = (e:  React.MouseEvent<HTMLButtonElement, MouseEvent>, soldProductName: string)=>{
         e.stopPropagation();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs } from '@mantine/core';
+import { Flex, Tabs } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from 'features/sales-details/ui/styles';
 import { useLingui } from '@lingui/react';
@@ -10,6 +10,7 @@ import { SalesDetailsCommon } from 'features/sales-details-common';
 import { SalesDetailsSoldProductsList } from 'features/sales-details-sold-products-list';
 import { SalesDetailsPaymentsList } from 'features/sales-details-payments-list';
 import { PrintReceiptButton } from 'features/print-receipt-button';
+import { NotFound } from 'shared/ui/not-found/not-found';
 
 export const enum TYPE_TABS {
     COMMON = 'common',
@@ -39,11 +40,14 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
     const {
         data: saleData,
         isFetching,
+        error
     } = useGetSaleByIdQuery(salesId);
 
 
     return (
-        <Tabs
+        error
+        ?   <Flex sx={{height: '80vh', alignItems: 'center'}}><NotFound/></Flex>
+       : <Tabs
             defaultValue={ TYPE_TABS.COMMON }
             className={ classes.tab }
             variant="outline"

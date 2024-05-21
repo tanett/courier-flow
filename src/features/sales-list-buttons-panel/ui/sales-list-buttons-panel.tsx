@@ -7,13 +7,12 @@ import { Modal } from '../../../shared/ui/modal';
 import { i18n } from '@lingui/core';
 import { typeModalContent } from '../types/type';
 import { ButtonPanelMenu } from '../../../shared/ui/button-panel-menu';
-import { useNavigate } from 'react-router-dom';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { readSalesPermissions } from 'app/config/permissions-config';
 import { SidebarTitle } from 'shared/ui/sidebar-title';
 import { SidePanel } from 'shared/ui/side-panel';
 import { ExportSalesList } from 'features/export-sales-list';
-import { ExportSalesDialog } from 'features/sales-list-buttons-panel/ui/dialogs/export-sales-dialog';
+import { ExportSalesDialog } from 'features/sales-export/ui/export-sales-dialog';
 
 
 export const SalesListButtonsPanel: React.FC = () => {
@@ -24,8 +23,6 @@ export const SalesListButtonsPanel: React.FC = () => {
     const [ modalContent, setModalContent ] = useState<null | typeModalContent>(null);
     const [ sidePanelContent, setSidePanelContent ] = useState<null | React.ReactNode>(null);
     const [ sidePanelTitle, setSidePanelTitle ] = useState<null | React.ReactNode>(null);
-
-    const navigate = useNavigate();
 
     const isAllowExportSales = useIsAllowedPermissions(readSalesPermissions);  // todo check it
 

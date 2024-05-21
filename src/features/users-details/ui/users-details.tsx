@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, SimpleGrid, Skeleton, useMantineTheme, Text, rem, Space } from '@mantine/core';
+import { Box, Flex, SimpleGrid, Skeleton, useMantineTheme, Text, rem, Space, Container } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
@@ -11,7 +11,7 @@ import { useGetUserFromUrlWithStoresData } from 'features/users-details/hooks/us
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { routerPaths } from 'app/config/router-paths';
 import { useNavigate } from 'react-router-dom';
-
+import { NotFound } from 'shared/ui/not-found/not-found';
 
 export const UsersDetails: React.FC = () => {
 
@@ -25,12 +25,15 @@ export const UsersDetails: React.FC = () => {
         storesList,
         isStoresFetching,
         pagination,
+        isNotFound
     } = useGetUserFromUrlWithStoresData();
 
     const navigate = useNavigate();
 
     return (
-        <>
+        isNotFound ?
+            <Flex sx={{height: '80vh', alignItems: 'center'}}><NotFound/></Flex>
+       : <>
             <SimpleGrid
                 sx={ {
                     border: `1px solid ${ theme.colors.borderColor[ 0 ] }`,

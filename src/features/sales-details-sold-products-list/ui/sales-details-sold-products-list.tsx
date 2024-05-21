@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Flex, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
-import { useAppDispatchT } from 'app/state';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { typeSale } from 'entities/sales/model/types';
 import { TableSoldProducts } from 'features/sales-details-sold-products-list/ui/table/table-sold-products';
@@ -13,8 +12,6 @@ export const SalesDetailsSoldProductsList: React.FC<{ saleData: typeSale | undef
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
-
-    const dispatchAppT = useAppDispatchT();
 
     const navigate = useNavigate();
 
