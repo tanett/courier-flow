@@ -81,7 +81,12 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                     }
                 ] }>
 
-                    <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> } content={ saleData?.storeName || '-' } withBottomBorder={ false }/>
+                    <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> }
+                                   content={ (saleData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.stores_details, {
+                                       id: saleData.storeId,
+                                       storeName: saleData.storeName
+                                   })) } label={ saleData.storeName }/>) || '-' } withBottomBorder={ false }
+                    />
                     <InfoCardSmall label={ i18n._(t`Store address`) } content={ saleData?.storeAddress || '-' } iconLabel={ <MapPinIcon/> } withBottomBorder={ false }/>
 
                 </SimpleGrid>

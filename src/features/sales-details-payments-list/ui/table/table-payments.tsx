@@ -43,47 +43,56 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
                     ? <EmptyElement
                         title1={ i18n._(t`The list of payments is empty.`) }/>
                     : paymentsList && <>
-                        <Table variant="inTab">
-                            <Table.Header>
-                                <Table.Th withoutLeftDivider>
-                                    <Trans>Date & time</Trans>
-                                </Table.Th>
-                                <Table.Th>
+                    <Table variant="inTab">
+                        <Table.Header>
+                            <Table.Th withoutLeftDivider>
+                                <Box sx={ { lineHeight: '16px' } }>
+                                    <Trans>Date & time </Trans>
+                                </Box>
+                            </Table.Th>
+                            <Table.Th>
+                                <Box sx={ { lineHeight: '16px' } }>
                                     <Trans>Amount of payment</Trans>
-                                </Table.Th>
-                                <Table.Th>
+                                </Box>
+                            </Table.Th>
+                            <Table.Th>
+                                <Box sx={ { lineHeight: '16px' } }>
                                     <Trans>Payment method</Trans>
-                                </Table.Th>
-                                <Table.Th>
-                                    <Trans>RRN</Trans>
-                                </Table.Th>
-                                <Table.Th>
-                                    <Trans>STAN</Trans>
-                                </Table.Th>
-                                <Table.Th>
+                                </Box>
+                            </Table.Th>
+                            <Table.Th>
+                                <Trans>RRN</Trans>
+                            </Table.Th>
+                            <Table.Th>
+                                <Trans>STAN</Trans>
+                            </Table.Th>
+                            <Table.Th>
+                                <Box sx={ { lineHeight: '16px' } }>
                                     <Trans>Transaction number</Trans>
-                                </Table.Th>
-                            </Table.Header>
+                                </Box>
+                            </Table.Th>
+                        </Table.Header>
 
-                            <Table.Body>
-                                { paymentsList.map((item) => {
+                        <Table.Body>
+                            { paymentsList.map((item) => {
 
-                                    return (
-                                        <Table.Tr key={ item.id } >
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ data(item.createdOnTerminalAt) }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ numberCurrencyFormat(item.amount)  }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}><Flex gap={10} align={'center'}> <PaymentMethodIcon method={item.method}/>  { getTranslatedVariantForPaymentsMethod(item.method)}</Flex></Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.rrn }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.stan}</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item.transactionId}</Box></Table.Td>
-                                        </Table.Tr>
-                                    );
+                                return (
+                                    <Table.Tr key={ item.id }>
+                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }>{ data(item.createdOnTerminalAt) }</Box></Table.Td>
+                                        <Table.Td><Box maw={ 186 } sx={ { wordBreak: 'break-all' } }>{ numberCurrencyFormat(item.amount) }</Box></Table.Td>
+                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }><Flex gap={ 10 } align={ 'center' }> <PaymentMethodIcon method={ item.method }/> { getTranslatedVariantForPaymentsMethod(item.method) }
+                                        </Flex></Box></Table.Td>
+                                        <Table.Td><Box maw={ 155} sx={ { wordBreak: 'break-all' } }>{ item.rrn }</Box></Table.Td>
+                                        <Table.Td><Box maw={ 155 } sx={ { wordBreak: 'break-all' } }>{ item.stan }</Box></Table.Td>
+                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }>{ item.transactionId }</Box></Table.Td>
+                                    </Table.Tr>
+                                );
 
-                                }) }
-                            </Table.Body>
-                        </Table>
+                            }) }
+                        </Table.Body>
+                    </Table>
 
-                    </>
+                </>
             }
         </>
     );

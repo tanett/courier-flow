@@ -7,12 +7,12 @@ import { Modal } from '../../../shared/ui/modal';
 import { i18n } from '@lingui/core';
 import { typeModalContent } from '../types/type';
 import { ButtonPanelMenu } from '../../../shared/ui/button-panel-menu';
-import { useNavigate } from 'react-router-dom';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { readSalesPermissions } from 'app/config/permissions-config';
 import { SidebarTitle } from 'shared/ui/sidebar-title';
 import { SidePanel } from 'shared/ui/side-panel';
 import { ExportSalesList } from 'features/export-sales-list';
+import { ExportSalesDialog } from 'features/sales-list-buttons-panel/ui/dialogs/export-sales-dialog';
 
 
 export const SalesListButtonsPanel: React.FC = () => {
@@ -24,8 +24,6 @@ export const SalesListButtonsPanel: React.FC = () => {
     const [ sidePanelContent, setSidePanelContent ] = useState<null | React.ReactNode>(null);
     const [ sidePanelTitle, setSidePanelTitle ] = useState<null | React.ReactNode>(null);
 
-    const navigate = useNavigate();
-
     const isAllowExportSales = useIsAllowedPermissions(readSalesPermissions);  // todo check it
 
     const onCloseModal = () => setModalContent(null);
@@ -34,7 +32,7 @@ export const SalesListButtonsPanel: React.FC = () => {
 
         setModalContent({
             title: i18n._(t`Sales export`),
-            content: <div/>,
+            content: <ExportSalesDialog/>,
         });
 
     };
@@ -49,14 +47,14 @@ export const SalesListButtonsPanel: React.FC = () => {
 
     return (<>
         <Flex className={classes.wrapper}>
-            <Button
+            {isAllowExportSales && <Button
                 variant="outline"
                 color="gray"
-                leftIcon={<ArrowUpTrayIcon className={classes.menuButtonIcon}/>}
-                onClick={onExport}
+                leftIcon={ <ArrowUpTrayIcon className={ classes.menuButtonIcon }/> }
+                onClick={ onExport }
             >
                 <Trans>Export</Trans>
-            </Button>
+            </Button> }
 
             <ButtonPanelMenu>
                 <ButtonPanelMenu.MenuItem

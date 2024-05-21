@@ -54,6 +54,7 @@ export enum pathNames {
     reports = 'reports',
     sales = 'sales',
     sales_details = 'sales_details',
+    sold_product_details= 'sold_product_details',
 
     refunds = 'refunds',
     refunds_details ='refunds_details',
@@ -90,6 +91,7 @@ export enum pathNames {
     users_details = 'users_details',
 
     settings = 'settings',
+
 }
 
 export const routerPaths: Record<pathNames, string> = {
@@ -110,6 +112,7 @@ export const routerPaths: Record<pathNames, string> = {
     // sales
     [pathNames.sales]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.sales ]),
     [pathNames.sales_details]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.sales, pathSections.id, pathSections.publicId]),
+    [pathNames.sold_product_details]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.sales, pathSections.id, pathSections.publicId, pathSections.name]),
 
     // refunds
     [pathNames.refunds]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.refunds ]),
