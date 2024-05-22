@@ -55,7 +55,7 @@ export const TableSoldProducts: React.FC<typeRefundsProductsTable> = ({
                                         <Table.Tr key={ item.id } >
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.name }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.quantity }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.priceInStore }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.unitPrice }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.vatPercent }% / {numberCurrencyFormat(item.vatAmount)}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ '--??' }% / {numberCurrencyFormat(item.discountAmount)}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.totalCost)}</Box></Table.Td>

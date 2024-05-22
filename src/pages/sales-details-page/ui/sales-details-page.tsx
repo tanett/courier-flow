@@ -10,7 +10,7 @@ import SalesDetailsTabs from 'features/sales-details/ui/sales-details-tabs';
 
 const SalesDetailsPage: React.FC = () => {
 
-    const {  id, publicId} = useParams();
+    const { id, publicId} = useParams();
 
     const { i18n } = useLingui();
 

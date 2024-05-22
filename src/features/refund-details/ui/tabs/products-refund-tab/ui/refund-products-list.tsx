@@ -44,6 +44,7 @@ export const RefundProductsList: React.FC<{ refundData: typeRefund | undefined, 
             </Flex>
 
             <TableSoldProducts
+                onSoldProductClick={(soldProductName: string)=>console.log(soldProductName)}
                 productList={ refundData?.products }
                 isLoading={ isFetching }
             />

@@ -9,9 +9,7 @@ import dayjs from 'dayjs';
 import { typePaymentsTable } from './types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
-import {
-    getTranslatedVariantForPaymentsMethod
-} from "../../../../../../../entities/sales/helpers/get-translated-variant-for-payments-method";
+import { getTranslatedVariantForPaymentsMethod } from "../../../../../../../entities/sales/helpers/get-translated-variant-for-payments-method";
 
 
 export const TablePayments: React.FC<typePaymentsTable> = ({
