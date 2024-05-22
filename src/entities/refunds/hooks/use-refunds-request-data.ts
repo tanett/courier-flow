@@ -2,27 +2,14 @@ import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-param
 import { typeSearchFilterRefunds, typeSearchRefundsSortingNames, } from '../api/types';
 import { sortDirection, typeSearchRequest } from '../../../app/api/types';
 import { perPageVariants } from '../../../app/config/api-constants';
+import { getRefundsFiltersFromUrl } from '../helpers/get-refunds-filters-from-url';
 
 export const useRefundsRequestData = () => {
 
     const urlParams = useUrlParams();
 
     // Filters
-    const filter: typeSearchFilterRefunds = {};
-
-    const searchPhrase = urlParams.searchPhrase?.replace(',', '.')
-
-    if (searchPhrase && !isNaN(Number(searchPhrase))) {
-        const searchPhraseNumber = Number(searchPhrase)
-        if (Number.isInteger(searchPhraseNumber)) {
-            filter._or_ = [{receiptNumber: searchPhraseNumber}, {totalPaymentsAmount: searchPhraseNumber}]
-        } else {
-            filter.totalPaymentsAmount = searchPhraseNumber
-        }
-
-    }
-
-    //if (urlParams.searchPhrase) filter.receiptNumber = urlParams.searchPhrase; TODO: add filters
+    const filter: typeSearchFilterRefunds = getRefundsFiltersFromUrl(urlParams);
 
 
     const requestData: typeSearchRequest<typeSearchFilterRefunds, typeSearchRefundsSortingNames> = {

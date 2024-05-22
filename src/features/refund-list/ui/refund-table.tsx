@@ -2,7 +2,6 @@ import React from 'react';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { FilterPanel } from '../../../shared/ui/filter-panel';
-import { UserListFilter } from '../../user-list-filter';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
@@ -11,6 +10,7 @@ import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeRefundListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
 import {useStyles} from "./styles";
+import { RefundsListFilter } from 'features/refunds-list-filter';
 
 export const RefundListTable: React.FC<typeRefundListTable> = ({
     refundList,
@@ -32,7 +32,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                 placeholder: i18n._(t`Search by receipt number or total cost`),
                 minValueLength: 1
             } }
-            // filterComponent={ <UserListFilter/> }
+            filterComponent={ <RefundsListFilter/> }
         />
 
         { isLoading

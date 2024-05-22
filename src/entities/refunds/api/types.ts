@@ -9,6 +9,7 @@ export interface typeSearchFilterRefunds {
     terminalIds?: string[],
     refundedAtFrom?: string,
     refundedAtTo?: string,
+    refundedByIds?: string[] // max 10 item
     receiptNumber?: number
     totalPaymentsAmount?: number
     isTest?: true,
