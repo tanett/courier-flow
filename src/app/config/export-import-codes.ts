@@ -5,4 +5,4 @@ export const RETAIL_PRODUCT_FILTER_IMPORT_CODE = 'retail-product-filter-import';
 export const EXPORT_PRODUCT_CATALOG = 'product-export'
 export const EXPORT_RETAIL_PRODUCT = 'retail-product-export'
 
-export const EXPORT_SALES = 'sales-export'    // todo check it
+export const EXPORT_SALES = 'sale-export'

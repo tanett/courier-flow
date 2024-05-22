@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
-import StoresDetailsTabs from 'features/stores-details/ui/tabs/stores-details-tabs';
-import { pathSections, routerPaths } from 'app/config/router-paths';
+import { routerPaths } from 'app/config/router-paths';
 import SalesDetailsTabs from 'features/sales-details/ui/sales-details-tabs';
 
 

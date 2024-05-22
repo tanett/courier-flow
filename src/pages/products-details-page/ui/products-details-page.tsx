@@ -5,8 +5,8 @@ import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { useParams } from 'react-router-dom';
 import { ProductArchiveButton } from 'features/product-archive-button';
-import ProductsDetailsTabs from 'features/products-details-tabs/ui/products-details-tabs';
-import { pathSections, routerPaths } from 'app/config/router-paths';
+import ProductsDetailsTabs from 'features/products-details/ui/products-details-tabs';
+import { routerPaths } from 'app/config/router-paths';
 
 
 const ProductsDetailsPage: React.FC = () => {

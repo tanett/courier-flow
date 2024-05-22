@@ -15,7 +15,7 @@ const useGetUserDataByIdFromUrl = () => {
 
     const [ data, setData ] = useState<typeUser>();
 
-    const [ userData, { isFetching } ] = useLazyGetUserByIdQuery();
+    const [ userData, { isFetching, error } ] = useLazyGetUserByIdQuery();
 
     const getUserData = async (id: string) => {
 
@@ -46,6 +46,7 @@ const useGetUserDataByIdFromUrl = () => {
     return {
         userData: data,
         isUserFetching: isFetching,
+        error
     };
 
 };

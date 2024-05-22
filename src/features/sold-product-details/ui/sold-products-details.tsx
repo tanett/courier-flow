@@ -1,14 +1,13 @@
 import React from 'react';
-import { Box, SimpleGrid, Space, useMantineTheme, Text } from '@mantine/core';
+import { Box, SimpleGrid, useMantineTheme, Text, Flex } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
-import { useNavigate } from 'react-router-dom';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import { useGetData } from '../hooks/use-get-data';
-import NotFoundPage from 'pages/not-found-page/ui/not-found-page';
+import { NotFound } from 'shared/ui/not-found/not-found';
 
 
 export const SoldProductsDetails: React.FC<{ id: string, productName: string }> = ({
@@ -20,8 +19,6 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
 
     const { i18n } = useLingui();
 
-    const navigate = useNavigate();
-
     const {
         product,
         isNotFound,
@@ -30,7 +27,7 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
 
 
     return (isNotFound
-            ? <NotFoundPage/>
+            ?   <Flex sx={{height: '80vh', alignItems: 'center'}}><NotFound/></Flex>
             : <>
             <Box sx={ {
                 border: `1px solid ${ theme.colors.borderColor[0] }`,

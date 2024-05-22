@@ -1,17 +1,17 @@
-import { dialogIcon } from '../../../../shared/ui/dialog-new/types';
-import { Dialog } from '../../../../shared/ui/dialog-new';
+import { dialogIcon } from 'shared/ui/dialog-new/types';
+import { Dialog } from 'shared/ui/dialog-new';
 import React from 'react';
-import { FileLoader } from '../../../../shared/ui/file-loader';
-import { useLazyDownloadExportFileByIdQuery } from '../../../../entities/exports/api/api';
-import { DownloadFileButtonsPanel } from '../../../../shared/ui/download-file-buttons-panel';
-import { processSteps, useExportSales } from 'features/sales-list-buttons-panel/hooks/use-export-sales';
+import { FileLoader } from 'shared/ui/file-loader';
+import { useLazyDownloadExportFileByIdQuery } from '../../../entities/exports/api/api';
+import { DownloadFileButtonsPanel } from 'shared/ui/download-file-buttons-panel';
+import { processSteps, useExportSales } from 'features/sales-export/hooks/use-export-sales';
 import { ImportFileDialogMessage } from 'shared/ui/import-file-dialog-message';
 import { t, Trans } from '@lingui/macro';
 import { Box, useMantineTheme } from '@mantine/core';
 import { ImportFileDialogErrorListForValidationError } from 'shared/ui/import-file-dialog-error-list-for-validation-error';
 import { useLingui } from '@lingui/react';
 
-export const ExportSalesDialog: React.FC = () => {
+export const ExportSalesDialog: React.FC<{salesIds?: string[]}> = ({salesIds}) => {
 
     const { i18n } = useLingui();
 
@@ -23,7 +23,7 @@ export const ExportSalesDialog: React.FC = () => {
         importProcessRange,
         errorInfo,
         downloadFileName
-    } = useExportSales();
+    } = useExportSales(salesIds);
 
 
     const [ onDownloadFile, { isFetching } ] = useLazyDownloadExportFileByIdQuery();

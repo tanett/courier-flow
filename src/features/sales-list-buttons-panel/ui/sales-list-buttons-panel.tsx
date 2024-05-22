@@ -12,7 +12,7 @@ import { readSalesPermissions } from 'app/config/permissions-config';
 import { SidebarTitle } from 'shared/ui/sidebar-title';
 import { SidePanel } from 'shared/ui/side-panel';
 import { ExportSalesList } from 'features/export-sales-list';
-import { ExportSalesDialog } from 'features/sales-list-buttons-panel/ui/dialogs/export-sales-dialog';
+import { ExportSalesDialog } from 'features/sales-export/ui/export-sales-dialog';
 
 
 export const SalesListButtonsPanel: React.FC = () => {

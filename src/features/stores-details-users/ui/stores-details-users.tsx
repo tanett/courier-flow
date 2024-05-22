@@ -22,6 +22,7 @@ import { UserAddToStore } from 'features/user-add-to-store/user-add-to-store';
 import { routerPaths } from 'app/config/router-paths';
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
+import { NotFound } from 'shared/ui/not-found/not-found';
 
 export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) => {
 
@@ -40,6 +41,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
         pagination,
         isLoading,
         setRefetch,
+        error
     } = useGetStoresUsersList();
 
     const [ editUser, { isLoading: isLoadingEditUser } ] = usePatchUserMutation();
@@ -123,77 +125,82 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
     const goToEditUserPage = (id: string | number) => navigate([ routerPaths.users, id.toString(), 'edit' ].join('/'));
 
     return (
-        <Box sx={ {
-            borderTop: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
-            borderTopRightRadius: '8px',
-            marginTop: '-1px',
-            backgroundColor: theme.white,
+        error
+            ? <Flex sx={ {
+                height: '70vh',
+                alignItems: 'center'
+            } }><NotFound/></Flex>
+            : <Box sx={ {
+                borderTop: `1px solid ${ theme.colors.borderColor[0] }`,
+                borderTopRightRadius: '8px',
+                marginTop: '-1px',
+                backgroundColor: theme.white,
 
-        } }>
+            } }>
 
-            <Flex justify={ 'space-between' } p={ 16 }
-                sx={ {
-                    borderLeft: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
-                    borderRight: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
-                    borderTopRightRadius: '8px',
-                } }
-            >
-                { (userList && pagination && pagination.totalElements > 0) ? <Box sx={ {
-                    borderBottom: `2px solid ${ theme.colors.gray[ 5 ] }`,
-                    alignSelf: 'center',
-                } }>{ i18n._(t`total`) }: { pagination?.totalElements || 0 }</Box> : <div/> }
+                <Flex justify={ 'space-between' } p={ 16 }
+                      sx={ {
+                          borderLeft: `1px solid ${ theme.colors.borderColor[0] }`,
+                          borderRight: `1px solid ${ theme.colors.borderColor[0] }`,
+                          borderTopRightRadius: '8px',
+                      } }
+                >
+                    { (userList && pagination && pagination.totalElements > 0) ? <Box sx={ {
+                        borderBottom: `2px solid ${ theme.colors.gray[5] }`,
+                        alignSelf: 'center',
+                    } }>{ i18n._(t`total`) }: { pagination?.totalElements || 0 }</Box> : <div/> }
 
-                { isAllowEditUser && <Tooltip withArrow arrowSize={ 6 } openDelay={ 1500 } radius="md" label={ i18n._(t`Add an existing employee to store`) }><Button
-                    variant={ 'outline' }
-                    key={ 'add-user-in-store' }
-                    sx={ {
-                        fontWeight: 700,
-                        fontSize: theme.fontSizes.md,
-                        letterSpacing: '0.3px',
-                        '&:hover': { backgroundColor: theme.colors.primary[ 0 ] },
-                    } }
-                    onClick={ onAddClick }
-                    leftIcon={ <IconPlus size={ 20 }/> }><Trans>Add</Trans>
-                </Button></Tooltip> }
-            </Flex>
-
-            <TableDetailsUsers
-                userList={ userList }
-                isLoading={ isLoading }
-                setRefetchList={ setRefetch }
-                onOpenDialogRemoveUser={ onOpenDialogRemoveUser }
-                isAllowEditUser={ isAllowEditUser }
-                goToEditUserPage={goToEditUserPage}
-            />
-
-            { pagination && <Flex py={ 16 }><Pagination pagination={ pagination } withPerPage={ true }/></Flex> }
-
-            { dialogToRemoveUser && <Modal modalWidth="dialog" opened={ true }>
-                <Modal.Body>
-                    <Dialog
-                        cancelButton={ {
-                            title: i18n._(t`Cancel`),
-                            handler: onCloseDialogToRemoveUser,
+                    { isAllowEditUser && <Tooltip withArrow arrowSize={ 6 } openDelay={ 1500 } radius="md" label={ i18n._(t`Add an existing employee to store`) }><Button
+                        variant={ 'outline' }
+                        key={ 'add-user-in-store' }
+                        sx={ {
+                            fontWeight: 700,
+                            fontSize: theme.fontSizes.md,
+                            letterSpacing: '0.3px',
+                            '&:hover': { backgroundColor: theme.colors.primary[0] },
                         } }
-                        confirmButton={ {
-                            title: i18n._(t`Confirm`),
-                            handler: () => onConfirmRemoveUser(dialogToRemoveUser),
-                        } }
-                    >
-                        <Trans>Are you sure you want to remove <br/>the user</Trans>  &quot;{ dialogToRemoveUser.fullName }&quot;  from the store?
-                    </Dialog>
-                    { isLoadingEditUser && <LoaderOverlay/> }
-                </Modal.Body>
-            </Modal> }
+                        onClick={ onAddClick }
+                        leftIcon={ <IconPlus size={ 20 }/> }><Trans>Add</Trans>
+                    </Button></Tooltip> }
+                </Flex>
 
-            { dialogToAddUser && <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogToAddUser(false) }>
-                <Modal.Body>
-                    <>
-                        <Modal.Header title={ i18n._(t`Add an employee`) } onClose={ () => onCloseDialogToAddUser(false) }/>
-                        <UserAddToStore storeId={ storeId } onClose={ () => onCloseDialogToAddUser(true) }/>
-                    </>
-                </Modal.Body>
-            </Modal> }
-        </Box>);
+                <TableDetailsUsers
+                    userList={ userList }
+                    isLoading={ isLoading }
+                    setRefetchList={ setRefetch }
+                    onOpenDialogRemoveUser={ onOpenDialogRemoveUser }
+                    isAllowEditUser={ isAllowEditUser }
+                    goToEditUserPage={ goToEditUserPage }
+                />
+
+                { pagination && <Flex py={ 16 }><Pagination pagination={ pagination } withPerPage={ true }/></Flex> }
+
+                { dialogToRemoveUser && <Modal modalWidth="dialog" opened={ true }>
+                    <Modal.Body>
+                        <Dialog
+                            cancelButton={ {
+                                title: i18n._(t`Cancel`),
+                                handler: onCloseDialogToRemoveUser,
+                            } }
+                            confirmButton={ {
+                                title: i18n._(t`Confirm`),
+                                handler: () => onConfirmRemoveUser(dialogToRemoveUser),
+                            } }
+                        >
+                            <Trans>Are you sure you want to remove <br/>the user</Trans>  &quot;{ dialogToRemoveUser.fullName }&quot;  from the store?
+                        </Dialog>
+                        { isLoadingEditUser && <LoaderOverlay/> }
+                    </Modal.Body>
+                </Modal> }
+
+                { dialogToAddUser && <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogToAddUser(false) }>
+                    <Modal.Body>
+                        <>
+                            <Modal.Header title={ i18n._(t`Add an employee`) } onClose={ () => onCloseDialogToAddUser(false) }/>
+                            <UserAddToStore storeId={ storeId } onClose={ () => onCloseDialogToAddUser(true) }/>
+                        </>
+                    </Modal.Body>
+                </Modal> }
+            </Box>);
 
 };
