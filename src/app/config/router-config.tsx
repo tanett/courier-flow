@@ -31,13 +31,13 @@ import {
     addCategoryPermissions, addProductsPermissions,
     addUserPermissions, editCategoryPermissions,
     editLimitedStoresPermissions, editProductsPermissions,
-    editUserPermissions,
-    readCashDesksPermissions, readCategoryPermissions,
+    editUserPermissions, readAdvancesPermissions,
+    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions,
     readOrdersPermissions,
     readProductsPermissions, readRefundsPermissions, readRolesPermissions, readSalesPermissions,
     readStoresPermissions,
     readTerminalPermissions,
-    readUserPermissions
+    readUserPermissions, readZReportsPermissions
 } from 'app/config/permissions-config';
 import { LazyProductsCreatePage } from 'pages/products-create-page';
 import { LazyCategoriesPage } from 'pages/categories-page';
@@ -50,6 +50,9 @@ import { LazyRefundsPage } from "../../pages/refunds-page";
 import { LazyRefundDetailsPage } from "../../pages/refund-detais-page";
 import { LazySalesDetailsPage } from 'pages/sales-details-page';
 import { LazySoldProductDetailsPage } from 'pages/sold-product-details-page';
+import { LazyZReportsPage } from 'pages/z-reports-page';
+import { LazyAdvancesPage } from 'pages/advances-page';
+import { LazyCreditsPage } from 'pages/credits-page';
 
 export const router = createBrowserRouter([
 
@@ -133,6 +136,18 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.refunds_details,
                 element: <WithPermissionsRouts permissions={readRefundsPermissions}><LazyRefundDetailsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.z_reports,
+                element: <WithPermissionsRouts permissions={readZReportsPermissions}><LazyZReportsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.advances,
+                element: <WithPermissionsRouts permissions={readAdvancesPermissions}><LazyAdvancesPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.credits,
+                element: <WithPermissionsRouts permissions={readCreditsPermissions}><LazyCreditsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.products_list,

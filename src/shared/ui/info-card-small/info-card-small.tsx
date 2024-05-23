@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box, Flex, useMantineTheme } from '@mantine/core';
 import { useStyles } from './styles';
+import { TransProps } from '@lingui/react';
 
 
-export const InfoCardSmall: React.FC<{ label: string, content: React.ReactNode, iconLabel?: JSX.Element, withBottomBorder?: boolean, alignSelfStretch?: boolean }> = ({
+export const InfoCardSmall: React.FC<{ label: string | React.ReactElement<TransProps> , content: React.ReactNode, iconLabel?: JSX.Element, withBottomBorder?: boolean, alignSelfStretch?: boolean }> = ({
     label,
     content,
     iconLabel,

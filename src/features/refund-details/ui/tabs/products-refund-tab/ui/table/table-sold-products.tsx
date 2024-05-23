@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, useMantineTheme } from '@mantine/core';
+import { Box, Flex, Text, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
@@ -38,10 +38,10 @@ export const TableSoldProducts: React.FC<typeRefundsProductsTable> = ({
                                     <Trans>Price for unit</Trans>
                                 </Table.Th>
                                 <Table.Th>
-                                    <Trans>VAT  %/sum</Trans>
+                                    <Trans>VAT <Text fw={500}>&nbsp; %/sum</Text></Trans>
                                 </Table.Th>
                                 <Table.Th>
-                                    <Trans>Discount %/sum</Trans>
+                                    <Trans>Discount <Text fw={500}>&nbsp; %/sum</Text></Trans>
                                 </Table.Th>
                                 <Table.Th>
                                     <Trans>Total price</Trans>
@@ -57,7 +57,7 @@ export const TableSoldProducts: React.FC<typeRefundsProductsTable> = ({
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.quantity }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.unitPrice }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.vatPercent }% / {numberCurrencyFormat(item.vatAmount)}</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ '--??' }% / {numberCurrencyFormat(item.discountAmount)}</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item?.discountPercent || '' }% /{ item?.discountAmount ? numberCurrencyFormat(item.discountAmount) : '-'}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item.totalCost)}</Box></Table.Td>
                                         </Table.Tr>
                                     );

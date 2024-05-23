@@ -10,6 +10,7 @@ import {useGetRefundByIdQuery} from "../../../entities/refunds/api/api";
 import {RefundPaymentsList} from "./tabs/payments-refund-tab";
 import {TableSoldProducts} from "./tabs/products-refund-tab/ui/table/table-sold-products";
 import {PrintReceiptButton} from "../../print-receipt-button";
+import { RefundProductsList } from 'features/refund-details/ui/tabs/products-refund-tab';
 
 const enum TYPE_TABS {
     MAIN = 'main',
@@ -61,8 +62,8 @@ const RefundsDetailsTabs: React.FC<{ refundId: string }> = ({ refundId }) => {
                 <Tabs.Tab value={TYPE_TABS.PAYMENTS}>{i18n._(t`Payments`)}</Tabs.Tab>
             </Tabs.List>
             <Tabs.Panel value={TYPE_TABS.MAIN}><MainRefundTab refundData={data} isFetching={isFetching}/></Tabs.Panel>
-            <Tabs.Panel value={TYPE_TABS.REFUND_PRODUCTS}><TableSoldProducts productList={data?.products}
-                                                                             isLoading={isFetching}/></Tabs.Panel>
+            <Tabs.Panel value={TYPE_TABS.REFUND_PRODUCTS}><RefundProductsList refundData={data}
+                                                                              isFetching={isFetching}/></Tabs.Panel>
             <Tabs.Panel value={TYPE_TABS.PAYMENTS}><RefundPaymentsList refundData={data}
                                                                        isFetching={isFetching}/></Tabs.Panel>
         </Tabs>

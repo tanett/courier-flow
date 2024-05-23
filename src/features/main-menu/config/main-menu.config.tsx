@@ -22,7 +22,8 @@ import {
     Cog6ToothIcon as Cog6ToothIconSolid
 } from '@heroicons/react/24/solid';
 import {
-    readCategoryPermissions,
+    readAdvancesPermissions,
+    readCategoryPermissions, readCreditsPermissions,
     readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
@@ -30,7 +31,7 @@ import {
     readSalesPermissions,
     readStoresPermissions,
     readTerminalPermissions,
-    readUserPermissions
+    readUserPermissions, readZReportsPermissions
 } from '../../../app/config/permissions-config';
 import { CashDeskIconSolid } from 'shared/ui/svg-custom-icons/cashDesk-icon-solid/cash-desk-icon-solid';
 import { CashDeskIconOutline } from 'shared/ui/svg-custom-icons/cashDesk-icon-outline/cash-desk-icon-outline';
@@ -54,6 +55,21 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
                 name: <Trans>Refunds</Trans>,
                 path: routerPaths.refunds,
                 allowPermissions: readRefundsPermissions,
+            },
+            {  id: pathNames.z_reports,
+                name: <Trans>Z-reports</Trans>,
+                path: routerPaths.z_reports,
+                allowPermissions: readZReportsPermissions,
+            },
+            {  id: pathNames.advances,
+                name: <Trans>Advances</Trans>,
+                path: routerPaths.advances,
+                allowPermissions: readAdvancesPermissions,
+            },
+            {  id: pathNames.credits,
+                name: <Trans>Credits</Trans>,
+                path: routerPaths.credits,
+                allowPermissions: readCreditsPermissions,
             },
         ]
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, SimpleGrid, useMantineTheme, Text, Flex } from '@mantine/core';
-import { t } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
@@ -69,10 +69,10 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
                                    alignSelfStretch={ true }
                                    content={ (product?.quantity && product?.unitPrice) ? numberCurrencyFormat(product.quantity *  product.unitPrice) : '-' }/>
                     <div/>
-                    <InfoCardSmall label={ i18n._(t`Discount %/sum`) }
+                    <InfoCardSmall label={ <Trans>Discount <Text fw={500}>&nbsp; %/sum</Text></Trans> }
                     alignSelfStretch={ true }
                     content={ product ? <Text>{product?.discountPercent && numberCurrencyFormat(product.discountPercent)}% / {product?.discountAmount && numberCurrencyFormat(product.discountAmount)}</Text>  : '-' }/>
-                    <InfoCardSmall label={ i18n._(t`VAT %/sum`) }
+                    <InfoCardSmall label={ <Trans>VAT <Text fw={500}>&nbsp; %/sum</Text></Trans> }
                                    alignSelfStretch={ true }
                                    content={ product? <Text>{product?.vatPercent && numberCurrencyFormat(product.vatPercent)}% / {product?.vatAmount && numberCurrencyFormat(product.vatAmount)}</Text>: '-' }/>
                     <InfoCardSmall label={ i18n._(t`Total cost`) }

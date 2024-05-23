@@ -4,8 +4,8 @@ import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { useAppDispatchT } from 'app/state';
 import { useNavigate } from 'react-router-dom';
-import { TableSoldProducts } from 'features/sales-details-sold-products-list/ui/table/table-sold-products';
 import {typeRefund} from "../../../../../../entities/refunds/model/types";
+import { TableSoldProducts } from 'features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products';
 
 export const RefundProductsList: React.FC<{ refundData: typeRefund | undefined, isFetching: boolean }> = ({ refundData, isFetching }) => {
 
@@ -44,7 +44,6 @@ export const RefundProductsList: React.FC<{ refundData: typeRefund | undefined, 
             </Flex>
 
             <TableSoldProducts
-                onSoldProductClick={(soldProductName: string)=>console.log(soldProductName)}
                 productList={ refundData?.products }
                 isLoading={ isFetching }
             />

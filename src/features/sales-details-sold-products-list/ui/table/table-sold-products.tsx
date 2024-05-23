@@ -1,13 +1,13 @@
 import React from 'react';
-import { Box } from '@mantine/core';
+import { Box, Text } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import { typeSoldProductsTable } from 'features/sales-details-sold-products-list/ui/table/types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
+import { typeSoldProductsTable } from './types';
 
 export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
     productList,
@@ -42,10 +42,10 @@ export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
                                     <Trans>Price for unit</Trans>
                                 </Table.Th>
                                 <Table.Th>
-                                    <Trans>VAT  %/sum</Trans>
+                                    <Trans>VAT <Text fw={500}>&nbsp; %/sum</Text></Trans>
                                 </Table.Th>
                                 <Table.Th>
-                                    <Trans>Discount %/sum</Trans>
+                                    <Trans>Discount <Text fw={500}>&nbsp; %/sum</Text></Trans>
                                 </Table.Th>
                                 <Table.Th>
                                     <Trans>Total price</Trans>

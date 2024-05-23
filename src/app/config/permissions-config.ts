@@ -73,3 +73,15 @@ export const readRetailProductPermissions = [ 'retail-product.all-operations-in-
 export const addRetailProductPermissions = [ 'retail-product.all-operations-in-own-merchant', 'retail-product.write-to-own-merchant', 'retail-product.write-to-own-store'];
 export const editRetailProductPermissions = [ 'retail-product.all-operations-in-own-merchant', 'retail-product.write-to-own-merchant', 'retail-product.write-to-own-store'];
 
+// z-reports
+export const readZReportsPermissions = readTerminalPermissions; // todo check it
+
+// advances
+export const readAdvancesPermissions = [ 'advance.read-from-own-store', 'advance.read-from-own-merchant' ];
+export const addAdvancesPermissions = [ 'advance.create-in-own-store' ];
+
+// credits
+export const readCreditsPermissions = [ 'credit.read-from-own-merchant', 'credit.read-from-own-store' ];
+export const addCreditsPermissions = [ 'credit.create-in-own-store' ];
+export const patchCreditsPermissions = [ 'credit.patch-in-own-merchant' ];
+
