@@ -79,4 +79,7 @@ export enum API_URLS {
     REFUNDS_SEARCH = '/api/v1/refunds/search',
     REFUNDS_GET = '/api/v1/refunds/{id}',
 
+    Z_REPORTS_SEARCH = '/api/v1/z-reports/search',
+    Z_REPORTS_GET = '/api/v1/z-reports/{id}',
+
 }

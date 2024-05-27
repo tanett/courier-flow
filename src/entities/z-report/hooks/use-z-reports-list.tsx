@@ -1,12 +1,12 @@
-import { useRefundsRequestData } from './use-refunds-request-data';
-import { useSearchRefundsQuery } from '../api/api';
+import { useZReportsRequestData } from './use-z-reports-request-data';
+import {useSearchZReportQuery} from "../api/api";
 
 
-export function useRefundsList() {
+export function useZReportsList() {
 
-    const { requestData } = useRefundsRequestData();
+    const { requestData } = useZReportsRequestData();
 
-  const { data, isFetching, isLoading, refetch } = useSearchRefundsQuery(requestData);
+  const { data, isFetching, isLoading, refetch } = useSearchZReportQuery(requestData);
 
     const pagination = data?.totalPages
         ? {
@@ -19,7 +19,7 @@ export function useRefundsList() {
 
 
     return {
-        zReportList: data?.content,
+        zReportsList: data?.content,
         isLoading: isFetching || isLoading,
         pagination,
         refetch,

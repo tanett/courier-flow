@@ -25,12 +25,12 @@ export const refundsApi = baseApi.injectEndpoints({
                     // Provides a tag for each group in the current page,
                     // as well as the 'PARTIAL-LIST' tag.
                     ...result.content.map((item: typeRefund) => ({
-                        type: tagTypesRefundsList.refundsList.type,
+                        type: tagTypesRefundsList.zReportList.type,
                         id: item.id.toString()
                     })),
-                    tagTypesRefundsList.refundsList
+                    tagTypesRefundsList.zReportList
                 ]
-                : [ tagTypesRefundsList.refundsList ],
+                : [ tagTypesRefundsList.zReportList ],
         }),
 
         //get refund by id

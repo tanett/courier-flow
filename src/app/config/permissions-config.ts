@@ -74,7 +74,7 @@ export const addRetailProductPermissions = [ 'retail-product.all-operations-in-o
 export const editRetailProductPermissions = [ 'retail-product.all-operations-in-own-merchant', 'retail-product.write-to-own-merchant', 'retail-product.write-to-own-store'];
 
 // z-reports
-export const readZReportsPermissions = readTerminalPermissions; // todo check it
+export const readZReportsPermissions = [ 'sale.read-from-own-merchant', 'sale.read-from-own-store', 'sale.write-to-own-store' ];
 
 // advances
 export const readAdvancesPermissions = [ 'advance.read-from-own-store', 'advance.read-from-own-merchant' ];

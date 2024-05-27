@@ -13,7 +13,7 @@ export enum pathSections {
     reports = 'reports',
     sales = 'sales',
     refunds = 'refunds',
-    z_reports = 'z_reports',
+    zReports = 'z-reports',
     advances = 'advances',
     credits = 'credits',
     products = 'products',
@@ -28,8 +28,14 @@ export enum pathSections {
     roles = 'roles',
     archive = 'archive',
     profile = 'profile',
+    settings = 'settings',
+
+    // Actions
     create = 'create',
     edit = 'edit',
+    common = 'common',
+
+    // Path params
     id = ':id',
     refundNumber = ':refundNumber',
     userId = ':userId',
@@ -41,9 +47,6 @@ export enum pathSections {
     name = ':name',
     stores = 'stores',
     publicId = ':publicId',
-    common = 'common',
-    settings = 'settings',
-
 }
 
 export enum pathNames {
@@ -128,7 +131,7 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.refunds_details]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.refunds, pathSections.id, pathSections.refundNumber ]),
 
     // z_reports
-    [pathNames.z_reports]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.z_reports ]),
+    [pathNames.z_reports]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.zReports ]),
 
     // Advances
     [pathNames.advances]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.advances ]),
