@@ -6,7 +6,7 @@ export const getTranslatedVariantForPaymentsMethod = (method: typePayment['metho
     switch (method) {
 
     case 'OTHER' :
-        return <Trans>Other</Trans>;
+        return <Trans>EPS</Trans>;
     case 'CARD':
         return <Trans>Card</Trans>;
     case 'QR' :

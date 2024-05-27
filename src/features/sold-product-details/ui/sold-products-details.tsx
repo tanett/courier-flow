@@ -61,7 +61,7 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Quantity`) }
                                    alignSelfStretch={ true }
-                                   content={ product ?  product.quantity : '-' }/>
+                                   content={ product ?  <Flex gap={10}>{ product.quantity } <span>{product?.unit?.toLowerCase()}</span></Flex> : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Price for unit`) }
                                    alignSelfStretch={ true }
                                    content={ product?.unitPrice ? numberCurrencyFormat(product.unitPrice) : '-' }/>
