@@ -34,7 +34,7 @@ export const useStoresRequestData = () => {
         sorts: [
             {
                 sort: 'NAME',
-                direction: sortDirection.asc,
+                direction: urlParams.sortDirection? urlParams.sortDirection : sortDirection.asc,
             }
         ],
     };

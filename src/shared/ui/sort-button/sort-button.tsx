@@ -22,10 +22,7 @@ const SortButton: React.FC<typeSortButton> = ({
 
     useEffect(() => {
 
-        urlParams.setSearchParams({
-            [queryParamsNames.sortDirection]: value,
-            [queryParamsNames.pageNumber]: undefined,
-        });
+        urlParams.setSearchParams({ [queryParamsNames.sortDirection]: value,});
 
 
     }, [ value ]);

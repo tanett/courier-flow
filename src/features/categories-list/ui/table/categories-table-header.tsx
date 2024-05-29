@@ -63,7 +63,6 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                 </Table.Th>
                 : <>
                     <Table.Th withoutLeftDivider>
-
                        <Flex justify="space-between" gap={10} sx={{width: '100%'}}>
                            <Trans id={'item-name'}>Name</Trans>
                            <SortButton/>

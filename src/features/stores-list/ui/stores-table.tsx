@@ -5,12 +5,13 @@ import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { Table } from '../../../shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import { Box, rem, useMantineTheme } from '@mantine/core';
+import { Box, Flex, rem, useMantineTheme } from '@mantine/core';
 import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { typeStoresListTable } from 'features/stores-list/types/types';
 import { StoresListFilter } from 'features/stores-list-filter';
 import { FilterPanel } from 'shared/ui/filter-panel';
+import SortButton from 'shared/ui/sort-button/sort-button';
 
 export const StoresListTable: React.FC<typeStoresListTable> = ({
     isAllowedStoreEdit,
@@ -39,7 +40,10 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
-                            <Trans>Name</Trans>
+                            <Flex justify="space-between" gap={10} sx={{width: '100%'}}>
+                                <Trans id={'item-name'}>Name</Trans>
+                                <SortButton/>
+                            </Flex>
                         </Table.Th>
                         <Table.Th>
                             <Trans>Address</Trans>

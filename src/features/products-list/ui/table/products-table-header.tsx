@@ -4,6 +4,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { Box, Checkbox, Divider, Flex, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { typeProductListTableHeader } from 'features/products-list/types/types';
 import { additionalFieldInTable } from '../../../../entities/products/constants/additional-field-in-table';
+import SortButton from 'shared/ui/sort-button/sort-button';
 
 
 export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
@@ -81,7 +82,10 @@ export const ProductsListTableHeader: React.FC<typeProductListTableHeader> = ({
                         { firstColumnName }
                     </Table.Th>
                     <Table.Th>
-                        <Trans id={ 'item-name' }>Name</Trans>
+                        <Flex justify="space-between" gap={10} sx={{width: '100%'}}>
+                            <Trans id={'item-name'}>Name</Trans>
+                            <SortButton/>
+                        </Flex>
                     </Table.Th>
                     <Table.Th>
                         <Trans>Category</Trans>
