@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { typeUseUrlParams } from './types';
 import { availableItemsPerPage, DEFAULT_ITEMS_PER_PAGE_IN_TABLE, filterFieldNameSeparator, filterSeparator, filterValuesSeparator, queryParamsNames, typeSearchParamsObj } from '../../../app/config/api-constants';
+import { sortDirection } from 'app/api/types';
 
 export const useUrlParams = () => {
 
@@ -15,6 +16,7 @@ export const useUrlParams = () => {
     const itemsPerPage = Number(params[ queryParamsNames.itemsPerPage ]);
     let searchPhrase = params[ queryParamsNames.searchPhrase ];
     let filtersString = params[ queryParamsNames.filtersString ];
+    const sortDirection = params[ queryParamsNames.sortDirection ];
 
     // Decoding uri
     if (searchPhrase) searchPhrase = decodeURI(searchPhrase);
@@ -29,6 +31,7 @@ export const useUrlParams = () => {
         if (itemsPerPage) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.itemsPerPage ]: itemsPerPage.toString() } };
         if (searchPhrase) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.searchPhrase ]: searchPhrase } };
         if (filtersString) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.filtersString ]: filtersString } };
+        if (sortDirection) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.sortDirection ]: sortDirection as sortDirection } };
 
         // New params with current params
         for (const key of Object.keys(paramsObj)) {
@@ -44,7 +47,10 @@ export const useUrlParams = () => {
                 if (paramsObj[ key ] && Number(paramsObj[ key ]) !== DEFAULT_ITEMS_PER_PAGE_IN_TABLE && !(Number(paramsObj[ key ]) in availableItemsPerPage)) newSearchParams[ key ] = paramsObj[ key ];
                 else delete newSearchParams[ key ];
                 break;
-
+            case queryParamsNames.sortDirection :
+                if (paramsObj[ key ] ) newSearchParams[ key ] = paramsObj[ key ];
+                else delete newSearchParams[ key ];
+                break;
             case queryParamsNames.searchPhrase :
                 if (paramsObj[ key ]) {
 
@@ -126,6 +132,7 @@ export const useUrlParams = () => {
 
     };
 
+
     const result: typeUseUrlParams = {
         pageNumber: isNaN(pageNumber) ? null : pageNumber,
         itemsPerPage: (isNaN(itemsPerPage) || itemsPerPage === 0) ? null : itemsPerPage,
@@ -135,6 +142,7 @@ export const useUrlParams = () => {
         getFilterValue: getFilterValue,
         setSearchParams: setNewSearchParams,
         filtersToUri: filtersToUri,
+        sortDirection: sortDirection as sortDirection
     };
 
     return result;

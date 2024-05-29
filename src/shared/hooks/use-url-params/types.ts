@@ -1,4 +1,5 @@
 import { typeSearchParamsObj } from '../../../app/config/api-constants';
+import { sortDirection } from 'app/api/types';
 
 export interface typeUseUrlParams {
     pageNumber: number | null
@@ -9,4 +10,5 @@ export interface typeUseUrlParams {
     getFilterValue: (key: string) => string | string[] | undefined
     setSearchParams: (newParamsObj: typeSearchParamsObj) => void
     filtersToUri: (newParamsObj: Record<string, unknown>) => string | undefined
+    sortDirection: sortDirection.asc | sortDirection.dec | undefined
 }

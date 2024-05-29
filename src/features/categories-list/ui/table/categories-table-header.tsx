@@ -3,6 +3,7 @@ import { Trans } from '@lingui/macro';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { Checkbox, Divider, Flex, rem, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { typeCategoriesListTableHeader } from '../../types/types';
+import SortButton from 'shared/ui/sort-button/sort-button';
 
 
 export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> = ({
@@ -62,7 +63,11 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                 </Table.Th>
                 : <>
                     <Table.Th withoutLeftDivider>
-                        <Trans id={'item-name'}>Name</Trans>
+
+                       <Flex justify="space-between" gap={10} sx={{width: '100%'}}>
+                           <Trans id={'item-name'}>Name</Trans>
+                           <SortButton/>
+                       </Flex>
                     </Table.Th>
                     <Table.Th align={'center'}>
                         <Trans>Number of products</Trans>
