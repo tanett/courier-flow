@@ -27,8 +27,11 @@ msgstr ""
 msgid "{0}"
 msgstr ""
 
-#: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:28
+msgid "{productsCount, plural, one {# product} few {# products} many {# products} other {# products}}"
+msgstr ""
+
+#: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 msgid "{productsCount, plural, one {# product} few {# products} other {# products}}"
 msgstr ""
 
@@ -62,7 +65,7 @@ msgid "Active"
 msgstr ""
 
 #: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:118
-#: src/features/stores-details-users/ui/stores-details-users.tsx:156
+#: src/features/stores-details-users/ui/stores-details-users.tsx:163
 #: src/features/user-add-to-store/user-add-to-store.tsx:109
 msgid "Add"
 msgstr ""
@@ -71,12 +74,12 @@ msgstr ""
 msgid "Add a store"
 msgstr ""
 
-#: src/features/stores-details-users/ui/stores-details-users.tsx:192
+#: src/features/stores-details-users/ui/stores-details-users.tsx:199
 msgid "Add an employee"
 msgstr ""
 
 #: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:108
-#: src/features/stores-details-users/ui/stores-details-users.tsx:146
+#: src/features/stores-details-users/ui/stores-details-users.tsx:153
 msgid "Add an existing employee to store"
 msgstr ""
 
@@ -90,12 +93,17 @@ msgstr ""
 
 #: src/features/stores-edit/ui/store-edit.tsx:183
 #: src/features/stores-list/ui/stores-table.tsx:45
-#: src/features/users-details/ui/users-details.tsx:123
+#: src/features/users-details/ui/users-details.tsx:126
 msgid "Address"
 msgstr ""
 
 #: src/shared/ui/payment-type/payment-type.tsx:37
 msgid "Advance"
+msgstr ""
+
+#: src/features/main-menu/config/main-menu.config.tsx:65
+#: src/pages/advances-page/ui/advances-page.tsx:15
+msgid "Advances"
 msgstr ""
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
@@ -112,6 +120,7 @@ msgstr ""
 msgid "All products listed in the file are successfully imported."
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:52
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:55
 msgid "Amount of payment"
 msgstr ""
@@ -188,7 +197,7 @@ msgstr ""
 msgid "Are you sure you want to delete the current user?"
 msgstr ""
 
-#: src/features/stores-details-users/ui/stores-details-users.tsx:183
+#: src/features/stores-details-users/ui/stores-details-users.tsx:190
 msgid "Are you sure you want to remove <0/>the user"
 msgstr ""
 
@@ -229,7 +238,7 @@ msgid "Barcode"
 msgstr ""
 
 #: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:101
-#: src/features/products-details/ui/product-details.tsx:120
+#: src/features/products-details-common/ui/product-details-common.tsx:115
 msgid "Barcodes"
 msgstr ""
 
@@ -261,7 +270,7 @@ msgstr ""
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:138
 #: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:123
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
-#: src/features/stores-details-users/ui/stores-details-users.tsx:175
+#: src/features/stores-details-users/ui/stores-details-users.tsx:182
 #: src/features/stores-edit/ui/store-edit.tsx:203
 #: src/features/user-add-to-store/user-add-to-store.tsx:107
 #: src/features/user-archive-button/user-archive-button.tsx:51
@@ -283,16 +292,17 @@ msgstr ""
 msgid "Cash"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:92
+#: src/features/main-menu/config/main-menu.config.tsx:108
 #: src/pages/cash-desks-page/ui/cash-desks-page.tsx:15
 msgid "Cash desks"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:130
 #: src/features/sales-details-common/ui/sales-details-common.tsx:128
 msgid "Cashier app version"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:76
+#: src/features/main-menu/config/main-menu.config.tsx:92
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:17
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:21
 #: src/pages/categories-page/ui/categories-page.tsx:31
@@ -303,7 +313,7 @@ msgstr ""
 msgid "Categories delete successfully."
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:67
+#: src/features/products-details-common/ui/product-details-common.tsx:62
 #: src/features/products-list/ui/table/products-table-header.tsx:87
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:140
 msgid "Category"
@@ -404,15 +414,15 @@ msgstr ""
 msgid "Come back"
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:83
+#: src/features/products-details-common/ui/product-details-common.tsx:78
 msgid "Comission PINFL"
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:82
+#: src/features/products-details-common/ui/product-details-common.tsx:77
 msgid "Comission TIN"
 msgstr ""
 
-#: src/features/stores-details-users/ui/stores-details-users.tsx:179
+#: src/features/stores-details-users/ui/stores-details-users.tsx:186
 #: src/features/user-list/ui/user-list.tsx:93
 msgid "Confirm"
 msgstr ""
@@ -457,6 +467,7 @@ msgstr ""
 #~ msgid "Create new user"
 #~ msgstr ""
 
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:163
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:163
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:82
 msgid "Creation date"
@@ -466,6 +477,13 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
+#: src/features/main-menu/config/main-menu.config.tsx:70
+#: src/pages/credits-page/ui/credits-page.tsx:15
+msgid "Credits"
+msgstr ""
+
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:54
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:49
 #: src/features/sales-details-common/ui/sales-details-common.tsx:55
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:50
 #: src/features/sales-list/ui/table/sales-table-header.tsx:68
@@ -482,7 +500,7 @@ msgid "Delete"
 msgstr ""
 
 #: src/features/roles-list/ui/roles-list.tsx:55
-#: src/features/stores-details/ui/store-details.tsx:71
+#: src/features/stores-details-common/ui/store-details-common.tsx:69
 #: src/features/stores-edit/ui/store-edit.tsx:193
 msgid "Description"
 msgstr ""
@@ -493,7 +511,13 @@ msgstr ""
 
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:48
 #: src/features/sold-product-details/ui/sold-products-details.tsx:75
-msgid "Discount %/sum"
+#~ msgid "Discount %/sum"
+#~ msgstr ""
+
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:44
+#: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:48
+#: src/features/sold-product-details/ui/sold-products-details.tsx:72
+msgid "Discount <0>  %/sum</0>"
 msgstr ""
 
 #: src/shared/ui/import-export-button/ui/import-export-button.tsx:33
@@ -529,11 +553,11 @@ msgstr ""
 #: src/features/forgot-password/ui/forgot-password.tsx:76
 #: src/features/login/ui/login-form.tsx:136
 #: src/features/profile-show-edit/ui/profile.tsx:150
-#: src/features/stores-details/ui/store-details.tsx:67
+#: src/features/stores-details-common/ui/store-details-common.tsx:65
 #: src/features/stores-edit/ui/store-edit.tsx:166
 #: src/features/user-list/ui/user-table.tsx:49
 #: src/features/users-create/ui/users-create-new.tsx:148
-#: src/features/users-details/ui/users-details.tsx:71
+#: src/features/users-details/ui/users-details.tsx:74
 #: src/features/users-edit/ui/users-edit.tsx:168
 msgid "Email"
 msgstr ""
@@ -542,6 +566,7 @@ msgstr ""
 msgid "Employee"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:63
 #: src/features/sales-details-common/ui/sales-details-common.tsx:64
 msgid "Employee name"
 msgstr ""
@@ -550,7 +575,7 @@ msgstr ""
 #~ msgid "Employees"
 #~ msgstr ""
 
-#: src/features/stores-details/ui/tabs/stores-details-tabs.tsx:50
+#: src/features/stores-details/ui/stores-details-tabs.tsx:63
 msgid "Employees list"
 msgstr ""
 
@@ -564,6 +589,10 @@ msgstr ""
 
 #: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:250
 msgid "Enter a store name"
+msgstr ""
+
+#: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:9
+msgid "EPS"
 msgstr ""
 
 #: src/shared/ui/import-export-button/ui/import-export-button.tsx:48
@@ -655,6 +684,7 @@ msgstr ""
 msgid "Fiscal ID"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:123
 #: src/features/sales-details-common/ui/sales-details-common.tsx:121
 msgid "Fiscal module ID"
 msgstr ""
@@ -687,7 +717,7 @@ msgstr ""
 #: src/features/categories-edit/ui/categories-edit.tsx:104
 #: src/features/product-create/ui/product-form-create.tsx:112
 #: src/features/product-edit/ui/product-form-edit.tsx:141
-#: src/features/products-details-tabs/ui/products-details-tabs.tsx:49
+#: src/features/products-details/ui/products-details-tabs.tsx:62
 msgid "General information"
 msgstr ""
 
@@ -790,10 +820,12 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:194
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:194
 msgid "Last month"
 msgstr ""
 
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:181
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:181
 msgid "Last week"
 msgstr ""
@@ -825,7 +857,7 @@ msgstr ""
 #~ msgid "locality"
 #~ msgstr ""
 
-#: src/features/stores-details/ui/store-details.tsx:73
+#: src/features/stores-details-common/ui/store-details-common.tsx:71
 #: src/features/stores-edit/ui/store-edit.tsx:175
 msgid "Locality"
 msgstr ""
@@ -840,7 +872,8 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: src/features/sales-details/ui/sales-details-tabs.tsx:59
+#: src/features/refund-details/ui/refunds-details-tabs.tsx:60
+#: src/features/sales-details/ui/sales-details-tabs.tsx:63
 msgid "Main"
 msgstr ""
 
@@ -854,7 +887,7 @@ msgstr ""
 msgid "Marked"
 msgstr ""
 
-#: src/features/sold-product-details/ui/sold-products-details.tsx:87
+#: src/features/sold-product-details/ui/sold-products-details.tsx:84
 msgid "Marked labels"
 msgstr ""
 
@@ -865,7 +898,7 @@ msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:236
 #: src/features/product-edit/ui/product-form-edit.tsx:266
-#: src/features/products-details/ui/product-details.tsx:99
+#: src/features/products-details-common/ui/product-details-common.tsx:94
 #: src/features/products-list-filter/ui/products-list-filter.tsx:134
 msgid "Marking"
 msgstr ""
@@ -904,7 +937,7 @@ msgstr ""
 
 #: src/features/stores-edit/ui/store-edit.tsx:135
 #: src/features/stores-list/ui/stores-table.tsx:42
-#: src/features/users-details/ui/users-details.tsx:120
+#: src/features/users-details/ui/users-details.tsx:123
 msgid "Name"
 msgstr ""
 
@@ -921,7 +954,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:99
+#: src/features/products-details-common/ui/product-details-common.tsx:94
 msgid "No"
 msgstr ""
 
@@ -955,11 +988,13 @@ msgstr ""
 msgid "Not piece"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/refund-payments-list.tsx:34
 #: src/features/sales-details-payments-list/ui/sales-details-payments-list.tsx:41
 msgid "Number of payments"
 msgstr ""
 
 #: src/features/categories-list/ui/table/categories-table-header.tsx:68
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/refund-products-list.tsx:41
 #: src/features/sales-details-sold-products-list/ui/sales-details-sold-products-list.tsx:43
 msgid "Number of products"
 msgstr ""
@@ -984,18 +1019,17 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:108
+#: src/features/main-menu/config/main-menu.config.tsx:124
 #: src/pages/orders-page/ui/orders-page.tsx:15
 msgid "Orders"
 msgstr ""
 
-#: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:9
 #: src/entities/stores/constants/store-type-list.tsx:11
 #: src/features/stores-edit/ui/store-edit.tsx:190
 msgid "Other"
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:65
+#: src/features/products-details-common/ui/product-details-common.tsx:60
 msgid "Package code"
 msgstr ""
 
@@ -1036,10 +1070,12 @@ msgstr ""
 msgid "Payment"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:132
 #: src/features/sales-details-common/ui/sales-details-common.tsx:130
 msgid "Payment app version"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:55
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:60
 msgid "Payment method"
 msgstr ""
@@ -1048,7 +1084,8 @@ msgstr ""
 msgid "Payment type"
 msgstr ""
 
-#: src/features/sales-details/ui/sales-details-tabs.tsx:61
+#: src/features/refund-details/ui/refunds-details-tabs.tsx:62
+#: src/features/sales-details/ui/sales-details-tabs.tsx:65
 msgid "Payments"
 msgstr ""
 
@@ -1058,16 +1095,17 @@ msgstr ""
 msgid "Personal Information"
 msgstr ""
 
+#: src/features/stores-details-common/ui/store-details-common.tsx:62
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:41
-#: src/features/stores-details/ui/store-details.tsx:64
 #: src/features/stores-list/ui/stores-table.tsx:48
 #: src/features/user-list/ui/user-table.tsx:46
-#: src/features/users-details/ui/users-details.tsx:67
-#: src/features/users-details/ui/users-details.tsx:126
+#: src/features/users-details/ui/users-details.tsx:70
+#: src/features/users-details/ui/users-details.tsx:129
 #: src/shared/ui/phone-input/ui/phoneInputWithCountrySelector.tsx:175
 msgid "Phone number"
 msgstr ""
 
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:85
 msgid "Pick dates range"
@@ -1088,8 +1126,9 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:38
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:42
-#: src/features/sold-product-details/ui/sold-products-details.tsx:68
+#: src/features/sold-product-details/ui/sold-products-details.tsx:65
 msgid "Price for unit"
 msgstr ""
 
@@ -1107,7 +1146,7 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
-#: src/features/sold-product-details/ui/sold-products-details.tsx:45
+#: src/features/sold-product-details/ui/sold-products-details.tsx:42
 msgid "Product"
 msgstr ""
 
@@ -1129,12 +1168,13 @@ msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:115
 #: src/features/product-edit/ui/product-form-edit.tsx:144
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:32
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:36
 msgid "Product name"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:62
-#: src/features/main-menu/config/main-menu.config.tsx:70
+#: src/features/main-menu/config/main-menu.config.tsx:78
+#: src/features/main-menu/config/main-menu.config.tsx:86
 #: src/pages/products-create-page/ui/products-create-page.tsx:17
 #: src/pages/products-details-page/ui/products-details-page.tsx:22
 #: src/pages/products-edit-page/ui/products-edit-page.tsx:17
@@ -1167,7 +1207,7 @@ msgstr ""
 msgid "Profile changed successfully."
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:64
+#: src/features/products-details-common/ui/product-details-common.tsx:59
 msgid "PSID"
 msgstr ""
 
@@ -1175,8 +1215,9 @@ msgstr ""
 msgid "Qr-code"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:35
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:39
-#: src/features/sold-product-details/ui/sold-products-details.tsx:65
+#: src/features/sold-product-details/ui/sold-products-details.tsx:62
 msgid "Quantity"
 msgstr ""
 
@@ -1192,6 +1233,7 @@ msgstr ""
 msgid "Receipt"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:60
 #: src/features/refund-list/ui/refund-table.tsx:47
 #: src/features/sales-details-common/ui/sales-details-common.tsx:58
 #: src/features/sales-list/ui/table/sales-table-header.tsx:74
@@ -1206,8 +1248,12 @@ msgstr ""
 msgid "Refund"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:54
-#: src/pages/refund-detais-page/ui/refund-details-page.tsx:18
+#: src/features/refund-details/ui/refunds-details-tabs.tsx:61
+msgid "Refunded products"
+msgstr ""
+
+#: src/features/main-menu/config/main-menu.config.tsx:55
+#: src/pages/refund-detais-page/ui/refund-details-page.tsx:19
 #: src/pages/refunds-page/ui/refunds-page.tsx:26
 msgid "Refunds"
 msgstr ""
@@ -1220,7 +1266,7 @@ msgstr ""
 msgid "Remove from store"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:42
+#: src/features/main-menu/config/main-menu.config.tsx:43
 #: src/pages/reports-page/ui/reports-page.tsx:15
 msgid "Reports"
 msgstr ""
@@ -1276,7 +1322,7 @@ msgstr ""
 #: src/features/user-list-filter/ui/user-list-filter.tsx:134
 #: src/features/user-list/ui/user-table.tsx:52
 #: src/features/users-create/ui/users-create-new.tsx:118
-#: src/features/users-details/ui/users-details.tsx:53
+#: src/features/users-details/ui/users-details.tsx:56
 #: src/features/users-edit/ui/users-edit.tsx:137
 msgid "Role"
 msgstr ""
@@ -1293,17 +1339,22 @@ msgstr ""
 msgid "Role's name"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:133
+#: src/features/main-menu/config/main-menu.config.tsx:149
 #: src/pages/roles-page/ui/roles-page.tsx:16
 msgid "Roles"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:58
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:64
 msgid "RRN"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:49
-#: src/pages/sales-details-page/ui/sales-details-page.tsx:22
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:89
+msgid "Sale"
+msgstr ""
+
+#: src/features/main-menu/config/main-menu.config.tsx:50
+#: src/pages/sales-details-page/ui/sales-details-page.tsx:21
 #: src/pages/sales-page/ui/sales-page.tsx:18
 #: src/pages/sold-product-details-page/ui/sold-product-details-page.tsx:22
 msgid "Sales"
@@ -1330,7 +1381,7 @@ msgstr ""
 msgid "Search by receipt number or total cost"
 msgstr ""
 
-#: src/features/sold-product-details/ui/sold-products-details.tsx:48
+#: src/features/sold-product-details/ui/sold-products-details.tsx:45
 msgid "See product card"
 msgstr ""
 
@@ -1370,13 +1421,13 @@ msgstr ""
 msgid "Service payment"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:141
+#: src/features/main-menu/config/main-menu.config.tsx:157
 #: src/features/profile-show-edit/ui/profile.tsx:159
 #: src/pages/settings-page/ui/settings-page.tsx:15
 msgid "Settings"
 msgstr ""
 
-#: src/features/sales-details/ui/sales-details-tabs.tsx:60
+#: src/features/sales-details/ui/sales-details-tabs.tsx:64
 #: src/pages/sold-product-details-page/ui/sold-product-details-page.tsx:24
 msgid "Sold products"
 msgstr ""
@@ -1390,6 +1441,7 @@ msgstr ""
 msgid "Spaces are not allowed"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:61
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:67
 msgid "STAN"
 msgstr ""
@@ -1401,17 +1453,18 @@ msgstr ""
 #: src/features/refund-list/ui/refund-table.tsx:50
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:90
 #: src/features/sales-list/ui/table/sales-table-header.tsx:78
-#: src/features/stores-details/ui/tabs/stores-details-tabs.tsx:49
+#: src/features/stores-details/ui/stores-details-tabs.tsx:62
 #: src/features/terminal-list/ui/terminals-table.tsx:39
 msgid "Store"
 msgstr ""
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:90
-#: src/features/stores-details/ui/store-details.tsx:76
+#: src/features/stores-details-common/ui/store-details-common.tsx:74
 #: src/features/terminals-details/ui/terminals-details.tsx:102
 msgid "Store address"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:83
 #: src/features/sales-details-common/ui/sales-details-common.tsx:84
 #: src/features/terminals-details/ui/terminals-details.tsx:99
 msgid "Store name"
@@ -1422,7 +1475,7 @@ msgstr ""
 msgid "Store not found"
 msgstr ""
 
-#: src/features/stores-details/ui/store-details.tsx:48
+#: src/features/stores-details-common/ui/store-details-common.tsx:46
 #: src/features/stores-edit/ui/store-edit.tsx:142
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:71
 msgid "Store type"
@@ -1432,18 +1485,18 @@ msgstr ""
 msgid "Store with price was added successfully."
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:84
+#: src/features/main-menu/config/main-menu.config.tsx:100
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
 #: src/features/selector-with-search-store/selector-with-search-store.tsx:142
 #: src/features/user-list/ui/user-table.tsx:55
-#: src/features/users-details/ui/users-details.tsx:98
+#: src/features/users-details/ui/users-details.tsx:101
 #: src/pages/stores-details-page/ui/stores-details-page.tsx:24
 #: src/pages/stores-edit-page/ui/stores-edit-page.tsx:21
 #: src/pages/stores-page/ui/stores-page.tsx:16
 msgid "Stores"
 msgstr ""
 
-#: src/features/products-details-tabs/ui/products-details-tabs.tsx:50
+#: src/features/products-details/ui/products-details-tabs.tsx:63
 msgid "Stores and prices"
 msgstr ""
 
@@ -1455,6 +1508,7 @@ msgstr ""
 msgid "Template file for import into catalog"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:126
 #: src/features/sales-details-common/ui/sales-details-common.tsx:124
 msgid "Terminal label"
 msgstr ""
@@ -1463,11 +1517,12 @@ msgstr ""
 msgid "Terminal not found"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:117
 #: src/features/sales-details-common/ui/sales-details-common.tsx:115
 msgid "Terminal serial number"
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:100
+#: src/features/main-menu/config/main-menu.config.tsx:116
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:142
 #: src/pages/terminals-details-page/ui/terminals-details-page.tsx:21
 #: src/pages/terminals-page/ui/terminals-page.tsx:16
@@ -1489,10 +1544,12 @@ msgstr ""
 msgid "The list is empty, try changing your filtering or search conditions and try again."
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:44
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:44
 msgid "The list of payments is empty."
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:27
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:31
 msgid "The list of sold products is empty."
 msgstr ""
@@ -1529,7 +1586,7 @@ msgstr ""
 msgid "This product is not sold in any store."
 msgstr ""
 
-#: src/features/users-details/ui/users-details.tsx:149
+#: src/features/users-details/ui/users-details.tsx:152
 msgid "This user is not associated with any store"
 msgstr ""
 
@@ -1564,6 +1621,7 @@ msgstr ""
 msgid "today"
 msgstr ""
 
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:178
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:178
 msgid "Today"
 msgstr ""
@@ -1584,14 +1642,15 @@ msgid "Too short password, minimum {MIN_CHARS_IN_PASSWORD} characters"
 msgstr ""
 
 #: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:105
-#: src/features/stores-details-users/ui/stores-details-users.tsx:144
+#: src/features/stores-details-users/ui/stores-details-users.tsx:151
 msgid "total"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:57
 #: src/features/refund-list/ui/refund-table.tsx:56
 #: src/features/sales-details-common/ui/sales-details-common.tsx:172
 #: src/features/sales-list/ui/table/sales-table-header.tsx:87
-#: src/features/sold-product-details/ui/sold-products-details.tsx:81
+#: src/features/sold-product-details/ui/sold-products-details.tsx:78
 msgid "Total cost"
 msgstr ""
 
@@ -1599,11 +1658,13 @@ msgstr ""
 msgid "Total cost without discount"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:47
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:51
-#: src/features/sold-product-details/ui/sold-products-details.tsx:71
+#: src/features/sold-product-details/ui/sold-products-details.tsx:68
 msgid "Total price"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:64
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:71
 msgid "Transaction number"
 msgstr ""
@@ -1671,11 +1732,11 @@ msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:172
 #: src/features/product-edit/ui/product-form-edit.tsx:201
-#: src/features/products-details/ui/product-details.tsx:117
+#: src/features/products-details-common/ui/product-details-common.tsx:112
 msgid "Unit"
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:118
+#: src/features/products-details-common/ui/product-details-common.tsx:113
 msgid "Unit code"
 msgstr ""
 
@@ -1713,11 +1774,11 @@ msgstr ""
 msgid "User was edited successfully."
 msgstr ""
 
-#: src/features/stores-details-users/ui/stores-details-users.tsx:108
+#: src/features/stores-details-users/ui/stores-details-users.tsx:110
 msgid "User was removed successfully."
 msgstr ""
 
-#: src/features/main-menu/config/main-menu.config.tsx:125
+#: src/features/main-menu/config/main-menu.config.tsx:141
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:145
 #: src/pages/users-create-page/ui/users-create-page.tsx:17
 #: src/pages/users-details-page/ui/users-details-page.tsx:21
@@ -1744,7 +1805,7 @@ msgid "Value"
 msgstr ""
 
 #: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:88
-#: src/features/products-details/ui/product-details.tsx:100
+#: src/features/products-details-common/ui/product-details-common.tsx:95
 msgid "Vat"
 msgstr ""
 
@@ -1753,11 +1814,17 @@ msgid "VAT"
 msgstr ""
 
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:45
-msgid "VAT  %/sum"
-msgstr ""
+#~ msgid "VAT  %/sum"
+#~ msgstr ""
 
 #: src/features/sold-product-details/ui/sold-products-details.tsx:78
-msgid "VAT %/sum"
+#~ msgid "VAT %/sum"
+#~ msgstr ""
+
+#: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:41
+#: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:45
+#: src/features/sold-product-details/ui/sold-products-details.tsx:75
+msgid "VAT <0>  %/sum</0>"
 msgstr ""
 
 #: src/features/product-create/ui/product-form-create.tsx:205
@@ -1781,7 +1848,7 @@ msgstr ""
 msgid "Wrong file type. Please select another file."
 msgstr ""
 
-#: src/features/products-details/ui/product-details.tsx:99
+#: src/features/products-details-common/ui/product-details-common.tsx:94
 msgid "Yes"
 msgstr ""
 
@@ -1789,6 +1856,7 @@ msgstr ""
 msgid "yesterday"
 msgstr ""
 
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:191
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:191
 msgid "Yesterday"
 msgstr ""
@@ -1806,6 +1874,12 @@ msgstr ""
 msgid "You didn't attach the file"
 msgstr ""
 
+#: src/features/refund-details/ui/tabs/main-refund-tab.tsx:134
 #: src/features/sales-details-common/ui/sales-details-common.tsx:61
 msgid "Z-report number"
+msgstr ""
+
+#: src/features/main-menu/config/main-menu.config.tsx:60
+#: src/pages/z-reports-page/ui/z-reports-page.tsx:15
+msgid "Z-reports"
 msgstr ""

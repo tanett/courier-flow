@@ -25,11 +25,12 @@ export const ArchiveSelectedItemModal:React.FC<{onClose: ()=>void, onConfirm: ()
                     } }
                 >
                     <Trans>Are you sure you want to archive<br/>the selected categories</Trans>?<br/>
-                    <Trans>After archiving the category, {plural(productsCount, {
+                    {productsCount && productsCount >0 && <Trans>After archiving the category, { plural(productsCount, {
                         one: '# product',
                         few: '# products',
+                        many: '# products',
                         other: '# products',
-                    }) } will remain without a category</Trans>
+                    }) } will remain without a category</Trans> }
                 </Dialog>
             </Modal.Body>
         </Modal>
