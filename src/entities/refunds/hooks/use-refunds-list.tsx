@@ -19,7 +19,7 @@ export function useRefundsList() {
 
 
     return {
-        zReportList: data?.content,
+        refundsList: data?.content,
         isLoading: isFetching || isLoading,
         pagination,
         refetch,

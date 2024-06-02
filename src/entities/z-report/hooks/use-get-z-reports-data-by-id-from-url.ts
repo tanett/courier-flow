@@ -45,7 +45,7 @@ const useGetZReportsDataByIdFromUrl = () => {
 
     return {
         refundData: data,
-        isRefundFetching: isFetching,
+        isZReportFetching: isFetching,
     };
 
 };

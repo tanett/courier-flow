@@ -9,7 +9,7 @@ export const useZReportsRequestData = () => {
     const urlParams = useUrlParams();
 
     // Filters
-    const filter = useGetZReportsDataByIdFromUrl(urlParams);
+    const filter = {}; // TODO
 
 
     const requestData: typeSearchRequest<typeSearchFilterZResponse, typeSearchZResponseSortingNames> = {

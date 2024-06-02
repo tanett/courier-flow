@@ -5,7 +5,7 @@ import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import { Box, useMantineTheme } from '@mantine/core';
+import {Box, Flex, useMantineTheme} from '@mantine/core';
 import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeZReportsListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
@@ -77,28 +77,28 @@ export const RefundListTable: React.FC<typeZReportsListTable> = ({
                                 }
                             ];
 
-                            const dateObj = new Date(item.createdAt)
-                            const date = dateObj.toLocaleDateString(undefined, {
-                                day: 'numeric',
-                                month: 'numeric',
-                                year: 'numeric',
-                            });
-                            const time = dateObj.toLocaleTimeString(undefined, {
-                                hour: 'numeric',
-                                minute: 'numeric',
-                                second: 'numeric',
-                            })
+                            const openedDateObj = new Date(item.openedAt)
+                            const openedDate = openedDateObj.toLocaleDateString(undefined, {day: 'numeric', month: 'numeric', year: 'numeric',});
+                            const openedTime = openedDateObj.toLocaleTimeString(undefined, {hour: 'numeric', minute: 'numeric', second: 'numeric',})
+
+                            const closedDateObj = new Date(item.closedAt)
+                            const closedDate = closedDateObj.toLocaleDateString(undefined, {day: 'numeric', month: 'numeric', year: 'numeric',});
+                            const closedTime = closedDateObj.toLocaleTimeString(undefined, {hour: 'numeric', minute: 'numeric', second: 'numeric',})
 
                             return (
-                                <Table.Tr key={ item.id } handler={ () => goToDetailsReportPage(item.id, item.receiptNumber) }>
-                                    <Table.Td><Box>
-                                        <div>{ date }</div>
-                                        <div className={classes.time}>{ time }</div>
-                                    </Box></Table.Td>
-                                    <Table.Td>{ item.receiptNumber }</Table.Td>
+                                <Table.Tr key={ item.id } handler={ () => goToDetailsReportPage(item.id, item.number.toString()) }>
+                                    <Table.Td>{ item.fiscalModuleId }</Table.Td>
+                                    <Table.Td>
+                                        <Flex>
+                                            <div>{ openedDate }, {openedTime}</div>
+                                            <div>{ closedDate }, {closedTime}</div>
+                                        </Flex>
+                                    </Table.Td>
+                                    <Table.Td>{ item.number }</Table.Td>
+                                    <Table.Td>{ item.totalCashIncome + item.totalCashlessIncome }</Table.Td>
+                                    <Table.Td>{ item.totalCashRefunds + item.totalCashlessRefunds }</Table.Td>
                                     <Table.Td>{ item.storeName }</Table.Td>
-                                    <Table.Td>{ item.refundedByName }</Table.Td>
-                                    <Table.Td>{ item.totalPaymentsAmount }</Table.Td>
+                                    <Table.Td>{ item.terminalSerialNumber }</Table.Td>
                                     <Table.TdActions actions={ actions }/>
                                 </Table.Tr>
                             );

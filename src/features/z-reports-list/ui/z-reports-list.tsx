@@ -32,7 +32,7 @@ export const ZReportsList: React.FC = () => {
 
     const onCloseReceipt = () => setIsOpenReceipt(null);
 
-    const goToDetailsUserPage = (id: string | number, refundNumber: number) => navigate([ routerPaths.z_reports, id.toString(), refundNumber].join('/'));
+    const goToDetailsReportPage = (id: string | number, zReportNumber: string) => navigate([ routerPaths.z_reports, id.toString(), zReportNumber].join('/'));
 
 
     return (<>
@@ -40,7 +40,7 @@ export const ZReportsList: React.FC = () => {
             zReportsList={zReportsList}
             pagination={pagination}
             isLoading={isLoading}
-            goToDetailsReportPage={goToDetailsUserPage}
+            goToDetailsReportPage={goToDetailsReportPage}
             onOpenReceipt={onOpenReceipt}
         />
 
