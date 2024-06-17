@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
-import { Button } from '@mantine/core';
+import { Button, Loader } from '@mantine/core';
 import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline';
 import { t, Trans } from '@lingui/macro';
 import { Dialog } from 'shared/ui/dialog/dialog';
@@ -9,12 +9,18 @@ import { useArchiveUsers } from '../../entities/users/hooks/use-archive-users';
 import { useStyles } from './styles';
 import { useSelectorT } from 'app/state';
 import { useLingui } from '@lingui/react';
+import useGetUserDataByIdFromUrl from '../../entities/users/hooks/use-get-user-data-by-id-from-url';
 
 export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) => {
 
     const { classes } = useStyles();
 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
+
+    const {
+        userData,
+        isUserFetching,
+    } = useGetUserDataByIdFromUrl();
 
     const navigate = useNavigate();
 
@@ -32,7 +38,8 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
                 variant={ 'outline' }
                 className={ classes.button }
                 onClick={ () => setIsOpenConfirm(true) }
-                leftIcon={ <ArchiveBoxArrowDownIcon/> }><Trans>Move to archive</Trans>
+                leftIcon={isUserFetching ? <Loader size={'sm'}/> : <ArchiveBoxArrowDownIcon/> }>
+                <Trans>Move to archive</Trans>
             </Button>
 
             { isOpenConfirm && <Dialog
@@ -52,7 +59,7 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
                     handler: () => setIsOpenConfirm(false),
                 } }
             >
-                { t`Are you sure you want to delete the current user?` }
+                { t`Are you sure you want to archive the user ${userData?.fullName || 'the current user' }?` }
             </Dialog> }
 
 

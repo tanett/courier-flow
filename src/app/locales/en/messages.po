@@ -157,7 +157,7 @@ msgstr "Apply"
 #: src/features/products-list/ui/modal/modal-archive-item.tsx:53
 #: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:54
 #: src/features/products-list/ui/products-list.tsx:73
-#: src/features/user-archive-button/user-archive-button.tsx:43
+#: src/features/user-archive-button/user-archive-button.tsx:50
 msgid "action-archive"
 msgstr "Archive"
 
@@ -170,6 +170,10 @@ msgstr "Archive"
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:35
 #~ msgid "Archive products"
 #~ msgstr "Archive products"
+
+#: src/features/user-archive-button/user-archive-button.tsx:62
+#~ msgid "Are you sure you want to archive {0}?"
+#~ msgstr "Are you sure you want to archive {0}?"
 
 #: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:58
 msgid "Are you sure you want to archive <0/>selected products"
@@ -186,6 +190,10 @@ msgstr "Are you sure you want to archive the current product?"
 #: src/features/user-list/ui/user-list.tsx:58
 #~ msgid "Are you sure you want to archive the user \"#fullName#\"?"
 #~ msgstr "Are you sure you want to archive the user \"#fullName#\"?"
+
+#: src/features/user-archive-button/user-archive-button.tsx:62
+msgid "Are you sure you want to archive the user {0}?"
+msgstr "Are you sure you want to archive the user {0}?"
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:27
 msgid "Are you sure you want to archive<0/>the category"
@@ -212,8 +220,8 @@ msgid "Are you sure you want to delete the configuration"
 msgstr "Are you sure you want to delete the configuration"
 
 #: src/features/user-archive-button/user-archive-button.tsx:55
-msgid "Are you sure you want to delete the current user?"
-msgstr "Are you sure you want to delete the current user?"
+#~ msgid "Are you sure you want to delete the current user?"
+#~ msgstr "Are you sure you want to delete the current user?"
 
 #: src/features/stores-details-users/ui/stores-details-users.tsx:190
 msgid "Are you sure you want to remove <0/>the user"
@@ -306,7 +314,7 @@ msgstr "By deleting this configuration, {0} and {1} will remain without configur
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:178
 #: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:88
 #: src/features/user-add-to-store/user-add-to-store.tsx:107
-#: src/features/user-archive-button/user-archive-button.tsx:51
+#: src/features/user-archive-button/user-archive-button.tsx:58
 #: src/features/user-list/ui/user-list.tsx:89
 #: src/features/users-create/ui/users-create-new.tsx:163
 #: src/features/users-edit/ui/users-edit.tsx:183
@@ -498,6 +506,7 @@ msgstr "Contacts"
 msgid "country code"
 msgstr "country code"
 
+#: src/features/users-create/ui/users-create-new.tsx:165
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:18
 #: src/pages/products-create-page/ui/products-create-page.tsx:18
 #: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:28
@@ -519,8 +528,8 @@ msgstr "Create"
 #~ msgid "Create new user"
 #~ msgstr "Create new user"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:163
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:163
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:89
 msgid "Creation date"
 msgstr "Creation date"
@@ -546,7 +555,8 @@ msgstr "Date & time"
 msgid "Date & Time"
 msgstr "Date & Time"
 
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:165
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:165
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:92
 msgid "dd.mm.yyyy - dd.mm.yyyy"
 msgstr "dd.mm.yyyy - dd.mm.yyyy"
@@ -637,7 +647,7 @@ msgstr "Employee name"
 #~ msgid "Employees"
 #~ msgstr "Employees"
 
-#: src/features/stores-details/ui/stores-details-tabs.tsx:63
+#: src/features/stores-details/ui/stores-details-tabs.tsx:75
 msgid "Employees list"
 msgstr "Employees list"
 
@@ -792,6 +802,7 @@ msgstr "General information"
 msgid "General Information"
 msgstr "General Information"
 
+#: src/features/stores-details/ui/stores-details-tabs.tsx:78
 #: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:66
 msgid "Go to editing page"
 msgstr "Go to editing page"
@@ -898,13 +909,13 @@ msgstr "Labeled items must be sold individually ??"
 msgid "Language"
 msgstr "Language"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:194
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:194
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:202
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:202
 msgid "Last month"
 msgstr "Last month"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:181
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:181
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:189
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:189
 msgid "Last week"
 msgstr "Last week"
 
@@ -1005,7 +1016,7 @@ msgstr "Model"
 msgid "Modules"
 msgstr "Modules"
 
-#: src/features/user-archive-button/user-archive-button.tsx:35
+#: src/features/user-archive-button/user-archive-button.tsx:42
 msgid "Move to archive"
 msgstr "Move to archive"
 
@@ -1206,8 +1217,8 @@ msgid "Phone number"
 msgstr "Phone number"
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
-msgid "Pick dates range"
-msgstr "Pick dates range"
+#~ msgid "Pick dates range"
+#~ msgstr "Pick dates range"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:131
 msgid "Piece"
@@ -1484,7 +1495,6 @@ msgstr "Sales export"
 #: src/features/stores-edit/ui/store-edit.tsx:205
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:130
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:180
-#: src/features/users-create/ui/users-create-new.tsx:165
 #: src/features/users-edit/ui/users-edit.tsx:185
 msgid "Save"
 msgstr "Save"
@@ -1573,7 +1583,7 @@ msgstr "Status"
 #: src/features/refund-list/ui/refund-table.tsx:50
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:90
 #: src/features/sales-list/ui/table/sales-table-header.tsx:78
-#: src/features/stores-details/ui/stores-details-tabs.tsx:62
+#: src/features/stores-details/ui/stores-details-tabs.tsx:74
 #: src/features/terminal-list/ui/terminals-table.tsx:39
 msgid "Store"
 msgstr "Store"
@@ -1789,8 +1799,8 @@ msgstr "To the stores indicated in the Excel file"
 msgid "today"
 msgstr "today"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:178
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:178
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:186
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:186
 msgid "Today"
 msgstr "Today"
 
@@ -1960,12 +1970,16 @@ msgid "Users"
 msgstr "Users"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
+msgid "Users count"
+msgstr "Users count"
+
+#: src/features/roles-list/ui/roles-list.tsx:59
 #~ msgid "Users' count"
 #~ msgstr "Users' count"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
-msgid "Users's count"
-msgstr "Users's count"
+#~ msgid "Users's count"
+#~ msgstr "Users's count"
 
 #: src/shared/ui/payment-type/payment-type.tsx:32
 msgid "Usual"
@@ -2028,8 +2042,8 @@ msgstr "Yes"
 msgid "yesterday"
 msgstr "yesterday"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:191
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:191
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:199
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:199
 msgid "Yesterday"
 msgstr "Yesterday"
 

@@ -152,7 +152,7 @@ msgstr "Применить"
 #: src/features/products-list/ui/modal/modal-archive-item.tsx:53
 #: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:54
 #: src/features/products-list/ui/products-list.tsx:73
-#: src/features/user-archive-button/user-archive-button.tsx:43
+#: src/features/user-archive-button/user-archive-button.tsx:50
 msgid "action-archive"
 msgstr "Архивировать"
 
@@ -165,6 +165,10 @@ msgstr "Архив"
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:35
 #~ msgid "Archive products"
 #~ msgstr ""
+
+#: src/features/user-archive-button/user-archive-button.tsx:62
+#~ msgid "Are you sure you want to archive {0}?"
+#~ msgstr "Вы уверены, что хотите архивировать {0}"
 
 #: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:58
 msgid "Are you sure you want to archive <0/>selected products"
@@ -182,6 +186,10 @@ msgstr "Вы уверены, что хотите архивировать это
 #~ msgid "Are you sure you want to archive the user \"#fullName#\"?"
 #~ msgstr "Вы уверены в том, что хотите переместить в архив пользователя \"#fullName#\"?"
 
+#: src/features/user-archive-button/user-archive-button.tsx:62
+msgid "Are you sure you want to archive the user {0}?"
+msgstr "Вы уверены, что хотите архивировать пользователя {0}?"
+
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:27
 msgid "Are you sure you want to archive<0/>the category"
 msgstr "Вы уверены, что хотите архивировать<0/> эту категорию"
@@ -196,7 +204,7 @@ msgstr "Вы уверены, что хотите архивировать<0/> в
 
 #: src/features/user-list/ui/user-list.tsx:97
 msgid "Are you sure you want to archive<0/>the user"
-msgstr "Вы уверены, что хотите архивировать<0/> этого пользователя"
+msgstr "Вы уверены, что хотите архивировать<0/> пользователя"
 
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:74
 msgid "Are you sure you want to delete <0/>the product"
@@ -207,8 +215,8 @@ msgid "Are you sure you want to delete the configuration"
 msgstr "Вы уверены, что хотите удалить эту конфигурацию"
 
 #: src/features/user-archive-button/user-archive-button.tsx:55
-msgid "Are you sure you want to delete the current user?"
-msgstr "Вы уверены что хотите удалить этого пользователя?"
+#~ msgid "Are you sure you want to delete the current user?"
+#~ msgstr "Вы уверены что хотите удалить пользователя?"
 
 #: src/features/stores-details-users/ui/stores-details-users.tsx:190
 msgid "Are you sure you want to remove <0/>the user"
@@ -301,7 +309,7 @@ msgstr "После удаления конфигурации, {0} и {1} ост�
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:178
 #: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:88
 #: src/features/user-add-to-store/user-add-to-store.tsx:107
-#: src/features/user-archive-button/user-archive-button.tsx:51
+#: src/features/user-archive-button/user-archive-button.tsx:58
 #: src/features/user-list/ui/user-list.tsx:89
 #: src/features/users-create/ui/users-create-new.tsx:163
 #: src/features/users-edit/ui/users-edit.tsx:183
@@ -493,6 +501,7 @@ msgstr "Контакты"
 msgid "country code"
 msgstr "Код страны"
 
+#: src/features/users-create/ui/users-create-new.tsx:165
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:18
 #: src/pages/products-create-page/ui/products-create-page.tsx:18
 #: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:28
@@ -514,8 +523,8 @@ msgstr "Создать"
 #~ msgid "Create new user"
 #~ msgstr "Создать нового пользователя"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:163
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:163
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:89
 msgid "Creation date"
 msgstr "Дата создания"
@@ -541,7 +550,8 @@ msgstr "Дата & время"
 msgid "Date & Time"
 msgstr "Дата & Время"
 
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:165
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:165
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:92
 msgid "dd.mm.yyyy - dd.mm.yyyy"
 msgstr "дд.мм.гггг-дд.мм.гггг"
@@ -632,7 +642,7 @@ msgstr "Имя сотрудника"
 #~ msgid "Employees"
 #~ msgstr "Сотрудники"
 
-#: src/features/stores-details/ui/stores-details-tabs.tsx:63
+#: src/features/stores-details/ui/stores-details-tabs.tsx:75
 msgid "Employees list"
 msgstr "Список сотрудников"
 
@@ -787,6 +797,7 @@ msgstr "Основная информация"
 msgid "General Information"
 msgstr "Основная информация"
 
+#: src/features/stores-details/ui/stores-details-tabs.tsx:78
 #: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:66
 msgid "Go to editing page"
 msgstr "Перейти на страницу редактирования"
@@ -897,13 +908,13 @@ msgstr "Маркированные товары должны продавать�
 msgid "Language"
 msgstr "Язык"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:194
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:194
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:202
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:202
 msgid "Last month"
 msgstr "Последний месяц"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:181
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:181
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:189
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:189
 msgid "Last week"
 msgstr "Последняя неделя"
 
@@ -1004,7 +1015,7 @@ msgstr "Модель"
 msgid "Modules"
 msgstr "Модули"
 
-#: src/features/user-archive-button/user-archive-button.tsx:35
+#: src/features/user-archive-button/user-archive-button.tsx:42
 msgid "Move to archive"
 msgstr "Архивировать"
 
@@ -1201,8 +1212,8 @@ msgid "Phone number"
 msgstr "Номер телефона"
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
-msgid "Pick dates range"
-msgstr "Выберите диапазон дат"
+#~ msgid "Pick dates range"
+#~ msgstr "Выберите диапазон дат"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:131
 msgid "Piece"
@@ -1479,7 +1490,6 @@ msgstr "Экспорт продаж"
 #: src/features/stores-edit/ui/store-edit.tsx:205
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:130
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:180
-#: src/features/users-create/ui/users-create-new.tsx:165
 #: src/features/users-edit/ui/users-edit.tsx:185
 msgid "Save"
 msgstr "Сохранить"
@@ -1568,7 +1578,7 @@ msgstr "Статус"
 #: src/features/refund-list/ui/refund-table.tsx:50
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:90
 #: src/features/sales-list/ui/table/sales-table-header.tsx:78
-#: src/features/stores-details/ui/stores-details-tabs.tsx:62
+#: src/features/stores-details/ui/stores-details-tabs.tsx:74
 #: src/features/terminal-list/ui/terminals-table.tsx:39
 msgid "Store"
 msgstr "Магазин"
@@ -1784,8 +1794,8 @@ msgstr "В магазины, указанные в exel файле"
 msgid "today"
 msgstr "сегодня"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:178
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:178
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:186
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:186
 msgid "Today"
 msgstr "Сегодня"
 
@@ -1878,7 +1888,7 @@ msgstr "Введите название магазина"
 
 #: src/features/user-list/ui/user-table.tsx:33
 msgid "Type part of your username, email or phone number"
-msgstr "Напечатайте часть имени, эл.почты или номера телефона"
+msgstr "Введите имя, телефон или эл. адрес пользователя"
 
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:143
 msgid "Type serial number and select"
@@ -1955,16 +1965,16 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
-#~ msgid "Users count"
-#~ msgstr "Kол-во пользователей"
+msgid "Users count"
+msgstr "Kол-во пользователей"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
 #~ msgid "Users' count"
 #~ msgstr ""
 
 #: src/features/roles-list/ui/roles-list.tsx:59
-msgid "Users's count"
-msgstr ""
+#~ msgid "Users's count"
+#~ msgstr ""
 
 #: src/shared/ui/payment-type/payment-type.tsx:32
 msgid "Usual"
@@ -2027,8 +2037,8 @@ msgstr "Да"
 msgid "yesterday"
 msgstr "вчера"
 
-#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:191
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:191
+#: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:199
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:199
 msgid "Yesterday"
 msgstr "Вчера"
 
