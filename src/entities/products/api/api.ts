@@ -210,7 +210,7 @@ export const {
     useGetProductByIdQuery,
     useLazyGetProductByIdQuery,
     usePatchProductMutation,
-    useLazySearchProductQuery,
+    useSearchProductQuery,
     useLazySearchProductExtendedQuery,
     useSearchProductExtendedQuery,
     useCreateProductMutation,

@@ -31,5 +31,6 @@ export type typeStore = typeStoreCreate & {
 }
 
 export type typeExtendedStore = typeStore & {usersCount: number}
+export type typeStoreWithLinkedConfiguration = typeStore & {linkedTerminalConfigId: string}
 
 export type typeStoreToArchive = typeStore['id'][]

@@ -68,6 +68,8 @@ export const SelectStores: React.FC<typeSelectStores> = ({
                 isAllChecked={ isAllChecked }
                 setIsAllChecked={ setIsAllChecked }
                 setCountAllStores={ setCountAllStores }
+                label={<Trans>Select stores</Trans>}
+                bigPadding={true}
             />
 
             { isError && <Box className={ classes.error }>{ isError }</Box> }

@@ -11,14 +11,19 @@ export const useStyles = createStyles((theme) => ({
         letterSpacing: 0.3,
         lineHeight: rem(19),
         textAlign: 'center',
+        color: theme.colors.gray[5],
     },
     wrapper: {
+
+        paddingBottom: rem(24),
+        paddingTop: rem(10),
+    },
+    withBorder: {
         borderBottom: `1px solid ${theme.colors.borderColor[ 0 ]}`,
         borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}`,
         borderRight: `1px solid ${theme.colors.borderColor[ 0 ]}`,
         borderBottomRightRadius: rem(8),
         borderBottomLeftRadius: rem(8),
-        paddingBottom: rem(24),
-        paddingTop: rem(10),
+
     },
 }));

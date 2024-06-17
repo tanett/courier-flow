@@ -2,7 +2,7 @@ import { baseApi } from '../../../app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from '../../../app/api/types';
 import { API_URLS } from '../../../app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { typeTerminal, typeTerminalExtended } from '../model/types';
+import { typeTerminal, typeTerminalExtended, typeTerminalWithLinkedConfiguration } from '../model/types';
 import { tagTypesTerminalsExtendedList, typeSearchTerminalsExtendedFilter, typeSearchTerminalsFilter, typeSearchTerminalSortingNames } from './types';
 
 
@@ -43,6 +43,18 @@ export const terminalsApi = baseApi.injectEndpoints({
                 : [ tagTypesTerminalsExtendedList.terminalExtendedList ],
         }),
 
+        // Search terminals with id linked configuration
+        searchTerminalsWithLinkedConfiguration: builder.query<typeSearchResponse<typeTerminalWithLinkedConfiguration>, typeSearchRequest<typeSearchTerminalsExtendedFilter, typeSearchTerminalSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.TERMINAL_LIST_SEARCH_WITH_LINKED_CONFIGURATION,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
+
         // get terminal by id
         getTerminalById: builder.query<typeTerminal, string>({
             query: (id) => (
@@ -62,4 +74,5 @@ export const {
     useGetTerminalByIdQuery,
     useSearchTerminalsExtendedQuery,
     useLazySearchTerminalsExtendedQuery,
+    useLazySearchTerminalsWithLinkedConfigurationQuery
 } = terminalsApi;

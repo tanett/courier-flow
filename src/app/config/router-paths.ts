@@ -21,6 +21,9 @@ export enum pathSections {
     categories = 'categories',
     cashDesks = 'cash-desks',
     terminals = 'terminals',
+    terminals_list = 'terminals_list',
+    terminals_configurations = 'terminals_configurations',
+    handover_records = 'handover_records',
     orders = 'orders',
     supportCenters = 'support-centers',
     supportRequests = 'support-requests',
@@ -81,7 +84,15 @@ export enum pathNames {
     cashDesks = 'cashDesks',
 
     terminals = 'terminals',
+    terminals_list = 'terminals_list',
     terminals_details = 'terminals_details',
+
+    terminals_configurations = 'terminals_configurations',
+    terminals_configurations_create = 'terminals_configurations_create',
+    terminals_configurations_edit = 'terminals_configurations_edit',
+    terminals_configurations_details = 'terminals_configurations_details',
+
+    handover_records = 'handover_records',
 
     orders = 'orders',
 
@@ -154,7 +165,17 @@ export const routerPaths: Record<pathNames, string> = {
 
     // terminals
     [pathNames.terminals]: createPath([ pathSections.dashboard, pathSections.terminals ]),
+    [pathNames.terminals_list]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_list  ]),
     [pathNames.terminals_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.id, pathSections.serialNumber ]),
+
+    // terminals-configurations
+    [pathNames.terminals_configurations]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations ]),
+    [pathNames.terminals_configurations_create]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.create ]),
+    [pathNames.terminals_configurations_edit]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.id, pathSections.edit ]),
+    [pathNames.terminals_configurations_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.id, pathSections.name ]),
+
+    // handover_records
+    [pathNames.handover_records]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.handover_records ]),
 
     // orders
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),

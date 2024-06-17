@@ -151,6 +151,12 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
+            styles={ {
+                rightSection: {
+                    pointerEvents: 'none',
+                    pointer: 'pointer',
+                },
+            } }
             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );

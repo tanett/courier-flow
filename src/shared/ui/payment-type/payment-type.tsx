@@ -1,7 +1,7 @@
 import React from 'react';
 import { typeCheckedShortSalesExtended } from 'features/sales-list/types/types';
 import { Box, Flex } from '@mantine/core';
-import { AdvanceIconOutline } from 'shared/ui/svg-custom-icons/advance-icon-outline/advance-icon-outline';
+import { AdvanceIconOutline16 } from 'shared/ui/svg-custom-icons/advance-icon-outline/advanceIconOutline16';
 import { t } from '@lingui/macro';
 import { CreditIconOutline } from 'shared/ui/svg-custom-icons/credit-icon-outline/credit-icon-outline';
 import { useStyles } from 'shared/ui/payment-type/styles';
@@ -28,12 +28,12 @@ const PaymentType: React.FC<{ sale: typeCheckedShortSalesExtended | typeSale }> 
     return (<>
             { sale.paymentType === 'USUAL' &&
                 <Flex className={ classes.flexRow }>
-                    {/* <Box className={ classes.iconContainer }><AdvanceIconOutline/></Box> */}
+                    {/* <Box className={ classes.iconContainer }><OnlinePaymentIconOutline/></Box> */}
                     <ButtonAsLink disabled  onClick={ onAdvanceClick } label={i18n._(t`Usual`)}/>
                 </Flex> }
             { sale.paymentType === 'ADVANCE' &&
                 <Flex className={ classes.flexRow }>
-                    <Box className={ classes.iconContainer }><AdvanceIconOutline/></Box>
+                    <Box className={ classes.iconContainer }><AdvanceIconOutline16/></Box>
                     <ButtonAsLink  onClick={ onAdvanceClick } label={i18n._(t`Advance`)}/>
                 </Flex> }
             { sale.paymentType === 'CREDIT' &&

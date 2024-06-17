@@ -23,13 +23,13 @@ import {
 } from '@heroicons/react/24/solid';
 import {
     readAdvancesPermissions,
-    readCategoryPermissions, readCreditsPermissions,
+    readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
     readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
     readRefundsPermissions,
     readSalesPermissions,
-    readStoresPermissions,
+    readStoresPermissions, readTerminalConfigurationsPermissions,
     readTerminalPermissions,
     readUserPermissions, readZReportsPermissions
 } from '../../../app/config/permissions-config';
@@ -118,6 +118,26 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         activeIcon: <CalculatorIconSolid/>,
         path: routerPaths.terminals,
         allowPermissions: readTerminalPermissions,
+        children: [
+            {
+                id: pathNames.terminals_list,
+                name: <Trans>Terminals list</Trans>,
+                path: routerPaths.terminals_list,
+                allowPermissions: readTerminalPermissions,
+            },
+            {
+                id: pathNames.terminals_configurations,
+                name: <Trans>Configurations</Trans>,
+                path: routerPaths.terminals_configurations,
+                allowPermissions: readTerminalConfigurationsPermissions,
+            },
+            {
+                id: pathNames.handover_records,
+                name: <Trans>Handover records</Trans>,
+                path: routerPaths.handover_records,
+                allowPermissions: readHandoverRecordsPermissions,
+            },
+        ]
     },
     {
         id: pathNames.orders,
