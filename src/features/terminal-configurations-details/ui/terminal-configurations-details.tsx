@@ -38,7 +38,7 @@ export const TerminalConfigurationsDetails: React.FC<{ id: string }> = ({ id }) 
 
     const {data, isFetching, } = useGetTerminalConfigurationsDataByIdFromUrl()
 
-    const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.terminals_configurations_edit,{id: id}), );// todo
+    const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.terminals_configurations_edit,{id: id}), );
 
     return (
 
