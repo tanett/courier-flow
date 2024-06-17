@@ -491,7 +491,7 @@ msgstr "Контакты"
 
 #: src/shared/ui/phone-input/ui/country-selector.tsx:54
 msgid "country code"
-msgstr "код страны"
+msgstr "Код страны"
 
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:18
 #: src/pages/products-create-page/ui/products-create-page.tsx:18
