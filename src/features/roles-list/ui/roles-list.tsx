@@ -54,9 +54,9 @@ export const RolesList: React.FC = () => {
                         <Table.Th>
                             <Trans>Description</Trans>
                         </Table.Th>
-                        <Table.Th>
+                        <Table.Th align={'center'}>
                             <Text className={classes.noWrap}>
-                                <Trans>Users's count</Trans>
+                                <Trans>Users count</Trans>
                             </Text>
                         </Table.Th>
                     </Table.Header>

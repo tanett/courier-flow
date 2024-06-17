@@ -1443,7 +1443,7 @@ msgstr "Описание роли"
 
 #: src/features/roles-list/ui/roles-list.tsx:52
 msgid "Role's name"
-msgstr "Название"
+msgstr "Название роли"
 
 #: src/features/main-menu/config/main-menu.config.tsx:169
 #: src/pages/roles-page/ui/roles-page.tsx:16
@@ -1956,7 +1956,7 @@ msgstr "Пользователи"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
 #~ msgid "Users count"
-#~ msgstr "кол-во пользователей"
+#~ msgstr "Kол-во пользователей"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
 #~ msgid "Users' count"
