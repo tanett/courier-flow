@@ -521,7 +521,7 @@ msgstr ""
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:163
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:163
-#: src/features/stores-list-filter/ui/stores-list-filter.tsx:82
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:89
 msgid "Creation date"
 msgstr ""
 
@@ -544,6 +544,11 @@ msgstr ""
 
 #: src/features/refund-list/ui/refund-table.tsx:44
 msgid "Date & Time"
+msgstr ""
+
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:92
+msgid "dd.mm.yyyy - dd.mm.yyyy"
 msgstr ""
 
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
@@ -1201,8 +1206,6 @@ msgid "Phone number"
 msgstr ""
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
-#: src/features/stores-list-filter/ui/stores-list-filter.tsx:85
 msgid "Pick dates range"
 msgstr ""
 
@@ -1594,7 +1597,7 @@ msgstr ""
 
 #: src/features/stores-details-common/ui/store-details-common.tsx:46
 #: src/features/stores-edit/ui/store-edit.tsx:142
-#: src/features/stores-list-filter/ui/stores-list-filter.tsx:71
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:72
 msgid "Store type"
 msgstr ""
 

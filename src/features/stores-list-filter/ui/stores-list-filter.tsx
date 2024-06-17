@@ -12,6 +12,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { DatesProviderWithLocale } from '../../../shared/providers/dates-provider-with-locale/dates-provider-with-locale';
 import { storeTypeList } from '../../../entities/stores/constants/store-type-list';
 import { IconChevronDown } from '@tabler/icons-react';
+import { CalendarDaysIcon, CalendarIcon } from '@heroicons/react/24/outline';
 
 
 export const StoresListFilter: React.FC = () => {
@@ -39,13 +40,13 @@ export const StoresListFilter: React.FC = () => {
 
         const filterObj: Record<string, unknown> = {
             type: form.values.type,
-            createdAtFrom: form.values.createdAt[ 0 ] ? (form.values.createdAt[ 0 ]).toISOString() : null,
-            createdAtTo: form.values.createdAt[ 1 ] ? (form.values.createdAt[ 1 ]).toISOString() : null,
+            createdAtFrom: form.values.createdAt[0] ? (form.values.createdAt[0]).toISOString() : null,
+            createdAtTo: form.values.createdAt[1] ? (form.values.createdAt[1]).toISOString() : null,
         };
 
         urlParams.setSearchParams({
-            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
-            [ queryParamsNames.pageNumber ]: undefined,
+            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
+            [queryParamsNames.pageNumber]: undefined,
         });
 
         if (close) close();
@@ -55,8 +56,8 @@ export const StoresListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
-            [ queryParamsNames.pageNumber ]: undefined,
+            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
+            [queryParamsNames.pageNumber]: undefined,
         });
         form.reset();
 
@@ -72,6 +73,12 @@ export const StoresListFilter: React.FC = () => {
                     data={ storeTypeList }
                     { ...form.getInputProps('type') }
                     rightSection={ <IconChevronDown size="1rem"/> }
+                    styles={ {
+                        rightSection: {
+                            pointerEvents: 'none',
+                            pointer: 'pointer',
+                        },
+                    } }
                     sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
                 />
                 <DatesProviderWithLocale>
@@ -82,10 +89,17 @@ export const StoresListFilter: React.FC = () => {
                         label={ i18n._(t`Creation date`) }
                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                         // @ts-ignore
-                        placeholder={ i18n._(t`Pick dates range`) }
+                        { ...{placeholder:i18n._(t`dd.mm.yyyy - dd.mm.yyyy`)} }
                         { ...form.getInputProps('createdAt') }
                         minDate={ new Date('2020-01-01') }
                         maxDate={ new Date() }
+                        rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
+                        styles={ {
+                            rightSection: {
+                                pointerEvents: 'none',
+                                pointer: 'pointer',
+                            },
+                        } }
                     />
                 </DatesProviderWithLocale>
 

@@ -516,7 +516,7 @@ msgstr "Создать"
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:163
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:163
-#: src/features/stores-list-filter/ui/stores-list-filter.tsx:82
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:89
 msgid "Creation date"
 msgstr "Дата создания"
 
@@ -540,6 +540,11 @@ msgstr "Дата & время"
 #: src/features/refund-list/ui/refund-table.tsx:44
 msgid "Date & Time"
 msgstr "Дата & Время"
+
+#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:92
+msgid "dd.mm.yyyy - dd.mm.yyyy"
+msgstr "дд.мм.гггг-дд.мм.гггг"
 
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
@@ -1196,8 +1201,6 @@ msgid "Phone number"
 msgstr "Номер телефона"
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:164
-#: src/features/sales-list-filter/ui/sales-list-filter.tsx:164
-#: src/features/stores-list-filter/ui/stores-list-filter.tsx:85
 msgid "Pick dates range"
 msgstr "Выберите диапазон дат"
 
@@ -1589,7 +1592,7 @@ msgstr "Магазин не найден"
 
 #: src/features/stores-details-common/ui/store-details-common.tsx:46
 #: src/features/stores-edit/ui/store-edit.tsx:142
-#: src/features/stores-list-filter/ui/stores-list-filter.tsx:71
+#: src/features/stores-list-filter/ui/stores-list-filter.tsx:72
 msgid "Store type"
 msgstr "Тип магазина"
 
@@ -1871,7 +1874,7 @@ msgstr "Напечатайте часть серийного номера или
 
 #: src/features/stores-list/ui/stores-table.tsx:33
 msgid "Type part of store name"
-msgstr "Напечатайте часть названия магазина"
+msgstr "Введите название магазина"
 
 #: src/features/user-list/ui/user-table.tsx:33
 msgid "Type part of your username, email or phone number"
@@ -1952,12 +1955,16 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: src/features/roles-list/ui/roles-list.tsx:59
+#~ msgid "Users count"
+#~ msgstr "кол-во пользователей"
+
+#: src/features/roles-list/ui/roles-list.tsx:59
 #~ msgid "Users' count"
 #~ msgstr ""
 
 #: src/features/roles-list/ui/roles-list.tsx:59
-msgid "Users count"
-msgstr "кол-во пользователей"
+msgid "Users's count"
+msgstr ""
 
 #: src/shared/ui/payment-type/payment-type.tsx:32
 msgid "Usual"

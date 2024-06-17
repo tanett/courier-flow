@@ -17,6 +17,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { SelectorWithSearchTerminals } from 'features/selector-with-search-terminals';
 import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
 import dayjs from 'dayjs';
+import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 
 export const SalesListFilter: React.FC = () => {
 
@@ -161,11 +162,18 @@ export const SalesListFilter: React.FC = () => {
                                 clearable
                                 valueFormat="DD MMMM YYYY"
                                 label={ i18n._(t`Creation date`) }
-                                { ...{ placeholder: i18n._(t`Pick dates range`) } }
+                                { ...{placeholder:i18n._(t`dd.mm.yyyy - dd.mm.yyyy`)} }
                                 { ...form.getInputProps('soldAt') }
                                 minDate={ new Date('2020-01-01') }
                                 maxDate={ new Date() }
                                 sx={ { '& .mantine-DatePickerInput-placeholder': { color: theme.colors.gray[3] } } }
+                                rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
+                                styles={ {
+                                    rightSection: {
+                                        pointerEvents: 'none',
+                                        pointer: 'pointer',
+                                    },
+                                } }
                             />
                         </DatesProviderWithLocale>
 
