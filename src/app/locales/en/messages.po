@@ -18,6 +18,14 @@ msgstr ""
 #~ msgid "undefined"
 #~ msgstr "undefined"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:101
+msgid "{0, plural, one {# store} few {# stores} other {# stores}}"
+msgstr "{0, plural, one {# store} few {# stores} other {# stores}}"
+
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:97
+msgid "{0, plural, one {# terminal} few {# terminals} other {# terminals}}"
+msgstr "{0, plural, one {# terminal} few {# terminals} other {# terminals}}"
+
 #: src/entities/products/constants/product-unit-value-list-for-selector.tsx:5
 #: src/entities/products/constants/product-unit-value-list-for-selector.tsx:6
 #: src/entities/products/constants/product-unit-value-list-for-selector.tsx:7
@@ -27,13 +35,14 @@ msgstr ""
 msgid "{0}"
 msgstr "{0}"
 
+#: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:28
 msgid "{productsCount, plural, one {# product} few {# products} many {# products} other {# products}}"
 msgstr "{productsCount, plural, one {# product} few {# products} many {# products} other {# products}}"
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
-msgid "{productsCount, plural, one {# product} few {# products} other {# products}}"
-msgstr "{productsCount, plural, one {# product} few {# products} other {# products}}"
+#~ msgid "{productsCount, plural, one {# product} few {# products} other {# products}}"
+#~ msgstr "{productsCount, plural, one {# product} few {# products} other {# products}}"
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:28
@@ -49,13 +58,14 @@ msgstr "A barcode is required for labeled goods."
 msgid "Access denied"
 msgstr "Access denied"
 
-#: src/features/categories-list/ui/table/categories-table-header.tsx:71
+#: src/features/categories-list/ui/table/categories-table-header.tsx:75
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:43
-#: src/features/products-list/ui/table/products-table-header.tsx:98
+#: src/features/products-list/ui/table/products-table-header.tsx:102
 #: src/features/refund-list/ui/refund-table.tsx:59
 #: src/features/sales-list/ui/table/sales-table-header.tsx:97
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:47
-#: src/features/stores-list/ui/stores-table.tsx:55
+#: src/features/stores-list/ui/stores-table.tsx:59
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:52
 #: src/features/user-list/ui/user-table.tsx:58
 msgid "Actions"
 msgstr "Actions"
@@ -92,7 +102,7 @@ msgid "additional information"
 msgstr "additional information"
 
 #: src/features/stores-edit/ui/store-edit.tsx:183
-#: src/features/stores-list/ui/stores-table.tsx:45
+#: src/features/stores-list/ui/stores-table.tsx:49
 #: src/features/users-details/ui/users-details.tsx:126
 msgid "Address"
 msgstr "Address"
@@ -116,6 +126,10 @@ msgstr "After archiving the category, {0} will remain without a category"
 #~ msgid "After archiving the category, {productsCount} products will remain without a category"
 #~ msgstr "After archiving the category, {productsCount} products will remain without a category"
 
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/list-attached-category.tsx:58
+msgid "After selecting a category, you’ll see the list here"
+msgstr "After selecting a category, you’ll see the list here"
+
 #: src/features/products-import/ui/select-file/select-file.tsx:130
 msgid "All products listed in the file are successfully imported."
 msgstr "All products listed in the file are successfully imported."
@@ -125,7 +139,7 @@ msgstr "All products listed in the file are successfully imported."
 msgid "Amount of payment"
 msgstr "Amount of payment"
 
-#: src/features/products-list/ui/table/products-table-header.tsx:94
+#: src/features/products-list/ui/table/products-table-header.tsx:98
 msgid "Amount of stores"
 msgstr "Amount of stores"
 
@@ -193,6 +207,10 @@ msgstr "Are you sure you want to archive<0/>the user"
 msgid "Are you sure you want to delete <0/>the product"
 msgstr "Are you sure you want to delete <0/>the product"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:96
+msgid "Are you sure you want to delete the configuration"
+msgstr "Are you sure you want to delete the configuration"
+
 #: src/features/user-archive-button/user-archive-button.tsx:55
 msgid "Are you sure you want to delete the current user?"
 msgstr "Are you sure you want to delete the current user?"
@@ -225,6 +243,10 @@ msgstr "Attach another file"
 msgid "Attach or drag an XLSX file<0/>no larger than 10Mb into this area"
 msgstr "Attach or drag an XLSX file<0/>no larger than 10Mb into this area"
 
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/list-attached-category.tsx:32
+msgid "Attached categories"
+msgstr "Attached categories"
+
 #: src/pages/login-page/ui/login-page.tsx:11
 msgid "Authorization"
 msgstr "Authorization"
@@ -232,6 +254,10 @@ msgstr "Authorization"
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:133
 msgid "Authorization was successful!"
 msgstr "Authorization was successful!"
+
+#: src/features/terminal-configurations-details/ui/list-modules/ui/list-modules-for-configuration-terminals.tsx:32
+msgid "Available modules"
+msgstr "Available modules"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:117
 msgid "Barcode"
@@ -253,6 +279,10 @@ msgstr "Blocked"
 msgid "Blocking"
 msgstr "Blocking"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:97
+msgid "By deleting this configuration, {0} and {1} will remain without configurations.<0/>A deleted configuration cannot be restored."
+msgstr "By deleting this configuration, {0} and {1} will remain without configurations.<0/>A deleted configuration cannot be restored."
+
 #: src/features/categories-create/ui/categories-create.tsx:108
 #: src/features/categories-edit/ui/categories-edit.tsx:123
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:16
@@ -272,6 +302,9 @@ msgstr "Blocking"
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
 #: src/features/stores-details-users/ui/stores-details-users.tsx:182
 #: src/features/stores-edit/ui/store-edit.tsx:203
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:128
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:178
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:88
 #: src/features/user-add-to-store/user-add-to-store.tsx:107
 #: src/features/user-archive-button/user-archive-button.tsx:51
 #: src/features/user-list/ui/user-list.tsx:89
@@ -303,6 +336,10 @@ msgid "Cashier app version"
 msgstr "Cashier app version"
 
 #: src/features/main-menu/config/main-menu.config.tsx:92
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:115
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:62
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:163
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:49
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:17
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:21
 #: src/pages/categories-page/ui/categories-page.tsx:31
@@ -314,7 +351,7 @@ msgid "Categories delete successfully."
 msgstr "Categories delete successfully."
 
 #: src/features/products-details-common/ui/product-details-common.tsx:62
-#: src/features/products-list/ui/table/products-table-header.tsx:87
+#: src/features/products-list/ui/table/products-table-header.tsx:91
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:140
 msgid "Category"
 msgstr "Category"
@@ -408,9 +445,9 @@ msgstr "Click to view full list"
 msgid "Close"
 msgstr "Close"
 
-#: src/features/products-export/ui/select-stores/select-stores.tsx:89
+#: src/features/products-export/ui/select-stores/select-stores.tsx:91
 #: src/features/products-import/ui/select-file/select-file.tsx:91
-#: src/features/products-import/ui/select-stores/select-stores.tsx:86
+#: src/features/products-import/ui/select-stores/select-stores.tsx:88
 msgid "Come back"
 msgstr "Come back"
 
@@ -421,6 +458,20 @@ msgstr "Comission PINFL"
 #: src/features/products-details-common/ui/product-details-common.tsx:77
 msgid "Comission TIN"
 msgstr "Comission TIN"
+
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:96
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:144
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:40
+msgid "Configuration name"
+msgstr "Configuration name"
+
+#: src/features/main-menu/config/main-menu.config.tsx:130
+#: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:25
+#: src/pages/terminal-configurations-details-page/ui/terminal-configurations-details-page.tsx:24
+#: src/pages/terminal-configurations-edit-page/ui/terminal-configuration-edit-page.tsx:23
+#: src/pages/terminal-configurations-page/ui/terminal-configuration-page.tsx:33
+msgid "Configurations"
+msgstr "Configurations"
 
 #: src/features/stores-details-users/ui/stores-details-users.tsx:186
 #: src/features/user-list/ui/user-list.tsx:93
@@ -449,6 +500,7 @@ msgstr "country code"
 
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:18
 #: src/pages/products-create-page/ui/products-create-page.tsx:18
+#: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:28
 #: src/pages/users-create-page/ui/users-create-page.tsx:18
 #: src/shared/ui/create-button-filled/create-button-filled.tsx:23
 #: src/shared/ui/create-button-outline/create-button-outline.tsx:24
@@ -496,6 +548,9 @@ msgstr "Date & Time"
 
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/category-item-in-list.tsx:36
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:92
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:66
 msgid "Delete"
 msgstr "Delete"
 
@@ -537,11 +592,13 @@ msgstr "Download a file template"
 #: src/features/categories-list/ui/table/categories-table.tsx:76
 #: src/features/products-list/ui/table/products-table.tsx:85
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:57
-#: src/features/stores-list/ui/stores-table.tsx:64
+#: src/features/stores-list/ui/stores-table.tsx:68
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:61
 #: src/features/user-list/ui/user-table.tsx:67
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:22
 #: src/pages/products-edit-page/ui/products-edit-page.tsx:18
 #: src/pages/stores-edit-page/ui/stores-edit-page.tsx:22
+#: src/pages/terminal-configurations-edit-page/ui/terminal-configuration-edit-page.tsx:25
 #: src/pages/users-edit-page/ui/users-edit-page.tsx:23
 msgid "Edit"
 msgstr "Edit"
@@ -583,11 +640,16 @@ msgstr "Employees list"
 msgid "Employer"
 msgstr "Employer"
 
-#: src/shared/ui/empty-element/empty-element.tsx:13
+#: src/shared/ui/empty-element/empty-element.tsx:14
 msgid "empty list"
 msgstr "empty list"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:250
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:328
+msgid "Enter a serial number"
+msgstr "Enter a serial number"
+
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:251
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:338
 msgid "Enter a store name"
 msgstr "Enter a store name"
 
@@ -603,7 +665,7 @@ msgstr "Error"
 msgid "Error list"
 msgstr "Error list"
 
-#: src/features/products-export/ui/select-stores/select-stores.tsx:95
+#: src/features/products-export/ui/select-stores/select-stores.tsx:97
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:101
 #: src/features/sales-list-buttons-panel/ui/sales-list-buttons-panel.tsx:56
 msgid "Export"
@@ -725,6 +787,15 @@ msgstr "General information"
 msgid "General Information"
 msgstr "General Information"
 
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:66
+msgid "Go to editing page"
+msgstr "Go to editing page"
+
+#: src/features/main-menu/config/main-menu.config.tsx:136
+#: src/pages/handover-records-page/ui/handover-records-page.tsx:15
+msgid "Handover records"
+msgstr "Handover records"
+
 #: src/shared/ui/support-link/support-link.tsx:29
 msgid "Have questions?"
 msgstr "Have questions?"
@@ -800,6 +871,8 @@ msgstr "Invalid phone number format"
 #: src/features/stores-edit/form/form.ts:19
 #: src/features/stores-edit/form/form.ts:27
 #: src/features/stores-edit/form/form.ts:47
+#: src/features/terminal-configurations-create/form/form.ts:17
+#: src/features/terminal-configurations-edit/form/form.ts:17
 #: src/features/users-create/form/form.ts:19
 #: src/features/users-create/form/form.ts:28
 #: src/features/users-edit/form/form.ts:19
@@ -921,6 +994,12 @@ msgstr "Medicine"
 msgid "Model"
 msgstr "Model"
 
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:116
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:63
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:164
+msgid "Modules"
+msgstr "Modules"
+
 #: src/features/user-archive-button/user-archive-button.tsx:35
 msgid "Move to archive"
 msgstr "Move to archive"
@@ -928,15 +1007,15 @@ msgstr "Move to archive"
 #. js-lingui-explicit-id
 #: src/features/categories-create/ui/categories-create.tsx:93
 #: src/features/categories-edit/ui/categories-edit.tsx:108
-#: src/features/categories-list/ui/table/categories-table-header.tsx:65
+#: src/features/categories-list/ui/table/categories-table-header.tsx:67
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:37
-#: src/features/products-list/ui/table/products-table-header.tsx:84
+#: src/features/products-list/ui/table/products-table-header.tsx:86
 #: src/features/stores-edit/ui/store-edit.tsx:134
+#: src/features/stores-list/ui/stores-table.tsx:44
 msgid "item-name"
 msgstr "Name"
 
 #: src/features/stores-edit/ui/store-edit.tsx:135
-#: src/features/stores-list/ui/stores-table.tsx:42
 #: src/features/users-details/ui/users-details.tsx:123
 msgid "Name"
 msgstr "Name"
@@ -950,7 +1029,7 @@ msgstr "name of the locality"
 msgid "New password"
 msgstr "New password"
 
-#: src/features/products-import/ui/select-stores/select-stores.tsx:92
+#: src/features/products-import/ui/select-stores/select-stores.tsx:94
 msgid "Next"
 msgstr "Next"
 
@@ -958,9 +1037,25 @@ msgstr "Next"
 msgid "No"
 msgstr "No"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:276
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/selector-product-category/selector-product-category.tsx:313
+msgid "No category with this name"
+msgstr "No category with this name"
+
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/selector-product-category/selector-product-category.tsx:314
+#: src/features/terminal-configurations-create/ui/select-modules/select-modules.tsx:43
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:389
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:380
+msgid "No data"
+msgstr "No data"
+
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:277
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:388
 msgid "No stores with this name"
 msgstr "No stores with this name"
+
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:379
+msgid "No terminals with this serial number"
+msgstr "No terminals with this serial number"
 
 #: src/features/terminals-details/ui/terminals-details.tsx:85
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:120
@@ -993,7 +1088,7 @@ msgstr "Not piece"
 msgid "Number of payments"
 msgstr "Number of payments"
 
-#: src/features/categories-list/ui/table/categories-table-header.tsx:68
+#: src/features/categories-list/ui/table/categories-table-header.tsx:72
 #: src/features/refund-details/ui/tabs/products-refund-tab/ui/refund-products-list.tsx:41
 #: src/features/sales-details-sold-products-list/ui/sales-details-sold-products-list.tsx:43
 msgid "Number of products"
@@ -1019,7 +1114,7 @@ msgstr "Operation was successful."
 msgid "Order"
 msgstr "Order"
 
-#: src/features/main-menu/config/main-menu.config.tsx:124
+#: src/features/main-menu/config/main-menu.config.tsx:144
 #: src/pages/orders-page/ui/orders-page.tsx:15
 msgid "Orders"
 msgstr "Orders"
@@ -1097,7 +1192,7 @@ msgstr "Personal Information"
 
 #: src/features/stores-details-common/ui/store-details-common.tsx:62
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:41
-#: src/features/stores-list/ui/stores-table.tsx:48
+#: src/features/stores-list/ui/stores-table.tsx:52
 #: src/features/user-list/ui/user-table.tsx:46
 #: src/features/users-details/ui/users-details.tsx:70
 #: src/features/users-details/ui/users-details.tsx:129
@@ -1118,6 +1213,10 @@ msgstr "Piece"
 #: src/features/products-list-filter/ui/products-list-filter.tsx:128
 msgid "Piece products"
 msgstr "Piece products"
+
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:46
+msgid "POS"
+msgstr "POS"
 
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:40
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:104
@@ -1198,6 +1297,10 @@ msgstr "Products import"
 msgid "Products imported successfully"
 msgstr "Products imported successfully"
 
+#: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-products-in-category.tsx:65
+msgid "Products in category"
+msgstr "Products in category"
+
 #: src/pages/profile-page/ui/profile-page.tsx:17
 #: src/shared/ui/profile-button/profile-button.tsx:30
 msgid "Profile"
@@ -1221,7 +1324,7 @@ msgstr "Qr-code"
 msgid "Quantity"
 msgstr "Quantity"
 
-#: src/features/products-list/ui/table/products-table-header.tsx:90
+#: src/features/products-list/ui/table/products-table-header.tsx:94
 msgid "Range of price"
 msgstr "Range of price"
 
@@ -1294,6 +1397,8 @@ msgstr "Reports"
 #: src/features/retail-product-edit-price/form.ts:13
 #: src/features/stores-edit/form/form.ts:17
 #: src/features/stores-edit/form/form.ts:53
+#: src/features/terminal-configurations-create/form/form.ts:15
+#: src/features/terminal-configurations-edit/form/form.ts:15
 #: src/features/user-add-to-store/form.ts:13
 #: src/features/users-create/form/form.ts:17
 #: src/features/users-create/form/form.ts:26
@@ -1304,7 +1409,10 @@ msgstr "Reports"
 msgid "Required field"
 msgstr "Required field"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:238
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:239
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/list-attached-category.tsx:37
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:325
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:315
 #: src/shared/ui/filter-panel/ui/filter-buttons-bar.tsx:14
 msgid "Reset"
 msgstr "Reset"
@@ -1339,7 +1447,7 @@ msgstr "Role description"
 msgid "Role's name"
 msgstr "Role's name"
 
-#: src/features/main-menu/config/main-menu.config.tsx:149
+#: src/features/main-menu/config/main-menu.config.tsx:169
 #: src/pages/roles-page/ui/roles-page.tsx:16
 msgid "Roles"
 msgstr "Roles"
@@ -1371,10 +1479,16 @@ msgstr "Sales export"
 #: src/features/profile-show-edit/ui/profile.tsx:184
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:140
 #: src/features/stores-edit/ui/store-edit.tsx:205
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:130
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:180
 #: src/features/users-create/ui/users-create-new.tsx:165
 #: src/features/users-edit/ui/users-edit.tsx:185
 msgid "Save"
 msgstr "Save"
+
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:30
+msgid "Search by configuration name"
+msgstr "Search by configuration name"
 
 #: src/features/refund-list/ui/refund-table.tsx:32
 #: src/features/sales-list/ui/table/sales-table.tsx:67
@@ -1390,7 +1504,9 @@ msgstr "See product card"
 msgid "Select a role"
 msgstr "Select a role"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:242
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:243
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:330
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:320
 msgid "Select all"
 msgstr "Select all"
 
@@ -1399,7 +1515,8 @@ msgstr "Select all"
 msgid "Select at least one store"
 msgstr "Select at least one store"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:233
+#: src/features/products-export/ui/select-stores/select-stores.tsx:71
+#: src/features/products-import/ui/select-stores/select-stores.tsx:70
 msgid "Select stores"
 msgstr "Select stores"
 
@@ -1421,7 +1538,7 @@ msgstr "Serial number"
 msgid "Service payment"
 msgstr "Service payment"
 
-#: src/features/main-menu/config/main-menu.config.tsx:157
+#: src/features/main-menu/config/main-menu.config.tsx:177
 #: src/features/profile-show-edit/ui/profile.tsx:159
 #: src/pages/settings-page/ui/settings-page.tsx:15
 msgid "Settings"
@@ -1488,6 +1605,9 @@ msgstr "Store with price was added successfully."
 #: src/features/main-menu/config/main-menu.config.tsx:100
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
 #: src/features/selector-with-search-store/selector-with-search-store.tsx:142
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:26
+#: src/features/terminal-configurations-details/ui/list-stores&terminals/ui/list-stores-for-configuration-terminals.tsx:63
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:43
 #: src/features/user-list/ui/user-table.tsx:55
 #: src/features/users-details/ui/users-details.tsx:101
 #: src/pages/stores-details-page/ui/stores-details-page.tsx:24
@@ -1495,6 +1615,12 @@ msgstr "Store with price was added successfully."
 #: src/pages/stores-page/ui/stores-page.tsx:16
 msgid "Stores"
 msgstr "Stores"
+
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:114
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:61
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:162
+msgid "Stores & Terminal SN"
+msgstr "Stores & Terminal SN"
 
 #: src/features/products-details/ui/products-details-tabs.tsx:63
 msgid "Stores and prices"
@@ -1507,6 +1633,18 @@ msgstr "Stores and prices for each product are indicated in the import file"
 #: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:53
 msgid "Template file for import into catalog"
 msgstr "Template file for import into catalog"
+
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:64
+msgid "Terminal configuration created successfully."
+msgstr "Terminal configuration created successfully."
+
+#: src/entities/terminals-configurations/hooks/use-delete-terminal-configuration.ts:27
+msgid "Terminal configuration deleted successfully."
+msgstr "Terminal configuration deleted successfully."
+
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:112
+msgid "Terminal configuration edited successfully."
+msgstr "Terminal configuration edited successfully."
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:126
 #: src/features/sales-details-common/ui/sales-details-common.tsx:124
@@ -1524,10 +1662,16 @@ msgstr "Terminal serial number"
 
 #: src/features/main-menu/config/main-menu.config.tsx:116
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:142
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:27
+#: src/features/terminal-configurations-details/ui/list-stores&terminals/ui/list-terminals-for-configuration-terminals.tsx:62
 #: src/pages/terminals-details-page/ui/terminals-details-page.tsx:21
 #: src/pages/terminals-page/ui/terminals-page.tsx:16
 msgid "Terminals"
 msgstr "Terminals"
+
+#: src/features/main-menu/config/main-menu.config.tsx:124
+msgid "Terminals list"
+msgstr "Terminals list"
 
 #: src/features/forgot-password/ui/forgot-password.tsx:65
 msgid "The email has been sent to the email address you provided to reset your password. Check your email and follow the instructions in the email."
@@ -1538,7 +1682,8 @@ msgstr "The email has been sent to the email address you provided to reset your 
 #: src/features/refund-list/ui/refund-table.tsx:102
 #: src/features/roles-list/ui/roles-list.tsx:81
 #: src/features/sales-list/ui/table/sales-table.tsx:133
-#: src/features/stores-list/ui/stores-table.tsx:84
+#: src/features/stores-list/ui/stores-table.tsx:88
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:84
 #: src/features/terminal-list/ui/terminals-table.tsx:72
 #: src/features/user-list/ui/user-table.tsx:98
 msgid "The list is empty, try changing your filtering or search conditions and try again."
@@ -1566,13 +1711,33 @@ msgstr "The maximum file size has been exceeded. Please select another file."
 #~ msgid "The number of employees"
 #~ msgstr "The number of employees"
 
-#: src/features/stores-list/ui/stores-table.tsx:52
+#: src/features/stores-list/ui/stores-table.tsx:56
 msgid "The number<0/> of employees"
 msgstr "The number<0/> of employees"
 
 #: src/features/stores-edit/ui/store-edit.tsx:99
 msgid "The store edited successfully."
 msgstr "The store edited successfully."
+
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:368
+msgid "The store is linked to another configuration!<0/><1/>If you link a store to this configuration, it will be disconnected from the other one automatically."
+msgstr "The store is linked to another configuration!<0/><1/>If you link a store to this configuration, it will be disconnected from the other one automatically."
+
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:359
+msgid "The terminal is linked to another configuration!<0/><1/>If you link a terminal to this configuration, it will be disconnected from the other one automatically."
+msgstr "The terminal is linked to another configuration!<0/><1/>If you link a terminal to this configuration, it will be disconnected from the other one automatically."
+
+#: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-categories-for-configuration-terminals.tsx:105
+msgid "There are not attached categories."
+msgstr "There are not attached categories."
+
+#: src/features/terminal-configurations-details/ui/list-modules/ui/list-modules-for-configuration-terminals.tsx:61
+msgid "There are not available modules"
+msgstr "There are not available modules"
+
+#: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-products-in-category.tsx:94
+msgid "There are not products"
+msgstr "There are not products"
 
 #: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:62
 msgid "This barcode already added"
@@ -1681,6 +1846,10 @@ msgstr "Transfer"
 #~ msgid "Type a name and select an employee"
 #~ msgstr "Type a name and select an employee"
 
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/selector-product-category/selector-product-category.tsx:279
+msgid "Type a product category name"
+msgstr "Type a product category name"
+
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:124
 #~ msgid "Type category name and select"
 #~ msgstr "Type category name and select"
@@ -1705,7 +1874,7 @@ msgstr "Type part of role's name"
 msgid "Type part of serial number, fiscal card Id"
 msgstr "Type part of serial number, fiscal card Id"
 
-#: src/features/stores-list/ui/stores-table.tsx:32
+#: src/features/stores-list/ui/stores-table.tsx:33
 msgid "Type part of store name"
 msgstr "Type part of store name"
 
@@ -1778,7 +1947,7 @@ msgstr "User was edited successfully."
 msgid "User was removed successfully."
 msgstr "User was removed successfully."
 
-#: src/features/main-menu/config/main-menu.config.tsx:141
+#: src/features/main-menu/config/main-menu.config.tsx:161
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:145
 #: src/pages/users-create-page/ui/users-create-page.tsx:17
 #: src/pages/users-details-page/ui/users-details-page.tsx:21

@@ -18,6 +18,14 @@ msgstr ""
 #~ msgid "undefined"
 #~ msgstr ""
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:101
+msgid "{0, plural, one {# store} few {# stores} other {# stores}}"
+msgstr "{0, plural, one {# магазин} few {# магазина} other {# магазинов}}"
+
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:97
+msgid "{0, plural, one {# terminal} few {# terminals} other {# terminals}}"
+msgstr "{0, plural, one {# терминал} few {# терминала} other {# терминалов}}"
+
 #: src/entities/products/constants/product-unit-value-list-for-selector.tsx:5
 #: src/entities/products/constants/product-unit-value-list-for-selector.tsx:6
 #: src/entities/products/constants/product-unit-value-list-for-selector.tsx:7
@@ -27,13 +35,14 @@ msgstr ""
 msgid "{0}"
 msgstr ""
 
+#: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:28
 msgid "{productsCount, plural, one {# product} few {# products} many {# products} other {# products}}"
 msgstr "{productsCount, plural, one {# товар} few {# товара} many {# товаров} other {# товаров}}"
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
-msgid "{productsCount, plural, one {# product} few {# products} other {# products}}"
-msgstr "{productsCount, plural, one {# товар} few {# товаров}  other {# товаров}}"
+#~ msgid "{productsCount, plural, one {# product} few {# products} other {# products}}"
+#~ msgstr "{productsCount, plural, one {# товар} few {# товаров}  other {# товаров}}"
 
 #: src/features/product-create/ui/product-form-create.tsx:244
 #: src/features/product-edit/ui/product-form-edit.tsx:275
@@ -44,13 +53,14 @@ msgstr "Штрихкод обязателен для маркированных 
 msgid "Access denied"
 msgstr "Доступ запрещен"
 
-#: src/features/categories-list/ui/table/categories-table-header.tsx:71
+#: src/features/categories-list/ui/table/categories-table-header.tsx:75
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:43
-#: src/features/products-list/ui/table/products-table-header.tsx:98
+#: src/features/products-list/ui/table/products-table-header.tsx:102
 #: src/features/refund-list/ui/refund-table.tsx:59
 #: src/features/sales-list/ui/table/sales-table-header.tsx:97
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:47
-#: src/features/stores-list/ui/stores-table.tsx:55
+#: src/features/stores-list/ui/stores-table.tsx:59
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:52
 #: src/features/user-list/ui/user-table.tsx:58
 msgid "Actions"
 msgstr "Действия"
@@ -87,19 +97,19 @@ msgid "additional information"
 msgstr "дополнительная информация"
 
 #: src/features/stores-edit/ui/store-edit.tsx:183
-#: src/features/stores-list/ui/stores-table.tsx:45
+#: src/features/stores-list/ui/stores-table.tsx:49
 #: src/features/users-details/ui/users-details.tsx:126
 msgid "Address"
 msgstr "Адрес"
 
 #: src/shared/ui/payment-type/payment-type.tsx:37
 msgid "Advance"
-msgstr ""
+msgstr "Предоплата"
 
 #: src/features/main-menu/config/main-menu.config.tsx:65
 #: src/pages/advances-page/ui/advances-page.tsx:15
 msgid "Advances"
-msgstr ""
+msgstr "Предоплаты"
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:28
@@ -111,6 +121,10 @@ msgstr "После архивации категории, {0} останется
 #~ msgid "After archiving the category, {productsCount} products will remain without a category"
 #~ msgstr "После архивирования категории, {productsCount} товаров будут вне категорий"
 
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/list-attached-category.tsx:58
+msgid "After selecting a category, you’ll see the list here"
+msgstr "После выбора категории, здесь вы увидите список"
+
 #: src/features/products-import/ui/select-file/select-file.tsx:130
 msgid "All products listed in the file are successfully imported."
 msgstr "Все товары из файла успешно импортированы."
@@ -118,9 +132,9 @@ msgstr "Все товары из файла успешно импортиров�
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:52
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:55
 msgid "Amount of payment"
-msgstr ""
+msgstr "Количество платежей"
 
-#: src/features/products-list/ui/table/products-table-header.tsx:94
+#: src/features/products-list/ui/table/products-table-header.tsx:98
 msgid "Amount of stores"
 msgstr "Кол-во магазинов"
 
@@ -188,6 +202,10 @@ msgstr "Вы уверены, что хотите архивировать<0/> э
 msgid "Are you sure you want to delete <0/>the product"
 msgstr "Вы уверены, что хотите удалить<0/> этот товар"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:96
+msgid "Are you sure you want to delete the configuration"
+msgstr "Вы уверены, что хотите удалить эту конфигурацию"
+
 #: src/features/user-archive-button/user-archive-button.tsx:55
 msgid "Are you sure you want to delete the current user?"
 msgstr "Вы уверены что хотите удалить этого пользователя?"
@@ -220,6 +238,10 @@ msgstr "Прикрепить другой файл"
 msgid "Attach or drag an XLSX file<0/>no larger than 10Mb into this area"
 msgstr "Прикрепите или перетащите в эту область файл XLSX<0/>не более 10МБ."
 
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/list-attached-category.tsx:32
+msgid "Attached categories"
+msgstr "Прикрепленные категории"
+
 #: src/pages/login-page/ui/login-page.tsx:11
 msgid "Authorization"
 msgstr "Авторизация"
@@ -227,6 +249,10 @@ msgstr "Авторизация"
 #: src/features/change-password-for-first-login/ui/change-password-for-first-login.tsx:133
 msgid "Authorization was successful!"
 msgstr "Авторизация была успешна!"
+
+#: src/features/terminal-configurations-details/ui/list-modules/ui/list-modules-for-configuration-terminals.tsx:32
+msgid "Available modules"
+msgstr "Доступные модули"
 
 #: src/features/products-list-filter/ui/products-list-filter.tsx:117
 msgid "Barcode"
@@ -248,6 +274,10 @@ msgstr "Заблокирован"
 msgid "Blocking"
 msgstr "Блокировка"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:97
+msgid "By deleting this configuration, {0} and {1} will remain without configurations.<0/>A deleted configuration cannot be restored."
+msgstr "После удаления конфигурации, {0} и {1} останутся без конфигураций.<0/>Удаленная конфигурация не может быть восстановлена. "
+
 #: src/features/categories-create/ui/categories-create.tsx:108
 #: src/features/categories-edit/ui/categories-edit.tsx:123
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:16
@@ -267,6 +297,9 @@ msgstr "Блокировка"
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
 #: src/features/stores-details-users/ui/stores-details-users.tsx:182
 #: src/features/stores-edit/ui/store-edit.tsx:203
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:128
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:178
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:88
 #: src/features/user-add-to-store/user-add-to-store.tsx:107
 #: src/features/user-archive-button/user-archive-button.tsx:51
 #: src/features/user-list/ui/user-list.tsx:89
@@ -281,23 +314,27 @@ msgstr "Отменено"
 
 #: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:11
 msgid "Card"
-msgstr ""
+msgstr "Карта"
 
 #: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:15
 msgid "Cash"
-msgstr ""
+msgstr "Наличные"
 
 #: src/features/main-menu/config/main-menu.config.tsx:108
 #: src/pages/cash-desks-page/ui/cash-desks-page.tsx:15
 msgid "Cash desks"
-msgstr ""
+msgstr "Кассы"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:130
 #: src/features/sales-details-common/ui/sales-details-common.tsx:128
 msgid "Cashier app version"
-msgstr ""
+msgstr "Версия кассового приложения"
 
 #: src/features/main-menu/config/main-menu.config.tsx:92
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:115
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:62
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:163
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:49
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:17
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:21
 #: src/pages/categories-page/ui/categories-page.tsx:31
@@ -309,7 +346,7 @@ msgid "Categories delete successfully."
 msgstr "Категории успешно удалены."
 
 #: src/features/products-details-common/ui/product-details-common.tsx:62
-#: src/features/products-list/ui/table/products-table-header.tsx:87
+#: src/features/products-list/ui/table/products-table-header.tsx:91
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:140
 msgid "Category"
 msgstr "Категория"
@@ -401,11 +438,11 @@ msgstr "Нажмите для просмотра всего списка"
 #: src/features/refund-list/ui/refund-list.tsx:54
 #: src/features/sales-list/ui/modals/modal-print-receipt.tsx:29
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
-#: src/features/products-export/ui/select-stores/select-stores.tsx:89
+#: src/features/products-export/ui/select-stores/select-stores.tsx:91
 #: src/features/products-import/ui/select-file/select-file.tsx:91
-#: src/features/products-import/ui/select-stores/select-stores.tsx:86
+#: src/features/products-import/ui/select-stores/select-stores.tsx:88
 msgid "Come back"
 msgstr "Назад"
 
@@ -416,6 +453,20 @@ msgstr "Комиссионный PINFL"
 #: src/features/products-details-common/ui/product-details-common.tsx:77
 msgid "Comission TIN"
 msgstr "Комиссионный TIN"
+
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:96
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:144
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:40
+msgid "Configuration name"
+msgstr "Название конфигурации"
+
+#: src/features/main-menu/config/main-menu.config.tsx:130
+#: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:25
+#: src/pages/terminal-configurations-details-page/ui/terminal-configurations-details-page.tsx:24
+#: src/pages/terminal-configurations-edit-page/ui/terminal-configuration-edit-page.tsx:23
+#: src/pages/terminal-configurations-page/ui/terminal-configuration-page.tsx:33
+msgid "Configurations"
+msgstr "Конфигурации"
 
 #: src/features/stores-details-users/ui/stores-details-users.tsx:186
 #: src/features/user-list/ui/user-list.tsx:93
@@ -444,6 +495,7 @@ msgstr "код страны"
 
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:18
 #: src/pages/products-create-page/ui/products-create-page.tsx:18
+#: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:28
 #: src/pages/users-create-page/ui/users-create-page.tsx:18
 #: src/shared/ui/create-button-filled/create-button-filled.tsx:23
 #: src/shared/ui/create-button-outline/create-button-outline.tsx:24
@@ -470,12 +522,12 @@ msgstr "Дата создания"
 
 #: src/shared/ui/payment-type/payment-type.tsx:42
 msgid "Credit"
-msgstr ""
+msgstr "Кредит"
 
 #: src/features/main-menu/config/main-menu.config.tsx:70
 #: src/pages/credits-page/ui/credits-page.tsx:15
 msgid "Credits"
-msgstr ""
+msgstr "Кредиты"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:54
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:49
@@ -483,14 +535,17 @@ msgstr ""
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:50
 #: src/features/sales-list/ui/table/sales-table-header.tsx:68
 msgid "Date & time"
-msgstr ""
+msgstr "Дата & время"
 
 #: src/features/refund-list/ui/refund-table.tsx:44
 msgid "Date & Time"
-msgstr ""
+msgstr "Дата & Время"
 
 #: src/features/product-details-stores/ui/modal/modal-delete.tsx:70
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/category-item-in-list.tsx:36
+#: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:92
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:66
 msgid "Delete"
 msgstr "Удалить"
 
@@ -502,7 +557,7 @@ msgstr "Описание"
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:164
 msgid "Discount"
-msgstr ""
+msgstr "Скидка"
 
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:48
 #: src/features/sold-product-details/ui/sold-products-details.tsx:75
@@ -513,7 +568,7 @@ msgstr ""
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:48
 #: src/features/sold-product-details/ui/sold-products-details.tsx:72
 msgid "Discount <0>  %/sum</0>"
-msgstr ""
+msgstr "Скидка <0>  %/сумма</0>"
 
 #: src/shared/ui/import-export-button/ui/import-export-button.tsx:33
 msgid "Done"
@@ -532,11 +587,13 @@ msgstr "Скачать файл-шаблон"
 #: src/features/categories-list/ui/table/categories-table.tsx:76
 #: src/features/products-list/ui/table/products-table.tsx:85
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:57
-#: src/features/stores-list/ui/stores-table.tsx:64
+#: src/features/stores-list/ui/stores-table.tsx:68
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:61
 #: src/features/user-list/ui/user-table.tsx:67
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:22
 #: src/pages/products-edit-page/ui/products-edit-page.tsx:18
 #: src/pages/stores-edit-page/ui/stores-edit-page.tsx:22
+#: src/pages/terminal-configurations-edit-page/ui/terminal-configuration-edit-page.tsx:25
 #: src/pages/users-edit-page/ui/users-edit-page.tsx:23
 msgid "Edit"
 msgstr "Редактировать"
@@ -559,12 +616,12 @@ msgstr "Эл. почта"
 
 #: src/features/refund-list/ui/refund-table.tsx:53
 msgid "Employee"
-msgstr ""
+msgstr "Сотрудник"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:63
 #: src/features/sales-details-common/ui/sales-details-common.tsx:64
 msgid "Employee name"
-msgstr ""
+msgstr "Имя сотрудника"
 
 #: src/features/user-add-to-store/user-add-to-store.tsx:173
 #~ msgid "Employees"
@@ -578,11 +635,16 @@ msgstr "Список сотрудников"
 msgid "Employer"
 msgstr ""
 
-#: src/shared/ui/empty-element/empty-element.tsx:13
+#: src/shared/ui/empty-element/empty-element.tsx:14
 msgid "empty list"
 msgstr "пустой список"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:250
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:328
+msgid "Enter a serial number"
+msgstr "Введите серийный номер"
+
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:251
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:338
 msgid "Enter a store name"
 msgstr "Введите название магазина"
 
@@ -598,7 +660,7 @@ msgstr "Ошибка"
 msgid "Error list"
 msgstr "Список ошибок"
 
-#: src/features/products-export/ui/select-stores/select-stores.tsx:95
+#: src/features/products-export/ui/select-stores/select-stores.tsx:97
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:101
 #: src/features/sales-list-buttons-panel/ui/sales-list-buttons-panel.tsx:56
 msgid "Export"
@@ -631,7 +693,7 @@ msgstr "Экспорт товаров со связанными магазина
 
 #: src/features/sales-list-buttons-panel/ui/sales-list-buttons-panel.tsx:43
 msgid "Export sales"
-msgstr ""
+msgstr "Экспорт продаж"
 
 #: src/features/products-list/ui/modal/modal-export-selected-product.tsx:28
 #: src/features/sales-list/ui/modals/modal-export-selected-sales.tsx:28
@@ -682,7 +744,7 @@ msgstr "Фискальный ID"
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:123
 #: src/features/sales-details-common/ui/sales-details-common.tsx:121
 msgid "Fiscal module ID"
-msgstr ""
+msgstr "Id фискального модуля"
 
 #: src/pages/forgot-password-page/ui/forgot-password-page.tsx:10
 #~ msgid "Forgot password"
@@ -719,6 +781,15 @@ msgstr "Основная информация"
 #: src/features/stores-edit/ui/store-edit.tsx:130
 msgid "General Information"
 msgstr "Основная информация"
+
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:66
+msgid "Go to editing page"
+msgstr "Перейти на страницу редактирования"
+
+#: src/features/main-menu/config/main-menu.config.tsx:136
+#: src/pages/handover-records-page/ui/handover-records-page.tsx:15
+msgid "Handover records"
+msgstr "Передача касс"
 
 #: src/shared/ui/support-link/support-link.tsx:29
 msgid "Have questions?"
@@ -795,6 +866,8 @@ msgstr "Некорректный формат телефонного номер�
 #: src/features/stores-edit/form/form.ts:19
 #: src/features/stores-edit/form/form.ts:27
 #: src/features/stores-edit/form/form.ts:47
+#: src/features/terminal-configurations-create/form/form.ts:17
+#: src/features/terminal-configurations-edit/form/form.ts:17
 #: src/features/users-create/form/form.ts:19
 #: src/features/users-create/form/form.ts:28
 #: src/features/users-edit/form/form.ts:19
@@ -822,12 +895,12 @@ msgstr "Язык"
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:194
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:194
 msgid "Last month"
-msgstr ""
+msgstr "Последний месяц"
 
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:181
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:181
 msgid "Last week"
-msgstr ""
+msgstr "Последняя неделя"
 
 #: src/shared/ui/with-password-helper/with-password-helper.tsx:25
 msgid "Length from {MIN_CHARS_IN_PASSWORD} to {MAX_CHARS_IN_PASSWORD} characters"
@@ -874,7 +947,7 @@ msgstr "Выйти"
 #: src/features/refund-details/ui/refunds-details-tabs.tsx:60
 #: src/features/sales-details/ui/sales-details-tabs.tsx:63
 msgid "Main"
-msgstr ""
+msgstr "Основное"
 
 #: src/features/product-create/ui/product-form-create.tsx:229
 #~ msgid "marked"
@@ -888,7 +961,7 @@ msgstr "Маркированный"
 
 #: src/features/sold-product-details/ui/sold-products-details.tsx:84
 msgid "Marked labels"
-msgstr ""
+msgstr "Маркировки"
 
 #: src/features/product-create/ui/product-form-create.tsx:227
 #: src/features/product-edit/ui/product-form-edit.tsx:256
@@ -920,6 +993,12 @@ msgstr "Медицина"
 msgid "Model"
 msgstr "Модель"
 
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:116
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:63
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:164
+msgid "Modules"
+msgstr "Модули"
+
 #: src/features/user-archive-button/user-archive-button.tsx:35
 msgid "Move to archive"
 msgstr "Архивировать"
@@ -927,15 +1006,15 @@ msgstr "Архивировать"
 #. js-lingui-explicit-id
 #: src/features/categories-create/ui/categories-create.tsx:93
 #: src/features/categories-edit/ui/categories-edit.tsx:108
-#: src/features/categories-list/ui/table/categories-table-header.tsx:65
+#: src/features/categories-list/ui/table/categories-table-header.tsx:67
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:37
-#: src/features/products-list/ui/table/products-table-header.tsx:84
+#: src/features/products-list/ui/table/products-table-header.tsx:86
 #: src/features/stores-edit/ui/store-edit.tsx:134
+#: src/features/stores-list/ui/stores-table.tsx:44
 msgid "item-name"
 msgstr "Название"
 
 #: src/features/stores-edit/ui/store-edit.tsx:135
-#: src/features/stores-list/ui/stores-table.tsx:42
 #: src/features/users-details/ui/users-details.tsx:123
 msgid "Name"
 msgstr "Имя"
@@ -949,7 +1028,7 @@ msgstr "название населенного пункта"
 msgid "New password"
 msgstr "Новый пароль"
 
-#: src/features/products-import/ui/select-stores/select-stores.tsx:92
+#: src/features/products-import/ui/select-stores/select-stores.tsx:94
 msgid "Next"
 msgstr "Далее"
 
@@ -957,9 +1036,25 @@ msgstr "Далее"
 msgid "No"
 msgstr "Нет"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:276
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/selector-product-category/selector-product-category.tsx:313
+msgid "No category with this name"
+msgstr "Категория с таким названием не найдена"
+
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/selector-product-category/selector-product-category.tsx:314
+#: src/features/terminal-configurations-create/ui/select-modules/select-modules.tsx:43
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:389
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:380
+msgid "No data"
+msgstr "Нет данных"
+
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:277
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:388
 msgid "No stores with this name"
 msgstr "Нет магазинов с таким названием"
+
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:379
+msgid "No terminals with this serial number"
+msgstr "Нет терминалов с указанным серийным номером"
 
 #: src/features/terminals-details/ui/terminals-details.tsx:85
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:120
@@ -986,9 +1081,9 @@ msgstr "Не штучный"
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/refund-payments-list.tsx:34
 #: src/features/sales-details-payments-list/ui/sales-details-payments-list.tsx:41
 msgid "Number of payments"
-msgstr ""
+msgstr "Кол-во платежей"
 
-#: src/features/categories-list/ui/table/categories-table-header.tsx:68
+#: src/features/categories-list/ui/table/categories-table-header.tsx:72
 #: src/features/refund-details/ui/tabs/products-refund-tab/ui/refund-products-list.tsx:41
 #: src/features/sales-details-sold-products-list/ui/sales-details-sold-products-list.tsx:43
 msgid "Number of products"
@@ -1012,9 +1107,9 @@ msgstr "Операция была успешна"
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:155
 msgid "Order"
-msgstr ""
+msgstr "Заказ"
 
-#: src/features/main-menu/config/main-menu.config.tsx:124
+#: src/features/main-menu/config/main-menu.config.tsx:144
 #: src/pages/orders-page/ui/orders-page.tsx:15
 msgid "Orders"
 msgstr "Заказы"
@@ -1063,26 +1158,26 @@ msgstr "Пароль слишком длинный, максимум {MAX_CHARS_
 
 #: src/features/sales-list/ui/table/sales-table-header.tsx:91
 msgid "Payment"
-msgstr ""
+msgstr "Платеж"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:132
 #: src/features/sales-details-common/ui/sales-details-common.tsx:130
 msgid "Payment app version"
-msgstr ""
+msgstr "Версия платежного приложения"
 
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:55
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:60
 msgid "Payment method"
-msgstr ""
+msgstr "Способ платежа"
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:158
 msgid "Payment type"
-msgstr ""
+msgstr "Тип платежа"
 
 #: src/features/refund-details/ui/refunds-details-tabs.tsx:62
 #: src/features/sales-details/ui/sales-details-tabs.tsx:65
 msgid "Payments"
-msgstr ""
+msgstr "Платежи"
 
 #: src/features/profile-show-edit/ui/profile.tsx:131
 #: src/features/users-create/ui/users-create-new.tsx:107
@@ -1092,7 +1187,7 @@ msgstr "Персональные данные"
 
 #: src/features/stores-details-common/ui/store-details-common.tsx:62
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:41
-#: src/features/stores-list/ui/stores-table.tsx:48
+#: src/features/stores-list/ui/stores-table.tsx:52
 #: src/features/user-list/ui/user-table.tsx:46
 #: src/features/users-details/ui/users-details.tsx:70
 #: src/features/users-details/ui/users-details.tsx:129
@@ -1114,6 +1209,10 @@ msgstr "Штучный"
 msgid "Piece products"
 msgstr "Штучные товары"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:46
+msgid "POS"
+msgstr ""
+
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:40
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:104
 #: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:89
@@ -1125,7 +1224,7 @@ msgstr "Цена"
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:42
 #: src/features/sold-product-details/ui/sold-products-details.tsx:65
 msgid "Price for unit"
-msgstr ""
+msgstr "Цена за единицу"
 
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:60
 msgid "Price was changed successfully."
@@ -1139,11 +1238,11 @@ msgstr "Цены успешно изменены."
 #: src/features/refund-list/ui/refund-list.tsx:55
 #: src/features/sales-list/ui/modals/modal-print-receipt.tsx:30
 msgid "Print"
-msgstr ""
+msgstr "Печать"
 
 #: src/features/sold-product-details/ui/sold-products-details.tsx:42
 msgid "Product"
-msgstr ""
+msgstr "Товар"
 
 #: src/entities/products/hooks/use-archive-products.ts:27
 #~ msgid "Product archived successfully."
@@ -1193,6 +1292,10 @@ msgstr "Импорт товаров"
 msgid "Products imported successfully"
 msgstr "Товары успешно импортированы"
 
+#: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-products-in-category.tsx:65
+msgid "Products in category"
+msgstr "Товаров в категории"
+
 #: src/pages/profile-page/ui/profile-page.tsx:17
 #: src/shared/ui/profile-button/profile-button.tsx:30
 msgid "Profile"
@@ -1208,15 +1311,15 @@ msgstr "ИКПУ"
 
 #: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:13
 msgid "Qr-code"
-msgstr ""
+msgstr "Qr-код"
 
 #: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:35
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:39
 #: src/features/sold-product-details/ui/sold-products-details.tsx:62
 msgid "Quantity"
-msgstr ""
+msgstr "Кол-вл"
 
-#: src/features/products-list/ui/table/products-table-header.tsx:90
+#: src/features/products-list/ui/table/products-table-header.tsx:94
 msgid "Range of price"
 msgstr "Диапазон цен"
 
@@ -1226,14 +1329,14 @@ msgstr "Диапазон цен"
 #: src/features/sales-list/ui/modals/modal-print-receipt.tsx:21
 #: src/features/sales-list/ui/table/sales-table.tsx:87
 msgid "Receipt"
-msgstr ""
+msgstr "Чек"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:60
 #: src/features/refund-list/ui/refund-table.tsx:47
 #: src/features/sales-details-common/ui/sales-details-common.tsx:58
 #: src/features/sales-list/ui/table/sales-table-header.tsx:74
 msgid "Receipt number"
-msgstr ""
+msgstr "Номер чека"
 
 #: src/features/sales-list/ui/table/sales-table-header.tsx:80
 #~ msgid "Receipt position"
@@ -1241,11 +1344,11 @@ msgstr ""
 
 #: src/features/sales-list/ui/table/sales-table-header.tsx:94
 msgid "Refund"
-msgstr ""
+msgstr "Возврат"
 
 #: src/features/refund-details/ui/refunds-details-tabs.tsx:61
 msgid "Refunded products"
-msgstr ""
+msgstr "Возвращенные товары"
 
 #: src/features/main-menu/config/main-menu.config.tsx:55
 #: src/pages/refund-detais-page/ui/refund-details-page.tsx:19
@@ -1289,6 +1392,8 @@ msgstr "Отчеты"
 #: src/features/retail-product-edit-price/form.ts:13
 #: src/features/stores-edit/form/form.ts:17
 #: src/features/stores-edit/form/form.ts:53
+#: src/features/terminal-configurations-create/form/form.ts:15
+#: src/features/terminal-configurations-edit/form/form.ts:15
 #: src/features/user-add-to-store/form.ts:13
 #: src/features/users-create/form/form.ts:17
 #: src/features/users-create/form/form.ts:26
@@ -1299,7 +1404,10 @@ msgstr "Отчеты"
 msgid "Required field"
 msgstr "Обязательное поле"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:238
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:239
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/list-attached-category.tsx:37
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:325
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:315
 #: src/shared/ui/filter-panel/ui/filter-buttons-bar.tsx:14
 msgid "Reset"
 msgstr "Сбросить"
@@ -1334,7 +1442,7 @@ msgstr "Описание роли"
 msgid "Role's name"
 msgstr "Название"
 
-#: src/features/main-menu/config/main-menu.config.tsx:149
+#: src/features/main-menu/config/main-menu.config.tsx:169
 #: src/pages/roles-page/ui/roles-page.tsx:16
 msgid "Roles"
 msgstr "Роли"
@@ -1346,7 +1454,7 @@ msgstr ""
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:89
 msgid "Sale"
-msgstr ""
+msgstr "Продажа"
 
 #: src/features/main-menu/config/main-menu.config.tsx:50
 #: src/pages/sales-details-page/ui/sales-details-page.tsx:21
@@ -1357,7 +1465,7 @@ msgstr "Продажи"
 
 #: src/features/sales-list-buttons-panel/ui/sales-list-buttons-panel.tsx:34
 msgid "Sales export"
-msgstr ""
+msgstr "Экспорт продаж"
 
 #: src/features/categories-create/ui/categories-create.tsx:110
 #: src/features/categories-edit/ui/categories-edit.tsx:125
@@ -1366,26 +1474,34 @@ msgstr ""
 #: src/features/profile-show-edit/ui/profile.tsx:184
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:140
 #: src/features/stores-edit/ui/store-edit.tsx:205
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:130
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:180
 #: src/features/users-create/ui/users-create-new.tsx:165
 #: src/features/users-edit/ui/users-edit.tsx:185
 msgid "Save"
 msgstr "Сохранить"
 
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:30
+msgid "Search by configuration name"
+msgstr "Поиск по названию конфигурации"
+
 #: src/features/refund-list/ui/refund-table.tsx:32
 #: src/features/sales-list/ui/table/sales-table.tsx:67
 msgid "Search by receipt number or total cost"
-msgstr ""
+msgstr "Поиск по номеру чека или общей цене"
 
 #: src/features/sold-product-details/ui/sold-products-details.tsx:45
 msgid "See product card"
-msgstr ""
+msgstr "Смотреть карточку товара"
 
 #: src/features/users-create/ui/users-create-new.tsx:125
 #: src/features/users-edit/ui/users-edit.tsx:144
 msgid "Select a role"
 msgstr "Выбрать роль"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:242
+#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:243
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:330
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:320
 msgid "Select all"
 msgstr "Выбрать все"
 
@@ -1394,7 +1510,8 @@ msgstr "Выбрать все"
 msgid "Select at least one store"
 msgstr "Выберите хотя бы один магазин"
 
-#: src/features/select-stores-for-import-export/select-stores-for-import-export.tsx:233
+#: src/features/products-export/ui/select-stores/select-stores.tsx:71
+#: src/features/products-import/ui/select-stores/select-stores.tsx:70
 msgid "Select stores"
 msgstr "Выбор магазинов"
 
@@ -1414,9 +1531,9 @@ msgstr "Серийный номер"
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:168
 msgid "Service payment"
-msgstr ""
+msgstr "Плата за обслуживание"
 
-#: src/features/main-menu/config/main-menu.config.tsx:157
+#: src/features/main-menu/config/main-menu.config.tsx:177
 #: src/features/profile-show-edit/ui/profile.tsx:159
 #: src/pages/settings-page/ui/settings-page.tsx:15
 msgid "Settings"
@@ -1425,7 +1542,7 @@ msgstr "Настройки"
 #: src/features/sales-details/ui/sales-details-tabs.tsx:64
 #: src/pages/sold-product-details-page/ui/sold-product-details-page.tsx:24
 msgid "Sold products"
-msgstr ""
+msgstr "Проданные товары"
 
 #: src/shared/error-boundary/fallbackError.tsx:12
 msgid "Something went wrong..."
@@ -1483,6 +1600,9 @@ msgstr "Магазин и цена успешно добавлены."
 #: src/features/main-menu/config/main-menu.config.tsx:100
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
 #: src/features/selector-with-search-store/selector-with-search-store.tsx:142
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:26
+#: src/features/terminal-configurations-details/ui/list-stores&terminals/ui/list-stores-for-configuration-terminals.tsx:63
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:43
 #: src/features/user-list/ui/user-table.tsx:55
 #: src/features/users-details/ui/users-details.tsx:101
 #: src/pages/stores-details-page/ui/stores-details-page.tsx:24
@@ -1490,6 +1610,12 @@ msgstr "Магазин и цена успешно добавлены."
 #: src/pages/stores-page/ui/stores-page.tsx:16
 msgid "Stores"
 msgstr "Магазины"
+
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:114
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:61
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:162
+msgid "Stores & Terminal SN"
+msgstr "Магазины & Серийный номер Терминала"
 
 #: src/features/products-details/ui/products-details-tabs.tsx:63
 msgid "Stores and prices"
@@ -1503,26 +1629,44 @@ msgstr "Магазины и цены на каждый товар указаны
 msgid "Template file for import into catalog"
 msgstr "Файл шаблона для импорта в каталог"
 
+#: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:64
+msgid "Terminal configuration created successfully."
+msgstr "Конфигурация успешно создана."
+
+#: src/entities/terminals-configurations/hooks/use-delete-terminal-configuration.ts:27
+msgid "Terminal configuration deleted successfully."
+msgstr "Конфигурация успешно удалена."
+
+#: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:112
+msgid "Terminal configuration edited successfully."
+msgstr "Конфигурация усе=пешно изменена."
+
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:126
 #: src/features/sales-details-common/ui/sales-details-common.tsx:124
 msgid "Terminal label"
-msgstr ""
+msgstr "Метка терминала"
 
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:147
 msgid "Terminal not found"
-msgstr ""
+msgstr "Терминал не найден"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:117
 #: src/features/sales-details-common/ui/sales-details-common.tsx:115
 msgid "Terminal serial number"
-msgstr ""
+msgstr "Серийный номер терминала"
 
 #: src/features/main-menu/config/main-menu.config.tsx:116
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:142
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:27
+#: src/features/terminal-configurations-details/ui/list-stores&terminals/ui/list-terminals-for-configuration-terminals.tsx:62
 #: src/pages/terminals-details-page/ui/terminals-details-page.tsx:21
 #: src/pages/terminals-page/ui/terminals-page.tsx:16
 msgid "Terminals"
 msgstr "Терминалы"
+
+#: src/features/main-menu/config/main-menu.config.tsx:124
+msgid "Terminals list"
+msgstr "Список терминалов"
 
 #: src/features/forgot-password/ui/forgot-password.tsx:65
 msgid "The email has been sent to the email address you provided to reset your password. Check your email and follow the instructions in the email."
@@ -1533,7 +1677,8 @@ msgstr "Письмо было отправлено на адрес электр�
 #: src/features/refund-list/ui/refund-table.tsx:102
 #: src/features/roles-list/ui/roles-list.tsx:81
 #: src/features/sales-list/ui/table/sales-table.tsx:133
-#: src/features/stores-list/ui/stores-table.tsx:84
+#: src/features/stores-list/ui/stores-table.tsx:88
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:84
 #: src/features/terminal-list/ui/terminals-table.tsx:72
 #: src/features/user-list/ui/user-table.tsx:98
 msgid "The list is empty, try changing your filtering or search conditions and try again."
@@ -1542,12 +1687,12 @@ msgstr "Список пуст, попробуйте изменить фильт�
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:44
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:44
 msgid "The list of payments is empty."
-msgstr ""
+msgstr "Список платежей пуст."
 
 #: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:27
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:31
 msgid "The list of sold products is empty."
-msgstr ""
+msgstr "Список проданных товаров пуст."
 
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:32
 msgid "The list of users is empty."
@@ -1561,13 +1706,33 @@ msgstr "Превышен максимальный размер файла. По�
 #~ msgid "The number of employees"
 #~ msgstr "Кол-во сотрудников"
 
-#: src/features/stores-list/ui/stores-table.tsx:52
+#: src/features/stores-list/ui/stores-table.tsx:56
 msgid "The number<0/> of employees"
 msgstr "Кол-во<0/> сотрудников"
 
 #: src/features/stores-edit/ui/store-edit.tsx:99
 msgid "The store edited successfully."
 msgstr "Магазин успешно изменен."
+
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-stores-for-configuration-terminals.tsx:368
+msgid "The store is linked to another configuration!<0/><1/>If you link a store to this configuration, it will be disconnected from the other one automatically."
+msgstr "Магазин прикреплен к другой конфигурации!<0/><1/>Если вы прикрепляете магазин к этой конфигурации, он будет автоматически откреплен от предыдущей."
+
+#: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:359
+msgid "The terminal is linked to another configuration!<0/><1/>If you link a terminal to this configuration, it will be disconnected from the other one automatically."
+msgstr "Терминал прикреплен к другой конфигурации!<0/><1/>Если вы прикрепляете терминал к этой конфигурации, он будет автоматически откреплен от предыдущей."
+
+#: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-categories-for-configuration-terminals.tsx:105
+msgid "There are not attached categories."
+msgstr "Нет прикрепленных категорий"
+
+#: src/features/terminal-configurations-details/ui/list-modules/ui/list-modules-for-configuration-terminals.tsx:61
+msgid "There are not available modules"
+msgstr "Нет доступных модулей"
+
+#: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-products-in-category.tsx:94
+msgid "There are not products"
+msgstr "Нет товаров"
 
 #: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:62
 msgid "This barcode already added"
@@ -1619,7 +1784,7 @@ msgstr "сегодня"
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:178
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:178
 msgid "Today"
-msgstr ""
+msgstr "Сегодня"
 
 #: src/features/barcodes-input-for-product-form/barcodes-input-for-product-form.tsx:68
 msgid "Too long"
@@ -1647,26 +1812,26 @@ msgstr "всего"
 #: src/features/sales-list/ui/table/sales-table-header.tsx:87
 #: src/features/sold-product-details/ui/sold-products-details.tsx:78
 msgid "Total cost"
-msgstr ""
+msgstr "Общая стоимость"
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:161
 msgid "Total cost without discount"
-msgstr ""
+msgstr "Общая стоимость без скидки"
 
 #: src/features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products.tsx:47
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:51
 #: src/features/sold-product-details/ui/sold-products-details.tsx:68
 msgid "Total price"
-msgstr ""
+msgstr "Общая цена"
 
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:64
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:71
 msgid "Transaction number"
-msgstr ""
+msgstr "Номер транзакции"
 
 #: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:17
 msgid "Transfer"
-msgstr ""
+msgstr "Трансфер"
 
 #: src/features/stores-edit/ui/store-edit.tsx:142
 #~ msgid "Type"
@@ -1675,6 +1840,10 @@ msgstr ""
 #: src/features/user-add-to-store/user-add-to-store.tsx:184
 #~ msgid "Type a name and select an employee"
 #~ msgstr "Напечатайте имя и выберите сотрудника"
+
+#: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/selector-product-category/selector-product-category.tsx:279
+msgid "Type a product category name"
+msgstr "Введите название категории"
 
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:124
 #~ msgid "Type category name and select"
@@ -1700,7 +1869,7 @@ msgstr "Напечатайте часть названия роли"
 msgid "Type part of serial number, fiscal card Id"
 msgstr "Напечатайте часть серийного номера или фискального Id"
 
-#: src/features/stores-list/ui/stores-table.tsx:32
+#: src/features/stores-list/ui/stores-table.tsx:33
 msgid "Type part of store name"
 msgstr "Напечатайте часть названия магазина"
 
@@ -1710,7 +1879,7 @@ msgstr "Напечатайте часть имени, эл.почты или н�
 
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:143
 msgid "Type serial number and select"
-msgstr ""
+msgstr "Напечатайте серийный номер и выберите из списка"
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:168
 #: src/features/selector-with-search-store/selector-with-search-store.tsx:143
@@ -1719,7 +1888,7 @@ msgstr "Напечатайте название магазина и выбери
 
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:146
 msgid "Type user name and select"
-msgstr ""
+msgstr "Напечатайте имя ссотрудника и выберите из списка"
 
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:95
 #~ msgid "Unblocked"
@@ -1759,7 +1928,7 @@ msgstr "Имя пользователя"
 
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:150
 msgid "User not found"
-msgstr ""
+msgstr "Сотудник не найден"
 
 #: src/features/user-add-to-store/user-add-to-store.tsx:63
 msgid "User was added successfully."
@@ -1773,7 +1942,7 @@ msgstr "Пользователь был успешно изменен."
 msgid "User was removed successfully."
 msgstr "Пользователь успешно удален."
 
-#: src/features/main-menu/config/main-menu.config.tsx:141
+#: src/features/main-menu/config/main-menu.config.tsx:161
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:145
 #: src/pages/users-create-page/ui/users-create-page.tsx:17
 #: src/pages/users-details-page/ui/users-details-page.tsx:21
@@ -1787,12 +1956,12 @@ msgstr "Пользователи"
 #~ msgstr ""
 
 #: src/features/roles-list/ui/roles-list.tsx:59
-msgid "Users's count"
+msgid "Users count"
 msgstr "кол-во пользователей"
 
 #: src/shared/ui/payment-type/payment-type.tsx:32
 msgid "Usual"
-msgstr ""
+msgstr "Обычный"
 
 #: src/shared/ui/import-file-dialog-error-list-for-validation-error/ui/import-file-dialog-error-list-for-validation-error.tsx:22
 #: src/shared/ui/import-file-dialog-error-list/ui/import-file-dialog-error-list.tsx:24
@@ -1806,7 +1975,7 @@ msgstr "НДС"
 
 #: src/features/sales-details-common/ui/sales-details-common.tsx:170
 msgid "VAT"
-msgstr ""
+msgstr "НДС"
 
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:45
 #~ msgid "VAT  %/sum"
@@ -1820,7 +1989,7 @@ msgstr ""
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:45
 #: src/features/sold-product-details/ui/sold-products-details.tsx:75
 msgid "VAT <0>  %/sum</0>"
-msgstr ""
+msgstr "НДС <0>  %/сумма</0>"
 
 #: src/features/product-create/ui/product-form-create.tsx:205
 #: src/features/product-edit/ui/product-form-edit.tsx:234
@@ -1854,7 +2023,7 @@ msgstr "вчера"
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:191
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:191
 msgid "Yesterday"
-msgstr ""
+msgstr "Вчера"
 
 #: src/shared/ui/file-loader/ui/file-loader.tsx:22
 msgid "You can close this window and download the file later in the"
@@ -1872,9 +2041,9 @@ msgstr "Вы не прикрепили файл"
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:134
 #: src/features/sales-details-common/ui/sales-details-common.tsx:61
 msgid "Z-report number"
-msgstr ""
+msgstr "Номер Z-отчета"
 
 #: src/features/main-menu/config/main-menu.config.tsx:60
 #: src/pages/z-reports-page/ui/z-reports-page.tsx:15
 msgid "Z-reports"
-msgstr ""
+msgstr "Z-отчеты"
