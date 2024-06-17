@@ -3,7 +3,7 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { tagTypesExtendedStoresList, typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from './types';
-import { typeExtendedStore, typeStore } from '../model/types';
+import { typeExtendedStore, typeStore, typeStoreWithLinkedConfiguration } from '../model/types';
 
 
 
@@ -43,7 +43,19 @@ export const storesApi = baseApi.injectEndpoints({
                 ]
                 : [ tagTypesExtendedStoresList.storesExtendedList ],
         }),
+// search stores with info about linked terminal configuration
+        searchStoreWithLinkedConfiguration: builder.query<typeSearchResponse<typeStoreWithLinkedConfiguration>, typeSearchRequest<typeSearchFilterStore, typeSearchStoreSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.STORES_SEARCH_WITH_LINKED_CONFIGURATION,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
 
+                }
+            ),
+
+        }),
 
         // patch store
         patchStore: builder.mutation<typeStore, typeEditStoreRequest >({
@@ -89,7 +101,7 @@ export const storesApi = baseApi.injectEndpoints({
 export const {
     useSearchStoreQuery,
     useExtendedSearchStoreQuery,
-    useLazyExtendedSearchStoreQuery,
+    useLazySearchStoreWithLinkedConfigurationQuery,
     useLazySearchStoreQuery,
     useGetStoreByIdQuery,
     useLazyGetStoreByIdQuery,

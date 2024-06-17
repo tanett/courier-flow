@@ -15,18 +15,26 @@ export enum API_URLS {
     INDUSTRIES_SEARCH = '/api/v1/industries/search',
 
     TERMINAL_LIST_SEARCH = '/api/v1/terminals/search',
+    TERMINAL_LIST_SEARCH_WITH_LINKED_CONFIGURATION = '/api/v1/terminals/for-terminal-config',
     TERMINAL_LIST_SEARCH_EXTENDED = '/api/v1/terminals/extended-search',
     TERMINAL_CREATE = '/api/v1/terminals',
     TERMINAL_PATCH = '/api/v1/terminals',
     TERMINAL_ARCHIVE = '/api/v1/terminals/archive',
     TERMINAL_GET = '/api/v1/terminals/{id}',
 
+    TERMINAL_CONFIGURATIONS_LIST_SEARCH = '/api/v1/terminal-configs/search',
+    TERMINAL_CONFIGURATIONS_GET = '/api/v1/terminal-configs/{id}',
+    TERMINAL_CONFIGURATIONS_DELETE = '/api/v1/terminal-configs/{id}',
+    TERMINAL_CONFIGURATIONS_CREATE = '/api/v1/terminal-configs',
+    TERMINAL_CONFIGURATIONS_PATCH= '/api/v1/terminal-configs',
+    TERMINAL_CONFIGURATIONS_GET_AVAILABLE_MODULES= '/api/v1/terminal-configs/available-modules',
 
     ROLES_SEARCH = '/api/v1/roles/search',
     ROLES_SEARCH_ONE = '/api/v1/roles/search/one',
     ROLES_SEARCH_EXTENDED = '/api/v1/roles/extended-search',
 
     STORES_SEARCH = '/api/v1/stores/search',
+    STORES_SEARCH_WITH_LINKED_CONFIGURATION = '/api/v1/stores/for-terminal-config',
     STORES_SEARCH_EXTENDED = '/api/v1/stores/extended-search',
     STORES_PATCH= '/api/v1/stores',
     STORES_GET = '/api/v1/stores/{id}',

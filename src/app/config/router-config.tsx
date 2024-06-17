@@ -28,14 +28,14 @@ import { LazyStoresEditPage } from 'pages/stores-edit-page';
 import { LazyStoresDetailsPage } from 'pages/stores-details-page';
 import { WithPermissionsRouts } from 'app/providers/with-permissions-routs/with-permissions-routs';
 import {
-    addCategoryPermissions, addProductsPermissions,
+    addCategoryPermissions, addProductsPermissions, addTerminalConfigurationsPermissions,
     addUserPermissions, editCategoryPermissions,
-    editLimitedStoresPermissions, editProductsPermissions,
+    editLimitedStoresPermissions, editProductsPermissions, editTerminalConfigurationsPermissions,
     editUserPermissions, readAdvancesPermissions,
-    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions,
+    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
     readOrdersPermissions,
     readProductsPermissions, readRefundsPermissions, readRolesPermissions, readSalesPermissions,
-    readStoresPermissions,
+    readStoresPermissions, readTerminalConfigurationsPermissions,
     readTerminalPermissions,
     readUserPermissions, readZReportsPermissions
 } from 'app/config/permissions-config';
@@ -53,6 +53,11 @@ import { LazySoldProductDetailsPage } from 'pages/sold-product-details-page';
 import { LazyZReportsPage } from 'pages/z-reports-page';
 import { LazyAdvancesPage } from 'pages/advances-page';
 import { LazyCreditsPage } from 'pages/credits-page';
+import { LazyTerminalConfigurationPage } from 'pages/terminal-configurations-page';
+import { LazyHandoverRecordsPage } from 'pages/handover-records-page';
+import { LazyTerminalConfigurationCreatePage } from 'pages/terminal-configurations-create-page';
+import { LazyTerminalConfigurationEditPage } from 'pages/terminal-configurations-edit-page';
+import { LazyTerminalConfigurationsDetailsPage } from 'pages/terminal-configurations-details-page';
 
 export const router = createBrowserRouter([
 
@@ -194,12 +199,32 @@ export const router = createBrowserRouter([
                 element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDesksPage/></WithPermissionsRouts>,
             },
             {
-                path: routerPaths.terminals,
+                path: routerPaths.terminals_list,
                 element: <WithPermissionsRouts permissions={readTerminalPermissions}><LazyTerminalsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.terminals_details,
                 element: <WithPermissionsRouts permissions={readTerminalPermissions}><LazyTerminalsDetailsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.terminals_configurations,
+                element: <WithPermissionsRouts permissions={readTerminalConfigurationsPermissions}><LazyTerminalConfigurationPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.terminals_configurations_create,
+                element: <WithPermissionsRouts permissions={addTerminalConfigurationsPermissions}><LazyTerminalConfigurationCreatePage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.terminals_configurations_edit,
+                element: <WithPermissionsRouts permissions={editTerminalConfigurationsPermissions}><LazyTerminalConfigurationEditPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.terminals_configurations_details,
+                element: <WithPermissionsRouts permissions={readTerminalConfigurationsPermissions}><LazyTerminalConfigurationsDetailsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.handover_records,
+                element: <WithPermissionsRouts permissions={readHandoverRecordsPermissions}><LazyHandoverRecordsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.orders,

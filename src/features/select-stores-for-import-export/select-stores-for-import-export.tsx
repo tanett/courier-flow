@@ -21,7 +21,8 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
     selectedStores,
     setIsAllChecked,
     isAllChecked,
-
+    label,
+    bigPadding,
 }) => {
 
     const { i18n } = useLingui();
@@ -230,19 +231,19 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
     return (
         <>
             <Flex className={ classes.headerWrapper }>
-                <Text className={ classes.title }><Trans>Select stores</Trans></Text>
+                <Text className={ classes.title }>{ label }</Text>
                 <Flex direction="row" gap={ 10 } align={ 'center' }>
                     <Button onClick={ () => onResetClick() }
-                        variant={ 'subtle' }
-                        className={ classes.btnLink }
+                            variant={ 'subtle' }
+                            className={ classes.btnLink }
                     ><Trans>Reset</Trans></Button>
                     <Button onClick={ () => onSelectAllClick() }
-                        variant={ 'subtle' }
-                        className={ classes.btnLink }
+                            variant={ 'subtle' }
+                            className={ classes.btnLink }
                     ><Trans>Select all</Trans></Button>
                 </Flex>
             </Flex>
-            <Box className={ classes.dataContainer }>
+            <Box className={ classes.dataContainer } p={ bigPadding ? 16 : 8 }>
                 <Input
                     className={ classes.inputField }
                     ref={ inputRef }
@@ -272,7 +273,7 @@ export const SelectStoresForImportExport: React.FC<typeSelectStoresForImportExpo
                             : <Flex align={ 'center' } justify={ 'center' } sx={ {
                                 textAlign: 'center',
                                 height: '100%',
-                                backgroundColor: theme.colors.gray[ 0 ],
+                                backgroundColor: theme.colors.gray[0],
                             } }><Trans>No stores with this name</Trans></Flex>
                         : <LoaderOverlay/>
                     }

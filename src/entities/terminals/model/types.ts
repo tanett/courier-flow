@@ -31,3 +31,5 @@ export type typeTerminalExtended = typeTerminal & {
     merchantName: string;
     storeName: string;
 }
+
+export type typeTerminalWithLinkedConfiguration = typeTerminal & {linkedTerminalConfigId: string}
