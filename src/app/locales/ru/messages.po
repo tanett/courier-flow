@@ -1880,7 +1880,7 @@ msgstr "Напечатайте часть названия роли"
 
 #: src/features/terminal-list/ui/terminals-table.tsx:24
 msgid "Type part of serial number, fiscal card Id"
-msgstr "Напечатайте часть серийного номера или фискального Id"
+msgstr "Введите серийный номер или фискальный ID"
 
 #: src/features/stores-list/ui/stores-table.tsx:33
 msgid "Type part of store name"
