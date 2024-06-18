@@ -1,6 +1,5 @@
 export interface typeTerminalsFilterForm {
-    serialNumber: string
-    fiscalCardId: string
+    storeId: string | null
     model: string
     blocked: boolean | null
 }

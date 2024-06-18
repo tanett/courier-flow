@@ -7,7 +7,7 @@ export type typeSearchTerminalsFilter = {
     ids?: string[]
     archived: boolean
     searchText?: string
-    storeIds?: string
+    storeIds?: string[]
     models?: string[]
     serialNumbers?: string[]
     vendors?: string[]

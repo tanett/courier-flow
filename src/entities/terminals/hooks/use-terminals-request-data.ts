@@ -24,6 +24,9 @@ export const useTerminalsRequestData = () => {
     const blocked = urlParams.getFilterValue('blocked');
     if (blocked && typeof blocked === 'string') filter.blocked = blocked === 'true';
 
+    const storeId = urlParams.getFilterValue('storeId');
+    if (storeId && typeof storeId === 'string') filter.storeIds = [ storeId ];
+
     const requestData: typeSearchRequest<typeSearchTerminalsFilter, 'CREATED_AT'> = {
         filter: filter,
         pagination: {
