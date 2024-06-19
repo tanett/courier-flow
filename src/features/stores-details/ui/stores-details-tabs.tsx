@@ -19,7 +19,7 @@ const enum TYPE_TABS {
     USERS = 'users'
 }
 
-const StoresDetailsTabs: React.FC<{ storeId: string }> = ({ storeId }) => {
+const StoresDetailsTabs: React.FC<{ storeId: string, storeName: string }> = ({ storeId, storeName }) => {
 
     const { classes } = useStyles();
 
@@ -88,7 +88,7 @@ const StoresDetailsTabs: React.FC<{ storeId: string }> = ({ storeId }) => {
                 </Flex>
 
                 <Tabs.Panel value={ TYPE_TABS.COMMON }><StoreDetailsCommon storeData={ storeData } isFetching={isFetching}/></Tabs.Panel>
-                <Tabs.Panel value={ TYPE_TABS.USERS }><StoresDetailsUsers storeId={ storeId }/></Tabs.Panel>
+                <Tabs.Panel value={ TYPE_TABS.USERS }><StoresDetailsUsers storeId={ storeId } storeName={ storeName}/></Tabs.Panel>
             </Tabs>
     );
 

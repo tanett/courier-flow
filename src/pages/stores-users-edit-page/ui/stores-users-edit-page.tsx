@@ -1,36 +1,36 @@
 import React from 'react';
 import { useLingui } from '@lingui/react';
-import { useParams } from 'react-router-dom';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
-import StoresDetailsTabs from 'features/stores-details/ui/stores-details-tabs';
+import { generatePath, useParams } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
+import { StoresUsersEdit } from 'features/stores-user-edit';
 
 
-const StoresDetailsPage: React.FC = () => {
+const StoresUsersEditPage: React.FC = () => {
+
+    const { i18n } = useLingui();
 
     const {
         id,
         storeName,
     } = useParams();
 
-    const { i18n } = useLingui();
-
     return (
-        <DashboardContent>
+        <DashboardContent withForm>
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
                     { name: i18n._(t`Stores`), path: routerPaths.stores },
-                    { name: storeName || '---' }
+                    { name: storeName || '---', path: generatePath(routerPaths.stores_details, {id: id, storeName: storeName})  },
+                    { name: i18n._(t`Users`), path: generatePath(routerPaths.stores_details, {id: id, storeName: storeName})+'?f=tab.users',  },
+                    { name: i18n._(t`Edit`) }
                 ] }/> }
-
             />
-            { id && storeName && <StoresDetailsTabs storeId={ id } storeName={storeName}/> }
-
+            <StoresUsersEdit />
         </DashboardContent>
     );
 
 };
 
-export default StoresDetailsPage;
+export default StoresUsersEditPage;

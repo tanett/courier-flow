@@ -58,6 +58,7 @@ import { LazyHandoverRecordsPage } from 'pages/handover-records-page';
 import { LazyTerminalConfigurationCreatePage } from 'pages/terminal-configurations-create-page';
 import { LazyTerminalConfigurationEditPage } from 'pages/terminal-configurations-edit-page';
 import { LazyTerminalConfigurationsDetailsPage } from 'pages/terminal-configurations-details-page';
+import { LazyStoresUsersEditPage } from 'pages/stores-users-edit-page';
 
 export const router = createBrowserRouter([
 
@@ -192,7 +193,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: routerPaths.stores_details,
-                element: <WithPermissionsRouts permissions={readProductsPermissions}><LazyStoresDetailsPage/></WithPermissionsRouts>,
+                element: <WithPermissionsRouts permissions={readStoresPermissions}><LazyStoresDetailsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.stores_details_users_edit,
+                element: <WithPermissionsRouts permissions={editUserPermissions}><LazyStoresUsersEditPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.cashDesks,
