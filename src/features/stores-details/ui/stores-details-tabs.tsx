@@ -9,7 +9,6 @@ import { queryParamsNames } from 'app/config/api-constants';
 import { StoreDetailsCommon } from 'features/stores-details-common';
 import { useGetStoreByIdQuery } from '../../../entities/stores/api/api';
 import { NotFound } from 'shared/ui/not-found/not-found';
-import { CONFIGURATION_TYPE_TABS } from 'features/terminal-configurations-details/types/types';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
