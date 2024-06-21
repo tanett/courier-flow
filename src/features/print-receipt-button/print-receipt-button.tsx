@@ -23,7 +23,7 @@ export const PrintReceiptButton: React.FC<{ id: string | undefined }> = ({ id })
                         onClick={() => setOpenReceipt(true) }
                         className={classes.button}
             >
-                <ReceiptIcon color={theme.colors.gray[5]} width={22} height={22}/>
+                <ReceiptIcon color={theme.colors.primary[5]} width={22} height={22}/>
             </ActionIcon>
 
             { isOpenReceipt && <Modal modalWidth="dialog" opened={ true } onCloseByOverlay={()=>setOpenReceipt(false)}>
