@@ -8,6 +8,8 @@ import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import { useGetData } from '../hooks/use-get-data';
 import { NotFound } from 'shared/ui/not-found/not-found';
+import { generatePath, useNavigate } from 'react-router-dom';
+import { routerPaths } from 'app/config/router-paths';
 
 
 export const SoldProductsDetails: React.FC<{ id: string, productName: string }> = ({
@@ -25,6 +27,7 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
         isLoading
     } = useGetData(id, productName);
 
+    const navigate = useNavigate()
 
     return (isNotFound
             ?   <Flex sx={{height: '80vh', alignItems: 'center'}}><NotFound/></Flex>
@@ -42,7 +45,7 @@ export const SoldProductsDetails: React.FC<{ id: string, productName: string }> 
                 <InfoCardSmall label={ i18n._(t`Product`) }
                                content={ product
                                    ? product.id
-                                       ? <ButtonAsLink onClick={ () => console.log('click')} label={ i18n._(t`See product card`) }/>
+                                       ? <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.products_details, {id: id, name: productName}))} label={ i18n._(t`See product card`) }/>
                                        : 'The product does not exist in the product catalog'
                                    : '-' }/>
                 <SimpleGrid

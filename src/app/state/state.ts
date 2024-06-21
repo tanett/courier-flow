@@ -8,6 +8,7 @@ import { authStateReducer } from '../../entities/auth/model/state-slice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { productsStateActions, productsStateReducer } from '../../entities/products/model/state-slice';
 import { productsApi } from '../../entities/products/api/api';
+import { soldProductsStateReducer } from '../../entities/advances/model/state-slice';
 
 
 const ListenerMiddlewareCreate = createListenerMiddleware();
@@ -61,6 +62,7 @@ export const state = configureStore({
         auth: authStateReducer,
         userProfile: userProfileStateReducer,
         products: productsStateReducer,
+        soldProductDetails: soldProductsStateReducer,
 
     },
     devTools: process.env.NODE_ENV !== 'production',

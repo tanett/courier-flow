@@ -9,6 +9,7 @@ import { tagTypesRolesExtendedList } from '../../entities/role/api/types';
 import { tagTypesShortSalesList } from '../../entities/sales/api/types';
 import { tagTypesRefundsList } from '../../entities/refunds/api/types';
 import { tagTypesTerminalConfigurationsList } from '../../entities/terminals-configurations/api/types';
+import { tagTypesShortAdvancesList } from '../../entities/advances/api/types';
 
 const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesExtendedUsersList,
@@ -20,6 +21,7 @@ const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesShortSalesList,
     ...tagTypesRefundsList,
     ...tagTypesTerminalConfigurationsList,
+    ...tagTypesShortAdvancesList,
 };
 
 export const baseApi = createApi({

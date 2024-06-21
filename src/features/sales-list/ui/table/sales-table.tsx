@@ -15,7 +15,7 @@ import PaymentsList from 'shared/ui/payments/payments-list';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { SalesListFilter } from 'features/sales-list-filter';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
-import { generatePath, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({

@@ -5,7 +5,7 @@ export const getTranslatedVariantForPaymentsMethod = (method: typePayment['metho
 
     switch (method) {
 
-    case 'OTHER' :
+    case 'E_PAYMENT_SYSTEM' :
         return <Trans>EPS</Trans>;
     case 'CARD':
         return <Trans>Card</Trans>;
