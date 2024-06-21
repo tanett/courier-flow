@@ -13,7 +13,7 @@ export const SalesList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const isAllowedExport = useIsAllowedPermissions([]);
+    const isAllowedExport = useIsAllowedPermissions([]);// todo add permission
 
     const {
         shortSalesCheckedList,

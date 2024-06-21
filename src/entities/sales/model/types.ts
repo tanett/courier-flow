@@ -1,3 +1,5 @@
+import { typePaymentMethod } from 'app/config/payments-methods';
+
 export type typeSale = {
     id: string
     createdAt: string
@@ -60,12 +62,16 @@ export type typeAdditionalFields = Record<string, string>
 export type typePayment = {
     id: string
     amount: number
+    currency: string
+    baseCurrencyAmount: number
+    exchangeRate: number
     createdOnTerminalAt: string
     cashDeskId: string
-    method: 'CASH' | 'CARD' | 'QR' | 'TRANSFER' | 'OTHER'
+    method: typePaymentMethod
     rrn: string
     stan: string
     transactionId: string
+    epaymentSystemId: string
 }
 
 export type typeSaleShort = Omit<typeSale, 'storeAddress'

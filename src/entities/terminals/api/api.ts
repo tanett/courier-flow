@@ -72,6 +72,7 @@ export const {
     useSearchTerminalListQuery,
     useLazySearchTerminalListQuery,
     useGetTerminalByIdQuery,
+    useLazyGetTerminalByIdQuery,
     useSearchTerminalsExtendedQuery,
     useLazySearchTerminalsExtendedQuery,
     useLazySearchTerminalsWithLinkedConfigurationQuery

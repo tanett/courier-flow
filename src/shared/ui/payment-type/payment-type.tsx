@@ -8,6 +8,8 @@ import { useStyles } from 'shared/ui/payment-type/styles';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { useLingui } from '@lingui/react';
 import { typeSale } from 'entities/sales/model/types';
+import { generatePath, useNavigate } from 'react-router-dom';
+import { routerPaths } from 'app/config/router-paths';
 
 const PaymentType: React.FC<{ sale: typeCheckedShortSalesExtended | typeSale }> = ({ sale }) => {
 
@@ -15,9 +17,13 @@ const PaymentType: React.FC<{ sale: typeCheckedShortSalesExtended | typeSale }> 
 
     const { i18n } = useLingui();
 
+    const navigate=useNavigate()
+
     const onAdvanceClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
-        console.log('add navigate to advance');
+        if(('advanceId' in sale)) {
+            navigate(generatePath(routerPaths.advances_details, { id: sale.advanceId }));
+        }
     };
 
     const onCreditClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -29,12 +35,12 @@ const PaymentType: React.FC<{ sale: typeCheckedShortSalesExtended | typeSale }> 
             { sale.paymentType === 'USUAL' &&
                 <Flex className={ classes.flexRow }>
                     {/* <Box className={ classes.iconContainer }><OnlinePaymentIconOutline/></Box> */}
-                    <ButtonAsLink disabled  onClick={ onAdvanceClick } label={i18n._(t`Usual`)}/>
+                    <ButtonAsLink disabled  onClick={(e)=> onAdvanceClick(e) } label={i18n._(t`Usual`)}/>
                 </Flex> }
             { sale.paymentType === 'ADVANCE' &&
                 <Flex className={ classes.flexRow }>
                     <Box className={ classes.iconContainer }><AdvanceIconOutline16/></Box>
-                    <ButtonAsLink  onClick={ onAdvanceClick } label={i18n._(t`Advance`)}/>
+                    <ButtonAsLink disabled={!('advanceId' in sale)}  onClick={ onAdvanceClick } label={i18n._(t`Advance`)}/>
                 </Flex> }
             { sale.paymentType === 'CREDIT' &&
                 <Flex className={ classes.flexRow }>

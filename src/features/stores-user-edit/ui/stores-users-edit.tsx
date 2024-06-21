@@ -39,7 +39,7 @@ export const StoresUsersEdit: React.FC = () => {
     const {
         data:userData,
         isFetching: isUserFetching,
-    } = useGetUserByIdQuery(userId);
+    } = useGetUserByIdQuery(userId!);
 
     useEffect(() => {
 

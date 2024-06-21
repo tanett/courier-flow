@@ -68,6 +68,8 @@ export enum pathNames {
     z_reports = 'z_reports',
 
     advances = 'advances',
+    advances_details = 'advances_details',
+    advances_sold_product_details='advances_sold_product_details',
 
     credits = 'credits',
 
@@ -144,6 +146,8 @@ export const routerPaths: Record<pathNames, string> = {
 
     // Advances
     [pathNames.advances]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.advances ]),
+    [pathNames.advances_details]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.advances, pathSections.id]),
+    [pathNames.advances_sold_product_details]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.advances, pathSections.id, pathSections.name ]),
 
     // credits
     [pathNames.credits]: createPath([ pathSections.dashboard, pathSections.reports, pathSections.credits ]),

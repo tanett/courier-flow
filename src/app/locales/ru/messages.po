@@ -104,12 +104,12 @@ msgstr "Адрес"
 
 #: src/shared/ui/payment-type/payment-type.tsx:37
 msgid "Advance"
-msgstr "Предоплата"
+msgstr "Аванс"
 
 #: src/features/main-menu/config/main-menu.config.tsx:65
 #: src/pages/advances-page/ui/advances-page.tsx:15
 msgid "Advances"
-msgstr "Предоплаты"
+msgstr "Авансы"
 
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:28
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:28
@@ -1331,7 +1331,7 @@ msgstr "Qr-код"
 #: src/features/sales-details-sold-products-list/ui/table/table-sold-products.tsx:39
 #: src/features/sold-product-details/ui/sold-products-details.tsx:62
 msgid "Quantity"
-msgstr "Кол-вл"
+msgstr "Кол-во"
 
 #: src/features/products-list/ui/table/products-table-header.tsx:94
 msgid "Range of price"

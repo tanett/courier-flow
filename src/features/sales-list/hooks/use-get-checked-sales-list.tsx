@@ -1,6 +1,6 @@
 import { useListState } from '@mantine/hooks';
 import { useEffect } from 'react';
-import { useShortSalesList } from '../../../entities/sales/hooks/use-short-products-list';
+import { useShortSalesList } from '../../../entities/sales/hooks/use-short-sales-list';
 import { typeCheckedShortSalesExtended } from '../types/types';
 
 export const useGetCheckedSalesList = () => {
