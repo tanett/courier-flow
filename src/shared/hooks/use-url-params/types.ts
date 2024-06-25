@@ -11,4 +11,5 @@ export interface typeUseUrlParams {
     setSearchParams: (newParamsObj: typeSearchParamsObj) => void
     filtersToUri: (newParamsObj: Record<string, unknown>) => string | undefined
     sortDirection: sortDirection.asc | sortDirection.dec | undefined
+    sortName: string | undefined
 }

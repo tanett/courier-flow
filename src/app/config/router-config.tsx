@@ -61,6 +61,7 @@ import { LazyTerminalConfigurationsDetailsPage } from 'pages/terminal-configurat
 import { LazyStoresUsersEditPage } from 'pages/stores-users-edit-page';
 import { LazyAdvancesDetailsPage } from 'pages/advances-details-page';
 import { LazyAdvancesSoldProductDetailsPage } from 'pages/advances-sold-product-details-page';
+import { LazyCreditsDetailsPage } from 'pages/credits-details-page';
 
 export const router = createBrowserRouter([
 
@@ -164,6 +165,10 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.credits,
                 element: <WithPermissionsRouts permissions={readCreditsPermissions}><LazyCreditsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.credits_details,
+                element: <WithPermissionsRouts permissions={readCreditsPermissions}><LazyCreditsDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.products_list,

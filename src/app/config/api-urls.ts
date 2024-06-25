@@ -91,5 +91,7 @@ export enum API_URLS {
     ADVANCES_SHORT_SEARCH_EXTENDED = '/api/v1/advances/extended-search',
     ADVANCES_GET = '/api/v1/advances/{id}',
 
+    CREDITS_SEARCH = '/api/v1/credits/search',
+    CREDITS_GET = '/api/v1/credits/{id}',
 
 }

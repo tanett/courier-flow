@@ -17,6 +17,7 @@ export const useUrlParams = () => {
     let searchPhrase = params[ queryParamsNames.searchPhrase ];
     let filtersString = params[ queryParamsNames.filtersString ];
     const sortDirection = params[ queryParamsNames.sortDirection ];
+    const sortName = params[ queryParamsNames.sortName ];
 
     // Decoding uri
     if (searchPhrase) searchPhrase = decodeURI(searchPhrase);
@@ -32,6 +33,7 @@ export const useUrlParams = () => {
         if (searchPhrase) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.searchPhrase ]: searchPhrase } };
         if (filtersString) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.filtersString ]: filtersString } };
         if (sortDirection) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.sortDirection ]: sortDirection as sortDirection } };
+        if (sortName) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.sortName ]: sortName } };
 
         // New params with current params
         for (const key of Object.keys(paramsObj)) {
@@ -48,6 +50,10 @@ export const useUrlParams = () => {
                 else delete newSearchParams[ key ];
                 break;
             case queryParamsNames.sortDirection :
+                if (paramsObj[ key ] ) newSearchParams[ key ] = paramsObj[ key ];
+                else delete newSearchParams[ key ];
+                break;
+            case queryParamsNames.sortName :
                 if (paramsObj[ key ] ) newSearchParams[ key ] = paramsObj[ key ];
                 else delete newSearchParams[ key ];
                 break;
@@ -142,7 +148,8 @@ export const useUrlParams = () => {
         getFilterValue: getFilterValue,
         setSearchParams: setNewSearchParams,
         filtersToUri: filtersToUri,
-        sortDirection: sortDirection as sortDirection
+        sortDirection: sortDirection as sortDirection,
+        sortName: sortName ? sortName : undefined,
     };
 
     return result;
