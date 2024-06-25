@@ -7,6 +7,12 @@ export const editUserPermissions = [ 'user.write-to-own-merchant' ];
 export const readTerminalPermissions = [ 'terminal.read-from-own-merchant' ];
 export const readTerminalFromOwnStorePermissions = [ 'terminal.read-from-own-store' ];
 
+// terminals-configurations
+export const readTerminalConfigurationsPermissions = [ 'terminal-config.read-from-own-merchant' ];
+export const readTerminalConfigurationsFromOwnStorePermissions = [ 'terminal-config.read-from-own-store' ];
+export const addTerminalConfigurationsPermissions = [ 'terminal-config.write-to-own-merchant' ];
+export const editTerminalConfigurationsPermissions = [ 'terminal-config.write-to-own-merchant' ];
+
 // merchants
 export const readMerchantPermissions = [ 'merchant.read-from-own-merchant' ];
 
@@ -85,3 +91,5 @@ export const readCreditsPermissions = [ 'credit.read-from-own-merchant', 'credit
 export const addCreditsPermissions = [ 'credit.create-in-own-store' ];
 export const patchCreditsPermissions = [ 'credit.patch-in-own-merchant' ];
 
+// handovers-records
+export const readHandoverRecordsPermissions = [ ...readTerminalPermissions, ...readTerminalFromOwnStorePermissions ];

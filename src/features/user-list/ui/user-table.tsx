@@ -53,8 +53,8 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                         </Table.Th>
                         <Table.Th>
                             <Trans>Stores</Trans>
-                        </Table.Th>
-                        { isAllowedUserEdit && <Table.Th>
+                        </Table.Th >
+                        { isAllowedUserEdit && <Table.Th align={'center'}>
                             <Trans>Actions</Trans>
                         </Table.Th> }
                     </Table.Header>
@@ -82,12 +82,12 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                             return (
                                 <Table.Tr key={ item.id } handler={ () => goToDetailsUserPage(item.id, item.fullName) }>
                                     <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.fullName }</Box></Table.Td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.phone ? formatIncompletePhoneNumber(item.phone) : '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { width: rem(132) } }>{ item.phone ? formatIncompletePhoneNumber(item.phone) : '-' }</Box></Table.Td>
                                     <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.email }</Box></Table.Td>
-                                    <Table.Td><Box sx={ { minWidth: rem(160) } }>{ item.role.name }</Box></Table.Td>
-                                    <Table.Td>{ item.stores.length > 0
+                                    <Table.Td><Box sx={ { minWidth: rem(128) } }>{ item.role.name }</Box></Table.Td>
+                                    <Table.Td><Box sx={ { maxWidth: rem(242) } }>{ item.stores.length > 0
                                         ? <ItemListWithCounter list={item.stores} numberVisibleItem={1}/>
-                                        : '-' }
+                                        : '-' }</Box>
                                     </Table.Td>
                                     { isAllowedUserEdit && <Table.TdActions actions={ actions }/> }
                                 </Table.Tr>

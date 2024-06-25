@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
-import { Box, Checkbox, rem, useMantineTheme, Text } from '@mantine/core';
+import { Box, Checkbox, rem, useMantineTheme, Text, Flex } from '@mantine/core';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { typeSalesListTable } from 'features/sales-list/types/types';
@@ -15,7 +15,7 @@ import PaymentsList from 'shared/ui/payments/payments-list';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { SalesListFilter } from 'features/sales-list-filter';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
-import { generatePath, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
@@ -93,15 +93,15 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                         const data = (date: string) => {
                             const dateStr = dayjs(date).format('DD.MM.YYYY');
                             const timeStr = dayjs(date).format('HH:mm:ss');
-                            return (<Box>
-                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr }</Text>
+                            return (<Flex gap={10} align={'center'}>
+                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr },</Text>
                                 <Text sx={ {
                                     color: theme.colors.gray[5],
                                     fontWeight: 400,
                                     lineHeight: rem(16)
                                 } }>{ timeStr }</Text>
 
-                            </Box>);
+                            </Flex>);
                         };
 
                         return (

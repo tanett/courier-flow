@@ -5,7 +5,7 @@ import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import { Box, useMantineTheme } from '@mantine/core';
+import { Flex, useMantineTheme } from '@mantine/core';
 import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeRefundListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
@@ -85,10 +85,10 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
 
                             return (
                                 <Table.Tr key={ item.id } handler={ () => goToDetailsReceiptPage(item.id, item.receiptNumber) }>
-                                    <Table.Td><Box>
-                                        <div>{ date }</div>
+                                    <Table.Td><Flex  gap={10} align={'center'}>
+                                        <div>{ date },</div>
                                         <div className={classes.time}>{ time }</div>
-                                    </Box></Table.Td>
+                                    </Flex></Table.Td>
                                     <Table.Td>{ item.receiptNumber }</Table.Td>
                                     <Table.Td>{ item.storeName }</Table.Td>
                                     <Table.Td>{ item.refundedByName }</Table.Td>

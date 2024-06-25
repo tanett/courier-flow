@@ -90,7 +90,7 @@ export const usersApi = baseApi.injectEndpoints({
         }),
 
         // get user by id
-        getUserById: builder.query({
+        getUserById: builder.query<typeUser, string>({
             query: (id) => (
                 {
                     url: API_URLS.USER_GET.replace('{id}', id),

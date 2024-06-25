@@ -1,8 +1,7 @@
 import { typeTerminalsFilterForm } from '../types/types';
 
 export const initialTerminalsFilterForm: typeTerminalsFilterForm = {
-    serialNumber: '',
-    fiscalCardId: '',
+   storeId: null,
     model: '',
     blocked: null,
 };

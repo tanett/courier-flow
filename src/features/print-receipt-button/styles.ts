@@ -5,10 +5,11 @@ export const useStyles = createStyles((theme) => ({
     button: {
        width:'36px',
         height: '36px',
-        borderColor: theme.colors.gray[4],
+        borderColor: 'transparent',
         '&:hover': {
-           backgroundColor: theme.colors.gray[ 0 ],
-            borderColor: theme.colors.gray[5],
+           '& svg':{ color: theme.colors.primary[6], },
+            backgroundColor: theme.colors.gray[ 1 ],
+           //  borderColor: theme.colors.gray[5],
         },
 
     },

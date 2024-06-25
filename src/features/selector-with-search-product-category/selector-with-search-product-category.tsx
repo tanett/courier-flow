@@ -150,6 +150,7 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             // @ts-ignore
             rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+            withinPortal
         />
     );
 

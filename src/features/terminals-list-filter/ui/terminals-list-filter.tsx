@@ -10,6 +10,8 @@ import { FilterSkeleton } from './filter-skeleton';
 import { queryParamsNames } from '../../../app/config/api-constants';
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
 import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
+import { SelectorWithSearchStore } from 'features/selector-with-search-store';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 
 export const TerminalsListFilter: React.FC = () => {
@@ -24,13 +26,11 @@ export const TerminalsListFilter: React.FC = () => {
 
     useEffect(() => {
 
-        const serialNumber = urlParams.getFilterValue('serialNumber');
-        const fiscalCardId = urlParams.getFilterValue('fiscalCardId');
+        const store = urlParams.getFilterValue('storeId');
         const model = urlParams.getFilterValue('model');
         const blocked = urlParams.getFilterValue('blocked');
 
-        if (serialNumber && typeof serialNumber === 'string') form.setValues({ serialNumber: serialNumber });
-        if (fiscalCardId && typeof fiscalCardId === 'string') form.setValues({ fiscalCardId: fiscalCardId });
+        if (store && typeof store === 'string') form.setValues({ storeId: store });
         if (model && typeof model === 'string') form.setValues({ model: model });
         if (blocked && typeof blocked === 'string') form.setValues({ blocked: blocked === 'true' });
 
@@ -41,8 +41,7 @@ export const TerminalsListFilter: React.FC = () => {
     const setFilterHandler = () => {
 
         const filterObj: Record<string, unknown> = {
-            serialNumber: form.values.serialNumber.trim() === '' ? null : form.values.serialNumber.trim(),
-            fiscalCardId: form.values.fiscalCardId.trim() === '' ? null : form.values.fiscalCardId.trim(),
+            storeId: form.values.storeId,
             model: form.values.model.trim() === '' ? null : form.values.model.trim(),
             blocked: form.values.blocked !== null ? form.values.blocked.toString() : null,
         };
@@ -97,16 +96,11 @@ export const TerminalsListFilter: React.FC = () => {
                             { ...form.getInputProps('model') }
                             maxLength={ 150 }
                         />
-                        <TextInput
-                            label={ <Trans>Serial number</Trans> }
-                            { ...form.getInputProps('serialNumber') }
-                            maxLength={ 150 }
-                        />
-                        <TextInput
-                            label={ <Trans>Fiscal ID</Trans> }
-                            { ...form.getInputProps('fiscalCardId') }
-                            maxLength={ 150 }
-                        />
+                        <SelectorWithSearchStore
+                            required={ false }
+                            fieldName={ 'storeId' }
+                            initialValue={ form.values.storeId !== null ? form.values.storeId : null }
+                            form={ form as unknown as typeReturnForm }/>
 
                         <FilterButtonPanel
                             label={i18n._(t`Blocking`)}

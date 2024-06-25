@@ -5,7 +5,7 @@ import {
     ChartBarIcon as ReportsIconOutline,
     CalculatorIcon as CalculatorIconOutline,
     Squares2X2Icon as ProductsIconOutline,
-    ShoppingCartIcon as ShoppingCartIconOutline,
+    BuildingStorefrontIcon as BuildingStorefrontIconOutline,
     TruckIcon as TruckIconOutline,
     UserIcon as UserIconOutline,
     UsersIcon as UsersIconOutline,
@@ -15,7 +15,7 @@ import {
     ChartBarIcon as ReportsIconSolid,
     Squares2X2Icon as ProductsIconSolid,
     CalculatorIcon as CalculatorIconSolid,
-    ShoppingCartIcon as ShoppingCartIconSolid,
+    BuildingStorefrontIcon as BuildingStorefrontIconSolid,
     TruckIcon as TruckIconSolid,
     UserIcon as UserIconSolid,
     UsersIcon as UsersIconSolid,
@@ -23,13 +23,13 @@ import {
 } from '@heroicons/react/24/solid';
 import {
     readAdvancesPermissions,
-    readCategoryPermissions, readCreditsPermissions,
+    readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
     readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
     readRefundsPermissions,
     readSalesPermissions,
-    readStoresPermissions,
+    readStoresPermissions, readTerminalConfigurationsPermissions,
     readTerminalPermissions,
     readUserPermissions, readZReportsPermissions
 } from '../../../app/config/permissions-config';
@@ -98,8 +98,8 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
     {
         id: pathNames.stores,
         name: <Trans>Stores</Trans>,
-        icon: <ShoppingCartIconOutline/>,
-        activeIcon: <ShoppingCartIconSolid/>,
+        icon: <BuildingStorefrontIconOutline/>,
+        activeIcon: <BuildingStorefrontIconSolid/>,
         path: routerPaths.stores,
         allowPermissions: readStoresPermissions,
     },
@@ -118,6 +118,26 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         activeIcon: <CalculatorIconSolid/>,
         path: routerPaths.terminals,
         allowPermissions: readTerminalPermissions,
+        children: [
+            {
+                id: pathNames.terminals_list,
+                name: <Trans>Terminals list</Trans>,
+                path: routerPaths.terminals_list,
+                allowPermissions: readTerminalPermissions,
+            },
+            {
+                id: pathNames.terminals_configurations,
+                name: <Trans>Configurations</Trans>,
+                path: routerPaths.terminals_configurations,
+                allowPermissions: readTerminalConfigurationsPermissions,
+            },
+            {
+                id: pathNames.handover_records,
+                name: <Trans>Handover records</Trans>,
+                path: routerPaths.handover_records,
+                allowPermissions: readHandoverRecordsPermissions,
+            },
+        ]
     },
     {
         id: pathNames.orders,

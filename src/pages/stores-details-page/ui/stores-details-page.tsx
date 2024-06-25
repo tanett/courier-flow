@@ -26,7 +26,7 @@ const StoresDetailsPage: React.FC = () => {
                 ] }/> }
 
             />
-            { id && <StoresDetailsTabs storeId={ id }/> }
+            { id && storeName && <StoresDetailsTabs storeId={ id } storeName={storeName}/> }
 
         </DashboardContent>
     );

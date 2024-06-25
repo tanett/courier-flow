@@ -148,6 +148,12 @@ export const SelectorWithSearchTerminals: React.FC<typeSelectorStores> = ({
             { ...form.getInputProps(fieldName) }
             maxLength={ 20 }
             disabled={ disabled }
+            styles={ {
+                rightSection: {
+                    pointerEvents: 'none',
+                    pointer: 'pointer',
+                },
+            } }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }

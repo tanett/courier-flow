@@ -20,11 +20,11 @@ import { useAppDispatchT } from 'app/state';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { UserAddToStore } from 'features/user-add-to-store/user-add-to-store';
 import { routerPaths } from 'app/config/router-paths';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { NotFound } from 'shared/ui/not-found/not-found';
 
-export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) => {
+export const StoresDetailsUsers: React.FC<{ storeId: string, storeName: string }> = ({ storeId, storeName }) => {
 
     const { i18n } = useLingui();
 
@@ -122,7 +122,7 @@ export const StoresDetailsUsers: React.FC<{ storeId: string }> = ({ storeId }) =
 
     };
 
-    const goToEditUserPage = (id: string | number) => navigate([ routerPaths.users, id.toString(), 'edit' ].join('/'));
+    const goToEditUserPage = (id: string | number) => navigate( generatePath(routerPaths.stores_details_users_edit, {id: storeId, storeName: storeName, userId: id.toString() }));
 
     return (
         error

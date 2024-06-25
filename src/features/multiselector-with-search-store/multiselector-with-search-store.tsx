@@ -176,7 +176,13 @@ export const MultiSelectorWithSearchStore: React.FC<typeMultiSelectorStores> = (
             maxLength={ 20 }
             itemComponent={ SelectItem }
             rightSection={ isLoading ? <Loader size={ 16 }/> : <IconChevronDown size="1rem"/> }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+            styles={ {
+                rightSection: {
+                    pointerEvents: 'none',
+                    pointer: 'pointer',
+                },
+            } }
+            sx={ { '&.mantine-MultiSelect-root div[aria-expanded=true] .mantine-MultiSelect-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );
 

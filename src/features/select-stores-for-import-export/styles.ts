@@ -28,7 +28,6 @@ export const useStyles = createStyles((theme) => ({
     dataContainer: {
         border: `1px solid ${ theme.colors.gray[ 3 ] }`,
         borderRadius: '4px',
-        padding: '16px',
         overflowX: 'hidden',
     },
     inputField: {

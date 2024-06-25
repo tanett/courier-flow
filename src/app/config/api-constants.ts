@@ -1,4 +1,6 @@
 // Response constants
+import { sortDirection } from 'app/api/types';
+
 export enum accessScope {
     admin = 'ADMIN',
     merchant = 'MERCHANT',
@@ -11,6 +13,7 @@ export enum queryParamsNames {
     itemsPerPage = 's',
     searchPhrase = 'q',
     filtersString = 'f',
+    sortDirection = 'd',
 }
 
 export const filterFieldNameSeparator = '.';
@@ -22,6 +25,7 @@ export interface typeSearchParamsObj {
     [queryParamsNames.itemsPerPage]?: string
     [queryParamsNames.searchPhrase]?: string
     [queryParamsNames.filtersString]?: string
+    [queryParamsNames.sortDirection]?: sortDirection
 }
 
 // TODO: make filters

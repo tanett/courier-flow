@@ -36,10 +36,10 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
                         <Trans>Fiscal ID</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Trans>Store</Trans>
+                        <Trans>Store name</Trans>
                     </Table.Th>
                     <Table.Th>
-                        <Trans>Status</Trans>
+                        <Trans>Blocking</Trans>
                     </Table.Th>
                 </Table.Header>
 
@@ -49,7 +49,7 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
                         const createdDate = new Date(item.createdAt);
                         const status = item.blocked
                             ? <BadgeStatus type={ 'error' } label={ i18n._(t`Blocked`) }/>
-                            : <BadgeStatus type={ 'success' } label={ i18n._(t`Active`) }/>;
+                            : <BadgeStatus type={ 'success' } label={ i18n._(t`Not blocked`) }/>;
 
 
                         return (

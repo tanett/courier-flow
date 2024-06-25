@@ -14,7 +14,7 @@ const PaymentMethodIcon: React.FC<{ method: typePayment['method'] }> = ({ method
     case 'TRANSFER': return  <Box  className={ classes.iconContainer }><TransferIconOutline/></Box>
     case 'QR': return <QrCodeIcon className={ classes.iconContainer }/>
     case 'CASH':return <BanknotesIcon className={ classes.iconContainer }/>
-    case 'OTHER': return <Box  className={ classes.iconContainer }><TransferDollarIconOutline/></Box>
+    case 'E_PAYMENT_SYSTEM': return <Box  className={ classes.iconContainer }><TransferDollarIconOutline/></Box>
     default : return method
     }
 };

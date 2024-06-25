@@ -79,7 +79,7 @@ export const SalesListTableHeader: React.FC<typeSalesListTableHeader> = ({
                     </Table.Th>
                     <Table.Th>
                         <Box sx={ { lineHeight: '16px' } }>
-                            <Trans>Employer</Trans>
+                            <Trans>Employee</Trans>
                         </Box>
                     </Table.Th>
                     <Table.Th>
