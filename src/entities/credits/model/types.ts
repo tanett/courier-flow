@@ -23,3 +23,5 @@ export type typeCredit= {
 }
 
 export type typePaymentCredit = typePaymentAdvance
+
+export type typeCreditExtended = typeCredit & {storeName: string}

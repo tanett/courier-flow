@@ -92,6 +92,8 @@ export enum API_URLS {
     ADVANCES_GET = '/api/v1/advances/{id}',
 
     CREDITS_SEARCH = '/api/v1/credits/search',
+    CREDITS_SEARCH_ONE = '/api/v1/credits/search/one',
+    CREDITS_SEARCH_EXTENDED = '/api/v1/credits/extended-search',
     CREDITS_GET = '/api/v1/credits/{id}',
 
 }

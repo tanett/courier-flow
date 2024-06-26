@@ -1,12 +1,12 @@
 import { useCreditsRequestData } from './use-credits-request-data';
-import { useSearchCreditsQuery } from '../api/api';
+import { useSearchCreditsExtendedQuery } from '../api/api';
 
 
 export function useCreditsList() {
 
     const { requestData } = useCreditsRequestData();
 
-    const { data, isFetching, isLoading, refetch } = useSearchCreditsQuery(requestData);
+    const { data, isFetching, isLoading, refetch } = useSearchCreditsExtendedQuery(requestData);
 
     const pagination = data?.totalPages
         ? {

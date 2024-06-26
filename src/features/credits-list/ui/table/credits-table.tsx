@@ -113,12 +113,12 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
                                     minWidth: rem(130),
                                     maxWidth: rem(130)
                                 } }>{ data(item.createdAt) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeId }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.terminalSerialNumber }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.terminalSerialNumber || '-' }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.salePublicId }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.amount) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.paidAmount) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.notPaidAmount) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.amount || 0) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.paidAmount || 0) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.notPaidAmount || 0) }</Box></Table.Td>
                                 <Table.Td>{ status }</Table.Td>
 
                             </Table.Tr>

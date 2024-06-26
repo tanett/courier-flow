@@ -10,7 +10,7 @@ export interface typeSearchFilterCredits {
     createdOnTerminalByIds?: string[],
     createdOnTerminalAtFrom?: string,
     createdOnTerminalAtTo?: string,
-    saleId?: boolean,
+    saleId?: string,
     salePublicId?: string,
     amount?: number,
     status?: typePaymentStatus

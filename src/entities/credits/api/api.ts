@@ -2,18 +2,39 @@ import { baseApi } from 'app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { typeCredit } from '../model/types';
+import { typeCredit, typeCreditExtended } from '../model/types';
 import { tagTypesCreditsList, typeSearchCreditsSortingNames, typeSearchFilterCredits, } from './types';
 
 
 export const creditsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-
         // Search credit
         searchCredits: builder.query<typeSearchResponse<typeCredit>, typeSearchRequest<typeSearchFilterCredits, typeSearchCreditsSortingNames>>({
             query: (data) => (
                 {
                     url: API_URLS.CREDITS_SEARCH,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
+        // Search credit one
+        searchCreditsOne: builder.query<typeCredit, typeSearchFilterCredits>({
+            query: (data) => (
+                {
+                    url: API_URLS.CREDITS_SEARCH_ONE,
+                    method: 'POST',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+        }),
+        // Search credit
+        searchCreditsExtended: builder.query<typeSearchResponse<typeCreditExtended>, typeSearchRequest<typeSearchFilterCredits, typeSearchCreditsSortingNames>>({
+            query: (data) => (
+                {
+                    url: API_URLS.CREDITS_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -49,6 +70,9 @@ export const creditsApi = baseApi.injectEndpoints({
 
 export const {
   useSearchCreditsQuery,
+    useLazySearchCreditsOneQuery,
+  useSearchCreditsExtendedQuery,
+  useLazySearchCreditsExtendedQuery,
     useLazySearchCreditsQuery,
     useGetCreditByIdQuery,
     useLazyGetCreditByIdQuery,

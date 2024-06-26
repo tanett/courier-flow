@@ -75,7 +75,7 @@ export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
                         const actions: typeAction[] = [
                             {
                                 label: i18n._(t`Receipt`),
-                                handler: () => onOpenReceipt(item.advanceDto.id),
+                                handler: () => onOpenReceipt(item.id),
                                 icon: <ReceiptIcon color={theme.colors.primary[4]} width={22} height={22}/>,
                             },
 
@@ -95,13 +95,13 @@ export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
                         };
 
                         return (
-                            <Table.Tr key={ item.advanceDto.id } handler={ () => goToDetailsPage(item.advanceDto.id) }>
-                                <Table.Td><Box sx={ { minWidth: rem(130), maxWidth: rem(130) } }>{ data(item.advanceDto.createdAt) }</Box></Table.Td>
+                            <Table.Tr key={ item.id } handler={ () => goToDetailsPage(item.id) }>
+                                <Table.Td><Box sx={ { minWidth: rem(130), maxWidth: rem(130) } }>{ data(item.createdAt) }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.createdOnTerminalByName }</Box></Table.Td>
-                                <Table.Td align={'center'}><Flex justify={'center'} sx={ { maxWidth: rem(132) } }>{ item.advanceDto.productCount }</Flex></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.advanceDto.totalCost) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item.advanceDto }/></Box></Table.Td>
+                                <Table.Td align={'center'}><Flex justify={'center'} sx={ { maxWidth: rem(132) } }>{ item.productsCount }</Flex></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.totalCost) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item }/></Box></Table.Td>
                                 <Table.TdActions actions={ actions } align={ 'center' }/>
                             </Table.Tr>
                         );
