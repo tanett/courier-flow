@@ -132,7 +132,7 @@ msgstr "Все товары из файла успешно импортиров�
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:52
 #: src/features/sales-details-payments-list/ui/table/table-payments.tsx:55
 msgid "Amount of payment"
-msgstr "Количество платежей"
+msgstr "Сумма платежа"
 
 #: src/features/products-list/ui/table/products-table-header.tsx:98
 msgid "Amount of stores"

@@ -114,7 +114,7 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
                                     maxWidth: rem(130)
                                 } }>{ data(item.createdAt) }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeId }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.terminalId }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.terminalSerialNumber }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.salePublicId }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.amount) }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.paidAmount) }</Box></Table.Td>

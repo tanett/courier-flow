@@ -17,6 +17,7 @@ import { typeStore } from '../../../../../entities/stores/model/types';
 import { typeTerminal } from '../../../../../entities/terminals/model/types';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
 import { typeCredit } from '../../../../../entities/credits/model/types';
+import BadgeStatus from 'shared/ui/badge-status/badge-status';
 
 
 export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined, isFetching: boolean }> = ({
@@ -73,29 +74,56 @@ export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined
                             spacing: 60,
                         }
                     ] }>
-                    <InfoCardSmall label={ i18n._(t`Date & time`) }
-                                   alignSelfStretch={ true }
-                                   content={ creditData ? <Text>{ dayjs(creditData.createdOnTerminalAt).format('DD.MM.YYYY') }, { dayjs(creditData.createdOnTerminalAt).format('HH:mm:ss') }</Text> : '-' }/>
+                    <SimpleGrid
+
+                        breakpoints={ [
+                            {
+                                minWidth: 'md',
+                                cols: 1,
+                                spacing: 10,
+                            },
+                            {
+                                minWidth: 1200,
+                                cols: 2,
+                                spacing: 60,
+                            }
+                        ] }>
+                        <InfoCardSmall label={ i18n._(t`Date & time`) }
+                                       alignSelfStretch={ true }
+                                       content={ creditData ? <Text>{ dayjs(creditData.createdOnTerminalAt).format('DD.MM.YYYY') }, { dayjs(creditData.createdOnTerminalAt).format('HH:mm:ss') }</Text> : '-' }/>
+
+                        <InfoCardSmall label={ i18n._(t`Terminal serial number`) }
+                                       alignSelfStretch={ true }
+                                       content={ (creditData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.terminals_details, {
+                                           id: creditData?.terminalId,
+                                           serialNumber: creditData?.terminalSerialNumber
+                                       })) } label={ creditData.terminalSerialNumber }/>) || '-' }/>
+                    </SimpleGrid>
+
+
+                        <InfoCardSmall label={ i18n._(t`Employee name`) }
+                                       iconLabel={ <UserIcon/> }
+
+                                       content={isUserFetching
+                                           ? <Loader size={ 'sm' }/>
+                                           :  (creditData && user && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.users_details, {
+                                           id: creditData?.createdOnTerminalBy,
+                                           userName: user.fullName
+                                       })) } label={ user.fullName }/>) || '-' }/>
+
+
+
+
                     <InfoCardSmall label={ i18n._(t`Store name`) }
                                    iconLabel={ <BuildingStorefrontIcon/> }
                                    alignSelfStretch={ true }
+                                   withBottomBorder={false}
                                    content={isTStoreFetching
                                        ? <Loader size={ 'sm' }/>
                                        :  (creditData && store && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.stores_details, {
                                        id: creditData?.storeId,
                                        storeName: store.name,
                                    })) } label={ store.name}/>) || '-' }/>
-
-
-                    <InfoCardSmall label={ i18n._(t`Employee name`) }
-                                   iconLabel={ <UserIcon/> }
-                                   withBottomBorder={ false }
-                                   content={isUserFetching
-                                       ? <Loader size={ 'sm' }/>
-                                       :  (creditData && user && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.users_details, {
-                                       id: creditData?.createdOnTerminalBy,
-                                       userName: user.fullName
-                                   })) } label={ user.fullName }/>) || '-' }/>
 
                     <InfoCardSmall label={ i18n._(t`Store address`) }
                                    iconLabel={ <MapPinIcon/> }
@@ -125,66 +153,28 @@ export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined
                     }
                 ] }>
 
-                <InfoCardSmall label={ i18n._(t`Terminal serial number`) }
+                <InfoCardSmall label={ i18n._(t`Amount`) }
                                alignSelfStretch={ true }
                                withBottomBorder={ false }
-                               content={ (creditData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.terminals_details, {
-                                   id: creditData?.terminalId,
-                                   serialNumber: creditData?.terminalSerialNumber
-                               })) } label={ creditData.terminalSerialNumber }/>) || '-' }/>
+                               content={ numberCurrencyFormat(creditData?.amount  || 0) }/>
 
-                <InfoCardSmall label={ i18n._(t`Terminal label`) }
+                <InfoCardSmall label={ i18n._(t`Paid`) }
                                alignSelfStretch={ true }
                                withBottomBorder={ false }
-                               content={ isTerminalFetching ? <Loader size={ 'sm' }/> : terminal?.label || '-' }/>
-                <InfoCardSmall label={ i18n._(t`Cashier app version`) }
+                               content={ numberCurrencyFormat(creditData?.paidAmount  || 0) }/>
 
-                               content={ creditData?.cashAppVersion || '-' } withBottomBorder={ false }/>
-                <InfoCardSmall label={ i18n._(t`Payment app version`) }
-                               content={ creditData?.paymentAppVersion || '-' } withBottomBorder={ false }/>
-
+                <InfoCardSmall label={ i18n._(t`Rest`) }
+                               alignSelfStretch={ true }
+                               withBottomBorder={ false }
+                               content={creditData?.paidAmount ? numberCurrencyFormat(creditData.notPaidAmount) : '-'}/>
+                <InfoCardSmall label={ i18n._(t`State`) }
+                               alignSelfStretch={ true }
+                               withBottomBorder={ false }
+                               content={creditData?.status === 'PAID'
+                                   ? <BadgeStatus type={ 'success' } label={ i18n._(t`Paid`) }/>
+                                   : <BadgeStatus type={ 'error' } label={ i18n._(t`Not paid`) }/>}/>
             </SimpleGrid>
-            <Space h={ 16 }/>
-            <SimpleGrid
-                sx={ {
-                    border: `1px solid ${ theme.colors.borderColor[0] }`,
-                    borderRadius: '8px',
-                    padding: '10px 16px',
-                    backgroundColor: theme.white,
-                } }
-                breakpoints={ [
-                    {
-                        minWidth: 'md',
-                        cols: 2,
-                        spacing: 10,
-                    },
-                    {
-                        minWidth: 1200,
-                        cols: 4,
-                        spacing: 60,
-                    }
-                ] }>
 
-                {/* <InfoCardSmall label={ i18n._(t`Order`) } */}
-                {/*                alignSelfStretch={ true } */}
-                {/*                content={ creditData?.orderId ? <ButtonAsLink onClick={ () => console.log('go to order') } label={ creditData?.orderId }/> : '-' }/> */}
-
-                {/* <InfoCardSmall label={ i18n._(t`Total cost without discount`) } */}
-                {/*                alignSelfStretch={ true } */}
-                {/*                content={ creditData ? numberCurrencyFormat(creditData?.totalCost) : '-' }/> /!* // total cost - totalDiscountAmount    */ }
-                {/* <InfoCardSmall label={ i18n._(t`Discount`) } */}
-                {/*                alignSelfStretch={ true } */}
-                {/*                content={ creditData ? numberCurrencyFormat(creditData.discountAmount) : '-' }/> */}
-                {/* <div/> */}
-
-                {/* <InfoCardSmall label={ i18n._(t`Service payment`) } */}
-                {/*                content={ creditData ? numberCurrencyFormat(creditData.servicePayment) : '-' } withBottomBorder={ false }/> */}
-                {/* <InfoCardSmall label={ i18n._(t`VAT`) } */}
-                {/*                content={ creditData ? numberCurrencyFormat(creditData?.totalVatAmount) : '-' } withBottomBorder={ false }/> */}
-                {/* <InfoCardSmall label={ i18n._(t`Total cost`) } */}
-                {/*                content={ creditData ? numberCurrencyFormat(creditData.totalCost) : '-' } withBottomBorder={ false }/> */}
-
-            </SimpleGrid>
             { isFetching && <LoaderOverlay/> }
         </>
     );
