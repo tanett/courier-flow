@@ -75,7 +75,6 @@ export type typePayment = {
 }
 
 export type typeSaleShort = Omit<typeSale, 'storeAddress'
-    | 'advanceId'
     | 'latitude'
     | 'longitude'
     | 'cashAppVersion'

@@ -88,7 +88,7 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
                 </Table.Header>
 
                 <Table.Body>
-                    { creditsList.length > 0 && creditsList.map((item, index) => {
+                    { creditsList.length > 0 && creditsList.map((item,) => {
 
                         const data = (date: string) => {
                             const dateStr = dayjs(date).format('DD.MM.YYYY');

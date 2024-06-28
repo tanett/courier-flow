@@ -80,7 +80,7 @@ export const AdvancesDetailsCommon: React.FC<{ advanceData: typeAdvance | undefi
                                    iconLabel={ <BuildingStorefrontIcon/> }
                                    alignSelfStretch={ true }
                                    content={isTStoreFetching
-                                       ? <Loader size={ 'sm' }/>
+                                       ? <Loader size={ 'xs' }/>
                                        :  (advanceData && store && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.stores_details, {
                                        id: advanceData?.storeId,
                                        storeName: store.name,
@@ -91,7 +91,7 @@ export const AdvancesDetailsCommon: React.FC<{ advanceData: typeAdvance | undefi
                                    iconLabel={ <UserIcon/> }
                                    withBottomBorder={ false }
                                    content={isUserFetching
-                                       ? <Loader size={ 'sm' }/>
+                                       ? <Loader size={ 'xs' }/>
                                        :  (advanceData && user && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.users_details, {
                                        id: advanceData?.createdOnTerminalBy,
                                        userName: user.fullName
@@ -101,7 +101,7 @@ export const AdvancesDetailsCommon: React.FC<{ advanceData: typeAdvance | undefi
                                    iconLabel={ <MapPinIcon/> }
                                    withBottomBorder={ false }
                                    alignSelfStretch={ true }
-                                   content={ isTStoreFetching ? <Loader size={ 'sm' }/> : store?.address || '-' }/>
+                                   content={ isTStoreFetching ? <Loader size={ 'xs' }/> : store?.address || '-' }/>
                 </SimpleGrid>
             </Box>
             <Space h={ 16 }/>
@@ -136,7 +136,7 @@ export const AdvancesDetailsCommon: React.FC<{ advanceData: typeAdvance | undefi
                 <InfoCardSmall label={ i18n._(t`Terminal label`) }
                                alignSelfStretch={ true }
                                withBottomBorder={ false }
-                               content={ isTerminalFetching ? <Loader size={ 'sm' }/> : terminal?.label || '-' }/>
+                               content={ isTerminalFetching ? <Loader size={ 'xs' }/> : terminal?.label || '-' }/>
                 <InfoCardSmall label={ i18n._(t`Cashier app version`) }
 
                                content={ advanceData?.cashAppVersion || '-' } withBottomBorder={ false }/>
