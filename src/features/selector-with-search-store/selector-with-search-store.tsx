@@ -139,7 +139,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             clearable
             searchable
             limit={ 40 }
-            label={ t`Stores` }
+            label={ t`Store` }
             placeholder={ t`Type store name and select` }
             data={ storesList }
             searchValue={ searchStoreValue }
