@@ -1811,7 +1811,7 @@ msgstr "Серийный номер терминала"
 
 #: src/features/credits-list/ui/table/credits-table.tsx:60
 msgid "Terminal SN"
-msgstr "Серийный номер терминала"
+msgstr "SN терминала"
 
 #: src/features/main-menu/config/main-menu.config.tsx:116
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:142
