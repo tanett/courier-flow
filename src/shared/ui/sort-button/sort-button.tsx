@@ -6,6 +6,7 @@ import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { queryParamsNames } from 'app/config/api-constants';
 import { sortDirection as initSortDirection } from 'app/api/types';
 
+
 const SortButton: React.FC<typeSortButton> = ({
     id,
     disabled,
@@ -39,6 +40,10 @@ const SortButton: React.FC<typeSortButton> = ({
 
     };
 
+    const colorDefault = theme.fn.rgba('#000', 0.25)
+    const colorActive = theme.fn.rgba(theme.colors.primary[5], 0.9)
+
+
     return (
         <ActionIcon
             disabled={ disabled }
@@ -49,11 +54,11 @@ const SortButton: React.FC<typeSortButton> = ({
                 color1={ sortName
                     ? isDefaultSorting
                         ? sortNameFromUrl === undefined
-                            ? theme.fn.rgba('#000', 0.5)
-                            :  sortNameFromUrl === sortName ? theme.fn.rgba('#000', 0.5) : theme.fn.rgba('#000', 0.25)
-                        : sortNameFromUrl === sortName ? theme.fn.rgba('#000', 0.5) : theme.fn.rgba('#000', 0.25)
-                    : theme.fn.rgba('#000', 0.5)}
-                color2={ theme.fn.rgba('#000', 0.25) }/>
+                            ? colorActive
+                            :  sortNameFromUrl === sortName ? colorActive : colorDefault
+                        : sortNameFromUrl === sortName ? colorActive : colorDefault
+                    : colorActive}
+                color2={ colorDefault }/>
         </ActionIcon>
     );
 };
