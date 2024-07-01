@@ -4,8 +4,9 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSale, typeSaleShort, typeSaleShortExtended } from '../model/types';
 import { tagTypesShortSalesList, typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
-import { typeExport } from 'entities/exports/api/types';
+import { typeExport } from '../../exports/api/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
+import { responseToBlob } from 'shared/utils/response-to-blob';
 
 
 export const salesApi = baseApi.injectEndpoints({
@@ -83,6 +84,30 @@ export const salesApi = baseApi.injectEndpoints({
                 }
             ),
         }),
+        //get sale receipt by id
+        getSaleReceiptById: builder.query<Blob, string>({
+            query: (id) => (
+                {
+                    url: API_URLS.SALES_RECEIPT_GET.replace('{saleId}', id),
+                    method: 'GET',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    responseHandler: async (response) => {
+
+                        if (response.status === 200) {
+
+                            const t = await responseToBlob(response);
+
+                            return t;
+                        } else {
+
+                            return response.json();
+
+                        }
+
+                    },
+                }
+            ),
+        }),
     }),
 });
 
@@ -94,4 +119,6 @@ export const {
     useGetSaleByIdShortQuery,
     useGetSaleByIdQuery,
     useLazyExportSalesQuery,
+    useLazyGetSaleReceiptByIdQuery,
+    useGetSaleReceiptByIdQuery,
 } = salesApi;

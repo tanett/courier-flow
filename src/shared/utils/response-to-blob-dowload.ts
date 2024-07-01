@@ -3,6 +3,7 @@ import { getFilenameFromContentDispositionHeader } from './get-filename-from-con
 export enum expectedFileType {
     xlsx= '.xlsx',
     xls= '.xls',
+    pdf = '.pdf',
 }
 
 export const responseToBlobDownload = async (response: Response, expectedFileType: expectedFileType, fileName?: string) => {

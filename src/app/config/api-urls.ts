@@ -83,6 +83,8 @@ export enum API_URLS {
     SALES_GET = '/api/v1/sales/{id}',
     SALES_SHORT_GET = '/api/v1/sales/short/{id}',
     SALES_EXPORT = '/api/v1/sales/export',
+    SALES_RECEIPT_GET = '/api/v1/sales/{saleId}/receipt',
+
 
     REFUNDS_SEARCH = '/api/v1/refunds/search',
     REFUNDS_GET = '/api/v1/refunds/{id}',
