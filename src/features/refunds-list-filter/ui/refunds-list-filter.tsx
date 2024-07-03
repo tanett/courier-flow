@@ -97,8 +97,8 @@ export const RefundsListFilter: React.FC = () => {
             }
             if (quickDataFilter === 'today') {
                 const dateNow = dayjs();
-                const refundedAtTo = dateNow.set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                const refundedAtFrom = dateNow.set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
+                const refundedAtFrom = dateNow.set('hour', 0).set('minute', 0).set('second', 0).toISOString();
+                const refundedAtTo = dateNow.set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
                 form.setValues({ refundedAt: [ new Date(refundedAtFrom), new Date(refundedAtTo) ] });
             }
             if (quickDataFilter === 'last month') {

@@ -30,9 +30,7 @@ const StoresDetailsTabs: React.FC<{ storeId: string, storeName: string }> = ({ s
 
     const urlParams = useUrlParams();
 
-
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.COMMON);
-
 
     const tabFromUrl = urlParams.getFilterValue('tab');
     if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {

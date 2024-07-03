@@ -7,9 +7,9 @@ export const getAdvancesFiltersFromUrl = (urlParams: typeUseUrlParams) => {
 
     if (urlParams.searchPhrase) {
 
-        const searchPhrase = Number(urlParams.searchPhrase);
+        const searchPhrase = Number(urlParams.searchPhrase.replace(' ', ''));
 
-        if (!isNaN(searchPhrase)) { tempFilter.totalPaidAmount = searchPhrase }
+        if (!isNaN(searchPhrase)) { tempFilter.totalCost = searchPhrase }
 
     }
 

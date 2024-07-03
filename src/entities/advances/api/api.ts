@@ -26,7 +26,7 @@ export const advancesApi = baseApi.injectEndpoints({
                     // as well as the 'PARTIAL-LIST' tag.
                     ...result.content.map((item: typeAdvanceExtended) => ({
                         type: tagTypesShortAdvancesList.shortAdvancesList.type,
-                        id: item.advanceDto.id.toString()
+                        id: item.id.toString()
                     })),
                     tagTypesShortAdvancesList.shortAdvancesList
                 ]

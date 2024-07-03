@@ -13,6 +13,7 @@ export interface typeSearchFilterAdvances {
     saleCreated?: boolean,
     publicId?: string,
     totalPaidAmount?: number,
+    totalCost?: number,
     _or_?:  Omit<typeSearchFilterAdvances, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
     _and_?: Omit<typeSearchFilterAdvances, '_or_' | '_not_' | '_and_'>[]

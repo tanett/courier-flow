@@ -21,7 +21,7 @@ export type typeAdvance = {
     totalVatAmount: number
     totalCost: number
     products: typeAdvanceProduct[]
-    productCount: number
+    productsCount: number
     payments: typePaymentAdvance[]
     totalPaidAmount: number
 }
@@ -71,8 +71,7 @@ export type typeSoldProductsDetailsState = {
     soldProduct?: typeAdvanceProduct
 }
 
-export type typeAdvanceExtended = {
-    advanceDto: typeAdvanceShort
+export type typeAdvanceExtended = typeAdvanceShort & {
     createdOnTerminalByName: string,
     storeName: string
 }

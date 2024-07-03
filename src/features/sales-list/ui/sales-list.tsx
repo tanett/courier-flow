@@ -38,9 +38,9 @@ export const SalesList: React.FC = () => {
 
     ];
 
-    const [isOpenReceipt, setIsOpenReceipt] = useState< string | number | null>(null);
+    const [isOpenReceipt, setIsOpenReceipt] = useState< string | null>(null);
 
-    const onOpenReceipt = (id: string | number) => setIsOpenReceipt( id );
+    const onOpenReceipt = (id: string) => setIsOpenReceipt( id );
 
     return (
         <>

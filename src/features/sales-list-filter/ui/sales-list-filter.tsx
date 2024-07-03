@@ -97,8 +97,8 @@ export const SalesListFilter: React.FC = () => {
             }
             if (quickDataFilter === 'today') {
                 const dateNow = dayjs();
-                const soldAtTo = dateNow.set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                const soldAtFrom = dateNow.set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
+                const soldAtFrom = dateNow.set('hour', 0).set('minute', 0).set('second', 0).toISOString();
+                const soldAtTo = dateNow.set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
                 form.setValues({ soldAt: [ new Date(soldAtFrom), new Date(soldAtTo) ] });
             }
             if (quickDataFilter === 'last month') {

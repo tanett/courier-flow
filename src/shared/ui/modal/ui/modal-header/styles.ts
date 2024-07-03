@@ -13,6 +13,7 @@ export const useStyles = createStyles((theme) => ({
         paddingRight: rem(15),
         marginBottom: rem(24),
         borderBottom: `1px solid ${ theme.colors.borderColor[ 0 ] }`,
+        [`@media print`]: {  display: 'none', },
     },
     title: { alignSelf: 'center' },
     buttonContainer: { flexShrink: 1 },

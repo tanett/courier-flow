@@ -83,6 +83,8 @@ export enum API_URLS {
     SALES_GET = '/api/v1/sales/{id}',
     SALES_SHORT_GET = '/api/v1/sales/short/{id}',
     SALES_EXPORT = '/api/v1/sales/export',
+    SALES_RECEIPT_GET = '/api/v1/sales/{saleId}/receipt',
+
 
     REFUNDS_SEARCH = '/api/v1/refunds/search',
     REFUNDS_GET = '/api/v1/refunds/{id}',
@@ -91,6 +93,10 @@ export enum API_URLS {
     ADVANCES_SHORT_SEARCH_EXTENDED = '/api/v1/advances/extended-search',
     ADVANCES_GET = '/api/v1/advances/{id}',
 
+    CREDITS_SEARCH = '/api/v1/credits/search',
+    CREDITS_SEARCH_ONE = '/api/v1/credits/search/one',
+    CREDITS_SEARCH_EXTENDED = '/api/v1/credits/extended-search',
+    CREDITS_GET = '/api/v1/credits/{id}',
 
     Z_REPORTS_SEARCH = '/api/v1/z-reports/search',
     Z_REPORTS_GET = '/api/v1/z-reports/{id}',

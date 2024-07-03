@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box, Flex, useMantineTheme } from '@mantine/core';
+import { Box, Flex, Loader, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
-import { useAppDispatchT } from 'app/state';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { typeSale } from 'entities/sales/model/types';
 import { TablePayments } from './table/table-payments';
+import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
+import { routerPaths } from 'app/config/router-paths';
+import { useLazySearchCreditsOneQuery } from '../../../entities/credits/api/api';
 
 export const SalesDetailsPaymentsList: React.FC<{ saleData: typeSale | undefined, isFetching: boolean }> = ({ saleData, isFetching }) => {
 
@@ -13,11 +15,19 @@ export const SalesDetailsPaymentsList: React.FC<{ saleData: typeSale | undefined
 
     const theme = useMantineTheme();
 
-    const dispatchAppT = useAppDispatchT();
-
     const navigate = useNavigate();
 
+    const [getCredit, {isFetching: isCreditFetching}] = useLazySearchCreditsOneQuery()
 
+
+    const onCreditClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.stopPropagation();
+        try {
+            const credit = await getCredit({saleId: saleData?.id}).unwrap();
+            navigate(generatePath(routerPaths.credits_details, { id: credit.id }));
+        } catch (err){console.log(err)}
+
+    };
 
     return (
         <Box sx={ {
@@ -40,7 +50,7 @@ export const SalesDetailsPaymentsList: React.FC<{ saleData: typeSale | undefined
                     alignSelf: 'center',
                 } }>{ i18n._(t`Number of payments`) }: { saleData?.payments.length || 0 }</Box> : <div/> }
 
-
+                {saleData && saleData.paymentType === 'CREDIT' && <>{isCreditFetching && <Loader size={'xs'}/>}<ButtonAsLink onClick={onCreditClick} label={i18n._(t`Go to "Credits" to view the list of payments`)} /></>}
             </Flex>
 
             <TablePayments
