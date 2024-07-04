@@ -23,7 +23,7 @@ import {
 } from '@heroicons/react/24/solid';
 import {
     readAdvancesPermissions,
-    readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
+    readCategoryPermissions, readCreditsPermissions, readWorkingShiftsPermissions,
     readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
@@ -132,10 +132,10 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
                 allowPermissions: readTerminalConfigurationsPermissions,
             },
             {
-                id: pathNames.handover_records,
+                id: pathNames.working_shifts,
                 name: <Trans>Handover records</Trans>,
-                path: routerPaths.handover_records,
-                allowPermissions: readHandoverRecordsPermissions,
+                path: routerPaths.working_shifts,
+                allowPermissions: readWorkingShiftsPermissions,
             },
         ]
     },

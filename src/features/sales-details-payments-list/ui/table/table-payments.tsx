@@ -10,6 +10,7 @@ import { typePaymentsTable } from './types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
 import { getTranslatedVariantForPaymentsMethod } from '../../../../entities/sales/helpers/get-translated-variant-for-payments-method';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const TablePayments: React.FC<typePaymentsTable> = ({
@@ -78,7 +79,7 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
 
                                 return (
                                     <Table.Tr key={ item.id }>
-                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }>{ data(item.createdOnTerminalAt) }</Box></Table.Td>
+                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }>{ item.createdOnTerminalAt ? <DateTimeInLine date={ item.createdOnTerminalAt} fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/> : '-'}</Box></Table.Td>
                                         <Table.Td><Box maw={ 186 } sx={ { wordBreak: 'break-all' } }>{ numberCurrencyFormat(item.amount) }</Box></Table.Td>
                                         <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }><Flex gap={ 10 } align={ 'center' }> <PaymentMethodIcon method={ item.method }/> { getTranslatedVariantForPaymentsMethod(item.method) }
                                         </Flex></Box></Table.Td>

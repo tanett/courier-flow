@@ -32,7 +32,7 @@ import {
     addUserPermissions, editCategoryPermissions,
     editLimitedStoresPermissions, editProductsPermissions, editTerminalConfigurationsPermissions,
     editUserPermissions, readAdvancesPermissions,
-    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
+    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions, readWorkingShiftsPermissions,
     readOrdersPermissions,
     readProductsPermissions, readRefundsPermissions, readRolesPermissions, readSalesPermissions,
     readStoresPermissions, readTerminalConfigurationsPermissions,
@@ -54,7 +54,7 @@ import { LazyZReportsPage } from 'pages/z-reports-page';
 import { LazyAdvancesPage } from 'pages/advances-page';
 import { LazyCreditsPage } from 'pages/credits-page';
 import { LazyTerminalConfigurationPage } from 'pages/terminal-configurations-page';
-import { LazyHandoverRecordsPage } from 'pages/handover-records-page';
+import { LazyWorkingShiftsPage } from 'pages/working-shifts-page';
 import { LazyTerminalConfigurationCreatePage } from 'pages/terminal-configurations-create-page';
 import { LazyTerminalConfigurationEditPage } from 'pages/terminal-configurations-edit-page';
 import { LazyTerminalConfigurationsDetailsPage } from 'pages/terminal-configurations-details-page';
@@ -62,6 +62,7 @@ import { LazyStoresUsersEditPage } from 'pages/stores-users-edit-page';
 import { LazyAdvancesDetailsPage } from 'pages/advances-details-page';
 import { LazyAdvancesSoldProductDetailsPage } from 'pages/advances-sold-product-details-page';
 import { LazyCreditsDetailsPage } from 'pages/credits-details-page';
+import { LazyWorkingShiftsDetailsPage } from 'pages/working-shifts-details-page';
 
 export const router = createBrowserRouter([
 
@@ -243,8 +244,12 @@ export const router = createBrowserRouter([
                 element: <WithPermissionsRouts permissions={readTerminalConfigurationsPermissions}><LazyTerminalConfigurationsDetailsPage/></WithPermissionsRouts>,
             },
             {
-                path: routerPaths.handover_records,
-                element: <WithPermissionsRouts permissions={readHandoverRecordsPermissions}><LazyHandoverRecordsPage/></WithPermissionsRouts>,
+                path: routerPaths.working_shifts,
+                element: <WithPermissionsRouts permissions={readWorkingShiftsPermissions}><LazyWorkingShiftsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.working_shifts_details,
+                element: <WithPermissionsRouts permissions={readWorkingShiftsPermissions}><LazyWorkingShiftsDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.orders,

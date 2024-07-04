@@ -8,7 +8,6 @@ import { queryParamsNames } from 'app/config/api-constants';
 import {MainRefundTab} from "./tabs/main-refund-tab";
 import {useGetRefundByIdQuery} from "../../../entities/refunds/api/api";
 import {RefundPaymentsList} from "./tabs/payments-refund-tab";
-import {TableSoldProducts} from "./tabs/products-refund-tab/ui/table/table-sold-products";
 import {PrintReceiptButton} from "../../print-receipt-button";
 import { RefundProductsList } from 'features/refund-details/ui/tabs/products-refund-tab';
 

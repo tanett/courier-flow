@@ -98,4 +98,7 @@ export enum API_URLS {
     CREDITS_SEARCH_EXTENDED = '/api/v1/credits/extended-search',
     CREDITS_GET = '/api/v1/credits/{id}',
 
+    WORKING_SHIFTS_SEARCH = '/api/v1/working-shifts/search',
+    WORKING_SHIFTS_GET= '/api/v1/working-shifts/{id}',
+
 }

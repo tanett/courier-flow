@@ -10,6 +10,7 @@ import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 import {typeRefund} from "../../../../entities/refunds/model/types";
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFetching: boolean }> = ({
@@ -23,7 +24,6 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
 
     const navigate = useNavigate();
 
-    console.log("###", refundData);
 
     return (
         <>
@@ -53,7 +53,7 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Date & time`) }
                                    alignSelfStretch={ true }
-                                   content={ refundData ? <Text>{ dayjs(refundData.createdAt).format('DD.MM.YYYY') }, { dayjs(refundData.createdAt).format('HH:mm:ss') }</Text> : '-' }/>
+                                   content={  refundData?.createdAt? <DateTimeInLine date={ refundData.createdAt } fontSizeDate={'16px'} fontSizeTime={'16px'} colorTimeGray={false}/>: '-' }/>
                     <InfoCardSmall label={ i18n._(t`Total cost`) }
                                    alignSelfStretch={ true }
                                    content={ refundData?.totalPaymentsAmount.toLocaleString(undefined, {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2}) || '-' }/>

@@ -18,6 +18,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     required,
     initialValue,
     disabled,
+    label
 
 }) => {
 
@@ -142,7 +143,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
             clearable
             searchable
             limit={ 40 }
-            label={ t`Users` }
+            label={ label || t`Users` }
             placeholder={ t`Type user name and select` }
             data={ usersList }
             searchValue={ searchValue }

@@ -5,8 +5,9 @@ import { useStyles } from './styles';
 import { TransferIconOutline } from 'shared/ui/svg-custom-icons/transfer-icon-outline/transfer-icon-outline';
 import { typePayment } from 'entities/sales/model/types';
 import { TransferDollarIconOutline } from 'shared/ui/svg-custom-icons/transfer-dollar-icon-outline/transfer-dollar-icon-outline';
+import { TapToPlayIconOutline16 } from 'shared/ui/svg-custom-icons/tap-to-pay-icon-outline/tap-to-play-icon-outline-16';
 
-const PaymentMethodIcon: React.FC<{ method: typePayment['method'] }> = ({ method }) => {
+const PaymentMethodIcon: React.FC<{ method: typePayment['method'] | 'All_CASHLESS' }> = ({ method }) => {
 
     const { classes } = useStyles();
     switch (method){
@@ -15,6 +16,8 @@ const PaymentMethodIcon: React.FC<{ method: typePayment['method'] }> = ({ method
     case 'QR': return <QrCodeIcon className={ classes.iconContainer }/>
     case 'CASH':return <BanknotesIcon className={ classes.iconContainer }/>
     case 'E_PAYMENT_SYSTEM': return <Box  className={ classes.iconContainer }><TransferDollarIconOutline/></Box>
+    case 'All_CASHLESS': return <Box  className={ classes.iconContainer }><TapToPlayIconOutline16/></Box>
+
     default : return method
     }
 };

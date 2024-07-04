@@ -12,6 +12,7 @@ import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentType from 'shared/ui/payment-type/payment-type';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFetching: boolean }> = ({
@@ -54,7 +55,7 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Date & time`) }
                                    alignSelfStretch={ true }
-                                   content={ saleData ? <Text>{ dayjs(saleData.soldAt).format('DD.MM.YYYY') }, { dayjs(saleData.soldAt).format('HH:mm:ss') }</Text> : '-' }/>
+                                   content={ saleData ? <DateTimeInLine date={ saleData.createdAt} fontSizeTime={'14px'} colorTimeGray={false}/> : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Receipt number`) }
                                    alignSelfStretch={ true }
                                    content={ saleData?.receiptNumber || '-' }/>

@@ -18,6 +18,7 @@ import { typeTerminal } from '../../../../../entities/terminals/model/types';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
 import { typeCredit } from '../../../../../entities/credits/model/types';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined, isFetching: boolean }> = ({
@@ -90,7 +91,7 @@ export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined
                         ] }>
                         <InfoCardSmall label={ i18n._(t`Date & time`) }
                                        alignSelfStretch={ true }
-                                       content={ creditData ? <Text>{ dayjs(creditData.createdOnTerminalAt).format('DD.MM.YYYY') }, { dayjs(creditData.createdOnTerminalAt).format('HH:mm:ss') }</Text> : '-' }/>
+                                       content={ creditData ? <DateTimeInLine date={ creditData.createdOnTerminalAt} fontSizeDate={'16px'} fontSizeTime={'16px'} colorTimeGray={false}/>: '-' }/>
 
                         <InfoCardSmall label={ i18n._(t`Terminal serial number`) }
                                        alignSelfStretch={ true }

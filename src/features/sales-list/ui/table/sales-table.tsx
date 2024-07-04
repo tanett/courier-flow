@@ -17,6 +17,7 @@ import { SalesListFilter } from 'features/sales-list-filter';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
     salesList,
@@ -90,19 +91,6 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                             },
 
                         ];
-                        const data = (date: string) => {
-                            const dateStr = dayjs(date).format('DD.MM.YYYY');
-                            const timeStr = dayjs(date).format('HH:mm:ss');
-                            return (<Flex gap={10} align={'center'}>
-                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr },</Text>
-                                <Text sx={ {
-                                    color: theme.colors.gray[5],
-                                    fontWeight: 400,
-                                    lineHeight: rem(16)
-                                } }>{ timeStr }</Text>
-
-                            </Flex>);
-                        };
 
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsSalePage(item.id, item.publicId) }>
@@ -114,10 +102,10 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                               onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
                                 </td>
-                                <Table.Td><Box sx={ { minWidth: rem(155) } }>{ data(item.createdAt) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(155) } }><DateTimeInLine date={ item.createdAt} fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(65) } }>{ item.receiptNumber }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.soldByName }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(120),wordBreak: 'break-all',maxWidth: rem(170)  } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(120),wordBreak: 'break-all',maxWidth: rem(170)  } }><Text truncate>{ item.soldByName }</Text></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.totalCost) }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item }/></Box></Table.Td>
                                 <Table.Td><Box sx={ {
