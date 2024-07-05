@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Loader,  useMantineTheme } from '@mantine/core';
+import { Box, Flex, Loader, } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
@@ -19,8 +19,6 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
 }) => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     const {
         storesData,

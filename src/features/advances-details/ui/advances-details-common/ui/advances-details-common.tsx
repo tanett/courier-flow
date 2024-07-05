@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, Space, useMantineTheme, Text, Loader } from '@mantine/core';
+import { Box, SimpleGrid, Space, useMantineTheme, Loader } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';

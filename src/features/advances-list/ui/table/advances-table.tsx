@@ -8,7 +8,6 @@ import { Box, rem, useMantineTheme, Text, Flex } from '@mantine/core';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import dayjs from 'dayjs';
 import PaymentsList from 'shared/ui/payments/payments-list';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
 import { typeAdvancesListTable } from 'features/advances-list/types/types';

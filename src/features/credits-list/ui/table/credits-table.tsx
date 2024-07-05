@@ -4,10 +4,9 @@ import { useLingui } from '@lingui/react';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
-import { Box, Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Flex, rem, Text } from '@mantine/core';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import dayjs from 'dayjs';
 import { typeCreditsListTable } from 'features/credits-list/types/types';
 import SortButton from 'shared/ui/sort-button/sort-button';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
@@ -24,8 +23,6 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
 }) => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     return (<>
         <FilterPanel

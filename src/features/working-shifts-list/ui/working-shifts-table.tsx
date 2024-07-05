@@ -11,11 +11,11 @@ import { useStyles } from './styles';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import { WorkingShiftsListFilter } from 'features/working-shifts-list-filter/ui/working-shifts-list-filter';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
-import { getCashlessSalePayments } from 'features/working-shifts-list/helpers/get-cashless-sale-payments';
-import { getAmountSalePayments } from 'features/working-shifts-list/helpers/get-amount-sale-payments';
-import { getCashlessRefunds } from 'features/working-shifts-list/helpers/get-cashless-refunds';
-import { getAmountRefunds } from 'features/working-shifts-list/helpers/get-amount-refunds';
-import { getTotalCost } from 'features/working-shifts-list/helpers/get-total-cost';
+import { getCashlessSalePayments } from '../../../entities/working-shifts/helpers/get-cashless-sale-payments';
+import { getAmountSalePayments } from '../../../entities/working-shifts/helpers/get-amount-sale-payments';
+import { getCashlessRefunds } from '../../../entities/working-shifts/helpers/get-cashless-refunds';
+import { getAmountRefunds } from '../../../entities/working-shifts/helpers/get-amount-refunds';
+import { getTotalCost } from '../../../entities/working-shifts/helpers/get-total-cost';
 import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
 
 export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
@@ -122,7 +122,7 @@ export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
                                             borderBottom: `1ps solid ${ theme.colors.gray[3] }`,
                                             flexWrap: 'wrap'
                                         } }>
-                                            <Text className={ classes.grayTextSize12 }><Trans>started</Trans>: </Text> <DateTimeInLine date={ item.createdAt } fontWeightDate={ 500 } fontSizeDate={ '14px' }/>
+                                            <Text className={ classes.grayTextSize12 }><Trans>started</Trans>: </Text> <DateTimeInLine date={ item.openedAt } fontWeightDate={ 500 } fontSizeDate={ '14px' }/>
                                         </Flex>
                                         <Flex gap={ 4 } align={ 'center' } sx={ { flexWrap: 'wrap' } }>
                                             <Text className={ classes.grayTextSize12 }><Trans>closed</Trans>: </Text><DateTimeInLine date={ item.closedAt } fontWeightDate={ 500 } fontSizeDate={ '14px' }/>

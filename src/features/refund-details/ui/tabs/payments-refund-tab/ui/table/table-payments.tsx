@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Flex, } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import dayjs from 'dayjs';
 import { typePaymentsTable } from './types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';

@@ -13,17 +13,17 @@ export const getWorkingShiftsFiltersFromUrl = (urlParams: typeUseUrlParams) => {
 
     const storeId = urlParams.getFilterValue('storeId');
     if (storeId && typeof storeId === 'string') tempFilter.storeIds = [ storeId ];
-    const employee = urlParams.getFilterValue('employeeId');
-    if (employee && typeof employee === 'string') tempFilter.cashierIds = [ employee ];
+    const cashierId = urlParams.getFilterValue('cashierId');
+    if (cashierId && typeof cashierId === 'string') tempFilter.cashierIds = [ cashierId ];
 
-    // const refundedAtFrom = urlParams.getFilterValue('refundedAtFrom');
-    // const refundedAtTo = urlParams.getFilterValue('refundedAtTo');
-    // if (refundedAtTo && typeof refundedAtTo === 'string' && refundedAtFrom && typeof refundedAtFrom === 'string') {
-    //
-    //     tempFilter.refundedAtFrom = refundedAtFrom;
-    //     tempFilter.refundedAtTo = refundedAtTo;
-    //
-    // }
+    const closedAtFrom = urlParams.getFilterValue('closedAtFrom');
+    const closedAtTo = urlParams.getFilterValue('closedAtTo');
+    if (closedAtTo && typeof closedAtTo === 'string' && closedAtFrom && typeof closedAtFrom === 'string') {
+
+        tempFilter.closedAtFrom = closedAtFrom;
+        tempFilter.closedAtTo = closedAtTo;
+
+    }
 
     return tempFilter;
 

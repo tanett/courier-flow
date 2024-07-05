@@ -5,11 +5,10 @@ import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import { Box, Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, rem, Text, useMantineTheme } from '@mantine/core';
 import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeRefundListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
-import {useStyles} from "./styles";
 import { RefundsListFilter } from 'features/refunds-list-filter';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
@@ -20,8 +19,6 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
     pagination,
     isLoading,
 }) => {
-
-    const {classes} = useStyles()
 
     const { i18n } = useLingui();
 

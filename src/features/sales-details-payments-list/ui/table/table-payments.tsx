@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Flex, } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import dayjs from 'dayjs';
 import { typePaymentsTable } from './types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
@@ -20,21 +19,6 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
 
     const { i18n } = useLingui();
 
-    const theme = useMantineTheme();
-
-    const data = (date: string) => {
-        const dateStr = dayjs(date).format('DD.MM.YYYY');
-        const timeStr = dayjs(date).format('HH:mm:ss');
-        return (<Box>
-            <Text sx={ { lineHeight: rem(20) } }>{ dateStr }</Text>
-            <Text sx={ {
-                color: theme.colors.gray[5],
-                fontWeight: 400,
-                lineHeight: rem(16)
-            } }>{ timeStr }</Text>
-
-        </Box>);
-    };
 
     return (
         <>

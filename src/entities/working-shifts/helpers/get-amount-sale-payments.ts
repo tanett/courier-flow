@@ -1,4 +1,4 @@
-import { typeWorkingShifts } from '../../../entities/working-shifts/model/types';
+import { typeWorkingShifts } from '../model/types';
 
 export const getAmountSalePayments = (data: typeWorkingShifts) => {
 

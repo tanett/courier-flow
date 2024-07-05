@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, Space, useMantineTheme, Text, Loader } from '@mantine/core';
+import { Box, SimpleGrid, Space, useMantineTheme, Loader } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BuildingStorefrontIcon, MapPinIcon, UserIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import dayjs from 'dayjs';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
@@ -14,7 +13,6 @@ import { useLazyGetUserByIdQuery } from '../../../../../entities/users/api/api';
 import { useLazyGetTerminalByIdQuery } from '../../../../../entities/terminals/api/api';
 import { useLazyGetStoreByIdQuery } from '../../../../../entities/stores/api/api';
 import { typeStore } from '../../../../../entities/stores/model/types';
-import { typeTerminal } from '../../../../../entities/terminals/model/types';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
 import { typeCredit } from '../../../../../entities/credits/model/types';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
@@ -37,13 +35,11 @@ export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined
     const [ getStoreData, { isFetching: isTStoreFetching } ] = useLazyGetStoreByIdQuery();
 
     const [ store, setStore ] = useState<typeStore | null>(null);
-    const [ terminal, setTerminal ] = useState<typeTerminal | null>(null);
     const [ user, setUser ] = useState<typeUser | null>(null);
 
     useEffect(() => {
         if (creditData) {getUserData(creditData.createdOnTerminalBy).unwrap().then(res => setUser(res)).catch(e => console.error(e));
             getStoreData(creditData.storeId).unwrap().then(res => setStore(res)).catch(e => console.error(e));
-            getTerminalData(creditData.terminalId).unwrap().then(res => setTerminal(res)).catch(e => console.error(e));
 
         }
     }, [ creditData ]);
