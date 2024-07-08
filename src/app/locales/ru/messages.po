@@ -2036,7 +2036,7 @@ msgstr "Поиск по названию катнгории"
 
 #: src/features/roles-list/ui/roles-list.tsx:43
 msgid "Type part of role's name"
-msgstr "Напечатайте часть названия роли"
+msgstr "Введите название роли"
 
 #: src/features/terminal-list/ui/terminals-table.tsx:24
 msgid "Type part of serial number, fiscal card Id"
