@@ -2,7 +2,7 @@ import { typeWorkingShiftsFilterForm } from '../types/types';
 import React, { useContext, useEffect } from 'react';
 import { workingShiftsFilterForm } from '../forms/forms';
 import { useForm } from '@mantine/form';
-import { Flex, useMantineTheme } from '@mantine/core';
+import { Flex } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { DrawerContext, FilterButtonsBar, FilterFormWrapper } from '../../../shared/ui/filter-panel';
@@ -12,15 +12,12 @@ import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-param
 import { SelectorWithSearchStore } from 'features/selector-with-search-store';
 import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
-import { DatesProviderWithLocale } from 'shared/providers/dates-provider-with-locale/dates-provider-with-locale';
-import { DatePickerInput } from '@mantine/dates';
-import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
+import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
 
 export const WorkingShiftsListFilter: React.FC = () => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     const close: undefined | (() => void) = useContext(DrawerContext);
 
@@ -50,7 +47,7 @@ export const WorkingShiftsListFilter: React.FC = () => {
             cashierId: form.values.cashierId,
             storeId: form.values.storeId,
             closedAtFrom: form.values.closedAt[0] ? (form.values.closedAt[0]).toISOString() : null,
-            closedAtTo: form.values.closedAt[1] ? (form.values.closedAt[1]).toISOString() : null,
+            closedAtTo: form.values.closedAt[1] ? dayjs(form.values.closedAt[1]).set('h', 23).set('m', 59).set('s', 59).toISOString() : null,
         };
 
 
@@ -94,27 +91,11 @@ export const WorkingShiftsListFilter: React.FC = () => {
                             form={ form as unknown as typeReturnForm }
                             initialValue={ form.values.cashierId !== null ? form.values.cashierId : null }
                         />
-
-                        <DatesProviderWithLocale>
-                            <DatePickerInput
-                                type="range"
-                                clearable
-                                valueFormat="DD MMMM YYYY"
-                                label={ i18n._(t`Closing date`) }
-                                { ...{ placeholder: i18n._(t`dd.mm.yyyy - dd.mm.yyyy`) } }
-                                { ...form.getInputProps('closedAt') }
-                                minDate={ new Date('2020-01-01') }
-                                maxDate={ new Date() }
-                                sx={ { '& .mantine-DatePickerInput-placeholder': { color: theme.colors.gray[3] } } }
-                                rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
-                                styles={ {
-                                    rightSection: {
-                                        pointerEvents: 'none',
-                                        pointer: 'pointer',
-                                    },
-                                } }
-                            />
-                        </DatesProviderWithLocale>
+                        <DateSelectorComponent
+                            label={ i18n._(t`Closing date`) }
+                            fieldName={ 'closedAt' }
+                            form={ form as unknown as typeReturnForm }
+                        />
 
                     </Flex>
                     <FilterButtonsBar onReset={ onReset }/>
