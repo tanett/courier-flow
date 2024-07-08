@@ -360,7 +360,7 @@ msgstr "Оплата наличными"
 
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:77
 msgid "Cash payment / Cashless payment"
-msgstr "Оплата наличными / безналичными"
+msgstr "Оплата нал. / безнал."
 
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:148
 msgid "Cash refunds"
@@ -368,7 +368,7 @@ msgstr "Возвраты наличными"
 
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:94
 msgid "Cash refunds / Cashless refunds"
-msgstr "Возврата наличными / безналичными"
+msgstr "Возвраты нал. / безнал."
 
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:77
 #: src/features/working-shifts-list-filter/ui/working-shifts-list-filter.tsx:90
@@ -1212,7 +1212,7 @@ msgstr "Количество продаж"
 
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:68
 msgid "Number of sales / Number of returns"
-msgstr "Количество продаж / Количество возвратов"
+msgstr "Кол-во продаж / возвратов"
 
 #: src/features/products-import/ui/select-file/select-file.tsx:62
 msgid "Number of selected stores"
@@ -1773,7 +1773,7 @@ msgstr ""
 
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:125
 msgid "started"
-msgstr "открыта"
+msgstr "открыто"
 
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:64
 msgid "Starting date"
@@ -1819,8 +1819,12 @@ msgid "Store name"
 msgstr "Название магазина"
 
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:56
-msgid "Store name / Terminal SN"
-msgstr "Название магазина / SN терминала"
+#~ msgid "Store name / Terminal SN"
+#~ msgstr "Магазин / SN терминала"
+
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:56
+msgid "Store name /<0/>Terminal SN"
+msgstr "Магазин /<0/> SN терминала"
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:172
 #: src/features/selector-with-search-store/selector-with-search-store.tsx:147

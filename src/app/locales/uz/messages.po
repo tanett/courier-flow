@@ -1828,7 +1828,11 @@ msgid "Store name"
 msgstr ""
 
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:56
-msgid "Store name / Terminal SN"
+#~ msgid "Store name / Terminal SN"
+#~ msgstr ""
+
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:56
+msgid "Store name /<0/>Terminal SN"
 msgstr ""
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:172

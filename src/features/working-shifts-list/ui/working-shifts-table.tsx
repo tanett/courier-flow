@@ -53,7 +53,7 @@ export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
                             lineHeight: '16px',
                             minWidth: '123px'
                         } }>
-                            <Trans>Store name /
+                            <Trans>Store name /<br/>
                                 Terminal SN</Trans>
                         </Box>
                     </Table.Th>
@@ -63,7 +63,7 @@ export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
                     <Table.Th>
                         <Box sx={ {
                             lineHeight: '16px',
-                            minWidth: '123px'
+                            minWidth: '80px'
                         } }>
                             <Trans>Number of sales /
                                 Number of returns</Trans>
@@ -116,7 +116,7 @@ export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
                                 <Table.Td>
                                     <Flex direction={ 'column' } sx={ {
                                         maxWidth: '180px',
-                                        minWidth: '175px'
+                                        minWidth: '180px'
                                     } }>
                                         <Flex gap={ 4 } align={ 'center' } sx={ {
                                             borderBottom: `1ps solid ${ theme.colors.gray[3] }`,
@@ -153,7 +153,7 @@ export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
                                 <Table.Td>
                                     <Flex direction={ 'column' } sx={ {
                                         maxWidth: '140px',
-                                        minWidth: '140px',
+                                        minWidth: '80px',
                                         flexGrow: 1
                                     } }>
                                         <Flex gap={ 10 } align={ 'center' } sx={ {
