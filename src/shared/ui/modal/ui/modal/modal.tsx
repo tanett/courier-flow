@@ -7,36 +7,48 @@ import { Header } from '../modal-header/modal-header';
 import ErrorBoundary from 'shared/error-boundary/ErrorBoundary';
 
 // eslint-disable-next-line react/prop-types
-const Modal: typeModalExtensions & React.FC<typeModalProps> = ({ modalWidth = 'auto', opened, onCloseByOverlay, centered, children }) => {
+const Modal: typeModalExtensions & React.FC<typeModalProps> = ({ modalWidth = 'auto', opened, onCloseByOverlay, centered, fixedButton,children, }) => {
 
     const theme = useMantineTheme();
 
     const { classes } = useStyles();
 
     let widthClass = '';
-    if (modalWidth) widthClass = classes[ modalWidth ];
+    if (modalWidth) widthClass = classes[modalWidth];
 
 
     return (
         <MantineModal.Root
-            className={classes.popup}
-            opened={opened}
+            className={ classes.popup }
+            opened={ opened }
             size="auto"
-            padding={0}
-            transitionProps={{ transition: 'fade', duration: 300, timingFunction: 'linear' }}
-            closeOnClickOutside={!!onCloseByOverlay}
-            onClose={onCloseByOverlay ?? console.log}
-            centered={centered}
+            padding={ 0 }
+            transitionProps={ {
+                transition: 'fade',
+                duration: 300,
+                timingFunction: 'linear'
+            } }
+            closeOnClickOutside={ !!onCloseByOverlay }
+            onClose={ onCloseByOverlay ?? console.log }
+            centered={ centered }
         >
-            <MantineModal.Overlay opacity={0.4} color={theme.colors.gray[ 3 ]} />
-            <MantineModal.Content className={widthClass} sx={{ '&.mantine-Modal-content': { marginTop: centered ? undefined : `calc(140px - 5dvh)` } }}>
-                <MantineModal.Body>
-                    <ErrorBoundary>
-                    <Flex className={classes.content}>
-                        {children}
-                    </Flex>
-                    </ErrorBoundary>
-                </MantineModal.Body>
+            {fixedButton}
+            <MantineModal.Overlay opacity={ 0.4 } color={ theme.colors.gray[3] }/>
+            <MantineModal.Content className={ widthClass } sx={ {
+                '&.mantine-Modal-content': {
+                    marginTop: centered ? undefined : `calc(140px - 5dvh)`,
+                    position: 'relative'
+                }
+            } }>
+
+                    <MantineModal.Body>
+                        <ErrorBoundary>
+                            <Flex className={ classes.content }>
+                                { children }
+                            </Flex>
+                        </ErrorBoundary>
+                    </MantineModal.Body>
+
             </MantineModal.Content>
         </MantineModal.Root>
     );
