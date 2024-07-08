@@ -40,16 +40,20 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
-                            <Flex justify="space-between" gap={10} sx={{width: '100%'}}>
+                            <Flex justify="space-between" gap={10} sx={{width: '100%', minWidth: rem(250)}}>
                                 <Trans id={'item-name'}>Name</Trans>
                                 <SortButton/>
                             </Flex>
                         </Table.Th>
                         <Table.Th>
-                            <Trans>Address</Trans>
+                            <Box sx={{minWidth: rem(250)}}>
+                            <Trans>Address</Trans></Box>
                         </Table.Th>
                         <Table.Th>
-                            <Trans>Phone number</Trans>
+                            <Box sx={{ lineHeight: '16px', width: rem(160) }}>
+                                <Trans>Phone number</Trans>
+                            </Box>
+
                         </Table.Th>
 
                         <Table.Th align={'center'}>

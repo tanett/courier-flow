@@ -12,7 +12,8 @@ import { DatePickerInput } from '@mantine/dates';
 import { DatesProviderWithLocale } from '../../../shared/providers/dates-provider-with-locale/dates-provider-with-locale';
 import { storeTypeList } from '../../../entities/stores/constants/store-type-list';
 import { IconChevronDown } from '@tabler/icons-react';
-import { CalendarDaysIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import { CalendarDaysIcon, } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
 
 
 export const StoresListFilter: React.FC = () => {
@@ -41,7 +42,7 @@ export const StoresListFilter: React.FC = () => {
         const filterObj: Record<string, unknown> = {
             type: form.values.type,
             createdAtFrom: form.values.createdAt[0] ? (form.values.createdAt[0]).toISOString() : null,
-            createdAtTo: form.values.createdAt[1] ? (form.values.createdAt[1]).toISOString() : null,
+            createdAtTo: form.values.createdAt[1] ? dayjs(form.values.createdAt[1]).set('h',23).set('m',59).set('s',59).toISOString() : null,
         };
 
         urlParams.setSearchParams({

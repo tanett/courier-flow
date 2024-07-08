@@ -92,4 +92,4 @@ export const addCreditsPermissions = [ 'credit.create-in-own-store' ];
 export const patchCreditsPermissions = [ 'credit.patch-in-own-merchant' ];
 
 // handovers-records
-export const readHandoverRecordsPermissions = [ ...readTerminalPermissions, ...readTerminalFromOwnStorePermissions ];
+export const readWorkingShiftsPermissions = [ 'working-shift.read-from-own-merchant', 'working-shift.read-from-own-store' ];

@@ -18,6 +18,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     required,
     initialValue,
     disabled,
+    label
 
 }) => {
 
@@ -142,7 +143,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
             clearable
             searchable
             limit={ 40 }
-            label={ t`Users` }
+            label={ label || t`Users` }
             placeholder={ t`Type user name and select` }
             data={ usersList }
             searchValue={ searchValue }
@@ -154,6 +155,12 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             rightSection={ isFetching ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
+            styles={ {
+                rightSection: {
+                    pointerEvents: 'none',
+                    pointer: 'pointer',
+                },
+            } }
             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );

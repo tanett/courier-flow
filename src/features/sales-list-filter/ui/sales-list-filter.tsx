@@ -58,7 +58,7 @@ export const SalesListFilter: React.FC = () => {
             storeId: form.values.storeId,
             terminalId: form.values.terminalId,
             soldAtFrom: form.values.soldAt[0] ? (form.values.soldAt[0]).toISOString() : null,
-            soldAtTo: form.values.soldAt[1] ? (form.values.soldAt[1]).toISOString() : null,
+            soldAtTo: form.values.soldAt[1] ? dayjs(form.values.soldAt[1]).set('h',23).set('m',59).set('s',59).toISOString() : null,
             quickDataFilter: quickDataFilter
         };
 

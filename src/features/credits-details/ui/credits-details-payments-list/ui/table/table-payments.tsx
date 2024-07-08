@@ -1,16 +1,16 @@
 import React from 'react';
-import { Box, Flex, Loader, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Flex, Loader, } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import dayjs from 'dayjs';
 import { typePaymentsTable } from './types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentMethodIcon from 'shared/ui/payment-method-icon/payment-method-icon';
 import { getTranslatedVariantForPaymentsMethod } from '../../../../../../entities/sales/helpers/get-translated-variant-for-payments-method';
 import { useGetStoresData } from 'features/credits-details/ui/credits-details-payments-list/hooks/use-get-stores-data';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const TablePayments: React.FC<typePaymentsTable> = ({
@@ -20,27 +20,11 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
 
     const { i18n } = useLingui();
 
-    const theme = useMantineTheme();
-
     const {
         storesData,
         isFetching
     } = useGetStoresData(paymentsList);
 
-
-    const data = (date: string) => {
-        const dateStr = dayjs(date).format('DD.MM.YYYY');
-        const timeStr = dayjs(date).format('HH:mm:ss');
-        return (<Flex gap={ 10 } align={ 'center' }>
-            <Text sx={ { lineHeight: rem(20) } }>{ dateStr },</Text>
-            <Text sx={ {
-                color: theme.colors.gray[5],
-                fontWeight: 400,
-                lineHeight: rem(16)
-            } }>{ timeStr }</Text>
-
-        </Flex>);
-    };
 
     return (
         <>
@@ -92,7 +76,7 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
 
                                 return (
                                     <Table.Tr key={ item.id }>
-                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }>{ data(item.createdOnTerminalAt) }</Box></Table.Td>
+                                        <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }>{ item.createdOnTerminalAt ? <DateTimeInLine date={ item.createdOnTerminalAt} fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/>: '-' }</Box></Table.Td>
                                         <Table.Td><Box maw={ 186 } sx={ { wordBreak: 'break-all' } }>{ numberCurrencyFormat(item.amount) }</Box></Table.Td>
                                         <Table.Td><Box maw={ 400 } sx={ { wordBreak: 'break-all' } }><Flex gap={ 10 } align={ 'center' }> <PaymentMethodIcon method={ item.method }/> { getTranslatedVariantForPaymentsMethod(item.method) }
                                         </Flex></Box></Table.Td>

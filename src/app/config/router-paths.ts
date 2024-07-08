@@ -23,7 +23,7 @@ export enum pathSections {
     terminals = 'terminals',
     terminals_list = 'terminals_list',
     terminals_configurations = 'terminals_configurations',
-    handover_records = 'handover_records',
+    working_shifts = 'working_shifts',
     orders = 'orders',
     supportCenters = 'support-centers',
     supportRequests = 'support-requests',
@@ -95,7 +95,8 @@ export enum pathNames {
     terminals_configurations_edit = 'terminals_configurations_edit',
     terminals_configurations_details = 'terminals_configurations_details',
 
-    handover_records = 'handover_records',
+    working_shifts = 'working_shifts',
+    working_shifts_details = 'working_shifts_details',
 
     orders = 'orders',
 
@@ -181,8 +182,9 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.terminals_configurations_edit]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.id, pathSections.edit ]),
     [pathNames.terminals_configurations_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.id, pathSections.name ]),
 
-    // handover_records
-    [pathNames.handover_records]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.handover_records ]),
+    // working_shifts
+    [pathNames.working_shifts]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.working_shifts ]),
+    [pathNames.working_shifts_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.working_shifts, pathSections.id,  ]),
 
     // orders
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),

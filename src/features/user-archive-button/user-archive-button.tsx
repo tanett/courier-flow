@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 import { Button, Loader } from '@mantine/core';
-import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline';
+import { ArchiveBoxArrowDownIcon, ArchiveBoxXMarkIcon } from '@heroicons/react/24/outline';
 import { t, Trans } from '@lingui/macro';
 import { Dialog } from 'shared/ui/dialog/dialog';
 import { useArchiveUsers } from '../../entities/users/hooks/use-archive-users';
@@ -38,7 +38,7 @@ export const UserArchiveButton: React.FC<{ id: string | undefined }> = ({ id }) 
                 variant={ 'outline' }
                 className={ classes.button }
                 onClick={ () => setIsOpenConfirm(true) }
-                leftIcon={isUserFetching ? <Loader size={'sm'}/> : <ArchiveBoxArrowDownIcon/> }>
+                leftIcon={isUserFetching ? <Loader size={'sm'}/> : <ArchiveBoxXMarkIcon/> }>
                 <Trans>Move to archive</Trans>
             </Button>
 

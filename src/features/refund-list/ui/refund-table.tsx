@@ -5,12 +5,12 @@ import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import { Flex, useMantineTheme } from '@mantine/core';
+import { Box, rem, Text, useMantineTheme } from '@mantine/core';
 import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeRefundListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
-import {useStyles} from "./styles";
 import { RefundsListFilter } from 'features/refunds-list-filter';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 export const RefundListTable: React.FC<typeRefundListTable> = ({
     refundList,
@@ -19,8 +19,6 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
     pagination,
     isLoading,
 }) => {
-
-    const {classes} = useStyles()
 
     const { i18n } = useLingui();
 
@@ -71,27 +69,17 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                                 }
                             ];
 
-                            const dateObj = new Date(item.createdAt)
-                            const date = dateObj.toLocaleDateString(undefined, {
-                                day: 'numeric',
-                                month: 'numeric',
-                                year: 'numeric',
-                            });
-                            const time = dateObj.toLocaleTimeString(undefined, {
-                                hour: 'numeric',
-                                minute: 'numeric',
-                                second: 'numeric',
-                            })
+
 
                             return (
                                 <Table.Tr key={ item.id } handler={ () => goToDetailsReceiptPage(item.id, item.receiptNumber) }>
-                                    <Table.Td><Flex  gap={10} align={'center'}>
-                                        <div>{ date },</div>
-                                        <div className={classes.time}>{ time }</div>
-                                    </Flex></Table.Td>
+                                    <Table.Td>
+                                      { item.createdAt? <DateTimeInLine date={ item.createdAt } fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/>: '-' }
+
+                                    </Table.Td>
                                     <Table.Td>{ item.receiptNumber }</Table.Td>
-                                    <Table.Td>{ item.storeName }</Table.Td>
-                                    <Table.Td>{ item.refundedByName }</Table.Td>
+                                    <Table.Td ><Box sx={{ minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)}}><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
+                                    <Table.Td><Box sx={{ minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)}}><Text truncate>{ item.refundedByName }</Text></Box></Table.Td>
                                     <Table.Td>{ item.totalPaymentsAmount }</Table.Td>
                                     <Table.TdActions actions={ actions }/>
                                 </Table.Tr>

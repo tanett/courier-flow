@@ -4,16 +4,16 @@ import { useLingui } from '@lingui/react';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
-import { Box, Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Box, Flex, rem, Text } from '@mantine/core';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import dayjs from 'dayjs';
 import { typeCreditsListTable } from 'features/credits-list/types/types';
 import SortButton from 'shared/ui/sort-button/sort-button';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
 import { CREDITS_SORTING_NAME } from '../../../../entities/credits/api/types';
 import { sortDirection } from 'app/api/types';
 import { CreditsListFilter } from 'features/credits-list-filter';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 export const CreditsListTable: React.FC<typeCreditsListTable> = ({
     creditsList,
@@ -23,8 +23,6 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
 }) => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     return (<>
         <FilterPanel
@@ -90,30 +88,16 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
                 <Table.Body>
                     { creditsList.length > 0 && creditsList.map((item,) => {
 
-                        const data = (date: string) => {
-                            const dateStr = dayjs(date).format('DD.MM.YYYY');
-                            const timeStr = dayjs(date).format('HH:mm:ss');
-                            return (<Flex gap={ 10 } align={ 'center' }>
-                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr },</Text>
-                                <Text sx={ {
-                                    color: theme.colors.gray[5],
-                                    fontWeight: 400,
-                                    lineHeight: rem(16)
-                                } }>{ timeStr }</Text>
-
-                            </Flex>);
-                        };
-
                         const status = item.status === 'NOT_PAID'
                             ? <BadgeStatus type={ 'error' } label={ i18n._(t`Not paid`) }/>
                             : <BadgeStatus type={ 'success' } label={ i18n._(t`Paid`) }/>;
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsPage(item.id) }>
                                 <Table.Td><Box sx={ {
-                                    minWidth: rem(130),
+                                    minWidth: rem(70),
                                     maxWidth: rem(130)
-                                } }>{ data(item.createdAt) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
+                                } }>{item.createdAt ? <DateTimeInLine date={ item.createdAt} fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/> : '-' }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)  } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110), maxWidth: rem(150) } }>{ item.terminalSerialNumber || '-' }</Box></Table.Td>
                                 <Table.Td align={'center'}><Flex justify={'center'} sx={ { minWidth: rem(110),maxWidth: rem(150) } }>{ item.salePublicId }</Flex></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.amount || 0) }</Box></Table.Td>
