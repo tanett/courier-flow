@@ -1,10 +1,9 @@
-import { createStyles, rem } from '@mantine/core';
+import { createStyles, } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
     positionedContainer: {
        position: 'absolute',
         bottom: '10%',
-      //  right: '48%',
         zIndex:999,
         [`@media print`]: {  display: 'none', },
 

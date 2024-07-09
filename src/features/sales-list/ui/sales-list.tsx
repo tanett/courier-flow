@@ -7,7 +7,7 @@ import { useGetCheckedSalesList } from '../hooks/use-get-checked-sales-list';
 import { typeHeadersAction } from 'shared/ui/table/types/type';
 import { Trans } from '@lingui/macro';
 import { ModalExportSelectedSales } from 'features/sales-list/ui/modals/modal-export-selected-sales';
-import { ModalPrintReceiptSale } from 'features/sales-list/ui/modals/modal-print-receipt';
+import { ModalPrintReceiptSale } from 'features/modal-print-sale-receipt/modal-print-receipt';
 
 export const SalesList: React.FC = () => {
 

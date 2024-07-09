@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLingui } from '@lingui/react';
 import { Modal } from 'shared/ui/modal';
-import { t, Trans } from '@lingui/macro';
-import { Button, Flex, Loader, rem, useMantineTheme } from '@mantine/core';
-import { useGetSaleReceiptByIdQuery } from '../../../../entities/sales/api/api';
+import { t } from '@lingui/macro';
+import {  Flex } from '@mantine/core';
+import { useGetSaleReceiptByIdQuery } from '../../entities/sales/api/api';
 import { PdfViewer } from 'shared/ui/pdf-viewer/pdf-viewer';
 import { IconPrinter } from '@tabler/icons-react';
 import { ModalFixedButton } from 'shared/ui/modal/ui/modal-fixed-button/modal-fixed-button';
-import { LoaderOverlay } from 'shared/ui/loader-overlay';
 
 
 export const ModalPrintReceiptSale: React.FC<{
@@ -19,8 +18,6 @@ export const ModalPrintReceiptSale: React.FC<{
 }) => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     const {
         data,

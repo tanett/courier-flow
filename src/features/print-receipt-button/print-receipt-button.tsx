@@ -5,6 +5,7 @@ import { useStyles } from './styles';
 import { useLingui } from '@lingui/react';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
 import { Modal } from 'shared/ui/modal';
+import { ModalPrintReceiptSale } from 'features/modal-print-sale-receipt/modal-print-receipt';
 
 export const PrintReceiptButton: React.FC<{ id: string | undefined }> = ({ id }) => {
 
@@ -12,36 +13,19 @@ export const PrintReceiptButton: React.FC<{ id: string | undefined }> = ({ id })
 
     const theme = useMantineTheme()
 
-    const { i18n } = useLingui();
-
-    const [ isOpenReceipt, setOpenReceipt ] = useState(false);
+    const [ isOpenReceipt, setOpenReceipt ] = useState<string | null>(null);
 
 
     return (
         <>
             <ActionIcon variant="outline"
-                        onClick={() => setOpenReceipt(true) }
+                        onClick={() => setOpenReceipt(id || null) }
                         className={classes.button}
             >
                 <ReceiptIcon color={theme.colors.primary[5]} width={22} height={22}/>
             </ActionIcon>
 
-            { isOpenReceipt && <Modal modalWidth="dialog" opened={ true } onCloseByOverlay={()=>setOpenReceipt(false)}>
-                <Modal.Body>
-                    <Modal.Header title={i18n._(t`Receipt`)} onClose={()=>setOpenReceipt(false)}/>
-                    <Modal.Body>
-                        receipt
-                        <Flex sx = {{
-                            alignItems: 'center',
-                            gap: rem(24),
-                            justifyContent: 'center',
-                        }}>
-                            <Button variant='outline' onClick={()=>setOpenReceipt(false)}><Trans>Close</Trans></Button>
-                            <Button><Trans>Print</Trans></Button>
-                        </Flex>
-                    </Modal.Body>
-                </Modal.Body>
-            </Modal> }
+            { id && isOpenReceipt && <ModalPrintReceiptSale setOpen={setOpenReceipt} id={id} />  }
 
         </>
     );
