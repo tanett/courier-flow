@@ -1,4 +1,6 @@
 import { typeOrderCreate } from '../../../entities/orders/model/state-slice';
+import { typeRetailProduct } from 'entities/retail-products/model/types';
+import type { UseFormReturnType } from '@mantine/form';
 
 export type typeOrdersForm = {
     customer: {
@@ -13,7 +15,11 @@ export type typeOrdersForm = {
     servicePaymentAmount: string
     discountPercent: string
     discountAmount: string
-    products: typeOrderCreate['products']
+    products: typeProductInCart[],
 }
 
+export type typeReturnOrderForm =  UseFormReturnType<typeOrdersForm, (values: typeOrdersForm) => typeOrdersForm>
 
+export type typeProductInCart = typeRetailProduct & {
+    amount: number
+}

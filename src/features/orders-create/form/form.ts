@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
-import { typeOrderCreate, typeOrderCustomer } from '../../../entities/orders/model/state-slice';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
+import { typeProductInCart } from 'features/orders-create/types/types';
 
 
 export const initialOrderForm = {
@@ -92,7 +92,7 @@ export const initialOrderForm = {
 
         },
         // discountAmount: '0',
-        products: (value: typeOrderCreate['products']) => {
+        products: (value: typeProductInCart[]) => {
             return value.length === 0
                 ? t`Products list is empty`
                 : null;

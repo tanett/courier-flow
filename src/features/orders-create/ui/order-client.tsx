@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStyles } from './styles';
-import { type UseFormReturnType } from '@mantine/form';
-import { typeOrdersForm } from '../types/types';
+import {  typeReturnOrderForm } from '../types/types';
 import { Flex, SimpleGrid, TextInput, Textarea } from '@mantine/core';
 import { Trans } from '@lingui/macro';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
@@ -10,7 +9,7 @@ import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 
 
 
-export const OrderClient: React.FC<{ form:  UseFormReturnType<typeOrdersForm, (values: typeOrdersForm) => typeOrdersForm> }> = ({ form, }) => {
+export const OrderClient: React.FC<{ form:  typeReturnOrderForm }> = ({ form, }) => {
 
 
     const { classes } = useStyles();

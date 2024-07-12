@@ -4,7 +4,7 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { OrderClient } from 'features/orders-create/ui/order-client';
 import { Button, Flex, Space, Tabs, useMantineTheme } from '@mantine/core';
 import { t } from '@lingui/macro';
-import { useStyles } from 'features/orders-create/ui/styles';
+import { useStyles } from './styles';
 import { useCreateOrderMutation } from '../../../entities/orders/api/api';
 import { useForm } from '@mantine/form';
 import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm } from 'features/orders-create/form/form';

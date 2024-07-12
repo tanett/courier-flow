@@ -3,7 +3,11 @@ import { createStyles, rem } from '@mantine/core';
 export const useStyles = createStyles((theme) => ({
     flexColumn: {
         flexDirection: 'column',
-        gap: theme.spacing.md,
+        gap: theme.spacing.xs,
+        '& .mantine-InputWrapper-root': {
+            width: '100%',
+            maxWidth: 'none',
+        }
     },
     cleanStyle: {
         appearance: 'none',
@@ -55,8 +59,8 @@ export const useStyles = createStyles((theme) => ({
             },
         },
         '& .mantine-Tabs-panel': {
-            maxHeight: rem(674),
-            padding: '10px 16px',
+            height: rem(684),
+            padding: '10px 8px',
             border: `1px solid ${ theme.colors.borderColor[0] }`,
             borderBottomLeftRadius: rem(8),
             borderBottomRightRadius: rem(8),
@@ -82,5 +86,11 @@ export const useStyles = createStyles((theme) => ({
     errorInTab:{
         '&.mantine-Tabs-tab':{ borderColor: theme.colors.red[5],},
         backgroundColor: theme.fn.rgba(theme.colors.red[5], 0.1)
+    },
+    discountContainer:{
+        borderTop: `1px solid ${ theme.colors.gray[3] }`,
+        borderBottom: `1px solid ${ theme.colors.gray[3] }`,
+        paddingTop: '16px',
+        paddingBottom: '12px'
     }
 }));

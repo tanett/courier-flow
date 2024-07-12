@@ -74,6 +74,8 @@ export type typeOrderStatus = {
     name: string
 }
 
+export type typeCreateOrderProduct = Omit<typeOrderProduct, 'createdAt' | 'createdBy' | 'declinedMarkedLabels' | 'declinedQuantity'>
+
 export type typeOrderCreate = {
     orderedAt: string
     storeId: string
@@ -83,7 +85,7 @@ export type typeOrderCreate = {
     servicePaymentAmount: number
     discountPercent: number
     discountAmount: number
-    products: Omit<typeOrderProduct, 'createdAt' | 'createdBy' | 'declinedMarkedLabels' | 'declinedQuantity'>[]
+    products: typeCreateOrderProduct[]
 }
 
 export type typeEditOrder = {
