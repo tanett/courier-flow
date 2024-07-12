@@ -12,6 +12,7 @@ import { tagTypesTerminalConfigurationsList } from '../../entities/terminals-con
 import { tagTypesShortAdvancesList } from '../../entities/advances/api/types';
 import { tagTypesCreditsList } from '../../entities/credits/api/types';
 import { tagTypesWorkingShiftsList } from '../../entities/working-shifts/api/types';
+import { tagTypesOrdersShortList } from '../../entities/orders/api/types';
 
 const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesExtendedUsersList,
@@ -25,7 +26,8 @@ const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesTerminalConfigurationsList,
     ...tagTypesShortAdvancesList,
     ...tagTypesCreditsList,
-    ...tagTypesWorkingShiftsList
+    ...tagTypesWorkingShiftsList,
+    ...tagTypesOrdersShortList,
 };
 
 export const baseApi = createApi({

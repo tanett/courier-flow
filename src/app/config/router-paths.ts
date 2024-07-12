@@ -25,6 +25,8 @@ export enum pathSections {
     terminals_configurations = 'terminals_configurations',
     working_shifts = 'working_shifts',
     orders = 'orders',
+    orders_list = 'orders_list',
+    orders_clients='orders_clients',
     supportCenters = 'support-centers',
     supportRequests = 'support-requests',
     users = 'users',
@@ -99,6 +101,11 @@ export enum pathNames {
     working_shifts_details = 'working_shifts_details',
 
     orders = 'orders',
+    orders_list='orders_list',
+    orders_details='orders_details',
+    orders_create = 'orders_create',
+    orders_edit = 'orders_edit',
+    orders_clients = 'orders_clients',
 
     supportRequests = 'supportRequests',
     roles = 'roles',
@@ -188,6 +195,12 @@ export const routerPaths: Record<pathNames, string> = {
 
     // orders
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),
+    [pathNames.orders_list]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.orders_list  ]),
+    [pathNames.orders_details]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.id]),
+    [pathNames.orders_edit]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.id, pathSections.edit ]),
+    [pathNames.orders_create]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.create]),
+
+    [pathNames.orders_clients]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.orders_clients  ]),
 
     // support
     [pathNames.supportRequests]: createPath([ pathSections.dashboard, pathSections.supportRequests ]),

@@ -37,7 +37,7 @@ import {
     readProductsPermissions, readRefundsPermissions, readRolesPermissions, readSalesPermissions,
     readStoresPermissions, readTerminalConfigurationsPermissions,
     readTerminalPermissions,
-    readUserPermissions, readZReportsPermissions
+    readUserPermissions, readZReportsPermissions, editOrdersPermissions, addOrdersPermissions
 } from 'app/config/permissions-config';
 import { LazyProductsCreatePage } from 'pages/products-create-page';
 import { LazyCategoriesPage } from 'pages/categories-page';
@@ -63,6 +63,12 @@ import { LazyAdvancesDetailsPage } from 'pages/advances-details-page';
 import { LazyAdvancesSoldProductDetailsPage } from 'pages/advances-sold-product-details-page';
 import { LazyCreditsDetailsPage } from 'pages/credits-details-page';
 import { LazyWorkingShiftsDetailsPage } from 'pages/working-shifts-details-page';
+import { LazyOrdersCreatePage } from 'pages/orders-create-page';
+import { LazyOrdersDetailsPage } from 'pages/orders-details-page';
+
+function LazyOrdersEditPage() {
+    return null;
+}
 
 export const router = createBrowserRouter([
 
@@ -251,9 +257,22 @@ export const router = createBrowserRouter([
                 path: routerPaths.working_shifts_details,
                 element: <WithPermissionsRouts permissions={readWorkingShiftsPermissions}><LazyWorkingShiftsDetailsPage/></WithPermissionsRouts>,
             },
+
             {
-                path: routerPaths.orders,
+                path: routerPaths.orders_list,
                 element: <WithPermissionsRouts permissions={readOrdersPermissions}><LazyOrdersPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.orders_create,
+                element: <WithPermissionsRouts permissions={addOrdersPermissions}><LazyOrdersCreatePage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.orders_edit,
+                element: <WithPermissionsRouts permissions={editOrdersPermissions}><LazyOrdersEditPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.orders_details,
+                element: <WithPermissionsRouts permissions={readOrdersPermissions}><LazyOrdersDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.users,

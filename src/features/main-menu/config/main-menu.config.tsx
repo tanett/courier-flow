@@ -146,6 +146,20 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         activeIcon: <TruckIconSolid/>,
         path: routerPaths.orders,
         allowPermissions: readOrdersPermissions,
+        children: [
+            {
+                id: pathNames.orders_list,
+                name: <Trans>Orders list</Trans>,
+                path: routerPaths.orders_list,
+                allowPermissions: readOrdersPermissions,
+            },
+            {
+                id: pathNames.orders_clients,
+                name: <Trans>Clients</Trans>,
+                path: routerPaths.orders_clients,
+                allowPermissions: readOrdersPermissions,
+            },
+        ]
     },
     /* {
         id: pathNames.supportCenters,

@@ -101,4 +101,11 @@ export enum API_URLS {
     WORKING_SHIFTS_SEARCH = '/api/v1/working-shifts/search',
     WORKING_SHIFTS_GET= '/api/v1/working-shifts/{id}',
 
+    ORDERS_SEARCH = '/api/v1/orders/search/short',
+    ORDERS_SEARCH_EXTENDED = '/api/v1/orders/extended-search',
+    ORDERS_PATCH= '/api/v1/orders',
+    ORDERS_CREATE= '/api/v1/orders',
+    ORDERS_GET = '/api/v1/orders/{id}',
+    ORDERS_GET_STATUSES_LIST = '/api/v1/orders/statuses',
+
 }

@@ -1,0 +1,31 @@
+import { typeEditOrder, typeOrderCreate } from 'entities/orders/model/state-slice/types';
+
+export const tagTypesOrdersShortList = { ordersShortList: { type: 'OrdersShortList' as const, id: 'PARTIAL-LIST' } } as const;
+
+
+export type typeCreateOrderRequest = typeOrderCreate
+
+export type typeCreateOrderResponse = {id: string};
+
+export type typeEditOrderRequest = typeEditOrder // todo change it for different orders statuses
+
+
+
+export type typeSearchFilterOrders = {
+    ids?: string[]
+    searchText?: string
+    storeIds?: string[]
+    codes?: string[]
+    assigneeIds?: string[]
+    courierIds?: string[]
+    createdByIds?: string[]
+    orderedAtFrom?: string
+    orderedAtTo?: string
+    hasDeclinedProducts?: boolean
+    isTest?: boolean
+    _or_?:  Omit<typeSearchFilterOrders, '_or_' | '_not_' | '_and_'>[]
+    _not_?: string
+    _and_?: Omit<typeSearchFilterOrders, '_or_' | '_not_' | '_and_'>[]
+}
+
+export type typeSearchOrdersSortingNames = 'ORDERED_AT';

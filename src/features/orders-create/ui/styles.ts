@@ -1,10 +1,13 @@
 import { createStyles, rem } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-
     flexColumn: {
         flexDirection: 'column',
         gap: theme.spacing.md,
+    },
+    cleanStyle: {
+        appearance: 'none',
+        border: 'none',
     },
     fieldset: {
         padding: '0',
@@ -12,13 +15,13 @@ export const useStyles = createStyles((theme) => ({
         flexDirection: 'column',
         gap: rem(8),
         '& .mantine-Title-root': {
-            color: theme.colors.primary[ 5 ],
+            color: theme.colors.primary[5],
             fontSize: theme.fontSizes.lg,
             fontWeight: 500,
             lineHeight: '150%',
         },
     },
-    formGrid: { gap: `${theme.spacing.md} ${theme.spacing.xl}` },
+    formGrid: { gap: `${ theme.spacing.md } ${ theme.spacing.xl }` },
     buttonsBar: {
         gap: theme.spacing.xl,
         justifyContent: 'end',
@@ -33,36 +36,51 @@ export const useStyles = createStyles((theme) => ({
         height: rem(20),
     },
     tab: {
-        flexGrow: 1,
         '& .mantine-Tabs-tabsList': { border: 'none' },
         '& .mantine-Tabs-tab': {
-            borderColor: theme.colors.gray[ 3 ],
+            borderColor: theme.colors.gray[3],
             borderTopRightRadius: rem(4),
             borderTopLeftRadius: rem(4),
             marginRight: rem(4),
             fontSize: theme.fontSizes.md,
             lineHeight: rem(20),
             letterSpacing: 0.3,
-            '&:hover': { color: theme.colors.primary[ 5 ] },
+            '&:hover': { color: theme.colors.primary[5] },
             '&[data-active=true]': {
-                borderColor: theme.colors.borderColor[ 0 ],
-                color: theme.colors.primary[ 5 ],
+                borderColor: theme.colors.borderColor[0],
+                color: theme.colors.primary[5],
                 fontWeight: 700,
                 backgroundColor: theme.white,
                 borderBottom: '1px solid transparent',
             },
         },
         '& .mantine-Tabs-panel': {
-            border: `1px solid ${theme.colors.borderColor[ 0 ]}`,
+            maxHeight: rem(674),
+            padding: '10px 16px',
+            border: `1px solid ${ theme.colors.borderColor[0] }`,
             borderBottomLeftRadius: rem(8),
             borderBottomRightRadius: rem(8),
             borderTopRightRadius: rem(8),
             backgroundColor: theme.white,
-            minHeight: '440px',
-            maxHeight: '70vh',
-            [`@media (max-width: ${rem(1200)})`]: { minHeight: 'none', maxHeight: 'none'},
-            padding: '12px'
         },
 
     },
+    fullWidthGrid: {
+        '&.mantine-InputWrapper-root': {
+            maxWidth: '100%',
+            width: '100%',
+            minWidth: '100%',
+            gridColumn: '1 / -1',
+        },
+        '& .mantine-Textarea-wrapper': {
+            maxWidth: '100%',
+            width: '100%',
+            minWidth: '100%',
+            gridColumn: '1 / -1',
+        },
+    },
+    errorInTab:{
+        '&.mantine-Tabs-tab':{ borderColor: theme.colors.red[5],},
+        backgroundColor: theme.fn.rgba(theme.colors.red[5], 0.1)
+    }
 }));
