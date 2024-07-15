@@ -132,8 +132,7 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
             const requestData: typeSearchRequest<typeSearchFilterRetailProduct, 'PRODUCT_NAME'> = {
                 filter: {
                     archived: false,
-
-                    // nameContains: searchValue?.trim().length ? searchValue.trim() : undefined,
+                    productNameContains: searchValue?.trim().length ? searchValue.trim() : undefined,
                 },
                 pagination: {
                     pageNumber: currentPagination.pageNumber + 1,
@@ -171,7 +170,7 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
             const requestData: typeSearchRequest<typeSearchFilterRetailProduct, 'PRODUCT_NAME'> = {
                 filter: {
                     archived: false,
-                    //  nameContains: searchStoreValue,
+                    productNameContains: searchValue,
                 },
                 pagination: {
                     pageNumber: currentPagination ? currentPagination.pageNumber : 0,

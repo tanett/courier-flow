@@ -8,6 +8,7 @@ export type typeSearchFilterRetailProduct = {
     ids?: string[]
     productIds?: string[]
     storeIds?: string[]
+    productNameContains?: string,
     archived?: boolean
     _or_?:  Omit<typeSearchFilterRetailProduct, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
