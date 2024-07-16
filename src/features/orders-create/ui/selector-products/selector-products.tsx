@@ -226,14 +226,15 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
             if (isInCart) {
                 form.setFieldValue('products', form.values.products.map(item => product.id === item.id ? {
                     ...item,
-                    amount: item.amount + 1
+                    amount: (+item.amount + 1).toString()
                 } : item));
             } else {
                 form.insertListItem('products', {
                     ...product,
-                    amount: 1
+                    amount: '1'
                 });
             }
+
         }
 
     };
@@ -303,7 +304,7 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
                                 height: '100%',
                                 backgroundColor: theme.colors.gray[0],
                             } }>{ searchValue?.length > 0
-                                ? <Trans>No stores with this name</Trans>
+                                ? <Trans>No product with this name</Trans>
                                 : <Trans>No data</Trans> }</Flex>
                         : <LoaderOverlay/>
                     }

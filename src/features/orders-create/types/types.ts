@@ -21,5 +21,5 @@ export type typeOrdersForm = {
 export type typeReturnOrderForm =  UseFormReturnType<typeOrdersForm, (values: typeOrdersForm) => typeOrdersForm>
 
 export type typeProductInCart = typeRetailProduct & {
-    amount: number
+    amount: string  // for correctly work , IMask input  needs a string as value
 }

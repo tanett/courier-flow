@@ -63,14 +63,14 @@ export const useStyles = createStyles((theme) => ({
             backgroundColor: theme.colors.gray[0],
             cursor: 'pointer',
         },
-        '& .editButtonBlock': { display: 'none',  },
-        '&:hover .editButtonBlock': { display: 'flex',  }
+        '&:active': { backgroundColor: theme.colors.primary[0],  },
+
     },
     checkIconNotVisible: { display: 'none', },
     listItemDisabled: {
         backgroundColor: 'transparent',
         color: theme.colors.gray[3],
-
+        '&:active': { backgroundColor: 'transparent',  },
     },
     checkIconVisible: {
 

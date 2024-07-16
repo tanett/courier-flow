@@ -88,9 +88,14 @@ export const useStyles = createStyles((theme) => ({
         backgroundColor: theme.fn.rgba(theme.colors.red[5], 0.1)
     },
     discountContainer:{
+        width: '100%',
+        zIndex: 999,
+        backgroundColor: theme.white,
+        position: 'absolute',
+        bottom:0,
         borderTop: `1px solid ${ theme.colors.gray[3] }`,
         borderBottom: `1px solid ${ theme.colors.gray[3] }`,
-        paddingTop: '16px',
+        paddingTop: '12px',
         paddingBottom: '12px'
     }
 }));

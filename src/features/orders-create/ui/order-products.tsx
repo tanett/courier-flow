@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStyles } from './styles';
 import { typeReturnOrderForm } from '../types/types';
-import { Box, Flex, Grid, Input, rem, Text, TextInput, Tooltip, useMantineTheme, Table } from '@mantine/core';
+import { Box, Flex, Grid, Input, rem, Text, TextInput, Tooltip, useMantineTheme, Table, SimpleGrid } from '@mantine/core';
 import { SelectorWithSearchStore } from 'features/selector-with-search-store';
 import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { SelectorProducts } from 'features/orders-create/ui/selector-products/selector-products';
@@ -19,6 +19,8 @@ import { sortDirection } from 'app/api/types';
 import { useLingui } from '@lingui/react';
 import { IMaskInput } from 'react-imask';
 import { ProductsInCartTable } from 'features/orders-create/ui/products-in-cart-table/products-in-cart-table';
+import DiscountInput from 'features/orders-create/ui/discount-service-payment-input/discount-input';
+import ServicePaymentInput from 'features/orders-create/ui/discount-service-payment-input/service-payment-input';
 
 
 export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) => {
@@ -42,14 +44,19 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }
                         <SelectorProducts form={ form }/>
                     </Grid.Col>
                     <Grid.Col span={ 'auto' } sx={ { minWidth: '672px' } }>
-                        <Flex direction="column" justify="space-between" sx={ { height: '100%' } }>
+                        <Flex direction="column" justify="space-between" sx={ { height: '100%', position: 'relative' } }>
                             <ProductsInCartTable form={ form }/>
-                            <Box className={ classes.discountContainer }>
-                                22
-                            </Box>
+                            <SimpleGrid cols={2} className={ classes.discountContainer }>
+                                <DiscountInput form={ form }/>
+                                <ServicePaymentInput form={ form }/>
+
+                            </SimpleGrid>
                         </Flex>
                     </Grid.Col>
                 </Grid>
+                <Flex justify={'end'}>
+                    total
+                </Flex>
 
             </Flex>
 

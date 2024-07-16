@@ -19,10 +19,12 @@ export const useStyles = createStyles((theme) => ({
     },
     tableBorder: {
         borderRadius: rem(8),
-        // overflow: 'hidden',
+        maxHeight: '430px',
+         overflowY: 'auto',
         border: `1px solid ${ theme.colors.borderColor[0] }`,
         minWidth: 'fit-content',
         padding: rem(2),
+        position: 'relative',
 
         '> table': {
             minWidth: '100%',
@@ -30,14 +32,19 @@ export const useStyles = createStyles((theme) => ({
             backgroundColor: theme.white,
             fontSize: theme.fontSizes.sm,
             fontWeight: 500,
+
         },
 
         '& thead': {
             borderTopRadius: rem(8),
             borderBottom: `1px solid ${ theme.colors.borderColor[0] }`,
+            position: 'sticky',
+            top: rem(-5),
+            backgroundColor: theme.white,
+            zIndex: 999,
             '> tr': {
                 borderTopRadius: rem(8),
-                '>th:first-child > div':{  borderTopLeftRadius: rem(8)},
+                '>th:first-of-type > div':{  borderTopLeftRadius: rem(8)},
                 '>th > div':{ paddingTop:  rem(9),paddingBottom:  rem(9),'>div':{paddingLeft:  rem(9),paddingRight:  rem(9),} }
             }
         },
@@ -50,4 +57,20 @@ export const useStyles = createStyles((theme) => ({
         '& tbody tr:hover': { backgroundColor: theme.colors.primary[0] },
         '& tbody tr.empty:hover': { backgroundColor: 'transparent' },
     },
+    inputWrapper: {
+        '& .mantine-Input-input': {
+            border: 'none',
+            borderRadius: rem(6),
+            backgroundColor: theme.colors.gray[1],
+            height: rem(28),
+            maxWidth: rem(80),
+            minWidth: rem(36),
+            width: 'fit-content',
+            '&.mantine-Input-input':{ padding: '0 4px', textAlign: 'center' ,  minWidth: rem(36),  width: 'fit-content',},
+        }
+    },
+    disabledInCart: {
+        backgroundColor: theme.colors.gray[1],
+        color: theme.colors.gray[4],
+    }
 }));

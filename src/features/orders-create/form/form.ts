@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
-import { typeProductInCart } from 'features/orders-create/types/types';
+import { typeOrdersForm, typeProductInCart, typeReturnOrderForm } from 'features/orders-create/types/types';
 
 
 export const initialOrderForm = {
@@ -86,8 +86,16 @@ export const initialOrderForm = {
 
             return value.trim() === ''
                 ? t`Required field`
-                : +value.trim() > 100
+                : +(value.trim()) > 100
                     ? t`Too match`
+                    : null;
+
+        },
+        discountAmount: (value: string, values: typeOrdersForm, path: string) => {
+            const totalCost = values.products.reduce((acc, current) => acc + current.price * (+current.amount), 0);
+
+            return +(value.trim()) > totalCost
+                    ? t`The discount cannot be greater than the total cost.`
                     : null;
 
         },

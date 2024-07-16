@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { ActionIcon, Box, Divider, Flex, Input, rem, Table, Text, Tooltip, UnstyledButton, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 import { useAppDispatchT } from 'app/state';
 import { typeProductsInCartTable } from 'features/orders-create/ui/products-in-cart-table/types';
 import { typeAction } from 'shared/ui/table/ui/table-actions/types';
-import { IMaskInput } from 'react-imask';
+import { IMask, IMaskInput } from 'react-imask';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 
 
@@ -73,7 +73,7 @@ const onDeleteHandler = (index: number)=>{
                         </Box>
                     </th>
                     <th>
-                        <Box><Trans>Actions</Trans></Box>
+                        <Box px={9}><Trans>Actions</Trans></Box>
                     </th>
                 </tr>
                 </thead>
@@ -81,47 +81,54 @@ const onDeleteHandler = (index: number)=>{
                 <tbody>
                 { form.values.products.length > 0 && form.values.products.map((item, index) => {
 
+                    const isInSelectedStore = form.values.storeId === item.store.id;
+
                     return (
-                        <tr key={ item.id }>
+                        <tr key={ item.id+index } className={ isInSelectedStore ? undefined : classes.disabledInCart} title={i18n._(t`This item is not sold in the selected store`)}>
                             <td>
                                 <Box sx={ { maxWidth: '16px' } }> { index + 1 }</Box>
 
                             </td>
                             <td><Box sx={ { minWidth: rem(100), maxWidth: rem(170) } }><Text truncate>{ item.product.name || '-' }</Text></Box></td>
-                            <td><Flex wrap={ 'nowrap' } align={ 'center' } gap={ 6 } sx={ { width: rem(100) } }>
-                                {/* <Input.Wrapper */}
-                                {/*     id={ 'change-price-input-wrapper' } */}
-                                {/*     //  error={ form.getInputProps('price').error } */}
-                                {/*     required> */}
-                                {/*     <Input<any> // thousand separator work badly */}
-                                {/*         component={ IMaskInput } */}
-                                {/*         mask={ Number } */}
-                                {/*         scale={ 2 } // digits after point, 0 for integers */}
-                                {/*         padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale */}
-                                {/*         normalizeZeros={ true } // appends or removes zeros at ends */}
-                                {/*         radix={ '.' } // fractional delimiter */}
-                                {/*         mapToRadix={ [ ',' ] } // symbols to process as radix */}
-                                {/*         placeholder={ '' } */}
+                            <td><Flex wrap={ 'nowrap' } align={ 'center' } gap={ 6 } sx={ { maxWidth: 'fit-content'} }>
+                                <Input.Wrapper
+                                    id={ 'change-price-input-wrapper' }
+                                    className={classes.inputWrapper}
+                                      error={ form.getInputProps(`products.${index}`).error }
+                                    required>
+                                    <Input<any> // thousand separator work badly
+                                        component={ IMaskInput }
+                                        mask={ Number }
+                                        scale={ 3 } // digits after point, 0 for integers
+                                        padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale
+                                        normalizeZeros={ true } // appends or removes zeros at ends
+                                        radix={ '.' } // fractional delimiter
+                                        mapToRadix={ [ ',' ] } // symbols to process as radix
+                                        placeholder={ '' }
+disabled={!isInSelectedStore}
+                                        // additional number interval stores (e.g.)
+                                        min={ 0 }
+                                        max={ 1000000}
+                                        autofix={ true }
 
-                                {/*         // additional number interval stores (e.g.) */}
-                                {/*         min={ 0 } */}
-                                {/*         max={ 100000000000 } */}
-                                {/*         autofix={ true } */}
+                                        id={ 'price-input-change'+item.id }
+                                        { ...form.getInputProps(`products.${index}.amount`) }
+                                        // value={ item.amount.toString() }
+                                        // onAccept={ (value: string, mask: any) => {
+                                        //    const newAmount = parseFloat(value);
+                                        //     const newProduct =  {...item, amount: newAmount}
+                                        //    form.setFieldValue(`products.${index}`, newProduct);
+                                        // } }
 
-                                {/*         id={ 'price-input-change' } */}
-                                {/*         value={ item.price.toString() } */}
-                                {/*         onChange={ (value: string) => {console.log('new change', value);} } */}
 
-
-                                {/*     /> */}
-                                {/* </Input.Wrapper> */}
-                                <Box>{ item.amount }</Box>
+                                    />
+                                </Input.Wrapper>
                                 <Box>{  item.product.unit.toLowerCase() }</Box>
 
                             </Flex></td>
 
                             <td><Box sx={ { width: rem(110), } }>{ item.price ? numberCurrencyFormat(item.price) : '-' }</Box></td>
-                            <td><Box sx={ { width: rem(110), } }>{ item.price ? numberCurrencyFormat(item.price * item.amount) : '-' }</Box></td>
+                            <td><Box sx={ { width: rem(110), } }>{ (item.price && !isNaN(parseFloat(item.amount)) )? numberCurrencyFormat(item.price * parseFloat(item.amount)) : '-' }</Box></td>
 
 
                             <td>
@@ -147,6 +154,7 @@ const onDeleteHandler = (index: number)=>{
                     <td colSpan={6}><Box><Trans>The list is empty</Trans></Box></td>
                 </tr> }
                 </tbody>
+
             </table>
         </Box>
         </Flex>
