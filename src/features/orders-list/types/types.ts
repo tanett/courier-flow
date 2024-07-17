@@ -2,10 +2,10 @@ import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/t
 import { typeHeadersAction, typeTablePagination } from 'shared/ui/table/types/type';
 import React from 'react';
 import { type UseListStateHandlers } from '@mantine/hooks';
-import { typeOrderShort } from 'entities/orders/model/state-slice/types';
+import { typeOrderShort, typeOrderShortExtended } from 'entities/orders/model/state-slice/types';
 
 
-export type typeOrdersShortWithCheckBox = typeOrderShort & {checked: boolean}
+export type typeOrdersShortWithCheckBox = typeOrderShortExtended & {checked: boolean}
 
 
 export type typeOrdersListTable = {
@@ -18,6 +18,7 @@ export type typeOrdersListTable = {
     isLoading: boolean
     headerActions: typeHeadersAction[]
     handlersListState: UseListStateHandlers<typeOrdersShortWithCheckBox>
+    setPopupContent: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
 }
 
 export type typeOrdersListTableHeader = {

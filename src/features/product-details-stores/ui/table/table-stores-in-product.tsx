@@ -5,7 +5,7 @@ import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { typeProductStoresAndPricesTable } from 'features/product-details-stores/ui/table/types';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
@@ -47,7 +47,7 @@ export const TableDetailsStoresInProduct: React.FC<typeProductStoresAndPricesTab
                             <Table.Body>
                                 { retailProductList.map((item) => {
 
-                                    const actions: typeAction[] = [
+                                    const actions: typeActionList = [
 
                                         {
                                             label: i18n._(t`Edit the price`),

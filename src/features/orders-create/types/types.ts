@@ -1,4 +1,3 @@
-import { typeOrderCreate } from '../../../entities/orders/model/state-slice';
 import { typeRetailProduct } from 'entities/retail-products/model/types';
 import type { UseFormReturnType } from '@mantine/form';
 
@@ -11,10 +10,10 @@ export type typeOrdersForm = {
     }
     deliveryAddress: { address: string, additionalInfo: string }
     storeId: string | null
-    servicePaymentPercent: string
-    servicePaymentAmount: string
-    discountPercent: string
-    discountAmount: string
+    servicePayment: string
+    isServicePaymentInPercent: boolean
+    discount: string
+    isDiscountInPercent: boolean
     products: typeProductInCart[],
 }
 

@@ -6,7 +6,7 @@ import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { Box, rem, Text, useMantineTheme } from '@mantine/core';
-import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
+import { typeActionList } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeRefundListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
 import { RefundsListFilter } from 'features/refunds-list-filter';
@@ -61,7 +61,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                     <Table.Body>
                         { refundList.length > 0 && refundList.map(item => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Receipt`),
                                     handler: () => onOpenReceipt(item.id),

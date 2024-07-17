@@ -1,13 +1,20 @@
 import React from 'react';
 
-export interface typeAction {
+export interface typeActionWithRequiredIcon {
     label: string
     handler: () => void
     icon: React.ReactNode
+    textColor?: string
 }
 
+export type typeActionWithPartialIcon = Omit<typeActionWithRequiredIcon, 'icon'> & Partial<Pick<typeActionWithRequiredIcon,'icon'>>
+
+export type typeActionList =[typeActionWithRequiredIcon, ...typeActionWithPartialIcon[]]
+
 export interface typeTableActionsProps {
-    actions: typeAction[]
+    actions: typeActionList
     visibleCount?: number
-    align?: 'center' | 'right'
+    align?: 'center' | 'right',
+    dividerIndex?: number
+
 }

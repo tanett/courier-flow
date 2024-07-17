@@ -6,7 +6,7 @@ import { Table } from '../../../shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { Box, Flex, rem, useMantineTheme } from '@mantine/core';
-import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
+import { typeActionList } from '../../../shared/ui/table/ui/table-actions/types';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { typeStoresListTable } from 'features/stores-list/types/types';
 import { StoresListFilter } from 'features/stores-list-filter';
@@ -67,7 +67,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                     <Table.Body>
                         { storesList.length > 0 && storesList.map(item => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditStorePage(item.id),

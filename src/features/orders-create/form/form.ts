@@ -16,10 +16,10 @@ export const initialOrderForm = {
             additionalInfo: ''
         },
         storeId: null,
-        servicePaymentPercent: '0',
-        servicePaymentAmount: '0',
-        discountPercent: '0',
-        discountAmount: '0',
+        servicePayment: '0',
+        isServicePaymentInPercent: true,
+        discount: '0',
+        isDiscountInPercent: true,
         products: []
     },
     validate: {
@@ -72,33 +72,20 @@ export const initialOrderForm = {
                 ? t`Required field`
                 : null;
         },
-        // servicePaymentPercent: (value: string) => {
-        //
-        //     return value.trim() === ''
-        //         ? t`Required field`
-        //         : +value.trim() > 100
-        //             ? t`Too match`
-        //             : null;
-        //
-        // },,
-        // servicePaymentAmount: '0',
-        discountPercent: (value: string) => {
 
-            return value.trim() === ''
-                ? t`Required field`
-                : +(value.trim()) > 100
-                    ? t`Too match`
-                    : null;
+        discount: (value: string, values: typeOrdersForm,) => {
 
-        },
-        discountAmount: (value: string, values: typeOrdersForm, path: string) => {
             const totalCost = values.products.reduce((acc, current) => acc + current.price * (+current.amount), 0);
-
-            return +(value.trim()) > totalCost
+            const isInPercent= values.isDiscountInPercent
+            return  isInPercent ?
+                +(value.trim()) > 100
                     ? t`The discount cannot be greater than the total cost.`
-                    : null;
-
+                    : null
+                : +(value.trim()) > totalCost
+                    ? t`The discount cannot be greater than the total cost.`
+                    : null
         },
+
         // discountAmount: '0',
         products: (value: typeProductInCart[]) => {
             return value.length === 0

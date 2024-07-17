@@ -7,7 +7,7 @@ import { Table } from '../../../shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { Box, rem, useMantineTheme } from '@mantine/core';
-import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
+import { typeActionList } from '../../../shared/ui/table/ui/table-actions/types';
 import { typeTerminalConfigurationsListTable } from 'features/terminal-configurations-list/types/types';
 import { TerminalConfigurationsListFilter } from 'features/terminal-configurations-list-filter';
 
@@ -56,7 +56,7 @@ export const TerminalConfigurationsListTable: React.FC<typeTerminalConfiguration
                     <Table.Body>
                         { list.length > 0 && list.map(item => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditPage(item.id),

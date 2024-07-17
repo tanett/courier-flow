@@ -1,12 +1,12 @@
 import { Table } from '../table-new/table';
 import React from 'react';
 import { typeTableActionsProps } from './types';
-import { ActionIcon, Box, Flex, Menu, Tooltip, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Box, Divider, Flex, Menu, Tooltip, useMantineTheme } from '@mantine/core';
 import { useStyles } from './styles';
 import cn from 'classnames';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 
-export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCount, align }) => {
+export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCount, align,dividerIndex }) => {
 
     const { classes } = useStyles();
 
@@ -48,19 +48,27 @@ export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCou
                             </ActionIcon>
                         </Menu.Target>
                         <Menu.Dropdown>
-                            {dropdownMenuArr.map((item, index) => <Menu.Item
-                                key={index}
-                                className={classes.menuItem}
-                                icon={item.icon}
-                                onClick={(e) => {
 
-                                    e.stopPropagation();
-                                    item.handler();
+                            {
+                                    dropdownMenuArr.map((item, index) => <>
+                                        { dividerIndex && index === dividerIndex && <Divider size={ 'xs' } color={theme.colors.gray[2]}/> }
+                                        <Menu.Item
+                                        key={index}
+                                        className={classes.menuItem}
+                                        icon={item.icon}
+                                        sx ={{color: item.textColor ? item.textColor : undefined}}
+                                        onClick={(e) => {
 
-                                }}
-                            >
-                                {item.label}
-                            </Menu.Item>)}
+                                            e.stopPropagation();
+                                            item.handler();
+
+                                        }}
+                                    >
+                                        {item.label}
+                                    </Menu.Item>
+                                    </>)
+
+                            }
                         </Menu.Dropdown>
                     </Menu>
 

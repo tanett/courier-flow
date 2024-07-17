@@ -50,7 +50,7 @@ export const useStyles = createStyles((theme) => ({
     },
     listContainer: {
         marginTop: rem(5),
-        height: rem(450),
+        height: rem(430),
         overflowY: 'auto',
 
     },

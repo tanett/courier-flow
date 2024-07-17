@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { ArchiveBoxXMarkIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
@@ -7,7 +7,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, Flex, rem, Text, Tooltip, useMantineTheme } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import {  typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { typeOrdersListTable } from 'features/orders-list/types/types';
 import { OrdersListTableHeader } from 'features/orders-list/ui/table/orders-table-header';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
@@ -15,6 +15,7 @@ import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status';
 import { OrderStatuses } from 'entities/orders/model/orders-statuses';
+import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isAllowedEdit,
@@ -27,6 +28,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isLoading,
     headerActions,
     handlersListState,
+    setPopupContent
 }) => {
 
     const { i18n } = useLingui();
@@ -57,6 +59,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
     };
 
+
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by client’s phone number, delivery address, order number or order amount`) } }
@@ -77,12 +80,29 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                     <Table.Body>
                         { ordersList.length > 0 && ordersList.map((item, index) => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditPage(item.id),
                                     icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
-                                }
+                                },
+                                {
+                                    label: i18n._(t`Assign courier `),
+                                    handler: () => setPopupContent('Assign courier '),
+                                },  {
+                                    label: i18n._(t`In process`),
+                                    handler: () => setPopupContent('In process'),
+                                },
+                                {
+                                    label: i18n._(t`Waiting for delivery`),
+                                    handler: () => setPopupContent('Waiting for delivery'),
+                                },
+                                {
+                                    label: i18n._(t`Cancelled`),
+                                    handler: () => setPopupContent(<ModalCancelOrder data={item} setOpen={setPopupContent}/> ),
+                                  textColor: theme.colors.red[5]
+                                },
+
                             ];
 
                             // actions.push({
@@ -121,8 +141,8 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                             </Flex>
                                         </Flex>
                                     </Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={item.assigneeId || '-'}><Text truncate>{ item.assigneeId || '-' }</Text></Tooltip></Box></Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(170) } }><Text truncate>{ item.storeId || '-' }</Text></Box></Table.Td>
+                                    <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={item.assigneeName || '-'}><Text truncate>{ item.assigneeId || '-' }</Text></Tooltip></Box></Table.Td>
+                                    <Table.Td><Box sx={ { width: rem(170) } }><Text truncate>{ item.storeName|| '-' }</Text></Box></Table.Td>
 
                                     <Table.Td align={ 'center' }><Box sx={ { width: rem(110),} }>{ item.totalCost ? numberCurrencyFormat(item.totalCost): '-' }</Box></Table.Td>
                                     <Table.Td>
@@ -141,10 +161,10 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                                 { item.customer.phone ? formatIncompletePhoneNumber(item.customer.phone) : '-' }
                                             </Flex>
                                         </Flex></Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={item.courierId || '-'}><Text truncate>{ item.courierId || '-' }</Text></Tooltip></Box></Table.Td>
+                                    <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={item.courierName || '-'}><Text truncate>{ item.courierId || '-' }</Text></Tooltip></Box></Table.Td>
                                     <Table.Td><BadgeOrdersStatus statusCode={item.status}/></Table.Td>
 
-                                    { isAllowedEdit && <Table.TdActions actions={ actions }/> }
+                                    { isAllowedEdit && <Table.TdActions actions={ actions } dividerIndex={1}/> }
                                 </Table.Tr>
                             );
 

@@ -5,7 +5,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, rem, useMantineTheme, Text, Flex } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentsList from 'shared/ui/payments/payments-list';
@@ -81,7 +81,7 @@ export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
                 <Table.Body>
                     { advancesList.length > 0 && advancesList.map((item,) => {
 
-                        const actions: typeAction[] = [
+                        const actions: typeActionList = [
                             {
                                 label: i18n._(t`Receipt`),
                                 handler: () => onOpenReceipt(item.id),

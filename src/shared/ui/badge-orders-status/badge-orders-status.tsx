@@ -46,7 +46,7 @@ const BadgeOrdersStatus:React.FC<typeBadgeOrdersStatus> = ({ statusCode }) => {
 
     return (
         <Badge variant={'outline'} className={classes.badge} color={getColor(statusCode)} size={'md'} radius={'xs'}
-            bg={theme.fn.rgba(getColor(statusCode), 0.2)}>{ currentStatusName }</Badge>
+            bg={theme.fn.rgba(getColor(statusCode), 0.05)} >{ currentStatusName }</Badge>
     );
 
 };

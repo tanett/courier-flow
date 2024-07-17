@@ -7,6 +7,7 @@ import { TdActions } from '../table-actions/table-actions';
 import { EmptyRow } from '../table-empty-row/table-empty-row';
 import React from 'react';
 
+
 export type typeTableExtensions = {
     Header: typeof Header;
     Th: typeof Th
@@ -18,5 +19,5 @@ export type typeTableExtensions = {
 }
 
 export interface typeTableProps extends React.PropsWithChildren{
-    variant?: 'inTab'
+    variant?: 'inTab',
 }

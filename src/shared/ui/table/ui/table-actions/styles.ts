@@ -15,5 +15,8 @@ export const useStyles = createStyles((theme) => ({
     icon: { padding: `0 ${rem(8)}` },
     divider: { borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}` },
     primaryColor: { color: theme.colors.primary[ 4 ] },
-    menuItem: { '&[data-hovered]': { backgroundColor: theme.colors.primary[ 0 ] } },
+    menuItem: {
+        fontSize: theme.fontSizes.md,
+        '&[data-hovered]': { backgroundColor: theme.colors.primary[ 0 ] }
+    },
 }));

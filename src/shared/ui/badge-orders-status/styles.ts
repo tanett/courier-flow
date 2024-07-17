@@ -8,7 +8,7 @@ export const useStyles = createStyles((theme) => ({
             paddingRight: rem(8),
             paddingTop: rem(1),
             paddingBottom: rem(1),
-            fontSize: theme.fontSizes.sm,
+            fontSize: theme.fontSizes.md,
             fontWeight: 500,
             lineHeight: em(20),
         },

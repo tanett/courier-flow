@@ -12,18 +12,13 @@ const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
 
     const [ typeInput, setTypeInput ] = useState<TYPE_INPUT>(TYPE_INPUT.PERCENT);
 
-    useEffect(() => {
-        if(typeInput === TYPE_INPUT.MONEY){form.setFieldValue('discountPercent', '0')}
-        if(typeInput === TYPE_INPUT.PERCENT){form.setFieldValue('discountAmount', '0')}
-    }, [typeInput]);
-
     return (
         <Flex>
             <Input.Wrapper
                 id={ 'discount-input-wrapper' }
                 label={ <Trans>Discount</Trans> }
                 className={ classes.inputWrapper }
-                error={ form.getInputProps(typeInput === TYPE_INPUT.MONEY ?`discountAmount` : 'discountPercent').error }
+                error={ form.getInputProps('discount').error }
               >
                 <Input<any> // thousand separator work badly
                     component={ IMaskInput }
@@ -37,11 +32,11 @@ const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
 
                     // additional number interval stores (e.g.)
                     min={ 0 }
-                    max={typeInput === TYPE_INPUT.MONEY ? 100000000 : 100 }
+                    max={ 100000000  }
                     autofix={ true }
 
                     id={ 'discount-input-change' }
-                    { ...form.getInputProps(typeInput === TYPE_INPUT.MONEY ?`discountAmount` : 'discountPercent') }
+                    { ...form.getInputProps('discount') }
                     rightSectionWidth={ 96 }
                     rightSection={ <SimpleGrid cols={ 2 } className={ classes.inputButtons }>
                         <button type={ 'button' }
@@ -49,12 +44,14 @@ const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
                                 onClick={ (event) => {
                                     event.preventDefault();
                                     setTypeInput(TYPE_INPUT.PERCENT);
+                                    form.setFieldValue('isDiscountInPercent', true)
                                 } }><Trans>%</Trans></button>
                         <button type={ 'button' }
                                 className={ cn(classes.inputTypeButton, typeInput === TYPE_INPUT.MONEY && classes.inputTypeButtonSelected) }
                                 onClick={ (event) => {
                                     event.preventDefault();
                                     setTypeInput(TYPE_INPUT.MONEY);
+                                    form.setFieldValue('isDiscountInPercent', false)
                                 } }><Trans>sum</Trans></button>
 
                     </SimpleGrid> }

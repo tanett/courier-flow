@@ -12,18 +12,13 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
 
     const [ typeInput, setTypeInput ] = useState<TYPE_INPUT>(TYPE_INPUT.PERCENT);
 
-    useEffect(() => {
-        if(typeInput === TYPE_INPUT.MONEY){form.setFieldValue('servicePaymentPercent', '0')}
-        if(typeInput === TYPE_INPUT.PERCENT){form.setFieldValue('servicePaymentAmount', '0')}
-    }, [typeInput]);
-
     return (
         <Flex>
             <Input.Wrapper
                 id={ 'service-payment-input-wrapper' }
                 label={ <Trans>Service payment</Trans> }
                 className={ classes.inputWrapper }
-                error={ form.getInputProps(typeInput === TYPE_INPUT.MONEY ?`servicePaymentAmount` : 'servicePaymentPercent').error }
+                error={ form.getInputProps( 'servicePayment').error }
               >
                 <Input<any> // thousand separator work badly
                     component={ IMaskInput }
@@ -37,11 +32,11 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
 
                     // additional number interval stores (e.g.)
                     min={ 0 }
-                    max={typeInput === TYPE_INPUT.MONEY ? 100000000 : 100 }
+                    max={ 100000000  }
                     autofix={ true }
 
                     id={ 'service-payment-input-change' }
-                    { ...form.getInputProps(typeInput === TYPE_INPUT.MONEY ?`servicePaymentAmount` : 'servicePaymentPercent') }
+                    { ...form.getInputProps('servicePayment') }
                     rightSectionWidth={ 96 }
                     rightSection={ <SimpleGrid cols={ 2 } className={ classes.inputButtons }>
                         <button type={ 'button' }
@@ -49,12 +44,15 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
                                 onClick={ (event) => {
                                     event.preventDefault();
                                     setTypeInput(TYPE_INPUT.PERCENT);
+                                    form.setFieldValue('isServicePaymentInPercent', true)
                                 } }><Trans>%</Trans></button>
                         <button type={ 'button' }
                                 className={ cn(classes.inputTypeButton, typeInput === TYPE_INPUT.MONEY && classes.inputTypeButtonSelected) }
                                 onClick={ (event) => {
                                     event.preventDefault();
                                     setTypeInput(TYPE_INPUT.MONEY);
+                                    form.setFieldValue('isServicePaymentInPercent', false)
+
                                 } }><Trans>sum</Trans></button>
 
                     </SimpleGrid> }

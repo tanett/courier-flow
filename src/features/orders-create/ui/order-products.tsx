@@ -7,7 +7,7 @@ import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { SelectorProducts } from 'features/orders-create/ui/selector-products/selector-products';
 
 import { OrdersListTableHeader } from 'features/orders-list/ui/table/orders-table-header';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { t, Trans } from '@lingui/macro';
 import { ArchiveBoxXMarkIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
@@ -21,6 +21,7 @@ import { IMaskInput } from 'react-imask';
 import { ProductsInCartTable } from 'features/orders-create/ui/products-in-cart-table/products-in-cart-table';
 import DiscountInput from 'features/orders-create/ui/discount-service-payment-input/discount-input';
 import ServicePaymentInput from 'features/orders-create/ui/discount-service-payment-input/service-payment-input';
+import { getTotalCostWithDiscountAndServicePayment } from 'features/orders-create/helpers/get-total-cost-with-discount-service-payment';
 
 
 export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) => {
@@ -39,23 +40,42 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }
 
                 <SelectorWithSearchStore required={ true } fieldName={ 'storeId' } form={ form as unknown as typeReturnForm } initialValue={ null }/>
 
-                <Grid gutter={ 12 }>
-                    <Grid.Col span={ 5 } sx={ { minWidth: '418px' } }>
+                <Flex sx={{ flexDirection: 'row', gap: rem(12), position: 'relative' }}>
+                    <Box sx={ { width: '408px' } }>
                         <SelectorProducts form={ form }/>
-                    </Grid.Col>
-                    <Grid.Col span={ 'auto' } sx={ { minWidth: '672px' } }>
-                        <Flex direction="column" justify="space-between" sx={ { height: '100%', position: 'relative' } }>
-                            <ProductsInCartTable form={ form }/>
-                            <SimpleGrid cols={2} className={ classes.discountContainer }>
-                                <DiscountInput form={ form }/>
-                                <ServicePaymentInput form={ form }/>
+                    </Box>
 
-                            </SimpleGrid>
+                    <Flex direction="column" justify="space-between" sx={ {
+                        height: '525px',
+                        position: 'relative',
+                        flexGrow: 1
+                    } }>
+                        <ProductsInCartTable form={ form }/>
+                        <SimpleGrid cols={ 2 } className={ classes.discountContainer }>
+                            <DiscountInput form={ form }/>
+                            <ServicePaymentInput form={ form }/>
+
+                        </SimpleGrid>
+                    </Flex>
+
+                </Flex>
+                <Flex justify={ 'end' }>
+                    <Flex gap={ 30 } p={ 8 } >
+                        <Flex gap={ 6 } align={ 'baseline' }>
+                            <Text c={ theme.colors.gray[5] }><Trans>Total quantity</Trans></Text>
+                            <Box sx={ {
+                                fontWeight: 600,
+                                fontSize: theme.fontSizes.lg
+                            } }>{ form.values.products.length }</Box>
                         </Flex>
-                    </Grid.Col>
-                </Grid>
-                <Flex justify={'end'}>
-                    total
+                        <Flex gap={ 6 } align={ 'baseline' }>
+                            <Text c={ theme.colors.gray[5] }><Trans>Total cost</Trans></Text>
+                            <Box sx={ {
+                                fontWeight: 600,
+                                fontSize: theme.fontSizes.lg
+                            } }>{ numberCurrencyFormat(getTotalCostWithDiscountAndServicePayment(form)) }</Box>
+                        </Flex>
+                    </Flex>
                 </Flex>
 
             </Flex>

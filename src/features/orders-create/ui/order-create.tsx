@@ -9,9 +9,19 @@ import { useCreateOrderMutation } from '../../../entities/orders/api/api';
 import { useForm } from '@mantine/form';
 import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm } from 'features/orders-create/form/form';
 import { typeOrdersForm } from 'features/orders-create/types/types';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { useLingui } from '@lingui/react';
 import { OrderProducts } from 'features/orders-create/ui/order-products';
+import { typeCreateOrderRequest } from '../../../entities/orders/api/types';
+import { getDiscountAmount } from 'features/orders-create/helpers/get-discount-amount';
+import dayjs from 'dayjs';
+import { getServicePaymentAmount } from 'features/orders-create/helpers/get-service-payment-amount';
+import { mapProductsForCreateOrderObject } from 'features/orders-create/helpers/map-products-for-create-order-object';
+import { errorHandler } from 'app/utils/errorHandler';
+import { notificationActions } from '../../../entities/notification/model';
+import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
+import { routerPaths } from 'app/config/router-paths';
+import { typeResponseError } from 'app/api/types';
 
 const enum TYPE_TABS {
     CLIENT = 'client',
@@ -54,6 +64,8 @@ export const OrderCreate: React.FC = () => {
             if (errorInClient && tab !== TYPE_TABS.CLIENT) { setErrorInTab(TYPE_TABS.CLIENT);}
             if (errorInProducts && tab !== TYPE_TABS.PRODUCTS) { setErrorInTab(TYPE_TABS.PRODUCTS);}
 
+        } else {
+            setErrorInTab(null)
         }
     }, [ form.errors, tab ]);
 
@@ -64,7 +76,49 @@ export const OrderCreate: React.FC = () => {
 
     };
 
-    const onSave = () => {console.log('click');};
+    const onSave = async () => {
+        if(form.values.storeId) {
+            const orderObject: typeCreateOrderRequest = {
+                customer: {
+                    id: undefined,
+                    fullName: form.values.customer.fullName,
+                    phone: form.values.customer.phone,
+                    email: form.values.customer.email.trim() === '' ? undefined : form.values.customer.email,
+                },
+                deliveryAddress: {
+                    address: form.values.deliveryAddress.address.trim(),
+                    additionalInfo: form.values.deliveryAddress.additionalInfo.trim() === '' ? undefined : form.values.deliveryAddress.additionalInfo.trim()
+                },
+                discountAmount: getDiscountAmount(form),
+                discountPercent: form.values.isDiscountInPercent ? +(((+form.values.discount) / 100).toFixed(4)) : undefined,
+                orderedAt: dayjs().toISOString(),
+                products: mapProductsForCreateOrderObject(form),
+                servicePaymentAmount: getServicePaymentAmount(form),
+                servicePaymentPercent: form.values.isServicePaymentInPercent ? +(((+form.values.servicePayment) / 100).toFixed(4)) : undefined,
+                storeId: form.values.storeId,
+            };
+
+            try {
+
+                const resp = await createOrder(orderObject).unwrap();
+
+                dispatchAppT(notificationActions.addNotification({
+                    type: NOTIFICATION_TYPES.SUCCESS,
+                    message: i18n._(t`Order created successfully.`),
+                }));
+
+                navigate(generatePath(routerPaths.orders_details, { id: resp.id}));
+
+            } catch (err) {
+
+                errorHandler(err as typeResponseError, 'onCreateOrder', dispatchAppT);
+                setIsInProgress(false);
+
+            }
+
+        }
+
+    };
 
     return (
         (currentUser) ?

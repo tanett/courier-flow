@@ -38,11 +38,11 @@ export type typeOrderProduct = {
     priceInStore: number
     quantity?: number
     declinedQuantity?: number
-    discountPercent: number
+    discountPercent?: number
     discountAmount?: number
     totalCost?: number
-    vatPercent?: number
-    vatAmount?: number
+    vatPercent: number
+    vatAmount: number
     additionalFields: Record<string, string>
 }
 
@@ -81,10 +81,10 @@ export type typeOrderCreate = {
     storeId: string
     customer: typeOrderCustomer
     deliveryAddress: typeOrderDeliveryAddress
-    servicePaymentPercent: number
-    servicePaymentAmount: number
-    discountPercent: number
-    discountAmount: number
+    servicePaymentPercent?: number
+    servicePaymentAmount?: number
+    discountPercent?: number
+    discountAmount?: number
     products: typeCreateOrderProduct[]
 }
 

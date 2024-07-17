@@ -5,7 +5,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, rem, useMantineTheme, Text } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { typeSalesListTable } from 'features/sales-list/types/types';
 import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-header';
@@ -82,7 +82,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                 <Table.Body>
                     { salesList.length > 0 && salesList.map((item, index) => {
 
-                        const actions: typeAction[] = [
+                        const actions: typeActionList = [
                             {
                                 label: i18n._(t`Receipt`),
                                 handler: () => onOpenReceipt(item.id),
