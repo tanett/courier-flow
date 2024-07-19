@@ -21,7 +21,7 @@ export const OrdersList: React.FC = () => {
 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
-    const isAllowedEdit = useIsAllowedPermissions(editOrdersPermissions);
+    const isAllowedEditByPermission = useIsAllowedPermissions(editOrdersPermissions);
 
     const {
         ordersCheckedList,
@@ -32,57 +32,38 @@ export const OrdersList: React.FC = () => {
 
     const [popupContent, setPopupContent] = useState<React.ReactNode | null>(null)
 
-    // modal archive item product
-    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<null | typeOrdersShortWithCheckBox>(null);
-
-    // modal archive selected product
-    const [ isModalSelectedItemArchive, setIsModalSelectedItemArchive ] = useState(false);
-
-    // modal change category selected product
-    const [ isModalChangeCategorySelectedItem, setIsModalChangeCategorySelectedItem ] = useState(false);
-
-    // export selected modals
-    const [ isModalExportSelectedProducts, setIsModalExportSelectedProducts ] = useState(false);
-
-
-    const onClickRowActionsArchiveItem = (product: typeOrdersShortWithCheckBox) => {
-
-        setModalArchiveItemData(product);
-
-    };
-
 
     const goToEditPage = (id: string | number) => navigate([ routerPaths.orders, routerPaths.orders_list, id.toString(), 'edit' ].join('/'));
 
-    const goToDetailsPage = (id: string | number, name: string) => navigate([ routerPaths.orders, routerPaths.orders_list, id.toString(), name ].join('/'));
+    const goToDetailsPage = (id: string | number) => navigate([ routerPaths.orders_list, id.toString() ].join('/'));
 
 
 
     const headerActions: typeHeadersAction[] = [
 
-        {
-            id: 'selected-export-btn',
-            label: <Trans >Selected export</Trans>,
-            handler: (event) => setIsModalExportSelectedProducts(true),
-        },
-        {
-            id: 'change-category-btn',
-            label: <Trans >Change category</Trans>,
-            handler: (event) => setIsModalChangeCategorySelectedItem(true),
-        },
-
-        {
-            id: 'selected-archive-btn',
-            label: <Trans id={'action-archive'}>Archive</Trans>,
-            handler: (event) => setIsModalSelectedItemArchive(true),
-        }
+        // {
+        //     id: 'selected-export-btn',
+        //     label: <Trans >Selected export</Trans>,
+        //     handler: (event) => setIsModalExportSelectedProducts(true),
+        // },
+        // {
+        //     id: 'change-category-btn',
+        //     label: <Trans >Change category</Trans>,
+        //     handler: (event) => setIsModalChangeCategorySelectedItem(true),
+        // },
+        //
+        // {
+        //     id: 'selected-archive-btn',
+        //     label: <Trans id={'action-archive'}>Archive</Trans>,
+        //     handler: (event) => setIsModalSelectedItemArchive(true),
+        // }
     ];
 
 
     return (<>
         <OrdersListTable
             currentUser={ currentUser }
-            isAllowedEdit={ isAllowedEdit }
+            isAllowedEditByPermission={ isAllowedEditByPermission }
             goToEditPage={ goToEditPage }
             ordersList={ ordersCheckedList }
             pagination={ pagination }
@@ -103,7 +84,7 @@ export const OrdersList: React.FC = () => {
 
         {/* { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={ordersCheckedList || []} setOpen={setIsModalSelectedItemArchive}/> } */}
 
-        {/* { isModalChangeCategorySelectedItem && <ModalChangeCategorySelectedItem list={ordersCheckedList || []} setOpen={setIsModalChangeCategorySelectedItem}/> } */}
+        {/* { isModalChangeCategorySelectedItem && <ModalChangeStatusInProgress list={ordersCheckedList || []} setOpen={setIsModalChangeCategorySelectedItem}/> } */}
 
         {/* { isModalExportSelectedProducts && <ModalExportSelectedProduct list={ordersCheckedList || []} setOpen={setIsModalExportSelectedProducts}/> } */}
 

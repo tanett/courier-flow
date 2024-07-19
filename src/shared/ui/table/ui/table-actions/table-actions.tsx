@@ -50,7 +50,7 @@ export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCou
                         <Menu.Dropdown>
 
                             {
-                                    dropdownMenuArr.map((item, index) => <>
+                                    dropdownMenuArr.map((item, index) => <React.Fragment key={index}>
                                         { dividerIndex && index === dividerIndex && <Divider size={ 'xs' } color={theme.colors.gray[2]}/> }
                                         <Menu.Item
                                         key={index}
@@ -66,7 +66,7 @@ export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCou
                                     >
                                         {item.label}
                                     </Menu.Item>
-                                    </>)
+                                    </React.Fragment>)
 
                             }
                         </Menu.Dropdown>

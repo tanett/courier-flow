@@ -9,7 +9,7 @@ export type typeOrdersShortWithCheckBox = typeOrderShortExtended & {checked: boo
 
 
 export type typeOrdersListTable = {
-    isAllowedEdit: boolean | null,
+    isAllowedEditByPermission: boolean | null,
     currentUser: typeGetCurrentUserResponse | undefined,
     goToEditPage: (id: string) => void
     goToDetailsPage: (id: string, name: string) => void

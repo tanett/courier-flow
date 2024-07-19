@@ -1,5 +1,6 @@
 import { typeUseUrlParams } from 'shared/hooks/use-url-params/types';
 import { typeSearchFilterOrders } from '../api/types';
+import { OrderStatuses } from '../model/orders-statuses';
 
 export const getOrdersFiltersFromUrl = (urlParams: typeUseUrlParams) => {
 
@@ -9,8 +10,8 @@ export const getOrdersFiltersFromUrl = (urlParams: typeUseUrlParams) => {
 
     const storeId = urlParams.getFilterValue('storeId');
     if (storeId && typeof storeId === 'string') tempFilter.storeIds = [ storeId ];
-    const code = urlParams.getFilterValue('code');
-    if (code && typeof code === 'string') tempFilter.codes = [ code ];
+    const status = urlParams.getFilterValue('status');
+    if (status && typeof status === 'string') tempFilter.statuses = [status as OrderStatuses];
     const assigneeId = urlParams.getFilterValue('assigneeId');
     if (assigneeId && typeof assigneeId === 'string') tempFilter.assigneeIds = [ assigneeId ];
     const courierId = urlParams.getFilterValue('courierId');

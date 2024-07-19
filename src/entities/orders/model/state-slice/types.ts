@@ -1,4 +1,4 @@
-import { typeProductAdditionalFieldInfo } from 'entities/products/model/state-slice';
+import { OrderStatuses } from 'entities/orders/model/orders-statuses';
 
 export type typeOrder = {
     id: string
@@ -91,10 +91,14 @@ export type typeOrderCreate = {
 export type typeEditOrder = {
     id: string
     currentStatus: string
-    assigneeId: string
-    customer: typeOrderCustomer
-    deliveryAddress: typeOrderDeliveryAddress
 }
+
+export type typeChangeOrderStatus = typeEditOrder & {status: OrderStatuses}
+
+export type typeAddAssigneeForOrder = typeEditOrder & { assigneeId: string}
+
+export type typeAddCourierForOrder = typeEditOrder & { courierId: string, status: OrderStatuses.WAITING_FOR_DELIVERY}
+
 
 export interface typeOrdersState {
     statuses?: typeOrderStatus[];

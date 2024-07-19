@@ -3,7 +3,7 @@ import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
-import { typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from 'entities/orders/model/state-slice/types';
+import { typeAddAssigneeForOrder, typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from 'entities/orders/model/state-slice/types';
 
 
 export const ordersApi = baseApi.injectEndpoints({
@@ -57,31 +57,44 @@ export const ordersApi = baseApi.injectEndpoints({
             invalidatesTags: [ tagTypesOrdersShortList.ordersShortList ],
         }),
 
-        // // patch Product
-        // patchProduct: builder.mutation<typeProduct, typeEditProductRequest>({
-        //     query: (data) => (
-        //         {
-        //             url: API_URLS.PRODUCTS_PATCH,
-        //             method: 'PATCH',
-        //             headers: protectedRoutsAPIHeaderCreator(),
-        //             body: data,
-        //         }
-        //     ),
-        //     invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
-        // }),
-        //
-        // // batch patch Product
-        // batchPatchProduct: builder.mutation<unknown, typeBatchEditProductRequest>({
-        //     query: (data) => (
-        //         {
-        //             url: API_URLS.PRODUCTS_PATCH_BATCH,
-        //             method: 'PATCH',
-        //             headers: protectedRoutsAPIHeaderCreator(),
-        //             body: data,
-        //         }
-        //     ),
-        //     invalidatesTags: [ tagTypesProductsExtendedList.productsExtendedList ],
-        // }),
+        // change status
+        changeOrderStatus: builder.mutation<unknown, typeChangeOrderStatus>({
+            query: (data) => (
+                {
+                    url: API_URLS.ORDERS_PATCH,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList  ],
+        }),
+
+        // change status in progress
+        changeOrderAddAssignee: builder.mutation<unknown, typeAddAssigneeForOrder>({
+            query: (data) => (
+                {
+                    url: API_URLS.ORDERS_PATCH,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList  ],
+        }),
+
+        // change status in progress
+        changeOrderAddCourier: builder.mutation<unknown, typeAddCourierForOrder>({
+            query: (data) => (
+                {
+                    url: API_URLS.ORDERS_PATCH,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList  ],
+        }),
 
         // get Order by id
         getOrderById: builder.query<typeOrder, string>({
@@ -118,5 +131,8 @@ export const {
     useGetOrderByIdQuery,
     useLazyGetOrderByIdQuery,
     useGetOrdersStatusesListQuery,
+    useChangeOrderStatusMutation,
+    useChangeOrderAddAssigneeMutation,
+    useChangeOrderAddCourierMutation,
 
 } = ordersApi;

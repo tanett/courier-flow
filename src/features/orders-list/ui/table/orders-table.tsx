@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { ArchiveBoxXMarkIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import {  PencilSquareIcon } from '@heroicons/react/24/outline';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, Flex, rem, Text, Tooltip, useMantineTheme } from '@mantine/core';
-import {  typeActionList } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { typeOrdersListTable } from 'features/orders-list/types/types';
 import { OrdersListTableHeader } from 'features/orders-list/ui/table/orders-table-header';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status';
-import { OrderStatuses } from 'entities/orders/model/orders-statuses';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
+import { OrdersListFilter } from 'features/orders-list-filter';
+import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
+import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
+import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
-    isAllowedEdit,
+    isAllowedEditByPermission,
     currentUser,
     goToEditPage,
     goToDetailsPage,
-   // onClickRowActionsArchiveItem,
+    // onClickRowActionsArchiveItem,
     ordersList,
     pagination,
     isLoading,
@@ -63,120 +66,120 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by client’s phone number, delivery address, order number or order amount`) } }
-            // filterComponent={ <ProductsListFilter/> }
+            filterComponent={ <OrdersListFilter/> }
         />
 
         { (isLoading)
             ? <TableSkeleton/>
             : ordersList && <>
-                <Table>
-                    <OrdersListTableHeader
-                        indeterminate={ indeterminate || false }
-                        allChecked={ allChecked }
-                        headerActions={ headerActions }
-                        isAllowedEdit={ isAllowedEdit }
-                        onCheckedAllHandler={ onCheckedAllHandler }/>
+            <Table>
+                <OrdersListTableHeader
+                    indeterminate={ indeterminate || false }
+                    allChecked={ allChecked }
+                    headerActions={ headerActions }
+                    isAllowedEdit={ isAllowedEditByPermission }
+                    onCheckedAllHandler={ onCheckedAllHandler }/>
 
-                    <Table.Body>
-                        { ordersList.length > 0 && ordersList.map((item, index) => {
+                <Table.Body>
+                    { ordersList.length > 0 && ordersList.map((item, index) => {
 
-                            const actions: typeActionList = [
-                                {
-                                    label: i18n._(t`Edit`),
-                                    handler: () => goToEditPage(item.id),
-                                    icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
-                                },
-                                {
-                                    label: i18n._(t`Assign courier `),
-                                    handler: () => setPopupContent('Assign courier '),
-                                },  {
-                                    label: i18n._(t`In process`),
-                                    handler: () => setPopupContent('In process'),
-                                },
-                                {
-                                    label: i18n._(t`Waiting for delivery`),
-                                    handler: () => setPopupContent('Waiting for delivery'),
-                                },
-                                {
-                                    label: i18n._(t`Cancelled`),
-                                    handler: () => setPopupContent(<ModalCancelOrder data={item} setOpen={setPopupContent}/> ),
-                                  textColor: theme.colors.red[5]
-                                },
+                        const actions: typeActionList | undefined = item.status !== OrderStatuses.CANCELLED ? [
+                            {
+                                label: i18n._(t`Edit`),
+                                handler: () => goToEditPage(item.id),
+                                icon: <PencilSquareIcon color={ theme.colors.primary[5] } width={ 22 }/>,
+                            },
+                            {
+                                label: i18n._(t`Assign courier `),
+                                handler: () => setPopupContent('Assign courier '),
+                            }, {
+                                label: i18n._(t`In process`),
+                                handler: () => setPopupContent(<ModalChangeStatusInProgress data={ item } setOpen={ setPopupContent } />),
+                            },
+                            {
+                                label: i18n._(t`Waiting for delivery`),
+                                handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ item } setOpen={ setPopupContent } /> ),
+                            },
+                            {
+                                label: i18n._(t`Cancelled`),
+                                handler: () => setPopupContent(<ModalCancelOrder data={ item } setOpen={ setPopupContent }/>),
+                                textColor: theme.colors.red[5]
+                            },
 
-                            ];
-
-                            // actions.push({
-                            //     label: i18n._(t`Archive`),
-                            //     handler: () => onClickRowActionsArchiveItem(item),
-                            //     icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
-                            // });
+                        ] : undefined;
 
 
+                        // actions.push({
+                        //     label: i18n._(t`Archive`),
+                        //     handler: () => onClickRowActionsArchiveItem(item),
+                        //     icon: <ArchiveBoxXMarkIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                        // });
 
-                            return (
-                                <Table.Tr key={ item.id } handler={ () => goToDetailsPage(item.id, '5') }>
-                                    {/* <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }> */}
 
-                                    {/*     <Checkbox size={ 'sm' } */}
-                                    {/*         sx={ { '& input': { cursor: 'pointer' } } } */}
-                                    {/*         checked={ item.checked } */}
-                                    {/*         onChange={ (event) => onCheckedItemHandler(event, index) }/> */}
+                        return (
+                            <Table.Tr key={ item.id } handler={ () => goToDetailsPage(item.id, '5') }>
+                                {/* <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }> */ }
 
-                                    {/* </td> */}
-                                    <Table.Td>
-                                        <Flex direction={ 'column' } sx={ {
-                                            maxWidth: '140px',
-                                            minWidth: '80px',
-                                            flexGrow: 1
+                                {/*     <Checkbox size={ 'sm' } */ }
+                                {/*         sx={ { '& input': { cursor: 'pointer' } } } */ }
+                                {/*         checked={ item.checked } */ }
+                                {/*         onChange={ (event) => onCheckedItemHandler(event, index) }/> */ }
+
+                                {/* </td> */ }
+                                <Table.Td>
+                                    <Flex direction={ 'column' } sx={ {
+                                        maxWidth: '140px',
+                                        minWidth: '80px',
+                                        flexGrow: 1
+                                    } }>
+                                        <Flex gap={ 10 } align={ 'center' } sx={ {
+                                            borderBottom: `1px solid ${ theme.colors.gray[3] }`,
+                                            wordBreak: 'break-all',
+                                            maxWidth: '100%'
                                         } }>
-                                            <Flex gap={ 10 } align={ 'center' } sx={ {
-                                                borderBottom: `1px solid ${ theme.colors.gray[3] }`,
-                                                wordBreak: 'break-all',
-                                                maxWidth: '100%'
-                                            } }>
-                                                {item.code ? item.code : '-'}
-                                            </Flex>
-                                            <Flex gap={ 10 } align={ 'center' } sx={{color: theme.colors.gray[5]}}>
-                                                <DateTimeInLine date={ item.orderedAt } fontWeightDate={ 500 } fontSizeDate={ '14px' }/>
-                                            </Flex>
+                                            { item.code ? item.code : '-' }
                                         </Flex>
-                                    </Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={item.assigneeName || '-'}><Text truncate>{ item.assigneeId || '-' }</Text></Tooltip></Box></Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(170) } }><Text truncate>{ item.storeName|| '-' }</Text></Box></Table.Td>
+                                        <Flex gap={ 10 } align={ 'center' } sx={ { color: theme.colors.gray[5] } }>
+                                            <DateTimeInLine date={ item.orderedAt } fontWeightDate={ 500 } fontSizeDate={ '14px' }/>
+                                        </Flex>
+                                    </Flex>
+                                </Table.Td>
+                                <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={ item.assigneeName || 'Not assigned' }><Text truncate>{ item.assigneeName || '-' }</Text></Tooltip></Box></Table.Td>
+                                <Table.Td><Box sx={ { width: rem(170) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
 
-                                    <Table.Td align={ 'center' }><Box sx={ { width: rem(110),} }>{ item.totalCost ? numberCurrencyFormat(item.totalCost): '-' }</Box></Table.Td>
-                                    <Table.Td>
-                                        <Flex direction={ 'column' } sx={ {
-                                            maxWidth: '123px',
-                                            flexGrow: 1
+                                <Table.Td align={ 'center' }><Box sx={ { width: rem(110), } }>{ item.totalCost ? numberCurrencyFormat(item.totalCost) : '-' }</Box></Table.Td>
+                                <Table.Td>
+                                    <Flex direction={ 'column' } sx={ {
+                                        maxWidth: '123px',
+                                        flexGrow: 1
+                                    } }>
+                                        <Flex gap={ 10 } align={ 'center' } sx={ {
+                                            borderBottom: `1px solid ${ theme.colors.gray[3] }`,
+                                            wordBreak: 'break-all',
+                                            maxWidth: '100%'
                                         } }>
-                                            <Flex gap={ 10 } align={ 'center' } sx={ {
-                                                borderBottom: `1px solid ${ theme.colors.gray[3] }`,
-                                                wordBreak: 'break-all',
-                                                maxWidth: '100%'
-                                            } }>
-                                                <Text truncate>{ item?.customer?.fullName || '-' }</Text>
-                                            </Flex>
-                                            <Flex gap={ 10 } align={ 'center' } sx={{color: theme.colors.gray[5]}}>
-                                                { item.customer.phone ? formatIncompletePhoneNumber(item.customer.phone) : '-' }
-                                            </Flex>
-                                        </Flex></Table.Td>
-                                    <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={item.courierName || '-'}><Text truncate>{ item.courierId || '-' }</Text></Tooltip></Box></Table.Td>
-                                    <Table.Td><BadgeOrdersStatus statusCode={item.status}/></Table.Td>
+                                            <Text truncate>{ item?.customer?.fullName || '-' }</Text>
+                                        </Flex>
+                                        <Flex gap={ 10 } align={ 'center' } sx={ { color: theme.colors.gray[5] } }>
+                                            { item.customer.phone ? formatIncompletePhoneNumber(item.customer.phone) : '-' }
+                                        </Flex>
+                                    </Flex></Table.Td>
+                                <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={ item.courierName || 'Not assigned' }><Text truncate>{ item.courierName || '-' }</Text></Tooltip></Box></Table.Td>
+                                <Table.Td><BadgeOrdersStatus statusCode={ item.status } key={ index + item.status }/></Table.Td>
 
-                                    { isAllowedEdit && <Table.TdActions actions={ actions } dividerIndex={1}/> }
-                                </Table.Tr>
-                            );
+                                { isAllowedEditByPermission && actions && <Table.TdActions actions={ actions } dividerIndex={ 1 }/> }
+                            </Table.Tr>
+                        );
 
-                        }) }
-                        { ordersList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEdit ? 9 : 8 }>
-                            <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
-                        </Table.EmptyRow> }
-                    </Table.Body>
-                </Table>
+                    }) }
+                    { ordersList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEditByPermission ? 9 : 8 }>
+                        <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
+                    </Table.EmptyRow> }
+                </Table.Body>
+            </Table>
 
-                { pagination && <Pagination pagination={ pagination } withPerPage={ true }/> }
-            </>
+            { pagination && <Pagination pagination={ pagination } withPerPage={ true }/> }
+        </>
         }
 
     </>);

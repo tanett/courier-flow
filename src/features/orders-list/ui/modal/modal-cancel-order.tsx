@@ -4,9 +4,10 @@ import { useLingui } from '@lingui/react';
 
 import { Dialog } from 'shared/ui/dialog-new';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { useArchiveProducts } from '../../../../entities/products/hooks/use-archive-products';
 import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
 import { Box } from '@mantine/core';
+import { useCancelOrder } from '../../../../entities/orders/hooks/use-cancel-order';
+import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 
 export const ModalCancelOrder: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
@@ -19,9 +20,9 @@ export const ModalCancelOrder: React.FC<{
     const { i18n } = useLingui();
 
     const {
-        onArchive,
-        isArchiveLoading,
-    } = useArchiveProducts({
+        onCancel,
+        isCancelLoading,
+    } = useCancelOrder({
         onSuccess: () => {
 
             onCloseDialogToDelete();
@@ -38,7 +39,7 @@ export const ModalCancelOrder: React.FC<{
 
     const onConfirmDelete = async () => {
 
-        await onArchive([ data.id ]);
+        await onCancel(data.id, data.status as OrderStatuses);
 
     };
 
@@ -60,7 +61,7 @@ export const ModalCancelOrder: React.FC<{
                     '@media (max-width: 50em)': {width: 'auto',},
                 })}><Trans>Are you sure you want to Cancel <b>&quot;{ data.code }&quot;</b> order? </Trans></Box>
             </Dialog>
-            { isArchiveLoading && <LoaderOverlay/> }
+            { isCancelLoading && <LoaderOverlay/> }
         </>
     );
 

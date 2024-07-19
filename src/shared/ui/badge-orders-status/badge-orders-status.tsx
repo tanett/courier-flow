@@ -45,8 +45,17 @@ const BadgeOrdersStatus:React.FC<typeBadgeOrdersStatus> = ({ statusCode }) => {
 
 
     return (
-        <Badge variant={'outline'} className={classes.badge} color={getColor(statusCode)} size={'md'} radius={'xs'}
-            bg={theme.fn.rgba(getColor(statusCode), 0.05)} >{ currentStatusName }</Badge>
+        <Badge variant={'outline'}
+               className={classes.badge}
+               sx={{
+                   color: statusCode === OrderStatuses.WAITING_FOR_DELIVERY? theme.colors.gray[5] : getColor(statusCode),
+                   backgroundColor: theme.fn.rgba(getColor(statusCode), 0.05),
+                   borderColor: getColor(statusCode),
+               } }
+
+               size={'md'}
+               radius={'xs'}
+            >{ currentStatusName }</Badge>
     );
 
 };

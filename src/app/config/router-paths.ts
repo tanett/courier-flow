@@ -196,9 +196,9 @@ export const routerPaths: Record<pathNames, string> = {
     // orders
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),
     [pathNames.orders_list]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.orders_list  ]),
-    [pathNames.orders_details]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.id]),
-    [pathNames.orders_edit]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.id, pathSections.edit ]),
-    [pathNames.orders_create]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.create]),
+    [pathNames.orders_details]: createPath([ pathSections.dashboard,pathSections.orders, pathSections.orders_list, pathSections.id]),
+    [pathNames.orders_edit]: createPath([ pathSections.dashboard,pathSections.orders, pathSections.orders_list, pathSections.id, pathSections.edit ]),
+    [pathNames.orders_create]: createPath([ pathSections.dashboard, pathSections.orders,pathSections.orders_list, pathSections.create]),
 
     [pathNames.orders_clients]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.orders_clients  ]),
 

@@ -1,4 +1,5 @@
-import { typeEditOrder, typeOrderCreate } from 'entities/orders/model/state-slice/types';
+import { typeEditOrder, typeOrderCreate } from '../model/state-slice/types';
+import { OrderStatuses } from '../model/orders-statuses';
 
 export const tagTypesOrdersShortList = { ordersShortList: { type: 'OrdersShortList' as const, id: 'PARTIAL-LIST' } } as const;
 
@@ -22,6 +23,7 @@ export type typeSearchFilterOrders = {
     orderedAtFrom?: string
     orderedAtTo?: string
     hasDeclinedProducts?: boolean
+    statuses?: OrderStatuses[]
     isTest?: boolean
     _or_?:  Omit<typeSearchFilterOrders, '_or_' | '_not_' | '_and_'>[]
     _not_?: string
