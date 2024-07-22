@@ -10,6 +10,7 @@ import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
 import {typeZReportsListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
 import {useStyles} from "./styles";
+import {ZReportListFilter} from "../../z-report-list-filter/ui/z-report-list-filter";
 
 
 export const RefundListTable: React.FC<typeZReportsListTable> = ({
@@ -32,7 +33,7 @@ export const RefundListTable: React.FC<typeZReportsListTable> = ({
                 placeholder: i18n._(t`Search by terminal serial number`),
                 minValueLength: 1
             } }
-            // filterComponent={ <RefundsListFilter/> }
+            filterComponent={ <ZReportListFilter/> }
         />
 
         { isLoading

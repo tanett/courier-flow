@@ -20,7 +20,9 @@ export const useZReportDetails = () => {
                 .then(response => {
 
                     if (response.status === 'fulfilled') setZReportData(response.data);
-                    if (response.status === 'rejected') setZReportData(null);
+                    if (response.status === 'rejected') {
+                        setZReportData(null);
+                    }
 
                 });
 
@@ -30,7 +32,7 @@ export const useZReportDetails = () => {
 
 
     return {
-        isNotFound: !!error ?? null,
+        isNotFound: !!error ?? undefined,
         isZReportLoading,
         zReportData,
     };

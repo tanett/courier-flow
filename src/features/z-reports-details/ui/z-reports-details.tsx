@@ -13,7 +13,7 @@ export const ZReportsDetails: React.FC<typeZReportDetailsProps> = ({ isNotFound,
 
     const { classes } = useStyles();
 
-    if (isNotFound) return <NotFound/>;
+    if (isNotFound === null) return <NotFound/>;
 
     const openDate = zReportData
         ? new Date(zReportData.createdAt).toLocaleDateString(undefined, {
@@ -46,8 +46,6 @@ export const ZReportsDetails: React.FC<typeZReportDetailsProps> = ({ isNotFound,
             second: 'numeric',
         })
         : '-';
-
-    console.log(zReportData)
 
     return (<>
         { isZReportLoading && <ZReportDetailsSkeleton/> }
