@@ -18,8 +18,6 @@ export const ZReportsList: React.FC = () => {
 
     const navigate = useNavigate();
 
-    // const currentUser = useSelectorT(state => state.userProfile.userProfile);
-
     const [isOpenReceipt, setIsOpenReceipt] = useState<{id: string | number} | null>(null);
 
     const {

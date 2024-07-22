@@ -51,6 +51,7 @@ import { LazyRefundDetailsPage } from "../../pages/refund-detais-page";
 import { LazySalesDetailsPage } from 'pages/sales-details-page';
 import { LazySoldProductDetailsPage } from 'pages/sold-product-details-page';
 import { LazyZReportsPage } from 'pages/z-reports-page';
+import { LazyZReportsDetailsPage } from 'pages/z-reports-details-page';
 import { LazyAdvancesPage } from 'pages/advances-page';
 import { LazyCreditsPage } from 'pages/credits-page';
 import { LazyTerminalConfigurationPage } from 'pages/terminal-configurations-page';
@@ -149,6 +150,10 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.z_reports,
                 element: <WithPermissionsRouts permissions={readZReportsPermissions}><LazyZReportsPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.z_reports_details,
+                element: <WithPermissionsRouts permissions={readZReportsPermissions}><LazyZReportsDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.advances,

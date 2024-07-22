@@ -29,7 +29,7 @@ export const RefundListTable: React.FC<typeZReportsListTable> = ({
     return (<>
         <FilterPanel
             withFind={ {
-                placeholder: i18n._(t`Search by receipt number or total cost`),
+                placeholder: i18n._(t`Search by terminal serial number`),
                 minValueLength: 1
             } }
             // filterComponent={ <RefundsListFilter/> }
@@ -89,12 +89,18 @@ export const RefundListTable: React.FC<typeZReportsListTable> = ({
                                 <Table.Tr key={ item.id } handler={ () => goToDetailsReportPage(item.id, item.number.toString()) }>
                                     <Table.Td>{ item.fiscalModuleId }</Table.Td>
                                     <Table.Td>
-                                        <Flex>
-                                            <div>{ openedDate }, {openedTime}</div>
-                                            <div>{ closedDate }, {closedTime}</div>
+                                        <Flex className={classes.dateColumn}>
+                                            <div className={classes.dateOpened}>
+                                                <span className={classes.dateTitle}><Trans>opened</Trans>:</span> <b className={classes.dateDay}>{ openedDate }</b>,
+                                                {openedTime}
+                                            </div>
+                                            <div>
+                                                <span className={classes.dateTitle}><Trans>closed</Trans>:</span> <b className={classes.dateDay}>{closedDate}</b>,
+                                                {closedTime}
+                                            </div>
                                         </Flex>
                                     </Table.Td>
-                                    <Table.Td>{ item.number }</Table.Td>
+                                    <Table.Td><Flex className={classes.center}>{ item.number }</Flex></Table.Td>
                                     <Table.Td>{ item.totalCashIncome + item.totalCashlessIncome }</Table.Td>
                                     <Table.Td>{ item.totalCashRefunds + item.totalCashlessRefunds }</Table.Td>
                                     <Table.Td>{ item.storeName }</Table.Td>

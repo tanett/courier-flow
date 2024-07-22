@@ -36,12 +36,10 @@ export interface typeSearchFilterZResponse {
     merchantId?: string
     storeIds?: string[]
     terminalIds?: string[]
-    refundedByIds?: string[]
-    refundedAtFrom?: string
-    refundedAtTo?: string
-    receiptNumber?: number
-    totalPaymentsAmount?: number
-    isTest?: boolean
+    terminalSerialNumbers?: string[]
+    fiscalModuleIds?: string[]
+    closedAtFrom?: string
+    closedAtTo?: string
     _and_?: string[]
     _or_?: string[]
     _not_?: string
