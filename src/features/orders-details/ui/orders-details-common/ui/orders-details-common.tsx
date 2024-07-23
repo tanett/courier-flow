@@ -174,7 +174,7 @@ export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data,}) => 
                                content={ data? numberCurrencyFormat(data.totalDiscountAmount) : '-' }/>
                 <InfoCardSmall label={ i18n._(t`Discount`) }
                                alignSelfStretch={ true }
-                               content={ data? numberCurrencyFormat(data.discountPercent * 100)+ '%': '-' }/>
+                               content={ data? numberCurrencyFormat(data.totalDiscountAmount * 100 /data.totalCost)+ '%': '-' }/>
                 <div/>
 
                 <InfoCardSmall label={ i18n._(t`Total cost without discount`) }

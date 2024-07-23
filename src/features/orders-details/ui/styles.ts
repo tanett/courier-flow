@@ -32,4 +32,17 @@ export const useStyles = createStyles((theme) => ({
         },
 
     },
+    icon: {
+        padding: `0 ${rem(8)}` ,
+        '& .mantine-ActionIcon-root:hover,.mantine-ActionIcon-root[data-expanded] ': {backgroundColor: theme.colors.primary[ 1] },
+    },
+    divider: { borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}` },
+    primaryColor: { color: theme.colors.primary[ 4 ] },
+    menuActionsButton: { '&:hover':{backgroundColor: theme.colors.primary[ 0 ] }, },
+
+    menuItem: {
+        fontSize: theme.fontSizes.md,
+        '&[data-hovered]': { backgroundColor: theme.colors.primary[ 0 ] },
+        '&[disabled]': { backgroundColor: theme.colors.gray[ 1 ], cursor: 'not-allowed',pointerEvents:'auto' },
+    },
 }));

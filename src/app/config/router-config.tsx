@@ -65,10 +65,8 @@ import { LazyCreditsDetailsPage } from 'pages/credits-details-page';
 import { LazyWorkingShiftsDetailsPage } from 'pages/working-shifts-details-page';
 import { LazyOrdersCreatePage } from 'pages/orders-create-page';
 import { LazyOrdersDetailsPage } from 'pages/orders-details-page';
+import { LazyOrdersEditPage } from 'pages/orders-edit-page';
 
-function LazyOrdersEditPage() {
-    return null;
-}
 
 export const router = createBrowserRouter([
 

@@ -2,7 +2,7 @@ import { baseApi } from 'app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
+import { tagTypeOrderFullItem, tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
 import { typeAddAssigneeForOrder, typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from 'entities/orders/model/state-slice/types';
 
 
@@ -67,7 +67,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
         }),
 
         // change status in progress
@@ -80,7 +80,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
         }),
 
         // change status in progress
@@ -93,7 +93,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
         }),
 
         // get Order by id
@@ -105,6 +105,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
             ),
+            providesTags:  [ tagTypeOrderFullItem.type ],
         }),
 
         // get list orders statuses

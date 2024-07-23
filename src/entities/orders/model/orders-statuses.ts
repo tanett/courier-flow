@@ -8,3 +8,4 @@ export enum OrderStatuses {
 }
 
 
+export const OrderStatusAvailableForEdit=[OrderStatuses.CREATED, OrderStatuses.PROCESSING,OrderStatuses.WAITING_FOR_DELIVERY]

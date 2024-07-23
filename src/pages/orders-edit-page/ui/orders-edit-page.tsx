@@ -4,23 +4,21 @@ import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { pathSections, routerPaths } from 'app/config/router-paths';
+import { OrderEdit } from 'features/orders-edit';
+import OrdersDetails from 'features/orders-details/ui/orders-details';
+import { useParams } from 'react-router-dom';
 
 const OrdersEditPage: React.FC = () => {
 
     const { i18n } = useLingui();
 
+    const {id} = useParams();
+
     return (
-        <DashboardContent withForm>
-            <DashboardContent.Header
-                leftSide={<DashboardBreadcrumbs dataList={[
-                    { name: i18n._(t`Orders`),  path: routerPaths.orders_list },
-                    { name: i18n._(t`Edit`) }
-                ]}/>}
-            />
-
-           order edit
-
+        <DashboardContent >
+            {id && <OrderEdit orderId={ id }/> }
         </DashboardContent>
+
     );
 
 };

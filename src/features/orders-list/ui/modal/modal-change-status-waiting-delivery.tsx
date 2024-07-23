@@ -16,10 +16,11 @@ import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { useChangeOrderAddCourierMutation } from '../../../../entities/orders/api/api';
 import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
+import { typeOrder } from '../../../../entities/orders/model/state-slice';
 
 export const ModalChangeStatusWaitingDelivery: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
-    data: typeOrdersShortWithCheckBox
+    data: typeOrdersShortWithCheckBox | typeOrder
 }> = ({
     setOpen,
     data,
@@ -30,7 +31,7 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
     const theme = useMantineTheme();
 
     const form = useForm<{ courierId: string | null }>({
-        initialValues: { courierId: null },
+        initialValues: { courierId: data.courierId ? data.courierId : null },
         validate: {
             courierId: (value: string | null) => {
 
@@ -117,7 +118,7 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                         label={ i18n._(t`Courier`) }
                         fieldName={ 'courierId' }
                         form={ form as unknown as typeReturnForm }
-                        initialValue={ null }
+                        initialValue={ data.courierId ? data.courierId : null }
                         storesFilters={[data.storeId]}
                         // currentUser={currentUser?.actor.id}
                         // markerForCurrentUser={ i18n._(t`Assign to me`)}

@@ -5,6 +5,7 @@ export interface typeActionWithRequiredIcon {
     handler: () => void
     icon: React.ReactNode
     textColor?: string
+    disabled?: boolean
 }
 
 export type typeActionWithPartialIcon = Omit<typeActionWithRequiredIcon, 'icon'> & Partial<Pick<typeActionWithRequiredIcon,'icon'>>

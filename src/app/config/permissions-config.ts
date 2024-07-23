@@ -28,7 +28,7 @@ export const editLimitedStoresPermissions = [ 'store.limited-write-to-own-mercha
 export const readOrdersPermissions = [ 'order.all-operations-in-own-merchant', 'order.read-from-own-merchant','order.read-from-own-store'];
 
 export const addOrdersPermissions = [ 'order.all-operations-in-own-merchant', 'order.write-to-own-merchant', 'order.create-in-own-merchant', 'order.create-in-own-store' ];
-export const editOrdersPermissions = [ 'order.all-operations-in-own-merchant', 'order.write-to-own-merchant', ];
+export const editOrdersPermissions = [ 'order.all-operations-in-own-merchant', 'order.write-to-own-merchant', 'order.write-to-own-store' ];
 
 // products
 export const readProductsPermissions = [ 'product.all-operations-in-own-merchant', 'product.read-from-own-merchant'];

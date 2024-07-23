@@ -6,7 +6,13 @@ import { useStyles } from './styles';
 import cn from 'classnames';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 
-export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCount, align,dividerIndex }) => {
+
+export const TdActions: React.FC<typeTableActionsProps> = ({
+    actions,
+    visibleCount,
+    align,
+    dividerIndex
+}) => {
 
     const { classes } = useStyles();
 
@@ -20,20 +26,21 @@ export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCou
     const dropdownMenuArr = isWithMenu ? actions.slice(itemsCount - actions.length) : [];
 
     return (
-        <Table.Td align={align}>
-            <Flex className={classes.actionsWrapper}>
-                {visibleMenuArr.map((item, index) => {
+        <Table.Td align={ align }>
+            <Flex className={ classes.actionsWrapper }>
+                { visibleMenuArr.map((item, index) => {
 
                     return (
-                        <Box key={index} className={cn(classes.icon, { [ classes.divider ]: index !== 0 })}>
-                            <Tooltip withArrow arrowSize={6} radius="md" label={item.label}>
-                                <ActionIcon variant="subtle" onClick={(e) => {
+                        <Box key={ index } className={ cn(classes.icon, { [classes.divider]: index !== 0 }) }>
+                            <Tooltip withArrow arrowSize={ 6 } radius="md" label={ item.label } disabled={item.disabled }>
+                                <ActionIcon variant="subtle"
+                                            disabled={ item.disabled }
+                                            onClick={ (e) => {
+                                                e.stopPropagation();
+                                                item.handler();
 
-                                    e.stopPropagation();
-                                    item.handler();
-
-                                } }>
-                                    {item.icon}
+                                            } }>
+                                    { item.icon }
                                 </ActionIcon>
                             </Tooltip>
                         </Box>
@@ -44,35 +51,39 @@ export const TdActions: React.FC<typeTableActionsProps> = ({ actions, visibleCou
                     <Menu trigger="hover" openDelay={100} closeDelay={400} position="bottom-end" offset={3}>
                         <Menu.Target>
                             <ActionIcon variant="subtle">
-                                <EllipsisVerticalIcon color={theme.colors.gray[ 5 ]} width={22}/>
+                                <EllipsisVerticalIcon color={ theme.colors.gray[5] } width={ 22 }/>
                             </ActionIcon>
                         </Menu.Target>
                         <Menu.Dropdown>
 
                             {
-                                    dropdownMenuArr.map((item, index) => <React.Fragment key={index}>
-                                        { dividerIndex && index === dividerIndex && <Divider size={ 'xs' } color={theme.colors.gray[2]}/> }
-                                        <Menu.Item
-                                        key={index}
-                                        className={classes.menuItem}
-                                        icon={item.icon}
-                                        sx ={{color: item.textColor ? item.textColor : undefined}}
-                                        onClick={(e) => {
+                                dropdownMenuArr.map((item, index) => <React.Fragment key={ index }>
+                                    { dividerIndex && index === dividerIndex && <Divider size={ 'xs' } color={ theme.colors.gray[2] }/> }
+                                    <Menu.Item
+                                        key={ index }
+                                        className={ classes.menuItem }
+                                        icon={ item.icon }
+                                        disabled={ item.disabled }
+                                        sx={ {
+                                            color: item.textColor ? item.textColor : undefined,
+                                            cursor: item.disabled ? 'not-allowed' : 'pointer',
+                                        } }
+                                        onClick={ (e) => {
 
                                             e.stopPropagation();
                                             item.handler();
 
-                                        }}
+                                        } }
                                     >
-                                        {item.label}
+                                        { item.label }
                                     </Menu.Item>
-                                    </React.Fragment>)
+                                </React.Fragment>)
 
                             }
                         </Menu.Dropdown>
                     </Menu>
 
-                </Box>}
+                </Box> }
 
             </Flex>
         </Table.Td>

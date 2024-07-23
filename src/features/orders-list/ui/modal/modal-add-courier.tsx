@@ -5,7 +5,7 @@ import { Modal } from 'shared/ui/modal';
 import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
 import { Alert, Box, Button, Flex, rem, Space, Text, useMantineTheme } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useAppDispatchT, useSelectorT } from 'app/state';
+import { useAppDispatchT } from 'app/state';
 import { notificationActions } from '../../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { errorHandler } from 'app/utils/errorHandler';
@@ -14,10 +14,11 @@ import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
 import { IconAlertCircle } from '@tabler/icons-react';
-import { useChangeOrderAddAssigneeMutation } from '../../../../entities/orders/api/api';
+import { useChangeOrderAddCourierMutation } from '../../../../entities/orders/api/api';
+import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { typeOrder } from '../../../../entities/orders/model/state-slice';
 
-export const ModalChangeStatusInProgress: React.FC<{
+export const ModalAddCourier: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
     data: typeOrdersShortWithCheckBox | typeOrder
 }> = ({
@@ -29,13 +30,10 @@ export const ModalChangeStatusInProgress: React.FC<{
 
     const theme = useMantineTheme();
 
-    const currentUser = useSelectorT(state => state.userProfile.userProfile);
-
-
-    const form = useForm<{ assigneeId: string | null }>({
-        initialValues: { assigneeId: data.assigneeId ? data.assigneeId : null },
+    const form = useForm<{ courierId: string | null }>({
+        initialValues: { courierId: data.courierId ? data.courierId : null },
         validate: {
-            assigneeId: (value: string | null) => {
+            courierId: (value: string | null) => {
 
                 return !value
                     ? t`Required field`
@@ -47,7 +45,7 @@ export const ModalChangeStatusInProgress: React.FC<{
 
     const dispatchAppT = useAppDispatchT();
 
-    const [ addAssignee, { isLoading } ] = useChangeOrderAddAssigneeMutation();
+    const [ addCourier, { isLoading } ] = useChangeOrderAddCourierMutation();
 
     const onCancelClick = () => {
 
@@ -60,28 +58,28 @@ export const ModalChangeStatusInProgress: React.FC<{
 
     const onSubmit = async () => {
 
-        if (form.values.assigneeId) {
+        if (form.values.courierId) {
 
             setIsInProgress(true);
 
             try {
 
-                await addAssignee({
+                await addCourier({
                     id: data.id,
                     currentStatus: data.status,
-                    assigneeId: form.values.assigneeId
+                    courierId: form.values.courierId
                 }).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
-                    message: i18n._(t`Order status changed successfully.`),
+                    message: i18n._(t`Courier assigned successfully.`),
                 }));
 
                 setOpen(null);
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onChangeAssigneeForOrders', dispatchAppT);
+                errorHandler(err as typeResponseError, 'onChangeCourierForOrders', dispatchAppT);
 
 
             }
@@ -98,7 +96,7 @@ export const ModalChangeStatusInProgress: React.FC<{
     return (
 
         <>
-            <Modal.Header title={ i18n._(t`Change status to “In process”`) } onClose={ () => setOpen(null) }/>
+            <Modal.Header title={ i18n._(t`Assign courier`) } onClose={ () => setOpen(null) }/>
             <form onSubmit={ form.onSubmit(onSubmit) }>
                 <Box
                     sx={ {
@@ -110,19 +108,15 @@ export const ModalChangeStatusInProgress: React.FC<{
                         '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                     } }>
 
-                    <Alert icon={ <IconAlertCircle size="1rem"/> } color={ theme.colors.primary[5] } mt={10} mb={12}>
-                        <Text><Trans>To put order “In process”, please select assignee.</Trans></Text>
-                    </Alert>
-
                     <SelectorWithSearchUsers
                         required={ true }
-                        label={ i18n._(t`Assignee`) }
-                        fieldName={ 'assigneeId' }
+                        label={ i18n._(t`Courier`) }
+                        fieldName={ 'courierId' }
                         form={ form as unknown as typeReturnForm }
-                        initialValue={ data.assigneeId ? data.assigneeId : null }
+                        initialValue={ data.courierId ? data.courierId : null }
                         storesFilters={[data.storeId]}
-                        currentUser={currentUser?.actor.id}
-                        markerForCurrentUser={ i18n._(t`Assign to me`)}
+                        // currentUser={currentUser?.actor.id}
+                        // markerForCurrentUser={ i18n._(t`Assign to me`)}
                     />
 
                     <Space h={ 32 }/>

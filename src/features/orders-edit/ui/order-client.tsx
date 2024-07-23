@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useStyles } from './styles';
-import {  typeReturnOrderForm } from '../types/types';
+import { useStyles } from 'features/orders-create/ui/styles';
 import { Flex, SimpleGrid, TextInput, Textarea, Popover, Box, Text, rem } from '@mantine/core';
 import { Trans } from '@lingui/macro';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
-import { useGetCustomers } from '../hooks/use-get-customers';
 import { useDebouncedValue } from '@mantine/hooks';
-import { typeOrdersCustomer } from 'entities/orders-customer/model/types';
+import { typeOrdersCustomer } from '../../../entities/orders-customer/model/types';
+import { typeReturnOrderForm } from 'features/orders-create/types/types';
+import { useGetCustomers } from 'features/orders-create/hooks/use-get-customers';
 
 
 

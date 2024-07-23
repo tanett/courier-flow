@@ -17,8 +17,11 @@ import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 import { OrdersListFilter } from 'features/orders-list-filter';
 import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
-import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
+import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
+import { useIsOrderAvailableForChange } from '../../../../entities/orders/hooks/use-is-available-for-change';
+import { typeOrder } from '../../../../entities/orders/model/state-slice';
+import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isAllowedEditByPermission,
@@ -81,29 +84,62 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                     onCheckedAllHandler={ onCheckedAllHandler }/>
 
                 <Table.Body>
-                    { ordersList.length > 0 && ordersList.map((item, index) => {
+                    { ordersList.length > 0 && currentUser && ordersList.map((item, index) => {
+
+                        const isPossibleToEdit = ()=>{
+                            if(isAllowedEditByPermission) {
+                                switch (item.status) {
+                                case OrderStatuses.CANCELLED:
+                                    return false;
+                                case OrderStatuses.COMPLETED:
+                                    return false;
+                                case OrderStatuses.DELIVERING:
+                                    return false;
+                                case OrderStatuses.WAITING_FOR_DELIVERY:
+                                    return item.assigneeId === currentUser.actor.id;
+                                case OrderStatuses.PROCESSING:
+                                    console.log(item.status, item.assigneeId,currentUser.actor.id );
+                                    return item.assigneeId === currentUser.actor.id;
+                                case OrderStatuses.CREATED:
+                                    return item.createdBy === currentUser.actor.id;
+                                default:
+                                    return false;
+                                }
+                            } else { return false;}
+
+                        }
 
                         const actions: typeActionList | undefined = item.status !== OrderStatuses.CANCELLED ? [
                             {
                                 label: i18n._(t`Edit`),
                                 handler: () => goToEditPage(item.id),
-                                icon: <PencilSquareIcon color={ theme.colors.primary[5] } width={ 22 }/>,
+                                icon: <PencilSquareIcon color={!isPossibleToEdit() ?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
+                                disabled: !isPossibleToEdit(),
                             },
                             {
                                 label: i18n._(t`Assign courier `),
-                                handler: () => setPopupContent('Assign courier '),
+                                handler: () => setPopupContent(<ModalAddCourier data={ item } setOpen={ setPopupContent }  />),
+                                disabled:  item.status === OrderStatuses.CREATED  ? true:  !isPossibleToEdit()
+
                             }, {
                                 label: i18n._(t`In process`),
                                 handler: () => setPopupContent(<ModalChangeStatusInProgress data={ item } setOpen={ setPopupContent } />),
+                                disabled:  currentUser.actor.role.code === 'store-manager'
+                                    ?  !OrderStatusAvailableForEdit.includes(item.status as OrderStatuses)
+                                    : !isPossibleToEdit()
                             },
                             {
                                 label: i18n._(t`Waiting for delivery`),
                                 handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ item } setOpen={ setPopupContent } /> ),
+                                disabled:  item.status === OrderStatuses.CREATED  ? true: !isPossibleToEdit()
                             },
                             {
                                 label: i18n._(t`Cancelled`),
                                 handler: () => setPopupContent(<ModalCancelOrder data={ item } setOpen={ setPopupContent }/>),
-                                textColor: theme.colors.red[5]
+                                textColor: theme.colors.red[5],
+                                disabled: currentUser.actor.role.code === 'store-manager'
+                                    ?  !OrderStatusAvailableForEdit.includes(item.status as OrderStatuses)
+                                    : !isPossibleToEdit(),
                             },
 
                         ] : undefined;
@@ -167,7 +203,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                 <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={ item.courierName || 'Not assigned' }><Text truncate>{ item.courierName || '-' }</Text></Tooltip></Box></Table.Td>
                                 <Table.Td><BadgeOrdersStatus statusCode={ item.status } key={ index + item.status }/></Table.Td>
 
-                                { isAllowedEditByPermission && actions && <Table.TdActions actions={ actions } dividerIndex={ 1 }/> }
+                                { (isAllowedEditByPermission && actions) ? <Table.TdActions actions={ actions } dividerIndex={ 1 }/> : <Table.Td/> }
                             </Table.Tr>
                         );
 

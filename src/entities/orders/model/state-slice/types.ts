@@ -15,8 +15,6 @@ export type typeOrder = {
     deliveryAddress: typeOrderDeliveryAddress
     servicePaymentPercent: number
     servicePaymentAmount: number
-    discountPercent: number
-    discountAmount: number
     totalDiscountAmount: number
     totalVatAmount: number
     totalCost: number
@@ -47,7 +45,6 @@ export type typeOrderProduct = {
 }
 
 export type typeOrderCustomer = {
-    id?: string
     fullName: string
     phone: string
     email?: string
@@ -83,8 +80,6 @@ export type typeOrderCreate = {
     deliveryAddress: typeOrderDeliveryAddress
     servicePaymentPercent?: number
     servicePaymentAmount?: number
-    discountPercent?: number
-    discountAmount?: number
     products: typeCreateOrderProduct[]
 }
 
@@ -97,7 +92,7 @@ export type typeChangeOrderStatus = typeEditOrder & {status: OrderStatuses}
 
 export type typeAddAssigneeForOrder = typeEditOrder & { assigneeId: string}
 
-export type typeAddCourierForOrder = typeEditOrder & { courierId: string, status: OrderStatuses.WAITING_FOR_DELIVERY}
+export type typeAddCourierForOrder = typeEditOrder & { courierId: string, status?: OrderStatuses.WAITING_FOR_DELIVERY}
 
 
 export interface typeOrdersState {

@@ -108,4 +108,6 @@ export enum API_URLS {
     ORDERS_GET = '/api/v1/orders/{id}',
     ORDERS_GET_STATUSES_LIST = '/api/v1/orders/statuses',
 
+    ORDERS_CUSTOMER_SEARCH = '/api/v1/customers/search',
+
 }

@@ -9,6 +9,7 @@ import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import OrdersTabs from 'features/orders-details/ui/orders-tabs';
 import { useGetOrderByIdQuery } from '../../../entities/orders/api/api';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
+import { useSelectorT } from 'app/state';
 
 
 
@@ -20,8 +21,10 @@ const OrdersDetails: React.FC<{ orderId: string }> = ({ orderId }) => {
     const {
         data,
         isFetching,
-        error
+        error,
     } = useGetOrderByIdQuery(orderId);
+
+    const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
 
     return (
@@ -43,7 +46,7 @@ const OrdersDetails: React.FC<{ orderId: string }> = ({ orderId }) => {
                         height: '70vh',
                         alignItems: 'center'
                     } }><NotFound/></Flex>
-                    :  data && <OrdersTabs orderData={data}  />}
+                    :  data && currentUser && <OrdersTabs orderData={data} currentUser={currentUser} />}
                 {isFetching && <LoaderOverlay/>}
             </>
 

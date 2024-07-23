@@ -8,10 +8,11 @@ import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
 import { Box } from '@mantine/core';
 import { useCancelOrder } from '../../../../entities/orders/hooks/use-cancel-order';
 import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
+import { typeOrder } from '../../../../entities/orders/model/state-slice';
 
 export const ModalCancelOrder: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
-    data: typeOrdersShortWithCheckBox
+    data: typeOrdersShortWithCheckBox | typeOrder
 }> = ({
     setOpen,
     data,

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { t, Trans } from '@lingui/macro';
 import { routerPaths } from '../../../app/config/router-paths';
 import { useSelectorT } from '../../../app/state';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
@@ -9,10 +8,8 @@ import { editOrdersPermissions,  } from 'app/config/permissions-config';
 import { typeHeadersAction } from 'shared/ui/table/types/type';
 import { useGetCheckedOrdersList } from 'features/orders-list/hooks/use-get-checked-orders-list';
 import { OrdersListTable } from 'features/orders-list/ui/table/orders-table';
-import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
 import { Modal } from 'shared/ui/modal';
-import { Dialog } from 'shared/ui/dialog-new';
-import { LoaderOverlay } from 'shared/ui/loader-overlay';
+
 
 
 export const OrdersList: React.FC = () => {
@@ -79,14 +76,6 @@ export const OrdersList: React.FC = () => {
                 {popupContent}
             </Modal.Body>
         </Modal>}
-
-        {/* { modalArchiveItemData && <ModalCancelOrder data={modalArchiveItemData} setOpen={setModalArchiveItemData}/> } */}
-
-        {/* { isModalSelectedItemArchive && <ModalArchiveSelectedItem list={ordersCheckedList || []} setOpen={setIsModalSelectedItemArchive}/> } */}
-
-        {/* { isModalChangeCategorySelectedItem && <ModalChangeStatusInProgress list={ordersCheckedList || []} setOpen={setIsModalChangeCategorySelectedItem}/> } */}
-
-        {/* { isModalExportSelectedProducts && <ModalExportSelectedProduct list={ordersCheckedList || []} setOpen={setIsModalExportSelectedProducts}/> } */}
 
     </>);
 

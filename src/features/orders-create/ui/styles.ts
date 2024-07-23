@@ -97,5 +97,13 @@ export const useStyles = createStyles((theme) => ({
         borderBottom: `1px solid ${ theme.colors.gray[3] }`,
         paddingTop: '12px',
         paddingBottom: '12px'
-    }
+    },
+    popoverCustomerTips:{
+        boxShadow: `0px 6px 15px 0px #322B2B1A`,
+        maxHeight: rem(141),
+        border: 'none',
+        top: '80px',
+        '& .mantine-Popover-dropdown':{ top: '80px',},
+        padding: 0
+    },
 }));

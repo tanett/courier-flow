@@ -3,6 +3,7 @@ import { OrderStatuses } from '../model/orders-statuses';
 
 export const tagTypesOrdersShortList = { ordersShortList: { type: 'OrdersShortList' as const, id: 'PARTIAL-LIST' } } as const;
 
+export const tagTypeOrderFullItem =  { type: 'OrdersFullItem' }
 
 export type typeCreateOrderRequest = typeOrderCreate
 
