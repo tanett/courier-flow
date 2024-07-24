@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { t, Trans } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Modal } from 'shared/ui/modal';
 import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
-import { Alert, Box, Button, Flex, rem, Space, Text, useMantineTheme } from '@mantine/core';
+import { Box, Button, Flex, rem, Space,  useMantineTheme } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useAppDispatchT } from 'app/state';
 import { notificationActions } from '../../../../entities/notification/model';
@@ -13,9 +13,7 @@ import { typeResponseError } from 'app/api/types';
 import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
-import { IconAlertCircle } from '@tabler/icons-react';
 import { useChangeOrderAddCourierMutation } from '../../../../entities/orders/api/api';
-import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { typeOrder } from '../../../../entities/orders/model/state-slice';
 
 export const ModalAddCourier: React.FC<{

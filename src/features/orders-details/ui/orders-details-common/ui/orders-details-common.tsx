@@ -3,7 +3,7 @@ import { Box, SimpleGrid, Space, useMantineTheme } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
-import { BuildingStorefrontIcon, ChatBubbleBottomCenterIcon, EnvelopeIcon, MapIcon, MapPinIcon, PhoneIcon, UserIcon } from '@heroicons/react/24/outline';
+import { BuildingStorefrontIcon, ChatBubbleBottomCenterIcon, EnvelopeIcon,  MapPinIcon, PhoneIcon, UserIcon } from '@heroicons/react/24/outline';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { typeOrder } from '../../../../../entities/orders/model/state-slice';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
@@ -14,7 +14,6 @@ import { routerPaths } from 'app/config/router-paths';
 import { useGetStoreByIdQuery } from '../../../../../entities/stores/api/api';
 import {  useSearchUserQuery } from '../../../../../entities/users/api/api';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
-import PaymentType from 'shared/ui/payment-type/payment-type';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 
 

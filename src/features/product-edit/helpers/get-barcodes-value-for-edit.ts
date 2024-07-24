@@ -1,10 +1,10 @@
 import { typeProductEdit } from 'entities/products/model/state-slice';
 
-export const getBarcodesValueForEdit = (barcodesFromForm: string[], barcodesFromData: string[]) => {
+export const getBarcodesValueForEdit = (barcodesFromForm: string[], barcodesFromData: string[] | undefined) => {
 
     let value: typeProductEdit['barcodes'];
 
-    if (barcodesFromData.length === 0) {
+    if (!barcodesFromData  || barcodesFromData?.length === 0) {
 
         value = barcodesFromForm.length === 0
             ? undefined

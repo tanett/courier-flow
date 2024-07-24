@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TYPE_INPUT, typeDiscountInput } from './types';
 import { Flex, Input, SimpleGrid } from '@mantine/core';
 import { IMaskInput } from 'react-imask';
@@ -10,7 +10,14 @@ const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
 
     const { classes } = useStyles();
 
-    const [ typeInput, setTypeInput ] = useState<TYPE_INPUT>(TYPE_INPUT.PERCENT);
+    const [ typeInput, setTypeInput ] = useState<TYPE_INPUT>(form.values.isDiscountInPercent ?TYPE_INPUT.PERCENT: TYPE_INPUT.MONEY);
+
+    // useEffect(() => {
+    //     if(+form.values.discount > 100 && typeInput === TYPE_INPUT.MONEY && form.errors.discount==='The discount cannot be greater than 100%.') {
+    //         form.clearFieldError('discount')
+    //     }
+    //
+    // }, [typeInput]);
 
     return (
         <Flex>
@@ -18,9 +25,9 @@ const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
                 id={ 'discount-input-wrapper' }
                 label={ <Trans>Discount</Trans> }
                 className={ classes.inputWrapper }
-                error={ form.getInputProps('discount').error }
+                error={ form.getInputProps('isDiscountInPercent').error }
               >
-                <Input<any> // thousand separator work badly
+                <Input<any> // a thousand separator work badly
                     component={ IMaskInput }
                     mask={ Number }
                     scale={ 2 } // digits after point, 0 for integers

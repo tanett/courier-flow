@@ -1,4 +1,5 @@
 import { OrderStatuses } from 'entities/orders/model/orders-statuses';
+import { PRODUCT_UNIT_VALUE } from 'entities/products/model/state-slice';
 
 export type typeOrder = {
     id: string
@@ -29,12 +30,12 @@ export type typeOrderProduct = {
     createdBy: string
     name: string
     categoryId?: string
-    unit: string
+    unit: PRODUCT_UNIT_VALUE
     barcodes?: string[]
     markedLabels?: string[]
     declinedMarkedLabels: string[]
     priceInStore: number
-    quantity?: number
+    quantity: number
     declinedQuantity?: number
     discountPercent?: number
     discountAmount?: number
@@ -88,11 +89,37 @@ export type typeEditOrder = {
     currentStatus: string
 }
 
-export type typeChangeOrderStatus = typeEditOrder & {status: OrderStatuses}
+export type typeChangeOrderStatus = typeEditOrder & { status: OrderStatuses }
 
-export type typeAddAssigneeForOrder = typeEditOrder & { assigneeId: string}
+export type typeAddAssigneeForOrder = typeEditOrder & { assigneeId: string }
 
-export type typeAddCourierForOrder = typeEditOrder & { courierId: string, status?: OrderStatuses.WAITING_FOR_DELIVERY}
+export type typeAddCourierForOrder = typeEditOrder & { courierId: string, status?: OrderStatuses.WAITING_FOR_DELIVERY }
+
+export type typeChangeOrderData = typeEditOrder
+    & Pick<typeOrderCreate, 'customer' | 'deliveryAddress' | 'servicePaymentAmount' | 'servicePaymentPercent'>
+    & {
+    products: {
+        deleteAllExisting: boolean
+        create?: typeCreateOrderProduct[]
+        patch?: IPatchOrder[]
+        delete?: string[]
+    }
+}
+
+export interface IPatchOrder {
+    id: string;
+    discountPercent?: number;
+    discountAmount?: number;
+    markedLabels?: PatchTypeForArray;
+    declinedMarkedLabels?: PatchTypeForArray;
+    quantity?: number;
+    declinedQuantity?: number;
+}
+
+export interface PatchTypeForArray {
+    values: string[];
+    patchType: 'REPLACE' | 'ADD' | 'REMOVE';
+}
 
 
 export interface typeOrdersState {

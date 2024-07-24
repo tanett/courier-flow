@@ -1,13 +1,12 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { ActionIcon, Box, Divider, Flex, Input, rem, Table, Text, Tooltip, UnstyledButton, useMantineTheme } from '@mantine/core';
+import React from 'react';
+import { ActionIcon, Box, Flex, Input, rem, Text, Tooltip, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { ArchiveBoxXMarkIcon, CheckIcon, LockClosedIcon, MagnifyingGlassIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {  TrashIcon } from '@heroicons/react/24/outline';
 import { useStyles } from './styles';
 import { useAppDispatchT } from 'app/state';
 import { typeProductsInCartTable } from 'features/orders-create/ui/products-in-cart-table/types';
-import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
-import { IMask, IMaskInput } from 'react-imask';
+import { IMaskInput } from 'react-imask';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 
 
@@ -84,7 +83,7 @@ export const ProductsInCartTable: React.FC<typeProductsInCartTable> = ({ form, }
                     <tbody>
                     { form.values.products.length > 0 && form.values.products.map((item, index) => {
 
-                        const isInSelectedStore = form.values.storeId === item.store.id;
+                        const isInSelectedStore = form.values.storeId === item.storeId;
 
                         return (
                             <tr key={ item.id + index } className={ isInSelectedStore ? undefined : classes.disabledInCart } title={ isInSelectedStore ? undefined : i18n._(t`This item is not sold in the selected store`) }>

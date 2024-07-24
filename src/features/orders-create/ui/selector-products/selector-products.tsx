@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ActionIcon, Box, Flex, Input, Text, UnstyledButton, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Box, Flex, Input, Text,  useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { CheckIcon, LockClosedIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { LockClosedIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useStyles } from './styles';
 import { useDebouncedValue, useFocusWithin, useIntersection } from '@mantine/hooks';
 import { useAppDispatchT } from 'app/state';
@@ -17,6 +17,7 @@ import { typeSelectorForProducts } from 'features/orders-create/ui/selector-prod
 import { typeRetailProduct } from '../../../../entities/retail-products/model/types';
 import { useLazySearchRetailProductQuery } from '../../../../entities/retail-products/api/api';
 import { typeSearchFilterRetailProduct } from '../../../../entities/retail-products/api/types';
+import { typeProductInCart } from 'features/orders-create/types/types';
 
 
 
@@ -229,10 +230,26 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
                     amount: (+item.amount + 1).toString()
                 } : item));
             } else {
-                form.insertListItem('products', {
-                    ...product,
-                    amount: '1'
-                });
+                const newProductInCart: typeProductInCart = {
+                    id: product.id,
+                    createdAt: product.createdAt,
+                    createdBy: product.createdBy,
+                    price:product.price,
+                    merchantId: product.merchantId,
+                    amount: '1',
+                    storeId: product.store.id,
+                    product: {
+                        name: product.product.name,
+                        productCategoryId: product.product.productCategory?.id,
+                        unit: product.product.unit,
+                        marked:product.product.marked,
+                        vat: product.product.vat,
+                        barcodes: product.product.barcodes,
+                        productAdditionalFields: product.product.productAdditionalFields.reduce((prev: Record<string, string>, cur)=> { prev[cur.type] = cur.value; return prev},{}) ,
+                        merchantId:product.product.merchantId
+                    }
+                }
+                    form.insertListItem('products', newProductInCart);
             }
 
         }

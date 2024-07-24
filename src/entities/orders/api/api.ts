@@ -2,7 +2,7 @@ import { baseApi } from 'app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { tagTypeOrderFullItem, tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
+import { tagTypeOrderFullItem, tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeEditOrderRequest, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
 import { typeAddAssigneeForOrder, typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from 'entities/orders/model/state-slice/types';
 
 
@@ -96,6 +96,20 @@ export const ordersApi = baseApi.injectEndpoints({
             invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
         }),
 
+
+        // change order data - customer, products ...
+        changeOrderData: builder.mutation<unknown, typeEditOrderRequest>({
+            query: (data) => (
+                {
+                    url: API_URLS.ORDERS_PATCH,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
+        }),
+
         // get Order by id
         getOrderById: builder.query<typeOrder, string>({
             query: (id) => (
@@ -135,5 +149,6 @@ export const {
     useChangeOrderStatusMutation,
     useChangeOrderAddAssigneeMutation,
     useChangeOrderAddCourierMutation,
+useChangeOrderDataMutation,
 
 } = ordersApi;

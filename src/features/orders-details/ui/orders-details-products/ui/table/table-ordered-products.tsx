@@ -33,7 +33,7 @@ export const TableOrderedProducts: React.FC<typeOrderedProductsTable> = ({ produ
                                     <Trans>Price for unit</Trans>
                                 </Table.Th>
                                 <Table.Th>
-                                    <Trans>Discount <Text fw={500}>&nbsp; %/sum</Text></Trans>
+                                    <Trans>Discount <Text fw={600}>&nbsp; %/sum</Text></Trans>
                                 </Table.Th>
                                 <Table.Th>
                                     <Trans>Total price</Trans>
@@ -48,7 +48,7 @@ export const TableOrderedProducts: React.FC<typeOrderedProductsTable> = ({ produ
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.name }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item?.quantity || '-' }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item?.priceInStore  ? numberCurrencyFormat(item?.priceInStore ) : '-' }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ numberCurrencyFormat(item?.discountPercent || 0) }% / {numberCurrencyFormat(item?.discountAmount || 0)}</Box></Table.Td>
+                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item?.discountPercent ? numberCurrencyFormat(item.discountPercent*100 || 0) +'%' : '-'} / {numberCurrencyFormat(item?.discountAmount || 0)}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{numberCurrencyFormat(item?.totalCost||0 )}</Box></Table.Td>
                                         </Table.Tr>
                                     );

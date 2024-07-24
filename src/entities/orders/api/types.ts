@@ -1,4 +1,4 @@
-import { typeEditOrder, typeOrderCreate } from '../model/state-slice/types';
+import { typeChangeOrderData, typeOrderCreate } from '../model/state-slice/types';
 import { OrderStatuses } from '../model/orders-statuses';
 
 export const tagTypesOrdersShortList = { ordersShortList: { type: 'OrdersShortList' as const, id: 'PARTIAL-LIST' } } as const;
@@ -9,7 +9,7 @@ export type typeCreateOrderRequest = typeOrderCreate
 
 export type typeCreateOrderResponse = {id: string};
 
-export type typeEditOrderRequest = typeEditOrder // todo change it for different orders statuses
+export type typeEditOrderRequest = typeChangeOrderData
 
 
 

@@ -30,7 +30,7 @@ const {customers, isFetchingCustomers}=useGetCustomers(debounced)
     }, [customers]);
 
 const onCustomerClickHandler = (customer: typeOrdersCustomer)=>{
-    form.setFieldValue('customer', {id:customer.id, phone: customer.phone, email: customer.email, fullName: customer.fullName})
+    form.setFieldValue('customer', { phone: customer.phone, email: customer.email, fullName: customer.fullName})
     form.setFieldValue('deliveryAddress', {
         address: customer.addresses[0].address,
         additionalInfo: customer.addresses[0].additionalInfo,

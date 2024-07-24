@@ -19,8 +19,6 @@ import { OrdersListFilter } from 'features/orders-list-filter';
 import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
 import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
-import { useIsOrderAvailableForChange } from '../../../../entities/orders/hooks/use-is-available-for-change';
-import { typeOrder } from '../../../../entities/orders/model/state-slice';
 import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
@@ -98,7 +96,6 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                 case OrderStatuses.WAITING_FOR_DELIVERY:
                                     return item.assigneeId === currentUser.actor.id;
                                 case OrderStatuses.PROCESSING:
-                                    console.log(item.status, item.assigneeId,currentUser.actor.id );
                                     return item.assigneeId === currentUser.actor.id;
                                 case OrderStatuses.CREATED:
                                     return item.createdBy === currentUser.actor.id;

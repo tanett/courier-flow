@@ -4,7 +4,7 @@ export const useStyles = createStyles((theme) => ({
 
         inputWrapper: { },
         inputButtons: {
-            width: '93px',
+            minWidth: '93px',
             gap: 0,
             height: '95%',
             borderRadius: rem(4),
@@ -13,7 +13,7 @@ export const useStyles = createStyles((theme) => ({
         },
         inputTypeButton:{
             boxSizing: 'border-box',
-            width: rem(46),
+            minWidth: rem(46),
             border: 'none',
             backgroundColor: theme.colors.gray[0],
             padding: rem(6),

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TYPE_INPUT, typeDiscountInput } from './types';
 import { Flex, Input, SimpleGrid } from '@mantine/core';
 import { IMaskInput } from 'react-imask';
@@ -10,7 +10,7 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
 
     const { classes } = useStyles();
 
-    const [ typeInput, setTypeInput ] = useState<TYPE_INPUT>(TYPE_INPUT.PERCENT);
+    const [ typeInput, setTypeInput ] = useState<TYPE_INPUT>( form.values.isServicePaymentInPercent ?TYPE_INPUT.PERCENT: TYPE_INPUT.MONEY);
 
     return (
         <Flex>
@@ -18,7 +18,7 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
                 id={ 'service-payment-input-wrapper' }
                 label={ <Trans>Service payment</Trans> }
                 className={ classes.inputWrapper }
-                error={ form.getInputProps( 'servicePayment').error }
+                error={ form.getInputProps( 'isServicePaymentInPercent').error }
               >
                 <Input<any> // thousand separator work badly
                     component={ IMaskInput }

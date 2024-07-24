@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
-import { typeOrdersForm, typeProductInCart, typeReturnOrderForm } from 'features/orders-create/types/types';
+import { typeOrdersForm, typeProductInCart } from 'features/orders-create/types/types';
 
 
 export const initialOrderForm = {
@@ -22,6 +22,8 @@ export const initialOrderForm = {
         isDiscountInPercent: true,
         products: []
     },
+    validateInputOnChange: ['discount', 'isDiscountInPercent','servicePayment', 'isServicePaymentInPercent'],
+
     validate: {
         customer: {
             fullName: (value: string) => {
@@ -73,18 +75,19 @@ export const initialOrderForm = {
                 : null;
         },
 
-        discount: (value: string, values: typeOrdersForm,) => {
+        isDiscountInPercent: (value: boolean, values: typeOrdersForm,) => {
 
             const totalCost = values.products.reduce((acc, current) => acc + current.price * (+current.amount), 0);
-            const isInPercent= values.isDiscountInPercent
-            return  isInPercent ?
-                +(value.trim()) > 100
-                    ? t`The discount cannot be greater than the total cost.`
+
+            return  value ?
+                +(values.discount.trim()) > 100
+                    ? t`The discount cannot be greater than 100%.`
                     : null
-                : +(value.trim()) > totalCost
+                : +(values.discount.trim()) > totalCost
                     ? t`The discount cannot be greater than the total cost.`
                     : null
         },
+
 
         // discountAmount: '0',
         products: (value: typeProductInCart[]) => {

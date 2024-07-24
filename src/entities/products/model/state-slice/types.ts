@@ -13,7 +13,7 @@ export type typeProduct = {
     unit: PRODUCT_UNIT_VALUE
     marked: boolean
     vat: number
-    barcodes: string[]
+    barcodes?: string[]
     productAdditionalFields: typeProductAdditionalField[]
     merchantId: string
 }

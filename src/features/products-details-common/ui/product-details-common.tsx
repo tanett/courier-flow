@@ -112,7 +112,7 @@ export const ProductDetailsCommon: React.FC<{ productData: typeProduct | undefin
                     <InfoCardSmall label={ i18n._(t`Unit`) } content={ productData?.unit || '-' } withBottomBorder={ false }/>
                     <InfoCardSmall label={ i18n._(t`Unit code`) } content={ productData ? getValueFromAdditionalField(productData.productAdditionalFields, 'UNIT_CODE') : '-' } withBottomBorder={ false }/>
                 </SimpleGrid>
-                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={(productData?.barcodes && productData?.barcodes.length === 0) ? '-' : productData?.barcodes.join(', ') } withBottomBorder={ false }/>
+                <InfoCardSmall label={ i18n._(t`Barcodes`) } iconLabel={ <BarcodeScanIconOutline/> } content={(!productData?.barcodes || productData?.barcodes?.length === 0) ? '-' : productData.barcodes.join(', ') } withBottomBorder={ false }/>
 
             </SimpleGrid>
             { isFetching && <LoaderOverlay/> }
