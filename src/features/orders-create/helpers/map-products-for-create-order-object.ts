@@ -6,6 +6,8 @@ export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): type
     const productsList = form.values.products.map(item => {
         let discountPercent: number | undefined = undefined;
         let discountAmount: number | undefined = undefined;
+
+
         if (form.values.isDiscountInPercent) {
             discountPercent = parseFloat((parseFloat(form.values.discount) / 100).toFixed(4));
             discountAmount = parseFloat(((item.price * (+item.amount)) * discountPercent).toFixed(2) );
@@ -17,6 +19,9 @@ export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): type
             const discountPercentTemp = getDiscountPercentFromDiscountAmount(parseFloat(form.values.discount), costInCard);
             discountAmount = parseFloat(((item.price * (+item.amount)) * discountPercentTemp / 100).toFixed(2));
         }
+
+        const totalCostForProduct = parseFloat((item.price * (+item.amount) - discountAmount).toFixed(2));
+
         return {
             id: item.id,
             name: item.product.name,
@@ -28,7 +33,7 @@ export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): type
             quantity: (+item.amount),
             discountPercent: discountPercent,
             discountAmount: discountAmount,
-            totalCost: item.price * (+item.amount),
+            totalCost: totalCostForProduct,
             vatPercent: item.product.vat,
             vatAmount: parseFloat(((+item.amount) * ((item.price * item.product.vat) / (item.product.vat + 1))).toFixed(2)),
             additionalFields: item.product.productAdditionalFields

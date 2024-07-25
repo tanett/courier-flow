@@ -9,13 +9,6 @@ export type typeOrdersCustomer = {
     phone: string
     email: string
     merchantId: string
-    addresses: typeCustomerAddress[]
-}
-
-export type typeCustomerAddress = {
-    id: string
-    createdAt: string
-    createdBy: string
-    address: string
-    additionalInfo: string
+    lastAddress: string
+    lastAddressAdditionalInfo: string
 }

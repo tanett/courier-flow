@@ -38,8 +38,8 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
             fullName: customer.fullName
         });
         form.setFieldValue('deliveryAddress', {
-            address: customer.addresses[0].address,
-            additionalInfo: customer.addresses[0].additionalInfo,
+            address: customer.lastAddress,
+            additionalInfo: customer.lastAddressAdditionalInfo,
         });
         setCustomerTipsOpened(false);
     };
