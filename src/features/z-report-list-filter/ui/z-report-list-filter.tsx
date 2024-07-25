@@ -56,7 +56,7 @@ export const ZReportListFilter: React.FC = () => {
             storeId: form.values.storeId,
             terminalSN: form.values.terminalSN,
             closeDateFrom: form.values.closeDate[0] ? (form.values.closeDate[0]).toISOString() : null,
-            closeDateFromTo: form.values.closeDate[1] ? (form.values.closeDate[1]).toISOString() : null,
+            closeDateTo: form.values.closeDate[1] ? (form.values.closeDate[1]).toISOString() : null,
             quickDataFilter: quickDataFilter
         };
 
