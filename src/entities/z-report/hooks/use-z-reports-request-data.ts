@@ -12,6 +12,12 @@ export const useZReportsRequestData = () => {
 
     if (urlParams.searchPhrase) filter.terminalSerialNumbers = [urlParams.searchPhrase]
 
+    const fiscalId = urlParams.getFilterValue('fiscalId');
+    if (fiscalId && fiscalId.length > 0 && typeof fiscalId === 'string') filter.fiscalModuleIds = [ fiscalId ]; else delete filter.fiscalModuleIds
+
+    const terminalSN = urlParams.getFilterValue('terminalSN');
+    if (terminalSN && terminalSN.length > 0 && typeof terminalSN === 'string') filter.terminalSerialNumbers = [ terminalSN ]; else delete filter.terminalSerialNumbers
+
     const requestData: typeSearchRequest<typeSearchFilterZResponse, typeSearchZResponseSortingNames> = {
         filter: filter,
         pagination: {
