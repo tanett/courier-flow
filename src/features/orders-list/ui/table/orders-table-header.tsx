@@ -72,34 +72,34 @@ export const OrdersListTableHeader: React.FC<typeOrdersListTableHeader> = ({
                             <SortButton initialSortDirection={sortDirection.dec}/>
                         </Flex>
                     </Table.Th>
-                    <Table.Th>
-                        <Box sx={{minWidth: '110px'}}>
-                            <Trans>Assignee</Trans>
-                        </Box>
+                    {/* <Table.Th> */}
+                    {/*     <Box sx={{minWidth: '110px', textAlign: 'left'}}> */}
+                    {/*         <Trans>Assignee</Trans> */}
+                    {/*     </Box> */}
 
-                    </Table.Th>
+                    {/* </Table.Th> */}
                     <Table.Th>
-                        <Box sx={{minWidth: '170px', lineHeight: '16px' }}>
+                        <Box sx={{minWidth: '170px', lineHeight: '16px', textAlign: 'left' }}>
                         <Trans>Store name</Trans>
                         </Box>
                     </Table.Th>
                     <Table.Th>
-                        <Box sx={{minWidth: '110px', lineHeight: '16px' }}>
+                        <Box sx={{minWidth: '110px', lineHeight: '16px' , textAlign: 'left'}}>
                             <Trans>Order amount</Trans></Box>
                     </Table.Th>
                     <Table.Th>
-                        <Box sx={{ lineHeight: '16px', minWidth: '123px', }}>
+                        <Box sx={{ lineHeight: '16px', minWidth: '123px',textAlign: 'left' }}>
                             <Trans>Client&nbsp;name&nbsp;/ Phone number</Trans>
                         </Box>
                     </Table.Th>
                     <Table.Th>
-                        <Box sx={{ lineHeight: '16px', minWidth: '110px', }}>
+                        <Box sx={{ lineHeight: '16px', minWidth: '110px', textAlign: 'left'}}>
                             <Trans>Courier</Trans></Box>
                     </Table.Th>
-                    <Table.Th>
+                    <Table.Th >
                         <Trans>Status</Trans>
                     </Table.Th>
-                    { isAllowedEdit && <Table.Th>
+                    { isAllowedEdit && <Table.Th align={'center'}>
                         <Trans>Actions</Trans>
                     </Table.Th> }</> }
         </Table.Header>

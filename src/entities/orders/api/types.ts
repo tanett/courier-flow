@@ -18,7 +18,7 @@ export type typeSearchFilterOrders = {
     searchText?: string
     storeIds?: string[]
     codes?: string[]
-    assigneeIds?: string[]
+    collectorIds?: string[]
     courierIds?: string[]
     createdByIds?: string[]
     orderedAtFrom?: string

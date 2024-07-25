@@ -18,9 +18,9 @@ export const useIsOrderAvailableForChange = (orderData: typeOrder, currentUser: 
         case OrderStatuses.DELIVERING:
             return false;
         case OrderStatuses.WAITING_FOR_DELIVERY:
-            return orderData.assigneeId === currentUser.actor.id ;
+            return orderData.collectorId === currentUser.actor.id ;
         case OrderStatuses.PROCESSING:
-            return orderData.assigneeId === currentUser.actor.id  ;
+            return orderData.collectorId === currentUser.actor.id  ;
         case OrderStatuses.CREATED:
             return orderData.createdBy === currentUser.actor.id ;
         default:

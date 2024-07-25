@@ -3,7 +3,7 @@ import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { tagTypeOrderFullItem, tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeEditOrderRequest, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
-import { typeAddAssigneeForOrder, typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from 'entities/orders/model/state-slice/types';
+import { typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from '../model/state-slice/types';
 
 
 export const ordersApi = baseApi.injectEndpoints({
@@ -70,18 +70,18 @@ export const ordersApi = baseApi.injectEndpoints({
             invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
         }),
 
-        // change status in progress
-        changeOrderAddAssignee: builder.mutation<unknown, typeAddAssigneeForOrder>({
-            query: (data) => (
-                {
-                    url: API_URLS.ORDERS_PATCH,
-                    method: 'PATCH',
-                    headers: protectedRoutsAPIHeaderCreator(),
-                    body: data,
-                }
-            ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
-        }),
+        // // change status in progress
+        // changeOrderAddAssignee: builder.mutation<unknown, typeAddAssigneeForOrder>({
+        //     query: (data) => (
+        //         {
+        //             url: API_URLS.ORDERS_PATCH,
+        //             method: 'PATCH',
+        //             headers: protectedRoutsAPIHeaderCreator(),
+        //             body: data,
+        //         }
+        //     ),
+        //     invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
+        // }),
 
         // change status in progress
         changeOrderAddCourier: builder.mutation<unknown, typeAddCourierForOrder>({
@@ -147,7 +147,7 @@ export const {
     useLazyGetOrderByIdQuery,
     useGetOrdersStatusesListQuery,
     useChangeOrderStatusMutation,
-    useChangeOrderAddAssigneeMutation,
+    // useChangeOrderAddAssigneeMutation,
     useChangeOrderAddCourierMutation,
 useChangeOrderDataMutation,
 

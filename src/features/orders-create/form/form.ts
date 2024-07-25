@@ -22,7 +22,9 @@ export const initialOrderForm = {
         isDiscountInPercent: true,
         products: []
     },
-    validateInputOnChange: ['discount', 'isDiscountInPercent','servicePayment', 'isServicePaymentInPercent'],
+
+    validateInputOnChange: ['discount', 'isDiscountInPercent','servicePayment', 'isServicePaymentInPercent', 'products'],
+    validateInputOnBlur: ['discount', 'isDiscountInPercent','servicePayment', 'isServicePaymentInPercent',],
 
     validate: {
         customer: {
@@ -37,7 +39,9 @@ export const initialOrderForm = {
             },
             email: (value: string) => {
 
-                return value.trim().length >= 150
+                return  !value
+                    ? null
+                    : value.trim().length >= 150
                     ? t`It's too long`
                     : value.trim().length === 0
                         ? null
@@ -81,11 +85,20 @@ export const initialOrderForm = {
 
             return  value ?
                 +(values.discount.trim()) > 100
-                    ? t`The discount cannot be greater than 100%.`
+                    ? t`The value cannot be greater than 100%.`
                     : null
                 : +(values.discount.trim()) > totalCost
                     ? t`The discount cannot be greater than the total cost.`
                     : null
+        },
+
+        isServicePaymentInPercent: (value: boolean, values: typeOrdersForm,) => {
+
+            return  value ?
+                +(values.servicePayment.trim()) > 100
+                    ? t`The value cannot be greater than 100%.`
+                    : null
+                : null
         },
 
 

@@ -14,8 +14,9 @@ import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
 import { IconAlertCircle } from '@tabler/icons-react';
-import { useChangeOrderAddAssigneeMutation } from '../../../../entities/orders/api/api';
+import { useChangeOrderStatusMutation } from '../../../../entities/orders/api/api';
 import { typeOrder } from '../../../../entities/orders/model/state-slice';
+import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 
 export const ModalChangeStatusInProgress: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
@@ -32,26 +33,26 @@ export const ModalChangeStatusInProgress: React.FC<{
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
 
-    const form = useForm<{ assigneeId: string | null }>({
-        initialValues: { assigneeId: data.assigneeId ? data.assigneeId : null },
-        validate: {
-            assigneeId: (value: string | null) => {
-
-                return !value
-                    ? t`Required field`
-                    : null;
-            },
-
-        }
-    });
+    // const form = useForm<{ assigneeId: string | null }>({
+    //     initialValues: { assigneeId: data.collectorId ? data.collectorId : null },
+    //     validate: {
+    //         assigneeId: (value: string | null) => {
+    //
+    //             return !value
+    //                 ? t`Required field`
+    //                 : null;
+    //         },
+    //
+    //     }
+    // });
 
     const dispatchAppT = useAppDispatchT();
 
-    const [ addAssignee, { isLoading } ] = useChangeOrderAddAssigneeMutation();
+    const [ changeStatus, { isLoading } ] = useChangeOrderStatusMutation();
 
     const onCancelClick = () => {
 
-        form.reset();
+       // form.reset();
         setOpen(null);
 
     };
@@ -60,16 +61,17 @@ export const ModalChangeStatusInProgress: React.FC<{
 
     const onSubmit = async () => {
 
-        if (form.values.assigneeId) {
+        // if (form.values.assigneeId) {
 
             setIsInProgress(true);
 
             try {
 
-                await addAssignee({
+                await changeStatus({
                     id: data.id,
                     currentStatus: data.status,
-                    assigneeId: form.values.assigneeId
+                    status: OrderStatuses.PROCESSING
+                    // assigneeId: form.values.assigneeId
                 }).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
@@ -89,7 +91,7 @@ export const ModalChangeStatusInProgress: React.FC<{
 
             setIsInProgress(false);
 
-        }
+        // }
 
 
     };
@@ -99,7 +101,7 @@ export const ModalChangeStatusInProgress: React.FC<{
 
         <>
             <Modal.Header title={ i18n._(t`Change status to “In process”`) } onClose={ () => setOpen(null) }/>
-            <form onSubmit={ form.onSubmit(onSubmit) }>
+            {/* <form onSubmit={ form.onSubmit(onSubmit) }> */}
                 <Box
                     sx={ {
                         minWidth: '50vw',
@@ -110,20 +112,20 @@ export const ModalChangeStatusInProgress: React.FC<{
                         '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                     } }>
 
-                    <Alert icon={ <IconAlertCircle size="1rem"/> } color={ theme.colors.primary[5] } mt={10} mb={12}>
-                        <Text><Trans>To put order “In process”, please select assignee.</Trans></Text>
-                    </Alert>
+                    {/* <Alert icon={ <IconAlertCircle size="1rem"/> } color={ theme.colors.primary[5] } mt={10} mb={12}> */}
+                    {/*     <Text><Trans>To put order “In process”, please select assignee.</Trans></Text> */}
+                    {/* </Alert> */}
 
-                    <SelectorWithSearchUsers
-                        required={ true }
-                        label={ i18n._(t`Assignee`) }
-                        fieldName={ 'assigneeId' }
-                        form={ form as unknown as typeReturnForm }
-                        initialValue={ data.assigneeId ? data.assigneeId : null }
-                        storesFilters={[data.storeId]}
-                        currentUser={currentUser?.actor.id}
-                        markerForCurrentUser={ i18n._(t`Assign to me`)}
-                    />
+                    {/* <SelectorWithSearchUsers */}
+                    {/*     required={ true } */}
+                    {/*     label={ i18n._(t`Assignee`) } */}
+                    {/*     fieldName={ 'assigneeId' } */}
+                    {/*     form={ form as unknown as typeReturnForm } */}
+                    {/*     initialValue={ data.collectorId ? data.collectorId : null } */}
+                    {/*     storesFilters={[data.storeId]} */}
+                    {/*     currentUser={currentUser?.actor.id} */}
+                    {/*     markerForCurrentUser={ i18n._(t`Assign to me`)} */}
+                    {/* /> */}
 
                     <Space h={ 32 }/>
                     <Flex sx={ {
@@ -136,12 +138,14 @@ export const ModalChangeStatusInProgress: React.FC<{
                         },
                     } }>
                         <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
-                        <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                        <Button key="submit"
+                                disabled={  isInProgress }
+                                onClick={onSubmit}
                                 type="submit">{ t`Change status` }</Button>
                     </Flex>
                 </Box>
                 { isLoading && <LoaderOverlay/> }
-            </form>
+            {/* </form> */}
         </>
 
     );

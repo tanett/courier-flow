@@ -55,8 +55,8 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
                 additionalInfo: orderData.deliveryAddress.additionalInfo || ''
             },
             storeId: orderData.storeId,
-            servicePayment: orderData.servicePaymentPercent ?orderData.servicePaymentPercent.toString(): orderData.servicePaymentAmount.toString(),
-            isServicePaymentInPercent: !!orderData.servicePaymentPercent ,
+            servicePayment: orderData.servicePaymentPercent ?(orderData.servicePaymentPercent * 100).toFixed(2): orderData.servicePaymentAmount.toString(),
+            isServicePaymentInPercent: (orderData.servicePaymentPercent === 0 && orderData.servicePaymentAmount === 0 ) ? true : !!orderData.servicePaymentPercent,
 
             products: mapOrderedProductsToCart(orderData),
         }
@@ -110,7 +110,7 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
                     additionalInfo: form.values.deliveryAddress.additionalInfo.trim() === '' ? undefined : form.values.deliveryAddress.additionalInfo.trim()
                 },
                 servicePaymentAmount: getServicePaymentAmount(form),
-                servicePaymentPercent: form.values.isServicePaymentInPercent ? +(((+form.values.servicePayment) / 100).toFixed(4)) : undefined,
+                servicePaymentPercent: form.values.isServicePaymentInPercent ? +(((+form.values.servicePayment) / 100).toFixed(4)) : 0,
                 products: {
                     deleteAllExisting: true,
                     create: mapProductsForCreateOrderObject(form)

@@ -1,7 +1,7 @@
 import { typeOrdersFilterForm } from '../types/types';
 
 export const initialOrdersFilterForm: typeOrdersFilterForm = {
-    assigneeId: null,
+    collectorId: null,
     storeId: null,
     courierId: null,
     status: null,

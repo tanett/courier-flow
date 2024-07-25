@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ActionIcon, Box, Flex, Input, Text,  useMantineTheme } from '@mantine/core';
+import { ActionIcon, Box, Flex, Input, Text, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { LockClosedIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -18,7 +18,6 @@ import { typeRetailProduct } from '../../../../entities/retail-products/model/ty
 import { useLazySearchRetailProductQuery } from '../../../../entities/retail-products/api/api';
 import { typeSearchFilterRetailProduct } from '../../../../entities/retail-products/api/types';
 import { typeProductInCart } from 'features/orders-create/types/types';
-
 
 
 export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) => {
@@ -234,7 +233,7 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
                     id: product.id,
                     createdAt: product.createdAt,
                     createdBy: product.createdBy,
-                    price:product.price,
+                    price: product.price,
                     merchantId: product.merchantId,
                     amount: '1',
                     storeId: product.store.id,
@@ -242,20 +241,23 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
                         name: product.product.name,
                         productCategoryId: product.product.productCategory?.id,
                         unit: product.product.unit,
-                        marked:product.product.marked,
+                        marked: product.product.marked,
                         vat: product.product.vat,
                         barcodes: product.product.barcodes,
-                        productAdditionalFields: product.product.productAdditionalFields.reduce((prev: Record<string, string>, cur)=> { prev[cur.type] = cur.value; return prev},{}) ,
-                        merchantId:product.product.merchantId
+                        productAdditionalFields: product.product.productAdditionalFields.reduce((prev: Record<string, string>, cur) => {
+                            prev[cur.type] = cur.value;
+                            return prev;
+                        }, {}),
+                        merchantId: product.product.merchantId
                     }
-                }
-                    form.insertListItem('products', newProductInCart);
+                };
+                form.insertListItem('products', newProductInCart);
+                form.clearFieldError('products');
             }
 
         }
 
     };
-
 
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
@@ -289,9 +291,9 @@ export const SelectorProducts: React.FC<typeSelectorForProducts> = ({ form, }) =
 
                                     return <Flex
                                         key={ item.id }
-                                        onClick={ isDisabled ? undefined : () =>  onProductClick(item) }
+                                        onClick={ isDisabled ? undefined : () => onProductClick(item) }
                                         className={ cn([ classes.listItem, isDisabled && classes.listItemDisabled ]) }>
-                                         <LockClosedIcon className={ isDisabled ? classes.checkIconVisible : classes.checkIconNotVisible }/>
+                                        <LockClosedIcon className={ isDisabled ? classes.checkIconVisible : classes.checkIconNotVisible }/>
                                         <Flex sx={ {
                                             gap: '10px',
                                             maxWidth: '80%',

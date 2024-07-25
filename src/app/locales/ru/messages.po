@@ -506,7 +506,7 @@ msgstr "Изменить статус на 'В обработке'"
 
 #: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:100
 msgid "Change status to “Waiting for delivery”"
-msgstr "зменить статус на 'Ожидает доставки'"
+msgstr "Изменить статус на 'Ожидает доставки'"
 
 #: src/features/products-list-buttons-panel/ui/products-list-buttons-panel.tsx:120
 msgid "Change vat"
@@ -1894,7 +1894,7 @@ msgstr "Поиск по общей стоимости"
 
 #: src/features/orders-list/ui/table/orders-table.tsx:69
 msgid "Search by client’s phone number, delivery address, order number or order amount"
-msgstr "Поиск по номеру телефона клиентаб адресу доставкиб номеру заказа или сумме заказа"
+msgstr "Поиск по номеру телефона клиента, адресу доставки, номеру заказа или сумме заказа"
 
 #: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:30
 msgid "Search by configuration name"

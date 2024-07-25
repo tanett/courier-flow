@@ -40,13 +40,13 @@ export const OrdersListFilter: React.FC = () => {
 
     useEffect(() => {
 
-        const assigneeId = urlParams.getFilterValue('assigneeId');
+        const collectorId = urlParams.getFilterValue('collectorId');
         const courierId = urlParams.getFilterValue('courierId');
         const store = urlParams.getFilterValue('storeId');
         const status = urlParams.getFilterValue('status');
         //const quickData = urlParams.getFilterValue('quickDataFilter');
 
-        if (assigneeId && typeof assigneeId === 'string') form.setValues({ assigneeId: assigneeId });
+        if (collectorId && typeof collectorId === 'string') form.setValues({ collectorId: collectorId });
         if (store && typeof store === 'string') form.setValues({ storeId: store });
         if (courierId && typeof courierId === 'string') form.setValues({ courierId: courierId });
         //if (quickData && typeof quickData === 'string') setQuickDataFilter(quickData as typeQuickFilter);
@@ -63,7 +63,7 @@ export const OrdersListFilter: React.FC = () => {
     const setFilterHandler = () => {
 
         const filterObj: Record<string, unknown> = {
-            assigneeId: form.values.assigneeId,
+            collectorId: form.values.collectorId,
             storeId: form.values.storeId,
             courierId: form.values.courierId,
             status: form.values.status,
@@ -107,13 +107,13 @@ export const OrdersListFilter: React.FC = () => {
                             fieldName={ 'storeId' }
                             initialValue={ form.values.storeId !== null ? form.values.storeId : null }
                             form={ form as unknown as typeReturnForm }/>
-                        <SelectorWithSearchUsers
-                            required={ false }
-                            label={i18n._(t`Assignee`) }
-                            fieldName={ 'assigneeId' }
-                            form={ form as unknown as typeReturnForm }
-                            initialValue={ form.values.assigneeId !== null ? form.values.assigneeId : null }
-                        />
+                        {/* <SelectorWithSearchUsers */}
+                        {/*     required={ false } */}
+                        {/*     label={i18n._(t`Assignee`) } */}
+                        {/*     fieldName={ 'assigneeId' } */}
+                        {/*     form={ form as unknown as typeReturnForm } */}
+                        {/*     initialValue={ form.values.collectorId !== null ? form.values.collectorId : null } */}
+                        {/* /> */}
                         <SelectorWithSearchUsers
                             required={ false }
                             label={i18n._(t`Courier`) }

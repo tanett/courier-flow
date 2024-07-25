@@ -129,7 +129,7 @@ export const ModalAddCourier: React.FC<{
                     } }>
                         <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                         <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                                type="submit">{ t`Change status` }</Button>
+                                type="submit">{ t`Assign courier` }</Button>
                     </Flex>
                 </Box>
                 { isLoading && <LoaderOverlay/> }

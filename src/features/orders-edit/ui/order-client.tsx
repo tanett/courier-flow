@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStyles } from 'features/orders-create/ui/styles';
-import { Flex, SimpleGrid, TextInput, Textarea, Popover, Box, Text, rem } from '@mantine/core';
+import { Flex, SimpleGrid, TextInput, Textarea, Popover, Box, Text, rem, Loader } from '@mantine/core';
 import { Trans } from '@lingui/macro';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 
@@ -24,17 +24,29 @@ export const OrderClient: React.FC<{ form:  typeReturnOrderForm }> = ({ form, })
 const {customers, isFetchingCustomers}=useGetCustomers(debounced)
 
     useEffect(() => {
+        if(customers && customers.length === 1 && customers[0].phone === form.values.customer.phone){
+            setCustomerTipsOpened(false);
+            return
+        }
         if(customers && customers.length>0){
             setCustomerTipsOpened(true);
         }
     }, [customers]);
 
 const onCustomerClickHandler = (customer: typeOrdersCustomer)=>{
-    form.setFieldValue('customer', { phone: customer.phone, email: customer.email, fullName: customer.fullName})
+    form.setFieldValue('customer', {
+        phone: customer.phone,
+        email: customer?.email || '',
+        fullName: customer.fullName
+    });
     form.setFieldValue('deliveryAddress', {
         address: customer.lastAddress,
-        additionalInfo: customer.lastAddressAdditionalInfo,
-    })
+        additionalInfo: customer?.lastAddressAdditionalInfo || '',
+    });
+    form.clearFieldError('customer.email')
+    form.clearFieldError('customer.fullName')
+    form.clearFieldError('deliveryAddress.address')
+    form.clearFieldError('deliveryAddress.additionalInfo')
     setCustomerTipsOpened(false);
 }
 
@@ -53,7 +65,8 @@ const onCustomerClickHandler = (customer: typeOrdersCustomer)=>{
                                  width="target"
                                  transitionProps={{ transition: 'pop' }}>
                             <Popover.Target>
-                                <div
+                                <Box
+                                    sx={ { position: 'relative' } }
                                     // onFocusCapture={() => setPopoverOpened(true)}
                                     // onBlurCapture={() => setPopoverOpened(false)}
                                 >
@@ -64,7 +77,12 @@ const onCustomerClickHandler = (customer: typeOrdersCustomer)=>{
                             onChange={(value: string) => form.setFieldValue('customer.phone', value)}
 
                         />
-                                </div>
+                                    <Box sx={ {
+                                        position: 'absolute',
+                                        right: 10,
+                                        bottom: 5
+                                    } }>{ isFetchingCustomers && <Loader size={ 16 }/> }</Box>
+                                </Box>
                                 </Popover.Target>
                             <Popover.Dropdown   className={classes.popoverCustomerTips} >
                                <Box p={0}>

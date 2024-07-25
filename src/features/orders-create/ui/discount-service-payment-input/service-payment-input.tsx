@@ -58,7 +58,7 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
                     </SimpleGrid> }
 
                 />
-
+<Input.Error>{form.errors.servicePayment}</Input.Error>
             </Input.Wrapper>
 
         </Flex>
