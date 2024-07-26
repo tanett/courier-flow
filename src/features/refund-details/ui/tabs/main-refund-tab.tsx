@@ -10,6 +10,8 @@ import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 import {typeRefund} from "../../../../entities/refunds/model/types";
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
+import { useIsAllowedPermissions } from '../../../../entities/users/hooks/use-is-allowed-permissions';
+import { readStoresPermissions, readTerminalPermissions, readUserPermissions } from 'app/config/permissions-config';
 
 
 export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFetching: boolean }> = ({
@@ -23,6 +25,9 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
 
     const navigate = useNavigate();
 
+    const isAllowedReadUsers = useIsAllowedPermissions(readUserPermissions);
+    const isAllowedReadStores = useIsAllowedPermissions(readStoresPermissions);
+    const isAllowedReadTerminals = useIsAllowedPermissions(readTerminalPermissions);
 
     return (
         <>
@@ -60,7 +65,9 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
                                    alignSelfStretch={ true }
                                    content={ refundData?.receiptNumber || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Employee name`) }
-                                   content={ (refundData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.users_details, {
+                                   content={ (refundData && <ButtonAsLink
+                                       disabled={!isAllowedReadUsers}
+                                       onClick={ () => navigate(generatePath(routerPaths.users_details, {
                                        id: refundData?.id,
                                        userName: refundData?.createdBy
                                    })) } label={ refundData.createdBy }/>) || '-' }/>
@@ -80,7 +87,9 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
                 ] }>
 
                     <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> }
-                                   content={ (refundData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.stores_details, {
+                                   content={ (refundData && <ButtonAsLink
+                                       disabled={!isAllowedReadStores}
+                                       onClick={ () => navigate(generatePath(routerPaths.stores_details, {
                                        id: refundData.storeId,
                                        storeName: refundData.storeName
                                    })) } label={ refundData.storeName }/>) || '-' } withBottomBorder={ false }
@@ -115,7 +124,9 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
 
                 <InfoCardSmall label={ i18n._(t`Terminal serial number`) }
                                alignSelfStretch={ true }
-                               content={ (refundData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.terminals_details, {
+                               content={ (refundData && <ButtonAsLink
+                                   disabled={!isAllowedReadTerminals}
+                                   onClick={ () => navigate(generatePath(routerPaths.terminals_details, {
                                    id: refundData?.terminalId,
                                    serialNumber: refundData?.terminalSerialNumber
                                })) } label={ refundData.terminalSerialNumber }/>) || '-' }/>

@@ -14,6 +14,7 @@ export type typeSelectorUsers = {
     disabled?: boolean,
     label?:string,
     storesFilters?: string[],
+    roleCodesFilters?: string[],
     currentUser?: string,
     markerForCurrentUser?: string
 }

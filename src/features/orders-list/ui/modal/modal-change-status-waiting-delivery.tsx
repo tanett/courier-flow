@@ -17,6 +17,7 @@ import { IconAlertCircle } from '@tabler/icons-react';
 import { useChangeOrderAddCourierMutation } from '../../../../entities/orders/api/api';
 import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { typeOrder } from '../../../../entities/orders/model/state-slice';
+import { courierCodeRole } from '../../../../entities/role/constants/roles-constants';
 
 export const ModalChangeStatusWaitingDelivery: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
@@ -120,6 +121,7 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                         form={ form as unknown as typeReturnForm }
                         initialValue={ data.courierId ? data.courierId : null }
                         storesFilters={[data.storeId]}
+                        roleCodesFilters={[courierCodeRole]}
                         // currentUser={currentUser?.actor.id}
                         // markerForCurrentUser={ i18n._(t`Assign to me`)}
                     />

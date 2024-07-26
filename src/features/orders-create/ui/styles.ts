@@ -101,6 +101,7 @@ export const useStyles = createStyles((theme) => ({
     popoverCustomerTips:{
         boxShadow: `0px 6px 15px 0px #322B2B1A`,
         maxHeight: rem(141),
+        overflow: 'auto',
         border: 'none',
         top: '80px',
         '& .mantine-Popover-dropdown':{ top: '80px',},

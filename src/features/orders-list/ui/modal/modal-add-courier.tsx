@@ -15,6 +15,7 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
 import { useChangeOrderAddCourierMutation } from '../../../../entities/orders/api/api';
 import { typeOrder } from '../../../../entities/orders/model/state-slice';
+import { courierCodeRole } from '../../../../entities/role/constants/roles-constants';
 
 export const ModalAddCourier: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>
@@ -113,6 +114,7 @@ export const ModalAddCourier: React.FC<{
                         form={ form as unknown as typeReturnForm }
                         initialValue={ data.courierId ? data.courierId : null }
                         storesFilters={[data.storeId]}
+                        roleCodesFilters={[courierCodeRole]}
                         // currentUser={currentUser?.actor.id}
                         // markerForCurrentUser={ i18n._(t`Assign to me`)}
                     />

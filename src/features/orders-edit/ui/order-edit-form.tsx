@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatchT, } from 'app/state';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { OrderClient } from './order-client';
 import { Button, Flex, Space, Tabs, } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from 'features/orders-create/ui/styles';
@@ -22,6 +21,7 @@ import { routerPaths } from 'app/config/router-paths';
 import { typeResponseError } from 'app/api/types';
 import { typeOrder } from '../../../entities/orders/model/state-slice';
 import { mapOrderedProductsToCart } from 'features/orders-edit/helpers/map-ordered-products-to-cart';
+import { OrderClient } from 'features/orders-create/ui/order-client';
 
 const enum TYPE_TABS {
     CLIENT = 'client',

@@ -15,6 +15,8 @@ import { useGetStoreByIdQuery } from '../../../../../entities/stores/api/api';
 import { useSearchUserQuery } from '../../../../../entities/users/api/api';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
+import { useIsAllowedPermissions } from '../../../../../entities/users/hooks/use-is-allowed-permissions';
+import { editOrdersPermissions, readStoresPermissions, readUserPermissions } from 'app/config/permissions-config';
 
 
 export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data, }) => {
@@ -47,6 +49,10 @@ export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data, }) =>
 
     const [ userCollector, setUserCollector ] = useState<typeUser | undefined>();
     const [ userCourier, setUserCourier ] = useState<typeUser | undefined>();
+
+    const isAllowedReadUsers = useIsAllowedPermissions(readUserPermissions);
+    const isAllowedReadStores = useIsAllowedPermissions(readStoresPermissions);
+
 
     useEffect(() => {
         if (users) {
@@ -111,13 +117,13 @@ export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data, }) =>
 
 
                 <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> }
-                               content={ (storeData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.stores_details, {
+                               content={ (storeData && <ButtonAsLink disabled={!isAllowedReadStores || true} onClick={ () => navigate(generatePath(routerPaths.stores_details, {
                                    id: storeData.id,
                                    storeName: storeData.name
                                })) } label={ storeData.name }/>) || '-' }
                 />
                 <InfoCardSmall label={ i18n._(t`Order created by`) }
-                               content={ (users && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.users_details, {
+                               content={ (users && <ButtonAsLink disabled={!isAllowedReadUsers} onClick={ () => navigate(generatePath(routerPaths.users_details, {
                                    id: users.content[0].id,
                                    userName: users.content[0].fullName
                                })) } label={ users.content[0].fullName }/>) || '-' }

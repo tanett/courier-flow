@@ -5,7 +5,7 @@ import { AsYouType, getExampleNumber } from 'libphonenumber-js';
 import examples from 'libphonenumber-js/examples.mobile.json';
 import { useSelectorT } from 'app/state';
 
-export const useGetCustomers = (phone: string) => {
+export const useGetCustomers = (phone: string, focused: boolean) => {
 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
 
@@ -37,8 +37,7 @@ export const useGetCustomers = (phone: string) => {
     }
 
     useEffect(() => {
-        if (phone.length > 6) {
-            console.log('phone.length > 6',phone.length > 6);
+        if (phone.length > 6 && focused) {
             const asYouType = new AsYouType();
             asYouType.input(phone);
             let parsedCountry = asYouType.getCountry();
@@ -52,10 +51,9 @@ export const useGetCustomers = (phone: string) => {
 
             const phoneNumber = getExampleNumber(parsedCountry!, examples);
             if (phone.length >= phoneNumber!.number?.length -2){
-                console.log('phone.length - 2 >= phoneNumber!.number?.length',phone.length - 2 >= phoneNumber!.number?.length);
                 getData(phone).then()
             }
-        }
+        } else {setCustomers(null)}
 
     }, [ phone ]);
 

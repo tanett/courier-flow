@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useStyles } from './styles';
 import { typeReturnOrderForm } from '../types/types';
-import { Flex, SimpleGrid, TextInput, Textarea, Popover, Box, Text, rem, Loader } from '@mantine/core';
+import { Flex, SimpleGrid, TextInput, Textarea, Popover, Box, Text, Loader } from '@mantine/core';
 import { Trans } from '@lingui/macro';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { useGetCustomers } from '../hooks/use-get-customers';
-import { useDebouncedValue } from '@mantine/hooks';
+import { useDebouncedValue, useFocusWithin } from '@mantine/hooks';
 import { typeOrdersCustomer } from '../../../entities/orders-customer/model/types';
 
 
@@ -16,24 +16,18 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
 
     const { classes } = useStyles();
 
-    const [ customerTipsOpened, setCustomerTipsOpened ] = useState(true);
+    const [ debounced ] = useDebouncedValue(form.values.customer.phone, 800,);
 
-    const [ debounced ] = useDebouncedValue(form.values.customer.phone, 800);
+    const {
+        ref,
+        focused
+    } = useFocusWithin();
 
     const {
         customers,
         isFetchingCustomers
-    } = useGetCustomers(debounced);
+    } = useGetCustomers(debounced, focused);
 
-    useEffect(() => {
-        if (customers && customers.length === 1 && customers[0].phone === form.values.customer.phone) {
-            setCustomerTipsOpened(false);
-            return;
-        }
-        if (customers && customers.length > 0) {
-            setCustomerTipsOpened(true);
-        }
-    }, [ customers ]);
 
     const onCustomerClickHandler = (customer: typeOrdersCustomer) => {
         form.setFieldValue('customer', {
@@ -49,7 +43,6 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
         form.clearFieldError('customer.fullName');
         form.clearFieldError('deliveryAddress.address');
         form.clearFieldError('deliveryAddress.additionalInfo');
-        setCustomerTipsOpened(false);
     };
 
     return (
@@ -60,51 +53,56 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                 <FieldsetForForm title={ <Trans>Contacts</Trans> }>
 
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        <Popover
-                            opened={ customerTipsOpened }
-                            position="top"
-                            offset={ { mainAxis: -20 } }
-                            width="target"
-                            transitionProps={ { transition: 'pop' } }>
-                            <Popover.Target>
-                                <Box
-                                    sx={ { position: 'relative' } }
-                                    // onFocusCapture={() => setPopoverOpened(true)}
-                                    // onBlurCapture={() => setPopoverOpened(false)}
-                                >
-                                    <PhoneInputWithCountrySelector
-                                        isRequired={ true }
-                                        { ...form.getInputProps('customer.phone') }
-                                        value={ form.values.customer.phone }
-                                        onChange={ (value: string) => form.setFieldValue('customer.phone', value) }
+                        <div ref={ ref }>
+                            <Popover
+                                opened={ focused && !!customers?.length  }
+                                defaultOpened={ false }
+                                position="top"
+                                offset={ { mainAxis: -20 } }
+                                width="target"
+                                transitionProps={ { transition: 'pop' } }>
+                                <Popover.Target>
+                                    <Box
+                                        sx={ {
+                                            position: 'relative',
+                                            maxWidth: 'fit-content',
+                                            minWidth: 'fit-content'
+                                        } }
+                                    >
+                                        <PhoneInputWithCountrySelector
+                                            isRequired={ true }
+                                            { ...form.getInputProps('customer.phone') }
+                                            value={ form.values.customer.phone }
+                                            onChange={ (value: string) => form.setFieldValue('customer.phone', value) }
 
-                                    />
-                                    <Box sx={ {
-                                        position: 'absolute',
-                                        right: 10,
-                                        bottom: 5
-                                    } }>{ isFetchingCustomers && <Loader size={ 16 }/> }</Box>
-                                </Box>
-                            </Popover.Target>
-                            <Popover.Dropdown className={ classes.popoverCustomerTips }>
-                                <Box p={ 0 }>
-                                    { customers && customers.map((customer, index) => (<Box
-                                        key={ index }
-                                        sx={ theme => ({
-                                            letterSpacing: 0.3,
-                                            padding: '5px 8px',
-                                            backgroundColor: 'white',
-                                            cursor: 'pointer',
-                                            '&:hover': { backgroundColor: theme.colors.gray[0], },
-                                        }) }
-                                        onClick={ () => onCustomerClickHandler(customer) }>
-                                        <Text size={ 'md' }>{ customer.phone }</Text>
-                                        <Text size={ 'sm' } c={ 'gray.5' } lh={ '14px' }>{ customer.fullName }</Text>
-                                    </Box>)) }
+                                        />
+                                        <Box sx={ {
+                                            position: 'absolute',
+                                            right: 10,
+                                            bottom: 5
+                                        } }>{ isFetchingCustomers && <Loader size={ 16 }/> }</Box>
+                                    </Box>
+                                </Popover.Target>
+                                <Popover.Dropdown className={ classes.popoverCustomerTips }>
+                                    <Box p={ 0 }>
+                                        { focused && customers && customers.map((customer, index) => (<Box
+                                            key={ index }
+                                            sx={ theme => ({
+                                                letterSpacing: 0.3,
+                                                padding: '5px 8px',
+                                                backgroundColor: 'white',
+                                                cursor: 'pointer',
+                                                '&:hover': { backgroundColor: theme.colors.gray[0], },
+                                            }) }
+                                            onClick={ () => onCustomerClickHandler(customer) }>
+                                            <Text size={ 'md' }>{ customer.phone }</Text>
+                                            <Text size={ 'sm' } c={ 'gray.5' } lh={ '14px' }>{ customer.fullName }</Text>
+                                        </Box>)) }
 
-                                </Box>
-                            </Popover.Dropdown>
-                        </Popover>
+                                    </Box>
+                                </Popover.Dropdown>
+                            </Popover>
+                        </div>
                         <TextInput
                             label={ <Trans>E-mail</Trans> }
                             { ...form.getInputProps('customer.email') }

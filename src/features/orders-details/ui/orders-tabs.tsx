@@ -15,7 +15,6 @@ import { getRefusedProducts } from 'features/orders-details/helpers/get-refused-
 import { OrdersDetailsRefusedProductsList } from 'features/orders-details/ui/orders-details-refused-products';
 import cn from 'classnames';
 import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../entities/orders/model/orders-statuses';
-import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
 import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 import { Modal } from 'shared/ui/modal';
@@ -24,6 +23,7 @@ import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier
 import { isOrderPossibleToEdit } from '../../../entities/orders/helpers/is-order-possible-to edit';
 import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
 import { editOrdersPermissions } from 'app/config/permissions-config';
+import { useChangeStatusProcessing } from 'features/orders-list/hooks/use-change-status-processing';
 
 
 const enum TYPE_TABS {
@@ -62,6 +62,8 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
 
     const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.orders_edit, { id: id }),);
 
+    const{onChangeStatusInProcessing}=useChangeStatusProcessing()
+
     const refusedProducts = getRefusedProducts(orderData.products);
 
     const [ popupContent, setPopupContent ] = useState<React.ReactNode | null>(null);
@@ -75,7 +77,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
         },
         {
             label: i18n._(t`In process`),
-            handler: () => setPopupContent(<ModalChangeStatusInProgress data={ orderData } setOpen={ setPopupContent }/>),
+            handler: () => onChangeStatusInProcessing(orderData),
             disabled: !isPossibleToEdit
         },
         {

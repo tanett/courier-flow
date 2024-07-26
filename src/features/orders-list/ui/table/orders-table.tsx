@@ -16,12 +16,12 @@ import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 import { OrdersListFilter } from 'features/orders-list-filter';
-import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
 import {  OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
 import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
 import { TdActionsOrders } from 'features/orders-list/ui/table/table-actions-for-orders/table-actions-orders';
 import { isOrderPossibleToEdit } from '../../../../entities/orders/helpers/is-order-possible-to edit';
+import { useChangeStatusProcessing } from 'features/orders-list/hooks/use-change-status-processing';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isAllowedEditByPermission,
@@ -65,7 +65,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
     };
 
-
+    const{onChangeStatusInProcessing}=useChangeStatusProcessing()
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by client’s phone number, delivery address, order number or order amount`) } }
@@ -109,7 +109,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                             // },
                             {
                                 label: i18n._(t`In process`),
-                                handler: () => setPopupContent(<ModalChangeStatusInProgress data={ item } setOpen={ setPopupContent } />),
+                                handler: () => onChangeStatusInProcessing(item),
                                 disabled:  !isPossible
                             },
                             {
