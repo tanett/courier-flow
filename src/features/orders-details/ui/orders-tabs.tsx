@@ -15,13 +15,15 @@ import { getRefusedProducts } from 'features/orders-details/helpers/get-refused-
 import { OrdersDetailsRefusedProductsList } from 'features/orders-details/ui/orders-details-refused-products';
 import cn from 'classnames';
 import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../entities/orders/model/orders-statuses';
-import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
 import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 import { Modal } from 'shared/ui/modal';
-import { useIsOrderAvailableForChange } from '../../../entities/orders/hooks/use-is-available-for-change';
 import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
 import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
+import { isOrderPossibleToEdit } from '../../../entities/orders/helpers/is-order-possible-to edit';
+import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
+import { editOrdersPermissions } from 'app/config/permissions-config';
+import { useChangeStatusProcessing } from 'features/orders-list/hooks/use-change-status-processing';
 
 
 const enum TYPE_TABS {
@@ -30,7 +32,10 @@ const enum TYPE_TABS {
     REFUSED_PRODUCTS = 'refused_products'
 }
 
-const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser:  typeGetCurrentUserResponse }> = ({ orderData, currentUser }) => {
+const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUserResponse }> = ({
+    orderData,
+    currentUser
+}) => {
 
     const { classes } = useStyles();
 
@@ -40,7 +45,9 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser:  typeGetCurrentU
 
     const { i18n } = useLingui();
 
-    const isPossibleToEdit = useIsOrderAvailableForChange(orderData, currentUser);
+    const isAllowedEditByPermission = useIsAllowedPermissions(editOrdersPermissions);
+
+    const isPossibleToEdit = isOrderPossibleToEdit(orderData, currentUser, isAllowedEditByPermission || false);
 
     const urlParams = useUrlParams();
 
@@ -55,6 +62,8 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser:  typeGetCurrentU
 
     const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.orders_edit, { id: id }),);
 
+    const{onChangeStatusInProcessing}=useChangeStatusProcessing()
+
     const refusedProducts = getRefusedProducts(orderData.products);
 
     const [ popupContent, setPopupContent ] = useState<React.ReactNode | null>(null);
@@ -63,27 +72,23 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser:  typeGetCurrentU
 
         {
             label: i18n._(t`Assign courier `),
-            handler: () => setPopupContent(<ModalAddCourier data={ orderData } setOpen={ setPopupContent }  />),
-            disabled:  orderData.status === OrderStatuses.CREATED  ? true: !isPossibleToEdit
+            handler: () => setPopupContent(<ModalAddCourier data={ orderData } setOpen={ setPopupContent }/>),
+            disabled: !isPossibleToEdit
         },
         {
-            label: i18n._(t`In process(change assignee)`),
-            handler: () => setPopupContent(<ModalChangeStatusInProgress data={ orderData } setOpen={ setPopupContent }/>),
-            disabled:  currentUser.actor.role.code === 'store-manager'
-                ?  !OrderStatusAvailableForEdit.includes(orderData.status as OrderStatuses)
-                : !isPossibleToEdit
+            label: i18n._(t`In process`),
+            handler: () => onChangeStatusInProcessing(orderData),
+            disabled: !isPossibleToEdit
         },
         {
             label: i18n._(t`Waiting for delivery`),
             handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ orderData } setOpen={ setPopupContent }/>),
-            disabled:  orderData.status === OrderStatuses.CREATED  ? true:  !isPossibleToEdit
+            disabled: !isPossibleToEdit
         },
         {
             label: i18n._(t`Cancelled`),
             handler: () => setPopupContent(<ModalCancelOrder data={ orderData } setOpen={ setPopupContent }/>),
-            disabled: currentUser.actor.role.code === 'store-manager'
-                ?  !OrderStatusAvailableForEdit.includes(orderData.status as OrderStatuses)
-                : !isPossibleToEdit,
+            disabled: !isPossibleToEdit,
             textColor: theme.colors.red[5]
         },
 
@@ -111,16 +116,16 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser:  typeGetCurrentU
                 { OrderStatusAvailableForEdit.includes(orderData.status as OrderStatuses) && <Flex align={ 'center' } justify={ 'center' } h={ 36 }>
                     { <Tooltip withArrow arrowSize={ 6 } radius="md" label={ i18n._(t`Go to editing page`) }>
                         <ActionIcon variant="subtle"
-                                    disabled={ !isPossibleToEdit}
+                                    disabled={ !isPossibleToEdit }
                                     onClick={ (e) => {
                                         e.stopPropagation();
                                         goToEditPage(orderData.id);
                                     } }>
-                            <PencilSquareIcon color={ isPossibleToEdit ? theme.colors.primary[5] : theme.colors.gray[5]} width={ 24 } height={ 24 }/>
+                            <PencilSquareIcon color={ isPossibleToEdit ? theme.colors.primary[5] : theme.colors.gray[5] } width={ 24 } height={ 24 }/>
                         </ActionIcon>
                     </Tooltip> }
                     <Box key="dots" className={ cn(classes.icon, classes.divider) }>
-                        <Menu trigger="hover" openDelay={ 100 } closeDelay={ 400 } position="bottom-end" offset={ 3 }>
+                        <Menu trigger="click" openDelay={ 100 } closeDelay={ 400 } position="bottom-end" offset={ 3 }>
                             <Menu.Target>
                                 <ActionIcon variant="subtle">
                                     <EllipsisVerticalIcon color={ theme.colors.gray[5] } width={ 22 }/>
@@ -135,7 +140,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser:  typeGetCurrentU
                                             key={ index }
                                             className={ classes.menuItem }
                                             disabled={ item.disabled }
-                                            sx={ { color: item.textColor ? item.textColor : undefined , } }
+                                            sx={ { color: item.textColor ? item.textColor : undefined, } }
                                             onClick={ (e) => {
 
                                                 e.stopPropagation();

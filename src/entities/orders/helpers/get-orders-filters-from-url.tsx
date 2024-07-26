@@ -12,8 +12,8 @@ export const getOrdersFiltersFromUrl = (urlParams: typeUseUrlParams) => {
     if (storeId && typeof storeId === 'string') tempFilter.storeIds = [ storeId ];
     const status = urlParams.getFilterValue('status');
     if (status && typeof status === 'string') tempFilter.statuses = [status as OrderStatuses];
-    const assigneeId = urlParams.getFilterValue('assigneeId');
-    if (assigneeId && typeof assigneeId === 'string') tempFilter.assigneeIds = [ assigneeId ];
+    const collectorId = urlParams.getFilterValue('collectorId');
+    if (collectorId && typeof collectorId === 'string') tempFilter.collectorIds = [ collectorId ];
     const courierId = urlParams.getFilterValue('courierId');
     if (courierId && typeof courierId === 'string') tempFilter.courierIds = [ courierId ];
     const createdById = urlParams.getFilterValue('createdById');

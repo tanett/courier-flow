@@ -10,7 +10,7 @@ export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): type
 
         if (form.values.isDiscountInPercent) {
             discountPercent = parseFloat((parseFloat(form.values.discount) / 100).toFixed(4));
-            discountAmount = parseFloat(((item.price * (+item.amount)) * discountPercent).toFixed(2) );
+            discountAmount = parseFloat(((item.price * (+item.amount)) * discountPercent).toFixed(2));
         } else {
             const costInCard = form.values.products.reduce((acc, current) => acc + current.price * (+current.amount), 0);
 
@@ -44,14 +44,19 @@ export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): type
     if (!form.values.isDiscountInPercent) {
         const differance = parseFloat(form.values.discount) - productsList.reduce((prev: number, curr) => prev + curr.discountAmount, 0);
 
-            if(differance<0){
-                const indexProductWithBigDiscount = productsList.findIndex(item=> item.discountAmount + differance >=0);
-                if(indexProductWithBigDiscount >= 0){
-                    productsList[indexProductWithBigDiscount].discountAmount = parseFloat((productsList[indexProductWithBigDiscount].discountAmount + differance).toFixed(2));
+        if (differance !== 0) {
+            let indexProductWithMaxCost = 0;
+            let maxCost = 0;
+            productsList.forEach((product, index) => {
+                if (product.totalCost > maxCost) {
+                    maxCost = product.totalCost;
+                    indexProductWithMaxCost = index;
                 }
-            } else {
-                productsList[0].discountAmount = parseFloat((productsList[0].discountAmount + differance).toFixed(2));
-            }
+            });
+
+            productsList[indexProductWithMaxCost].discountAmount = parseFloat((productsList[indexProductWithMaxCost].discountAmount + differance).toFixed(2));
+
+        }
 
     }
 

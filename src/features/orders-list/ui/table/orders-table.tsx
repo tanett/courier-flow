@@ -7,7 +7,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, Flex, rem, Text, Tooltip, useMantineTheme } from '@mantine/core';
-import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList, typeActionWithRequiredIcon } from 'shared/ui/table/ui/table-actions/types';
 import { typeOrdersListTable } from 'features/orders-list/types/types';
 import { OrdersListTableHeader } from 'features/orders-list/ui/table/orders-table-header';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
@@ -16,10 +16,12 @@ import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 import { OrdersListFilter } from 'features/orders-list-filter';
-import { ModalChangeStatusInProgress } from 'features/orders-list/ui/modal/modal-change-status-in-progress';
-import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
+import {  OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
 import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
 import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
+import { TdActionsOrders } from 'features/orders-list/ui/table/table-actions-for-orders/table-actions-orders';
+import { isOrderPossibleToEdit } from '../../../../entities/orders/helpers/is-order-possible-to edit';
+import { useChangeStatusProcessing } from 'features/orders-list/hooks/use-change-status-processing';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isAllowedEditByPermission,
@@ -63,7 +65,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
     };
 
-
+    const{onChangeStatusInProcessing}=useChangeStatusProcessing()
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by client’s phone number, delivery address, order number or order amount`) } }
@@ -84,63 +86,47 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                 <Table.Body>
                     { ordersList.length > 0 && currentUser && ordersList.map((item, index) => {
 
-                        const isPossibleToEdit = ()=>{
-                            if(isAllowedEditByPermission) {
-                                switch (item.status) {
-                                case OrderStatuses.CANCELLED:
-                                    return false;
-                                case OrderStatuses.COMPLETED:
-                                    return false;
-                                case OrderStatuses.DELIVERING:
-                                    return false;
-                                case OrderStatuses.WAITING_FOR_DELIVERY:
-                                    return item.assigneeId === currentUser.actor.id;
-                                case OrderStatuses.PROCESSING:
-                                    return item.assigneeId === currentUser.actor.id;
-                                case OrderStatuses.CREATED:
-                                    return item.createdBy === currentUser.actor.id;
-                                default:
-                                    return false;
-                                }
-                            } else { return false;}
-
-                        }
+                        const isPossible = isOrderPossibleToEdit(item, currentUser, isAllowedEditByPermission || false)
 
                         const actions: typeActionList | undefined = item.status !== OrderStatuses.CANCELLED ? [
                             {
                                 label: i18n._(t`Edit`),
                                 handler: () => goToEditPage(item.id),
-                                icon: <PencilSquareIcon color={!isPossibleToEdit() ?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
-                                disabled: !isPossibleToEdit(),
+                                icon: <PencilSquareIcon color={!isPossible ?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
+                                disabled: !isPossible,
                             },
                             {
                                 label: i18n._(t`Assign courier `),
                                 handler: () => setPopupContent(<ModalAddCourier data={ item } setOpen={ setPopupContent }  />),
-                                disabled:  item.status === OrderStatuses.CREATED  ? true:  !isPossibleToEdit()
+                                disabled:  !isPossible
 
-                            }, {
+                            },
+                            // {
+                            //     label: i18n._(t`Assign assignee `),
+                            //     handler: () => setPopupContent(<ModalChangeStatusInProgress data={ item } setOpen={ setPopupContent }  />),
+                            //     disabled:  !isPossible
+                            //
+                            // },
+                            {
                                 label: i18n._(t`In process`),
-                                handler: () => setPopupContent(<ModalChangeStatusInProgress data={ item } setOpen={ setPopupContent } />),
-                                disabled:  currentUser.actor.role.code === 'store-manager'
-                                    ?  !OrderStatusAvailableForEdit.includes(item.status as OrderStatuses)
-                                    : !isPossibleToEdit()
+                                handler: () => onChangeStatusInProcessing(item),
+                                disabled:  !isPossible
                             },
                             {
                                 label: i18n._(t`Waiting for delivery`),
                                 handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ item } setOpen={ setPopupContent } /> ),
-                                disabled:  item.status === OrderStatuses.CREATED  ? true: !isPossibleToEdit()
+                                disabled: !isPossible
                             },
                             {
                                 label: i18n._(t`Cancelled`),
                                 handler: () => setPopupContent(<ModalCancelOrder data={ item } setOpen={ setPopupContent }/>),
                                 textColor: theme.colors.red[5],
-                                disabled: currentUser.actor.role.code === 'store-manager'
-                                    ?  !OrderStatusAvailableForEdit.includes(item.status as OrderStatuses)
-                                    : !isPossibleToEdit(),
+                                disabled: !isPossible
                             },
 
                         ] : undefined;
 
+                        const finalActions: typeActionList | undefined = actions? [actions[0] as  typeActionWithRequiredIcon, ...actions.slice(1).filter(item=>!item.disabled)] : undefined
 
                         // actions.push({
                         //     label: i18n._(t`Archive`),
@@ -177,7 +163,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                         </Flex>
                                     </Flex>
                                 </Table.Td>
-                                <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={ item.assigneeName || 'Not assigned' }><Text truncate>{ item.assigneeName || '-' }</Text></Tooltip></Box></Table.Td>
+                                {/* <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={ item.assigneeName || 'Not assigned' }><Text truncate>{ item.assigneeName || '-' }</Text></Tooltip></Box></Table.Td> */}
                                 <Table.Td><Box sx={ { width: rem(170) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
 
                                 <Table.Td align={ 'center' }><Box sx={ { width: rem(110), } }>{ item.totalCost ? numberCurrencyFormat(item.totalCost) : '-' }</Box></Table.Td>
@@ -200,12 +186,12 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                 <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={ item.courierName || 'Not assigned' }><Text truncate>{ item.courierName || '-' }</Text></Tooltip></Box></Table.Td>
                                 <Table.Td><BadgeOrdersStatus statusCode={ item.status } key={ index + item.status }/></Table.Td>
 
-                                { (isAllowedEditByPermission && actions) ? <Table.TdActions actions={ actions } dividerIndex={ 1 }/> : <Table.Td/> }
+                                { (isAllowedEditByPermission && finalActions) ? <TdActionsOrders actions={ finalActions } dividerIndex={ 1 }/> : <Table.Td/> }
                             </Table.Tr>
                         );
 
                     }) }
-                    { ordersList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEditByPermission ? 9 : 8 }>
+                    { ordersList.length === 0 && <Table.EmptyRow columnCount={ isAllowedEditByPermission ? 8 : 7 }>
                         <Trans>The list is empty, try changing your filtering or search conditions and try again.</Trans>
                     </Table.EmptyRow> }
                 </Table.Body>

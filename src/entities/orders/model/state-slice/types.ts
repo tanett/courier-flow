@@ -10,7 +10,7 @@ export type typeOrder = {
     merchantId: string
     storeId: string
     status: string
-    assigneeId: string
+    collectorId: string
     courierId: string
     customer: typeOrderCustomer
     deliveryAddress: typeOrderDeliveryAddress
@@ -39,7 +39,7 @@ export type typeOrderProduct = {
     declinedQuantity?: number
     discountPercent?: number
     discountAmount?: number
-    totalCost?: number
+    totalCost: number
     vatPercent: number
     vatAmount: number
     additionalFields: Record<string, string>
@@ -91,9 +91,9 @@ export type typeEditOrder = {
 
 export type typeChangeOrderStatus = typeEditOrder & { status: OrderStatuses }
 
-export type typeAddAssigneeForOrder = typeEditOrder & { assigneeId: string }
+export type typeAddCollectorForOrder = typeEditOrder & { collectorId: string }
 
-export type typeAddCourierForOrder = typeEditOrder & { courierId: string, status?: OrderStatuses.WAITING_FOR_DELIVERY }
+export type typeAddCourierForOrder = typeEditOrder & { courierId: string , status?: OrderStatuses.WAITING_FOR_DELIVERY,}
 
 export type typeChangeOrderData = typeEditOrder
     & Pick<typeOrderCreate, 'customer' | 'deliveryAddress' | 'servicePaymentAmount' | 'servicePaymentPercent'>

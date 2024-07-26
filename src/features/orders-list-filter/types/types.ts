@@ -1,5 +1,5 @@
 export interface typeOrdersFilterForm {
-    assigneeId: string | null
+    collectorId: string | null
     storeId: string | null
     courierId: string | null
     status: string | null

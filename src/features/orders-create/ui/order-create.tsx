@@ -57,7 +57,6 @@ export const OrderCreate: React.FC = () => {
         const fieldWithErrors = Object.keys(form.errors);
 
         if (fieldWithErrors.length > 0) {
-
             const errorInClient = fieldsInTabClient.some((fieldName) => fieldWithErrors.includes(fieldName));
             const errorInProducts = fieldsInTabProduct.some((fieldName) => fieldWithErrors.includes(fieldName));
             if (errorInClient && tab !== TYPE_TABS.CLIENT) { setErrorInTab(TYPE_TABS.CLIENT);}
@@ -66,7 +65,7 @@ export const OrderCreate: React.FC = () => {
         } else {
             setErrorInTab(null)
         }
-    }, [ form.errors, tab ]);
+    }, [ form.errors, tab, ]);
 
     const onCancel = () => {
 

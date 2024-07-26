@@ -47,6 +47,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     disabled,
     label,
     storesFilters,
+    roleCodesFilters,
     currentUser,
     markerForCurrentUser
 
@@ -103,7 +104,8 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
         const requestData: typeSearchRequest<typeSearchFilterUsers, 'FULL_NAME'> = {
             filter: {
                 archived: false,
-                storeIds: storesFilters
+                storeIds: storesFilters,
+                roleCodes: roleCodesFilters
             },
             pagination: {
                 pageNumber: 0,
@@ -129,7 +131,8 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
                 filter: {
                     archived: false,
                     ids: [ initialValue ],
-                    storeIds: storesFilters
+                    storeIds: storesFilters,
+                    roleCodes: roleCodesFilters
                 },
                 pagination: {
                     pageNumber: 0,
@@ -158,7 +161,8 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
                     archived: false,
                     accessScopes: [ accessScope.merchant, accessScope.store ],
                     fullNameContains: searchValue,
-                    storeIds: storesFilters
+                    storeIds: storesFilters,
+                    roleCodes: roleCodesFilters
                 },
                 pagination: {
                     pageNumber: 0,

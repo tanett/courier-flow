@@ -1,15 +1,15 @@
-import { Table } from '../table-new/table';
+
 import React from 'react';
 import { typeTableActionsProps } from './types';
 import { ActionIcon, Box, Divider, Flex, Menu, Tooltip, useMantineTheme } from '@mantine/core';
 import { useStyles } from './styles';
 import cn from 'classnames';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import { Table } from 'shared/ui/table/ui/table-new/table';
 
 
-export const TdActions: React.FC<typeTableActionsProps> = ({
+export const TdActionsOrders: React.FC<typeTableActionsProps> = ({
     actions,
-    visibleCount,
     align,
     dividerIndex
 }) => {
@@ -18,37 +18,30 @@ export const TdActions: React.FC<typeTableActionsProps> = ({
 
     const theme = useMantineTheme();
 
-    const itemsCount = visibleCount && visibleCount > 1 && actions.length > 2 ? visibleCount : 1;
+    const isWithMenu = actions.length >  1;
 
-    const isWithMenu = actions.length > itemsCount + 1;
-
-    const visibleMenuArr = !isWithMenu ? actions : actions.slice(0, itemsCount);
-    const dropdownMenuArr = isWithMenu ? actions.slice(itemsCount - actions.length) : [];
+    const dropdownMenuArr = isWithMenu ? actions.slice(1) : [];
 
     return (
         <Table.Td align={ align }>
             <Flex className={ classes.actionsWrapper }>
-                { visibleMenuArr.map((item, index) => {
 
-                    return (
-                        <Box key={ index } className={ cn(classes.icon, { [classes.divider]: index !== 0 }) }>
-                            <Tooltip withArrow arrowSize={ 6 } radius="md" label={ item.label } disabled={item.disabled }>
+                        <Box key={ 0 } className={ cn(classes.icon,{ [classes.invisible]: actions[0].disabled  }) }>
+                            <Tooltip withArrow arrowSize={ 6 } radius="md" label={ actions[0].label } disabled={actions[0].disabled }>
                                 <ActionIcon variant="subtle"
-                                            disabled={ item.disabled }
+                                            disabled={ actions[0].disabled }
                                             onClick={ (e) => {
                                                 e.stopPropagation();
-                                                item.handler();
+                                                actions[0].handler();
 
                                             } }>
-                                    { item.icon }
+                                    { actions[0].icon }
                                 </ActionIcon>
                             </Tooltip>
                         </Box>
-                    );
 
-                })}
-                {isWithMenu && <Box key="dots" className={cn(classes.icon, classes.divider)}>
-                    <Menu trigger="hover" openDelay={100} closeDelay={400} position="bottom-end" offset={3}>
+                {isWithMenu && <Box key="dots" className={cn(classes.icon, { [classes.divider]: !actions[0].disabled  })}>
+                    <Menu trigger="click" openDelay={100} closeDelay={400} position="bottom-end" offset={3}>
                         <Menu.Target>
                             <ActionIcon variant="subtle" onClick={ (e) => {e.stopPropagation(); return }}>
                                 <EllipsisVerticalIcon color={ theme.colors.gray[5] } width={ 22 }/>

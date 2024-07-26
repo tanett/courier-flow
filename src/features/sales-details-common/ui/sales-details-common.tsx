@@ -12,6 +12,8 @@ import { routerPaths } from 'app/config/router-paths';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentType from 'shared/ui/payment-type/payment-type';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
+import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
+import { readStoresPermissions, readTerminalPermissions, readUserPermissions } from 'app/config/permissions-config';
 
 
 export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFetching: boolean }> = ({
@@ -24,6 +26,10 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
     const { i18n } = useLingui();
 
     const navigate = useNavigate();
+
+    const isAllowedReadUsers = useIsAllowedPermissions(readUserPermissions);
+    const isAllowedReadStores = useIsAllowedPermissions(readStoresPermissions);
+    const isAllowedReadTerminals = useIsAllowedPermissions(readTerminalPermissions);
 
     return (
         <>
@@ -62,7 +68,7 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                                    alignSelfStretch={ true }
                                    content={ saleData?.zreportNumber || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Employee name`) }
-                                   content={ (saleData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.users_details, {
+                                   content={ (saleData && <ButtonAsLink disabled={!isAllowedReadUsers} onClick={ () => navigate(generatePath(routerPaths.users_details, {
                                        id: saleData?.soldBy,
                                        userName: saleData?.soldByName
                                    })) } label={ saleData.soldByName }/>) || '-' }/>
@@ -82,7 +88,9 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                 ] }>
 
                     <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> }
-                                   content={ (saleData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.stores_details, {
+                                   content={ (saleData && <ButtonAsLink
+                                       disabled={!isAllowedReadStores}
+                                       onClick={ () => navigate(generatePath(routerPaths.stores_details, {
                                        id: saleData.storeId,
                                        storeName: saleData.storeName
                                    })) } label={ saleData.storeName }/>) || '-' } withBottomBorder={ false }
@@ -114,7 +122,9 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
 
                 <InfoCardSmall label={ i18n._(t`Terminal serial number`) }
                                alignSelfStretch={ true }
-                               content={ (saleData && <ButtonAsLink onClick={ () => navigate(generatePath(routerPaths.terminals_details, {
+                               content={ (saleData && <ButtonAsLink
+                                   disabled={!isAllowedReadTerminals}
+                                   onClick={ () => navigate(generatePath(routerPaths.terminals_details, {
                                    id: saleData?.terminalId,
                                    serialNumber: saleData?.terminalSerialNumber
                                })) } label={ saleData.terminalSerialNumber }/>) || '-' }/>

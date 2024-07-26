@@ -31,7 +31,9 @@ export const OrderEdit: React.FC = () => {
                         name: i18n._(t`Orders`),
                         path: routerPaths.orders_list
                     },
-                    { name: orderData?.code || '------' }
+                    { name: orderData?.code || '------' ,  path: routerPaths.orders_details.replace(':id', orderData?.id || '') },
+                    { name: i18n._(t`Edit`) },
+
                 ] }/> }
             />
 
