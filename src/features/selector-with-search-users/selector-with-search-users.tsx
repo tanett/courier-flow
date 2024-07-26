@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { typeSelectorUsers } from './types';
-import { Loader, Select } from '@mantine/core';
+import { Box, Flex, Loader, Select, Text } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { IconChevronDown } from '@tabler/icons-react';
 import { useDebouncedValue } from '@mantine/hooks';
@@ -12,12 +12,43 @@ import { typeSearchFilterUsers } from '../../entities/users/api/types';
 import { accessScope } from 'app/config/api-constants';
 
 
+interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
+    label: string;
+    markerText?: string;
+}
+
+const CustomSelectItem = forwardRef<HTMLDivElement, ItemProps>(
+    ({
+        label,
+        markerText,
+        ...others
+    }: ItemProps, ref) => (
+        <div ref={ ref } { ...others }>
+            <Flex gap={ 8 } align={ 'baseline' }>
+                <Text size="md">{ label }{ markerText && <Box component={ 'span' } sx={ theme => ({
+                    color: theme.colors.gray[4],
+                    fontSize: theme.fontSizes.md,
+                    marginLeft: '10px'
+                }) }>
+                    ({ markerText })
+                </Box> }</Text>
+
+            </Flex>
+
+        </div>
+    )
+);
+
 export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     form,
     fieldName,
     required,
     initialValue,
     disabled,
+    label,
+    storesFilters,
+    currentUser,
+    markerForCurrentUser
 
 }) => {
 
@@ -26,7 +57,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     const [ searchValue, onSearchChange ] = useState('');
     const [ debouncedSearchValue ] = useDebouncedValue(searchValue, 500);
 
-    const [ usersList, setUsersList ] = useState<{ value: string, label: string }[]>([]);
+    const [ usersList, setUsersList ] = useState<{ value: string, label: string, markerText?: string }[]>([]);
     const [ firstRequest, setFirstRequest ] = useState<{ value: string, label: string }[]>([]);
 
     const [ getUsers, { isFetching } ] = useLazySearchUserQuery();
@@ -36,11 +67,22 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
         try {
 
             const response = await getUsers(requestData).unwrap();
-            const mapResponse = response.content.map(item => ({
+
+            let mapResponse = response.content.map(item => ({
                 value: item.id,
                 label: item.fullName,
+                markerText: (markerForCurrentUser && item.id === currentUser) ? markerForCurrentUser : undefined
             }));
-            setUsersList(mapResponse)
+
+            if (markerForCurrentUser && currentUser) {
+
+                const currentUserIndex = mapResponse.findIndex(item => item.value === currentUser);
+                if (currentUserIndex >= 0) {
+                    mapResponse = [ mapResponse[currentUserIndex], ...mapResponse.filter(item => item.value !== currentUser) ];
+                }
+            }
+
+            setUsersList(mapResponse);
 
             if (isFirst) {
 
@@ -59,7 +101,10 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     useEffect(() => {
 
         const requestData: typeSearchRequest<typeSearchFilterUsers, 'FULL_NAME'> = {
-            filter: { archived: false },
+            filter: {
+                archived: false,
+                storeIds: storesFilters
+            },
             pagination: {
                 pageNumber: 0,
                 pageSize: 50,
@@ -84,6 +129,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
                 filter: {
                     archived: false,
                     ids: [ initialValue ],
+                    storeIds: storesFilters
                 },
                 pagination: {
                     pageNumber: 0,
@@ -112,6 +158,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
                     archived: false,
                     accessScopes: [ accessScope.merchant, accessScope.store ],
                     fullNameContains: searchValue,
+                    storeIds: storesFilters
                 },
                 pagination: {
                     pageNumber: 0,
@@ -142,18 +189,26 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
             clearable
             searchable
             limit={ 40 }
-            label={ t`Users` }
+            label={ label || t`Users` }
             placeholder={ t`Type user name and select` }
             data={ usersList }
             searchValue={ searchValue }
             onSearchChange={ (query) => onSearchChange(query) }
             nothingFound={ t`User not found` }
+            itemComponent={ CustomSelectItem }
             { ...form.getInputProps(fieldName) }
             maxLength={ 20 }
             disabled={ disabled }
+
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isFetching ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
+            rightSection={ isFetching ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
+            styles={ {
+                rightSection: {
+                    pointerEvents: 'none',
+                    pointer: 'pointer',
+                },
+            } }
             sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
         />
     );

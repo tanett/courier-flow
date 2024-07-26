@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, Space, useMantineTheme, Text, Loader } from '@mantine/core';
+import { Box, SimpleGrid, Space, useMantineTheme, Loader } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BuildingStorefrontIcon, MapPinIcon, UserIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import dayjs from 'dayjs';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
@@ -14,10 +13,10 @@ import { useLazyGetUserByIdQuery } from '../../../../../entities/users/api/api';
 import { useLazyGetTerminalByIdQuery } from '../../../../../entities/terminals/api/api';
 import { useLazyGetStoreByIdQuery } from '../../../../../entities/stores/api/api';
 import { typeStore } from '../../../../../entities/stores/model/types';
-import { typeTerminal } from '../../../../../entities/terminals/model/types';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
 import { typeCredit } from '../../../../../entities/credits/model/types';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined, isFetching: boolean }> = ({
@@ -36,13 +35,11 @@ export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined
     const [ getStoreData, { isFetching: isTStoreFetching } ] = useLazyGetStoreByIdQuery();
 
     const [ store, setStore ] = useState<typeStore | null>(null);
-    const [ terminal, setTerminal ] = useState<typeTerminal | null>(null);
     const [ user, setUser ] = useState<typeUser | null>(null);
 
     useEffect(() => {
         if (creditData) {getUserData(creditData.createdOnTerminalBy).unwrap().then(res => setUser(res)).catch(e => console.error(e));
             getStoreData(creditData.storeId).unwrap().then(res => setStore(res)).catch(e => console.error(e));
-            getTerminalData(creditData.terminalId).unwrap().then(res => setTerminal(res)).catch(e => console.error(e));
 
         }
     }, [ creditData ]);
@@ -90,7 +87,7 @@ export const CreditsDetailsCommon: React.FC<{ creditData: typeCredit | undefined
                         ] }>
                         <InfoCardSmall label={ i18n._(t`Date & time`) }
                                        alignSelfStretch={ true }
-                                       content={ creditData ? <Text>{ dayjs(creditData.createdOnTerminalAt).format('DD.MM.YYYY') }, { dayjs(creditData.createdOnTerminalAt).format('HH:mm:ss') }</Text> : '-' }/>
+                                       content={ creditData ? <DateTimeInLine date={ creditData.createdOnTerminalAt} fontSizeDate={'16px'} fontSizeTime={'16px'} colorTimeGray={false}/>: '-' }/>
 
                         <InfoCardSmall label={ i18n._(t`Terminal serial number`) }
                                        alignSelfStretch={ true }

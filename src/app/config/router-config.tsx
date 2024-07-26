@@ -32,12 +32,12 @@ import {
     addUserPermissions, editCategoryPermissions,
     editLimitedStoresPermissions, editProductsPermissions, editTerminalConfigurationsPermissions,
     editUserPermissions, readAdvancesPermissions,
-    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
+    readCashDesksPermissions, readCategoryPermissions, readCreditsPermissions, readWorkingShiftsPermissions,
     readOrdersPermissions,
     readProductsPermissions, readRefundsPermissions, readRolesPermissions, readSalesPermissions,
     readStoresPermissions, readTerminalConfigurationsPermissions,
     readTerminalPermissions,
-    readUserPermissions, readZReportsPermissions
+    readUserPermissions, readZReportsPermissions, editOrdersPermissions, addOrdersPermissions
 } from 'app/config/permissions-config';
 import { LazyProductsCreatePage } from 'pages/products-create-page';
 import { LazyCategoriesPage } from 'pages/categories-page';
@@ -55,7 +55,7 @@ import { LazyZReportsDetailsPage } from 'pages/z-reports-details-page';
 import { LazyAdvancesPage } from 'pages/advances-page';
 import { LazyCreditsPage } from 'pages/credits-page';
 import { LazyTerminalConfigurationPage } from 'pages/terminal-configurations-page';
-import { LazyHandoverRecordsPage } from 'pages/handover-records-page';
+import { LazyWorkingShiftsPage } from 'pages/working-shifts-page';
 import { LazyTerminalConfigurationCreatePage } from 'pages/terminal-configurations-create-page';
 import { LazyTerminalConfigurationEditPage } from 'pages/terminal-configurations-edit-page';
 import { LazyTerminalConfigurationsDetailsPage } from 'pages/terminal-configurations-details-page';
@@ -63,6 +63,11 @@ import { LazyStoresUsersEditPage } from 'pages/stores-users-edit-page';
 import { LazyAdvancesDetailsPage } from 'pages/advances-details-page';
 import { LazyAdvancesSoldProductDetailsPage } from 'pages/advances-sold-product-details-page';
 import { LazyCreditsDetailsPage } from 'pages/credits-details-page';
+import { LazyWorkingShiftsDetailsPage } from 'pages/working-shifts-details-page';
+import { LazyOrdersCreatePage } from 'pages/orders-create-page';
+import { LazyOrdersDetailsPage } from 'pages/orders-details-page';
+import { LazyOrdersEditPage } from 'pages/orders-edit-page';
+
 
 export const router = createBrowserRouter([
 
@@ -248,12 +253,29 @@ export const router = createBrowserRouter([
                 element: <WithPermissionsRouts permissions={readTerminalConfigurationsPermissions}><LazyTerminalConfigurationsDetailsPage/></WithPermissionsRouts>,
             },
             {
-                path: routerPaths.handover_records,
-                element: <WithPermissionsRouts permissions={readHandoverRecordsPermissions}><LazyHandoverRecordsPage/></WithPermissionsRouts>,
+                path: routerPaths.working_shifts,
+                element: <WithPermissionsRouts permissions={readWorkingShiftsPermissions}><LazyWorkingShiftsPage/></WithPermissionsRouts>,
             },
             {
-                path: routerPaths.orders,
+                path: routerPaths.working_shifts_details,
+                element: <WithPermissionsRouts permissions={readWorkingShiftsPermissions}><LazyWorkingShiftsDetailsPage/></WithPermissionsRouts>,
+            },
+
+            {
+                path: routerPaths.orders_list,
                 element: <WithPermissionsRouts permissions={readOrdersPermissions}><LazyOrdersPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.orders_create,
+                element: <WithPermissionsRouts permissions={addOrdersPermissions}><LazyOrdersCreatePage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.orders_edit,
+                element: <WithPermissionsRouts permissions={editOrdersPermissions}><LazyOrdersEditPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.orders_details,
+                element: <WithPermissionsRouts permissions={readOrdersPermissions}><LazyOrdersDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.users,

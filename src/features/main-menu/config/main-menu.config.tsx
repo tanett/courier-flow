@@ -23,7 +23,7 @@ import {
 } from '@heroicons/react/24/solid';
 import {
     readAdvancesPermissions,
-    readCategoryPermissions, readCreditsPermissions, readHandoverRecordsPermissions,
+    readCategoryPermissions, readCreditsPermissions, readWorkingShiftsPermissions,
     readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
@@ -132,10 +132,10 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
                 allowPermissions: readTerminalConfigurationsPermissions,
             },
             {
-                id: pathNames.handover_records,
+                id: pathNames.working_shifts,
                 name: <Trans>Handover records</Trans>,
-                path: routerPaths.handover_records,
-                allowPermissions: readHandoverRecordsPermissions,
+                path: routerPaths.working_shifts,
+                allowPermissions: readWorkingShiftsPermissions,
             },
         ]
     },
@@ -146,6 +146,20 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         activeIcon: <TruckIconSolid/>,
         path: routerPaths.orders,
         allowPermissions: readOrdersPermissions,
+        children: [
+            {
+                id: pathNames.orders_list,
+                name: <Trans>Orders list</Trans>,
+                path: routerPaths.orders_list,
+                allowPermissions: readOrdersPermissions,
+            },
+            {
+                id: pathNames.orders_clients,
+                name: <Trans>Clients</Trans>,
+                path: routerPaths.orders_clients,
+                allowPermissions: readOrdersPermissions,
+            },
+        ]
     },
     /* {
         id: pathNames.supportCenters,

@@ -16,6 +16,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
 import dayjs from 'dayjs';
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
 
 export const CreditsListFilter: React.FC = () => {
 
@@ -59,7 +60,7 @@ export const CreditsListFilter: React.FC = () => {
             storeId: form.values.storeId,
             // terminalId: form.values.terminalId,
             createdOnTerminalAtFrom: form.values.createdOnTerminalAt[0] ? (form.values.createdOnTerminalAt[0]).toISOString() : null,
-            createdOnTerminalAtTo: form.values.createdOnTerminalAt[1] ? (form.values.createdOnTerminalAt[1]).toISOString() : null,
+            createdOnTerminalAtTo: form.values.createdOnTerminalAt[1] ? dayjs(form.values.createdOnTerminalAt[1]).set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString() : null,
             quickDataFilter: quickDataFilter
         };
 
@@ -85,52 +86,6 @@ export const CreditsListFilter: React.FC = () => {
     };
 
     const [ quickDataFilter, setQuickDataFilter ] = useState<typeQuickFilter>(null);
-
-    useEffect(() => {
-        if (quickDataFilter) {
-
-            if (quickDataFilter === 'yesterday') {
-
-                const dateNow = dayjs();
-                const To = dateNow.subtract(1, 'day').set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
-                const From = dateNow.subtract(1, 'day').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                form.setValues({ createdOnTerminalAt: [ new Date(From), new Date(To) ] });
-            }
-            if (quickDataFilter === 'today') {
-                const dateNow = dayjs();
-                const From = dateNow.set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                const To = dateNow.set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
-                form.setValues({ createdOnTerminalAt: [ new Date(From), new Date(To) ] });
-            }
-            if (quickDataFilter === 'last month') {
-                const dateNow = dayjs();
-                const To = dateNow.toISOString();
-                const From = dateNow.subtract(1, 'month').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                form.setValues({ createdOnTerminalAt: [ new Date(From), new Date(To) ] });
-            }
-            if (quickDataFilter === 'last week') {
-                const dateNow = dayjs();
-                const To = dateNow.toISOString();
-                const From = dateNow.subtract(1, 'week').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                form.setValues({ createdOnTerminalAt: [ new Date(From), new Date(To) ] });
-            }
-
-        }
-    }, [ quickDataFilter ]);
-
-    const onChangeQuickDataFilterHandler = (newValue: null | boolean | number | string) => {
-
-        if (quickDataFilter === newValue) {
-
-            setQuickDataFilter(null);
-
-        } else {
-
-            setQuickDataFilter(newValue as typeQuickFilter);
-
-        }
-
-    };
 
     const onChangeStateCreditHandler = (newValue: null | boolean | number | string) => {
 
@@ -188,53 +143,13 @@ export const CreditsListFilter: React.FC = () => {
                         {/*     initialValue={ form.values.terminalId !== null ? form.values.terminalId : null } */}
                         {/*     form={ form as unknown as typeReturnForm }/> */}
 
+                        <DateSelectorComponent
+                            label={ i18n._(t`Date`) }
+                            fieldName={ 'createdOnTerminalAt' }
+                            form={ form as unknown as typeReturnForm }
+                            quickDataFilter={ quickDataFilter }
+                            setQuickDataFilter={ setQuickDataFilter }/>
 
-                        <DatesProviderWithLocale>
-                            <DatePickerInput
-                                type="range"
-                                clearable
-                                valueFormat="DD MMMM YYYY"
-                                label={ i18n._(t`Date`) }
-                                { ...{placeholder:i18n._(t`dd.mm.yyyy - dd.mm.yyyy`)} }
-                                { ...form.getInputProps('createdOnTerminalAt') }
-                                minDate={ new Date('2020-01-01') }
-                                maxDate={ new Date() }
-                                sx={ { '& .mantine-DatePickerInput-placeholder': { color: theme.colors.gray[3] } } }
-                                rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
-                                styles={ {
-                                    rightSection: {
-                                        pointerEvents: 'none',
-                                        pointer: 'pointer',
-                                    },
-                                } }
-                            />
-                        </DatesProviderWithLocale>
-
-                        <FilterButtonPanel
-
-                            value={ quickDataFilter }
-                            onChange={ onChangeQuickDataFilterHandler }
-                            data={ [ {
-                                value: 'today',
-                                label: i18n._(t`Today`),
-                            }, {
-                                value: 'last week',
-                                label: i18n._(t`Last week`),
-                            }
-                            ] }
-                        />
-                        <FilterButtonPanel
-
-                            value={ quickDataFilter }
-                            onChange={ onChangeQuickDataFilterHandler }
-                            data={ [  {
-                                value: 'yesterday',
-                                label: i18n._(t`Yesterday`),
-                            }, {
-                                value: 'last month',
-                                label: i18n._(t`Last month`),
-                            } ] }
-                        />
                     </Flex>
                     <FilterButtonsBar onReset={ onReset }/>
                 </form>

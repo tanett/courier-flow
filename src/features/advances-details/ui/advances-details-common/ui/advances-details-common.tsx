@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, Space, useMantineTheme, Text, Loader } from '@mantine/core';
+import { Box, SimpleGrid, Space, useMantineTheme, Loader } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BuildingStorefrontIcon, MapPinIcon, UserIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import dayjs from 'dayjs';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
@@ -17,6 +16,7 @@ import { useLazyGetStoreByIdQuery } from '../../../../../entities/stores/api/api
 import { typeStore } from '../../../../../entities/stores/model/types';
 import { typeTerminal } from '../../../../../entities/terminals/model/types';
 import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const AdvancesDetailsCommon: React.FC<{ advanceData: typeAdvance | undefined, isFetching: boolean }> = ({
@@ -75,7 +75,7 @@ export const AdvancesDetailsCommon: React.FC<{ advanceData: typeAdvance | undefi
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Date & time`) }
                                    alignSelfStretch={ true }
-                                   content={ advanceData ? <Text>{ dayjs(advanceData.createdOnTerminalAt).format('DD.MM.YYYY') }, { dayjs(advanceData.createdOnTerminalAt).format('HH:mm:ss') }</Text> : '-' }/>
+                                   content={ advanceData?.createdOnTerminalAt? <DateTimeInLine date={ advanceData.createdOnTerminalAt } fontSizeDate={'16px'} fontSizeTime={'16px'} colorTimeGray={false}/>: '-'  }/>
                     <InfoCardSmall label={ i18n._(t`Store name`) }
                                    iconLabel={ <BuildingStorefrontIcon/> }
                                    alignSelfStretch={ true }

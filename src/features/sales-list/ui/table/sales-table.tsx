@@ -4,19 +4,19 @@ import { useLingui } from '@lingui/react';
 import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
-import { Box, Checkbox, rem, useMantineTheme, Text, Flex } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { Box, Checkbox, rem, useMantineTheme, Text } from '@mantine/core';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { typeSalesListTable } from 'features/sales-list/types/types';
 import { SalesListTableHeader } from 'features/sales-list/ui/table/sales-table-header';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import dayjs from 'dayjs';
 import PaymentsList from 'shared/ui/payments/payments-list';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { SalesListFilter } from 'features/sales-list-filter';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 export const SalesListTable: React.FC<typeSalesListTable> = ({
     salesList,
@@ -82,7 +82,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                 <Table.Body>
                     { salesList.length > 0 && salesList.map((item, index) => {
 
-                        const actions: typeAction[] = [
+                        const actions: typeActionList = [
                             {
                                 label: i18n._(t`Receipt`),
                                 handler: () => onOpenReceipt(item.id),
@@ -90,19 +90,6 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                             },
 
                         ];
-                        const data = (date: string) => {
-                            const dateStr = dayjs(date).format('DD.MM.YYYY');
-                            const timeStr = dayjs(date).format('HH:mm:ss');
-                            return (<Flex gap={10} align={'center'}>
-                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr },</Text>
-                                <Text sx={ {
-                                    color: theme.colors.gray[5],
-                                    fontWeight: 400,
-                                    lineHeight: rem(16)
-                                } }>{ timeStr }</Text>
-
-                            </Flex>);
-                        };
 
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsSalePage(item.id, item.publicId) }>
@@ -114,10 +101,10 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
                                               onChange={ (event) => onCheckedItemHandler(event, index) }/>
 
                                 </td>
-                                <Table.Td><Box sx={ { minWidth: rem(155) } }>{ data(item.createdAt) }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(155) } }><DateTimeInLine date={ item.createdAt} fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(65) } }>{ item.receiptNumber }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.soldByName }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(120),wordBreak: 'break-all',maxWidth: rem(170)  } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(120),wordBreak: 'break-all',maxWidth: rem(170)  } }><Text truncate>{ item.soldByName }</Text></Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.totalCost) }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item }/></Box></Table.Td>
                                 <Table.Td><Box sx={ {

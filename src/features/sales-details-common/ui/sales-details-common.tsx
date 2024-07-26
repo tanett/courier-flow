@@ -1,17 +1,17 @@
 import React from 'react';
-import { Box, SimpleGrid, Space, useMantineTheme, Text } from '@mantine/core';
+import { Box, SimpleGrid, Space, useMantineTheme } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BuildingStorefrontIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { typeSale } from '../../../entities/sales/model/types';
-import dayjs from 'dayjs';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import PaymentType from 'shared/ui/payment-type/payment-type';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 
 export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFetching: boolean }> = ({
@@ -54,7 +54,7 @@ export const SalesDetailsCommon: React.FC<{ saleData: typeSale | undefined, isFe
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Date & time`) }
                                    alignSelfStretch={ true }
-                                   content={ saleData ? <Text>{ dayjs(saleData.soldAt).format('DD.MM.YYYY') }, { dayjs(saleData.soldAt).format('HH:mm:ss') }</Text> : '-' }/>
+                                   content={ saleData ? <DateTimeInLine date={ saleData.createdAt} fontSizeTime={'14px'} colorTimeGray={false}/> : '-' }/>
                     <InfoCardSmall label={ i18n._(t`Receipt number`) }
                                    alignSelfStretch={ true }
                                    content={ saleData?.receiptNumber || '-' }/>

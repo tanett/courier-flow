@@ -5,14 +5,14 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, rem, useMantineTheme, Text, Flex } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { FilterPanel } from 'shared/ui/filter-panel';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import dayjs from 'dayjs';
 import PaymentsList from 'shared/ui/payments/payments-list';
 import { ReceiptIcon } from 'shared/images/icons/receipt';
 import { typeAdvancesListTable } from 'features/advances-list/types/types';
 import { AdvancesListFilter } from 'features/advances-list-filter';
+import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 
 export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
     advancesList,
@@ -81,7 +81,7 @@ export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
                 <Table.Body>
                     { advancesList.length > 0 && advancesList.map((item,) => {
 
-                        const actions: typeAction[] = [
+                        const actions: typeActionList = [
                             {
                                 label: i18n._(t`Receipt`),
                                 handler: () => onOpenReceipt(item.id),
@@ -89,28 +89,15 @@ export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
                             },
 
                         ];
-                        const data = (date: string) => {
-                            const dateStr = dayjs(date).format('DD.MM.YYYY');
-                            const timeStr = dayjs(date).format('HH:mm:ss');
-                            return (<Flex gap={ 10 } align={ 'center' }>
-                                <Text sx={ { lineHeight: rem(20) } }>{ dateStr },</Text>
-                                <Text sx={ {
-                                    color: theme.colors.gray[5],
-                                    fontWeight: 400,
-                                    lineHeight: rem(16)
-                                } }>{ timeStr }</Text>
-
-                            </Flex>);
-                        };
 
                         return (
                             <Table.Tr key={ item.id } handler={ () => goToDetailsPage(item.id) }>
                                 <Table.Td><Box sx={ {
-                                    minWidth: rem(130),
+                                    minWidth: rem(70),
                                     maxWidth: rem(130)
-                                } }>{ data(item.createdAt) }</Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
-                                <Table.Td><Box sx={ { minWidth: rem(170) } }>{ item.createdOnTerminalByName }</Box></Table.Td>
+                                } }>{ item.createdAt? <DateTimeInLine date={ item.createdAt } fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/>: '-' }</Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)  } }><Text truncate>{ item.storeName }</Text></Box></Table.Td>
+                                <Table.Td><Box sx={ { minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)  } }>{ item.createdOnTerminalByName }</Box></Table.Td>
                                 <Table.Td align={ 'center' }><Flex justify={ 'center' } sx={ { maxWidth: rem(132) } }>{ item.productsCount }</Flex></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }>{ numberCurrencyFormat(item.totalCost) }</Box></Table.Td>
                                 <Table.Td><Box sx={ { minWidth: rem(110) } }><PaymentsList sale={ item }/></Box></Table.Td>

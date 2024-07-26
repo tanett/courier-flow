@@ -6,7 +6,7 @@ import { Table } from '../../../shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { Box, Flex, rem, useMantineTheme } from '@mantine/core';
-import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
+import { typeActionList } from '../../../shared/ui/table/ui/table-actions/types';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { typeStoresListTable } from 'features/stores-list/types/types';
 import { StoresListFilter } from 'features/stores-list-filter';
@@ -40,16 +40,20 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
-                            <Flex justify="space-between" gap={10} sx={{width: '100%'}}>
+                            <Flex justify="space-between" gap={10} sx={{width: '100%', minWidth: rem(250)}}>
                                 <Trans id={'item-name'}>Name</Trans>
                                 <SortButton/>
                             </Flex>
                         </Table.Th>
                         <Table.Th>
-                            <Trans>Address</Trans>
+                            <Box sx={{minWidth: rem(250)}}>
+                            <Trans>Address</Trans></Box>
                         </Table.Th>
                         <Table.Th>
-                            <Trans>Phone number</Trans>
+                            <Box sx={{ lineHeight: '16px', width: rem(160) }}>
+                                <Trans>Phone number</Trans>
+                            </Box>
+
                         </Table.Th>
 
                         <Table.Th align={'center'}>
@@ -63,7 +67,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                     <Table.Body>
                         { storesList.length > 0 && storesList.map(item => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditStorePage(item.id),

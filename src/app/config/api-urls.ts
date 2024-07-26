@@ -98,6 +98,18 @@ export enum API_URLS {
     CREDITS_SEARCH_EXTENDED = '/api/v1/credits/extended-search',
     CREDITS_GET = '/api/v1/credits/{id}',
 
+    WORKING_SHIFTS_SEARCH = '/api/v1/working-shifts/search',
+    WORKING_SHIFTS_GET= '/api/v1/working-shifts/{id}',
+
+    ORDERS_SEARCH = '/api/v1/orders/search/short',
+    ORDERS_SEARCH_EXTENDED = '/api/v1/orders/extended-search',
+    ORDERS_PATCH= '/api/v1/orders',
+    ORDERS_CREATE= '/api/v1/orders',
+    ORDERS_GET = '/api/v1/orders/{id}',
+    ORDERS_GET_STATUSES_LIST = '/api/v1/orders/statuses',
+
+    ORDERS_CUSTOMER_SEARCH = '/api/v1/customers/search',
+
     Z_REPORTS_SEARCH = '/api/v1/z-reports/search',
     Z_REPORTS_GET = '/api/v1/z-reports/{id}',
 

@@ -8,11 +8,11 @@ import { t } from '@lingui/macro';
 import { FilterButtonsBar, FilterFormWrapper, DrawerContext } from '../../../shared/ui/filter-panel';
 import { queryParamsNames } from '../../../app/config/api-constants';
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
-import { DatePickerInput } from '@mantine/dates';
-import { DatesProviderWithLocale } from '../../../shared/providers/dates-provider-with-locale/dates-provider-with-locale';
 import { storeTypeList } from '../../../entities/stores/constants/store-type-list';
 import { IconChevronDown } from '@tabler/icons-react';
-import { CalendarDaysIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
+import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 
 export const StoresListFilter: React.FC = () => {
@@ -41,7 +41,7 @@ export const StoresListFilter: React.FC = () => {
         const filterObj: Record<string, unknown> = {
             type: form.values.type,
             createdAtFrom: form.values.createdAt[0] ? (form.values.createdAt[0]).toISOString() : null,
-            createdAtTo: form.values.createdAt[1] ? (form.values.createdAt[1]).toISOString() : null,
+            createdAtTo: form.values.createdAt[1] ? dayjs(form.values.createdAt[1]).set('h',23).set('m',59).set('s',59).set('ms',999).toISOString() : null,
         };
 
         urlParams.setSearchParams({
@@ -81,27 +81,12 @@ export const StoresListFilter: React.FC = () => {
                     } }
                     sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
                 />
-                <DatesProviderWithLocale>
-                    <DatePickerInput
-                        type="range"
-                        clearable
-                        valueFormat="DD MMMM YYYY"
-                        label={ i18n._(t`Creation date`) }
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
-                        { ...{placeholder:i18n._(t`dd.mm.yyyy - dd.mm.yyyy`)} }
-                        { ...form.getInputProps('createdAt') }
-                        minDate={ new Date('2020-01-01') }
-                        maxDate={ new Date() }
-                        rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
-                        styles={ {
-                            rightSection: {
-                                pointerEvents: 'none',
-                                pointer: 'pointer',
-                            },
-                        } }
-                    />
-                </DatesProviderWithLocale>
+                <DateSelectorComponent
+                    label={ i18n._(t`Creation date`) }
+                    fieldName={ 'createdAt' }
+                    form={ form as unknown as typeReturnForm }
+                   />
+
 
                 <FilterButtonsBar onReset={ onReset }/>
             </form>

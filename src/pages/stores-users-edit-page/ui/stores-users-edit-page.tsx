@@ -23,7 +23,7 @@ const StoresUsersEditPage: React.FC = () => {
                 leftSide={ <DashboardBreadcrumbs dataList={ [
                     { name: i18n._(t`Stores`), path: routerPaths.stores },
                     { name: storeName || '---', path: generatePath(routerPaths.stores_details, {id: id, storeName: storeName})  },
-                    { name: i18n._(t`Users`), path: generatePath(routerPaths.stores_details, {id: id, storeName: storeName})+'?f=tab.users',  },
+                    { name: i18n._(t`Employees list`), path: generatePath(routerPaths.stores_details, {id: id, storeName: storeName})+'?f=tab.users',  },
                     { name: i18n._(t`Edit`) }
                 ] }/> }
             />

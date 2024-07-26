@@ -65,7 +65,7 @@ export const ProductFormEdit: React.FC<{
             form.setFieldValue('unit', productData.unit);
             form.setFieldValue('marked', productData.marked);
             form.setFieldValue('vat', (productData.vat * 100).toFixed(2));
-            form.setFieldValue('barcodes', productData.barcodes);
+            form.setFieldValue('barcodes', productData.barcodes || []);
             form.setFieldValue('productAdditionalFields', mapAdditionalFieldsFromProductToForm(productData.productAdditionalFields, additionalFields));
             setIsInProgress(false);
 

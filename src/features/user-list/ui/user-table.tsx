@@ -8,7 +8,7 @@ import { Table } from '../../../shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import { Box, rem, useMantineTheme } from '@mantine/core';
-import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
+import { typeActionList } from '../../../shared/ui/table/ui/table-actions/types';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import { typeUserListTable } from 'features/user-list/types/types';
 import ItemListWithCounter from 'shared/ui/item-list-with-counter/item-list-with-counter';
@@ -62,7 +62,7 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                     <Table.Body>
                         { userList.length > 0 && userList.map(item => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditUserPage(item.id),

@@ -11,5 +11,9 @@ export type typeSelectorUsers = {
     fieldName: string,
     form: typeReturnForm,
     initialValue: string | null,
-    disabled?: boolean
+    disabled?: boolean,
+    label?:string,
+    storesFilters?: string[],
+    currentUser?: string,
+    markerForCurrentUser?: string
 }

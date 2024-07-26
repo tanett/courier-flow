@@ -11,6 +11,8 @@ import { tagTypesRefundsList } from '../../entities/refunds/api/types';
 import { tagTypesTerminalConfigurationsList } from '../../entities/terminals-configurations/api/types';
 import { tagTypesShortAdvancesList } from '../../entities/advances/api/types';
 import { tagTypesCreditsList } from '../../entities/credits/api/types';
+import { tagTypesWorkingShiftsList } from '../../entities/working-shifts/api/types';
+import { tagTypeOrderFullItem, tagTypesOrdersShortList } from '../../entities/orders/api/types';
 
 const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesExtendedUsersList,
@@ -24,6 +26,9 @@ const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesTerminalConfigurationsList,
     ...tagTypesShortAdvancesList,
     ...tagTypesCreditsList,
+    ...tagTypesWorkingShiftsList,
+    ...tagTypesOrdersShortList,
+
 };
 
 export const baseApi = createApi({
@@ -32,6 +37,6 @@ export const baseApi = createApi({
     refetchOnFocus: false,
     refetchOnReconnect: true,
     refetchOnMountOrArgChange: true,
-    tagTypes: [ ...Array.from(Object.values(tagTypes).map(tag => tag.type)) ],
+    tagTypes: [ ...Array.from(Object.values(tagTypes).map(tag => tag.type)),  tagTypeOrderFullItem.type ],
     endpoints: () => ({}),
 });

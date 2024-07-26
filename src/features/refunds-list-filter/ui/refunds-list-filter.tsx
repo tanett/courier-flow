@@ -2,7 +2,7 @@ import { typeQuickFilter, typeRefundsFilterForm } from '../types/types';
 import React, { useContext, useEffect, useState } from 'react';
 import { refundsFilterForm } from '../forms/forms';
 import { useForm } from '@mantine/form';
-import { Flex, useMantineTheme } from '@mantine/core';
+import { Flex, } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { DrawerContext, FilterButtonsBar, FilterFormWrapper } from '../../../shared/ui/filter-panel';
@@ -12,18 +12,13 @@ import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-param
 import { SelectorWithSearchStore } from 'features/selector-with-search-store';
 import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
-import { DatesProviderWithLocale } from 'shared/providers/dates-provider-with-locale/dates-provider-with-locale';
-import { DatePickerInput } from '@mantine/dates';
 import { SelectorWithSearchTerminals } from 'features/selector-with-search-terminals';
-import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
+import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
 import dayjs from 'dayjs';
-import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 
 export const RefundsListFilter: React.FC = () => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     const close: undefined | (() => void) = useContext(DrawerContext);
 
@@ -58,7 +53,7 @@ export const RefundsListFilter: React.FC = () => {
             storeId: form.values.storeId,
             terminalId: form.values.terminalId,
             refundedAtFrom: form.values.refundedAt[0] ? (form.values.refundedAt[0]).toISOString() : null,
-            refundedAtTo: form.values.refundedAt[1] ? (form.values.refundedAt[1]).toISOString() : null,
+            refundedAtTo: form.values.refundedAt[1] ? dayjs(form.values.refundedAt[1]).set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString() : null,
             quickDataFilter: quickDataFilter
         };
 
@@ -85,51 +80,7 @@ export const RefundsListFilter: React.FC = () => {
 
     const [ quickDataFilter, setQuickDataFilter ] = useState<typeQuickFilter>(null);
 
-    useEffect(() => {
-        if (quickDataFilter) {
 
-            if (quickDataFilter === 'yesterday') {
-
-                const dateNow = dayjs();
-                const refundedAtTo = dateNow.subtract(1, 'day').set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
-                const refundedAtFrom = dateNow.subtract(1, 'day').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                form.setValues({ refundedAt: [ new Date(refundedAtFrom), new Date(refundedAtTo) ] });
-            }
-            if (quickDataFilter === 'today') {
-                const dateNow = dayjs();
-                const refundedAtFrom = dateNow.set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                const refundedAtTo = dateNow.set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString();
-                form.setValues({ refundedAt: [ new Date(refundedAtFrom), new Date(refundedAtTo) ] });
-            }
-            if (quickDataFilter === 'last month') {
-                const dateNow = dayjs();
-                const refundedAtTo = dateNow.toISOString();
-                const refundedAtFrom = dateNow.subtract(1, 'month').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                form.setValues({ refundedAt: [ new Date(refundedAtFrom), new Date(refundedAtTo) ] });
-            }
-            if (quickDataFilter === 'last week') {
-                const dateNow = dayjs();
-                const refundedAtTo = dateNow.toISOString();
-                const refundedAtFrom = dateNow.subtract(1, 'week').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
-                form.setValues({ refundedAt: [ new Date(refundedAtFrom), new Date(refundedAtTo) ] });
-            }
-
-        }
-    }, [ quickDataFilter ]);
-
-    const onChangeQuickDataFilterHandler = (newValue: null | boolean | number | string) => {
-
-        if (quickDataFilter === newValue) {
-
-            setQuickDataFilter(null);
-
-        } else {
-
-            setQuickDataFilter(newValue as typeQuickFilter);
-
-        }
-
-    };
 
     return (
         <FilterFormWrapper>
@@ -155,53 +106,14 @@ export const RefundsListFilter: React.FC = () => {
                             initialValue={ form.values.terminalId !== null ? form.values.terminalId : null }
                             form={ form as unknown as typeReturnForm }/>
 
+                        <DateSelectorComponent
+                            label={ i18n._(t`Creation date`) }
+                            fieldName={ 'refundedAt' }
+                            form={ form as unknown as typeReturnForm }
+                            quickDataFilter={ quickDataFilter }
+                            setQuickDataFilter={ setQuickDataFilter }/>
 
-                        <DatesProviderWithLocale>
-                            <DatePickerInput
-                                type="range"
-                                clearable
-                                valueFormat="DD MMMM YYYY"
-                                label={ i18n._(t`Creation date`) }
-                                { ...{ placeholder: i18n._(t`dd.mm.yyyy - dd.mm.yyyy`) } }
-                                { ...form.getInputProps('refundedAt') }
-                                minDate={ new Date('2020-01-01') }
-                                maxDate={ new Date() }
-                                sx={ { '& .mantine-DatePickerInput-placeholder': { color: theme.colors.gray[3] } } }
-                                rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
-                                styles={ {
-                                    rightSection: {
-                                        pointerEvents: 'none',
-                                        pointer: 'pointer',
-                                    },
-                                } }
-                            />
-                        </DatesProviderWithLocale>
 
-                        <FilterButtonPanel
-
-                            value={ quickDataFilter }
-                            onChange={ onChangeQuickDataFilterHandler }
-                            data={ [ {
-                                value: 'today',
-                                label: i18n._(t`Today`),
-                            }, {
-                                value: 'last week',
-                                label: i18n._(t`Last week`),
-                            }
-                            ] }
-                        />
-                        <FilterButtonPanel
-
-                            value={ quickDataFilter }
-                            onChange={ onChangeQuickDataFilterHandler }
-                            data={ [  {
-                                value: 'yesterday',
-                                label: i18n._(t`Yesterday`),
-                            }, {
-                                value: 'last month',
-                                label: i18n._(t`Last month`),
-                            } ] }
-                        />
                     </Flex>
                     <FilterButtonsBar onReset={ onReset }/>
                 </form>

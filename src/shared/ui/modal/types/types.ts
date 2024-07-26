@@ -7,6 +7,7 @@ export interface typeModalProps extends React.PropsWithChildren {
     onCloseByOverlay?: () => void
     modalWidth?: 'auto' | 'dialog' | 'roleDetails' | '70%'
     centered?: boolean
+    fixedButton?: React.ReactNode
 }
 
 export type typeModalExtensions = {

@@ -11,10 +11,12 @@ export const useStyles = createStyles((theme) => ({
             marginRight: rem(4),
             fontSize: theme.fontSizes.md,
             lineHeight: rem(20),
+            letterSpacing: 0.3,
+            '&:hover': { color: theme.colors.primary[ 5 ] },
             '&[data-active=true]': {
                 borderColor: theme.colors.borderColor[ 0 ],
                 color: theme.colors.primary[ 5 ],
-                fontWeight: 600,
+                fontWeight: 700,
                 backgroundColor: theme.white,
                 borderBottom: '1px solid transparent',
             },
@@ -29,5 +31,18 @@ export const useStyles = createStyles((theme) => ({
             backgroundColor: theme.white,
         },
 
+    },
+    icon: {
+        padding: `0 ${rem(8)}` ,
+    '& .mantine-ActionIcon-root:hover,.mantine-ActionIcon-root[data-expanded] ': {backgroundColor: theme.colors.primary[ 1] },
+    },
+    divider: { borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}` },
+    primaryColor: { color: theme.colors.primary[ 4 ] },
+    menuActionsButton: { '&:hover':{backgroundColor: theme.colors.primary[ 0 ] }, },
+
+    menuItem: {
+        fontSize: theme.fontSizes.md,
+        '&[data-hovered]': { backgroundColor: theme.colors.primary[ 0 ] },
+        '&[disabled]': { backgroundColor: theme.colors.gray[ 1 ], cursor: 'not-allowed' },
     },
 }));

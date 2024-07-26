@@ -7,7 +7,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, rem, useMantineTheme } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { typeCategoriesListTable } from 'features/categories-list/types/types';
 import { CategoriesListTableHeader } from 'features/categories-list/ui/table/categories-table-header';
 
@@ -71,7 +71,7 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
                     <Table.Body>
                         { categoriesList.length > 0 && categoriesList.map((item, index) => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditCategoryPage(item.id),

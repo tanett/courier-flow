@@ -23,8 +23,10 @@ export enum pathSections {
     terminals = 'terminals',
     terminals_list = 'terminals_list',
     terminals_configurations = 'terminals_configurations',
-    handover_records = 'handover_records',
+    working_shifts = 'working_shifts',
     orders = 'orders',
+    orders_list = 'orders_list',
+    orders_clients='orders_clients',
     supportCenters = 'support-centers',
     supportRequests = 'support-requests',
     users = 'users',
@@ -100,9 +102,15 @@ export enum pathNames {
     terminals_configurations_edit = 'terminals_configurations_edit',
     terminals_configurations_details = 'terminals_configurations_details',
 
-    handover_records = 'handover_records',
+    working_shifts = 'working_shifts',
+    working_shifts_details = 'working_shifts_details',
 
     orders = 'orders',
+    orders_list='orders_list',
+    orders_details='orders_details',
+    orders_create = 'orders_create',
+    orders_edit = 'orders_edit',
+    orders_clients = 'orders_clients',
 
     supportRequests = 'supportRequests',
     roles = 'roles',
@@ -187,11 +195,18 @@ export const routerPaths: Record<pathNames, string> = {
     [pathNames.terminals_configurations_edit]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.id, pathSections.edit ]),
     [pathNames.terminals_configurations_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.terminals_configurations, pathSections.id, pathSections.name ]),
 
-    // handover_records
-    [pathNames.handover_records]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.handover_records ]),
+    // working_shifts
+    [pathNames.working_shifts]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.working_shifts ]),
+    [pathNames.working_shifts_details]: createPath([ pathSections.dashboard, pathSections.terminals, pathSections.working_shifts, pathSections.id,  ]),
 
     // orders
     [pathNames.orders]: createPath([ pathSections.dashboard, pathSections.orders ]),
+    [pathNames.orders_list]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.orders_list  ]),
+    [pathNames.orders_details]: createPath([ pathSections.dashboard,pathSections.orders, pathSections.orders_list, pathSections.id]),
+    [pathNames.orders_edit]: createPath([ pathSections.dashboard,pathSections.orders, pathSections.orders_list, pathSections.id, pathSections.edit ]),
+    [pathNames.orders_create]: createPath([ pathSections.dashboard, pathSections.orders,pathSections.orders_list, pathSections.create]),
+
+    [pathNames.orders_clients]: createPath([ pathSections.dashboard, pathSections.orders, pathSections.orders_clients  ]),
 
     // support
     [pathNames.supportRequests]: createPath([ pathSections.dashboard, pathSections.supportRequests ]),

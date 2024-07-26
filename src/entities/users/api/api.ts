@@ -109,6 +109,7 @@ export const {
     useLazyGetUserByIdQuery,
     usePatchUserMutation,
     useLazySearchUserQuery,
+    useSearchUserQuery,
     useExtendedSearchUserQuery,
     useCreateUserMutation,
     useUserToArchiveMutation,

@@ -42,11 +42,12 @@ export const useStyles = createStyles((theme) => ({
             marginRight: rem(4),
             fontSize: theme.fontSizes.md,
             lineHeight: rem(20),
+            letterSpacing: 0.3,
             '&:hover': { color: theme.colors.primary[ 5 ] },
             '&[data-active=true]': {
                 borderColor: theme.colors.borderColor[ 0 ],
                 color: theme.colors.primary[ 5 ],
-                fontWeight: 600,
+                fontWeight: 700,
                 backgroundColor: theme.white,
                 borderBottom: '1px solid transparent',
             },

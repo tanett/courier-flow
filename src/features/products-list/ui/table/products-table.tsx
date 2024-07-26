@@ -7,7 +7,7 @@ import { Table } from 'shared/ui/table/ui/table-new/table';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 import { Box, Checkbox, Flex, rem, Text, useMantineTheme } from '@mantine/core';
-import { typeAction } from 'shared/ui/table/ui/table-actions/types';
+import { typeActionList } from 'shared/ui/table/ui/table-actions/types';
 import { typeProductExtendedWithCheckBox, typeProductsListTable } from 'features/products-list/types/types';
 import { typeProductAdditionalField } from '../../../../entities/products/model/state-slice/types';
 import { useSelectorT } from 'app/state';
@@ -80,7 +80,7 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
                     <Table.Body>
                         { productsList.length > 0 && productsList.map((item, index) => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => goToEditProductPage(item.id),

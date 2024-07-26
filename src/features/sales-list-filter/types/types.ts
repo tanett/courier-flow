@@ -6,4 +6,4 @@ export interface typeSalesFilterForm {
 }
 
 
-export type typeQuickFilter = 'yesterday' | 'today' | 'last week' | 'last month' | null
+

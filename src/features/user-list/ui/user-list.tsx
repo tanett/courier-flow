@@ -90,7 +90,7 @@ export const UserList: React.FC = () => {
                         handler: onCloseConfirmToArchive,
                     } }
                     confirmButton={ {
-                        title: i18n._(t`Confirm`),
+                        title: i18n._('action-archive'),
                         handler: () => onArchive(confirmToArchiveData?.id),
                     } }
                 >

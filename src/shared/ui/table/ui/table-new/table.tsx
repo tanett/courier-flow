@@ -12,7 +12,7 @@ import { EmptyRow } from '../table-empty-row/table-empty-row';
 import cn from 'classnames';
 
 // eslint-disable-next-line react/prop-types
-const Table: typeTableExtensions & React.FC<typeTableProps> = ({ children, variant }) => {
+const Table: typeTableExtensions & React.FC<typeTableProps> = ({ children, variant, }) => {
 
     const { classes } = useStyles();
 
@@ -33,7 +33,7 @@ Table.Th = Th;
 Table.Body = Body;
 Table.Tr = Tr;
 Table.Td = Td;
-Table.TdActions = TdActions;
+Table.TdActions =  TdActions;
 Table.EmptyRow = EmptyRow;
 
 export { Table };
