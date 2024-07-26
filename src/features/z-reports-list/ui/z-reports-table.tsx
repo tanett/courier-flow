@@ -5,12 +5,12 @@ import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import {Box, Flex, useMantineTheme} from '@mantine/core';
-import { typeAction } from '../../../shared/ui/table/ui/table-actions/types';
+import { Flex, useMantineTheme } from '@mantine/core';
 import {typeZReportsListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
 import {useStyles} from "./styles";
 import {ZReportListFilter} from "../../z-report-list-filter/ui/z-report-list-filter";
+import {typeActionList} from "../../../shared/ui/table/ui/table-actions/types";
 
 
 export const RefundListTable: React.FC<typeZReportsListTable> = ({
@@ -70,7 +70,7 @@ export const RefundListTable: React.FC<typeZReportsListTable> = ({
                     <Table.Body>
                         { zReportsList.length > 0 && zReportsList.map(item => {
 
-                            const actions: typeAction[] = [
+                            const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Receipt`),
                                     handler: () => onOpenReceipt(item.id),

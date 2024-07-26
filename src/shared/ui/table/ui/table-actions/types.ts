@@ -17,5 +17,4 @@ export interface typeTableActionsProps {
     visibleCount?: number
     align?: 'center' | 'right',
     dividerIndex?: number
-
 }
