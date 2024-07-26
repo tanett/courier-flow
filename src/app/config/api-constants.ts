@@ -18,7 +18,7 @@ export enum queryParamsNames {
 }
 
 export const filterFieldNameSeparator = '.';
-export const filterValuesSeparator = ',';
+export const filterValuesSeparator = '<&>';
 export const filterSeparator = ';';
 
 export interface typeSearchParamsObj {
