@@ -33,8 +33,10 @@ const SelectModules: React.FC<typeSelectModule> = ({ form }) => {
         } }>
             { data
                 ? data.map((item, index) => {
-                        const isInForm = form.values.availableModules.findIndex(itemCode => itemCode === item.code);
-                        return <CardModule key={ item.code } module={ {
+                        const isInForm = form.values.availableModules.findIndex((itemCode, index) => itemCode === item.code);
+                        return <CardModule
+                            key={ index }
+                            module={ {
                             ...item,
                             checked: isInForm >= 0
                         } } onClick={ (item) => onClickModuleHandler(item, index) }/>;

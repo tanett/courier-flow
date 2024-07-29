@@ -101,9 +101,16 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
 
     }, [ initialValue ]);
 
+    const isSelectedNameEqualDebouncedValue = ()=>{
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+         // @ts-ignore
+        const selectedStore = storesList.find(item=>item.value === form.values[ fieldName ] )
+        return debouncedSearchValue === selectedStore?.label;
+    }
+
     useEffect(() => {
 
-        if (searchStoreValue.trim().length) {
+        if (searchStoreValue.trim().length && !isSelectedNameEqualDebouncedValue()) {
 
             const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
                 filter: {

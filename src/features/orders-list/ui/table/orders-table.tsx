@@ -110,12 +110,12 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                             {
                                 label: i18n._(t`In process`),
                                 handler: () => onChangeStatusInProcessing(item),
-                                disabled:  !isPossible
+                                disabled:  item.status === OrderStatuses.PROCESSING ? true : !isPossible
                             },
                             {
                                 label: i18n._(t`Waiting for delivery`),
                                 handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ item } setOpen={ setPopupContent } /> ),
-                                disabled: !isPossible
+                                disabled:  item.status === OrderStatuses.WAITING_FOR_DELIVERY ? true :  !isPossible
                             },
                             {
                                 label: i18n._(t`Cancelled`),

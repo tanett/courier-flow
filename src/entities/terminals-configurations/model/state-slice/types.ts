@@ -1,9 +1,14 @@
 
 export enum AVAILABLE_MODULES {
-    FISCAL = 'availableModule.fiscal',
-    CREDIT_PREPAYMENT = 'availableModule.creditPrepayment',
-    PAYMENT_BY_CARD =  'availableModule.paymentByCard',
-    ONLINE_PAYMENT = 'availableModule.onlinePayment',
+    ORDERS='ORDERS',
+    CASH='CASH',
+    ADVANCES='ADVANCES',
+    CREDITS='CREDITS',
+    E_PAYMENTS='E_PAYMENTS',
+    QR_PAYMENTS='QR_PAYMENTS',
+    ERP_MODE='ERP_MODE',
+    MULTICURRENCY='MULTICURRENCY',
+    EXTERNAL_MERCHANT_API='EXTERNAL_MERCHANT_API'
    }
 
 

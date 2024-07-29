@@ -78,12 +78,12 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
         {
             label: i18n._(t`In process`),
             handler: () => onChangeStatusInProcessing(orderData),
-            disabled: !isPossibleToEdit
+            disabled:orderData.status === OrderStatuses.PROCESSING ? true :  !isPossibleToEdit
         },
         {
             label: i18n._(t`Waiting for delivery`),
             handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ orderData } setOpen={ setPopupContent }/>),
-            disabled: !isPossibleToEdit
+            disabled: orderData.status === OrderStatuses.WAITING_FOR_DELIVERY ? true :  !isPossibleToEdit
         },
         {
             label: i18n._(t`Cancelled`),
@@ -92,7 +92,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
             textColor: theme.colors.red[5]
         },
 
-    ];
+    ].filter(item=>!item.disabled);
 
     return (
 
