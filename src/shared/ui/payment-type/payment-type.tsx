@@ -3,7 +3,7 @@ import { typeCheckedShortSalesExtended } from 'features/sales-list/types/types';
 import { Box, Flex, Loader } from '@mantine/core';
 import { AdvanceIconOutline16 } from 'shared/ui/svg-custom-icons/advance-icon-outline/advanceIconOutline16';
 import { t } from '@lingui/macro';
-import { CreditIconOutline } from 'shared/ui/svg-custom-icons/credit-icon-outline/credit-icon-outline';
+import { CreditIconOutline16 } from 'shared/ui/svg-custom-icons/credit-icon-outline/credit-icon-outline-16';
 import { useStyles } from 'shared/ui/payment-type/styles';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { useLingui } from '@lingui/react';
@@ -41,7 +41,7 @@ const PaymentType: React.FC<{ sale: typeCheckedShortSalesExtended | typeSale }> 
     return (<>
             { sale.paymentType === 'USUAL' &&
                 <Flex className={ classes.flexRow }>
-                    {/* <Box className={ classes.iconContainer }><OnlinePaymentIconOutline/></Box> */ }
+                    {/* <Box className={ classes.iconContainer }><MulticurrencyIconOutline24/></Box> */ }
                     <ButtonAsLink disabled onClick={ (e) => onAdvanceClick(e) } label={ i18n._(t`Usual`) }/>
                 </Flex> }
             { sale.paymentType === 'ADVANCE' &&
@@ -51,7 +51,7 @@ const PaymentType: React.FC<{ sale: typeCheckedShortSalesExtended | typeSale }> 
                 </Flex> }
             { sale.paymentType === 'CREDIT' &&
                 <Flex className={ classes.flexRow }>
-                    <Box className={ classes.iconContainer }>{isCreditFetching? <Loader size={'xs'}/>:<CreditIconOutline/>}</Box>
+                    <Box className={ classes.iconContainer }>{isCreditFetching? <Loader size={'xs'}/>:<CreditIconOutline16/>}</Box>
                     <ButtonAsLink onClick={ onCreditClick } label={ i18n._(t`Credit`) }/>
                 </Flex>
             }

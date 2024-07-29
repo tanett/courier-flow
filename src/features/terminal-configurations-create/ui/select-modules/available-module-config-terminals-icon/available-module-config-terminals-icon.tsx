@@ -8,8 +8,12 @@ import { FiscalizationIconOutline } from 'shared/ui/svg-custom-icons/fiscalizati
 import { AdvanceIconOutline24 } from 'shared/ui/svg-custom-icons/advance-icon-outline/advanceIconOutline24';
 import { OnlinePaymentIconOutline } from 'shared/ui/svg-custom-icons/online-payment-icon-outline/online-payment-icon-outline';
 import { AdvanceIconOutline16 } from 'shared/ui/svg-custom-icons/advance-icon-outline/advanceIconOutline16';
-import { CreditIconOutline } from 'shared/ui/svg-custom-icons/credit-icon-outline/credit-icon-outline';
-import { TransferDollarIconOutline } from 'shared/ui/svg-custom-icons/transfer-dollar-icon-outline/transfer-dollar-icon-outline';
+import { CreditIconOutline16 } from 'shared/ui/svg-custom-icons/credit-icon-outline/credit-icon-outline-16';
+import { TransferDollarIconOutline16 } from 'shared/ui/svg-custom-icons/transfer-dollar-icon-outline/transfer-dollar-icon-outline16';
+import { CreditIconOutline24 } from 'shared/ui/svg-custom-icons/credit-icon-outline/credit-icon-outline-24';
+import { TransferDollarIconOutline24 } from 'shared/ui/svg-custom-icons/transfer-dollar-icon-outline/transfer-dollar-icon-outline24';
+import { ErpModeIconOutline24 } from 'shared/ui/svg-custom-icons/erp-mode-icon-outline/erp-mode-icon-outline24';
+import { MultiCurrencyIconOutline24 } from 'shared/ui/svg-custom-icons/multicurrency-icon-outline/multicurrency-icon-outline24';
 
 
 const AvailableModuleConfigTerminalsIcon: React.FC<{ moduleName:   AVAILABLE_MODULES, checked: boolean }> = ({ moduleName, checked }) => {
@@ -22,21 +26,21 @@ const AvailableModuleConfigTerminalsIcon: React.FC<{ moduleName:   AVAILABLE_MOD
     case AVAILABLE_MODULES.CASH:
         return <BanknotesIcon color={checked? theme.colors.primary[5] : theme.black}/>;
     case AVAILABLE_MODULES.ADVANCES:
-        return <AdvanceIconOutline24 color={checked? theme.colors.primary[5] : theme.black} width={24} height={24}/>;
+        return <AdvanceIconOutline24 color={checked? theme.colors.primary[5] : theme.black} />;
     case AVAILABLE_MODULES.CREDITS:
-        return <CreditIconOutline color={checked? theme.colors.primary[5] : theme.black} width={24} height={24}/>;
+        return <CreditIconOutline24 color={checked? theme.colors.primary[5] : theme.black} />;
     case AVAILABLE_MODULES.ORDERS:
         return <TruckIcon color={checked? theme.colors.primary[5] : theme.black} width={24} height={24}/>;
     case AVAILABLE_MODULES.MULTICURRENCY:
-        return <CreditCardIcon className={cn(classes.iconContainer, checked? classes.primary: theme.black )  }/>;
+        return <MultiCurrencyIconOutline24 color={checked? theme.colors.primary[5] : theme.black}/>;
     case AVAILABLE_MODULES.E_PAYMENTS:
-        return <TransferDollarIconOutline color={checked? theme.colors.primary[5] : theme.black} width={24} height={24}/>;
+        return <TransferDollarIconOutline24 color={checked? theme.colors.primary[5] : theme.black}/>;
     case AVAILABLE_MODULES.QR_PAYMENTS:
         return <QrCodeIcon className={cn(classes.iconContainer, checked? classes.primary: theme.black )  }/>;
     case AVAILABLE_MODULES.ERP_MODE:
-        return <CreditCardIcon className={cn(classes.iconContainer, checked? classes.primary: theme.black )  }/>;
-    case AVAILABLE_MODULES.EXTERNAL_MERCHANT_API:
-        return <CreditCardIcon className={cn(classes.iconContainer, checked? classes.primary: theme.black )  }/>;
+        return <ErpModeIconOutline24 color={checked? theme.colors.primary[5] : theme.black} />;
+    // case AVAILABLE_MODULES.EXTERNAL_MERCHANT_API:
+    //     return <CreditCardIcon className={cn(classes.iconContainer, checked? classes.primary: theme.black )  }/>;
 
     default :
         return <StarIcon className={cn(classes.iconContainer, checked? classes.primary: classes.gray )  }/>;

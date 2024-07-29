@@ -1,7 +1,7 @@
 import React from 'react';
 import { typeSvgCustomIcon } from 'shared/ui/svg-custom-icons/types';
 
-export const CreditIconOutline: React.FC<typeSvgCustomIcon> = ({
+export const CreditIconOutline16: React.FC<typeSvgCustomIcon> = ({
     color = '#000',
     width = 24,
     height = 24
