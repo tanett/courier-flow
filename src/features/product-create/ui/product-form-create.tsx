@@ -18,7 +18,6 @@ import { SelectorWithSearchProductCategory } from 'features/selector-with-search
 import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
-import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
 import { CheckBoxForForm } from 'shared/ui/check-box-for-form/check-box-for-form';
 import { CreateInputForAdditionalField } from '../../../entities/products/helpers/createInputForAdditionalField';
@@ -26,6 +25,8 @@ import { IMaskInput } from 'react-imask';
 import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
 import { BarcodesInputForProductForm } from 'features/barcodes-input-for-product-form/barcodes-input-for-product-form';
 import { routerPaths } from 'app/config/router-paths';
+import { mapRequestFieldsToFormFieldProducts } from 'features/product-create/form/form';
+import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
 
 
 export const ProductFormCreate: React.FC<{
@@ -85,7 +86,7 @@ export const ProductFormCreate: React.FC<{
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onCreateProduct', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onCreateProduct', dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldProducts);
                 setIsInProgress(false);
 
             }
@@ -112,7 +113,7 @@ export const ProductFormCreate: React.FC<{
                 <FieldsetForForm title={ <Trans>General information</Trans> }>
                     <TextInput
                         withAsterisk
-                        label={ <Trans>Product name</Trans> }
+                        label={ mapRequestFieldsToFormFieldProducts.name.translatedValue }
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
@@ -169,7 +170,7 @@ export const ProductFormCreate: React.FC<{
                         />
                         <Select
                             withAsterisk
-                            label={ <Trans>Unit</Trans> }
+                            label={ mapRequestFieldsToFormFieldProducts.unit.translatedValue }
                             data={ productUnitValueListForSelector }
                             transitionProps={ {
                                 duration: 80,
@@ -202,7 +203,7 @@ export const ProductFormCreate: React.FC<{
                             />
                             <Input.Wrapper
                                 id={ 'vat-input-wrapper' }
-                                label={ <Trans>Vat in %</Trans> }
+                                label={mapRequestFieldsToFormFieldProducts.vat.translatedValue }
                                 required
                                 error={ form.getInputProps('vat').error }
                                 mt={ 16 }>
@@ -235,7 +236,7 @@ export const ProductFormCreate: React.FC<{
                             <CheckBoxForForm
                                 generallabel={ i18n._(t`Marking`) }
                                 size={ 'md' }
-                                label={ <Trans>Marked</Trans> }
+                                label={ mapRequestFieldsToFormFieldProducts.marked.translatedValue }
                                 { ...form.getInputProps('marked') }
                             />
 

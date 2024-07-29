@@ -1,5 +1,7 @@
 import { t } from '@lingui/macro';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
+import { i18n } from '@lingui/core';
+import { typeMapRequestFieldsToFormField } from 'app/utils/error-handler-for-form';
 
 
 export const initialUsersEditForm = {
@@ -26,7 +28,7 @@ export const initialUsersEditForm = {
                 ? t`Required field`
                 : value.trim().length >= 100
                     ? t`It's too long`
-                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/.test(value)
+                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.([^@ \t\r\n]+){2,6}$/.test(value)
                         ? null
                         : t`Invalid email`;
 
@@ -46,4 +48,29 @@ export const initialUsersEditForm = {
 
         },
     },
+};
+
+export const mapRequestFieldsToFormFieldUsersEdit:typeMapRequestFieldsToFormField = {
+    fullName: {
+        translatedValue: i18n._(t`Full name`),
+        formField: 'fullName'
+    },
+    email: {
+        translatedValue: i18n._(t`Email`),
+        formField: 'email'
+    } ,
+    phone: {
+        translatedValue:  i18n._(t`Phone`),
+        formField: 'phone'
+
+    },
+    roleId: {
+        translatedValue:   i18n._(t`Role`),
+        formField: 'roleId'
+    },
+    storeIds: {
+        translatedValue:   i18n._(t`Stores`),
+        formField: 'storeIds'
+    },
+
 };

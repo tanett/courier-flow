@@ -1,4 +1,6 @@
 import { t } from '@lingui/macro';
+import { i18n } from '@lingui/core';
+import { typeMapRequestFieldsToFormField } from 'app/utils/error-handler-for-form';
 
 export const initialCategoryEditForm = {
     initialValues: { name: '' },
@@ -13,5 +15,12 @@ export const initialCategoryEditForm = {
 
         },
 
+    },
+};
+
+export const mapRequestFieldsToFormFieldCategoryEdit:typeMapRequestFieldsToFormField = {
+    name: {
+        translatedValue: i18n._('item-name' ),
+        formField: 'name'
     },
 };

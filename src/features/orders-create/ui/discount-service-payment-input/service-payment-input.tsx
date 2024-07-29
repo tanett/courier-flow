@@ -5,6 +5,7 @@ import { IMaskInput } from 'react-imask';
 import { useStyles } from './styles';
 import { Trans } from '@lingui/macro';
 import cn from 'classnames';
+import { mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 
 const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
 
@@ -16,7 +17,7 @@ const ServicePaymentInput: React.FC<typeDiscountInput> = ({ form }) => {
         <Flex>
             <Input.Wrapper
                 id={ 'service-payment-input-wrapper' }
-                label={ <Trans>Service payment</Trans> }
+                label={ mapRequestFieldsToFormFieldOrders.servicePaymentAmount.translatedValue }
                 className={ classes.inputWrapper }
                 error={ form.getInputProps( 'isServicePaymentInPercent').error }
               >

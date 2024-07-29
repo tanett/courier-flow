@@ -26,7 +26,7 @@ export const initialUsersEditForm = {
                 ? t`Required field`
                 : value.trim().length >= 100
                     ? t`It's too long`
-                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/.test(value)
+                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.([^@ \t\r\n]+){2,6}$/.test(value)
                         ? null
                         : t`Invalid email`;
 

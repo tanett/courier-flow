@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { CONFIGURATION_TYPE_TABS, typeTerminalConfigurationsEditForm } from '../types/types';
-import { initialTerminalConfigurationsEditForm } from '../form/form';
+import { initialTerminalConfigurationsEditForm, mapRequestFieldsToFormFieldConfigurationsEdit } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Button, Flex, Space, Tabs, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
@@ -20,6 +19,8 @@ import SelectModules from 'features/terminal-configurations-create/ui/select-mod
 import { typeEditTerminalConfigurations } from '../../../entities/terminals-configurations/model/state-slice';
 import useGetTerminalConfigurationsDataByIdFromUrl from '../../../entities/terminals-configurations/hooks/use-get-terminal-configurations-data-by-id-from-url';
 import { useGetInitialCategories } from 'features/terminal-configurations-edit/hooks/use-get-initial-categories';
+import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 
 export const TerminalConfigurationsEdit: React.FC<{ id: string }> = ({ id }) => {
@@ -116,7 +117,7 @@ export const TerminalConfigurationsEdit: React.FC<{ id: string }> = ({ id }) => 
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditTerminalConfigurations', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onEditTerminalConfigurations',dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldConfigurationsEdit);
                 setIsInProgress(false);
 
             }

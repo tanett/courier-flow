@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeCategoriesCreateForm } from '../types/types';
-import { initialCategoryCreateForm } from '../form/form';
+import { initialCategoryCreateForm, mapRequestFieldsToFormFieldCategory } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Button, Flex, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
@@ -16,6 +15,7 @@ import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
 import { typeCategoryCreate } from '../../../entities/category/model/types';
 import { useCreateCategoryMutation } from '../../../entities/category/api/api';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 
 
 export const CategoriesCreate: React.FC = () => {
@@ -61,8 +61,8 @@ export const CategoriesCreate: React.FC = () => {
                 navigate(-1);
 
             } catch (err) {
+                errorHandlerForForm(err as typeResponseError, 'onCreateCategory', dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldCategory);
 
-                errorHandler(err as typeResponseError, 'onCreateCategory', dispatchAppT);
                 setIsInProgress(false);
 
             }
@@ -90,7 +90,7 @@ export const CategoriesCreate: React.FC = () => {
 
                     <TextInput
                         withAsterisk
-                        label={ <Trans id={ 'item-name' }>Name</Trans> }
+                        label={ mapRequestFieldsToFormFieldCategory.name.translatedValue }
                         { ...form.getInputProps('name') }
                         maxLength={ 250 }
                         sx={ {

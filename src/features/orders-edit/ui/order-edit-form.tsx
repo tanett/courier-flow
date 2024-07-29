@@ -6,7 +6,7 @@ import { t } from '@lingui/macro';
 import { useStyles } from 'features/orders-create/ui/styles';
 import { useChangeOrderDataMutation, } from '../../../entities/orders/api/api';
 import { useForm } from '@mantine/form';
-import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm } from 'features/orders-create/form/form';
+import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm, mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 import { typeOrdersForm } from 'features/orders-create/types/types';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { useLingui } from '@lingui/react';
@@ -14,7 +14,6 @@ import { OrderProducts } from './order-products';
 import { typeEditOrderRequest } from '../../../entities/orders/api/types';
 import { getServicePaymentAmount } from 'features/orders-create/helpers/get-service-payment-amount';
 import { mapProductsForCreateOrderObject } from 'features/orders-create/helpers/map-products-for-create-order-object';
-import { errorHandler } from 'app/utils/errorHandler';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { routerPaths } from 'app/config/router-paths';
@@ -22,6 +21,8 @@ import { typeResponseError } from 'app/api/types';
 import { typeOrder } from '../../../entities/orders/model/state-slice';
 import { mapOrderedProductsToCart } from 'features/orders-edit/helpers/map-ordered-products-to-cart';
 import { OrderClient } from 'features/orders-create/ui/order-client';
+import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 const enum TYPE_TABS {
     CLIENT = 'client',
@@ -131,7 +132,8 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditOrder', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onEditOrder', dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldOrders);
+
                 setIsInProgress(false);
 
             }

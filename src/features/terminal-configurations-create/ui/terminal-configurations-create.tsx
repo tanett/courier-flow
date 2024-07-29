@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { CONFIGURATION_TYPE_TABS, typeTerminalConfigurationsCreateForm } from '../types/types';
-import { initialTerminalConfigurationsCreateForm } from '../form/form';
+import { initialTerminalConfigurationsCreateForm, mapRequestFieldsToFormFieldConfigurations } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Button, Flex, Space, Tabs, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
@@ -18,6 +17,8 @@ import SelectStoresTerminals from 'features/terminal-configurations-create/ui/se
 import SelectCategoriesForTerminals from 'features/terminal-configurations-create/ui/select-categories-for-terminal/select-categories-for-terminals';
 import SelectModules from 'features/terminal-configurations-create/ui/select-modules/select-modules';
 import { typeCreateTerminalConfigurations } from 'entities/terminals-configurations/model/state-slice';
+import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 
 export const TerminalConfigurationsCreate: React.FC = () => {
@@ -68,7 +69,8 @@ export const TerminalConfigurationsCreate: React.FC = () => {
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onCreateTerminalConfigurations', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onCreateTerminalConfigurations',dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldConfigurations);
+
                 setIsInProgress(false);
 
             }

@@ -1,6 +1,8 @@
 import { t } from '@lingui/macro';
 import { LANGUAGES } from '../../../app/config/languages';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
+import { i18n } from '@lingui/core';
+import { typeMapRequestFieldsToFormField } from 'app/utils/error-handler-for-form';
 
 
 export const initialProfileForm = {
@@ -22,11 +24,13 @@ export const initialProfileForm = {
         },
         email: (value: string) => {
 
-            return value.trim().length === 0
+            return value.trim().length <= 0
                 ? t`Required field`
-                : value.length > 100
+                : value.trim().length >= 100
                     ? t`It's too long`
-                    : null;
+                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.([^@ \t\r\n]+){2,6}$/.test(value)
+                        ? null
+                        : t`Invalid email`;
 
         },
         phone: (value: string) => {
@@ -43,5 +47,25 @@ export const initialProfileForm = {
                 : null;
 
         },
+    },
+};
+
+export const mapRequestFieldsToFormField:typeMapRequestFieldsToFormField = {
+    fullName: {
+        translatedValue: i18n._(t`Full name`),
+        formField: 'fullName'
+    },
+    email: {
+        translatedValue: i18n._(t`Email`),
+        formField: 'email'
+    } ,
+    phone: {
+        translatedValue:  i18n._(t`Phone`),
+        formField: 'phone'
+
+    },
+    locale: {
+        translatedValue:   i18n._(t`Language`),
+        formField: 'locale'
     },
 };

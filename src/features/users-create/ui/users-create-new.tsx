@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeUsersCreateForm } from '../types/types';
-import { initialUsersCreateForm } from '../form/form';
+import { initialUsersCreateForm, mapRequestFieldsToFormFieldUsers } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
@@ -22,6 +21,7 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search-store';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import useGetRolesDataForSelector from '../../../entities/role/hooks/use-get-roles-data-for-selector';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 
 
 export const UsersCreateNew: React.FC = () => {
@@ -80,7 +80,7 @@ export const UsersCreateNew: React.FC = () => {
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onCreateUser', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onCreateUser', dispatchAppT, userForm as unknown as typeReturnForm, mapRequestFieldsToFormFieldUsers);
                 setIsInProgress(false);
 
             }
@@ -108,14 +108,14 @@ export const UsersCreateNew: React.FC = () => {
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <TextInput
                             withAsterisk
-                            label={ <Trans>Full name</Trans> }
+                            label={ mapRequestFieldsToFormFieldUsers.fullName.translatedValue }
                             placeholder={ i18n._(t`User name`) }
                             { ...userForm.getInputProps('fullName') }
                             maxLength={ 150 }
                         />
                         <Select
                             withAsterisk
-                            label={ <Trans>Role</Trans> }
+                            label={ mapRequestFieldsToFormFieldUsers.roleId.translatedValue }
                             data={ roles }
                             transitionProps={ {
                                 duration: 80,
@@ -145,7 +145,7 @@ export const UsersCreateNew: React.FC = () => {
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <TextInput
                             withAsterisk
-                            label={ <Trans>Email</Trans> }
+                            label={ mapRequestFieldsToFormFieldUsers.email.translatedValue }
                             placeholder="example@email.com"
                             { ...userForm.getInputProps('email') }
                             maxLength={ 100 }

@@ -1,5 +1,7 @@
 import { t } from '@lingui/macro';
 import { PRODUCT_UNIT_VALUE } from 'entities/products/model/state-slice';
+import { i18n } from '@lingui/core';
+import { typeMapRequestFieldsToFormField } from 'app/utils/error-handler-for-form';
 
 
 export const initialProductForm = {
@@ -41,4 +43,33 @@ export const initialProductForm = {
         },
 
     },
+};
+
+export const mapRequestFieldsToFormFieldProducts:typeMapRequestFieldsToFormField = {
+    name: {
+        translatedValue: i18n._(t`Product name`),
+        formField: 'name'
+    },
+    productCategoryId: {
+        translatedValue: i18n._(t`Category`),
+        formField: 'productCategoryId'
+    } ,
+    unit: {
+        translatedValue:  i18n._(t`Unit`),
+        formField: 'unit'
+
+    },
+    marked: {
+        translatedValue:   i18n._(t`Marked`),
+        formField: 'marked'
+    },
+    vat: {
+        translatedValue:   i18n._(t`Vat in %`),
+        formField: 'vat'
+    },
+    barcodes: {
+        translatedValue:   i18n._(t`Barcodes`),
+        formField: 'barcodes'
+    },
+
 };

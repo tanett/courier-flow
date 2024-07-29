@@ -9,6 +9,7 @@ import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { useGetCustomers } from '../hooks/use-get-customers';
 import { useDebouncedValue, useFocusWithin } from '@mantine/hooks';
 import { typeOrdersCustomer } from '../../../entities/orders-customer/model/types';
+import { mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 
 
 export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) => {
@@ -55,7 +56,7 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <div ref={ ref }>
                             <Popover
-                                opened={ focused && !!customers?.length  }
+                                opened={ !!customers && customers.length >0 && focused }
                                 defaultOpened={ false }
                                 position="top"
                                 offset={ { mainAxis: -20 } }
@@ -83,9 +84,9 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                                         } }>{ isFetchingCustomers && <Loader size={ 16 }/> }</Box>
                                     </Box>
                                 </Popover.Target>
-                                <Popover.Dropdown className={ classes.popoverCustomerTips }>
+                                {focused && customers && customers.length >0 &&  <Popover.Dropdown className={ classes.popoverCustomerTips }>
                                     <Box p={ 0 }>
-                                        { focused && customers && customers.map((customer, index) => (<Box
+                                        { customers.map((customer, index) => (<Box
                                             key={ index }
                                             sx={ theme => ({
                                                 letterSpacing: 0.3,
@@ -100,11 +101,11 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                                         </Box>)) }
 
                                     </Box>
-                                </Popover.Dropdown>
+                                </Popover.Dropdown> }
                             </Popover>
                         </div>
                         <TextInput
-                            label={ <Trans>E-mail</Trans> }
+                            label={ mapRequestFieldsToFormFieldOrders.email.translatedValue }
                             { ...form.getInputProps('customer.email') }
                             maxLength={ 150 }
                             sx={ {
@@ -117,7 +118,7 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                     </SimpleGrid>
                     <TextInput
                         withAsterisk
-                        label={ <Trans>Delivery address</Trans> }
+                        label={mapRequestFieldsToFormFieldOrders.address.translatedValue }
                         sx={ {
                             '&.mantine-InputWrapper-root': {
                                 maxWidth: '100%',
@@ -133,7 +134,7 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <TextInput
                             withAsterisk
-                            label={ <Trans>Client name</Trans> }
+                            label={ mapRequestFieldsToFormFieldOrders.fullName.translatedValue }
                             { ...form.getInputProps('customer.fullName') }
                             maxLength={ 150 }
                             sx={ {
@@ -145,7 +146,7 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
                         />
                     </SimpleGrid>
                     <Textarea
-                        label={ <Trans>Comment</Trans> }
+                        label={ mapRequestFieldsToFormFieldOrders.additionalInfo.translatedValue }
                         { ...form.getInputProps('deliveryAddress.additionalInfo') }
                         maxLength={ 250 }
                         className={ classes.fullWidthGrid }

@@ -1,6 +1,8 @@
 import { t } from '@lingui/macro';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
 import { typeOrdersForm, typeProductInCart } from 'features/orders-create/types/types';
+import { i18n } from '@lingui/core';
+import { typeMapRequestFieldsToFormField } from 'app/utils/error-handler-for-form';
 
 
 export const initialOrderForm = {
@@ -23,8 +25,8 @@ export const initialOrderForm = {
         products: []
     },
 
-    validateInputOnChange: ['discount', 'isDiscountInPercent','servicePayment', 'isServicePaymentInPercent', 'products'],
-    validateInputOnBlur: ['discount', 'isDiscountInPercent','servicePayment', 'isServicePaymentInPercent',],
+    validateInputOnChange: [ 'discount', 'isDiscountInPercent', 'servicePayment', 'isServicePaymentInPercent', 'products' ],
+    validateInputOnBlur: [ 'discount', 'isDiscountInPercent', 'servicePayment', 'isServicePaymentInPercent', ],
 
     validate: {
         customer: {
@@ -39,15 +41,15 @@ export const initialOrderForm = {
             },
             email: (value: string) => {
 
-                return  !value
+                return !value
                     ? null
                     : value.trim().length >= 150
-                    ? t`It's too long`
-                    : value.trim().length === 0
-                        ? null
-                        : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/.test(value)
+                        ? t`It's too long`
+                        : value.trim().length === 0
                             ? null
-                            : t`Invalid email`;
+                            : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.([^@ \t\r\n]+){2,6}$/.test(value)
+                                ? null
+                                : t`Invalid email`;
 
             },
             phone: (value: string) => {
@@ -83,22 +85,22 @@ export const initialOrderForm = {
 
             const totalCost = values.products.reduce((acc, current) => acc + current.price * (+current.amount), 0);
 
-            return  value ?
+            return value ?
                 +(values.discount.trim()) > 100
                     ? t`The value cannot be greater than 100%.`
                     : null
                 : +(values.discount.trim()) > totalCost
                     ? t`The discount cannot be greater than the total cost.`
-                    : null
+                    : null;
         },
 
         isServicePaymentInPercent: (value: boolean, values: typeOrdersForm,) => {
 
-            return  value ?
+            return value ?
                 +(values.servicePayment.trim()) > 100
                     ? t`The value cannot be greater than 100%.`
                     : null
-                : null
+                : null;
         },
 
 
@@ -122,9 +124,55 @@ export const fieldsInTabClient = [
 
 export const fieldsInTabProduct = [
     'storeId',
-    'servicePaymentPercent',
-    'servicePaymentAmount',
-    'discountPercent',
-    'discountAmount',
+    'isServicePaymentInPercent',
+    'servicePayment',
+    'discount',
+    'isDiscountInPercent',
     'products',
 ];
+
+export const mapRequestFieldsToFormFieldOrders:typeMapRequestFieldsToFormField = {
+
+    fullName: {
+        translatedValue: i18n._(t`Client name`),
+        formField: 'customer.fullName'
+    },
+    phone: {
+        translatedValue: i18n._(t`Customer phone`),
+        formField: 'customer.phone'
+    },
+    email: {
+        translatedValue: i18n._(t`E-mail`),
+        formField: 'customer.email'
+    },
+    address: {
+        translatedValue: i18n._(t`Delivery address`),
+        formField: 'deliveryAddress.address'
+    },
+    additionalInfo: {
+        translatedValue: i18n._(t`Comment`),
+        formField: 'deliveryAddress.additionalInfo'
+    },
+
+    orderedAt: {
+        translatedValue: i18n._(t`Order date`),
+        formField: 'orderedAt'
+    },
+    products: {
+        translatedValue: i18n._(t`Products`),
+        formField: 'products'
+    },
+    servicePaymentAmount: {
+        translatedValue: i18n._(t`Service payment`),
+        formField: 'servicePayment'
+    },
+    servicePaymentPercent: {
+        translatedValue: i18n._(t`Service payment in %`),
+        formField: 'isServicePaymentInPercent'
+    },
+    storeId: {
+        translatedValue: i18n._(t`Store`),
+        formField: 'storeId'
+    },
+
+};

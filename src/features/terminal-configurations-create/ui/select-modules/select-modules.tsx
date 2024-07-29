@@ -15,7 +15,6 @@ const SelectModules: React.FC<typeSelectModule> = ({ form }) => {
 
 
     const onClickModuleHandler = (module: typeModuleChecked, index: number) => {
-        console.log(form.values.availableModules, module);
         if (module.checked) {
             const indexInForm = form.values.availableModules.findIndex(item => item === module.value);
             form.removeListItem('availableModules', indexInForm);

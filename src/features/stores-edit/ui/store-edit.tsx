@@ -5,7 +5,6 @@ import { useAppDispatchT } from 'app/state';
 import { Button, Flex, Select, SimpleGrid, Space, Textarea, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
@@ -19,8 +18,10 @@ import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbe
 import { FormSkeleton } from 'features/stores-edit/form-skeleton/formSkeleton';
 import { IconChevronDown } from '@tabler/icons-react';
 import { typeEditStoreForm } from 'features/stores-edit/types/types';
-import { initialStoreEditForm } from 'features/stores-edit/form/form';
+import { initialStoreEditForm, mapRequestFieldsToFormFieldStores } from 'features/stores-edit/form/form';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
+import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 
 export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
@@ -103,7 +104,8 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditStore', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onEditStore',dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldStores);
+
                 setIsInProgress(false);
 
             }
@@ -131,7 +133,7 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
 
                     <TextInput
                         withAsterisk
-                        label={ <Trans id={'item-name'}>Name</Trans> }
+                        label={ mapRequestFieldsToFormFieldStores.name.translatedValue }
                         placeholder={ i18n._(t`Name`) }
                         { ...form.getInputProps('name') }
                         maxLength={ 150 }
@@ -139,7 +141,7 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <Select
                             withAsterisk
-                            label={ <Trans>Store type</Trans> }
+                            label={ mapRequestFieldsToFormFieldStores.type.translatedValue }
                             data={ storeTypeList }
                             { ...form.getInputProps('type') }
                             rightSection={ <IconChevronDown size="1rem"/> }
@@ -163,7 +165,7 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
                             onChange={ (value: string) => form.setFieldValue('phoneNumber', value) }
                         />
                         <TextInput
-                            label={ <Trans>Email</Trans> }
+                            label={ mapRequestFieldsToFormFieldStores.email.translatedValue }
                             placeholder="example@email.com"
                             { ...form.getInputProps('email') }
                             maxLength={ 100 }
@@ -190,7 +192,7 @@ export const StoreEdit: React.FC<{ storeId: string }> = ({ storeId }) => {
                 <FieldsetForForm title={ <Trans>Other</Trans> }>
 
                     <Textarea
-                        label={ <Trans>Description</Trans> }
+                        label={ mapRequestFieldsToFormFieldStores.description.translatedValue}
                         placeholder={ i18n._(t`additional information`) }
                         { ...form.getInputProps('description') }
                         maxLength={ 500 }

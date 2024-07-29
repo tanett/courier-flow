@@ -5,7 +5,6 @@ import { useAppDispatchT } from 'app/state';
 import { Button, Flex, Loader, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
@@ -13,7 +12,7 @@ import { typeUsersEdit } from '../../../entities/users/model/types';
 import { usePatchUserMutation } from '../../../entities/users/api/api';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
-import { initialUsersEditForm } from '../form/form';
+import { initialUsersEditForm, mapRequestFieldsToFormFieldUsersEdit } from '../form/form';
 import { typeUsersEditForm } from '../types/types';
 import useGetUserDataByIdFromUrl from '../../../entities/users/hooks/use-get-user-data-by-id-from-url';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -23,6 +22,7 @@ import { MultiSelectorWithSearchStore } from 'features/multiselector-with-search
 import useGetRolesDataForSelector from '../../../entities/role/hooks/use-get-roles-data-for-selector';
 import { isArrayEqual } from 'features/users-edit/helpers/isArrayEqual';
 import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 
 
 export const UsersEdit: React.FC = () => {
@@ -101,7 +101,7 @@ export const UsersEdit: React.FC = () => {
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditUser', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onEditUser', dispatchAppT,  userForm as unknown as typeReturnForm, mapRequestFieldsToFormFieldUsersEdit);
                 setIsInProgress(false);
 
             }
@@ -127,14 +127,14 @@ export const UsersEdit: React.FC = () => {
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <TextInput
                             withAsterisk
-                            label={ <Trans>Full name</Trans> }
+                            label={ mapRequestFieldsToFormFieldUsersEdit.fullName.translatedValue}
                             placeholder={ i18n._(t`User name`) }
                             { ...userForm.getInputProps('fullName') }
                             maxLength={ 150 }
                         />
                         <Select
                             withAsterisk
-                            label={ <Trans>Role</Trans> }
+                            label={ mapRequestFieldsToFormFieldUsersEdit.roleId.translatedValue }
                             data={ roles }
                             transitionProps={ {
                                 duration: 80,
@@ -165,7 +165,7 @@ export const UsersEdit: React.FC = () => {
                     <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                         <TextInput
                             withAsterisk
-                            label={ <Trans>Email</Trans> }
+                            label={ mapRequestFieldsToFormFieldUsersEdit.email.translatedValue}
                             placeholder="example@email.com"
                             { ...userForm.getInputProps('email') }
                             maxLength={ 100 }

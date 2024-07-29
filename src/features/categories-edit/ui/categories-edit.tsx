@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeCategoriesEditForm } from '../types/types';
-import { initialCategoryEditForm } from '../form/form';
+import { initialCategoryEditForm, mapRequestFieldsToFormFieldCategoryEdit } from '../form/form';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Button, Flex, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
@@ -16,7 +15,7 @@ import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { useNavigate } from 'react-router-dom';
 import { typeCategoryEdit } from '../../../entities/category/model/types';
 import { useGetCategoryByIdQuery, usePatchCategoryMutation } from '../../../entities/category/api/api';
-
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 
 export const CategoriesEdit: React.FC<{categoryId: string}> = ({ categoryId }) => {
 
@@ -77,7 +76,7 @@ export const CategoriesEdit: React.FC<{categoryId: string}> = ({ categoryId }) =
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditCategory', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onEditCategory', dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldCategoryEdit);
                 setIsInProgress(false);
 
             }
@@ -105,7 +104,7 @@ export const CategoriesEdit: React.FC<{categoryId: string}> = ({ categoryId }) =
 
                     <TextInput
                         withAsterisk
-                        label={ <Trans id={ 'item-name' }>Name</Trans> }
+                        label={ mapRequestFieldsToFormFieldCategoryEdit.name.translatedValue}
                         { ...form.getInputProps('name') }
                         maxLength={ 250 }
                         sx={ {

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { OrderClient } from 'features/orders-create/ui/order-client';
-import { Button, Flex, Space, Tabs, useMantineTheme } from '@mantine/core';
+import { Button, Flex, Space, Tabs } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from './styles';
 import { useCreateOrderMutation } from '../../../entities/orders/api/api';
 import { useForm } from '@mantine/form';
-import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm } from 'features/orders-create/form/form';
+import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm, mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 import { typeOrdersForm } from 'features/orders-create/types/types';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { useLingui } from '@lingui/react';
@@ -16,11 +16,12 @@ import { typeCreateOrderRequest } from '../../../entities/orders/api/types';
 import dayjs from 'dayjs';
 import { getServicePaymentAmount } from 'features/orders-create/helpers/get-service-payment-amount';
 import { mapProductsForCreateOrderObject } from 'features/orders-create/helpers/map-products-for-create-order-object';
-import { errorHandler } from 'app/utils/errorHandler';
 import { notificationActions } from '../../../entities/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { routerPaths } from 'app/config/router-paths';
 import { typeResponseError } from 'app/api/types';
+import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
+import { typeReturnForm } from 'features/selector-with-search-store/types';
 
 const enum TYPE_TABS {
     CLIENT = 'client',
@@ -34,8 +35,6 @@ export const OrderCreate: React.FC = () => {
     const { classes } = useStyles();
 
     const navigate = useNavigate();
-
-    const theme = useMantineTheme();
 
     const { i18n } = useLingui();
 
@@ -106,7 +105,7 @@ export const OrderCreate: React.FC = () => {
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onCreateOrder', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onCreateOrder', dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldOrders);
                 setIsInProgress(false);
 
             }

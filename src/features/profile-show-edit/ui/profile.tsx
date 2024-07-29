@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { useForm } from '@mantine/form';
 import { typeProfileForm } from '../types/types';
-import { initialProfileForm } from '../form/form';
+import { initialProfileForm, mapRequestFieldsToFormField } from '../form/form';
 import { useAppDispatchT } from 'app/state';
 import { LANGUAGES, locales } from 'app/config/languages';
 import { Button, Flex, Select, SimpleGrid, Space, TextInput } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { errorHandler } from 'app/utils/errorHandler';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { typePatchCurrentUser } from '../../../entities/user-profile/api/types';
 import { notificationActions } from '../../../entities/notification/model';
@@ -21,6 +20,7 @@ import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { IconChevronDown } from '@tabler/icons-react';
 import { getLocaleForProfile } from 'features/profile-show-edit/helpers/get-locale-for-profile';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 
 
 export const Profile: React.FC = () => {
@@ -101,7 +101,7 @@ export const Profile: React.FC = () => {
 
             } catch (err) {
 
-                errorHandler(err as typeResponseError, 'onEditCurrentUser', dispatchAppT);
+                errorHandlerForForm(err as typeResponseError, 'onEditCurrentUser', dispatchAppT, profileForm as unknown as typeReturnForm, mapRequestFieldsToFormField);
                 setIsInProgress(false);
 
             }
@@ -131,7 +131,7 @@ export const Profile: React.FC = () => {
                 <FieldsetForForm title={ <Trans>Personal Information</Trans> }>
                     <TextInput
                         withAsterisk
-                        label={ <Trans>Full name</Trans> }
+                        label={ mapRequestFieldsToFormField.fullName.translatedValue }
                         placeholder={ i18n._(t`User name`) }
                         { ...profileForm.getInputProps('fullName') }
                         maxLength={ 150 }
@@ -147,7 +147,7 @@ export const Profile: React.FC = () => {
                         />
                         <TextInput
                             withAsterisk
-                            label={ <Trans>Email</Trans> }
+                            label={ mapRequestFieldsToFormField.email.translatedValue}
                             placeholder="example@email.com"
                             { ...profileForm.getInputProps('email') }
                         />
@@ -159,7 +159,7 @@ export const Profile: React.FC = () => {
             <FieldsetForForm title={ <Trans>Settings</Trans> }>
                 <SimpleGrid cols={ 2 } className={ classes.formGrid }>
                     <Select
-                        label={ <Trans>Language</Trans> }
+                        label={ mapRequestFieldsToFormField.locale.translatedValue }
                         data={ locales }
                         transitionProps={ {
                             duration: 80,

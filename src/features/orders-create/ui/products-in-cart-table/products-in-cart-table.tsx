@@ -4,7 +4,6 @@ import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import {  TrashIcon } from '@heroicons/react/24/outline';
 import { useStyles } from './styles';
-import { useAppDispatchT } from 'app/state';
 import { typeProductsInCartTable } from 'features/orders-create/ui/products-in-cart-table/types';
 import { IMaskInput } from 'react-imask';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
@@ -15,7 +14,6 @@ export const ProductsInCartTable: React.FC<typeProductsInCartTable> = ({ form, }
     const { i18n } = useLingui();
     const { classes } = useStyles();
     const theme = useMantineTheme();
-    const dispatch = useAppDispatchT();
 
     const onDeleteHandler = (index: number) => {
         form.removeListItem('products', index);
@@ -161,6 +159,7 @@ export const ProductsInCartTable: React.FC<typeProductsInCartTable> = ({ form, }
                     </tbody>
 
                 </table>
+                {form.errors.products && <Box sx={theme=>({color: theme.colors.red[5], fontSize: theme.fontSizes.lg, letterSpacing: 0.3})}>{form.errors.products}</Box>}
             </Box>
         </Flex>
     );

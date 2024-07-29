@@ -1,6 +1,8 @@
 import { t } from '@lingui/macro';
 import { STORE_TYPE } from '../../../entities/stores/model/types';
 import { isValidPhoneNumberByLength } from 'shared/utils/isValidPhoneNumber';
+import { i18n } from '@lingui/core';
+import { typeMapRequestFieldsToFormField } from 'app/utils/error-handler-for-form';
 
 export const initialStoreEditForm = {
     initialValues: {
@@ -25,7 +27,7 @@ export const initialStoreEditForm = {
             return value.trim().length !== 0
                 ? value.trim().length >= 100
                     ? t`It's too long`
-                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/.test(value)
+                    : /^[^@ \t\r\n]+@[^@ \t\r\n]+\.([^@ \t\r\n]+){2,6}$/.test(value)
                         ? null
                         : t`Invalid email`
                 : null;
@@ -54,4 +56,29 @@ export const initialStoreEditForm = {
 
         },
     },
+};
+
+export const mapRequestFieldsToFormFieldStores:typeMapRequestFieldsToFormField = {
+    name: {
+        translatedValue: i18n._('item-name'),
+        formField: 'name'
+    },
+    email: {
+        translatedValue: i18n._(t`Email`),
+        formField: 'email'
+    } ,
+    phoneNumber: {
+        translatedValue:  i18n._(t`Phone number`),
+        formField: 'phoneNumber'
+
+    },
+    description: {
+        translatedValue:   i18n._(t`Description`),
+        formField: 'description'
+    },
+    type: {
+        translatedValue:   i18n._(t`Store type`),
+        formField: 'type'
+    },
+
 };
