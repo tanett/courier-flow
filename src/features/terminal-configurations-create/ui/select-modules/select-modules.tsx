@@ -15,11 +15,12 @@ const SelectModules: React.FC<typeSelectModule> = ({ form }) => {
 
 
     const onClickModuleHandler = (module: typeModuleChecked, index: number) => {
+        console.log(form.values.availableModules, module);
         if (module.checked) {
-            const indexInForm = form.values.availableModules.findIndex(item => item === module.code);
+            const indexInForm = form.values.availableModules.findIndex(item => item === module.value);
             form.removeListItem('availableModules', indexInForm);
         } else {
-            form.insertListItem('availableModules', module.code);
+            form.insertListItem('availableModules', module.value);
         }
     };
 
@@ -33,7 +34,7 @@ const SelectModules: React.FC<typeSelectModule> = ({ form }) => {
         } }>
             { data
                 ? data.map((item, index) => {
-                        const isInForm = form.values.availableModules.findIndex((itemCode, index) => itemCode === item.code);
+                        const isInForm = form.values.availableModules.findIndex((itemCode, index) => itemCode === item.value);
                         return <CardModule
                             key={ index }
                             module={ {

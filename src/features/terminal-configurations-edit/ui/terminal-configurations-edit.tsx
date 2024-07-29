@@ -44,7 +44,7 @@ export const TerminalConfigurationsEdit: React.FC<{ id: string }> = ({ id }) => 
         if (data) {
 
             form.setFieldValue('name', data.name);
-            form.setFieldValue('availableModules', data.availableModules.map(item => item.code));
+            form.setFieldValue('availableModules', data.availableModules.map(item => item.value));
             form.setFieldValue('terminalIds', data.terminalIds);
             form.setFieldValue('storeIds', data.storeIds);
 

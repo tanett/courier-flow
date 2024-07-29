@@ -29,7 +29,7 @@ const CardModule: React.FC<{ module:  typeModuleChecked , onClick: (module: type
                 color: module.checked? theme.colors.primary[5] : theme.black,
                 '& div svg': { strokeWidth: 1.2,},
             } }>
-                <AvailableModuleConfigTerminalsIcon moduleName={ module.code } checked={ module.checked } />
+                <AvailableModuleConfigTerminalsIcon moduleName={ module.value } checked={ module.checked } />
                 <Text sx={ {
 
                     textAlign: 'center',

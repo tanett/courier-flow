@@ -21,7 +21,7 @@ export const ListModulesForConfigurationTerminals: React.FC<typeListModules> = (
     const {
         modules,
         isLoading
-    } = useGetModulesList(data.availableModules.map(item => item.code));
+    } = useGetModulesList(data.availableModules.map(item => item.value));
 
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ export const ListModulesForConfigurationTerminals: React.FC<typeListModules> = (
                             modules.map((item, index) => {
 
                                 return <Flex
-                                    key={ item.code }
+                                    key={ item.value }
                                     align={ 'center' }
                                     className={ cn([ classes.listItem ]) }>
                                     <div className={ classes.marker }/>

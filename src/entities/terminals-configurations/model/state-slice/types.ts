@@ -14,7 +14,8 @@ export enum AVAILABLE_MODULES {
 
 export type typeAvailableModulesTerminalConfigurations = {
     name: string
-    code: AVAILABLE_MODULES
+    value: AVAILABLE_MODULES
+    scopes: string[]
 }
 
 

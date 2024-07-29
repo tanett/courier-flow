@@ -2184,7 +2184,7 @@ msgstr "Конфигурация успешно удалена."
 
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:112
 msgid "Terminal configuration edited successfully."
-msgstr "Конфигурация усе=пешно изменена."
+msgstr "Конфигурация успешно изменена."
 
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:136
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:136

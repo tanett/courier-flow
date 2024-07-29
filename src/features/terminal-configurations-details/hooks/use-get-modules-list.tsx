@@ -15,7 +15,7 @@ export const useGetModulesList = (selectedModules: AVAILABLE_MODULES[]) => {
 
         if (data) {
 
-            const mappedModules = data.filter(item => selectedModules.includes(item.code));
+            const mappedModules = data.filter(item => selectedModules.includes(item.value));
             setModules(mappedModules);
         }
 
