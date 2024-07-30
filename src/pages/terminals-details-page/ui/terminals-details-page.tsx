@@ -18,7 +18,7 @@ const TerminalsDetailsPage: React.FC = () => {
         <DashboardContent >
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Terminals`), path: routerPaths.terminals },
+                    { name: i18n._(t`Terminals`), path: routerPaths.terminals_list },
                     { name: serialNumber || '------' }
                 ] }/> }
 

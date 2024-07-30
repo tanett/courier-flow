@@ -3,8 +3,13 @@ import { Modal } from 'shared/ui/modal';
 import { Dialog } from 'shared/ui/dialog-new';
 import { plural, t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import { Box } from '@mantine/core';
 
-export const ArchiveSelectedItemModal:React.FC<{onClose: ()=>void, onConfirm: ()=>void, productsCount: number}> = ({ onClose, onConfirm, productsCount }) => {
+export const ArchiveSelectedItemModal: React.FC<{ onClose: () => void, onConfirm: () => void, productsCount: number }> = ({
+    onClose,
+    onConfirm,
+    productsCount
+}) => {
 
     const { i18n } = useLingui();
 
@@ -24,13 +29,27 @@ export const ArchiveSelectedItemModal:React.FC<{onClose: ()=>void, onConfirm: ()
                         handler: onConfirm,
                     } }
                 >
-                    <Trans>Are you sure you want to archive<br/>the selected categories</Trans>?<br/>
-                    {productsCount && productsCount >0 && <Trans>After archiving the category, { plural(productsCount, {
+                    <Box sx={ theme => ({
+                        fontWeight: 500,
+                        fontSize: theme.fontSizes.md,
+                        lineHeight: '25px',
+                        marginBottom: '5px'
+
+                    }) }><Trans>Are you sure you want to archive<br/>the selected categories</Trans>?</Box>
+                    { productsCount && productsCount > 0 && <Box sx={ theme => ({
+                        fontWeight: 400,
+                        fontSize: theme.fontSizes.sm,
+                        color: theme.colors.gray[5],
+                        lineHeight: '18.56px',
+                        letterSpacing: 0.3,
+                        textAlign: 'center',
+
+                    }) }><Trans>After archiving, { plural(productsCount, {
                         one: '# product',
                         few: '# products',
                         many: '# products',
                         other: '# products',
-                    }) } will remain without a category</Trans> }
+                    }) } will remain without a category</Trans></Box> }
                 </Dialog>
             </Modal.Body>
         </Modal>

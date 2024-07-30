@@ -4,7 +4,7 @@ export const getProductCountFromSelectedCategories = (list: typeCategoryWithChec
 
     return list.reduce((prev, curr) => {
 
-        return curr.checked ? prev + curr.productsCount : prev;
+        return curr.checked ? prev + (curr.productsCount ?? 0) : prev;
 
     }, 0);
 

@@ -46,7 +46,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                             </Flex>
                         </Table.Th>
                         <Table.Th>
-                            <Box sx={{minWidth: rem(250)}}>
+                            <Box sx={{minWidth: rem(250), textAlign:'left'}}>
                             <Trans>Address</Trans></Box>
                         </Table.Th>
                         <Table.Th>

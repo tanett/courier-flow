@@ -3,7 +3,7 @@ import { createStyles, rem } from '@mantine/core';
 export const useStyles = createStyles((theme) => ({
     dialogWrapper: {
         position: 'relative',
-        padding: `${rem(8)} ${rem(39)} ${rem(10)}`,
+        padding: `${rem(8)} ${rem(29)} ${rem(0)}`,
         flexDirection: 'column',
     },
     withMarginTopFat: { marginTop: rem(12) },
@@ -27,9 +27,8 @@ export const useStyles = createStyles((theme) => ({
         marginTop: rem(30),
         alignItems: 'center',
         gap: rem(24),
-        paddingBottom: rem(2),
     },
-    button: {},
+    button: { fontSize: rem(16),  },
     primary: {
         backgroundColor: theme.colors.primary[ 5 ],
         '&:hover': { backgroundColor: theme.colors.primary[ 5 ] },
