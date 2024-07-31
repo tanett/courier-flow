@@ -15,7 +15,7 @@ import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
 import { ModalAllPricesChange } from 'features/product-details-stores/ui/modal/modal-all-prices-change';
 import { Pagination } from 'shared/ui/pagination/table-pagination';
 
-export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = ({ productId }) => {
+export const ProductDetailsStoresWithPrices: React.FC<{ productId: string, merchantId?: string }> = ({ productId, merchantId }) => {
 
     const { i18n } = useLingui();
 
@@ -140,7 +140,7 @@ export const ProductDetailsStoresWithPrices: React.FC<{ productId: string }> = (
 
             { dialogToDelete && <ModalDelete data={ dialogToDelete } setOpen={ setDialogToDelete } setRefetch={ setRefetch }/> }
 
-            { dialogToAdd && <ModalAdd setOpen={ setDialogToAdd } productId={ productId } setRefetch={ setRefetch }/> }
+            { dialogToAdd && <ModalAdd setOpen={ setDialogToAdd } productId={ productId } merchantId={merchantId} setRefetch={ setRefetch }/> }
 
             { dialogChangePrice && <ModalChangePrice setOpen={ setDialogChangePrice } data={ dialogChangePrice } setRefetch={ setRefetch }/> }
 
