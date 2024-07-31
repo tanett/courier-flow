@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from '@mantine/form';
 import { initialForm, typeAddRetailProductToStoreForm } from './form';
 import { Box, Button, Flex, Input, rem, Space, useMantineTheme } from '@mantine/core';
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { useAppDispatchT, useSelectorT } from 'app/state';
+import { useAppDispatchT } from 'app/state';
 import { typeResponseError } from 'app/api/types';
 import { errorHandler } from 'app/utils/errorHandler';
 import { notificationActions } from '../../entities/notification/model';
@@ -17,16 +17,15 @@ import { IMaskInput } from 'react-imask';
 import { typeCreateRetailProduct } from '../../entities/retail-products/model/types';
 
 
-export const RetailProductAddToStore: React.FC<{ productId: string, onClose: (refetch: boolean) => void }> = ({
+export const RetailProductAddToStore: React.FC<{ productId: string,merchantId?: string, onClose: (refetch: boolean) => void }> = ({
     productId,
     onClose,
+    merchantId
 }) => {
 
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
-
-    const merchantId = useSelectorT(state => state.userProfile.userProfile?.actor.merchantId);
 
     const form = useForm<typeAddRetailProductToStoreForm>(initialForm);
 

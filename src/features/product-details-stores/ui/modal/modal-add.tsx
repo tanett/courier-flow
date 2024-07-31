@@ -8,10 +8,12 @@ export const ModalAdd: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     productId: string
     setRefetch: React.Dispatch<React.SetStateAction<boolean>>
+    merchantId?: string
 }> = ({
     setOpen,
     productId,
     setRefetch,
+    merchantId
 }) => {
 
     const { i18n } = useLingui();
@@ -33,7 +35,7 @@ export const ModalAdd: React.FC<{
             <Modal.Body>
                 <>
                     <Modal.Header title={ i18n._(t`Add a store`) } onClose={ () => onCloseDialogToAdd(false) }/>
-                    <RetailProductAddToStore productId={ productId } onClose={ onCloseDialogToAdd }/>
+                    <RetailProductAddToStore productId={ productId } merchantId={merchantId} onClose={ onCloseDialogToAdd }/>
                 </>
             </Modal.Body>
         </Modal>

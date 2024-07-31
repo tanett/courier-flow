@@ -86,7 +86,7 @@ const ProductsDetailsTabs: React.FC<{ productId: string }> = ({ productId }) => 
             </Flex>
 
             <Tabs.Panel value={ TYPE_TABS.COMMON }><ProductDetailsCommon productData={ productData } isFetching={isFetching}/></Tabs.Panel>
-            <Tabs.Panel value={ TYPE_TABS.STORES }><ProductDetailsStoresWithPrices productId={ productId }/></Tabs.Panel>
+            <Tabs.Panel value={ TYPE_TABS.STORES }><ProductDetailsStoresWithPrices productId={ productId } merchantId={productData?.merchantId}/></Tabs.Panel>
         </Tabs>
     );
 
