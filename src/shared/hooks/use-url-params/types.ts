@@ -12,4 +12,6 @@ export interface typeUseUrlParams {
     filtersToUri: (newParamsObj: Record<string, unknown>) => string | undefined
     sortDirection: sortDirection.asc | sortDirection.dec | undefined
     sortName: string | undefined
+    tab: string | undefined
+    setNewTab: (newTab: string | null) => void
 }

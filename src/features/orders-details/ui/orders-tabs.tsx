@@ -53,10 +53,9 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.COMMON);
 
-    const tabFromUrl = urlParams.getFilterValue('tab');
-    if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {
+    if (urlParams.tab && urlParams.tab !== tab ) {
 
-        setTab(tabFromUrl as TYPE_TABS);
+        setTab(urlParams.tab as TYPE_TABS);
 
     }
 
@@ -101,11 +100,8 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
             className={ classes.tab }
             variant="outline"
             value={ tab }
-            onTabChange={ (value) => {
+            onTabChange={ (value) =>   urlParams.setNewTab( value ) }
 
-                urlParams.setSearchParams({ [queryParamsNames.filtersString]: urlParams.filtersToUri({ tab: value }) });
-
-            } }
         >
             <Flex justify="space-between" align={ 'end' }>
                 <Tabs.List className={ classes.tab }>

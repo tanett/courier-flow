@@ -44,7 +44,7 @@ const AdvancesSoldProductDetailsPage: React.FC = () => {
                         path: generatePath(routerPaths.advances_details, {
                             id: id,
                             publicId: advancesData?.publicId || ''
-                        }) + `?f=tab.${ TYPE_TABS.SOLD_PRODUCTS }`
+                        }) + `?tab=${ TYPE_TABS.SOLD_PRODUCTS }`
                     },
                     { name: name || '---' },
                 ] }/> }

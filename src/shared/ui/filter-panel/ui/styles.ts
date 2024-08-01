@@ -8,13 +8,13 @@ export const useStyles = createStyles((theme) => ({
     findWrapper: { flexGrow: 1 },
     inputField: {
         '& input': {
-            borderColor: theme.colors.borderColor[ 0 ],
+            borderColor: theme.colors.borderColor[0],
             paddingTop: rem(18),
             paddingBottom: rem(18),
             height: rem(44),
             '&::placeholder': {
                 fontSize: theme.fontSizes.lg,
-                color: theme.colors.gray[ 3 ],
+                color: theme.colors.gray[3],
                 lineHeight: rem(20),
                 letterSpacing: 0.3,
             },
@@ -35,11 +35,11 @@ export const useStyles = createStyles((theme) => ({
         fontSize: rem(22),
         padding: rem(30),
         paddingBottom: rem(22),
-        borderBottom: `1px solid ${theme.colors.borderColor[ 0 ]}`,
+        borderBottom: `1px solid ${ theme.colors.borderColor[0] }`,
     },
     filterDrawerTitle: {
         flexGrow: 1,
-        color: theme.colors.primary[ 5 ],
+        color: theme.colors.primary[5],
         fontWeight: 600,
         letterSpacing: rem(0.3),
     },
@@ -79,7 +79,8 @@ export const useStyles = createStyles((theme) => ({
         '& .mantine-Button-leftIcon': {
             width: rem(20),
             height: rem(20),
-            color: theme.colors.primary[ 5 ],
+            color: theme.colors.primary[5],
         },
     },
+    filterMarker: { '& .mantine-Indicator-indicator': {backgroundColor: theme.colors.yellow[4],}  }
 }));
