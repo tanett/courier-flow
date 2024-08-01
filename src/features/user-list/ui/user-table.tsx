@@ -40,10 +40,10 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
-                            <Trans>Full name</Trans>
+                            <Box miw={184}><Trans>Full name</Trans></Box>
                         </Table.Th>
-                        <Table.Th>
-                            <Trans>Phone number</Trans>
+                        <Table.Th >
+                            <Box maw={130}><Trans>Phone number</Trans></Box>
                         </Table.Th>
                         <Table.Th>
                             <Trans>Email</Trans>

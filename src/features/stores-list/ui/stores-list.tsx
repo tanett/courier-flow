@@ -22,7 +22,7 @@ export const StoresList: React.FC = () => {
     } = useGetExtendedStoresList();
 
 
-    const goToEditStorePage = (id: string | number) => navigate([ routerPaths.stores, id.toString(), 'edit' ].join('/'));
+    const goToEditStorePage = (id: string | number,name: string ) => navigate([ routerPaths.stores, id.toString(),name, 'edit' ].join('/'));
 
     const goToDetailsStorePage = (id: string | number, name: string) => navigate([ routerPaths.stores, id.toString(), name ].join('/'));
     const goToDetailsStoreTabUsers = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string | number, name: string) => {

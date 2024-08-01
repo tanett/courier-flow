@@ -58,7 +58,7 @@ export const UsersCreateNew: React.FC = () => {
             const { phone } = userForm.values;
 
             const dataObject: typeUsersCreate = {
-                fullName: userForm.values.fullName.trim(),
+                fullName: userForm.values.fullName.trim().replace(/\s{2,}/g, ' '),
                 email: userForm.values.email.trim(),
                 phone: isPossiblePhoneNumber(phone) ? phone : undefined,
                 roleId: userForm.values.roleId,

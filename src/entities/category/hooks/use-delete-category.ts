@@ -24,7 +24,7 @@ export const useDeleteCategory = ({
 
             dispatchAppT(notificationActions.addNotification({
                 type: NOTIFICATION_TYPES.SUCCESS,
-                message: ids.length === 1 ? t`Category delete successfully.` : t`Categories delete successfully.`,
+                message: ids.length === 1 ? t`Category archived successfully.` : t`Categories archived successfully.`,
             }));
             if (onSuccess) onSuccess();
 

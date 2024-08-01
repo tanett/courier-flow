@@ -44,33 +44,23 @@ export const StoreDetailsCommon: React.FC<{ storeData: typeStore | undefined, is
                     }
                 ] }>
                 <InfoCardSmall label={ i18n._(t`Store type`) } content={ `${ storeData?.type ? getTransLabelForStoreType(storeData.type) : '-' }` }/>
+                <Box sx={{width: 'fit-content', minWidth: '250px'}}>
+                <InfoCardSmall label={ i18n._(t`Phone number`) }
+                               iconLabel={ <PhoneIcon/> }
+                               content={ storeData?.phoneNumber ? formatIncompletePhoneNumber(storeData.phoneNumber) : '-' }/></Box>
 
-                <SimpleGrid
-                    breakpoints={ [
-                        {
-                            minWidth: 'md',
-                            cols: 2,
-                            spacing: 10,
-                        },
-                        {
-                            minWidth: 1200,
-                            cols: 2,
-                            spacing: 60,
-                        }
-                    ] }>
-
-                    <InfoCardSmall label={ i18n._(t`Phone number`) }
-                                   iconLabel={ <PhoneIcon/> }
-                                   content={ storeData?.phoneNumber ? formatIncompletePhoneNumber(storeData.phoneNumber) : '-' }/>
-                    <InfoCardSmall label={ i18n._(t`Email`) }
-                                   iconLabel={ <EnvelopeIcon/> }
-                                   content={ storeData?.email || '-' }/>
-                </SimpleGrid>
-                <InfoCardSmall label={ i18n._(t`Description`) } content={ storeData?.description || '-' } withBottomBorder={ false }/>
+                <InfoCardSmall label={ i18n._(t`Description`) } content={ storeData?.description || '-' } withBottomBorder={ false } />
                 <Box>
+                    <Box sx={{width: 'fit-content', minWidth: '250px'}}>
+                        <InfoCardSmall label={ i18n._(t`Email`) }
+                                       iconLabel={ <EnvelopeIcon/> }
+                                       content={ storeData?.email || '-' }/>
+                    </Box>
+
                     <InfoCardSmall label={ i18n._(t`Locality`) }
                                    iconLabel={ <MapIcon/> }
                                    content={ storeData?.locality || '-' }/>
+
                     <InfoCardSmall label={ i18n._(t`Store address`) }
                                    content={ storeData?.address || '-' }
                                    iconLabel={ <MapPinIcon/> }

@@ -68,11 +68,13 @@ export const TerminalDetails: React.FC<{ terminalId: string }> = ({ terminalId }
                             minWidth: 'md',
                             cols: 2,
                             spacing: 10,
+                            verticalSpacing: 0,
                         },
                         {
                             minWidth: 1200,
                             cols: 2,
                             spacing: 30,
+                            verticalSpacing: 0,
                         }
                     ] }>
                     <InfoCardSmall label={ i18n._(t`Vendor & model`) } content={ `${ terminalData?.vendor || '' } ${ terminalData?.model || '' }` }/>

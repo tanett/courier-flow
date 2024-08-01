@@ -95,7 +95,7 @@ export const ProductFormEdit: React.FC<{
                 marked: form.values.marked === productData.marked ? undefined : form.values.marked,
                 unit: form.values.unit === productData.unit ? undefined : form.values.unit,
                 vat: productData.vat === +((parseFloat(form.values.vat) / 100).toFixed(4)) ? undefined : +((parseFloat(form.values.vat) / 100).toFixed(4)),
-                name: form.values.name.trim() === productData.name ? undefined : form.values.name.trim(),
+                name: form.values.name.trim() === productData.name ? undefined : form.values.name.trim().replace(/\s{2,}/g, ' '),
                 productAdditionalFields: getAdditionalFieldsValue(Object.values(form.values.productAdditionalFields), productData.productAdditionalFields),
                 productCategoryId: form.values.productCategoryId === productData.productCategory?.id ? undefined : form.values.productCategoryId === '' ? null : form.values.productCategoryId,
             };

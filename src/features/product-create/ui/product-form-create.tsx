@@ -67,7 +67,7 @@ export const ProductFormCreate: React.FC<{
                 marked: form.values.marked,
                 unit: form.values.unit,
                 vat: +((parseFloat(form.values.vat) / 100).toFixed(4)),
-                name: form.values.name.trim(),
+                name: form.values.name.trim().replace(/\s{2,}/g, ' '),
                 merchantId: currentUser.actor.merchantId,
                 productAdditionalFields: Object.values(form.values.productAdditionalFields).filter(item => item.value !== ''),
                 productCategoryId: form.values.productCategoryId,

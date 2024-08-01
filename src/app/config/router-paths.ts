@@ -222,7 +222,7 @@ export const routerPaths: Record<pathNames, string> = {
 
     //stores
     [pathNames.stores]: createPath([ pathSections.dashboard, pathSections.stores ]),
-    [pathNames.stores_edit]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.edit ]),
+    [pathNames.stores_edit]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.storeName, pathSections.edit ]),
     [pathNames.stores_details]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.storeName ]),
     [pathNames.stores_details_users_edit]: createPath([ pathSections.dashboard, pathSections.stores, pathSections.id, pathSections.storeName, pathSections.userId, pathSections.edit ]),
 

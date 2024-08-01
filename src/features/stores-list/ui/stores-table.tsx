@@ -30,7 +30,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
 
     return (<>
         <FilterPanel
-            withFind={ { placeholder: i18n._(t`Type part of store name`) } }
+            withFind={ { placeholder: i18n._(t`Search by store name`) } }
             filterComponent={ <StoresListFilter/> }
         />
 
@@ -56,10 +56,10 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
 
                         </Table.Th>
 
-                        <Table.Th align={'center'}>
-                            <Trans>The number<br/> of employees</Trans>
+                        <Table.Th align={'center'}><Box sx={{ lineHeight: '16px', maxWidth: rem(100) }}>
+                            <Trans>The number<br/> of employees</Trans></Box>
                         </Table.Th>
-                        { isAllowedStoreEdit && <Table.Th>
+                        { isAllowedStoreEdit && <Table.Th align={'center'}>
                             <Trans>Actions</Trans>
                         </Table.Th> }
                     </Table.Header>
@@ -70,7 +70,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                             const actions: typeActionList = [
                                 {
                                     label: i18n._(t`Edit`),
-                                    handler: () => goToEditStorePage(item.id),
+                                    handler: () => goToEditStorePage(item.id, item.name),
                                     icon: <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
                                 }
                             ];
@@ -79,9 +79,9 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
                                 <Table.Tr key={ item.id } handler={ () => goToDetailsStorePage(item.id, item.name) }>
                                     <Table.Td ><Box sx={{ minWidth: rem(250), wordBreak: 'break-all' }}>{ item.name }</Box></Table.Td>
                                     <Table.Td><Box sx={{ minWidth: rem(250), wordBreak: 'break-all' }}>{item.locality}, { item.address }</Box></Table.Td>
-                                    <Table.Td><Box sx={{ minWidth: rem(160) }}>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Box></Table.Td>
+                                    <Table.Td><Box sx={{ minWidth: rem(140) }}>{ item.phoneNumber ? formatIncompletePhoneNumber(item.phoneNumber) : '-' }</Box></Table.Td>
 
-                                    <Table.Td align={'center'}><Box sx={{ minWidth: rem(160), textAlign: 'center', color: theme.colors.primary[ 5 ] }}
+                                    <Table.Td align={'center'}><Box sx={{ minWidth: rem(100), textAlign: 'center', color: theme.colors.primary[ 5 ] }}
                                         onClick={ (event) => goToDetailsStoreTabUsers(event, item.id, item.name) }>{ item.usersCount || '-' }</Box></Table.Td>
                                     { isAllowedStoreEdit && <Table.TdActions actions={ actions } align={'center'}/> }
                                 </Table.Tr>

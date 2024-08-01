@@ -34,7 +34,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
                     : userList && <>
                         <Table variant="inTab">
                             <Table.Header>
-                                <Table.Th withoutLeftDivider>
+                                <Table.Th withoutLeftDivider >
                                     <Trans>Full name</Trans>
                                 </Table.Th>
                                 <Table.Th>
@@ -44,7 +44,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
                                     <Trans>Role</Trans>
                                 </Table.Th>
                                 <Table.Th align={'center'}>
-                                    <Flex maw={150}><Trans>Actions</Trans></Flex>
+                                    <Flex miw={170} w={200} maw={210} justify={'center'} sx={{textAlign: 'center'}}><Trans>Actions</Trans></Flex>
                                 </Table.Th>
                             </Table.Header>
 
@@ -68,9 +68,9 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
 
                                     return (
                                         <Table.Tr key={ item.id } >
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.fullName }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} miw={320} sx={{ wordBreak: 'break-all' }}>{ item.fullName }</Box></Table.Td>
                                             <Table.Td><Box miw={150} maw={250}>{ item.phone ? formatIncompletePhoneNumber(item.phone) : '-' }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.role.name ?? '-' }</Box></Table.Td>
+                                            <Table.Td><Box maw={400} miw={270} sx={{ wordBreak: 'break-all' }}>{ item.role.name ?? '-' }</Box></Table.Td>
                                             { isAllowEditUser && <Table.TdActions align={'center'} actions={ actions }/> }
                                         </Table.Tr>
                                     );

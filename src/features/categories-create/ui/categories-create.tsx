@@ -107,7 +107,7 @@ export const CategoriesCreate: React.FC = () => {
                 <Flex className={ classes.buttonsBar }>
                     <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
                     <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                        type="submit">{ t`Save` }</Button>
+                        type="submit">{ t`Create` }</Button>
                 </Flex>
 
             </Flex>
