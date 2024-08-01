@@ -64,7 +64,7 @@ export const Profile: React.FC = () => {
             const profileData = data.actor;
             const editObject: typePatchCurrentUser = {
                 id: profileData.id,
-                fullName: profileForm.values.fullName.trim() === profileData.fullName ? undefined : profileForm.values.fullName.trim(),
+                fullName: profileForm.values.fullName.trim() === profileData.fullName ? undefined : profileForm.values.fullName.trim().replace(/\s{2,}/g, ' '),
                 email: profileForm.values.email.trim() === profileData.email ? undefined : profileForm.values.email.trim(),
                 phone: convertPhoneNumberToStringForApi(profileForm.values.phone) === profileData.phone ? undefined : convertPhoneNumberToStringForApi(profileForm.values.phone),
                 userSettings: profileForm.values.locale === profileData?.userSettings?.locale ? undefined : { locale: profileForm.values.locale as LANGUAGES },

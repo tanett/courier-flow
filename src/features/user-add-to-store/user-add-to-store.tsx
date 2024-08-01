@@ -87,6 +87,7 @@ export const UserAddToStore: React.FC<{ storeId: string, onClose: (refetch: bool
                     marginTop: rem(-10),
                     position: 'relative',
                     overflow: 'visible',
+                    '& .mantine-InputWrapper-root': {maxWidth: 'none'}
                 } }>
                 <SelectorWithSearchUsers
                     form={ form as unknown as typeReturnForm }

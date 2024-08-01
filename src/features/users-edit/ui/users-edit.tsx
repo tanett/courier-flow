@@ -77,7 +77,7 @@ export const UsersEdit: React.FC = () => {
 
             const dataObject: typeUsersEdit = {
                 id: userData.id,
-                fullName: userForm.values.fullName.trim() === userData.fullName.trim() ? undefined : userForm.values.fullName.trim(),
+                fullName: userForm.values.fullName.trim() === userData.fullName.trim() ? undefined : userForm.values.fullName.trim().replace(/\s{2,}/g, ' '),
                 email: userForm.values.email.trim() === userData.email.trim() ? undefined : userForm.values.email.trim(),
                 phone: phone,
                 roleId: userForm.values.roleId === userData.role.id ? undefined : userForm.values.roleId,

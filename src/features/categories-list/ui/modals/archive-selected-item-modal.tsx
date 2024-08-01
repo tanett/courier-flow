@@ -36,7 +36,7 @@ export const ArchiveSelectedItemModal: React.FC<{ onClose: () => void, onConfirm
                         marginBottom: '5px'
 
                     }) }><Trans>Are you sure you want to archive<br/>the selected categories</Trans>?</Box>
-                    { productsCount && productsCount > 0 && <Box sx={ theme => ({
+                    { !!productsCount && productsCount > 0 && <Box sx={ theme => ({
                         fontWeight: 400,
                         fontSize: theme.fontSizes.sm,
                         color: theme.colors.gray[5],
@@ -45,11 +45,11 @@ export const ArchiveSelectedItemModal: React.FC<{ onClose: () => void, onConfirm
                         textAlign: 'center',
 
                     }) }><Trans>After archiving, { plural(productsCount, {
-                        one: '# product',
-                        few: '# products',
-                        many: '# products',
-                        other: '# products',
-                    }) } will remain without a category</Trans></Box> }
+                        one: '# product will remain',
+                        few: '# products will remain',
+                        many: '# products will remain',
+                        other: '# products will remain',
+                    }) } without a category</Trans></Box> }
                 </Dialog>
             </Modal.Body>
         </Modal>

@@ -45,7 +45,7 @@ const StoresDetailsTabs: React.FC<{ storeId: string, storeName: string }> = ({ s
         error
     } = useGetStoreByIdQuery(storeId);
 
-    const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.stores_edit,{id: id}), );
+    const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.stores_edit,{id: id, storeName: storeName}), );
 
 
     return (
@@ -69,7 +69,7 @@ const StoresDetailsTabs: React.FC<{ storeId: string, storeName: string }> = ({ s
                 <Flex justify="space-between" align={'end'}>
                     <Tabs.List className={ classes.tab}>
                         <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`Store`) }</Tabs.Tab>
-                        <Tabs.Tab value={ TYPE_TABS.USERS }>{ i18n._(t`Employees list`) }</Tabs.Tab>
+                        <Tabs.Tab value={ TYPE_TABS.USERS }>{ i18n._(t`Employees`) }</Tabs.Tab>
                     </Tabs.List>
                     <Flex align={'center'} justify={'center'} h={ 36 }>
                         <Tooltip withArrow arrowSize={ 6 } radius="md" label={ i18n._(t`Go to editing page`) }>

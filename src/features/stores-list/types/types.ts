@@ -5,7 +5,7 @@ import { typeExtendedStore } from 'entities/stores/model/types';
 export type typeStoresListTable = {
     isAllowedStoreEdit: boolean | null,
     currentUser: typeGetCurrentUserResponse | undefined,
-    goToEditStorePage: (id: string) => void
+    goToEditStorePage: (id: string,name: string) => void
     goToDetailsStorePage: (id: string, name: string) => void
     goToDetailsStoreTabUsers: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string, name: string) => void
     storesList: typeExtendedStore[] | undefined

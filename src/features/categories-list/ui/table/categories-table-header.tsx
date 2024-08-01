@@ -71,7 +71,7 @@ export const CategoriesListTableHeader: React.FC<typeCategoriesListTableHeader> 
                     <Table.Th align={'center'}>
                         <Trans>Number of products</Trans>
                     </Table.Th>
-                    { isAllowedEdit && <Table.Th>
+                    { isAllowedEdit && <Table.Th align={'center'}>
                         <Trans>Actions</Trans>
                     </Table.Th> }
                 </> }
