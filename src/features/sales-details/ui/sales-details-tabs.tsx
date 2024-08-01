@@ -29,11 +29,9 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.COMMON);
 
+    if (urlParams.tab && urlParams.tab !== tab ) {
 
-    const tabFromUrl = urlParams.getFilterValue('tab');
-    if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {
-
-        setTab(tabFromUrl as TYPE_TABS);
+        setTab(urlParams.tab as TYPE_TABS);
 
     }
 
@@ -52,12 +50,9 @@ const SalesDetailsTabs: React.FC<{ salesId: string }> = ({ salesId }) => {
             className={ classes.tab }
             variant="outline"
             value={ tab }
-            onTabChange={(value) => {
+            onTabChange={ (value) =>   urlParams.setNewTab( value ) }
 
-                urlParams.setSearchParams({ [ queryParamsNames.filtersString ]: urlParams.filtersToUri({ tab: value }) });
-
-            }}
-        >
+            >
             <div className={classes.tabsButtonsBlock}><PrintReceiptButton id={salesId}/></div>
             <Tabs.List>
                 <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`Main`) }</Tabs.Tab>

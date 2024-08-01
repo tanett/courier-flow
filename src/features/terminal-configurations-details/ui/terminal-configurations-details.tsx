@@ -29,10 +29,9 @@ export const TerminalConfigurationsDetails: React.FC<{ id: string }> = ({ id }) 
     const [ tab, setTab ] = useState<CONFIGURATION_TYPE_TABS | null>(CONFIGURATION_TYPE_TABS.STORES);
 
 
-    const tabFromUrl = urlParams.getFilterValue('tab');
-    if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {
+    if (urlParams.tab && urlParams.tab !== tab ) {
 
-        setTab(tabFromUrl as CONFIGURATION_TYPE_TABS);
+        setTab(urlParams.tab as CONFIGURATION_TYPE_TABS);
 
     }
 
@@ -50,11 +49,8 @@ export const TerminalConfigurationsDetails: React.FC<{ id: string }> = ({ id }) 
                 className={ classes.tab }
                 variant="outline"
                 value={ tab }
-                onTabChange={ (value) => {
+                onTabChange={ (value) =>   urlParams.setNewTab( value ) }
 
-                    urlParams.setSearchParams({ [queryParamsNames.filtersString]: urlParams.filtersToUri({ tab: value }) });
-
-                } }
             >
                 <Flex justify="space-between" align={'end'}>
                     <Tabs.List>

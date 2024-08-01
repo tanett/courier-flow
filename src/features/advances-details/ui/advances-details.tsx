@@ -32,11 +32,9 @@ const AdvancesDetails: React.FC<{ advanceId: string }> = ({ advanceId }) => {
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.COMMON);
 
+    if (urlParams.tab && urlParams.tab !== tab ) {
 
-    const tabFromUrl = urlParams.getFilterValue('tab');
-    if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {
-
-        setTab(tabFromUrl as TYPE_TABS);
+        setTab(urlParams.tab as TYPE_TABS);
 
     }
 
@@ -66,11 +64,7 @@ const AdvancesDetails: React.FC<{ advanceId: string }> = ({ advanceId }) => {
                 className={ classes.tab }
                 variant="outline"
                 value={ tab }
-                onTabChange={ (value) => {
-
-                    urlParams.setSearchParams({ [queryParamsNames.filtersString]: urlParams.filtersToUri({ tab: value }) });
-
-                } }
+                onTabChange={ (value) =>   urlParams.setNewTab( value ) }
             >
                 <div className={ classes.tabsButtonsBlock }><PrintReceiptButton id={ 'print-receipt' }/></div>
                 <Tabs.List>

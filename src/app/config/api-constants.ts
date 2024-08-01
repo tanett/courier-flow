@@ -15,6 +15,7 @@ export enum queryParamsNames {
     filtersString = 'f',
     sortDirection = 'd',
     sortName = 'n',
+    tab='tab'
 }
 
 export const filterFieldNameSeparator = '.';
@@ -28,6 +29,7 @@ export interface typeSearchParamsObj {
     [queryParamsNames.filtersString]?: string
     [queryParamsNames.sortDirection]?: sortDirection
     [queryParamsNames.sortName]?: string
+    [queryParamsNames.tab]?: string
 }
 
 // TODO: make filters

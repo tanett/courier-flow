@@ -32,11 +32,9 @@ const ProductsDetailsTabs: React.FC<{ productId: string }> = ({ productId }) => 
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.COMMON);
 
+    if (urlParams.tab && urlParams.tab !== tab ) {
 
-    const tabFromUrl = urlParams.getFilterValue('tab');
-    if (tabFromUrl && tabFromUrl !== tab && typeof tabFromUrl === 'string') {
-
-        setTab(tabFromUrl as TYPE_TABS);
+        setTab(urlParams.tab as TYPE_TABS);
 
     }
 
@@ -61,11 +59,7 @@ const ProductsDetailsTabs: React.FC<{ productId: string }> = ({ productId }) => 
             className={ classes.tab }
             variant="outline"
             value={ tab }
-            onTabChange={(value) => {
-
-                urlParams.setSearchParams({ [ queryParamsNames.filtersString ]: urlParams.filtersToUri({ tab: value }) });
-
-            }}
+            onTabChange={ (value) =>   urlParams.setNewTab( value ) }
         >
             <Flex justify="space-between" align={'end'}>
                 <Tabs.List className={ classes.tab}>

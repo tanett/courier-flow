@@ -18,6 +18,7 @@ export const useUrlParams = () => {
     let filtersString = params[ queryParamsNames.filtersString ];
     const sortDirection = params[ queryParamsNames.sortDirection ];
     const sortName = params[ queryParamsNames.sortName ];
+    const tab = params[ queryParamsNames.tab ];
 
     // Decoding uri
     if (searchPhrase) searchPhrase = decodeURI(searchPhrase);
@@ -34,6 +35,7 @@ export const useUrlParams = () => {
         if (filtersString) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.filtersString ]: filtersString } };
         if (sortDirection) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.sortDirection ]: sortDirection as sortDirection } };
         if (sortName) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.sortName ]: sortName } };
+        if (tab) newSearchParams = { ...newSearchParams, ...{ [ queryParamsNames.tab ]: tab } };
 
         // New params with current params
         for (const key of Object.keys(paramsObj)) {
@@ -138,6 +140,18 @@ export const useUrlParams = () => {
 
     };
 
+    const setNewTab = (newTabValue: string | null ) => {
+
+        if (newTabValue) {
+            setSearchParams({ [ queryParamsNames.tab ]: newTabValue  });
+        } else {
+            if( queryParamsNames.tab in searchParams){
+                const newSearchParams = searchParams
+                delete newSearchParams[ queryParamsNames.tab ];
+                setSearchParams({ ...newSearchParams  });
+            }
+        }
+    };
 
     const result: typeUseUrlParams = {
         pageNumber: isNaN(pageNumber) ? null : pageNumber,
@@ -150,6 +164,8 @@ export const useUrlParams = () => {
         filtersToUri: filtersToUri,
         sortDirection: sortDirection as sortDirection,
         sortName: sortName ? sortName : undefined,
+        tab: tab ? tab : undefined,
+        setNewTab: setNewTab
     };
 
     return result;

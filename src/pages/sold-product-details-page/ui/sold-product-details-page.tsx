@@ -21,7 +21,7 @@ const SoldProductDetailsPage: React.FC = () => {
                 leftSide={ <DashboardBreadcrumbs dataList={ [
                     { name: i18n._(t`Sales`), path: routerPaths.sales },
                     { name: publicId || '---' , path: generatePath(routerPaths.sales_details,{id: id, publicId: publicId}) },
-                    { name: i18n._(t`Sold products`) , path: generatePath(routerPaths.sales_details,{id: id, publicId: publicId})+`?f=tab.${TYPE_TABS.SOLD_PRODUCTS}` },
+                    { name: i18n._(t`Sold products`) , path: generatePath(routerPaths.sales_details,{id: id, publicId: publicId})+`?tab=${TYPE_TABS.SOLD_PRODUCTS}` },
                     { name: name || '---' },
                 ] }/> }
 
