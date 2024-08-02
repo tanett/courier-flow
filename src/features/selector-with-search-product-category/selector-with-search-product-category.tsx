@@ -138,7 +138,7 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             searchable
             limit={ 40 }
             label={ t`Category` }
-            placeholder={ t`Type name and select` }
+            placeholder={ t`Search by name` }
             data={ list }
             searchValue={ searchValue }
             onSearchChange={ (query) => onSearchChange(query) }
@@ -149,7 +149,10 @@ export const SelectorWithSearchProductCategory: React.FC<typeSelectorProductCate
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+            sx={ theme => ({
+                '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
+                '& input::placeholder': { color: theme.colors.gray[3] },
+            }) }
             withinPortal
         />
     );

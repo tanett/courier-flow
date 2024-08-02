@@ -30,6 +30,7 @@ export const AdvancesListTable: React.FC<typeAdvancesListTable> = ({
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by advance total cost`) } }
             filterComponent={ <AdvancesListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

@@ -1,18 +1,20 @@
-import { Trans } from '@lingui/macro';
-import { ActionIcon, Button, Drawer, Flex, Indicator, useMantineTheme } from '@mantine/core';
+import { t, Trans } from '@lingui/macro';
+import { ActionIcon, Button, Drawer, Flex, Indicator, Tooltip, useMantineTheme } from '@mantine/core';
 import React, { createContext, useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { typeFilterBlock } from '../types/types';
 import { useStyles } from './styles';
-import { IconX } from '@tabler/icons-react';
+import { IconReload, IconX } from '@tabler/icons-react';
 import { FunnelIcon } from '@heroicons/react/24/outline';
 import { FunnelIcon as FunnelIconSolid } from '@heroicons/react/24/solid';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import cn from 'classnames';
+import { i18n } from '@lingui/core';
+import { queryParamsNames } from 'app/config/api-constants';
 
 export const DrawerContext = createContext<(undefined) | (() => void)>(undefined);
 
-export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent }) => {
+export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent,isListLoading }) => {
 
     const { classes } = useStyles();
     const theme = useMantineTheme();
@@ -22,6 +24,14 @@ export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent }) => {
     } ] = useDisclosure(false);
 
     const urlParams = useUrlParams();
+
+    const onReset = () => {
+
+        urlParams.setSearchParams({
+            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
+            [queryParamsNames.pageNumber]: undefined,
+        });
+    };
 
     const [ isEmptyFilter, setIsEmptyFilter ] = useState<boolean>(false);
 
@@ -35,14 +45,28 @@ export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent }) => {
 
     return (
         <DrawerContext.Provider value={ close }>
-            <Indicator inline disabled={isEmptyFilter} size={12} className={classes.filterMarker}>
+
             <Button onClick={ open } variant={ 'outline' }
-                    className={ classes.filterOpenButton }
-                    leftIcon={ isEmptyFilter? <FunnelIcon/> : <FunnelIconSolid/> }
+                    loading={isListLoading}
+                    className={ cn(classes.filterOpenButton, { [classes.buttonRightPadding]: !isEmptyFilter }) }
+                    leftIcon={ isEmptyFilter ? <FunnelIcon/> : <FunnelIconSolid/> }
+                    rightIcon={ isEmptyFilter ? undefined : <div ><Tooltip withArrow arrowSize={ 6 } radius="md" label={i18n._(t`Reset filters`)}>
+                        <ActionIcon variant="subtle"
+                                    disabled={ isEmptyFilter }
+                                    className={classes.resetActiveIcon}
+                                    onClick={ (e) => {
+                                        e.stopPropagation();
+                                        // item.handler();
+                                        onReset()
+                                    } }>
+                            <IconReload/>
+                        </ActionIcon>
+                    </Tooltip>
+                    </div> }
             >
                 <Trans>Filter</Trans>
             </Button>
-            </Indicator>
+
             <Drawer
                 position="right"
                 size={ '38.125rem' }

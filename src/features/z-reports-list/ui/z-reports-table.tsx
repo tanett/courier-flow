@@ -34,6 +34,7 @@ export const RefundListTable: React.FC<typeZReportsListTable> = ({
                 minValueLength: 1
             } }
             filterComponent={ <ZReportListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

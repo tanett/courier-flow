@@ -28,6 +28,7 @@ export const CreditsListTable: React.FC<typeCreditsListTable> = ({
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by sale ID or credit amount`) } }
             filterComponent={ <CreditsListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

@@ -6,6 +6,7 @@ export interface typeFilterPanel {
         minValueLength?: number
     } | boolean
     filterComponent?: React.ReactNode
+    isListLoading?: boolean
 }
 
 export interface typeFindBlock {
@@ -15,7 +16,8 @@ export interface typeFindBlock {
 
 export interface typeFilterBlock {
     size?: 'sx' | 'md',
-    filterComponent: React.ReactNode
+    filterComponent: React.ReactNode,
+    isListLoading?: boolean
 }
 
 export interface typeFilterButtonsBar {

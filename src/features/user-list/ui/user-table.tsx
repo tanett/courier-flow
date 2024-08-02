@@ -30,8 +30,9 @@ export const UserListTable: React.FC<typeUserListTable> = ({
 
     return (<>
         <FilterPanel
-            withFind={ { placeholder: i18n._(t`Type part of your username, email or phone number`) } }
+            withFind={ { placeholder: i18n._(t`Search by user name, email or phone number`) } }
             filterComponent={ <UserListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading
@@ -40,7 +41,7 @@ export const UserListTable: React.FC<typeUserListTable> = ({
                 <Table>
                     <Table.Header>
                         <Table.Th withoutLeftDivider>
-                            <Box miw={184}><Trans>Full name</Trans></Box>
+                            <Box miw={184} sx={{textAlign: 'left'}}><Trans>Full name</Trans></Box>
                         </Table.Th>
                         <Table.Th >
                             <Box maw={130}><Trans>Phone number</Trans></Box>

@@ -5,7 +5,7 @@ import { typeFilterPanel } from '../types/types';
 import { FilterBlock } from './filter-block';
 import { FindBlock } from './find-block';
 
-export const FilterPanel: React.FC<typeFilterPanel> = ({ filterComponent, withFind }) => {
+export const FilterPanel: React.FC<typeFilterPanel> = ({ filterComponent, withFind,isListLoading }) => {
 
     const { classes } = useStyles();
 
@@ -18,7 +18,7 @@ export const FilterPanel: React.FC<typeFilterPanel> = ({ filterComponent, withFi
                 />}
             </Box>
             {filterComponent && <Box>
-                <FilterBlock filterComponent={filterComponent}/>
+                <FilterBlock filterComponent={filterComponent} isListLoading={isListLoading}/>
             </Box>}
         </Flex>
     );

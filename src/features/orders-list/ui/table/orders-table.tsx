@@ -70,6 +70,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by client’s phone number, delivery address, order number or order amount`) } }
             filterComponent={ <OrdersListFilter/> }
+            isListLoading={isLoading}
         />
 
         { (isLoading)
