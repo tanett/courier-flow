@@ -73,6 +73,7 @@ export const useStyles = createStyles((theme) => ({
         gap: rem(42),
     },
     filterOpenButton: {
+        width: rem(167),
         fontSize: theme.fontSizes.md,
         fontWeight: 700,
         letterSpacing: rem(0.3),
@@ -81,6 +82,21 @@ export const useStyles = createStyles((theme) => ({
             height: rem(20),
             color: theme.colors.primary[5],
         },
+        '& .mantine-Button-rightIcon': {
+            width: rem(36),
+            height: rem(34),
+            textAlign: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+            '& svg': {
+                width: rem(20),
+                height: rem(20),
+                color: theme.colors.yellow[5],
+
+            },
+            borderLeft: `1px solid ${ theme.colors.primary[5] }`,
+        },
     },
-    filterMarker: { '& .mantine-Indicator-indicator': {backgroundColor: theme.colors.yellow[4],}  }
+    buttonRightPadding: {  '&.mantine-Button-root': {paddingRight:'2px',},},
+    resetActiveIcon: {'&:hover': { backgroundColor: theme.colors.primary[ 0 ] },}
 }));

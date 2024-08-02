@@ -101,12 +101,12 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
 
     }, [ initialValue ]);
 
-    const isSelectedNameEqualDebouncedValue = ()=>{
+    const isSelectedNameEqualDebouncedValue = () => {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-         // @ts-ignore
-        const selectedStore = storesList.find(item=>item.value === form.values[ fieldName ] )
+        // @ts-ignore
+        const selectedStore = storesList.find(item => item.value === form.values[fieldName]);
         return debouncedSearchValue === selectedStore?.label;
-    }
+    };
 
     useEffect(() => {
 
@@ -147,7 +147,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             searchable
             limit={ 40 }
             label={ t`Store` }
-            placeholder={ t`Type store name and select` }
+            placeholder={ t`Search by store name` }
             data={ storesList }
             searchValue={ searchStoreValue }
             onSearchChange={ (query) => onSearchStoreChange(query) }
@@ -157,14 +157,17 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
             disabled={ disabled }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[ fieldName ] ? undefined : <IconChevronDown size="1rem"/> }
+            rightSection={ isLoading ? <Loader size={ 16 }/> : form.values[fieldName] ? undefined : <IconChevronDown size="1rem"/> }
             styles={ {
                 rightSection: {
                     pointerEvents: 'none',
                     pointer: 'pointer',
                 },
             } }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
+            sx={ theme => ({
+                '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
+                '& input::placeholder': { color: theme.colors.gray[3] },
+            }) }
         />
     );
 

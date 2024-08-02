@@ -29,6 +29,7 @@ export const TerminalConfigurationsListTable: React.FC<typeTerminalConfiguration
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by configuration name`) } }
            filterComponent={ <TerminalConfigurationsListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

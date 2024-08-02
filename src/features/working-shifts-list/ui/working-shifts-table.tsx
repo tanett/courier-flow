@@ -38,6 +38,7 @@ export const WorkingShiftsTable: React.FC<typeWorkingShiftsTable> = ({
                 minValueLength: 1
             } }
             filterComponent={ <WorkingShiftsListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

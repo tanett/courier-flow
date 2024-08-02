@@ -61,8 +61,9 @@ export const ProductsListTable: React.FC<typeProductsListTable> = ({
 
     return (<>
         <FilterPanel
-            withFind={ { placeholder: i18n._(t`Type part of a product name`) } }
+            withFind={ { placeholder: i18n._(t`Search by product name`) } }
             filterComponent={ <ProductsListFilter/> }
+            isListLoading={isLoading}
         />
 
         { (isLoading)

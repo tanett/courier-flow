@@ -21,8 +21,9 @@ export const TerminalsTable: React.FC<typeTerminalsListTable> = ({
         ? <TableSkeleton/>
         : <>{ terminalsList && <>
             <FilterPanel
-                withFind={ { placeholder: i18n._(t`Type part of serial number, fiscal card Id`) } }
+                withFind={ { placeholder: i18n._(t`Search by serial number or fiscal card Id`) } }
                 filterComponent={ <TerminalsListFilter/> }
+                isListLoading={isFetching}
             />
             <Table variant="inTab">
                 <Table.Header>

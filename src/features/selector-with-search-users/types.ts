@@ -13,6 +13,7 @@ export type typeSelectorUsers = {
     initialValue: string | null,
     disabled?: boolean,
     label?:string,
+    placeholder?:string,
     storesFilters?: string[],
     roleCodesFilters?: string[],
     currentUser?: string,

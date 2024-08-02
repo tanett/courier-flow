@@ -66,6 +66,7 @@ export const SalesListTable: React.FC<typeSalesListTable> = ({
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by receipt number or total cost`) } }
             filterComponent={ <SalesListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

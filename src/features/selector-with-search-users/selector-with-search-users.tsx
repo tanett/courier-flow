@@ -46,6 +46,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
     initialValue,
     disabled,
     label,
+    placeholder,
     storesFilters,
     roleCodesFilters,
     currentUser,
@@ -194,7 +195,7 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
             searchable
             limit={ 40 }
             label={ label || t`Users` }
-            placeholder={ t`Type user name and select` }
+            placeholder={ placeholder? placeholder : t`Search by user name` }
             data={ usersList }
             searchValue={ searchValue }
             onSearchChange={ (query) => onSearchChange(query) }
@@ -213,8 +214,10 @@ export const SelectorWithSearchUsers: React.FC<typeSelectorUsers> = ({
                     pointer: 'pointer',
                 },
             } }
-            sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
-        />
+            sx={ theme => ({
+                '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
+                '& input::placeholder': { color: theme.colors.gray[3] },
+            }) }        />
     );
 
 };

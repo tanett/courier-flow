@@ -98,6 +98,12 @@ export const Profile: React.FC = () => {
                     message: i18n._(t`Profile changed successfully.`),
                 }));
 
+                const profileData = res;
+
+                profileForm.setFieldValue('fullName', profileData.fullName ?? '');
+                profileForm.setFieldValue('email', profileData.email ?? '');
+                profileForm.setFieldValue('phone', profileData.phone ?? '');
+                profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
 
             } catch (err) {
 

@@ -140,6 +140,7 @@ export const ZReportListFilter: React.FC = () => {
                             placeholder={i18n._(t`Type Fiscal card ID`)}
                             required={ false }
                             { ...form.getInputProps('fiscalId') }
+                            sx={ theme => ({ '& input::placeholder': { color: theme.colors.gray[3] },}) }
                         />
                         <SelectorWithSearchStore
                             required={ false }
@@ -152,6 +153,7 @@ export const ZReportListFilter: React.FC = () => {
                             placeholder={i18n._(t`Type Terminal SN`)}
                             required={ false }
                             { ...form.getInputProps('terminalSN') }
+                            sx={ theme => ({ '& input::placeholder': { color: theme.colors.gray[3] },}) }
                         />
 
 

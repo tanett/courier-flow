@@ -53,7 +53,7 @@ export const CategoriesListTable: React.FC<typeCategoriesListTable> = ({
 
     return (<>
         <FilterPanel
-            withFind={ { placeholder: i18n._(t`Type part of category name`) } }
+            withFind={ { placeholder: i18n._(t`Search by category name`) } }
 
         />
 

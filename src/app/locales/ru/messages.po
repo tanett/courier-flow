@@ -20,7 +20,7 @@ msgstr ""
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:37
 #: src/features/products-list/ui/table/products-table-header.tsx:86
 #: src/features/stores-edit/form/form.ts:63
-#: src/features/stores-list/ui/stores-table.tsx:44
+#: src/features/stores-list/ui/stores-table.tsx:45
 #: src/features/terminal-configurations-create/form/form.ts:29
 #: src/features/terminal-configurations-edit/form/form.ts:29
 msgid "item-name"
@@ -77,19 +77,19 @@ msgstr "Штрихкод обязателен для маркированных 
 msgid "Access denied"
 msgstr "Доступ запрещен"
 
-#: src/features/advances-list/ui/table/advances-table.tsx:77
+#: src/features/advances-list/ui/table/advances-table.tsx:78
 #: src/features/categories-list/ui/table/categories-table-header.tsx:75
 #: src/features/orders-create/ui/products-in-cart-table/products-in-cart-table.tsx:76
 #: src/features/orders-list/ui/table/orders-table-header.tsx:103
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:43
 #: src/features/products-list/ui/table/products-table-header.tsx:102
-#: src/features/refund-list/ui/refund-table.tsx:57
+#: src/features/refund-list/ui/refund-table.tsx:58
 #: src/features/sales-list/ui/table/sales-table-header.tsx:97
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:47
-#: src/features/stores-list/ui/stores-table.tsx:63
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:52
-#: src/features/user-list/ui/user-table.tsx:58
-#: src/features/z-reports-list/ui/z-reports-table.tsx:66
+#: src/features/stores-list/ui/stores-table.tsx:64
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:53
+#: src/features/user-list/ui/user-table.tsx:59
+#: src/features/z-reports-list/ui/z-reports-table.tsx:67
 msgid "Actions"
 msgstr "Действия"
 
@@ -99,7 +99,7 @@ msgstr "Действия"
 
 #: src/features/product-details-stores/ui/product-details-stores-with-prices.tsx:118
 #: src/features/stores-details-users/ui/stores-details-users.tsx:163
-#: src/features/user-add-to-store/user-add-to-store.tsx:110
+#: src/features/user-add-to-store/user-add-to-store.tsx:114
 msgid "Add"
 msgstr "Добавить"
 
@@ -125,7 +125,7 @@ msgid "additional information"
 msgstr "дополнительная информация"
 
 #: src/features/stores-edit/ui/store-edit.tsx:185
-#: src/features/stores-list/ui/stores-table.tsx:50
+#: src/features/stores-list/ui/stores-table.tsx:51
 #: src/features/users-details/ui/users-details.tsx:126
 msgid "Address"
 msgstr "Адрес"
@@ -134,7 +134,7 @@ msgstr "Адрес"
 msgid "Advance"
 msgstr "Аванс"
 
-#: src/features/advances-details/ui/advances-details.tsx:54
+#: src/features/advances-details/ui/advances-details.tsx:52
 #: src/features/main-menu/config/main-menu.config.tsx:65
 #: src/pages/advances-page/ui/advances-page.tsx:16
 #: src/pages/advances-sold-product-details-page/ui/advances-sold-product-details-page.tsx:32
@@ -171,7 +171,7 @@ msgid "All products listed in the file are successfully imported."
 msgstr "Все товары из файла успешно импортированы."
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:153
-#: src/features/credits-list/ui/table/credits-table.tsx:68
+#: src/features/credits-list/ui/table/credits-table.tsx:69
 msgid "Amount"
 msgstr "Сумма"
 
@@ -206,8 +206,8 @@ msgid "action-archive"
 msgstr "Архивировать"
 
 #: src/features/products-list-buttons-panel/ui/dialogs/archive-products-dialog.tsx:20
-#: src/features/products-list/ui/table/products-table.tsx:92
-#: src/features/user-list/ui/user-table.tsx:75
+#: src/features/products-list/ui/table/products-table.tsx:93
+#: src/features/user-list/ui/user-table.tsx:76
 msgid "Archive"
 msgstr "Архив"
 
@@ -275,10 +275,10 @@ msgstr "Вы уверены, что хотите удалить конфигур
 msgid "Are you sure you want to remove <0/>the user"
 msgstr "Вы уверены, что хотите убрать<0/> этого пользователя"
 
-#: src/features/orders-details/ui/orders-tabs.tsx:74
+#: src/features/orders-details/ui/orders-tabs.tsx:73
 #: src/features/orders-list/ui/modal/modal-add-courier.tsx:98
 #: src/features/orders-list/ui/modal/modal-add-courier.tsx:134
-#: src/features/orders-list/ui/table/orders-table.tsx:99
+#: src/features/orders-list/ui/table/orders-table.tsx:100
 msgid "Assign courier"
 msgstr "Назначить курьера"
 
@@ -343,13 +343,13 @@ msgstr "Штрихкод"
 msgid "Barcodes"
 msgstr "Штрихкоды"
 
-#: src/features/terminal-list/ui/terminals-table.tsx:51
+#: src/features/terminal-list/ui/terminals-table.tsx:52
 #: src/features/terminals-details/ui/terminals-details.tsx:86
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:111
 msgid "Blocked"
 msgstr "Заблокирован"
 
-#: src/features/terminal-list/ui/terminals-table.tsx:42
+#: src/features/terminal-list/ui/terminals-table.tsx:43
 #: src/features/terminals-details/ui/terminals-details.tsx:82
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:106
 msgid "Blocking"
@@ -386,7 +386,7 @@ msgstr "После удаления конфигурации, {0} и {1} ост�
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:130
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:179
 #: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:88
-#: src/features/user-add-to-store/user-add-to-store.tsx:108
+#: src/features/user-add-to-store/user-add-to-store.tsx:112
 #: src/features/user-archive-button/user-archive-button.tsx:58
 #: src/features/user-list/ui/user-list.tsx:89
 #: src/features/users-create/ui/users-create-new.tsx:163
@@ -402,8 +402,8 @@ msgstr "Отменить заказ"
 msgid "Canceled"
 msgstr "Отменено"
 
-#: src/features/orders-details/ui/orders-tabs.tsx:89
-#: src/features/orders-list/ui/table/orders-table.tsx:121
+#: src/features/orders-details/ui/orders-tabs.tsx:88
+#: src/features/orders-list/ui/table/orders-table.tsx:122
 msgid "Cancelled"
 msgstr "Отменен"
 
@@ -432,7 +432,7 @@ msgstr "Кассы"
 msgid "Cash payment"
 msgstr "Оплата наличными"
 
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:77
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:78
 msgid "Cash payment / Cashless payment"
 msgstr "Оплата нал. / безнал."
 
@@ -440,13 +440,13 @@ msgstr "Оплата нал. / безнал."
 msgid "Cash refunds"
 msgstr "Возвраты наличными"
 
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:94
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:95
 msgid "Cash refunds / Cashless refunds"
 msgstr "Возвраты нал. / безнал."
 
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:77
 #: src/features/working-shifts-list-filter/ui/working-shifts-list-filter.tsx:90
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:61
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:62
 msgid "Cashier"
 msgstr "Кассир"
 
@@ -460,10 +460,10 @@ msgstr "Версия кассового приложения"
 #: src/features/main-menu/config/main-menu.config.tsx:92
 #: src/features/terminal-configurations-create/form/form.ts:42
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:117
-#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:62
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:58
 #: src/features/terminal-configurations-edit/form/form.ts:42
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:164
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:49
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:50
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:17
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:21
 #: src/pages/categories-page/ui/categories-page.tsx:31
@@ -618,8 +618,8 @@ msgstr "Закрыть"
 msgid "Close date"
 msgstr "Дата закрытия"
 
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:128
-#: src/features/z-reports-list/ui/z-reports-table.tsx:99
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:129
+#: src/features/z-reports-list/ui/z-reports-table.tsx:100
 msgid "closed"
 msgstr "закрыто"
 
@@ -649,7 +649,7 @@ msgstr "Комментарий"
 
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:98
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:145
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:40
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:41
 msgid "Configuration name"
 msgstr "Название конфигурации"
 
@@ -730,7 +730,7 @@ msgstr "Создать"
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:110
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:110
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:85
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:163
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:165
 msgid "Creation date"
 msgstr "Дата создания"
 
@@ -738,7 +738,7 @@ msgstr "Дата создания"
 msgid "Credit"
 msgstr "Кредит"
 
-#: src/features/credits-details/ui/credits-details.tsx:51
+#: src/features/credits-details/ui/credits-details.tsx:49
 #: src/features/main-menu/config/main-menu.config.tsx:70
 #: src/pages/credits-page/ui/credits-page.tsx:16
 msgid "Credits"
@@ -751,17 +751,17 @@ msgstr "Телефон клиента"
 #: src/features/advances-list-filter/ui/advances-list-filter.tsx:109
 #: src/features/credits-list-filter/ui/credits-list-filter.tsx:147
 #: src/features/orders-list-filter/ui/orders-list-filter.tsx:142
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:49
-#: src/features/z-reports-list/ui/z-reports-table.tsx:48
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:50
+#: src/features/z-reports-list/ui/z-reports-table.tsx:49
 msgid "Date"
 msgstr "Дата"
 
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:76
 #: src/features/advances-details/ui/advances-details-payments-list/ui/table/table-payments.tsx:34
-#: src/features/advances-list/ui/table/advances-table.tsx:46
+#: src/features/advances-list/ui/table/advances-table.tsx:47
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:88
 #: src/features/credits-details/ui/credits-details-payments-list/ui/table/table-payments.tsx:41
-#: src/features/credits-list/ui/table/credits-table.tsx:44
+#: src/features/credits-list/ui/table/credits-table.tsx:45
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:110
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:58
 #: src/features/refund-details/ui/tabs/payments-refund-tab/ui/table/table-payments.tsx:33
@@ -771,11 +771,11 @@ msgstr "Дата"
 msgid "Date & time"
 msgstr "Дата & время"
 
-#: src/features/refund-list/ui/refund-table.tsx:42
+#: src/features/refund-list/ui/refund-table.tsx:43
 msgid "Date & Time"
 msgstr "Дата & Время"
 
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:164
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:166
 #: src/shared/ui/date-selector-component/date-selector-component.tsx:79
 msgid "dd.mm.yyyy - dd.mm.yyyy"
 msgstr "дд.мм.гггг-дд.мм.гггг"
@@ -784,7 +784,7 @@ msgstr "дд.мм.гггг-дд.мм.гггг"
 #: src/features/product-details-stores/ui/table/table-stores-in-product.tsx:61
 #: src/features/terminal-configurations-create/ui/select-categories-for-terminal/ui/category-item-in-list.tsx:36
 #: src/features/terminal-configurations-list/ui/terminal-configurations-list.tsx:92
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:66
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:67
 msgid "Delete"
 msgstr "Удалить"
 
@@ -852,12 +852,12 @@ msgstr "Эл.почта"
 
 #: src/features/categories-list/ui/table/categories-table.tsx:76
 #: src/features/orders-edit/ui/order-edit.tsx:35
-#: src/features/orders-list/ui/table/orders-table.tsx:93
-#: src/features/products-list/ui/table/products-table.tsx:85
+#: src/features/orders-list/ui/table/orders-table.tsx:94
+#: src/features/products-list/ui/table/products-table.tsx:86
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:57
-#: src/features/stores-list/ui/stores-table.tsx:72
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:61
-#: src/features/user-list/ui/user-table.tsx:67
+#: src/features/stores-list/ui/stores-table.tsx:73
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:62
+#: src/features/user-list/ui/user-table.tsx:68
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:22
 #: src/pages/products-edit-page/ui/products-edit-page.tsx:18
 #: src/pages/stores-edit-page/ui/stores-edit-page.tsx:23
@@ -876,15 +876,15 @@ msgstr "Изменить цену"
 #: src/features/profile-show-edit/form/form.ts:59
 #: src/features/stores-details-common/ui/store-details-common.tsx:55
 #: src/features/stores-edit/form/form.ts:67
-#: src/features/user-list/ui/user-table.tsx:49
+#: src/features/user-list/ui/user-table.tsx:50
 #: src/features/users-create/form/form.ts:59
 #: src/features/users-details/ui/users-details.tsx:74
 #: src/features/users-edit/form/form.ts:59
 msgid "Email"
 msgstr "Эл. почта"
 
-#: src/features/advances-list/ui/table/advances-table.tsx:60
-#: src/features/refund-list/ui/refund-table.tsx:51
+#: src/features/advances-list/ui/table/advances-table.tsx:61
+#: src/features/refund-list/ui/refund-table.tsx:52
 #: src/features/sales-list/ui/table/sales-table-header.tsx:82
 #: src/features/z-reports-details/ui/z-reports-details.tsx:147
 msgid "Employee"
@@ -897,7 +897,8 @@ msgstr "Сотрудник"
 msgid "Employee name"
 msgstr "Имя сотрудника"
 
-#: src/features/stores-details/ui/stores-details-tabs.tsx:72
+#: src/features/stores-details/ui/stores-details-tabs.tsx:68
+#: src/features/user-add-to-store/user-add-to-store.tsx:98
 msgid "Employees"
 msgstr "Сотрудники"
 
@@ -1008,8 +1009,8 @@ msgstr "Обработка файла завершена с ошибками. И
 msgid "File processing completed with errors. Correct your selection and download it again."
 msgstr "Обработка файла завершена с ошибками. Исправьте свой выбор и скачайте его еще раз."
 
-#: src/shared/ui/filter-panel/ui/filter-block.tsx:26
-#: src/shared/ui/filter-panel/ui/filter-block.tsx:43
+#: src/shared/ui/filter-panel/ui/filter-block.tsx:67
+#: src/shared/ui/filter-panel/ui/filter-block.tsx:85
 msgid "Filter"
 msgstr "Фильтр"
 
@@ -1019,11 +1020,11 @@ msgstr "Номер первого чека"
 
 #: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:139
 #: src/features/z-reports-details/ui/z-reports-details.tsx:56
-#: src/features/z-reports-list/ui/z-reports-table.tsx:45
+#: src/features/z-reports-list/ui/z-reports-table.tsx:46
 msgid "Fiscal card ID"
 msgstr "Фискальный ID"
 
-#: src/features/terminal-list/ui/terminals-table.tsx:36
+#: src/features/terminal-list/ui/terminals-table.tsx:37
 #: src/features/terminals-details/ui/terminals-details.tsx:81
 msgid "Fiscal ID"
 msgstr "Фискальный ID"
@@ -1041,7 +1042,7 @@ msgstr "Id фискального модуля"
 msgid "Forgot password?"
 msgstr "Забыли пароль?"
 
-#: src/features/products-list/ui/table/products-table.tsx:106
+#: src/features/products-list/ui/table/products-table.tsx:107
 msgid "from"
 msgstr "от"
 
@@ -1052,7 +1053,7 @@ msgstr "Топливо"
 #: src/features/profile-show-edit/form/form.ts:55
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:38
 #: src/features/stores-user-edit/ui/stores-users-edit.tsx:129
-#: src/features/user-list/ui/user-table.tsx:43
+#: src/features/user-list/ui/user-table.tsx:44
 #: src/features/users-create/form/form.ts:55
 #: src/features/users-edit/form/form.ts:55
 msgid "Full name"
@@ -1062,7 +1063,7 @@ msgstr "ФИО"
 #: src/features/categories-edit/ui/categories-edit.tsx:103
 #: src/features/product-create/ui/product-form-create.tsx:113
 #: src/features/product-edit/ui/product-form-edit.tsx:143
-#: src/features/products-details/ui/products-details-tabs.tsx:72
+#: src/features/products-details/ui/products-details-tabs.tsx:66
 msgid "General information"
 msgstr "Основная информация"
 
@@ -1074,10 +1075,10 @@ msgstr "Основная информация"
 msgid "Go to \"Credits\" to view the list of payments"
 msgstr "Перейти в\"Кредиты\" для просмотра списка платежей"
 
-#: src/features/orders-details/ui/orders-tabs.tsx:117
-#: src/features/products-details/ui/products-details-tabs.tsx:76
-#: src/features/stores-details/ui/stores-details-tabs.tsx:75
-#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:66
+#: src/features/orders-details/ui/orders-tabs.tsx:113
+#: src/features/products-details/ui/products-details-tabs.tsx:70
+#: src/features/stores-details/ui/stores-details-tabs.tsx:71
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:62
 msgid "Go to editing page"
 msgstr "Перейти на страницу редактирования"
 
@@ -1118,8 +1119,8 @@ msgstr "Импорт терминалов"
 msgid "Imports list"
 msgstr "Список импортов"
 
-#: src/features/orders-details/ui/orders-tabs.tsx:79
-#: src/features/orders-list/ui/table/orders-table.tsx:111
+#: src/features/orders-details/ui/orders-tabs.tsx:78
+#: src/features/orders-list/ui/table/orders-table.tsx:112
 msgid "In process"
 msgstr "В обработке"
 
@@ -1209,7 +1210,7 @@ msgstr "Маркированные товары должны продавать�
 msgid "Language"
 msgstr "Язык"
 
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:201
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:203
 #: src/shared/ui/date-selector-component/date-selector-component.tsx:124
 msgid "Last month"
 msgstr "Последний месяц"
@@ -1218,7 +1219,7 @@ msgstr "Последний месяц"
 msgid "Last receipt number"
 msgstr "Номер последнего чека"
 
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:188
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:190
 #: src/shared/ui/date-selector-component/date-selector-component.tsx:111
 msgid "Last week"
 msgstr "Последняя неделя"
@@ -1265,11 +1266,11 @@ msgstr "Вход"
 msgid "Logout"
 msgstr "Выйти"
 
-#: src/features/advances-details/ui/advances-details.tsx:77
-#: src/features/credits-details/ui/credits-details.tsx:74
-#: src/features/orders-details/ui/orders-tabs.tsx:112
-#: src/features/refund-details/ui/refunds-details-tabs.tsx:59
-#: src/features/sales-details/ui/sales-details-tabs.tsx:63
+#: src/features/advances-details/ui/advances-details.tsx:71
+#: src/features/credits-details/ui/credits-details.tsx:68
+#: src/features/orders-details/ui/orders-tabs.tsx:108
+#: src/features/refund-details/ui/refunds-details-tabs.tsx:53
+#: src/features/sales-details/ui/sales-details-tabs.tsx:58
 msgid "Main"
 msgstr "Основное"
 
@@ -1320,14 +1321,14 @@ msgstr "Название мерчанта"
 #~ msgid "Merchants"
 #~ msgstr "Мерчанты"
 
-#: src/features/terminal-list/ui/terminals-table.tsx:33
+#: src/features/terminal-list/ui/terminals-table.tsx:34
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:95
 msgid "Model"
 msgstr "Модель"
 
 #: src/features/terminal-configurations-create/form/form.ts:46
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:118
-#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:63
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:59
 #: src/features/terminal-configurations-edit/form/form.ts:46
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:165
 msgid "Modules"
@@ -1389,7 +1390,7 @@ msgstr "Нет магазинов с таким названием"
 msgid "No terminals with this serial number"
 msgstr "Нет терминалов с указанным серийным номером"
 
-#: src/features/terminal-list/ui/terminals-table.tsx:52
+#: src/features/terminal-list/ui/terminals-table.tsx:53
 #: src/features/terminals-details/ui/terminals-details.tsx:87
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:114
 msgid "Not blocked"
@@ -1410,7 +1411,7 @@ msgstr "Не маркированный"
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:172
 #: src/features/credits-list-filter/ui/credits-list-filter.tsx:131
-#: src/features/credits-list/ui/table/credits-table.tsx:92
+#: src/features/credits-list/ui/table/credits-table.tsx:93
 msgid "Not paid"
 msgstr "Не оплачено"
 
@@ -1442,7 +1443,7 @@ msgstr "Количество возвратов"
 msgid "Number of sales"
 msgstr "Количество продаж"
 
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:68
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:69
 msgid "Number of sales / Number of returns"
 msgstr "Кол-во продаж / возвратов"
 
@@ -1462,7 +1463,7 @@ msgstr "Только один файл может быть добавлен."
 msgid "Open date"
 msgstr "Дата открытия"
 
-#: src/features/z-reports-list/ui/z-reports-table.tsx:95
+#: src/features/z-reports-list/ui/z-reports-table.tsx:96
 msgid "opened"
 msgstr "открыт"
 
@@ -1508,7 +1509,7 @@ msgstr "Номер заказа / Дата"
 msgid "Order status changed successfully."
 msgstr "Статус заказа успешно изменен."
 
-#: src/features/orders-details/ui/orders-tabs.tsx:113
+#: src/features/orders-details/ui/orders-tabs.tsx:109
 msgid "Ordered products"
 msgstr "Заказанные товары"
 
@@ -1537,8 +1538,8 @@ msgstr "Код упаковки"
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:158
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:171
 #: src/features/credits-list-filter/ui/credits-list-filter.tsx:128
-#: src/features/credits-list/ui/table/credits-table.tsx:74
-#: src/features/credits-list/ui/table/credits-table.tsx:93
+#: src/features/credits-list/ui/table/credits-table.tsx:75
+#: src/features/credits-list/ui/table/credits-table.tsx:94
 msgid "Paid"
 msgstr "Оплачено"
 
@@ -1575,7 +1576,7 @@ msgstr "Восстановление пароля"
 msgid "Password too long, maximum {MAX_CHARS_IN_PASSWORD} characters"
 msgstr "Пароль слишком длинный, максимум {MAX_CHARS_IN_PASSWORD} символов"
 
-#: src/features/advances-list/ui/table/advances-table.tsx:74
+#: src/features/advances-list/ui/table/advances-table.tsx:75
 #: src/features/sales-list/ui/table/sales-table-header.tsx:91
 msgid "Payment"
 msgstr "Платеж"
@@ -1598,10 +1599,10 @@ msgstr "Способ платежа"
 msgid "Payment type"
 msgstr "Тип платежа"
 
-#: src/features/advances-details/ui/advances-details.tsx:79
-#: src/features/credits-details/ui/credits-details.tsx:75
-#: src/features/refund-details/ui/refunds-details-tabs.tsx:61
-#: src/features/sales-details/ui/sales-details-tabs.tsx:65
+#: src/features/advances-details/ui/advances-details.tsx:73
+#: src/features/credits-details/ui/credits-details.tsx:69
+#: src/features/refund-details/ui/refunds-details-tabs.tsx:55
+#: src/features/sales-details/ui/sales-details-tabs.tsx:60
 msgid "Payments"
 msgstr "Платежи"
 
@@ -1622,8 +1623,8 @@ msgstr "Телефон"
 #: src/features/stores-details-common/ui/store-details-common.tsx:48
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:41
 #: src/features/stores-edit/form/form.ts:71
-#: src/features/stores-list/ui/stores-table.tsx:54
-#: src/features/user-list/ui/user-table.tsx:46
+#: src/features/stores-list/ui/stores-table.tsx:55
+#: src/features/user-list/ui/user-table.tsx:47
 #: src/features/users-details/ui/users-details.tsx:70
 #: src/features/users-details/ui/users-details.tsx:129
 #: src/shared/ui/phone-input/ui/phoneInputWithCountrySelector.tsx:175
@@ -1642,7 +1643,7 @@ msgstr "Штучный"
 msgid "Piece products"
 msgstr "Штучные товары"
 
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:46
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:47
 msgid "POS"
 msgstr ""
 
@@ -1785,19 +1786,19 @@ msgid "Range of price"
 msgstr "Диапазон цен"
 
 #: src/features/advances-list/ui/modals/modal-print-receipt.tsx:21
-#: src/features/advances-list/ui/table/advances-table.tsx:86
+#: src/features/advances-list/ui/table/advances-table.tsx:87
 #: src/features/credits-list/ui/modals/modal-print-receipt.tsx:21
 #: src/features/modal-print-sale-receipt/modal-print-receipt.tsx:40
 #: src/features/refund-list/ui/refund-list.tsx:50
-#: src/features/refund-list/ui/refund-table.tsx:66
-#: src/features/sales-list/ui/table/sales-table.tsx:87
+#: src/features/refund-list/ui/refund-table.tsx:67
+#: src/features/sales-list/ui/table/sales-table.tsx:88
 #: src/features/z-reports-list/ui/z-reports-list.tsx:48
-#: src/features/z-reports-list/ui/z-reports-table.tsx:75
+#: src/features/z-reports-list/ui/z-reports-table.tsx:76
 msgid "Receipt"
 msgstr "Чек"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:64
-#: src/features/refund-list/ui/refund-table.tsx:45
+#: src/features/refund-list/ui/refund-table.tsx:46
 #: src/features/sales-details-common/ui/sales-details-common.tsx:64
 #: src/features/sales-list/ui/table/sales-table-header.tsx:74
 msgid "Receipt number"
@@ -1807,7 +1808,7 @@ msgstr "Номер чека"
 #~ msgid "Receipt position"
 #~ msgstr ""
 
-#: src/features/advances-list/ui/table/advances-table.tsx:65
+#: src/features/advances-list/ui/table/advances-table.tsx:66
 msgid "Receipt position number"
 msgstr "Кол-во позиций в чеке"
 
@@ -1815,7 +1816,7 @@ msgstr "Кол-во позиций в чеке"
 msgid "Refund"
 msgstr "Возврат"
 
-#: src/features/refund-details/ui/refunds-details-tabs.tsx:60
+#: src/features/refund-details/ui/refunds-details-tabs.tsx:54
 msgid "Refunded products"
 msgstr "Возвращенные товары"
 
@@ -1829,7 +1830,7 @@ msgstr "Возвраты"
 msgid "Refunds count"
 msgstr "Кол-во возвратов"
 
-#: src/features/orders-details/ui/orders-tabs.tsx:114
+#: src/features/orders-details/ui/orders-tabs.tsx:110
 msgid "Refused products"
 msgstr "Отклонненые товары"
 
@@ -1895,12 +1896,16 @@ msgstr "Обязательное поле"
 msgid "Reset"
 msgstr "Сбросить"
 
+#: src/shared/ui/filter-panel/ui/filter-block.tsx:53
+msgid "Reset filters"
+msgstr "Сбросить фильтры"
+
 #: src/shared/ui/not-found/not-found.tsx:12
 msgid "Resource Not Found"
 msgstr "Ресурс Не Найден"
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:163
-#: src/features/credits-list/ui/table/credits-table.tsx:79
+#: src/features/credits-list/ui/table/credits-table.tsx:80
 msgid "Rest"
 msgstr "Остаток"
 
@@ -1910,14 +1915,14 @@ msgid "Restore password"
 msgstr "Восстановить пароль"
 
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:145
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:100
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:101
 msgid "Return amount"
 msgstr "Сумма возвратов"
 
 #: src/features/stores-details-users/ui/table/table-stores-users.tsx:44
 #: src/features/stores-user-edit/ui/stores-users-edit.tsx:136
 #: src/features/user-list-filter/ui/user-list-filter.tsx:134
-#: src/features/user-list/ui/user-table.tsx:52
+#: src/features/user-list/ui/user-table.tsx:53
 #: src/features/users-create/form/form.ts:68
 #: src/features/users-details/ui/users-details.tsx:56
 #: src/features/users-edit/form/form.ts:68
@@ -1952,7 +1957,7 @@ msgstr ""
 msgid "Sale"
 msgstr "Продажа"
 
-#: src/features/credits-list/ui/table/credits-table.tsx:63
+#: src/features/credits-list/ui/table/credits-table.tsx:64
 msgid "Sale ID"
 msgstr "Id продажи"
 
@@ -1964,7 +1969,7 @@ msgid "Sales"
 msgstr "Продажи"
 
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:109
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:86
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:87
 msgid "Sales amount"
 msgstr "Сумма продаж"
 
@@ -1995,6 +2000,10 @@ msgstr "Сохранить"
 msgid "Search by advance total cost"
 msgstr "Поиск по общей стоимости"
 
+#: src/features/categories-list/ui/table/categories-table.tsx:56
+msgid "Search by category name"
+msgstr "Поиск по названию категории"
+
 #: src/features/orders-list/ui/table/orders-table.tsx:71
 msgid "Search by client’s phone number, delivery address, order number or order amount"
 msgstr "Поиск по номеру телефона клиента, адресу доставки, номеру заказа или сумме заказа"
@@ -2003,15 +2012,40 @@ msgstr "Поиск по номеру телефона клиента, адрес
 msgid "Search by configuration name"
 msgstr "Поиск по названию конфигурации"
 
+#: src/features/user-add-to-store/user-add-to-store.tsx:99
+msgid "Search by employee name"
+msgstr "Поиск по имени сотрудника"
+
+#: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:141
+msgid "Search by name"
+msgstr "Поиск по названию"
+
+#: src/features/products-list/ui/table/products-table.tsx:64
+msgid "Search by product name"
+msgstr "Поиск по названию товара"
+
 #: src/features/refund-list/ui/refund-table.tsx:30
 #: src/features/sales-list/ui/table/sales-table.tsx:67
 msgid "Search by receipt number or total cost"
 msgstr "Поиск по номеру чека или общей цене"
 
+#: src/features/roles-list/ui/roles-list.tsx:43
+msgid "Search by role name"
+msgstr "Поиск по названию роли"
+
 #: src/features/credits-list/ui/table/credits-table.tsx:29
 msgid "Search by sale ID or credit amount"
 msgstr "Поиск по id продажи и сумме кредита"
 
+#: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:143
+msgid "Search by serial number"
+msgstr "Поиск по серийному номеру"
+
+#: src/features/terminal-list/ui/terminals-table.tsx:24
+msgid "Search by serial number or fiscal card Id"
+msgstr "Поиск по серийному номеру или id фискальной карты"
+
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:150
 #: src/features/stores-list/ui/stores-table.tsx:33
 msgid "Search by store name"
 msgstr "Поиск по названию магазина"
@@ -2023,6 +2057,14 @@ msgstr "Поиск по серийному номеру терминала"
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:37
 msgid "Search by terminal SN"
 msgstr "Поиск по серийному номеру терминала"
+
+#: src/features/selector-with-search-users/selector-with-search-users.tsx:198
+msgid "Search by user name"
+msgstr "Поиск по имени пользователя"
+
+#: src/features/user-list/ui/user-table.tsx:33
+msgid "Search by user name, email or phone number"
+msgstr "Поиск по имени пользователя, эл.почте или номеру телефона"
 
 #: src/features/advances-details/ui/advances-sold-product-details/ui/advances-sold-products-details.tsx:37
 #: src/features/sold-product-details/ui/sold-products-details.tsx:48
@@ -2060,7 +2102,7 @@ msgstr "Экспорт выбранного"
 msgid "Selected import option"
 msgstr "Выбранный вариант импорта"
 
-#: src/features/terminal-list/ui/terminals-table.tsx:30
+#: src/features/terminal-list/ui/terminals-table.tsx:31
 msgid "Serial number"
 msgstr "Серийный номер"
 
@@ -2089,8 +2131,8 @@ msgstr "Смену закрыл"
 msgid "Shift opened by"
 msgstr "Смену открыл"
 
-#: src/features/advances-details/ui/advances-details.tsx:78
-#: src/features/sales-details/ui/sales-details-tabs.tsx:64
+#: src/features/advances-details/ui/advances-details.tsx:72
+#: src/features/sales-details/ui/sales-details-tabs.tsx:59
 #: src/pages/advances-sold-product-details-page/ui/advances-sold-product-details-page.tsx:43
 #: src/pages/sold-product-details-page/ui/sold-product-details-page.tsx:24
 msgid "Sold products"
@@ -2112,7 +2154,7 @@ msgstr "Пробелы не разрешены"
 msgid "STAN"
 msgstr ""
 
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:125
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:126
 msgid "started"
 msgstr "открыто"
 
@@ -2122,7 +2164,7 @@ msgstr "Дата открытия"
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:167
 #: src/features/credits-list-filter/ui/credits-list-filter.tsx:123
-#: src/features/credits-list/ui/table/credits-table.tsx:84
+#: src/features/credits-list/ui/table/credits-table.tsx:85
 msgid "State"
 msgstr "Состояние"
 
@@ -2133,11 +2175,11 @@ msgid "Status"
 msgstr "Статус"
 
 #: src/features/orders-create/form/form.ts:174
-#: src/features/refund-list/ui/refund-table.tsx:48
+#: src/features/refund-list/ui/refund-table.tsx:49
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:90
 #: src/features/sales-list/ui/table/sales-table-header.tsx:78
 #: src/features/selector-with-search-store/selector-with-search-store.tsx:149
-#: src/features/stores-details/ui/stores-details-tabs.tsx:71
+#: src/features/stores-details/ui/stores-details-tabs.tsx:67
 msgid "Store"
 msgstr "Магазин"
 
@@ -2150,19 +2192,19 @@ msgid "Store address"
 msgstr "Адрес магазина"
 
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:79
-#: src/features/advances-list/ui/table/advances-table.tsx:55
+#: src/features/advances-list/ui/table/advances-table.tsx:56
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:114
 #: src/features/credits-details/ui/credits-details-payments-list/ui/table/table-payments.tsx:56
-#: src/features/credits-list/ui/table/credits-table.tsx:53
+#: src/features/credits-list/ui/table/credits-table.tsx:54
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:119
 #: src/features/orders-list/ui/table/orders-table-header.tsx:83
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:89
 #: src/features/sales-details-common/ui/sales-details-common.tsx:90
-#: src/features/terminal-list/ui/terminals-table.tsx:39
+#: src/features/terminal-list/ui/terminals-table.tsx:40
 #: src/features/terminals-details/ui/terminals-details.tsx:101
 #: src/features/working-shifts-details/ui/working-shifts-details.tsx:72
 #: src/features/z-reports-details/ui/z-reports-details.tsx:155
-#: src/features/z-reports-list/ui/z-reports-table.tsx:60
+#: src/features/z-reports-list/ui/z-reports-table.tsx:61
 msgid "Store name"
 msgstr "Название магазина"
 
@@ -2170,7 +2212,7 @@ msgstr "Название магазина"
 #~ msgid "Store name / Terminal SN"
 #~ msgstr "Магазин / SN терминала"
 
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:56
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:57
 msgid "Store name /<0/>Terminal SN"
 msgstr "Магазин /<0/> SN терминала"
 
@@ -2195,8 +2237,8 @@ msgstr "Магазин и цена успешно добавлены."
 #: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:26
 #: src/features/terminal-configurations-details/ui/list-stores&terminals/ui/list-stores-for-configuration-terminals.tsx:63
 #: src/features/terminal-configurations-edit/form/form.ts:33
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:43
-#: src/features/user-list/ui/user-table.tsx:55
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:44
+#: src/features/user-list/ui/user-table.tsx:56
 #: src/features/users-create/form/form.ts:72
 #: src/features/users-details/ui/users-details.tsx:101
 #: src/features/users-edit/form/form.ts:72
@@ -2208,12 +2250,12 @@ msgid "Stores"
 msgstr "Магазины"
 
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:116
-#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:61
+#: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:57
 #: src/features/terminal-configurations-edit/ui/terminal-configurations-edit.tsx:163
 msgid "Stores & Terminal SN"
 msgstr "Магазины & Серийный номер Терминала"
 
-#: src/features/products-details/ui/products-details-tabs.tsx:73
+#: src/features/products-details/ui/products-details-tabs.tsx:67
 msgid "Stores and prices"
 msgstr "Магазины и цены"
 
@@ -2259,10 +2301,10 @@ msgstr "Терминал не найден"
 msgid "Terminal serial number"
 msgstr "Серийный номер терминала"
 
-#: src/features/credits-list/ui/table/credits-table.tsx:58
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:151
+#: src/features/credits-list/ui/table/credits-table.tsx:59
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:152
 #: src/features/z-reports-details/ui/z-reports-details.tsx:170
-#: src/features/z-reports-list/ui/z-reports-table.tsx:63
+#: src/features/z-reports-list/ui/z-reports-table.tsx:64
 msgid "Terminal SN"
 msgstr "SN терминала"
 
@@ -2297,20 +2339,20 @@ msgstr "Письмо было отправлено на адрес электр�
 msgid "The list is empty"
 msgstr "Список пуст"
 
-#: src/features/advances-list/ui/table/advances-table.tsx:110
+#: src/features/advances-list/ui/table/advances-table.tsx:111
 #: src/features/categories-list/ui/table/categories-table.tsx:109
-#: src/features/credits-list/ui/table/credits-table.tsx:113
-#: src/features/orders-list/ui/table/orders-table.tsx:195
-#: src/features/products-list/ui/table/products-table.tsx:147
-#: src/features/refund-list/ui/refund-table.tsx:90
+#: src/features/credits-list/ui/table/credits-table.tsx:114
+#: src/features/orders-list/ui/table/orders-table.tsx:196
+#: src/features/products-list/ui/table/products-table.tsx:148
+#: src/features/refund-list/ui/refund-table.tsx:91
 #: src/features/roles-list/ui/roles-list.tsx:81
-#: src/features/sales-list/ui/table/sales-table.tsx:120
-#: src/features/stores-list/ui/stores-table.tsx:92
-#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:84
-#: src/features/terminal-list/ui/terminals-table.tsx:72
-#: src/features/user-list/ui/user-table.tsx:98
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:218
-#: src/features/z-reports-list/ui/z-reports-table.tsx:115
+#: src/features/sales-list/ui/table/sales-table.tsx:121
+#: src/features/stores-list/ui/stores-table.tsx:93
+#: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:85
+#: src/features/terminal-list/ui/terminals-table.tsx:73
+#: src/features/user-list/ui/user-table.tsx:99
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:219
+#: src/features/z-reports-list/ui/z-reports-table.tsx:116
 msgid "The list is empty, try changing your filtering or search conditions and try again."
 msgstr "Список пуст, попробуйте изменить фильтры или условия поиска и попытайтесь снова"
 
@@ -2340,7 +2382,7 @@ msgstr "Превышен максимальный размер файла. По�
 #~ msgid "The number of employees"
 #~ msgstr "Кол-во сотрудников"
 
-#: src/features/stores-list/ui/stores-table.tsx:60
+#: src/features/stores-list/ui/stores-table.tsx:61
 msgid "The number<0/> of employees"
 msgstr "Кол-во<0/> сотрудников"
 
@@ -2393,7 +2435,7 @@ msgstr "Этот товар не продается ни в одном мага�
 msgid "This user is not associated with any store"
 msgstr "Этот пользователь не относится ни к одному магазину"
 
-#: src/features/products-list/ui/table/products-table.tsx:107
+#: src/features/products-list/ui/table/products-table.tsx:108
 msgid "to"
 msgstr "до"
 
@@ -2432,7 +2474,7 @@ msgstr "В магазины, указанные в exel файле"
 msgid "today"
 msgstr "сегодня"
 
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:185
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:187
 #: src/shared/ui/date-selector-component/date-selector-component.tsx:108
 msgid "Today"
 msgstr "Сегодня"
@@ -2474,16 +2516,16 @@ msgstr ""
 
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:184
 #: src/features/advances-details/ui/advances-sold-product-details/ui/advances-sold-products-details.tsx:70
-#: src/features/advances-list/ui/table/advances-table.tsx:70
+#: src/features/advances-list/ui/table/advances-table.tsx:71
 #: src/features/orders-create/ui/order-products.tsx:59
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:207
 #: src/features/orders-edit/ui/order-products.tsx:60
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:61
-#: src/features/refund-list/ui/refund-table.tsx:54
+#: src/features/refund-list/ui/refund-table.tsx:55
 #: src/features/sales-details-common/ui/sales-details-common.tsx:182
 #: src/features/sales-list/ui/table/sales-table-header.tsx:87
 #: src/features/sold-product-details/ui/sold-products-details.tsx:81
-#: src/features/working-shifts-list/ui/working-shifts-table.tsx:105
+#: src/features/working-shifts-list/ui/working-shifts-table.tsx:106
 msgid "Total cost"
 msgstr "Общая стоимость"
 
@@ -2497,7 +2539,7 @@ msgstr "Общая стоимость без скидки"
 #~ msgid "Total discount"
 #~ msgstr "Общая скидка"
 
-#: src/features/z-reports-list/ui/z-reports-table.tsx:54
+#: src/features/z-reports-list/ui/z-reports-table.tsx:55
 msgid "Total income"
 msgstr ""
 
@@ -2519,7 +2561,7 @@ msgstr "Общее кол-во"
 msgid "Total refunded VAT"
 msgstr ""
 
-#: src/features/z-reports-list/ui/z-reports-table.tsx:57
+#: src/features/z-reports-list/ui/z-reports-table.tsx:58
 msgid "Total refunds"
 msgstr ""
 
@@ -2567,53 +2609,52 @@ msgid "Type Fiscal card ID"
 msgstr ""
 
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:141
-msgid "Type name and select"
-msgstr "Поиск по названию"
+#~ msgid "Type name and select"
+#~ msgstr "Поиск по названию"
 
 #: src/features/products-list/ui/table/products-table.tsx:64
-msgid "Type part of a product name"
-msgstr "Поиск по названию товара"
+#~ msgid "Type part of a product name"
+#~ msgstr "Поиск по названию товара"
 
 #: src/features/categories-list/ui/table/categories-table.tsx:56
-msgid "Type part of category name"
-msgstr "Поиск по названию категории"
+#~ msgid "Type part of category name"
+#~ msgstr "Поиск по названию категории"
 
 #: src/features/roles-list/ui/roles-list.tsx:43
-msgid "Type part of role's name"
-msgstr "Введите название роли"
+#~ msgid "Type part of role's name"
+#~ msgstr "Введите название роли"
 
 #: src/features/terminal-list/ui/terminals-table.tsx:24
-msgid "Type part of serial number, fiscal card Id"
-msgstr "Введите серийный номер или фискальный ID"
+#~ msgid "Type part of serial number, fiscal card Id"
+#~ msgstr "Введите серийный номер или фискальный ID"
 
 #: src/features/stores-list/ui/stores-table.tsx:33
 #~ msgid "Type part of store name"
 #~ msgstr "Введите название магазина"
 
 #: src/features/user-list/ui/user-table.tsx:33
-msgid "Type part of your username, email or phone number"
-msgstr "Введите имя, телефон или эл. адрес пользователя"
+#~ msgid "Type part of your username, email or phone number"
+#~ msgstr "Введите имя, телефон или эл. адрес пользователя"
 
 #: src/features/orders-create/ui/selector-products/selector-products.tsx:276
 msgid "Type product name"
 msgstr "Введите название товара"
 
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:143
-msgid "Type serial number and select"
-msgstr "Поиск по серийному номеру"
+#~ msgid "Type serial number and select"
+#~ msgstr "Поиск по серийному номеру"
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:168
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:150
 msgid "Type store name and select"
 msgstr "Поиск по названию магазина"
 
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:152
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:153
 msgid "Type Terminal SN"
 msgstr ""
 
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:197
-msgid "Type user name and select"
-msgstr "Поиск по имени сотрудника"
+#~ msgid "Type user name and select"
+#~ msgstr "Поиск по имени сотрудника"
 
 #: src/features/terminals-list-filter/ui/terminals-list-filter.tsx:95
 #~ msgid "Unblocked"
@@ -2655,7 +2696,7 @@ msgstr "Пользователь успешно создан."
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: src/features/selector-with-search-users/selector-with-search-users.tsx:201
+#: src/features/selector-with-search-users/selector-with-search-users.tsx:202
 msgid "User not found"
 msgstr "Сотудник не найден"
 
@@ -2673,7 +2714,7 @@ msgid "User was removed successfully."
 msgstr "Пользователь успешно удален."
 
 #: src/features/main-menu/config/main-menu.config.tsx:175
-#: src/features/selector-with-search-users/selector-with-search-users.tsx:196
+#: src/features/selector-with-search-users/selector-with-search-users.tsx:197
 #: src/pages/users-create-page/ui/users-create-page.tsx:17
 #: src/pages/users-details-page/ui/users-details-page.tsx:21
 #: src/pages/users-edit-page/ui/users-edit-page.tsx:22
@@ -2740,8 +2781,8 @@ msgstr "НДС изменен успешно."
 msgid "Vendor & model"
 msgstr "Вендор & модель"
 
-#: src/features/orders-details/ui/orders-tabs.tsx:84
-#: src/features/orders-list/ui/table/orders-table.tsx:116
+#: src/features/orders-details/ui/orders-tabs.tsx:83
+#: src/features/orders-list/ui/table/orders-table.tsx:117
 msgid "Waiting for delivery"
 msgstr "Ожидает доставки"
 
@@ -2766,7 +2807,7 @@ msgstr "Да"
 msgid "yesterday"
 msgstr "вчера"
 
-#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:198
+#: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:200
 #: src/shared/ui/date-selector-component/date-selector-component.tsx:121
 msgid "Yesterday"
 msgstr "Вчера"
@@ -2786,7 +2827,7 @@ msgstr "Вы не прикрепили файл"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:144
 #: src/features/sales-details-common/ui/sales-details-common.tsx:67
-#: src/features/z-reports-list/ui/z-reports-table.tsx:51
+#: src/features/z-reports-list/ui/z-reports-table.tsx:52
 msgid "Z-report number"
 msgstr "Номер Z-отчета"
 

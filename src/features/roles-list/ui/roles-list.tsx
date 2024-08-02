@@ -40,7 +40,7 @@ export const RolesList: React.FC = () => {
 
     return (<>
         <FilterPanel
-            withFind={{ placeholder: i18n._(t`Type part of role's name`) }}
+            withFind={{ placeholder: i18n._(t`Search by role name`) }}
         />
 
         {isLoading

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, useMantineTheme } from '@mantine/core';
-import { ArrowRightStartOnRectangleIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import { ArrowRightStartOnRectangleIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
@@ -60,7 +60,7 @@ export const TableDetailsUsers: React.FC<typeStoresUsersTable> = ({
                                         },
 
                                         {
-                                            icon: <ArrowRightStartOnRectangleIcon color={ theme.colors.primary[ 5 ] } width={ 22 }/>,
+                                            icon: <TrashIcon color={ theme.colors.red[ 5 ] } width={ 22 }/>,
                                             handler: () => onOpenDialogRemoveUser(item.id),
                                             label: i18n._(t`Remove from store`),
                                         }

@@ -31,6 +31,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                 minValueLength: 1
             } }
             filterComponent={ <RefundsListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading

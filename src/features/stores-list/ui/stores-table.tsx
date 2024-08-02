@@ -32,6 +32,7 @@ export const StoresListTable: React.FC<typeStoresListTable> = ({
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by store name`) } }
             filterComponent={ <StoresListFilter/> }
+            isListLoading={isLoading}
         />
 
         { isLoading
