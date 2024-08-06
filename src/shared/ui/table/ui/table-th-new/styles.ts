@@ -5,6 +5,7 @@ export const useStyles = createStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         height: rem(36),
+        textAlign: 'left',
     },
     leftDivider: { borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}` },
     alignCenter: { justifyContent: 'center' },

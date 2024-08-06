@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
+import {EncashmentList} from "../../../features/encashment-list";
 
 const EncashmentPage: React.FC = () => {
 
@@ -16,7 +17,7 @@ const EncashmentPage: React.FC = () => {
                 ]}/>}
             />
 
-            Encashment
+            <EncashmentList/>
 
         </DashboardContent>
     );

@@ -111,12 +111,12 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         path: routerPaths.cashDesks,
         allowPermissions: [],
         children: [
-            {  id: pathNames.sales,
+            {  id: pathNames.cashDesks,
                 name: <Trans>Cash desks</Trans>,
                 path: routerPaths.cashDesks,
                 allowPermissions: [], // TODO: add permissions
             },
-            {  id: pathNames.sales,
+            {  id: pathNames.encashment,
                 name: <Trans>Encashment</Trans>,
                 path: routerPaths.encashment,
                 allowPermissions: [], // TODO: add permissions
