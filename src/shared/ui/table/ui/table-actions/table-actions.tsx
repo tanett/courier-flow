@@ -11,7 +11,8 @@ export const TdActions: React.FC<typeTableActionsProps> = ({
     actions,
     visibleCount,
     align,
-    dividerIndex
+    dividerIndex,
+    additionalClasses,
 }) => {
 
     const { classes } = useStyles();
@@ -26,7 +27,7 @@ export const TdActions: React.FC<typeTableActionsProps> = ({
     const dropdownMenuArr = isWithMenu ? actions.slice(itemsCount - actions.length) : [];
 
     return (
-        <Table.Td align={ align }>
+        <Table.Td additionalClasses={additionalClasses} align={ align }>
             <Flex className={ classes.actionsWrapper }>
                 { visibleMenuArr.map((item, index) => {
 

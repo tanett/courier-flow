@@ -18,7 +18,8 @@ export const useStyles = createStyles((theme) => ({
     },
     tableBorder: {
         borderRadius: rem(4),
-        // overflow: 'hidden',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
         border: `1px solid ${ theme.colors.borderColor[0] }`,
         minWidth: 'fit-content',
 

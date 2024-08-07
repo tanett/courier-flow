@@ -58,7 +58,7 @@ export const TableSoldProducts: React.FC<typeSoldProductsTable> = ({
                                 { productList.map((item , index) => {
 
                                     return (
-                                        <Table.Tr key={ index} >
+                                        <Table.Tr key={index} >
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}><ButtonAsLink onClick={(e)=>onProductNameClick(e, item)} label={ item.name }/></Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item?.quantity || '-' }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item?.priceInStore  ? numberCurrencyFormat(item?.priceInStore ) : '-' }</Box></Table.Td>
