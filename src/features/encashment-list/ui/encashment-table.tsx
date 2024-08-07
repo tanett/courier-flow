@@ -1,13 +1,14 @@
 import React from 'react';
-import {t, Trans} from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import {Flex} from '@mantine/core';
-import { typeCashDeskListTable } from "../types/types";
-import {useStyles} from "./styles";
-import {FilterPanel} from "../../../shared/ui/filter-panel";
-import {i18n} from "@lingui/core";
+import { Flex } from '@mantine/core';
+import { typeCashDeskListTable } from '../types/types';
+import { useStyles } from './styles';
+import { FilterPanel } from '../../../shared/ui/filter-panel';
+import { i18n } from '@lingui/core';
+import { EncashmentListFilter } from '../../enchashment-filter';
 
 
 export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
@@ -16,15 +17,16 @@ export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
     isLoading,
 }) => {
 
-    const {classes} = useStyles()
+    const { classes } = useStyles();
 
     return (<>
         <FilterPanel
             withFind={ {
                 placeholder: i18n._(t`Search by terminal SN`),
-                minValueLength: 1
+                minValueLength: 1,
             } }
-            // filterComponent={ <ZReportListFilter/> }
+
+            filterComponent={ <EncashmentListFilter/> }
             isListLoading={isLoading}
         />
 
@@ -59,9 +61,9 @@ export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
                     <Table.Body>
                         { encashmentList.length > 0 && encashmentList.map((item, index) => {
 
-                            const createdDateObj = new Date(item.encashedAt)
-                            const createdDate = createdDateObj.toLocaleDateString(undefined, {day: 'numeric', month: 'numeric', year: 'numeric',});
-                            const createdTime = createdDateObj.toLocaleTimeString(undefined, {hour: 'numeric', minute: 'numeric', second: 'numeric',})
+                            const createdDateObj = new Date(item.encashedAt);
+                            const createdDate = createdDateObj.toLocaleDateString(undefined, { day: 'numeric', month: 'numeric', year: 'numeric' });
+                            const createdTime = createdDateObj.toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric', second: 'numeric' });
 
                             return (
                                 <Table.Tr key={ item.id + index }>

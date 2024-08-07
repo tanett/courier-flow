@@ -1,7 +1,7 @@
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
 import { sortDirection, typeSearchRequest } from '../../../app/api/types';
 import { perPageVariants } from '../../../app/config/api-constants';
-import {typeSearchCashDeskSortingNames, typeSearchFilterCashDesk} from '../model/types';
+import { typeSearchCashDeskSortingNames, typeSearchFilterCashDesk } from '../model/types';
 
 export const useCashDeskRequestData = () => {
 
@@ -10,7 +10,7 @@ export const useCashDeskRequestData = () => {
     // Filters
     const filter: typeSearchFilterCashDesk = { archived: false };
 
-    if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase
+    if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase;
 
     /* const fiscalId = urlParams.getFilterValue('fiscalId');
     if (fiscalId && fiscalId.length > 0 && typeof fiscalId === 'string') filter.fiscalModuleIds = [ fiscalId ]; else delete filter.fiscalModuleIds

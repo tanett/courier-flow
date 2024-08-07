@@ -1,7 +1,7 @@
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
 import { sortDirection, typeSearchRequest } from '../../../app/api/types';
 import { perPageVariants } from '../../../app/config/api-constants';
-import {typeSearchFilterEncashment, typeSearchEncashmentSortingNames} from '../model/types';
+import { typeSearchFilterEncashment, typeSearchEncashmentSortingNames } from '../model/types';
 
 export const useEncashmentRequestData = () => {
 
@@ -10,22 +10,22 @@ export const useEncashmentRequestData = () => {
     // Filters
     const filter: typeSearchFilterEncashment = {};
 
-    if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase
+    if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase;
 
-    /* const fiscalId = urlParams.getFilterValue('fiscalId');
-    if (fiscalId && fiscalId.length > 0 && typeof fiscalId === 'string') filter.fiscalModuleIds = [ fiscalId ]; else delete filter.fiscalModuleIds
+    const storeId = urlParams.getFilterValue('storeId');
+    if (storeId && typeof storeId === 'string') filter.storeIds = [ storeId ];
 
-    const terminalSN = urlParams.getFilterValue('terminalSN');
-    if (terminalSN && terminalSN.length > 0 && typeof terminalSN === 'string') filter.terminalSerialNumbers = [ terminalSN ]; else delete filter.terminalSerialNumbers
+    // const employee = urlParams.getFilterValue('employeeId');
+    // if (employee && typeof employee === 'string') filter. = [ employee ];
 
-    const closeDateFrom = urlParams.getFilterValue('closeDateFrom');
-    const closeDateTo = urlParams.getFilterValue('closeDateTo');
-    if (closeDateTo && typeof closeDateTo === 'string' && closeDateFrom && typeof closeDateFrom === 'string') {
+    const encashedAtFrom = urlParams.getFilterValue('encashedAtFrom');
+    const encashedAtTo = urlParams.getFilterValue('encashedAtTo');
+    if (encashedAtTo && typeof encashedAtTo === 'string' && encashedAtFrom && typeof encashedAtFrom === 'string') {
 
-        filter.closedAtFrom = closeDateFrom;
-        filter.closedAtTo = closeDateTo;
+        filter.encashedAtFrom = encashedAtFrom;
+        filter.encashedAtTo = encashedAtTo;
 
-    } */
+    }
 
     const requestData: typeSearchRequest<typeSearchFilterEncashment, typeSearchEncashmentSortingNames> = {
         filter: filter,

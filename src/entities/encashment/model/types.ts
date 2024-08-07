@@ -23,8 +23,8 @@ export interface typeSearchFilterEncashment {
     searchText?: string
     storeIds?: string[]
     cashDeskIds?: string[]
-    encashedAtFrom?: string
-    encashedAtTo?: string
+    encashedAtFrom?: string | string[]
+    encashedAtTo?: string | string[]
     _and_?: string[]
     _or_?: string[]
     _not_?: string
