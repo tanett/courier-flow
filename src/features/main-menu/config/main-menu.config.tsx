@@ -24,7 +24,6 @@ import {
 import {
     readAdvancesPermissions,
     readCategoryPermissions, readCreditsPermissions, readWorkingShiftsPermissions,
-    readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
     readRefundsPermissions,
@@ -105,11 +104,23 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
     },
     {
         id: pathNames.cashDesks,
-        name: <Trans>Cash desks</Trans>,
+        name: <Trans>Cash</Trans>,
         icon: <CashDeskIconOutline/>,
         activeIcon: <CashDeskIconSolid/>,
         path: routerPaths.cashDesks,
         allowPermissions: [],
+        children: [
+            {  id: pathNames.cashDesks,
+                name: <Trans>Cash desks</Trans>,
+                path: routerPaths.cashDesks,
+                allowPermissions: [], // TODO: add permissions
+            },
+            {  id: pathNames.encashment,
+                name: <Trans>Encashment</Trans>,
+                path: routerPaths.encashment,
+                allowPermissions: [], // TODO: add permissions
+            },
+        ],
     },
     {
         id: pathNames.terminals,

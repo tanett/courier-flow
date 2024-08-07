@@ -19,6 +19,7 @@ import { LazyReportsPage } from 'pages/reports-page';
 import { LazyProductsPage } from 'pages/products-page';
 import { LazyStoresPage } from 'pages/stores-page';
 import { LazyCashDesksPage } from 'pages/cash-desks-page';
+import { LazyEncashmentPage } from 'pages/encashment-page';
 import { LazyOrdersPage } from 'pages/orders-page';
 import { LazySettingsPage } from 'pages/settings-page';
 import { LazyRolesPage } from 'pages/roles-page';
@@ -227,6 +228,10 @@ export const router = createBrowserRouter([
             {
                 path: routerPaths.cashDesks,
                 element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDesksPage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.encashment,
+                element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyEncashmentPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.terminals_list,

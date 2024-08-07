@@ -54,6 +54,7 @@ export interface typeTableTh extends React.PropsWithChildren {
 
 export interface typeTableTd extends React.PropsWithChildren {
     align?: 'center' | 'right'
+    additionalClasses?: string
 }
 
 export interface typeTableDialog {
