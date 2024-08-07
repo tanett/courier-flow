@@ -10,7 +10,7 @@ export const useEncashmentRequestData = () => {
     // Filters
     const filter: typeSearchFilterEncashment = {};
 
-    // if (urlParams.searchPhrase) filter.terminalSerialNumbers = [urlParams.searchPhrase]
+    if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase
 
     /* const fiscalId = urlParams.getFilterValue('fiscalId');
     if (fiscalId && fiscalId.length > 0 && typeof fiscalId === 'string') filter.fiscalModuleIds = [ fiscalId ]; else delete filter.fiscalModuleIds

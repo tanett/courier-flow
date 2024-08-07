@@ -1,11 +1,13 @@
 import React from 'react';
-import { Trans } from '@lingui/macro';
+import {t, Trans} from '@lingui/macro';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
 import {Flex} from '@mantine/core';
 import { typeCashDeskListTable } from "../types/types";
 import {useStyles} from "./styles";
+import {FilterPanel} from "../../../shared/ui/filter-panel";
+import {i18n} from "@lingui/core";
 
 
 export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
@@ -17,14 +19,14 @@ export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
     const {classes} = useStyles()
 
     return (<>
-        {/*<FilterPanel
+        <FilterPanel
             withFind={ {
-                placeholder: i18n._(t`Search by terminal serial number`),
+                placeholder: i18n._(t`Search by terminal SN`),
                 minValueLength: 1
             } }
-            filterComponent={ <ZReportListFilter/> }
+            // filterComponent={ <ZReportListFilter/> }
             isListLoading={isLoading}
-        />*/}
+        />
 
         { isLoading
             ? <TableSkeleton/>
