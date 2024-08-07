@@ -9,6 +9,7 @@ import {typeCashDeskListTable} from "../types/types";
 import {typeActionList} from "../../../shared/ui/table/ui/table-actions/types";
 import {ArchiveBoxArrowDownIcon, PencilSquareIcon} from "@heroicons/react/24/outline";
 import {useStyles} from "./styles";
+import {FilterPanel} from "../../../shared/ui/filter-panel";
 
 
 export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
@@ -27,14 +28,14 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
     const theme = useMantineTheme();
 
     return (<>
-        {/*<FilterPanel
-            withFind={ {
-                placeholder: i18n._(t`Search by terminal serial number`),
+        <FilterPanel
+            withFind={{
+                placeholder: i18n._(t`Search by name`),
                 minValueLength: 1
-            } }
-            filterComponent={ <ZReportListFilter/> }
+            }}
+            // filterComponent={ <ZReportListFilter/> }
             isListLoading={isLoading}
-        />*/}
+        />
 
         { isLoading
             ? <TableSkeleton/>
