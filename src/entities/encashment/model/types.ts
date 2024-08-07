@@ -25,6 +25,7 @@ export interface typeSearchFilterEncashment {
     cashDeskIds?: string[]
     encashedAtFrom?: string | string[]
     encashedAtTo?: string | string[]
+    createdBy?: string[]
     _and_?: string[]
     _or_?: string[]
     _not_?: string

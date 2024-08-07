@@ -15,8 +15,8 @@ export const useEncashmentRequestData = () => {
     const storeId = urlParams.getFilterValue('storeId');
     if (storeId && typeof storeId === 'string') filter.storeIds = [ storeId ];
 
-    // const employee = urlParams.getFilterValue('employeeId');
-    // if (employee && typeof employee === 'string') filter. = [ employee ];
+    const employee = urlParams.getFilterValue('employeeId');
+    if (employee && typeof employee === 'string') filter.createdBy = [ employee ];
 
     const encashedAtFrom = urlParams.getFilterValue('encashedAtFrom');
     const encashedAtTo = urlParams.getFilterValue('encashedAtTo');
