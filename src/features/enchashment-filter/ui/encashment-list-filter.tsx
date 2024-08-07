@@ -15,6 +15,7 @@ import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
 import dayjs from 'dayjs';
 import { typeQuickFilter } from 'shared/ui/date-selector-component/types';
 import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
+import { SelectorWithSearchCashDesk } from '../../selector-with-search-cash-desk';
 
 export const EncashmentListFilter: React.FC = () => {
 
@@ -28,10 +29,12 @@ export const EncashmentListFilter: React.FC = () => {
 
     useEffect(() => {
 
+        const cashDeskId = urlParams.getFilterValue('cashDeskId');
         const employeeId = urlParams.getFilterValue('employeeId');
         const store = urlParams.getFilterValue('storeId');
         const quickData = urlParams.getFilterValue('quickDataFilter');
 
+        if (cashDeskId && typeof cashDeskId === 'string') form.setValues({ cashDeskId: cashDeskId });
         if (employeeId && typeof employeeId === 'string') form.setValues({ employeeId: employeeId });
         if (store && typeof store === 'string') form.setValues({ storeId: store });
         if (quickData && typeof quickData === 'string') setQuickDataFilter(quickData as typeQuickFilter);
@@ -47,6 +50,7 @@ export const EncashmentListFilter: React.FC = () => {
     const setFilterHandler = () => {
 
         const filterObj: Record<string, unknown> = {
+            cashDeskId: form.values.cashDeskId,
             employeeId: form.values.employeeId,
             storeId: form.values.storeId,
             encashedAtFrom: form.values.encashedAt[ 0 ] ? (form.values.encashedAt[ 0 ]).toISOString() : null,
@@ -85,6 +89,12 @@ export const EncashmentListFilter: React.FC = () => {
                 : <form onSubmit={ form.onSubmit(setFilterHandler) } onReset={ form.onReset }>
                     <Flex rowGap={ 16 } direction={ 'column' }>
 
+                        <SelectorWithSearchCashDesk
+                            required={ false }
+                            fieldName={ 'cashDeskId' }
+                            initialValue={ form.values.cashDeskId !== null ? form.values.cashDeskId : null }
+                            form={ form as unknown as typeReturnForm }/>
+
                         <SelectorWithSearchStore
                             required={ false }
                             fieldName={ 'storeId' }
@@ -97,12 +107,6 @@ export const EncashmentListFilter: React.FC = () => {
                             form={ form as unknown as typeReturnForm }
                             initialValue={ form.values.employeeId !== null ? form.values.employeeId : null }
                         />
-
-                        {/* <SelectorWithSearchTerminals
-                            required={ false }
-                            fieldName={ 'terminalId' }
-                            initialValue={ form.values.terminalId !== null ? form.values.terminalId : null }
-                            form={ form as unknown as typeReturnForm }/> */}
 
                         <DateSelectorComponent
                             label={ i18n._(t`Creation date`) }

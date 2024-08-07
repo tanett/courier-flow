@@ -77,7 +77,7 @@ export const UserListFilter: React.FC = () => {
                     archived: false,
                     accessScopes: [ accessScope.merchant, accessScope.store ],
 
-                    // merchantIds: [currentUser.actor.merchantId],
+                    // merchantIds: [currentCashDesk.actor.merchantId],
                     clientRole: false,
                 },
                 pagination: {

@@ -3,7 +3,7 @@ import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Modal } from 'shared/ui/modal';
 import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
-import { Box, Button, Flex, rem, Space,  useMantineTheme } from '@mantine/core';
+import { Box, Button, Flex, rem, Space, useMantineTheme } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useAppDispatchT } from 'app/state';
 import { notificationActions } from '../../../../entities/notification/model';
@@ -37,9 +37,10 @@ export const ModalAddCourier: React.FC<{
                 return !value
                     ? t`Required field`
                     : null;
+
             },
 
-        }
+        },
     });
 
     const dispatchAppT = useAppDispatchT();
@@ -66,7 +67,7 @@ export const ModalAddCourier: React.FC<{
                 await addCourier({
                     id: data.id,
                     currentStatus: data.status,
-                    courierId: form.values.courierId
+                    courierId: form.values.courierId,
                 }).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
@@ -113,10 +114,11 @@ export const ModalAddCourier: React.FC<{
                         fieldName={ 'courierId' }
                         form={ form as unknown as typeReturnForm }
                         initialValue={ data.courierId ? data.courierId : null }
-                        storesFilters={[data.storeId]}
-                        roleCodesFilters={[courierCodeRole]}
-                        // currentUser={currentUser?.actor.id}
-                        // markerForCurrentUser={ i18n._(t`Assign to me`)}
+                        storesFilters={[ data.storeId ]}
+                        roleCodesFilters={[ courierCodeRole ]}
+
+                        // currentCashDesk={currentCashDesk?.actor.id}
+                        // markerForCurrentCashDesk={ i18n._(t`Assign to me`)}
                     />
 
                     <Space h={ 32 }/>
@@ -131,7 +133,7 @@ export const ModalAddCourier: React.FC<{
                     } }>
                         <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                         <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                                type="submit">{ t`Assign courier` }</Button>
+                            type="submit">{ t`Assign courier` }</Button>
                     </Flex>
                 </Box>
                 { isLoading && <LoaderOverlay/> }

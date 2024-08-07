@@ -5,7 +5,7 @@ import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import {
     typeCashDesk, typeSearchCashDeskSortingNames,
     typeSearchFilterCashDesk,
-} from "../model/types";
+} from '../model/types';
 
 
 export const cashDeskApi = baseApi.injectEndpoints({
@@ -37,4 +37,4 @@ export const cashDeskApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useSearchCashDeskQuery } = cashDeskApi;
+export const { useSearchCashDeskQuery, useLazySearchCashDeskQuery } = cashDeskApi;

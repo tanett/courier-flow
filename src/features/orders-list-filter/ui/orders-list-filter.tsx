@@ -2,7 +2,7 @@ import { typeOrdersFilterForm } from '../types/types';
 import React, { useContext, useEffect, useState } from 'react';
 import { ordersFilterForm } from '../forms/forms';
 import { useForm } from '@mantine/form';
-import { Flex, Loader, Select, type SelectItem } from '@mantine/core';
+import { Flex, Select, type SelectItem } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { DrawerContext, FilterButtonsBar, FilterFormWrapper } from '../../../shared/ui/filter-panel';
@@ -23,16 +23,19 @@ export const OrdersListFilter: React.FC = () => {
 
     const close: undefined | (() => void) = useContext(DrawerContext);
 
-    const statuses = useSelectorT(state => state.orders.statuses)
+    const statuses = useSelectorT(state => state.orders.statuses);
 
-    const [statusList, setStatusList] = useState<SelectItem[]>([])
+    const [ statusList, setStatusList ] = useState<SelectItem[]>([]);
 
     useEffect(() => {
-        if(statuses){
-            setStatusList(statuses.map(item=>({value:item.code, label: item.name})))
+
+        if (statuses){
+
+            setStatusList(statuses.map(item => ({ value: item.code, label: item.name })));
+
         }
 
-    }, [statuses]);
+    }, [ statuses ]);
 
     const form = useForm<typeOrdersFilterForm>(ordersFilterForm);
 
@@ -44,12 +47,14 @@ export const OrdersListFilter: React.FC = () => {
         const courierId = urlParams.getFilterValue('courierId');
         const store = urlParams.getFilterValue('storeId');
         const status = urlParams.getFilterValue('status');
-        //const quickData = urlParams.getFilterValue('quickDataFilter');
+
+        // const quickData = urlParams.getFilterValue('quickDataFilter');
 
         if (collectorId && typeof collectorId === 'string') form.setValues({ collectorId: collectorId });
         if (store && typeof store === 'string') form.setValues({ storeId: store });
         if (courierId && typeof courierId === 'string') form.setValues({ courierId: courierId });
-        //if (quickData && typeof quickData === 'string') setQuickDataFilter(quickData as typeQuickFilter);
+
+        // if (quickData && typeof quickData === 'string') setQuickDataFilter(quickData as typeQuickFilter);
         if (status && typeof status === 'string') form.setValues({ status: status });
 
         const orderedAtFrom = urlParams.getFilterValue('orderedAtFrom');
@@ -67,15 +72,16 @@ export const OrdersListFilter: React.FC = () => {
             storeId: form.values.storeId,
             courierId: form.values.courierId,
             status: form.values.status,
-            orderedAtFrom: form.values.orderedAt[0] ? (form.values.orderedAt[0]).toISOString() : null,
-            orderedAtTo: form.values.orderedAt[1] ? dayjs(form.values.orderedAt[1]).set('h', 23).set('m', 59).set('s', 59).toISOString() : null,
+            orderedAtFrom: form.values.orderedAt[ 0 ] ? (form.values.orderedAt[ 0 ]).toISOString() : null,
+            orderedAtTo: form.values.orderedAt[ 1 ] ? dayjs(form.values.orderedAt[ 1 ]).set('h', 23).set('m', 59).set('s', 59).toISOString() : null,
+
             // quickDataFilter: quickDataFilter
         };
 
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
         if (close) close();
@@ -85,15 +91,16 @@ export const OrdersListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
-       // setQuickDataFilter(null);
+
+        // setQuickDataFilter(null);
         form.reset();
 
     };
 
-  //  const [ quickDataFilter, setQuickDataFilter ] = useState<typeQuickFilter>(null);
+    //  const [ quickDataFilter, setQuickDataFilter ] = useState<typeQuickFilter>(null);
 
 
     return (
@@ -107,7 +114,7 @@ export const OrdersListFilter: React.FC = () => {
                             fieldName={ 'storeId' }
                             initialValue={ form.values.storeId !== null ? form.values.storeId : null }
                             form={ form as unknown as typeReturnForm }/>
-                        {/* <SelectorWithSearchUsers */}
+                        {/* <SelectorWithSearchCashDesck */}
                         {/*     required={ false } */}
                         {/*     label={i18n._(t`Assignee`) } */}
                         {/*     fieldName={ 'assigneeId' } */}
@@ -128,7 +135,7 @@ export const OrdersListFilter: React.FC = () => {
                             data={ statusList }
 
                             { ...form.getInputProps('status') }
-                            rightSection={  <IconChevronDown size="1rem"/> }
+                            rightSection={ <IconChevronDown size="1rem"/> }
                             styles={ {
                                 rightSection: {
                                     pointerEvents: 'none',
@@ -142,7 +149,7 @@ export const OrdersListFilter: React.FC = () => {
                             label={ i18n._(t`Date`) }
                             fieldName={ 'orderedAt' }
                             form={ form as unknown as typeReturnForm }
-                           />
+                        />
 
                     </Flex>
                     <FilterButtonsBar onReset={ onReset }/>

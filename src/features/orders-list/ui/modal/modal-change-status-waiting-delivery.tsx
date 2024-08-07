@@ -39,9 +39,10 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                 return !value
                     ? t`Required field`
                     : null;
+
             },
 
-        }
+        },
     });
 
     const dispatchAppT = useAppDispatchT();
@@ -69,7 +70,7 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                     id: data.id,
                     currentStatus: data.status,
                     status: OrderStatuses.WAITING_FOR_DELIVERY,
-                    courierId: form.values.courierId
+                    courierId: form.values.courierId,
                 }).unwrap();
 
                 dispatchAppT(notificationActions.addNotification({
@@ -110,7 +111,7 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                         '& .mantine-InputWrapper-root': { maxWidth: 'none' },
                     } }>
 
-                    <Alert icon={ <IconAlertCircle size="1rem"/> } color={ theme.colors.primary[5] } mt={10} mb={12}>
+                    <Alert icon={ <IconAlertCircle size="1rem"/> } color={ theme.colors.primary[ 5 ] } mt={10} mb={12}>
                         <Text><Trans>To put order “Waiting for delivery”, please select courier.</Trans></Text>
                     </Alert>
 
@@ -120,10 +121,11 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                         fieldName={ 'courierId' }
                         form={ form as unknown as typeReturnForm }
                         initialValue={ data.courierId ? data.courierId : null }
-                        storesFilters={[data.storeId]}
-                        roleCodesFilters={[courierCodeRole]}
-                        // currentUser={currentUser?.actor.id}
-                        // markerForCurrentUser={ i18n._(t`Assign to me`)}
+                        storesFilters={[ data.storeId ]}
+                        roleCodesFilters={[ courierCodeRole ]}
+
+                        // currentCashDesk={currentCashDesk?.actor.id}
+                        // markerForCurrentCashDesk={ i18n._(t`Assign to me`)}
                     />
 
                     <Space h={ 32 }/>
@@ -138,7 +140,7 @@ export const ModalChangeStatusWaitingDelivery: React.FC<{
                     } }>
                         <Button key="cancel" type="reset" variant="outline" onClick={ onCancelClick }>{ t`Cancel` }</Button>
                         <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                                type="submit">{ t`Change status` }</Button>
+                            type="submit">{ t`Change status` }</Button>
                     </Flex>
                 </Box>
                 { isLoading && <LoaderOverlay/> }

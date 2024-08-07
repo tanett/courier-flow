@@ -12,6 +12,9 @@ export const useEncashmentRequestData = () => {
 
     if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase;
 
+    const cashDeskId = urlParams.getFilterValue('cashDeskId');
+    if (cashDeskId && typeof cashDeskId === 'string') filter.cashDeskIds = [ cashDeskId ];
+
     const storeId = urlParams.getFilterValue('storeId');
     if (storeId && typeof storeId === 'string') filter.storeIds = [ storeId ];
 

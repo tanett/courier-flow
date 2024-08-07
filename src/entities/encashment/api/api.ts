@@ -2,7 +2,7 @@ import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
-import { typeEncashment, typeSearchEncashmentSortingNames, typeSearchFilterEncashment } from "../model/types";
+import { typeEncashment, typeSearchEncashmentSortingNames, typeSearchFilterEncashment } from '../model/types';
 
 
 export const encashmentApi = baseApi.injectEndpoints({
@@ -23,4 +23,7 @@ export const encashmentApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useSearchEncashmentQuery } = encashmentApi;
+export const {
+    useSearchEncashmentQuery,
+    useLazySearchEncashmentQuery,
+} = encashmentApi;

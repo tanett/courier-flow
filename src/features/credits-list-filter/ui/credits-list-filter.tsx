@@ -11,18 +11,13 @@ import { queryParamsNames } from '../../../app/config/api-constants';
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
 import { SelectorWithSearchStore } from 'features/selector-with-search-store';
 import { typeReturnForm } from 'features/selector-with-search-store/types';
-import { DatesProviderWithLocale } from 'shared/providers/dates-provider-with-locale/dates-provider-with-locale';
-import { DatePickerInput } from '@mantine/dates';
 import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
 import dayjs from 'dayjs';
-import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
 
 export const CreditsListFilter: React.FC = () => {
 
     const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     const close: undefined | (() => void) = useContext(DrawerContext);
 
@@ -34,12 +29,14 @@ export const CreditsListFilter: React.FC = () => {
 
         // const employeeId = urlParams.getFilterValue('employeeId');
         const store = urlParams.getFilterValue('storeId');
+
         // const terminalId = urlParams.getFilterValue('terminalId');
         const quickData = urlParams.getFilterValue('quickDataFilter');
         const status = urlParams.getFilterValue('status');
 
         // if (employeeId && typeof employeeId === 'string') form.setValues({ employeeId: employeeId });
         if (store && typeof store === 'string') form.setValues({ storeId: store });
+
         // if (terminalId && typeof terminalId === 'string') form.setValues({ terminalId: terminalId });
         if (quickData && typeof quickData === 'string') setQuickDataFilter(quickData as typeQuickFilter);
         if (status && typeof status === 'string') form.setValues({ status: status === 'PAID' });
@@ -55,19 +52,21 @@ export const CreditsListFilter: React.FC = () => {
     const setFilterHandler = () => {
 
         const filterObj: Record<string, unknown> = {
+
             // employeeId: form.values.employeeId,
-            status: form.values.status !==null ? form.values.status ? 'PAID': 'NOT_PAID': null,
+            status: form.values.status !== null ? form.values.status ? 'PAID' : 'NOT_PAID' : null,
             storeId: form.values.storeId,
+
             // terminalId: form.values.terminalId,
-            createdOnTerminalAtFrom: form.values.createdOnTerminalAt[0] ? (form.values.createdOnTerminalAt[0]).toISOString() : null,
-            createdOnTerminalAtTo: form.values.createdOnTerminalAt[1] ? dayjs(form.values.createdOnTerminalAt[1]).set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString() : null,
-            quickDataFilter: quickDataFilter
+            createdOnTerminalAtFrom: form.values.createdOnTerminalAt[ 0 ] ? (form.values.createdOnTerminalAt[ 0 ]).toISOString() : null,
+            createdOnTerminalAtTo: form.values.createdOnTerminalAt[ 1 ] ? dayjs(form.values.createdOnTerminalAt[ 1 ]).set('hour', 23).set('minute', 59).set('second', 59).set('millisecond', 999).toISOString() : null,
+            quickDataFilter: quickDataFilter,
         };
 
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri(filterObj),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri(filterObj),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
 
         if (close) close();
@@ -77,10 +76,10 @@ export const CreditsListFilter: React.FC = () => {
     const onReset = () => {
 
         urlParams.setSearchParams({
-            [queryParamsNames.filtersString]: urlParams.filtersToUri({}),
-            [queryParamsNames.pageNumber]: undefined,
+            [ queryParamsNames.filtersString ]: urlParams.filtersToUri({}),
+            [ queryParamsNames.pageNumber ]: undefined,
         });
-        setQuickDataFilter(null)
+        setQuickDataFilter(null);
         form.reset();
 
     };
@@ -113,7 +112,7 @@ export const CreditsListFilter: React.FC = () => {
                 ? <FilterSkeleton/>
                 : <form onSubmit={ form.onSubmit(setFilterHandler) } onReset={ form.onReset }>
                     <Flex rowGap={ 16 } direction={ 'column' }>
-                        {/* <SelectorWithSearchUsers */}
+                        {/* <SelectorWithSearchCashDesck */}
                         {/*     required={ false } */}
                         {/*     fieldName={ 'employeeId' } */}
                         {/*     form={ form as unknown as typeReturnForm } */}
