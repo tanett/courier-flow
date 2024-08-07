@@ -1,10 +1,9 @@
 import React from 'react';
-import { t, Trans } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
+import { Trans } from '@lingui/macro';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import {Flex, useMantineTheme} from '@mantine/core';
+import {Flex} from '@mantine/core';
 import { typeCashDeskListTable } from "../types/types";
 import {useStyles} from "./styles";
 
@@ -14,10 +13,6 @@ export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
     pagination,
     isLoading,
 }) => {
-
-    const { i18n } = useLingui();
-
-    const theme = useMantineTheme();
 
     const {classes} = useStyles()
 

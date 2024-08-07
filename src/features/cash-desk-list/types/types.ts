@@ -1,5 +1,4 @@
 import { typeTablePagination } from 'shared/ui/table/types/type';
-import {typeZReport} from "../../../entities/z-report/model/types";
 import {typeCashDesk} from "../../../entities/cash-desk/model/types";
 
 export type typeCashDeskListTable = {

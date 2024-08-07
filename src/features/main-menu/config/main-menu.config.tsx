@@ -24,7 +24,6 @@ import {
 import {
     readAdvancesPermissions,
     readCategoryPermissions, readCreditsPermissions, readWorkingShiftsPermissions,
-    readMerchantPermissions,
     readOrdersPermissions,
     readProductsPermissions,
     readRefundsPermissions,
