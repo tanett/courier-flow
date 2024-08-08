@@ -4,12 +4,13 @@ import { useLingui } from '@lingui/react';
 import { Table } from '../../../shared/ui/table';
 import { TableSkeleton } from '../../../shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { Pagination } from '../../../shared/ui/pagination/table-pagination';
-import {Box, Flex, useMantineTheme} from '@mantine/core';
-import {typeCashDeskListTable} from "../types/types";
-import {typeActionList} from "../../../shared/ui/table/ui/table-actions/types";
-import {ArchiveBoxArrowDownIcon, PencilSquareIcon} from "@heroicons/react/24/outline";
-import {useStyles} from "./styles";
-import {FilterPanel} from "../../../shared/ui/filter-panel";
+import { Box, Flex, useMantineTheme } from '@mantine/core';
+import { typeCashDeskListTable } from '../types/types';
+import { typeActionList } from '../../../shared/ui/table/ui/table-actions/types';
+import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import { useStyles } from './styles';
+import { FilterPanel } from '../../../shared/ui/filter-panel';
+import { CashDeskListFilter } from '../../cash-desk-filter';
 
 
 export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
@@ -23,7 +24,7 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
 
     const { i18n } = useLingui();
 
-    const {classes} = useStyles();
+    const { classes } = useStyles();
 
     const theme = useMantineTheme();
 
@@ -31,9 +32,9 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
         <FilterPanel
             withFind={{
                 placeholder: i18n._(t`Search by name`),
-                minValueLength: 1
+                minValueLength: 1,
             }}
-            // filterComponent={ <ZReportListFilter/> }
+            filterComponent={ <CashDeskListFilter/> }
             isListLoading={isLoading}
         />
 
@@ -63,21 +64,19 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
                                 {
                                     label: i18n._(t`Edit`),
                                     handler: () => onEdit(item.id),
-                                    icon: <PencilSquareIcon color={theme.colors.primary[4]} width={22} height={22}/>,
+                                    icon: <PencilSquareIcon color={theme.colors.primary[ 4 ]} width={22} height={22}/>,
                                 },
                                 {
                                     label: i18n._(t`To archive`),
                                     handler: () => onArchive(item.id),
-                                    icon: <ArchiveBoxArrowDownIcon color={theme.colors.primary[4]} width={22} height={22}/>,
+                                    icon: <ArchiveBoxArrowDownIcon color={theme.colors.primary[ 4 ]} width={22} height={22}/>,
                                 }
                             ];
 
-                            const amount = <Flex>{item.cashDeskBalances.map(balanceItem =>
-                                <Flex key={balanceItem.id}>
-                                    <Box>{balanceItem.amount}</Box>
-                                    <Box>{balanceItem.currency}</Box>
-                                </Flex>
-                            )}</Flex>
+                            const amount = <Flex>{item.cashDeskBalances.map(balanceItem => <Flex key={balanceItem.id}>
+                                <Box>{balanceItem.amount}</Box>
+                                <Box>{balanceItem.currency}</Box>
+                            </Flex>)}</Flex>;
 
                             return (
                                 <Table.Tr key={ item.id } handler={ () => goToDetailsCashDeskPage(item.id, item.name) }>

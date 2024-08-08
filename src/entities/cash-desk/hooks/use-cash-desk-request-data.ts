@@ -12,20 +12,8 @@ export const useCashDeskRequestData = () => {
 
     if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase;
 
-    /* const fiscalId = urlParams.getFilterValue('fiscalId');
-    if (fiscalId && fiscalId.length > 0 && typeof fiscalId === 'string') filter.fiscalModuleIds = [ fiscalId ]; else delete filter.fiscalModuleIds
-
-    const terminalSN = urlParams.getFilterValue('terminalSN');
-    if (terminalSN && terminalSN.length > 0 && typeof terminalSN === 'string') filter.terminalSerialNumbers = [ terminalSN ]; else delete filter.terminalSerialNumbers
-
-    const closeDateFrom = urlParams.getFilterValue('closeDateFrom');
-    const closeDateTo = urlParams.getFilterValue('closeDateTo');
-    if (closeDateTo && typeof closeDateTo === 'string' && closeDateFrom && typeof closeDateFrom === 'string') {
-
-        filter.closedAtFrom = closeDateFrom;
-        filter.closedAtTo = closeDateTo;
-
-    } */
+    const storeId = urlParams.getFilterValue('storeId');
+    if (storeId && typeof storeId === 'string') filter.storeIds = [ storeId ];
 
     const requestData: typeSearchRequest<typeSearchFilterCashDesk, typeSearchCashDeskSortingNames> = {
         filter: filter,
