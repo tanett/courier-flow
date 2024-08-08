@@ -73,9 +73,13 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
                                 }
                             ];
 
-                            const amount = <Flex>{item.cashDeskBalances.map(balanceItem => <Flex key={balanceItem.id}>
-                                <Box>{balanceItem.amount}</Box>
-                                <Box>{balanceItem.currency}</Box>
+                            const amount = <Flex className={classes.currencyBlock}>{item.cashDeskBalances.map(balanceItem => <Flex className={classes.currencyRow} key={balanceItem.id}>
+                                <Box>{balanceItem.amount.toLocaleString(undefined, {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                    useGrouping: true,
+                                })}</Box>
+                                <Box className={classes.currency}>{balanceItem.currency}</Box>
                             </Flex>)}</Flex>;
 
                             return (
