@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {t, Trans} from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Modal } from '../../../shared/ui/modal';
-import {CashDeskTable} from "./cash-desk-table";
-import {Button, Flex} from "@mantine/core";
-import {useStyles} from "./styles";
-import {routerPaths} from "../../../app/config/router-paths";
-import {useCashDeskList} from "../../../entities/cash-desk/hooks/use-cash-desk-list";
+import { CashDeskTable } from './cash-desk-table';
+import { Button, Flex } from '@mantine/core';
+import { useStyles } from './styles';
+import { routerPaths } from '../../../app/config/router-paths';
+import { useCashDeskList } from '../../../entities/cash-desk/hooks/use-cash-desk-list';
 
 export const CashDeskList: React.FC = () => {
 
     const { i18n } = useLingui();
 
-    const {classes} = useStyles();
+    const { classes } = useStyles();
 
     const navigate = useNavigate();
 
-    const [isOpenReceipt, setIsOpenReceipt] = useState<{id: string | number} | null>(null);
+    const [ isOpenReceipt, setIsOpenReceipt ] = useState<{id: string | number} | null>(null);
 
     const {
         cashDeskList,
@@ -32,7 +32,7 @@ export const CashDeskList: React.FC = () => {
 
     const onCloseReceipt = () => setIsOpenReceipt(null);
 
-    const goToDetailsCashDeskPage = (id: string | number, cashDeskName: string) => navigate([ routerPaths.cashDesks, id.toString(), cashDeskName].join('/'));
+    const goToDetailsCashDeskPage = (id: string | number, cashDeskName: string) => navigate([ routerPaths.cash_desks, id.toString(), cashDeskName ].join('/'));
 
 
     return (<>
@@ -52,7 +52,7 @@ export const CashDeskList: React.FC = () => {
                 <Modal.Body>
                     receipt
                     <Flex className={classes.buttonPanelWrapper}>
-                        <Button variant='outline' onClick={onCloseReceipt}><Trans>Close</Trans></Button>
+                        <Button variant="outline" onClick={onCloseReceipt}><Trans>Close</Trans></Button>
                         <Button><Trans>Print</Trans></Button>
                     </Flex>
                 </Modal.Body>

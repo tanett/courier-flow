@@ -20,8 +20,8 @@ function AppRouter() {
     return (
         <SuspenseProvider>
             <WithCheckRemoteControl>
-            <PageNotification/>
-            <RouterProvider router={router} />
+                <PageNotification/>
+                <RouterProvider router={router} />
             </WithCheckRemoteControl>
         </SuspenseProvider>
     );

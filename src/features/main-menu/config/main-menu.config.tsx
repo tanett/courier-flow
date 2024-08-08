@@ -107,12 +107,12 @@ export const mainMenuConfig: typeMainMenuItemConfig[] = [
         name: <Trans>Cash</Trans>,
         icon: <CashDeskIconOutline/>,
         activeIcon: <CashDeskIconSolid/>,
-        path: routerPaths.cashDesks,
+        path: routerPaths.cash_desks,
         allowPermissions: [],
         children: [
             {  id: pathNames.cashDesks,
                 name: <Trans>Cash desks</Trans>,
-                path: routerPaths.cashDesks,
+                path: routerPaths.cash_desks,
                 allowPermissions: [], // TODO: add permissions
             },
             {  id: pathNames.encashment,
