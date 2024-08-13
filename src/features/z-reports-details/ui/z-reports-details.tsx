@@ -1,15 +1,15 @@
 import React from 'react';
 import { NotFound } from '../../../shared/ui/not-found/not-found';
 import { useStyles } from './styles';
-import { Flex, SimpleGrid, Skeleton } from '@mantine/core';
+import { Flex, SimpleGrid } from '@mantine/core';
 import { ZReportDetailsSkeleton } from './skeleton/skeleton';
 import { InfoPanel } from '../../../shared/ui/info-panel';
 import { t } from '@lingui/macro';
 import { i18n } from '@lingui/core';
-import {typeZReportDetailsProps} from '../types/types';
-import {BuildingStorefrontIcon, MapPinIcon, ShoppingCartIcon, UserIcon} from "@heroicons/react/24/outline";
+import { typeZReportDetailsProps } from '../types/types';
+import { BuildingStorefrontIcon, MapPinIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline';
 
-export const ZReportsDetails: React.FC<typeZReportDetailsProps> = ({ isNotFound, isZReportLoading, zReportData}) => {
+export const ZReportsDetails: React.FC<typeZReportDetailsProps> = ({ isNotFound, isZReportLoading, zReportData }) => {
 
     const { classes } = useStyles();
 

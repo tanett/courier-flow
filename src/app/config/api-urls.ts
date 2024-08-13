@@ -114,6 +114,7 @@ export enum API_URLS {
     Z_REPORTS_GET = '/api/v1/z-reports/{id}',
 
     CASH_DESK_SEARCH = '/api/v1/cash-desks/extended-search',
+    CASH_DESK_BY_ID = '/api/v1/cash-desks/{id}',
 
     ENCASHMENT_SEARCH = '/api/v1/encashment/search',
 }

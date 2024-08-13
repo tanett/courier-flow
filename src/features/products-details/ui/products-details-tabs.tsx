@@ -4,7 +4,6 @@ import { t } from '@lingui/macro';
 import { useStyles } from 'features/products-details/ui/styles';
 import { useLingui } from '@lingui/react';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
-import { queryParamsNames } from 'app/config/api-constants';
 import { ProductDetailsCommon } from 'features/products-details-common/ui/product-details-common';
 import { ProductDetailsStoresWithPrices } from 'features/product-details-stores';
 import { NotFound } from 'shared/ui/not-found/not-found';
@@ -32,7 +31,7 @@ const ProductsDetailsTabs: React.FC<{ productId: string }> = ({ productId }) => 
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.COMMON);
 
-    if (urlParams.tab && urlParams.tab !== tab ) {
+    if (urlParams.tab && urlParams.tab !== tab) {
 
         setTab(urlParams.tab as TYPE_TABS);
 
@@ -41,7 +40,7 @@ const ProductsDetailsTabs: React.FC<{ productId: string }> = ({ productId }) => 
     const {
         data: productData,
         isFetching,
-        error
+        error,
     } = useGetProductByIdQuery(productId);
 
     const goToEditPage = (id: string | number) => navigate([ routerPaths.products, id.toString(), 'edit' ].join('/'));
@@ -51,37 +50,39 @@ const ProductsDetailsTabs: React.FC<{ productId: string }> = ({ productId }) => 
         error
             ? <Flex sx={ {
                 height: '70vh',
-                alignItems: 'center'
+                alignItems: 'center',
             } }><NotFound/></Flex>
             :
-        <Tabs
-            defaultValue={ TYPE_TABS.COMMON }
-            className={ classes.tab }
-            variant="outline"
-            value={ tab }
-            onTabChange={ (value) =>   urlParams.setNewTab( value ) }
-        >
-            <Flex justify="space-between" align={'end'}>
-                <Tabs.List className={ classes.tab}>
-                    <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`General information`) }</Tabs.Tab>
-                    <Tabs.Tab value={ TYPE_TABS.STORES }>{ i18n._(t`Stores and prices`) }</Tabs.Tab>
-                </Tabs.List>
-                <Flex align={'center'} justify={'center'} h={ 36 }>
-                    <Tooltip withArrow arrowSize={ 6 } radius="md" label={ i18n._(t`Go to editing page`) }>
-                        <ActionIcon variant="subtle" onClick={ (e) => {
-                            e.stopPropagation();
+            <Tabs
+                defaultValue={ TYPE_TABS.COMMON }
+                className={ classes.tab }
+                variant="outline"
+                value={ tab }
+                onTabChange={ (value) => urlParams.setNewTab(value) }
+            >
+                <Flex justify="space-between" align={'end'}>
+                    <Tabs.List className={ classes.tab}>
+                        <Tabs.Tab value={ TYPE_TABS.COMMON }>{ i18n._(t`General information`) }</Tabs.Tab>
+                        <Tabs.Tab value={ TYPE_TABS.STORES }>{ i18n._(t`Stores and prices`) }</Tabs.Tab>
+                    </Tabs.List>
+                    <Flex align={'center'} justify={'center'} h={ 36 }>
+                        <Tooltip withArrow arrowSize={ 6 } radius="md" label={ i18n._(t`Go to editing page`) }>
+                            <ActionIcon variant="subtle" onClick={ (e) => {
 
-                            goToEditPage(productId);
-                        } }>
-                            <PencilSquareIcon color={ theme.colors.primary[5] } width={ 24 } height={ 24 }/>
-                        </ActionIcon>
-                    </Tooltip>
+                                e.stopPropagation();
+
+                                goToEditPage(productId);
+
+                            } }>
+                                <PencilSquareIcon color={ theme.colors.primary[ 5 ] } width={ 24 } height={ 24 }/>
+                            </ActionIcon>
+                        </Tooltip>
+                    </Flex>
                 </Flex>
-            </Flex>
 
-            <Tabs.Panel value={ TYPE_TABS.COMMON }><ProductDetailsCommon productData={ productData } isFetching={isFetching}/></Tabs.Panel>
-            <Tabs.Panel value={ TYPE_TABS.STORES }><ProductDetailsStoresWithPrices productId={ productId } merchantId={productData?.merchantId}/></Tabs.Panel>
-        </Tabs>
+                <Tabs.Panel value={ TYPE_TABS.COMMON }><ProductDetailsCommon productData={ productData } isFetching={isFetching}/></Tabs.Panel>
+                <Tabs.Panel value={ TYPE_TABS.STORES }><ProductDetailsStoresWithPrices productId={ productId } merchantId={productData?.merchantId}/></Tabs.Panel>
+            </Tabs>
     );
 
 };

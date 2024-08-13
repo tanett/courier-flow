@@ -6,7 +6,6 @@ import { tagTypesExtendedStoresList, typeEditStoreRequest, typeSearchFilterStore
 import { typeExtendedStore, typeStore, typeStoreWithLinkedConfiguration } from '../model/types';
 
 
-
 export const storesApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
 
@@ -43,7 +42,8 @@ export const storesApi = baseApi.injectEndpoints({
                 ]
                 : [ tagTypesExtendedStoresList.storesExtendedList ],
         }),
-// search stores with info about linked terminal configuration
+
+        // search stores with info about linked terminal configuration
         searchStoreWithLinkedConfiguration: builder.query<typeSearchResponse<typeStoreWithLinkedConfiguration>, typeSearchRequest<typeSearchFilterStore, typeSearchStoreSortingNames>>({
             query: (data) => (
                 {
@@ -67,7 +67,7 @@ export const storesApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesExtendedStoresList.storesExtendedList]
+            invalidatesTags: [ tagTypesExtendedStoresList.storesExtendedList ],
         }),
 
 
@@ -93,7 +93,7 @@ export const storesApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [tagTypesExtendedStoresList.storesExtendedList]
+            invalidatesTags: [ tagTypesExtendedStoresList.storesExtendedList ],
         }),
     }),
 });

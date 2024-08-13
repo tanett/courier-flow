@@ -32,4 +32,9 @@ export const useStyles = createStyles((theme) => ({
         },
 
     },
+    smallText: { fontSize: rem(14) },
+    currencyBlock: { flexDirection: 'column' },
+    currencyRow: { gap: rem(4) },
+    currency: { fontWeight: 400 },
+
 }));

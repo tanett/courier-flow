@@ -24,17 +24,21 @@ export const cashDeskApi = baseApi.injectEndpoints({
             ),
         }),
 
-        // Get z-report by id
-        /* getZReportById: builder.query({
+        // Get cash desk by id
+        getCashDeskById: builder.query<typeCashDesk, string>({
             query: (id) => (
                 {
-                    url: API_URLS.Z_REPORTS_GET.replace('{id}', id),
+                    url: API_URLS.CASH_DESK_BY_ID.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
             ),
-        }), */
+        }),
     }),
 });
 
-export const { useSearchCashDeskQuery, useLazySearchCashDeskQuery } = cashDeskApi;
+export const {
+    useSearchCashDeskQuery,
+    useLazySearchCashDeskQuery,
+    useGetCashDeskByIdQuery,
+} = cashDeskApi;

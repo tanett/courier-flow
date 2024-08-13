@@ -6,6 +6,8 @@ import { useLingui } from '@lingui/react';
 import { useUrlParams } from 'shared/hooks/use-url-params/use-url-params';
 import { NotFound } from 'shared/ui/not-found/not-found';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { useGetCashDeskByIdQuery } from '../../../entities/cash-desk/api/api';
+import { CashDeskDetailsCommon } from './cash-desk-details-common';
 
 const enum TYPE_TABS {
     MAIN = 'main',
@@ -26,19 +28,13 @@ const CashDeskDetailsTabs: React.FC<{ cashDeskId: string }> = ({ cashDeskId }) =
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.MAIN);
 
-    if (urlParams.tab && urlParams.tab !== tab) {
+    if (urlParams.tab && urlParams.tab !== tab) setTab(urlParams.tab as TYPE_TABS);
 
-        setTab(urlParams.tab as TYPE_TABS);
-
-    }
-
-    /* const {
-        data: productData,
+    const {
+        data: cashDeskData,
         isFetching,
         error,
-    } = useGetProductByIdQuery(productId);*/
-
-    const error = false;
+    } = useGetCashDeskByIdQuery(cashDeskId);
 
     const goToEditPage = (id: string | number) => console.log('edit', id);
 
@@ -79,7 +75,7 @@ const CashDeskDetailsTabs: React.FC<{ cashDeskId: string }> = ({ cashDeskId }) =
                     </Flex>
                 </Flex>
 
-                <Tabs.Panel value={ TYPE_TABS.MAIN }>Main{/* <ProductDetailsCommon productData={ productData } isFetching={isFetching}/> */}</Tabs.Panel>
+                <Tabs.Panel value={ TYPE_TABS.MAIN }>{ <CashDeskDetailsCommon cashDeskData={ cashDeskData } isFetching={isFetching}/> }</Tabs.Panel>
                 <Tabs.Panel value={ TYPE_TABS.OPERATIONS }>Operations{/* <ProductDetailsStoresWithPrices productId={ productId } merchantId={productData?.merchantId}/>*/}</Tabs.Panel>
             </Tabs>
     );

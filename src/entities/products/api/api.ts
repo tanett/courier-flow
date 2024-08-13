@@ -14,10 +14,10 @@ import {
     typeSearchFilterProduct,
     typeSearchFilterProductExtended,
     typeSearchProductSortingNames,
-} from '../../../entities/products/api/types';
+} from './types';
 import { expectedFileType, responseToBlobDownload } from 'shared/utils/response-to-blob-dowload';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
-import { typeExport } from '../../../entities/exports/api/types';
+import { typeExport } from '../../exports/api/types';
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({

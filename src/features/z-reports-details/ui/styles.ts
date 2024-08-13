@@ -20,7 +20,7 @@ export const useStyles = createStyles((theme) => ({
         flexDirection: 'column',
         gap: rem(22),
     },
-    colSpan: { gridColumn: 'span 2'},
+    colSpan: { gridColumn: 'span 2' },
     link: {
         transition: 'all ease-in 200ms',
         textDecoration: 'underline',
@@ -31,5 +31,5 @@ export const useStyles = createStyles((theme) => ({
 
         '&:hover': { textDecorationColor: theme.colors.primary[ 5 ] },
     },
-    smallText: {fontSize: rem(14),}
+    smallText: { fontSize: rem(14) },
 }));
