@@ -6,7 +6,7 @@ import CreditsDetails from 'features/credits-details/ui/credits-details';
 
 const CreditsDetailsPage: React.FC = () => {
 
-    const { id,} = useParams();
+    const { id } = useParams();
 
 
     return (

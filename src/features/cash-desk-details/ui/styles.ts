@@ -32,9 +32,12 @@ export const useStyles = createStyles((theme) => ({
         },
 
     },
-    smallText: { fontSize: rem(14) },
+    smallText: { fontSize: rem(14), color: theme.colors.gray[ 5 ] },
+    tinyText: { fontWeight: 400 },
     currencyBlock: { flexDirection: 'column' },
     currencyRow: { gap: rem(4) },
     currency: { fontWeight: 400 },
-
+    tableTimeContainer: { display: 'flex', gap: rem(4) },
+    negativeSign: { color: theme.colors.red[ 6 ] },
+    positiveSign: { color: theme.colors.green[ 6 ] },
 }));

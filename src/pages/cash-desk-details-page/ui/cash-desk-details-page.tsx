@@ -18,7 +18,7 @@ const CashDeskDetailsPage: React.FC = () => {
         <DashboardContent >
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Cash desks`), path: routerPaths.cash_desks_details },
+                    { name: i18n._(t`Cash desks`), path: routerPaths.cash_desks },
                     { name: cashDeskName || '------' }
                 ] }/> }
 

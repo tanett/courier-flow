@@ -8,6 +8,7 @@ import { NotFound } from 'shared/ui/not-found/not-found';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useGetCashDeskByIdQuery } from '../../../entities/cash-desk/api/api';
 import { CashDeskDetailsCommon } from './cash-desk-details-common';
+import { CashDeskDetailsOperations } from './cash-desk-details-operations/ui/cash-desk-details-operations';
 
 const enum TYPE_TABS {
     MAIN = 'main',
@@ -76,7 +77,7 @@ const CashDeskDetailsTabs: React.FC<{ cashDeskId: string }> = ({ cashDeskId }) =
                 </Flex>
 
                 <Tabs.Panel value={ TYPE_TABS.MAIN }>{ <CashDeskDetailsCommon cashDeskData={ cashDeskData } isFetching={isFetching}/> }</Tabs.Panel>
-                <Tabs.Panel value={ TYPE_TABS.OPERATIONS }>Operations{/* <ProductDetailsStoresWithPrices productId={ productId } merchantId={productData?.merchantId}/>*/}</Tabs.Panel>
+                <Tabs.Panel value={ TYPE_TABS.OPERATIONS }>{ <CashDeskDetailsOperations cashDeskId={ cashDeskData?.id } isFetching={isFetching} />}</Tabs.Panel>
             </Tabs>
     );
 
