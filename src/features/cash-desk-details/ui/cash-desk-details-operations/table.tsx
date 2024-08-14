@@ -5,11 +5,11 @@ import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
 import { EmptyElement } from 'shared/ui/empty-element';
 import { Table } from 'shared/ui/table/ui/table-new/table';
-import { typeCashDeskOperationsTable } from '../../../../types/types';
-import { useStyles } from '../../../styles';
+import { typeCashDeskOperationsTable } from '../../types/types';
+import { useStyles } from '../styles';
 import cn from 'classnames';
-import { addSignStyleToNumber } from '../../../../../../shared/utils/add-sign-style-to-number';
-import { CashDeskOperationType } from '../../../../../../shared/ui/cash-desk-operation-type';
+import { addSignStyleToNumber } from '../../../../shared/utils/add-sign-style-to-number';
+import { CashDeskOperationType } from '../../../../shared/ui/cash-desk-operation-type';
 
 
 export const TableDetailsCashDeskOperations: React.FC<typeCashDeskOperationsTable> = ({
@@ -24,7 +24,7 @@ export const TableDetailsCashDeskOperations: React.FC<typeCashDeskOperationsTabl
     return (
         <>
             { (isLoading || !operationList)
-                ? <TableSkeleton/>
+                ? <Box className={classes.skeletonContainer}><TableSkeleton isShort={true}/></Box>
                 : operationList.length === 0
                     ? <EmptyElement
                         title1={ i18n._(t`The list of operations is empty.`) }/>

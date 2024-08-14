@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Skeleton } from '@mantine/core';
 import { useStyles } from './styles';
 
-export const TableSkeleton: React.FC = () => {
+export const TableSkeleton: React.FC<{isShort?: boolean}> = ({ isShort }) => {
 
     const { classes } = useStyles();
 
@@ -69,24 +69,25 @@ export const TableSkeleton: React.FC = () => {
                 <Skeleton height={30} radius="xs" />
                 <Skeleton height={30} radius="xs" />
             </Flex>
-            <Flex className={classes.tableRow}>
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
+            { !isShort && <><Flex className={classes.tableRow}>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
             </Flex>
             <Flex className={classes.tableRow}>
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
             </Flex>
             <Flex className={classes.tableRow}>
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-                <Skeleton height={30} radius="xs" />
-            </Flex>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+                <Skeleton height={30} radius="xs"/>
+            </Flex></>
+            }
             <Flex className={classes.pagination}>
                 <Skeleton height={30} width={30} radius="xs" />
                 <Skeleton height={30} width={30} radius="xs" />

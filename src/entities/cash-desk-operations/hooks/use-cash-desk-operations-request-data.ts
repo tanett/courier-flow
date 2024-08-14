@@ -6,12 +6,14 @@ import {
     typeSearchFilterCashDeskOperations,
 } from '../model/types';
 
-export const useCashDeskOperationsRequestData = () => {
+export const useCashDeskOperationsRequestData = (cashDeskId: string | undefined) => {
 
     const urlParams = useUrlParams();
 
     // Filters
     const filter: typeSearchFilterCashDeskOperations = {};
+
+    if (cashDeskId) filter.cashDeskIds = [ cashDeskId ];
 
     /* if (urlParams.searchPhrase) filter.searchText = urlParams.searchPhrase;
 

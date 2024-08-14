@@ -8,7 +8,7 @@ import { NotFound } from 'shared/ui/not-found/not-found';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useGetCashDeskByIdQuery } from '../../../entities/cash-desk/api/api';
 import { CashDeskDetailsCommon } from './cash-desk-details-common';
-import { CashDeskDetailsOperations } from './cash-desk-details-operations/ui/cash-desk-details-operations';
+import { CashDeskDetailsOperations } from './cash-desk-details-operations/cash-desk-details-operations';
 
 const enum TYPE_TABS {
     MAIN = 'main',

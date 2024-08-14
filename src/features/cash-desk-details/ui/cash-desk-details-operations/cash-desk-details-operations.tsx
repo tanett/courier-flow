@@ -4,11 +4,10 @@ import { useLingui } from '@lingui/react';
 import { useAppDispatchT } from 'app/state';
 import { useNavigate } from 'react-router-dom';
 import { NotFound } from 'shared/ui/not-found/not-found';
-import { typeCashDeskDetailsOperationsProps } from '../../../types/types';
-import { TableDetailsCashDeskOperations } from './table/table';
-import { useGetCashDeskOperationsList } from '../hooks/use-get-cash-desk-operations-list';
-import { useCashDeskOperationList } from '../../../../../entities/cash-desk-operations/hooks/use-cash-desk-operation-list';
-import { Pagination } from '../../../../../shared/ui/pagination/table-pagination';
+import { typeCashDeskDetailsOperationsProps } from '../../types/types';
+import { TableDetailsCashDeskOperations } from './table';
+import { useCashDeskOperationList } from '../../../../entities/cash-desk-operations/hooks/use-cash-desk-operation-list';
+import { Pagination } from '../../../../shared/ui/pagination/table-pagination';
 import { t } from '@lingui/macro';
 
 export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsProps> = ({ cashDeskId, isFetching }) => {
@@ -29,7 +28,7 @@ export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsPr
         isLoading,
         refetch,
         error,
-    } = useCashDeskOperationList();
+    } = useCashDeskOperationList(cashDeskId);
 
     /* const [ editUser, { isLoading: isLoadingEditUser } ] = usePatchUserMutation();
 

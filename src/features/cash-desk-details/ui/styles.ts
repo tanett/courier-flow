@@ -40,4 +40,11 @@ export const useStyles = createStyles((theme) => ({
     tableTimeContainer: { display: 'flex', gap: rem(4) },
     negativeSign: { color: theme.colors.red[ 6 ] },
     positiveSign: { color: theme.colors.green[ 6 ] },
+    skeletonContainer: {
+        borderBottom: `1px solid ${theme.colors.borderColor[ 0 ]}`,
+        borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}`,
+        borderRight: `1px solid ${theme.colors.borderColor[ 0 ]}`,
+        borderRadius: `0 0 ${rem(8)} ${rem(8)}`,
+        padding: rem(16),
+    },
 }));

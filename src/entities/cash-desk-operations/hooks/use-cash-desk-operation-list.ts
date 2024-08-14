@@ -2,9 +2,9 @@ import { useSearchCashDeskOperationsQuery } from '../api/api';
 import { useCashDeskOperationsRequestData } from './use-cash-desk-operations-request-data';
 
 
-export function useCashDeskOperationList() {
+export function useCashDeskOperationList(cashDeskId: string | undefined) {
 
-    const { requestData } = useCashDeskOperationsRequestData();
+    const { requestData } = useCashDeskOperationsRequestData(cashDeskId);
 
     const { data, isFetching, error, isLoading, refetch } = useSearchCashDeskOperationsQuery(requestData);
 
