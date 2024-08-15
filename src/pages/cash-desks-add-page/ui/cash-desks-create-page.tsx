@@ -3,10 +3,9 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
-import { CashDeskList } from '../../../features/cash-desk-list';
-import { CashDeskListButtonsPanel } from '../../../features/cash-desk-list-buttons-panel';
+import { routerPaths } from '../../../app/config/router-paths';
 
-const CashDesksPage: React.FC = () => {
+const CashDesksCreatePage: React.FC = () => {
 
     const { i18n } = useLingui();
 
@@ -14,16 +13,16 @@ const CashDesksPage: React.FC = () => {
         <DashboardContent>
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
-                    { name: i18n._(t`Cash desks`) }
+                    { name: i18n._(t`Cash desks`), path: routerPaths.cash_desks },
+                    { name: i18n._(t`Create`) }
                 ]}/>}
-                rightSide={<CashDeskListButtonsPanel/>}
             />
 
-            <CashDeskList/>
+           Add cash desk
 
         </DashboardContent>
     );
 
 };
 
-export default CashDesksPage;
+export default CashDesksCreatePage;

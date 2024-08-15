@@ -96,6 +96,8 @@ export enum pathNames {
 
     cashDesks = 'cash_desks',
     cashDeskDetails = 'cash_desks_details',
+    cashDesksEdit = 'cash_desks_edit',
+    cashDesksCreate = 'cash_desks_create',
 
     encashment = 'encashment',
 
@@ -189,6 +191,8 @@ export const routerPaths: Record<pathNames, string> = {
 
     // cash desks
     [pathNames.cashDesks]: createPath([ pathSections.dashboard, pathSections.cashDesks ]),
+    [pathNames.cashDesksCreate]: createPath([ pathSections.dashboard, pathSections.cashDesks, pathSections.create ]),
+    [pathNames.cashDesksEdit]: createPath([ pathSections.dashboard, pathSections.cashDesks, pathSections.cashDeskId, pathSections.edit ]),
     [pathNames.cashDeskDetails]: createPath([ pathSections.dashboard, pathSections.cashDesks, pathSections.cashDeskId, pathSections.cashDeskName ]),
 
     // encashment

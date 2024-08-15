@@ -68,7 +68,7 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
                                 },
                                 {
                                     label: i18n._(t`To archive`),
-                                    handler: () => onArchive(item.id),
+                                    handler: () => onArchive(item.id, item.name),
                                     icon: <ArchiveBoxArrowDownIcon color={theme.colors.primary[ 4 ]} width={22} height={22}/>,
                                 }
                             ];

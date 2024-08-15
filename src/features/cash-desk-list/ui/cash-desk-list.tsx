@@ -4,20 +4,18 @@ import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Modal } from '../../../shared/ui/modal';
 import { CashDeskTable } from './cash-desk-table';
-import { Button, Flex } from '@mantine/core';
-import { useStyles } from './styles';
 import { routerPaths } from '../../../app/config/router-paths';
 import { useCashDeskList } from '../../../entities/cash-desk/hooks/use-cash-desk-list';
+import { Dialog } from '../../../shared/ui/dialog-new';
+import { LoaderOverlay } from '../../../shared/ui/loader-overlay';
 
 export const CashDeskList: React.FC = () => {
 
     const { i18n } = useLingui();
 
-    const { classes } = useStyles();
-
     const navigate = useNavigate();
 
-    const [ isOpenReceipt, setIsOpenReceipt ] = useState<{id: string | number} | null>(null);
+    const [ modalArchiveItemData, setModalArchiveItemData ] = useState<{id: string | number, name: string} | null>(null);
 
     const {
         cashDeskList,
@@ -27,13 +25,25 @@ export const CashDeskList: React.FC = () => {
 
     // const onOpenReceipt = (id: string | number) => setIsOpenReceipt({id: id});
 
-    const onEdit = (id: string | number) => console.log('edit', id);
-    const onArchive = (id: string | number) => console.log('archive', id);
-
-    const onCloseReceipt = () => setIsOpenReceipt(null);
-
     const goToDetailsCashDeskPage = (id: string | number, cashDeskName: string) => navigate([ routerPaths.cash_desks, id.toString(), cashDeskName ].join('/'));
 
+    const onEdit = (id: string | number) => navigate([ routerPaths.cash_desks, id.toString(), 'edit' ].join('/'));
+
+    const onArchive = (id: string | number, name: string) => {
+
+        setModalArchiveItemData({ id, name });
+
+    };
+
+    const onCloseArchivePopup = () => setModalArchiveItemData(null);
+
+    const onConfirmDelete = () => {
+
+        console.log('delete', modalArchiveItemData?.id);
+
+    };
+
+    const isArchiveLoading = false; // TODO: upgrade it
 
     return (<>
         <CashDeskTable
@@ -46,16 +56,21 @@ export const CashDeskList: React.FC = () => {
         />
 
 
-        { isOpenReceipt && <Modal modalWidth="dialog" opened={ true } onCloseByOverlay={onCloseReceipt}>
+        { modalArchiveItemData && <Modal modalWidth="dialog" opened={ true }>
             <Modal.Body>
-                <Modal.Header title={i18n._(t`Receipt`)} onClose={onCloseReceipt}/>
-                <Modal.Body>
-                    receipt
-                    <Flex className={classes.buttonPanelWrapper}>
-                        <Button variant="outline" onClick={onCloseReceipt}><Trans>Close</Trans></Button>
-                        <Button><Trans>Print</Trans></Button>
-                    </Flex>
-                </Modal.Body>
+                <Dialog
+                    cancelButton={ {
+                        title: i18n._(t`Cancel`),
+                        handler: onCloseArchivePopup,
+                    } }
+                    confirmButton={ {
+                        title: i18n._(`action-archive`),
+                        handler: () => onConfirmDelete(),
+                    } }
+                >
+                    <Trans>Are you sure you want to archive <br/>the cash desk</Trans>  &quot;{ modalArchiveItemData.name }&quot;?
+                </Dialog>
+                { isArchiveLoading && <LoaderOverlay/> }
             </Modal.Body>
         </Modal> }
 

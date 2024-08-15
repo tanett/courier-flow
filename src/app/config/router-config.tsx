@@ -68,7 +68,10 @@ import { LazyWorkingShiftsDetailsPage } from 'pages/working-shifts-details-page'
 import { LazyOrdersCreatePage } from 'pages/orders-create-page';
 import { LazyOrdersDetailsPage } from 'pages/orders-details-page';
 import { LazyOrdersEditPage } from 'pages/orders-edit-page';
-import CashDeskDetailsPage from "../../pages/cash-desk-details-page/ui/cash-desk-details-page";
+import {LazyCashDeskDetailsPage} from "pages/cash-desk-details-page";
+import {LazyCashDesksEditPage} from "pages/cash-desks-edit-page";
+import {LazyCashDesksCreatePage} from "pages/cash-desks-add-page";
+
 
 
 export const router = createBrowserRouter([
@@ -231,8 +234,16 @@ export const router = createBrowserRouter([
                 element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDesksPage/></WithPermissionsRouts>,
             },
             {
+                path: routerPaths.cash_desks_create,
+                element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDesksCreatePage/></WithPermissionsRouts>,
+            },
+            {
+                path: routerPaths.cash_desks_edit,
+                element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDesksEditPage/></WithPermissionsRouts>,
+            },
+            {
                 path: routerPaths.cash_desks_details,
-                element: <WithPermissionsRouts permissions={readCashDesksPermissions}><CashDeskDetailsPage/></WithPermissionsRouts>,
+                element: <WithPermissionsRouts permissions={readCashDesksPermissions}><LazyCashDeskDetailsPage/></WithPermissionsRouts>,
             },
             {
                 path: routerPaths.encashment,

@@ -9,6 +9,8 @@ import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useGetCashDeskByIdQuery } from '../../../entities/cash-desk/api/api';
 import { CashDeskDetailsCommon } from './cash-desk-details-common';
 import { CashDeskDetailsOperations } from './cash-desk-details-operations/cash-desk-details-operations';
+import { useNavigate } from 'react-router-dom';
+import { routerPaths } from '../../../app/config/router-paths';
 
 const enum TYPE_TABS {
     MAIN = 'main',
@@ -25,7 +27,7 @@ const CashDeskDetailsTabs: React.FC<{ cashDeskId: string }> = ({ cashDeskId }) =
 
     const theme = useMantineTheme();
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [ tab, setTab ] = useState<TYPE_TABS | null>(TYPE_TABS.MAIN);
 
@@ -37,9 +39,7 @@ const CashDeskDetailsTabs: React.FC<{ cashDeskId: string }> = ({ cashDeskId }) =
         error,
     } = useGetCashDeskByIdQuery(cashDeskId);
 
-    const goToEditPage = (id: string | number) => console.log('edit', id);
-
-    // const goToEditPage = (id: string | number) => navigate([ routerPaths.products, id.toString(), 'edit' ].join('/'));
+    const goToEditPage = (id: string | number) => navigate([ routerPaths.cash_desks, id.toString(), 'edit' ].join('/'));
 
 
     return (

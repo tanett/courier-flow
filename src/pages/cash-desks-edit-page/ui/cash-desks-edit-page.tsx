@@ -3,27 +3,29 @@ import { useLingui } from '@lingui/react';
 import { DashboardContent } from '../../../shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
-import { CashDeskList } from '../../../features/cash-desk-list';
-import { CashDeskListButtonsPanel } from '../../../features/cash-desk-list-buttons-panel';
+import { useParams } from 'react-router-dom';
+import { routerPaths } from '../../../app/config/router-paths';
 
-const CashDesksPage: React.FC = () => {
+const CashDesksEditPage: React.FC = () => {
 
     const { i18n } = useLingui();
+
+    const { cashDeskId } = useParams();
 
     return (
         <DashboardContent>
             <DashboardContent.Header
                 leftSide={<DashboardBreadcrumbs dataList={[
-                    { name: i18n._(t`Cash desks`) }
+                    { name: i18n._(t`Cash desks`), path: routerPaths.cash_desks },
+                    { name: i18n._(t`Edit`) }
                 ]}/>}
-                rightSide={<CashDeskListButtonsPanel/>}
             />
 
-            <CashDeskList/>
+           edit cash desk
 
         </DashboardContent>
     );
 
 };
 
-export default CashDesksPage;
+export default CashDesksEditPage;
