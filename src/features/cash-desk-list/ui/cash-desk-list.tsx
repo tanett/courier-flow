@@ -8,6 +8,12 @@ import { routerPaths } from '../../../app/config/router-paths';
 import { useCashDeskList } from '../../../entities/cash-desk/hooks/use-cash-desk-list';
 import { Dialog } from '../../../shared/ui/dialog-new';
 import { LoaderOverlay } from '../../../shared/ui/loader-overlay';
+import { useCashDeskToArchiveMutation } from '../../../entities/cash-desk/api/api';
+import { notificationActions } from '../../../entities/notification/model';
+import { NOTIFICATION_TYPES } from '../../../shared/ui/page-notification';
+import { errorHandler } from '../../../app/utils/errorHandler';
+import { typeResponseError } from '../../../app/api/types';
+import { useAppDispatchT } from '../../../app/state';
 
 export const CashDeskList: React.FC = () => {
 
@@ -15,15 +21,18 @@ export const CashDeskList: React.FC = () => {
 
     const navigate = useNavigate();
 
+    const dispatchAppT = useAppDispatchT();
+
     const [ modalArchiveItemData, setModalArchiveItemData ] = useState<{id: string | number, name: string} | null>(null);
 
     const {
         cashDeskList,
         pagination,
         isLoading,
+        refetch,
     } = useCashDeskList();
 
-    // const onOpenReceipt = (id: string | number) => setIsOpenReceipt({id: id});
+    const [ cashDeskToArchive, { isLoading: isArchiveLoading } ] = useCashDeskToArchiveMutation();
 
     const goToDetailsCashDeskPage = (id: string | number, cashDeskName: string) => navigate([ routerPaths.cash_desks, id.toString(), cashDeskName ].join('/'));
 
@@ -37,13 +46,32 @@ export const CashDeskList: React.FC = () => {
 
     const onCloseArchivePopup = () => setModalArchiveItemData(null);
 
-    const onConfirmDelete = () => {
+    const onConfirmDelete = async () => {
 
-        console.log('delete', modalArchiveItemData?.id);
+        if (modalArchiveItemData?.id) {
+
+            try {
+
+                await cashDeskToArchive([ modalArchiveItemData.id.toString() ]).unwrap();
+
+                dispatchAppT(notificationActions.addNotification({
+                    type: NOTIFICATION_TYPES.SUCCESS,
+                    message: t`Cash desk archived successfully.`,
+                }));
+
+                onCloseArchivePopup();
+                refetch();
+
+            } catch (err) {
+
+                errorHandler(err as typeResponseError, 'onArchiveCashDesk', dispatchAppT);
+
+            }
+
+        }
 
     };
 
-    const isArchiveLoading = false; // TODO: upgrade it
 
     return (<>
         <CashDeskTable

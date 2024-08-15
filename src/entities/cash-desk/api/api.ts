@@ -34,6 +34,20 @@ export const cashDeskApi = baseApi.injectEndpoints({
                 }
             ),
         }),
+
+        // Cash desk to archive
+        cashDeskToArchive: builder.mutation<typeCashDesk, string[] >({
+            query: (data) => (
+                {
+                    url: API_URLS.CASH_DESK_ARCHIVE,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+
+            // invalidatesTags: [ tagTypesExtendedUsersList.extendedUsersList ],
+        }),
     }),
 });
 
@@ -41,4 +55,5 @@ export const {
     useSearchCashDeskQuery,
     useLazySearchCashDeskQuery,
     useGetCashDeskByIdQuery,
+    useCashDeskToArchiveMutation,
 } = cashDeskApi;
