@@ -6,6 +6,7 @@ import { Trans } from '@lingui/macro';
 import { SaleIcon } from '../icons/sale-icon';
 import { RefundIcon } from '../icons/refund-icon';
 import { CorrectionIcon } from '../icons/correction-icon';
+import { CreditIcon } from '../icons/credit-icon';
 
 export const CashDeskOperationType: React.FC<{operationType: cashDeskTypes}> = ({ operationType }) => {
 
@@ -25,7 +26,7 @@ export const CashDeskOperationType: React.FC<{operationType: cashDeskTypes}> = (
         icon = <><RefundIcon iconClass={classes.icon}/><Trans>Refund</Trans></>;
         break;
     case 'CREDIT' :
-        icon = <>{/* <RefundIcon iconClass={classes.icon}/>*/}<Trans>Credit</Trans></>; // TODO: add icon
+        icon = <><CreditIcon iconClass={classes.icon}/><Trans>Credit</Trans></>;
         break;
     case 'MANUAL_REFILL' :
     case 'MANUAL_WRITE_OFF' :

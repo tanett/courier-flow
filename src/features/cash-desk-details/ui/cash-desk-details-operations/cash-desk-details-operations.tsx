@@ -12,8 +12,6 @@ import { t } from '@lingui/macro';
 
 export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsProps> = ({ cashDeskId, isFetching }) => {
 
-    console.log('cashDeskId', cashDeskId);
-
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();

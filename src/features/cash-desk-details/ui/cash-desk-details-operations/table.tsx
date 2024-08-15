@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, useMantineTheme } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
@@ -72,8 +72,6 @@ export const TableDetailsCashDeskOperations: React.FC<typeCashDeskOperationsTabl
                                             second: 'numeric',
                                         })
                                         : '-';
-
-                                    const cashDeskType = <span>{item.type}</span>;
 
                                     return (
                                         <Table.Tr key={ item.id } >
