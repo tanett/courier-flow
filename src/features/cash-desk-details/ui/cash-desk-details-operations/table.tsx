@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mantine/core';
+import { Box, Flex } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 import { TableSkeleton } from 'shared/ui/table/ui/table-skeleton/tableSkeleton';
@@ -82,9 +82,9 @@ export const TableDetailsCashDeskOperations: React.FC<typeCashDeskOperationsTabl
                                             </Table.Td>
                                             <Table.Td>{ item.employeeName }</Table.Td>
                                             <Table.Td><CashDeskOperationType operationType={item.type} /></Table.Td>
-                                            <Table.Td>{ addSignStyleToNumber(item.balanceBefore, classes.negativeSign) }</Table.Td>
-                                            <Table.Td>{ addSignStyleToNumber(item.amount, classes.negativeSign, classes.positiveSign) }</Table.Td>
-                                            <Table.Td>{ addSignStyleToNumber(item.balanceAfter, classes.negativeSign) }</Table.Td>
+                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.balanceBefore, classes.negativeSign) } <Box fw={400}>{item.currency}</Box></Flex></Table.Td>
+                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.amount, classes.negativeSign, classes.positiveSign) } <Box fw={400}>{item.currency}</Box></Flex></Table.Td>
+                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.balanceAfter, classes.negativeSign) } <Box fw={400}>{item.currency}</Box></Flex></Table.Td>
                                             <Table.Td>{ item.comment ? item.comment : '-' }</Table.Td>
                                         </Table.Tr>
                                     );

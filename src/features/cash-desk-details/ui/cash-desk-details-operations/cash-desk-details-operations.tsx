@@ -151,32 +151,9 @@ export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsPr
                 <TableDetailsCashDeskOperations
                     operationList={ cashDeskOperationsList }
                     isLoading={ isLoading }
-
-                    // setRefetchList={ setRefetch }
-                    // onOpenDialogRemoveUser={ onOpenDialogRemoveUser }
-                    // isAllowEditUser={ isAllowEditUser }
-                    // goToEditUserPage={ goToEditUserPage }
                 />
 
                 { pagination && <Box py={ 10 } px ={16}><Pagination pagination={ pagination } withPerPage={ true }/></Box> }
-
-                {/* { dialogToRemoveUser && <Modal modalWidth="dialog" opened={ true }>
-                    <Modal.Body>
-                        <Dialog
-                            cancelButton={ {
-                                title: i18n._(t`Cancel`),
-                                handler: onCloseDialogToRemoveUser,
-                            } }
-                            confirmButton={ {
-                                title: i18n._(t`Confirm`),
-                                handler: () => onConfirmRemoveUser(dialogToRemoveUser),
-                            } }
-                        >
-                            <Trans>Are you sure you want to remove <br/>the user</Trans>  &quot;{ dialogToRemoveUser.fullName }&quot;  from the store?
-                        </Dialog>
-                        { isLoadingEditUser && <LoaderOverlay/> }
-                    </Modal.Body>
-                </Modal> }*/}
 
                 {/* { dialogToAddUser && <Modal modalWidth="auto" opened={ true } onCloseByOverlay={ () => onCloseDialogToAddUser(false) }>
                     <Modal.Body>
