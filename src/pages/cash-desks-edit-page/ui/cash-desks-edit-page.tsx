@@ -5,6 +5,7 @@ import { DashboardBreadcrumbs } from '../../../shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import { useParams } from 'react-router-dom';
 import { routerPaths } from '../../../app/config/router-paths';
+import { CashDeskEdit } from 'features/cash-desk-edit';
 
 const CashDesksEditPage: React.FC = () => {
 
@@ -21,7 +22,7 @@ const CashDesksEditPage: React.FC = () => {
                 ]}/>}
             />
 
-           edit cash desk
+            {cashDeskId && <CashDeskEdit cashDeskId={cashDeskId}/> }
 
         </DashboardContent>
     );

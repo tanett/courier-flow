@@ -17,7 +17,7 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
     required,
     initialValue,
     disabled,
-
+    filters
 }) => {
 
     const dispatch = useAppDispatchT();
@@ -57,7 +57,10 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
     useEffect(() => {
 
         const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
-            filter: { archived: false },
+            filter: filters ? {
+                ...filters,
+                archived: false
+            } : { archived: false },
             pagination: {
                 pageNumber: 0,
                 pageSize: 50,
@@ -79,10 +82,16 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
         if (initialValue) {
 
             const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
-                filter: {
-                    archived: false,
-                    ids: [ initialValue ],
-                },
+                filter: filters
+                    ? {
+                        ...filters,
+                        archived: false,
+                        ids: [ initialValue ],
+                    }
+                    : {
+                        archived: false,
+                        ids: [ initialValue ],
+                    },
                 pagination: {
                     pageNumber: 0,
                     pageSize: 30,
@@ -113,7 +122,11 @@ export const SelectorWithSearchStore: React.FC<typeSelectorStores> = ({
         if (searchStoreValue.trim().length && !isSelectedNameEqualDebouncedValue()) {
 
             const requestData: typeSearchRequest<typeSearchFilterStore, 'NAME'> = {
-                filter: {
+                filter: filters? {
+                    ...filters,
+                    archived: false,
+                    nameContains: searchStoreValue,
+                } : {
                     archived: false,
                     nameContains: searchStoreValue,
                 },
