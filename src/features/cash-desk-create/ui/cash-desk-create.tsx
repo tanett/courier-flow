@@ -36,11 +36,13 @@ export const CashDeskCreate: React.FC = () => {
     const [ isInProgress, setIsInProgress ] = useState(false);
 
     const currentUser = useSelectorT(state => state.userProfile.userProfile);
+    const baseCurrency = useSelectorT(state => state.merchantCurrency.baseCurrency);
+    const isRemoteControl = useSelectorT(state => state.auth.remoteControl);
 
 
     const onSave = async () => {
 
-        if (currentUser && form.values.storeId) {
+        if (currentUser && baseCurrency && form.values.storeId) {
 
             setIsInProgress(true);
 
@@ -51,7 +53,7 @@ export const CashDeskCreate: React.FC = () => {
                 storeId: form.values.storeId,
                 cashDeskBalances: [
                     {
-                        currency: 'AMD',
+                        currency: baseCurrency,
                         amount: +form.values.amount,
                     }
                 ]
@@ -113,7 +115,7 @@ export const CashDeskCreate: React.FC = () => {
                     fieldName={ 'storeId' }
                     form={ form as unknown as typeReturnForm }
                     initialValue={ null }
-                    filters={ { ids: currentUser?.actor.storeIds }}
+                    filters={ isRemoteControl ? undefined : { ids: currentUser?.actor.storeIds }}
                 />
                 <SimpleGrid cols={2}>
                     <Input.Wrapper

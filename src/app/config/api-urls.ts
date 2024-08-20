@@ -125,4 +125,5 @@ export enum API_URLS {
 
     MERCHANT_CURRENCY_SEARCH = '/api/v1/merchant-currencies/search',
     MERCHANT_CURRENCY_BY_ID= '/api/v1/merchant-currencies/{id}',
+    MERCHANT_BASE_CURRENCY= '/api/v1/base-currency',
 }

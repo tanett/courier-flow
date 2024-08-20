@@ -2,11 +2,22 @@ import { baseApi } from 'app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { typeMerchantCurrency } from '../model/types';
+import { typeMerchantCurrency } from 'entities/merchant-currency/model/state-slice/types';
 import { typeSearchFilterMerchantCurrency, typeSearchMerchantCurrencySortingNames } from './types';
 
 export const merchantCurrencyApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
+
+        // get base currency
+        getBaseCurrency: builder.query<string, undefined>({
+            query: () => (
+                {
+                    url: API_URLS.MERCHANT_BASE_CURRENCY,
+                    method: 'GET',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                }
+            ),
+        }),
 
         // Search merchant currency
         searchMerchantCurrency: builder.query<typeSearchResponse<typeMerchantCurrency>, typeSearchRequest<typeSearchFilterMerchantCurrency, typeSearchMerchantCurrencySortingNames>>({
@@ -39,5 +50,6 @@ export const merchantCurrencyApi = baseApi.injectEndpoints({
 
 export const {
     useSearchMerchantCurrencyQuery,
-    useGetMerchantCurrencyByIdQuery
+    useGetMerchantCurrencyByIdQuery,
+    useGetBaseCurrencyQuery,
 } = merchantCurrencyApi;

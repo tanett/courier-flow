@@ -8,3 +8,5 @@ export type typeMerchantCurrency = {
     customExchangeRate: number
     systemExchangeRate: number
 }
+
+export type typeMerchantCurrencyState = { baseCurrency?: string }

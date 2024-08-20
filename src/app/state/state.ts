@@ -11,6 +11,9 @@ import { productsApi } from '../../entities/products/api/api';
 import { soldProductsStateReducer } from '../../entities/advances/model/state-slice';
 import { ordersApi } from '../../entities/orders/api/api';
 import { ordersStateActions, ordersStateReducer } from '../../entities/orders/model/state-slice';
+import { merchantCurrencyStateActions, merchantCurrencyStateReducer } from '../../entities/merchant-currency/model/state-slice';
+import { merchantCurrencyApi } from '../../entities/merchant-currency/api/api';
+import { defaultCurrency } from 'app/config/currency';
 
 
 const ListenerMiddlewareCreate = createListenerMiddleware();
@@ -60,6 +63,19 @@ ListenerMiddlewareCreate.startListening({
             console.log('state.ts 35:', err);
 
         }
+
+        try {
+
+            const response = await listenerApi.dispatch(merchantCurrencyApi.endpoints.getBaseCurrency.initiate(undefined));
+
+            listenerApi.dispatch(merchantCurrencyStateActions.setBaseCurrency(response.data ?? defaultCurrency));
+
+        } catch (err) {
+
+            // TODO: error
+            console.log('state.ts 35:', err);
+
+        }
         // listenerApi.dispatch(resourceLoaded(res.data))
         // currentUserApi.trackUsage(action.type, user, specialData)
 
@@ -77,6 +93,7 @@ export const state = configureStore({
         products: productsStateReducer,
         soldProductDetails: soldProductsStateReducer,
         orders: ordersStateReducer,
+        merchantCurrency: merchantCurrencyStateReducer
 
     },
     devTools: process.env.NODE_ENV !== 'production',
