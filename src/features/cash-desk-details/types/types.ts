@@ -15,3 +15,9 @@ export type typeCashDeskOperationsTable = {
     operationList: typeCashDeskOperation[] | undefined,
     isLoading: boolean,
 }
+
+
+export type typeAddCorrectionDialogProps = {
+    onCloseDialog: () => void,
+    onCreateCorrection: () => void,
+}
