@@ -14,6 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: src/features/cash-desk-create/form/form.ts:46
+#: src/features/cash-desk-edit/form/form.ts:46
+msgid "amount-rest"
+msgstr "Amount"
+
+#. js-lingui-explicit-id
+#: src/features/cash-desk-create/form/form.ts:38
+#: src/features/cash-desk-edit/form/form.ts:38
 #: src/features/categories-create/form/form.ts:23
 #: src/features/categories-edit/form/form.ts:23
 #: src/features/categories-list/ui/table/categories-table-header.tsx:67
@@ -25,6 +33,22 @@ msgstr ""
 #: src/features/terminal-configurations-edit/form/form.ts:29
 msgid "item-name"
 msgstr "Name"
+
+#. js-lingui-explicit-id
+#: src/features/cash-desk-list/ui/cash-desk-list.tsx:95
+#: src/features/categories-list/ui/categories-list.tsx:73
+#: src/features/categories-list/ui/modals/archive-item-modal.tsx:20
+#: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:25
+#: src/features/categories-list/ui/table/categories-table.tsx:84
+#: src/features/product-archive-button/product-archive-button.tsx:35
+#: src/features/product-archive-button/product-archive-button.tsx:43
+#: src/features/products-list/ui/modal/modal-archive-item.tsx:53
+#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:54
+#: src/features/products-list/ui/products-list.tsx:73
+#: src/features/user-archive-button/user-archive-button.tsx:50
+#: src/features/user-list/ui/user-list.tsx:93
+msgid "action-archive"
+msgstr "Archive"
 
 #. js-lingui-explicit-id
 #: src/shared/ui/with-password-helper/with-password-helper.tsx:30
@@ -83,6 +107,7 @@ msgid "Access denied"
 msgstr "Access denied"
 
 #: src/features/advances-list/ui/table/advances-table.tsx:78
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:56
 #: src/features/categories-list/ui/table/categories-table-header.tsx:75
 #: src/features/orders-create/ui/products-in-cart-table/products-in-cart-table.tsx:76
 #: src/features/orders-list/ui/table/orders-table-header.tsx:103
@@ -140,7 +165,7 @@ msgid "Advance"
 msgstr "Advance"
 
 #: src/features/advances-details/ui/advances-details.tsx:52
-#: src/features/main-menu/config/main-menu.config.tsx:65
+#: src/features/main-menu/config/main-menu.config.tsx:64
 #: src/pages/advances-page/ui/advances-page.tsx:16
 #: src/pages/advances-sold-product-details-page/ui/advances-sold-product-details-page.tsx:32
 msgid "Advances"
@@ -175,10 +200,22 @@ msgstr "After selecting a category, you’ll see the list here"
 msgid "All products listed in the file are successfully imported."
 msgstr "All products listed in the file are successfully imported."
 
+#: src/features/cash-desk-details/ui/cash-desk-details-common.tsx:108
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:47
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:53
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:153
 #: src/features/credits-list/ui/table/credits-table.tsx:69
 msgid "Amount"
 msgstr "Amount"
+
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:50
+msgid "Amount after"
+msgstr "Amount after"
+
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:44
+#: src/features/encashment-list/ui/encashment-table.tsx:54
+msgid "Amount before"
+msgstr "Amount before"
 
 #: src/features/advances-details/ui/advances-details-payments-list/ui/table/table-payments.tsx:39
 #: src/features/credits-details/ui/credits-details-payments-list/ui/table/table-payments.tsx:46
@@ -194,21 +231,6 @@ msgstr "Amount of stores"
 #: src/shared/ui/filter-panel/ui/filter-buttons-bar.tsx:17
 msgid "Apply"
 msgstr "Apply"
-
-#. js-lingui-explicit-id
-#: src/features/categories-list/ui/categories-list.tsx:73
-#: src/features/categories-list/ui/modals/archive-item-modal.tsx:20
-#: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:25
-#: src/features/categories-list/ui/table/categories-table.tsx:84
-#: src/features/product-archive-button/product-archive-button.tsx:35
-#: src/features/product-archive-button/product-archive-button.tsx:43
-#: src/features/products-list/ui/modal/modal-archive-item.tsx:53
-#: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:54
-#: src/features/products-list/ui/products-list.tsx:73
-#: src/features/user-archive-button/user-archive-button.tsx:50
-#: src/features/user-list/ui/user-list.tsx:93
-msgid "action-archive"
-msgstr "Archive"
 
 #: src/features/products-list-buttons-panel/ui/dialogs/archive-products-dialog.tsx:20
 #: src/features/products-list/ui/table/products-table.tsx:93
@@ -227,6 +249,10 @@ msgstr "Archive"
 #: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:58
 msgid "Are you sure you want to archive <0/>selected products"
 msgstr "Are you sure you want to archive <0/>selected products"
+
+#: src/features/cash-desk-list/ui/cash-desk-list.tsx:99
+msgid "Are you sure you want to archive <0/>the cash desk"
+msgstr "Are you sure you want to archive <0/>the cash desk"
 
 #: src/features/products-list/ui/modal/modal-archive-item.tsx:57
 msgid "Are you sure you want to archive <0/>the product"
@@ -281,8 +307,8 @@ msgid "Are you sure you want to remove <0/>the user"
 msgstr "Are you sure you want to remove <0/>the user"
 
 #: src/features/orders-details/ui/orders-tabs.tsx:73
-#: src/features/orders-list/ui/modal/modal-add-courier.tsx:98
-#: src/features/orders-list/ui/modal/modal-add-courier.tsx:134
+#: src/features/orders-list/ui/modal/modal-add-courier.tsx:99
+#: src/features/orders-list/ui/modal/modal-add-courier.tsx:136
 #: src/features/orders-list/ui/table/orders-table.tsx:100
 msgid "Assign courier"
 msgstr "Assign courier"
@@ -364,14 +390,17 @@ msgstr "Blocking"
 msgid "By deleting this configuration, {0} and {1} will remain without configurations.<0/>A deleted configuration cannot be restored."
 msgstr "By deleting this configuration, {0} and {1} will remain without configurations.<0/>A deleted configuration cannot be restored."
 
+#: src/features/cash-desk-create/ui/cash-desk-create.tsx:149
+#: src/features/cash-desk-edit/ui/cash-desk-edit.tsx:161
+#: src/features/cash-desk-list/ui/cash-desk-list.tsx:91
 #: src/features/categories-create/ui/categories-create.tsx:108
 #: src/features/categories-edit/ui/categories-edit.tsx:122
 #: src/features/categories-list/ui/modals/archive-item-modal.tsx:16
 #: src/features/categories-list/ui/modals/archive-selected-item-modal.tsx:21
 #: src/features/orders-create/ui/order-create.tsx:140
 #: src/features/orders-edit/ui/order-edit-form.tsx:168
-#: src/features/orders-list/ui/modal/modal-add-courier.tsx:132
-#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:139
+#: src/features/orders-list/ui/modal/modal-add-courier.tsx:134
+#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:141
 #: src/features/product-archive-button/product-archive-button.tsx:51
 #: src/features/product-change-vat-fo-all/product-change-vat-for-all.tsx:125
 #: src/features/product-create/ui/product-form-create.tsx:259
@@ -381,7 +410,7 @@ msgstr "By deleting this configuration, {0} and {1} will remain without configur
 #: src/features/products-list-buttons-panel/ui/dialogs/archive-products-dialog.tsx:16
 #: src/features/products-list/ui/modal/modal-archive-item.tsx:49
 #: src/features/products-list/ui/modal/modal-archive-selected-item.tsx:50
-#: src/features/profile-show-edit/ui/profile.tsx:183
+#: src/features/profile-show-edit/ui/profile.tsx:189
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:137
 #: src/features/retail-product-edit-price-for-all-stores/retail-product-edit-price-for-all-stores.tsx:123
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:130
@@ -425,11 +454,36 @@ msgid "Card refunds"
 msgstr "Card refunds"
 
 #: src/entities/sales/helpers/get-translated-variant-for-payments-method.tsx:15
+#: src/features/main-menu/config/main-menu.config.tsx:107
 msgid "Cash"
 msgstr "Cash"
 
-#: src/features/main-menu/config/main-menu.config.tsx:108
-#: src/pages/cash-desks-page/ui/cash-desks-page.tsx:15
+#: src/features/encashment-list/ui/encashment-table.tsx:45
+#: src/features/selector-with-search-cash-desk/selector-with-search-cash-desk.tsx:204
+msgid "Cash desk"
+msgstr "Cash desk"
+
+#: src/features/cash-desk-list/ui/cash-desk-list.tsx:59
+msgid "Cash desk archived successfully."
+msgstr "Cash desk archived successfully."
+
+#: src/features/cash-desk-create/ui/cash-desk-create.tsx:66
+msgid "Cash desk created successfully."
+msgstr "Cash desk created successfully."
+
+#: src/features/cash-desk-edit/ui/cash-desk-edit.tsx:77
+msgid "Cash desk edited successfully."
+msgstr "Cash desk edited successfully."
+
+#: src/features/selector-with-search-cash-desk/selector-with-search-cash-desk.tsx:209
+msgid "Cash desk not found"
+msgstr "Cash desk not found"
+
+#: src/features/main-menu/config/main-menu.config.tsx:114
+#: src/pages/cash-desk-details-page/ui/cash-desk-details-page.tsx:21
+#: src/pages/cash-desks-add-page/ui/cash-desks-create-page.tsx:17
+#: src/pages/cash-desks-edit-page/ui/cash-desks-edit-page.tsx:20
+#: src/pages/cash-desks-page/ui/cash-desks-page.tsx:17
 msgid "Cash desks"
 msgstr "Cash desks"
 
@@ -462,7 +516,7 @@ msgstr "Cashier"
 msgid "Cashier app version"
 msgstr "Cashier app version"
 
-#: src/features/main-menu/config/main-menu.config.tsx:92
+#: src/features/main-menu/config/main-menu.config.tsx:91
 #: src/features/terminal-configurations-create/form/form.ts:42
 #: src/features/terminal-configurations-create/ui/terminal-configurations-create.tsx:117
 #: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:58
@@ -543,7 +597,7 @@ msgstr "Change price for all stores"
 msgid "Change prices in all stores"
 msgstr "Change prices in all stores"
 
-#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:141
+#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:143
 msgid "Change status"
 msgstr "Change status"
 
@@ -551,7 +605,7 @@ msgstr "Change status"
 #~ msgid "Change status to “In process”"
 #~ msgstr "Change status to “In process”"
 
-#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:101
+#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:102
 msgid "Change status to “Waiting for delivery”"
 msgstr "Change status to “Waiting for delivery”"
 
@@ -607,7 +661,7 @@ msgstr "Client name"
 msgid "Client name / Phone number"
 msgstr "Client name / Phone number"
 
-#: src/features/main-menu/config/main-menu.config.tsx:158
+#: src/features/main-menu/config/main-menu.config.tsx:169
 msgid "Clients"
 msgstr "Clients"
 
@@ -647,6 +701,7 @@ msgstr "Comission PINFL"
 msgid "Comission TIN"
 msgstr "Comission TIN"
 
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:53
 #: src/features/orders-create/form/form.ts:153
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:263
 msgid "Comment"
@@ -658,7 +713,7 @@ msgstr "Comment"
 msgid "Configuration name"
 msgstr "Configuration name"
 
-#: src/features/main-menu/config/main-menu.config.tsx:130
+#: src/features/main-menu/config/main-menu.config.tsx:141
 #: src/pages/terminal-configurations-create-page/ui/terminal-configuration-create-page.tsx:25
 #: src/pages/terminal-configurations-details-page/ui/terminal-configurations-details-page.tsx:24
 #: src/pages/terminal-configurations-edit-page/ui/terminal-configuration-edit-page.tsx:23
@@ -680,13 +735,17 @@ msgid "Contact Support"
 msgstr "Contact Support"
 
 #: src/features/orders-create/ui/order-client.tsx:54
-#: src/features/profile-show-edit/ui/profile.tsx:140
+#: src/features/profile-show-edit/ui/profile.tsx:146
 #: src/features/stores-edit/ui/store-edit.tsx:158
 #: src/features/stores-user-edit/ui/stores-users-edit.tsx:162
 #: src/features/users-create/ui/users-create-new.tsx:143
 #: src/features/users-edit/ui/users-edit.tsx:163
 msgid "Contacts"
 msgstr "Contacts"
+
+#: src/shared/ui/cash-desk-operation-type/ui/cash-desk-operation-type.tsx:33
+msgid "Correction"
+msgstr "Correction"
 
 #: src/features/orders-create/ui/products-in-cart-table/products-in-cart-table.tsx:72
 msgid "Cost"
@@ -697,19 +756,22 @@ msgid "country code"
 msgstr "country code"
 
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:162
-#: src/features/orders-list-filter/ui/orders-list-filter.tsx:119
-#: src/features/orders-list/ui/modal/modal-add-courier.tsx:112
-#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:119
+#: src/features/orders-list-filter/ui/orders-list-filter.tsx:126
+#: src/features/orders-list/ui/modal/modal-add-courier.tsx:113
+#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:120
 #: src/features/orders-list/ui/table/orders-table-header.tsx:97
 msgid "Courier"
 msgstr "Courier"
 
-#: src/features/orders-list/ui/modal/modal-add-courier.tsx:74
+#: src/features/orders-list/ui/modal/modal-add-courier.tsx:75
 msgid "Courier assigned successfully."
 msgstr "Courier assigned successfully."
 
+#: src/features/cash-desk-create/ui/cash-desk-create.tsx:151
+#: src/features/cash-desk-list-buttons-panel/ui/cash-desk-list-buttons-panel.tsx:29
 #: src/features/categories-create/ui/categories-create.tsx:110
 #: src/features/users-create/ui/users-create-new.tsx:165
+#: src/pages/cash-desks-add-page/ui/cash-desks-create-page.tsx:18
 #: src/pages/categories-create-page/ui/categories-create-page.tsx:18
 #: src/pages/orders-create-page/ui/orders-create-page.tsx:18
 #: src/pages/products-create-page/ui/products-create-page.tsx:18
@@ -732,6 +794,8 @@ msgstr "Create"
 #~ msgid "Create new user"
 #~ msgstr "Create new user"
 
+#: src/features/cash-desk-details/ui/cash-desk-details-common.tsx:103
+#: src/features/enchashment-filter/ui/encashment-list-filter.tsx:112
 #: src/features/refunds-list-filter/ui/refunds-list-filter.tsx:110
 #: src/features/sales-list-filter/ui/sales-list-filter.tsx:110
 #: src/features/stores-list-filter/ui/stores-list-filter.tsx:85
@@ -739,12 +803,13 @@ msgstr "Create"
 msgid "Creation date"
 msgstr "Creation date"
 
+#: src/shared/ui/cash-desk-operation-type/ui/cash-desk-operation-type.tsx:29
 #: src/shared/ui/payment-type/payment-type.tsx:55
 msgid "Credit"
 msgstr "Credit"
 
 #: src/features/credits-details/ui/credits-details.tsx:49
-#: src/features/main-menu/config/main-menu.config.tsx:70
+#: src/features/main-menu/config/main-menu.config.tsx:69
 #: src/pages/credits-page/ui/credits-page.tsx:16
 msgid "Credits"
 msgstr "Credits"
@@ -754,8 +819,8 @@ msgid "Customer phone"
 msgstr "Customer phone"
 
 #: src/features/advances-list-filter/ui/advances-list-filter.tsx:109
-#: src/features/credits-list-filter/ui/credits-list-filter.tsx:147
-#: src/features/orders-list-filter/ui/orders-list-filter.tsx:142
+#: src/features/credits-list-filter/ui/credits-list-filter.tsx:146
+#: src/features/orders-list-filter/ui/orders-list-filter.tsx:149
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:50
 #: src/features/z-reports-list/ui/z-reports-table.tsx:49
 msgid "Date"
@@ -764,6 +829,7 @@ msgstr "Date"
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:76
 #: src/features/advances-details/ui/advances-details-payments-list/ui/table/table-payments.tsx:34
 #: src/features/advances-list/ui/table/advances-table.tsx:47
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:35
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:88
 #: src/features/credits-details/ui/credits-details-payments-list/ui/table/table-payments.tsx:41
 #: src/features/credits-list/ui/table/credits-table.tsx:45
@@ -776,6 +842,7 @@ msgstr "Date"
 msgid "Date & time"
 msgstr "Date & time"
 
+#: src/features/encashment-list/ui/encashment-table.tsx:39
 #: src/features/refund-list/ui/refund-table.tsx:43
 msgid "Date & Time"
 msgstr "Date & Time"
@@ -855,6 +922,7 @@ msgstr "Download a file template"
 msgid "E-mail"
 msgstr "E-mail"
 
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:65
 #: src/features/categories-list/ui/table/categories-table.tsx:76
 #: src/features/orders-edit/ui/order-edit.tsx:35
 #: src/features/orders-list/ui/table/orders-table.tsx:94
@@ -863,6 +931,7 @@ msgstr "E-mail"
 #: src/features/stores-list/ui/stores-table.tsx:73
 #: src/features/terminal-configurations-list/ui/terminal-configurations-table.tsx:62
 #: src/features/user-list/ui/user-table.tsx:68
+#: src/pages/cash-desks-edit-page/ui/cash-desks-edit-page.tsx:21
 #: src/pages/categories-edit-page/ui/categories-edit-page.tsx:22
 #: src/pages/products-edit-page/ui/products-edit-page.tsx:18
 #: src/pages/stores-edit-page/ui/stores-edit-page.tsx:23
@@ -889,6 +958,8 @@ msgid "Email"
 msgstr "Email"
 
 #: src/features/advances-list/ui/table/advances-table.tsx:61
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:38
+#: src/features/encashment-list/ui/encashment-table.tsx:51
 #: src/features/refund-list/ui/refund-table.tsx:52
 #: src/features/sales-list/ui/table/sales-table-header.tsx:82
 #: src/features/z-reports-details/ui/z-reports-details.tsx:147
@@ -918,6 +989,16 @@ msgstr "Employees list"
 #: src/shared/ui/empty-element/empty-element.tsx:14
 msgid "empty list"
 msgstr "empty list"
+
+#: src/features/main-menu/config/main-menu.config.tsx:119
+#: src/pages/encashment-page/ui/encashment-page.tsx:16
+#: src/shared/ui/cash-desk-operation-type/ui/cash-desk-operation-type.tsx:23
+msgid "Encashment"
+msgstr "Encashment"
+
+#: src/features/encashment-list/ui/encashment-table.tsx:57
+msgid "Encashment amount"
+msgstr "Encashment amount"
 
 #: src/features/terminal-configurations-create/ui/select-stores&terminals/selectors-stores-terminals/selector-terminals-for-configuration-terminals.tsx:328
 msgid "Enter a serial number"
@@ -1068,7 +1149,7 @@ msgstr "Full name"
 #: src/features/categories-edit/ui/categories-edit.tsx:103
 #: src/features/product-create/ui/product-form-create.tsx:113
 #: src/features/product-edit/ui/product-form-edit.tsx:143
-#: src/features/products-details/ui/products-details-tabs.tsx:66
+#: src/features/products-details/ui/products-details-tabs.tsx:65
 msgid "General information"
 msgstr "General information"
 
@@ -1080,14 +1161,15 @@ msgstr "General Information"
 msgid "Go to \"Credits\" to view the list of payments"
 msgstr "Go to \"Credits\" to view the list of payments"
 
+#: src/features/cash-desk-details/ui/cash-desk-details-tabs.tsx:65
 #: src/features/orders-details/ui/orders-tabs.tsx:113
-#: src/features/products-details/ui/products-details-tabs.tsx:70
+#: src/features/products-details/ui/products-details-tabs.tsx:69
 #: src/features/stores-details/ui/stores-details-tabs.tsx:71
 #: src/features/terminal-configurations-details/ui/terminal-configurations-details.tsx:62
 msgid "Go to editing page"
 msgstr "Go to editing page"
 
-#: src/features/main-menu/config/main-menu.config.tsx:136
+#: src/features/main-menu/config/main-menu.config.tsx:147
 msgid "Handover records"
 msgstr "Handover records"
 
@@ -1172,6 +1254,8 @@ msgstr "Invalid password restore link. Request a password restore link again."
 msgid "Invalid phone number format"
 msgstr "Invalid phone number format"
 
+#: src/features/cash-desk-create/form/form.ts:13
+#: src/features/cash-desk-edit/form/form.ts:13
 #: src/features/categories-create/form/form.ts:13
 #: src/features/categories-edit/form/form.ts:13
 #: src/features/forgot-password/forms/forms.ts:14
@@ -1197,6 +1281,11 @@ msgstr "Invalid phone number format"
 #: src/features/users-edit/form/form.ts:30
 msgid "It's too long"
 msgstr "It's too long"
+
+#: src/features/cash-desk-create/form/form.ts:22
+#: src/features/cash-desk-edit/form/form.ts:22
+msgid "It's too match"
+msgstr "It's too match"
 
 #: src/shared/ui/pagination/table-pagination.tsx:42
 msgid "Items par page"
@@ -1268,6 +1357,7 @@ msgid "Logout"
 msgstr "Logout"
 
 #: src/features/advances-details/ui/advances-details.tsx:71
+#: src/features/cash-desk-details/ui/cash-desk-details-tabs.tsx:61
 #: src/features/credits-details/ui/credits-details.tsx:68
 #: src/features/orders-details/ui/orders-tabs.tsx:108
 #: src/features/refund-details/ui/refunds-details-tabs.tsx:53
@@ -1343,6 +1433,7 @@ msgstr "Move to archive"
 msgid "N%"
 msgstr "N%"
 
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:47
 #: src/features/stores-edit/ui/store-edit.tsx:137
 #: src/features/users-details/ui/users-details.tsx:123
 msgid "Name"
@@ -1415,7 +1506,7 @@ msgid "Not marked"
 msgstr "Not marked"
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:172
-#: src/features/credits-list-filter/ui/credits-list-filter.tsx:131
+#: src/features/credits-list-filter/ui/credits-list-filter.tsx:130
 #: src/features/credits-list/ui/table/credits-table.tsx:93
 msgid "Not paid"
 msgstr "Not paid"
@@ -1423,6 +1514,10 @@ msgstr "Not paid"
 #: src/features/products-list-filter/ui/products-list-filter.tsx:131
 msgid "Not piece"
 msgstr "Not piece"
+
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/cash-desk-details-operations.tsx:135
+msgid "Number of operations"
+msgstr "Number of operations"
 
 #: src/features/advances-details/ui/advances-details-payments-list/ui/advances-details-payments-list.tsx:33
 #: src/features/credits-details/ui/credits-details-payments-list/ui/credits-details-payments-list.tsx:33
@@ -1476,6 +1571,10 @@ msgstr "opened"
 msgid "Operation was successful."
 msgstr "Operation was successful."
 
+#: src/features/cash-desk-details/ui/cash-desk-details-tabs.tsx:62
+msgid "Operations"
+msgstr "Operations"
+
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:168
 #: src/features/sales-details-common/ui/sales-details-common.tsx:165
 msgid "Order"
@@ -1510,7 +1609,7 @@ msgid "Order number / Date"
 msgstr "Order number / Date"
 
 #: src/features/orders-list/hooks/use-change-status-processing.ts:32
-#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:77
+#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:78
 msgid "Order status changed successfully."
 msgstr "Order status changed successfully."
 
@@ -1518,7 +1617,7 @@ msgstr "Order status changed successfully."
 msgid "Ordered products"
 msgstr "Ordered products"
 
-#: src/features/main-menu/config/main-menu.config.tsx:144
+#: src/features/main-menu/config/main-menu.config.tsx:155
 #: src/features/orders-details/ui/orders-details.tsx:40
 #: src/features/orders-edit/ui/order-edit.tsx:31
 #: src/pages/orders-create-page/ui/orders-create-page.tsx:17
@@ -1526,7 +1625,7 @@ msgstr "Ordered products"
 msgid "Orders"
 msgstr "Orders"
 
-#: src/features/main-menu/config/main-menu.config.tsx:152
+#: src/features/main-menu/config/main-menu.config.tsx:163
 msgid "Orders list"
 msgstr "Orders list"
 
@@ -1542,7 +1641,7 @@ msgstr "Package code"
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:158
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:171
-#: src/features/credits-list-filter/ui/credits-list-filter.tsx:128
+#: src/features/credits-list-filter/ui/credits-list-filter.tsx:127
 #: src/features/credits-list/ui/table/credits-table.tsx:75
 #: src/features/credits-list/ui/table/credits-table.tsx:94
 msgid "Paid"
@@ -1611,7 +1710,7 @@ msgstr "Payment type"
 msgid "Payments"
 msgstr "Payments"
 
-#: src/features/profile-show-edit/ui/profile.tsx:131
+#: src/features/profile-show-edit/ui/profile.tsx:137
 #: src/features/stores-user-edit/ui/stores-users-edit.tsx:125
 #: src/features/users-create/ui/users-create-new.tsx:107
 #: src/features/users-edit/ui/users-edit.tsx:126
@@ -1715,8 +1814,8 @@ msgstr "Product edited successfully."
 msgid "Product name"
 msgstr "Product name"
 
-#: src/features/main-menu/config/main-menu.config.tsx:78
-#: src/features/main-menu/config/main-menu.config.tsx:86
+#: src/features/main-menu/config/main-menu.config.tsx:77
+#: src/features/main-menu/config/main-menu.config.tsx:85
 #: src/features/orders-create/form/form.ts:162
 #: src/features/orders-create/ui/order-create.tsx:130
 #: src/features/orders-edit/ui/order-edit-form.tsx:158
@@ -1818,6 +1917,7 @@ msgid "Receipt position number"
 msgstr "Receipt position number"
 
 #: src/features/sales-list/ui/table/sales-table-header.tsx:94
+#: src/shared/ui/cash-desk-operation-type/ui/cash-desk-operation-type.tsx:26
 msgid "Refund"
 msgstr "Refund"
 
@@ -1825,7 +1925,7 @@ msgstr "Refund"
 msgid "Refunded products"
 msgstr "Refunded products"
 
-#: src/features/main-menu/config/main-menu.config.tsx:55
+#: src/features/main-menu/config/main-menu.config.tsx:54
 #: src/pages/refund-detais-page/ui/refund-details-page.tsx:19
 #: src/pages/refunds-page/ui/refunds-page.tsx:26
 msgid "Refunds"
@@ -1847,12 +1947,16 @@ msgstr "Refused products"
 msgid "Remove from store"
 msgstr "Remove from store"
 
-#: src/features/main-menu/config/main-menu.config.tsx:43
+#: src/features/main-menu/config/main-menu.config.tsx:42
 #: src/pages/reports-page/ui/reports-page.tsx:15
 msgid "Reports"
 msgstr "Reports"
 
 #: src/entities/products/helpers/createInitialForm.tsx:22
+#: src/features/cash-desk-create/form/form.ts:11
+#: src/features/cash-desk-create/form/form.ts:29
+#: src/features/cash-desk-edit/form/form.ts:11
+#: src/features/cash-desk-edit/form/form.ts:29
 #: src/features/categories-create/form/form.ts:11
 #: src/features/categories-edit/form/form.ts:11
 #: src/features/forgot-password/forms/forms.ts:12
@@ -1946,7 +2050,7 @@ msgstr "Role description"
 msgid "Role's name"
 msgstr "Role's name"
 
-#: src/features/main-menu/config/main-menu.config.tsx:183
+#: src/features/main-menu/config/main-menu.config.tsx:194
 #: src/pages/roles-page/ui/roles-page.tsx:16
 msgid "Roles"
 msgstr "Roles"
@@ -1959,6 +2063,7 @@ msgid "RRN"
 msgstr "RRN"
 
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:97
+#: src/shared/ui/cash-desk-operation-type/ui/cash-desk-operation-type.tsx:20
 msgid "Sale"
 msgstr "Sale"
 
@@ -1966,7 +2071,7 @@ msgstr "Sale"
 msgid "Sale ID"
 msgstr "Sale ID"
 
-#: src/features/main-menu/config/main-menu.config.tsx:50
+#: src/features/main-menu/config/main-menu.config.tsx:49
 #: src/pages/sales-details-page/ui/sales-details-page.tsx:21
 #: src/pages/sales-page/ui/sales-page.tsx:18
 #: src/pages/sold-product-details-page/ui/sold-product-details-page.tsx:22
@@ -1986,12 +2091,13 @@ msgstr "Sales count"
 msgid "Sales export"
 msgstr "Sales export"
 
+#: src/features/cash-desk-edit/ui/cash-desk-edit.tsx:163
 #: src/features/categories-edit/ui/categories-edit.tsx:124
 #: src/features/orders-create/ui/order-create.tsx:142
 #: src/features/orders-edit/ui/order-edit-form.tsx:170
 #: src/features/product-create/ui/product-form-create.tsx:261
 #: src/features/product-edit/ui/product-form-edit.tsx:293
-#: src/features/profile-show-edit/ui/profile.tsx:184
+#: src/features/profile-show-edit/ui/profile.tsx:190
 #: src/features/retail-product-add-to-store/retail-product-add-to-store.tsx:139
 #: src/features/stores-edit/ui/store-edit.tsx:207
 #: src/features/stores-user-edit/ui/stores-users-edit.tsx:184
@@ -2009,6 +2115,10 @@ msgstr "Search by advance total cost"
 #~ msgid "Search by advance total payment"
 #~ msgstr "Search by advance total payment"
 
+#: src/features/selector-with-search-cash-desk/selector-with-search-cash-desk.tsx:205
+msgid "Search by Cash desk name"
+msgstr "Search by Cash desk name"
+
 #: src/features/categories-list/ui/table/categories-table.tsx:56
 msgid "Search by category name"
 msgstr "Search by category name"
@@ -2025,6 +2135,7 @@ msgstr "Search by configuration name"
 msgid "Search by employee name"
 msgstr "Search by employee name"
 
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:34
 #: src/features/selector-with-search-product-category/selector-with-search-product-category.tsx:141
 msgid "Search by name"
 msgstr "Search by name"
@@ -2054,7 +2165,7 @@ msgstr "Search by serial number"
 msgid "Search by serial number or fiscal card Id"
 msgstr "Search by serial number or fiscal card Id"
 
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:150
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:163
 #: src/features/stores-list/ui/stores-table.tsx:33
 msgid "Search by store name"
 msgstr "Search by store name"
@@ -2063,6 +2174,7 @@ msgstr "Search by store name"
 msgid "Search by terminal serial number"
 msgstr "Search by terminal serial number"
 
+#: src/features/encashment-list/ui/encashment-table.tsx:25
 #: src/features/working-shifts-list/ui/working-shifts-table.tsx:37
 msgid "Search by terminal SN"
 msgstr "Search by terminal SN"
@@ -2126,8 +2238,8 @@ msgstr "Service payment"
 msgid "Service payment in %"
 msgstr "Service payment in %"
 
-#: src/features/main-menu/config/main-menu.config.tsx:191
-#: src/features/profile-show-edit/ui/profile.tsx:159
+#: src/features/main-menu/config/main-menu.config.tsx:202
+#: src/features/profile-show-edit/ui/profile.tsx:165
 #: src/pages/settings-page/ui/settings-page.tsx:15
 msgid "Settings"
 msgstr "Settings"
@@ -2172,22 +2284,24 @@ msgid "Starting date"
 msgstr "Starting date"
 
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:167
-#: src/features/credits-list-filter/ui/credits-list-filter.tsx:123
+#: src/features/credits-list-filter/ui/credits-list-filter.tsx:122
 #: src/features/credits-list/ui/table/credits-table.tsx:85
 msgid "State"
 msgstr "State"
 
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:113
-#: src/features/orders-list-filter/ui/orders-list-filter.tsx:127
+#: src/features/orders-list-filter/ui/orders-list-filter.tsx:134
 #: src/features/orders-list/ui/table/orders-table-header.tsx:100
 msgid "Status"
 msgstr "Status"
 
+#: src/features/cash-desk-create/form/form.ts:42
+#: src/features/cash-desk-edit/form/form.ts:42
 #: src/features/orders-create/form/form.ts:174
 #: src/features/refund-list/ui/refund-table.tsx:49
 #: src/features/retail-product-edit-price/retail-product-edit price.tsx:90
 #: src/features/sales-list/ui/table/sales-table-header.tsx:78
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:149
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:162
 #: src/features/stores-details/ui/stores-details-tabs.tsx:67
 msgid "Store"
 msgstr "Store"
@@ -2202,9 +2316,12 @@ msgstr "Store address"
 
 #: src/features/advances-details/ui/advances-details-common/ui/advances-details-common.tsx:79
 #: src/features/advances-list/ui/table/advances-table.tsx:56
+#: src/features/cash-desk-details/ui/cash-desk-details-common.tsx:114
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:50
 #: src/features/credits-details/ui/credits-details-common/ui/credits-details-common.tsx:114
 #: src/features/credits-details/ui/credits-details-payments-list/ui/table/table-payments.tsx:56
 #: src/features/credits-list/ui/table/credits-table.tsx:54
+#: src/features/encashment-list/ui/encashment-table.tsx:48
 #: src/features/orders-details/ui/orders-details-common/ui/orders-details-common.tsx:119
 #: src/features/orders-list/ui/table/orders-table-header.tsx:83
 #: src/features/refund-details/ui/tabs/main-refund-tab.tsx:89
@@ -2226,7 +2343,7 @@ msgid "Store name /<0/>Terminal SN"
 msgstr "Store name /<0/>Terminal SN"
 
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:172
-#: src/features/selector-with-search-store/selector-with-search-store.tsx:154
+#: src/features/selector-with-search-store/selector-with-search-store.tsx:167
 msgid "Store not found"
 msgstr "Store not found"
 
@@ -2240,7 +2357,7 @@ msgstr "Store type"
 msgid "Store with price was added successfully."
 msgstr "Store with price was added successfully."
 
-#: src/features/main-menu/config/main-menu.config.tsx:100
+#: src/features/main-menu/config/main-menu.config.tsx:99
 #: src/features/multiselector-with-search-store/multiselector-with-search-store.tsx:167
 #: src/features/terminal-configurations-create/form/form.ts:33
 #: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:26
@@ -2264,7 +2381,7 @@ msgstr "Stores"
 msgid "Stores & Terminal SN"
 msgstr "Stores & Terminal SN"
 
-#: src/features/products-details/ui/products-details-tabs.tsx:67
+#: src/features/products-details/ui/products-details-tabs.tsx:66
 msgid "Stores and prices"
 msgstr "Stores and prices"
 
@@ -2311,13 +2428,14 @@ msgid "Terminal serial number"
 msgstr "Terminal serial number"
 
 #: src/features/credits-list/ui/table/credits-table.tsx:59
+#: src/features/encashment-list/ui/encashment-table.tsx:42
 #: src/features/z-report-list-filter/ui/z-report-list-filter.tsx:152
 #: src/features/z-reports-details/ui/z-reports-details.tsx:170
 #: src/features/z-reports-list/ui/z-reports-table.tsx:64
 msgid "Terminal SN"
 msgstr "Terminal SN"
 
-#: src/features/main-menu/config/main-menu.config.tsx:116
+#: src/features/main-menu/config/main-menu.config.tsx:127
 #: src/features/selector-with-search-terminals/selector-with-search-terminals.tsx:142
 #: src/features/terminal-configurations-create/form/form.ts:37
 #: src/features/terminal-configurations-create/ui/select-stores&terminals/select-stores-terminals.tsx:27
@@ -2327,7 +2445,7 @@ msgstr "Terminal SN"
 msgid "Terminals"
 msgstr "Terminals"
 
-#: src/features/main-menu/config/main-menu.config.tsx:124
+#: src/features/main-menu/config/main-menu.config.tsx:135
 #: src/pages/terminals-details-page/ui/terminals-details-page.tsx:21
 msgid "Terminals list"
 msgstr "Terminals list"
@@ -2349,8 +2467,10 @@ msgid "The list is empty"
 msgstr "The list is empty"
 
 #: src/features/advances-list/ui/table/advances-table.tsx:111
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:96
 #: src/features/categories-list/ui/table/categories-table.tsx:109
 #: src/features/credits-list/ui/table/credits-table.tsx:114
+#: src/features/encashment-list/ui/encashment-table.tsx:87
 #: src/features/orders-list/ui/table/orders-table.tsx:196
 #: src/features/products-list/ui/table/products-table.tsx:148
 #: src/features/refund-list/ui/refund-table.tsx:91
@@ -2364,6 +2484,10 @@ msgstr "The list is empty"
 #: src/features/z-reports-list/ui/z-reports-table.tsx:116
 msgid "The list is empty, try changing your filtering or search conditions and try again."
 msgstr "The list is empty, try changing your filtering or search conditions and try again."
+
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:30
+msgid "The list of operations is empty."
+msgstr "The list of operations is empty."
 
 #: src/features/advances-details/ui/advances-details-payments-list/ui/table/table-payments.tsx:28
 #: src/features/credits-details/ui/credits-details-payments-list/ui/table/table-payments.tsx:35
@@ -2412,6 +2536,11 @@ msgstr "The terminal is linked to another configuration!<0/><1/>If you link a te
 msgid "The value cannot be greater than 100%."
 msgstr "The value cannot be greater than 100%."
 
+#: src/features/cash-desk-create/form/form.ts:20
+#: src/features/cash-desk-edit/form/form.ts:20
+msgid "The value must be more than 0"
+msgstr "The value must be more than 0"
+
 #: src/features/terminal-configurations-details/ui/list-categories-for-terminal/ui/list-categories-for-configuration-terminals.tsx:105
 msgid "There are not attached categories."
 msgstr "There are not attached categories."
@@ -2448,9 +2577,9 @@ msgstr "This user is not associated with any store"
 msgid "to"
 msgstr "to"
 
-#: src/features/user-list/ui/user-list.tsx:51
-#~ msgid "To archive"
-#~ msgstr "To archive"
+#: src/features/cash-desk-list/ui/cash-desk-table.tsx:70
+msgid "To archive"
+msgstr "To archive"
 
 #: src/entities/products/helpers/get-translated-variant-for-import.tsx:9
 #: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:81
@@ -2465,7 +2594,7 @@ msgstr "To continue, we ask you to change your password."
 #~ msgid "To put order “In process”, please select assignee."
 #~ msgstr "To put order “In process”, please select assignee."
 
-#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:114
+#: src/features/orders-list/ui/modal/modal-change-status-waiting-delivery.tsx:115
 msgid "To put order “Waiting for delivery”, please select courier."
 msgstr "To put order “Waiting for delivery”, please select courier."
 
@@ -2597,9 +2726,9 @@ msgstr "Transfer payment"
 msgid "Transfer refunds"
 msgstr "Transfer refunds"
 
-#: src/features/stores-edit/ui/store-edit.tsx:142
-#~ msgid "Type"
-#~ msgstr "Type"
+#: src/features/cash-desk-details/ui/cash-desk-details-operations/table.tsx:41
+msgid "Type"
+msgstr "Type"
 
 #: src/features/user-add-to-store/user-add-to-store.tsx:184
 #~ msgid "Type a name and select an employee"
@@ -2682,6 +2811,10 @@ msgstr "Unit code"
 msgid "Unit price"
 msgstr "Unit price"
 
+#: src/shared/ui/cash-desk-operation-type/ui/cash-desk-operation-type.tsx:36
+msgid "Unknown operation"
+msgstr "Unknown operation"
+
 #: src/features/products-import/ui/select-type-of-import/select-type-of-import.tsx:72
 msgid "Uploading products to selected stores with a price from the import file"
 msgstr "Uploading products to selected stores with a price from the import file"
@@ -2698,7 +2831,7 @@ msgstr "User archived successfully."
 msgid "User created successfully."
 msgstr "User created successfully."
 
-#: src/features/profile-show-edit/ui/profile.tsx:135
+#: src/features/profile-show-edit/ui/profile.tsx:141
 #: src/features/stores-user-edit/ui/stores-users-edit.tsx:130
 #: src/features/users-create/ui/users-create-new.tsx:112
 #: src/features/users-edit/ui/users-edit.tsx:131
@@ -2722,7 +2855,7 @@ msgstr "User was edited successfully."
 msgid "User was removed successfully."
 msgstr "User was removed successfully."
 
-#: src/features/main-menu/config/main-menu.config.tsx:175
+#: src/features/main-menu/config/main-menu.config.tsx:186
 #: src/features/selector-with-search-users/selector-with-search-users.tsx:197
 #: src/pages/users-create-page/ui/users-create-page.tsx:17
 #: src/pages/users-details-page/ui/users-details-page.tsx:21
@@ -2840,7 +2973,7 @@ msgstr "You didn't attach the file"
 msgid "Z-report number"
 msgstr "Z-report number"
 
-#: src/features/main-menu/config/main-menu.config.tsx:60
+#: src/features/main-menu/config/main-menu.config.tsx:59
 #: src/pages/z-reports-details-page/ui/z-reports-details-page.tsx:26
 #: src/pages/z-reports-page/ui/z-reports-page.tsx:17
 msgid "Z-reports"

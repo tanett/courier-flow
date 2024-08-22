@@ -1,0 +1,161 @@
+import React, { useState } from 'react';
+import { useStyles } from './styles';
+import { useForm } from '@mantine/form';
+import { typeCashDeskCreateForm } from '../types/types';
+import { initialCashDeskCreateForm, mapRequestFieldsToFormFieldCashDesk } from '../form/form';
+import { useAppDispatchT, useSelectorT } from 'app/state';
+import { Button, Flex, Input, SimpleGrid, Space, TextInput } from '@mantine/core';
+import { t } from '@lingui/macro';
+import { useLingui } from '@lingui/react';
+import { LoaderOverlay } from 'shared/ui/loader-overlay';
+import { notificationActions } from '../../../entities/notification/model';
+import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
+import { typeResponseError } from 'app/api/types';
+import { useNavigate } from 'react-router-dom';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
+import { useCreateCashDeskMutation } from '../../../entities/cash-desk/api/api';
+import { typeCashDeskCreate } from '../../../entities/cash-desk/model/types';
+import { SelectorWithSearchStore } from 'features/selector-with-search-store';
+import { IMaskInput } from 'react-imask';
+
+
+export const CashDeskCreate: React.FC = () => {
+
+    const { classes } = useStyles();
+
+    const navigate = useNavigate();
+
+    const { i18n } = useLingui();
+
+    const dispatchAppT = useAppDispatchT();
+
+    const form = useForm<typeCashDeskCreateForm>(initialCashDeskCreateForm);
+
+    const [ createCashDesk, { isLoading } ] = useCreateCashDeskMutation();
+
+    const [ isInProgress, setIsInProgress ] = useState(false);
+
+    const currentUser = useSelectorT(state => state.userProfile.userProfile);
+    const baseCurrency = useSelectorT(state => state.merchantCurrency.baseCurrency);
+    const isRemoteControl = useSelectorT(state => state.auth.remoteControl);
+
+
+    const onSave = async () => {
+
+        if (currentUser && baseCurrency && form.values.storeId) {
+
+            setIsInProgress(true);
+
+
+            const dataObject: typeCashDeskCreate = {
+                name: form.values.name.trim(),
+                merchantId: currentUser.actor.merchantId,
+                storeId: form.values.storeId,
+                cashDeskBalances: [
+                    {
+                        currency: baseCurrency,
+                        amount: +form.values.amount,
+                    }
+                ]
+            };
+
+            try {
+
+                await createCashDesk(dataObject).unwrap();
+
+                dispatchAppT(notificationActions.addNotification({
+                    type: NOTIFICATION_TYPES.SUCCESS,
+                    message: i18n._(t`Cash desk created successfully.`),
+                }));
+
+                navigate(-1);
+
+            } catch (err) {
+                errorHandlerForForm(err as typeResponseError, 'onCreateCashDesk', dispatchAppT, form as unknown as typeReturnForm, mapRequestFieldsToFormFieldCashDesk);
+
+                setIsInProgress(false);
+
+            }
+
+
+            setIsInProgress(false);
+
+        }
+
+    };
+
+    const onCancel = () => {
+
+        form.reset();
+        navigate(-1);
+
+    };
+
+    return (
+        <form onSubmit={ form.onSubmit(onSave) }>
+
+            <Flex className={ classes.flexColumn }>
+
+
+                <TextInput
+                    withAsterisk
+                    label={ mapRequestFieldsToFormFieldCashDesk.name.translatedValue }
+                    { ...form.getInputProps('name') }
+                    maxLength={ 150 }
+                    sx={ {
+                        '&.mantine-InputWrapper-root': {
+                            maxWidth: '100%',
+                            width: '100%',
+                        },
+                    } }
+                />
+
+                <SelectorWithSearchStore
+                    required={ true }
+                    fieldName={ 'storeId' }
+                    form={ form as unknown as typeReturnForm }
+                    initialValue={ null }
+                    filters={ isRemoteControl ? undefined : { ids: currentUser?.actor.storeIds }}
+                />
+                <SimpleGrid cols={2}>
+                    <Input.Wrapper
+                        id={ 'amount-input-wrapper' }
+                        label={ mapRequestFieldsToFormFieldCashDesk.amount.translatedValue }
+                        error={ form.getInputProps('amount').error }
+                        required
+                        mt={ 16 }>
+                        <Input<any>
+                            component={ IMaskInput }
+                            mask={ Number }
+                            scale={ 2 } // digits after point, 0 for integers
+                            padFractionalZeros={ false } // if true, then pads zeros at end to the length of scale
+                            normalizeZeros={ true } // appends or removes zeros at ends
+                            radix={ '.' } // fractional delimiter
+                            mapToRadix={ [ ',' ] } // symbols to process as radix
+
+                            // additional number interval stores (e.g.)
+                            min={ 0 }
+                            max={ 1000000000 }
+                            autofix={ true }
+                            id={ 'amount-cash-desk-input' }
+
+                            { ...form.getInputProps('amount') }
+
+                        />
+                    </Input.Wrapper>
+                </SimpleGrid>
+
+
+                <Space h={ 10 }/>
+                <Flex className={ classes.buttonsBar }>
+                    <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
+                    <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                            type="submit">{ t`Create` }</Button>
+                </Flex>
+
+            </Flex>
+            { (isInProgress || isLoading) && <LoaderOverlay/> }
+        </form>
+    );
+
+};

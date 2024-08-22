@@ -115,9 +115,15 @@ export enum API_URLS {
 
     CASH_DESK_SEARCH = '/api/v1/cash-desks/extended-search',
     CASH_DESK_ARCHIVE = '/api/v1/cash-desks/archive',
+    CASH_DESK_CREATE = '/api/v1/cash-desks',
+    CASH_DESK_PATCH = '/api/v1/cash-desks',
     CASH_DESK_BY_ID = '/api/v1/cash-desks/{id}',
 
     CASH_DESK_OPERATIONS_SEARCH = '/api/v1/cash-desk-operations/extended-search',
 
     ENCASHMENT_SEARCH = '/api/v1/encashment/search',
+
+    MERCHANT_CURRENCY_SEARCH = '/api/v1/merchant-currencies/search',
+    MERCHANT_CURRENCY_BY_ID= '/api/v1/merchant-currencies/{id}',
+    MERCHANT_BASE_CURRENCY= '/api/v1/base-currency',
 }

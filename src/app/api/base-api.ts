@@ -13,6 +13,7 @@ import { tagTypesShortAdvancesList } from '../../entities/advances/api/types';
 import { tagTypesCreditsList } from '../../entities/credits/api/types';
 import { tagTypesWorkingShiftsList } from '../../entities/working-shifts/api/types';
 import { tagTypeOrderFullItem, tagTypesOrdersShortList } from '../../entities/orders/api/types';
+import { tagTypesCashDeskList } from '../../entities/cash-desk/api/types';
 
 const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesExtendedUsersList,
@@ -28,6 +29,7 @@ const tagTypes: Record<string, { type: string, id: string }> = {
     ...tagTypesCreditsList,
     ...tagTypesWorkingShiftsList,
     ...tagTypesOrdersShortList,
+    ...tagTypesCashDeskList,
 
 };
 
