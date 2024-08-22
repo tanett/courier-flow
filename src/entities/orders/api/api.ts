@@ -4,6 +4,7 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { tagTypeOrderFullItem, tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeEditOrderRequest, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
 import { typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from '../model/state-slice/types';
+import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 
 
 export const ordersApi = baseApi.injectEndpoints({
@@ -128,7 +129,10 @@ export const ordersApi = baseApi.injectEndpoints({
                 {
                     url: API_URLS.ORDERS_GET_STATUSES_LIST,
                     method: 'GET',
-                    headers: protectedRoutsAPIHeaderCreator(),
+                    headers: {
+                        ...protectedRoutsAPIHeaderCreator(),
+                        ...localeHeaderCreator(),
+                    },
                 }
             ),
         }),
