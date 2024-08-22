@@ -3,15 +3,15 @@ import { t } from '@lingui/macro';
 export type typeCorrectOperationForm = {
     type: 'MANUAL_REFILL' | 'MANUAL_WRITE_OFF',
     amount: number,
-    currency: string | null,
-    comment: string | null,
+    currency: string,
+    comment: string,
 }
 
 const initialForm: typeCorrectOperationForm = {
     type: 'MANUAL_REFILL',
     amount: 0,
-    currency: null,
-    comment: null,
+    currency: '',
+    comment: '',
 };
 
 export const correctOperationForm = {
