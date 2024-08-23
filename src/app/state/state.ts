@@ -81,9 +81,7 @@ ListenerMiddlewareCreate.startListening({
                 // sorts: [ { sort: 'CREATED_AT', direction: sortDirection.dec } ], // TODO: fix
             }));
 
-            console.log('-----', responseCurrencyList);
-
-            listenerApi.dispatch(merchantCurrencyStateActions.setCurrencyList(responseCurrencyList.data?.content.map(item => item.currency) ?? []));
+            listenerApi.dispatch(merchantCurrencyStateActions.setCurrencyList(responseCurrencyList.data?.content.map(item => item.currency).sort() ?? []));
 
 
         } catch (err) {
