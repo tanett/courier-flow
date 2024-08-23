@@ -89,7 +89,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
                         const isPossible = isOrderPossibleToEdit(item, currentUser, isAllowedEditByPermission || false)
 
-                        const actions: typeActionList | undefined = item.status !== OrderStatuses.CANCELLED ? [
+                        const actions: typeActionList | undefined =  [
                             {
                                 label: i18n._(t`Edit`),
                                 handler: () => goToEditPage(item.id),
@@ -125,7 +125,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                 disabled: !isPossible
                             },
 
-                        ] : undefined;
+                        ] ;
 
                         const finalActions: typeActionList | undefined = actions? [actions[0] as  typeActionWithRequiredIcon, ...actions.slice(1).filter(item=>!item.disabled)] : undefined
 
