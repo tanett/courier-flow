@@ -14,6 +14,7 @@ import { ordersStateActions, ordersStateReducer } from '../../entities/orders/mo
 import { merchantCurrencyStateActions, merchantCurrencyStateReducer } from '../../entities/merchant-currency/model/state-slice';
 import { merchantCurrencyApi } from '../../entities/merchant-currency/api/api';
 import { defaultCurrency } from 'app/config/currency';
+import { sortDirection } from '../api/types';
 
 
 const ListenerMiddlewareCreate = createListenerMiddleware();
@@ -66,9 +67,24 @@ ListenerMiddlewareCreate.startListening({
 
         try {
 
-            const response = await listenerApi.dispatch(merchantCurrencyApi.endpoints.getBaseCurrency.initiate(undefined));
+            const responseBaseCurrency = await listenerApi.dispatch(merchantCurrencyApi.endpoints.getBaseCurrency.initiate(undefined));
 
-            listenerApi.dispatch(merchantCurrencyStateActions.setBaseCurrency(response.data ?? defaultCurrency));
+            listenerApi.dispatch(merchantCurrencyStateActions.setBaseCurrency(responseBaseCurrency.data ?? defaultCurrency));
+
+            const responseCurrencyList = await listenerApi.dispatch(merchantCurrencyApi.endpoints.searchMerchantCurrency.initiate({
+                filter: {},
+                pagination: {
+                    pageNumber: 0,
+                    pageSize: 100,
+                },
+
+                // sorts: [ { sort: 'CREATED_AT', direction: sortDirection.dec } ], // TODO: fix
+            }));
+
+            console.log('-----', responseCurrencyList);
+
+            listenerApi.dispatch(merchantCurrencyStateActions.setCurrencyList(responseCurrencyList.data?.content.map(item => item.currency) ?? []));
+
 
         } catch (err) {
 
@@ -76,6 +92,7 @@ ListenerMiddlewareCreate.startListening({
             console.log('state.ts 35:', err);
 
         }
+
         // listenerApi.dispatch(resourceLoaded(res.data))
         // currentUserApi.trackUsage(action.type, user, specialData)
 
@@ -85,15 +102,15 @@ ListenerMiddlewareCreate.startListening({
 
 export const state = configureStore({
     reducer: {
-        [baseApi.reducerPath]: baseApi.reducer,
-        [authApi.reducerPath]: authApi.reducer,
+        [ baseApi.reducerPath ]: baseApi.reducer,
+        [ authApi.reducerPath ]: authApi.reducer,
         notifications: notificationStateReducer,
         auth: authStateReducer,
         userProfile: userProfileStateReducer,
         products: productsStateReducer,
         soldProductDetails: soldProductsStateReducer,
         orders: ordersStateReducer,
-        merchantCurrency: merchantCurrencyStateReducer
+        merchantCurrency: merchantCurrencyStateReducer,
 
     },
     devTools: process.env.NODE_ENV !== 'production',

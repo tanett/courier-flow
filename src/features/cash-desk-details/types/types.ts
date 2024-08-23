@@ -8,6 +8,7 @@ export type typeCashDeskDetailsCommonProps = {
 
 export type typeCashDeskDetailsOperationsProps = {
     cashDeskId: string | undefined,
+    storeId: string | undefined
     isFetching: boolean
 }
 
@@ -19,5 +20,6 @@ export type typeCashDeskOperationsTable = {
 
 export type typeAddCorrectionDialogProps = {
     onCloseDialog: () => void,
-    onCreateCorrection: () => void,
+    storeId: string | undefined,
+    cashDeskId: string | undefined,
 }

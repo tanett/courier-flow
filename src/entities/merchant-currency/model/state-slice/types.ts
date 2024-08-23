@@ -9,4 +9,7 @@ export type typeMerchantCurrency = {
     systemExchangeRate: number
 }
 
-export type typeMerchantCurrencyState = { baseCurrency?: string }
+export type typeMerchantCurrencyState = {
+    baseCurrency?: string
+    currencyList: string[]
+}

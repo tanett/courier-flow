@@ -21,7 +21,16 @@ export interface typeCashDeskOperation {
     balanceAfter: number
     employeeName: string
 }
-
+export type typeCreateCashDeskOperationData = {
+    paidAt?: string
+    merchantId: string
+    storeId: string
+    cashDeskId: string
+    type: cashDeskTypes
+    comment?: string
+    currency: string
+    amount: number
+}
 
 export interface typeSearchFilterCashDeskOperations {
     ids?: string[]
@@ -36,3 +45,5 @@ export interface typeSearchFilterCashDeskOperations {
 }
 
 export type typeSearchCashDeskOperationsSortingNames = 'CREATED_AT' | 'PAID_AT'
+
+export const tagTypesCashDeskOperationList = { cashDeskOperationList: { type: 'CashDeskOperationList' as const, id: 'PARTIAL-LIST' } } as const;

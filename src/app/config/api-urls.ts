@@ -120,6 +120,7 @@ export enum API_URLS {
     CASH_DESK_BY_ID = '/api/v1/cash-desks/{id}',
 
     CASH_DESK_OPERATIONS_SEARCH = '/api/v1/cash-desk-operations/extended-search',
+    CASH_DESK_OPERATIONS_CREATE = '/api/v1/cash-desk-operations\n',
 
     ENCASHMENT_SEARCH = '/api/v1/encashment/search',
 

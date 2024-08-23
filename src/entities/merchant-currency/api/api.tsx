@@ -52,4 +52,5 @@ export const {
     useSearchMerchantCurrencyQuery,
     useGetMerchantCurrencyByIdQuery,
     useGetBaseCurrencyQuery,
+    useLazyGetBaseCurrencyQuery,
 } = merchantCurrencyApi;

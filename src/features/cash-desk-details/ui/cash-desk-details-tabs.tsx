@@ -77,7 +77,11 @@ const CashDeskDetailsTabs: React.FC<{ cashDeskId: string }> = ({ cashDeskId }) =
                 </Flex>
 
                 <Tabs.Panel value={ TYPE_TABS.MAIN }>{ <CashDeskDetailsCommon cashDeskData={ cashDeskData } isFetching={isFetching}/> }</Tabs.Panel>
-                <Tabs.Panel value={ TYPE_TABS.OPERATIONS }>{ <CashDeskDetailsOperations cashDeskId={ cashDeskData?.id } isFetching={isFetching} />}</Tabs.Panel>
+                <Tabs.Panel value={ TYPE_TABS.OPERATIONS }>{ <CashDeskDetailsOperations
+                    cashDeskId={ cashDeskData?.id }
+                    storeId={cashDeskData?.storeId}
+                    isFetching={isFetching}
+                />}</Tabs.Panel>
             </Tabs>
     );
 

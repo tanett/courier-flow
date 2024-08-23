@@ -57,7 +57,7 @@ export const useStyles = createStyles((theme) => ({
     currencyInput: { flexGrow: 1 },
     currencySelect: {
         borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}`,
-        width: rem(80),
+        width: rem(55),
     },
     errorMessage: {
         fontSize: rem(12),

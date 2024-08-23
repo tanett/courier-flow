@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, Flex, Tooltip, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
-import { useAppDispatchT } from 'app/state';
-import { useNavigate } from 'react-router-dom';
 import { NotFound } from 'shared/ui/not-found/not-found';
 import { typeCashDeskDetailsOperationsProps } from '../../types/types';
 import { TableDetailsCashDeskOperations } from './table';
@@ -12,15 +10,11 @@ import { t, Trans } from '@lingui/macro';
 import { IconPlus } from '@tabler/icons-react';
 import { AddCorrectionDialog } from '../add-correction-dialog/add-correction-dialog';
 
-export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsProps> = ({ cashDeskId, isFetching }) => {
+export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsProps> = ({ cashDeskId, storeId }) => {
 
     const { i18n } = useLingui();
 
     const theme = useMantineTheme();
-
-    const dispatchAppT = useAppDispatchT();
-
-    const navigate = useNavigate();
 
     const isAllowCorrections = true; // TODO: fix it
 
@@ -28,19 +22,12 @@ export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsPr
         cashDeskOperationsList,
         pagination,
         isLoading,
-        refetch,
         error,
     } = useCashDeskOperationList(cashDeskId);
 
 
     const [ addCorrectionPopup, setCorrectionPopup ] = useState<boolean>(false);
     const onCloseCorrectionPopup = () => setCorrectionPopup(false);
-
-    const onCreateCorrection = () => {
-
-        refetch();
-
-    };
 
     return (
         error
@@ -95,8 +82,9 @@ export const CashDeskDetailsOperations: React.FC<typeCashDeskDetailsOperationsPr
                 { pagination && <Box py={ 10 } px ={16}><Pagination pagination={ pagination } withPerPage={ true }/></Box> }
 
                 { addCorrectionPopup && <AddCorrectionDialog
+                    cashDeskId={cashDeskId}
+                    storeId={cashDeskId}
                     onCloseDialog={onCloseCorrectionPopup}
-                    onCreateCorrection={onCreateCorrection}
                 /> }
             </Box>);
 

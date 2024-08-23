@@ -1,3 +1,3 @@
 import { typeMerchantCurrencyState } from './types';
 
-export const initialCurrencyState: typeMerchantCurrencyState = {};
+export const initialCurrencyState: typeMerchantCurrencyState = { currencyList: [] };
