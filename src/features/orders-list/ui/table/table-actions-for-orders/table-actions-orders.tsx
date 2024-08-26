@@ -26,7 +26,7 @@ export const TdActionsOrders: React.FC<typeTableActionsProps> = ({
         <Table.Td align={ align }>
             <Flex className={ classes.actionsWrapper }>
 
-                        <Box key={ 0 } className={ cn(classes.icon,{ [classes.invisible]: actions[0].disabled  }) }>
+                        <Box key={ 0 } className={ cn(classes.icon,) }>
                             <Tooltip withArrow arrowSize={ 6 } radius="md" label={ actions[0].label } disabled={actions[0].disabled }>
                                 <ActionIcon variant="subtle"
                                             disabled={ actions[0].disabled }
@@ -40,11 +40,20 @@ export const TdActionsOrders: React.FC<typeTableActionsProps> = ({
                             </Tooltip>
                         </Box>
 
-                {isWithMenu && <Box key="dots" className={cn(classes.icon, { [classes.divider]: !actions[0].disabled  })}>
-                    <Menu trigger="click" openDelay={100} closeDelay={400} position="bottom-end" offset={3}>
+                 <Box key="dots" className={cn(classes.icon, classes.divider,)}>
+                    <Menu trigger="click"
+                          openDelay={100}
+                          closeDelay={400}
+                          position="bottom-end"
+                          offset={3}
+                          disabled={!isWithMenu}>
                         <Menu.Target>
-                            <ActionIcon variant="subtle" onClick={ (e) => {e.stopPropagation(); return }}>
-                                <EllipsisVerticalIcon color={ theme.colors.gray[5] } width={ 22 }/>
+                            <ActionIcon
+                                disabled={!isWithMenu}
+                                variant="subtle"
+                                className={cn(classes.menuButton)}
+                                        onClick={ (e) => {e.stopPropagation(); return }}>
+                                <EllipsisVerticalIcon color={isWithMenu ?theme.colors.gray[5]:theme.colors.gray[3] } width={ 22 }/>
                             </ActionIcon>
                         </Menu.Target>
                         <Menu.Dropdown>
@@ -76,7 +85,7 @@ export const TdActionsOrders: React.FC<typeTableActionsProps> = ({
                         </Menu.Dropdown>
                     </Menu>
 
-                </Box> }
+                </Box>
 
             </Flex>
         </Table.Td>
