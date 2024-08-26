@@ -14,7 +14,6 @@ import { ordersStateActions, ordersStateReducer } from '../../entities/orders/mo
 import { merchantCurrencyStateActions, merchantCurrencyStateReducer } from '../../entities/merchant-currency/model/state-slice';
 import { merchantCurrencyApi } from '../../entities/merchant-currency/api/api';
 import { defaultCurrency } from 'app/config/currency';
-import { sortDirection } from '../api/types';
 
 
 const ListenerMiddlewareCreate = createListenerMiddleware();
@@ -77,8 +76,6 @@ ListenerMiddlewareCreate.startListening({
                     pageNumber: 0,
                     pageSize: 100,
                 },
-
-                // sorts: [ { sort: 'CREATED_AT', direction: sortDirection.dec } ], // TODO: fix
             }));
 
             listenerApi.dispatch(merchantCurrencyStateActions.setCurrencyList(responseCurrencyList.data?.content.map(item => item.currency).sort() ?? []));

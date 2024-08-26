@@ -10,6 +10,7 @@ import { useStyles } from '../styles';
 import cn from 'classnames';
 import { addSignStyleToNumber } from '../../../../shared/utils/add-sign-style-to-number';
 import { CashDeskOperationType } from '../../../../shared/ui/cash-desk-operation-type';
+import { getCurrencyByCode } from '../../../../shared/utils/curremcy-utils';
 
 
 export const TableDetailsCashDeskOperations: React.FC<typeCashDeskOperationsTable> = ({
@@ -82,9 +83,9 @@ export const TableDetailsCashDeskOperations: React.FC<typeCashDeskOperationsTabl
                                             </Table.Td>
                                             <Table.Td>{ item.employeeName }</Table.Td>
                                             <Table.Td><CashDeskOperationType operationType={item.type} /></Table.Td>
-                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.balanceBefore, classes.negativeSign) } <Box fw={400}>{item.currency}</Box></Flex></Table.Td>
-                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.amount, classes.negativeSign, classes.positiveSign) } <Box fw={400}>{item.currency}</Box></Flex></Table.Td>
-                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.balanceAfter, classes.negativeSign) } <Box fw={400}>{item.currency}</Box></Flex></Table.Td>
+                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.balanceBefore, classes.negativeSign) } <Box fw={400}>{getCurrencyByCode(item.currency)}</Box></Flex></Table.Td>
+                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.amount, classes.negativeSign, classes.positiveSign) } <Box fw={400}>{getCurrencyByCode(item.currency)}</Box></Flex></Table.Td>
+                                            <Table.Td><Flex gap={4}>{ addSignStyleToNumber(item.balanceAfter, classes.negativeSign) } <Box fw={400}>{getCurrencyByCode(item.currency)}</Box></Flex></Table.Td>
                                             <Table.Td>{ item.comment ? item.comment : '-' }</Table.Td>
                                         </Table.Tr>
                                     );

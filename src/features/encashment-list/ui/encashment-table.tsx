@@ -9,6 +9,7 @@ import { useStyles } from './styles';
 import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { i18n } from '@lingui/core';
 import { EncashmentListFilter } from '../../enchashment-filter';
+import { getCurrencyByCode } from '../../../shared/utils/curremcy-utils';
 
 
 export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
@@ -77,8 +78,8 @@ export const EncashmentTable: React.FC<typeCashDeskListTable> = ({
                                     <Table.Td>{item.cashDeskName}</Table.Td>
                                     <Table.Td>{item.storeName}</Table.Td>
                                     <Table.Td>{item.createdByName}</Table.Td>
-                                    <Table.Td>{item.balanceBefore}</Table.Td>
-                                    <Table.Td>{item.amount}</Table.Td>
+                                    <Table.Td>{item.balanceBefore} {getCurrencyByCode(item.currency)}</Table.Td>
+                                    <Table.Td>{item.amount} {getCurrencyByCode(item.currency)}</Table.Td>
                                 </Table.Tr>
                             );
 

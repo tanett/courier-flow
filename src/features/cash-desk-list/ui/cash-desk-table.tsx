@@ -11,6 +11,7 @@ import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/o
 import { useStyles } from './styles';
 import { FilterPanel } from '../../../shared/ui/filter-panel';
 import { CashDeskListFilter } from '../../cash-desk-filter';
+import { getCurrencyByCode } from '../../../shared/utils/curremcy-utils';
 
 
 export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
@@ -79,7 +80,7 @@ export const CashDeskTable: React.FC<typeCashDeskListTable> = ({
                                     maximumFractionDigits: 2,
                                     useGrouping: true,
                                 })}</Box>
-                                <Box className={classes.currency}>{balanceItem.currency}</Box>
+                                <Box className={classes.currency}>{getCurrencyByCode(balanceItem.currency)}</Box>
                             </Flex>)}</Flex>;
 
                             return (

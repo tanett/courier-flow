@@ -9,6 +9,7 @@ import { BuildingStorefrontIcon } from '@heroicons/react/24/outline';
 import { useStyles } from './styles';
 import { useLazyGetStoreByIdQuery } from '../../../entities/stores/api/api';
 import { typeStore } from '../../../entities/stores/model/types';
+import { getCurrencyByCode } from '../../../shared/utils/curremcy-utils';
 
 
 export const CashDeskDetailsCommon: React.FC<typeCashDeskDetailsCommonProps> = ({ cashDeskData, isFetching }) => {
@@ -58,7 +59,7 @@ export const CashDeskDetailsCommon: React.FC<typeCashDeskDetailsCommonProps> = (
             maximumFractionDigits: 2,
             useGrouping: true,
         })}</Box>
-        <Box className={classes.currency}>{balanceItem.currency}</Box>
+        <Box className={classes.currency}>{getCurrencyByCode(balanceItem.currency)}</Box>
     </Flex>)}</Flex>;
 
     return (
