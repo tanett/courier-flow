@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { typeSelectorStores } from './types';
+import { typeSelectorTerminals } from './types';
 import { Loader, Select } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -11,13 +11,13 @@ import { useLazySearchTerminalListQuery } from '../../entities/terminals/api/api
 import { typeSearchTerminalsFilter, typeSearchTerminalSortingNames } from '../../entities/terminals/api/types';
 
 
-export const SelectorWithSearchTerminals: React.FC<typeSelectorStores> = ({
+export const SelectorWithSearchTerminals: React.FC<typeSelectorTerminals> = ({
     form,
     fieldName,
     required,
     initialValue,
     disabled,
-
+label
 }) => {
 
     const dispatch = useAppDispatchT();
@@ -139,7 +139,7 @@ export const SelectorWithSearchTerminals: React.FC<typeSelectorStores> = ({
             clearable
             searchable
             limit={ 40 }
-            label={ t`Terminals` }
+            label={ label? label : t`Terminals` }
             placeholder={ t`Search by serial number` }
             data={ terminalsList }
             searchValue={ searchValue }

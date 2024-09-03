@@ -54,9 +54,9 @@ export const TablePayments: React.FC<typePaymentsTable> = ({
 
                                     return (
                                         <Table.Tr key={ item.id } >
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all', }}>{ item.createdOnTerminalAt? <DateTimeInLine date={ item.createdOnTerminalAt } fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/>: '-' }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ numberCurrencyFormat(item.amount)  }</Box></Table.Td>
-                                            <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}><Flex gap={10} align={'center'}> <PaymentMethodIcon method={item.method}/>  { getTranslatedVariantForPaymentsMethod(item.method)}</Flex></Box></Table.Td>
+                                            <Table.Td><Box maw={ 400 } miw={130} sx={ { wordBreak: 'break-all' } }>{ item.createdOnTerminalAt ? <DateTimeInLine date={ item.createdOnTerminalAt} fontSizeDate={'14px'} fontSizeTime={'14px'} fontWeightDate={500}/> : '-'}</Box></Table.Td>
+                                            <Table.Td><Box maw={400} miw={160} sx={{ wordBreak: 'break-all' }}>{ numberCurrencyFormat(item.amount)  }</Box></Table.Td>
+                                            <Table.Td><Box maw={200} miw={160} sx={{ wordBreak: 'break-all' }}><Flex gap={10} align={'center'}> <PaymentMethodIcon method={item.method}/>  { getTranslatedVariantForPaymentsMethod(item.method)}</Flex></Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.rrn }</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{ item.stan}</Box></Table.Td>
                                             <Table.Td><Box maw={400} sx={{ wordBreak: 'break-all' }}>{item.transactionId}</Box></Table.Td>

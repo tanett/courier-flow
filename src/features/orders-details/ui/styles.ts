@@ -34,7 +34,7 @@ export const useStyles = createStyles((theme) => ({
     },
     icon: {
         padding: `0 ${rem(8)}` ,
-        '& .mantine-ActionIcon-root:hover,.mantine-ActionIcon-root[data-expanded] ': {backgroundColor: theme.colors.primary[ 1] },
+        '& .mantine-ActionIcon-root:hover,.mantine-ActionIcon-root[data-expanded] ': {backgroundColor: theme.colors.primary[ 0] },
     },
     divider: { borderLeft: `1px solid ${theme.colors.borderColor[ 0 ]}` },
     primaryColor: { color: theme.colors.primary[ 4 ] },

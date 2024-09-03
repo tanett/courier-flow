@@ -3,9 +3,10 @@ import { Box, Flex, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { useAppDispatchT } from 'app/state';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import {typeRefund} from "../../../../../../entities/refunds/model/types";
 import { TableSoldProducts } from 'features/refund-details/ui/tabs/products-refund-tab/ui/table/table-sold-products';
+import { routerPaths } from 'app/config/router-paths';
 
 export const RefundProductsList: React.FC<{ refundData: typeRefund | undefined, isFetching: boolean }> = ({ refundData, isFetching }) => {
 
@@ -17,7 +18,11 @@ export const RefundProductsList: React.FC<{ refundData: typeRefund | undefined, 
 
     const navigate = useNavigate();
 
-
+    const onProductNameClick = (soldProductName: string)=>{
+        if(refundData && refundData.salePublicId) {
+            navigate(generatePath(routerPaths.sold_product_details, { id: refundData.saleId, publicId: refundData.salePublicId, name: soldProductName }));
+        }
+    }
 
     return (
         <Box sx={ {
@@ -46,6 +51,7 @@ export const RefundProductsList: React.FC<{ refundData: typeRefund | undefined, 
             <TableSoldProducts
                 productList={ refundData?.products }
                 isLoading={ isFetching }
+                onSoldProductClick={onProductNameClick}
             />
 
             {/* { pagination && <Flex py={ 16 }><Pagination pagination={ pagination } withPerPage={ true }/></Flex> } */}

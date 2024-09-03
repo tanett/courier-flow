@@ -5,6 +5,7 @@ import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import { t } from '@lingui/macro';
 import {useParams} from "react-router-dom";
 import RefundsDetailsTabs from "../../../features/refund-details/ui/refunds-details-tabs";
+import { routerPaths } from 'app/config/router-paths';
 
 const RefundDetailsPage: React.FC = () => {
 
@@ -16,7 +17,7 @@ const RefundDetailsPage: React.FC = () => {
         <DashboardContent>
             <DashboardContent.Header
                 leftSide={ <DashboardBreadcrumbs dataList={ [
-                    { name: i18n._(t`Refunds`) },
+                    { name: i18n._(t`Refunds`),  path:routerPaths.refunds },
                     { name: refundNumber || '------' },
                 ] }
                 /> }

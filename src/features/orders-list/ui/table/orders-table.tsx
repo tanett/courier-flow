@@ -165,9 +165,9 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                     </Flex>
                                 </Table.Td>
                                 {/* <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={ item.assigneeName || 'Not assigned' }><Text truncate>{ item.assigneeName || '-' }</Text></Tooltip></Box></Table.Td> */}
-                                <Table.Td><Box sx={ { width: rem(170) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
+                                <Table.Td><Box sx={ { width: rem(190) , minWidth: rem(190) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
 
-                                <Table.Td align={ 'center' }><Box sx={ { width: rem(110), } }>{ item.totalCost ? numberCurrencyFormat(item.totalCost) : '-' }</Box></Table.Td>
+                                <Table.Td align={ 'center' }><Box sx={ { width: rem(110), maxWidth: rem(140) } }>{ item.totalCost ? numberCurrencyFormat(item.totalCost) : '-' }</Box></Table.Td>
                                 <Table.Td>
                                     <Flex direction={ 'column' } sx={ {
                                         maxWidth: '123px',

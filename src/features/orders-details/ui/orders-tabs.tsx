@@ -120,7 +120,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
                             <PencilSquareIcon color={ isPossibleToEdit ? theme.colors.primary[5] : theme.colors.gray[5] } width={ 24 } height={ 24 }/>
                         </ActionIcon>
                     </Tooltip> }
-                    <Box key="dots" className={ cn(classes.icon, classes.divider) }>
+                    <Box key="dots" className={ cn(classes.icon,) }>
                         <Menu trigger="click" openDelay={ 100 } closeDelay={ 400 } position="bottom-end" offset={ 3 }>
                             <Menu.Target>
                                 <ActionIcon variant="subtle">
@@ -156,7 +156,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
                 </Flex> }
             </Flex>
 
-            <Tabs.Panel value={ TYPE_TABS.COMMON }><OrdersDetailsCommon data={ orderData }/></Tabs.Panel>
+            <Tabs.Panel value={ TYPE_TABS.COMMON } sx={{'&.mantine-Tabs-panel':{ backgroundColor: 'transparent' }}}><OrdersDetailsCommon data={ orderData }/></Tabs.Panel>
             <Tabs.Panel value={ TYPE_TABS.PRODUCTS }><OrdersDetailsOrderedProductsList orderData={ orderData }/></Tabs.Panel>
             { refusedProducts.length > 0 && <Tabs.Panel value={ TYPE_TABS.REFUSED_PRODUCTS }><OrdersDetailsRefusedProductsList orderData={ orderData }/></Tabs.Panel> }
 

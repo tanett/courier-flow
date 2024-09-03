@@ -16,6 +16,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
 import dayjs from 'dayjs';
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
 
 export const ZReportListFilter: React.FC = () => {
 
@@ -156,53 +157,13 @@ export const ZReportListFilter: React.FC = () => {
                             sx={ theme => ({ '& input::placeholder': { color: theme.colors.gray[3] },}) }
                         />
 
+                        <DateSelectorComponent
+                            label={ i18n._(t`Creation date`) }
+                            fieldName={ 'closeDate' }
+                            form={ form as unknown as typeReturnForm }
+                            quickDataFilter={ quickDataFilter }
+                            setQuickDataFilter={ setQuickDataFilter }/>
 
-                        <DatesProviderWithLocale>
-                            <DatePickerInput
-                                type="range"
-                                clearable
-                                valueFormat="DD MMMM YYYY"
-                                label={ i18n._(t`Creation date`) }
-                                { ...{ placeholder: i18n._(t`dd.mm.yyyy - dd.mm.yyyy`) } }
-                                { ...form.getInputProps('closeDate') }
-                                minDate={ new Date('2020-01-01') }
-                                maxDate={ new Date() }
-                                sx={ { '& .mantine-DatePickerInput-placeholder': { color: theme.colors.gray[3] } } }
-                                rightSection={<CalendarDaysIcon style={{width:'20px', height:'20px', cursor:'pointer'}} />}
-                                styles={ {
-                                    rightSection: {
-                                        pointerEvents: 'none',
-                                        pointer: 'pointer',
-                                    },
-                                } }
-                            />
-                        </DatesProviderWithLocale>
-
-                        <FilterButtonPanel
-
-                            value={ quickDataFilter }
-                            onChange={ onChangeQuickDataFilterHandler }
-                            data={ [ {
-                                value: 'today',
-                                label: i18n._(t`Today`),
-                            }, {
-                                value: 'last week',
-                                label: i18n._(t`Last week`),
-                            }
-                            ] }
-                        />
-                        <FilterButtonPanel
-
-                            value={ quickDataFilter }
-                            onChange={ onChangeQuickDataFilterHandler }
-                            data={ [  {
-                                value: 'yesterday',
-                                label: i18n._(t`Yesterday`),
-                            }, {
-                                value: 'last month',
-                                label: i18n._(t`Last month`),
-                            } ] }
-                        />
                     </Flex>
                     <FilterButtonsBar onReset={ onReset }/>
                 </form>
