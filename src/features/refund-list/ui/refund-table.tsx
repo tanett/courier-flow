@@ -11,6 +11,7 @@ import {typeRefundListTable} from "../types/types";
 import {ReceiptIcon} from "../../../shared/images/icons/receipt";
 import { RefundsListFilter } from 'features/refunds-list-filter';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
+import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 
 export const RefundListTable: React.FC<typeRefundListTable> = ({
     refundList,
@@ -27,7 +28,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
     return (<>
         <FilterPanel
             withFind={ {
-                placeholder: i18n._(t`Search by receipt number or total cost`),
+                placeholder: i18n._({ id: `Search by refund amount or check number` , message: `Search by total cost or check number` }),
                 minValueLength: 1
             } }
             filterComponent={ <RefundsListFilter/> }
@@ -52,9 +53,9 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
                             <Trans>Employee</Trans>
                         </Table.Th>
                         <Table.Th>
-                            <Trans>Total cost</Trans>
+                            <Trans id={'Refund amount'}>Total cost</Trans>
                         </Table.Th>
-                        <Table.Th>
+                        <Table.Th align={'center'}>
                             <Trans>Actions</Trans>
                         </Table.Th>
                     </Table.Header>
@@ -64,7 +65,7 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
 
                             const actions: typeActionList = [
                                 {
-                                    label: i18n._(t`Receipt`),
+                                    label: i18n._(t`Print receipt`),
                                     handler: () => onOpenReceipt(item.id),
                                     icon: <ReceiptIcon color={theme.colors.primary[4]} width={22} height={22}/>,
                                 }
@@ -79,10 +80,10 @@ export const RefundListTable: React.FC<typeRefundListTable> = ({
 
                                     </Table.Td>
                                     <Table.Td>{ item.receiptNumber }</Table.Td>
-                                    <Table.Td ><Box sx={{ minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)}}><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
-                                    <Table.Td><Box sx={{ minWidth: rem(100),wordBreak: 'break-all',maxWidth: rem(170)}}><Text truncate>{ item.refundedByName }</Text></Box></Table.Td>
-                                    <Table.Td>{ item.totalPaymentsAmount }</Table.Td>
-                                    <Table.TdActions actions={ actions }/>
+                                    <Table.Td ><Box sx={{ minWidth: rem(300),wordBreak: 'break-all',maxWidth: rem(330)}}><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
+                                    <Table.Td><Box sx={{ width: rem(150), maxWidth: rem(150),wordBreak: 'break-all'}}><Text truncate>{ item.refundedByName }</Text></Box></Table.Td>
+                                    <Table.Td><Box sx={{ width: 'fit-content', maxWidth: rem(120)}}>{ item.totalPaymentsAmount ? numberCurrencyFormat(item.totalPaymentsAmount) : ''}</Box></Table.Td>
+                                    <Table.TdActions align={'center'} actions={ actions }/>
                                 </Table.Tr>
                             );
 

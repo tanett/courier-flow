@@ -89,6 +89,7 @@ export const RefundsListFilter: React.FC = () => {
                 : <form onSubmit={ form.onSubmit(setFilterHandler) } onReset={ form.onReset }>
                     <Flex rowGap={ 16 } direction={ 'column' }>
                         <SelectorWithSearchUsers
+                            label={i18n._(t`Employee`)}
                             required={ false }
                             fieldName={ 'employeeId' }
                             form={ form as unknown as typeReturnForm }
@@ -102,12 +103,13 @@ export const RefundsListFilter: React.FC = () => {
 
                         <SelectorWithSearchTerminals
                             required={ false }
+                            label={i18n._(t`Terminal`)}
                             fieldName={ 'terminalId' }
                             initialValue={ form.values.terminalId !== null ? form.values.terminalId : null }
                             form={ form as unknown as typeReturnForm }/>
 
                         <DateSelectorComponent
-                            label={ i18n._(t`Creation date`) }
+                            label={ i18n._(t`Date`) }
                             fieldName={ 'refundedAt' }
                             form={ form as unknown as typeReturnForm }
                             quickDataFilter={ quickDataFilter }

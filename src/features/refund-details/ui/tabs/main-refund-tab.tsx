@@ -3,7 +3,7 @@ import { Box, SimpleGrid, Space, useMantineTheme, Text } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
-import { BuildingStorefrontIcon } from '@heroicons/react/24/outline';
+import { BuildingStorefrontIcon, UserIcon } from '@heroicons/react/24/outline';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
@@ -58,19 +58,20 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
                     <InfoCardSmall label={ i18n._(t`Date & time`) }
                                    alignSelfStretch={ true }
                                    content={  refundData?.createdAt? <DateTimeInLine date={ refundData.createdAt } fontSizeDate={'16px'} fontSizeTime={'16px'} colorTimeGray={false}/>: '-' }/>
-                    <InfoCardSmall label={ i18n._(t`Total cost`) }
+                    <InfoCardSmall label={ i18n._({id:`Refund amount`, message: "Total cost" }) }
                                    alignSelfStretch={ true }
                                    content={ refundData?.totalPaymentsAmount.toLocaleString(undefined, {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2}) || '-' }/>
                     <InfoCardSmall label={ i18n._(t`Receipt number`) }
                                    alignSelfStretch={ true }
                                    content={ refundData?.receiptNumber || '-' }/>
-                    <InfoCardSmall label={ i18n._(t`Employee name`) }
+                    <InfoCardSmall label={ i18n._(t`Employee`) }
+                                   iconLabel={<UserIcon/>}
                                    content={ (refundData && <ButtonAsLink
                                        disabled={!isAllowedReadUsers}
                                        onClick={ () => navigate(generatePath(routerPaths.users_details, {
-                                       id: refundData?.id,
-                                       userName: refundData?.createdBy
-                                   })) } label={ refundData.createdBy }/>) || '-' }/>
+                                       id: refundData?.refundedBy,
+                                       userName: refundData?.refundedByName
+                                   })) } label={ refundData.refundedByName }/>) || '-' }/>
 
                 </SimpleGrid>
                 <SimpleGrid breakpoints={ [
@@ -86,7 +87,7 @@ export const MainRefundTab: React.FC<{ refundData: typeRefund | undefined, isFet
                     }
                 ] }>
 
-                    <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> }
+                    <InfoCardSmall label={ i18n._(t`Store`) } iconLabel={ <BuildingStorefrontIcon/> }
                                    content={ (refundData && <ButtonAsLink
                                        disabled={!isAllowedReadStores}
                                        onClick={ () => navigate(generatePath(routerPaths.stores_details, {

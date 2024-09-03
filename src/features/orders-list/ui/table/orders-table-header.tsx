@@ -80,7 +80,7 @@ export const OrdersListTableHeader: React.FC<typeOrdersListTableHeader> = ({
                     {/* </Table.Th> */}
                     <Table.Th>
                         <Box sx={{minWidth: '170px', lineHeight: '16px', textAlign: 'left' }}>
-                        <Trans>Store name</Trans>
+                        <Trans>Store</Trans>
                         </Box>
                     </Table.Th>
                     <Table.Th>
@@ -89,7 +89,7 @@ export const OrdersListTableHeader: React.FC<typeOrdersListTableHeader> = ({
                     </Table.Th>
                     <Table.Th>
                         <Box sx={{ lineHeight: '16px', minWidth: '123px',textAlign: 'left' }}>
-                            <Trans>Client&nbsp;name&nbsp;/ Phone number</Trans>
+                            <Trans>Client /<br/> Phone number</Trans>
                         </Box>
                     </Table.Th>
                     <Table.Th>

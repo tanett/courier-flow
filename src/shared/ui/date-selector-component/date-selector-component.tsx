@@ -5,9 +5,10 @@ import { DatesProviderWithLocale } from 'shared/providers/dates-provider-with-lo
 import { DatePickerInput } from '@mantine/dates';
 import { t } from '@lingui/macro';
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
-import { FilterButtonPanel } from 'shared/ui/filter-button-panel';
 import { useLingui } from '@lingui/react';
-import { useMantineTheme } from '@mantine/core';
+import { SimpleGrid, useMantineTheme } from '@mantine/core';
+import { useStyles } from './styles';
+import cn from 'classnames';
 
 export const DateSelectorComponent: React.FC<typeDateSelectorComponent> = ({
     form,
@@ -21,6 +22,7 @@ export const DateSelectorComponent: React.FC<typeDateSelectorComponent> = ({
 
     const theme = useMantineTheme();
 
+    const { classes } = useStyles();
 
     useEffect(() => {
         if (quickDataFilter) {
@@ -47,7 +49,7 @@ export const DateSelectorComponent: React.FC<typeDateSelectorComponent> = ({
             if (quickDataFilter === 'last week') {
                 const dateNow = dayjs();
                 const toDate = dateNow.toISOString();
-                const fromDate = dateNow.subtract(1, 'week').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
+                const fromDate = dateNow.subtract(6, 'day').set('hour', 0).set('minute', 0).set('second', 0).toISOString();
                 form.setValues({ [fieldName]: [ new Date(fromDate), new Date(toDate) ] });
             }
 
@@ -98,33 +100,59 @@ export const DateSelectorComponent: React.FC<typeDateSelectorComponent> = ({
                     } }
                 />
             </DatesProviderWithLocale>
-            {quickDataFilter !== undefined && <>
-                <FilterButtonPanel
+            {quickDataFilter !== undefined &&
+                <SimpleGrid cols={ 2 } sx={ { gap: '18px' } }>
+                    <button
+                        type="button"
+                        onClick={ (e) => {
 
-                    value={ quickDataFilter }
-                    onChange={ onChangeQuickDataFilterHandler }
-                    data={ [ {
-                        value: 'today',
-                        label: i18n._(t`Today`),
-                    }, {
-                        value: 'last week',
-                        label: i18n._(t`Last week`),
-                    }
-                    ] }
-                />
-                <FilterButtonPanel
+                            if (e.detail > 0) (e.target as HTMLButtonElement).blur();
+                            onChangeQuickDataFilterHandler('today');
 
-                    value={ quickDataFilter }
-                    onChange={ onChangeQuickDataFilterHandler }
-                    data={ [ {
-                        value: 'yesterday',
-                        label: i18n._(t`Yesterday`),
-                    }, {
-                        value: 'last month',
-                        label: i18n._(t`Last month`),
-                    } ] }
-                />
-            </>}
+                        } }
+                        className={ cn(classes.button, { [classes['active']]: 'today' === quickDataFilter }) }
+                    >
+                        { i18n._(t`Today`) }
+                    </button>
+                    <button
+                        type="button"
+                        onClick={ (e) => {
+
+                            if (e.detail > 0) (e.target as HTMLButtonElement).blur();
+                            onChangeQuickDataFilterHandler('last week');
+
+                        } }
+                        className={ cn(classes.button, { [classes['active']]: 'last week' === quickDataFilter }) }
+                    >
+                        { i18n._(t`Last week`) }
+                    </button>
+                    <button
+                        type="button"
+                        onClick={ (e) => {
+
+                            if (e.detail > 0) (e.target as HTMLButtonElement).blur();
+                            onChangeQuickDataFilterHandler('yesterday');
+
+                        } }
+                        className={ cn(classes.button, { [classes['active']]: 'yesterday' === quickDataFilter }) }
+                    >
+                        { i18n._(t`Yesterday`) }
+                    </button>
+                    <button
+                        type="button"
+                        onClick={ (e) => {
+
+                            if (e.detail > 0) (e.target as HTMLButtonElement).blur();
+                            onChangeQuickDataFilterHandler('last month');
+
+                        } }
+                        className={ cn(classes.button, { [classes['active']]: 'last month' === quickDataFilter }) }
+                    >
+                        { i18n._(`Last month`) }
+                    </button>
+                </SimpleGrid>
+
+             }
 
 
         </>

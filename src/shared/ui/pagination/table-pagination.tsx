@@ -39,7 +39,7 @@ export const Pagination: React.FC<typeTablePaginationProps> = ({
 
                 { withPerPage && pagination.pageSize && pagination.totalElements && <Flex className={ classes.perPageContainer }>
                     <Box>
-                        <Trans>Items par page</Trans>
+                        <Trans>Records per page</Trans>
                     </Box>
                     <Select
                         size="xs" radius="xs"
@@ -51,15 +51,17 @@ export const Pagination: React.FC<typeTablePaginationProps> = ({
                             rightSection: {
                                 pointerEvents: 'none',
                                 pointer: 'pointer',
+                                right: '5px',
+                                marginLeft: '5px',
                             },
                         } }
                         sx={ {
                             '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' },
-                            '&.mantine-Select-root  input': { paddingRight: '15px' },
+                            '&.mantine-Select-root  input': { paddingRight: '20px' , paddingLeft: '15px' ,paddingTop: '4px', paddingBottom: '4px', height: '33px' },
 
                         } }
                     />
-                    <Box><Trans>of</Trans> { pagination.totalElements }</Box>
+                    <Box><Trans>from</Trans> { pagination.totalElements }</Box>
                 </Flex> }
 
                 <Flex className={ classes.paginationContainer }>

@@ -116,7 +116,7 @@ export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data, }) =>
                 </SimpleGrid>
 
 
-                <InfoCardSmall label={ i18n._(t`Store name`) } iconLabel={ <BuildingStorefrontIcon/> }
+                <InfoCardSmall label={ i18n._(t`Store`) } iconLabel={ <BuildingStorefrontIcon/> }
                                content={ (storeData && <ButtonAsLink disabled={!isAllowedReadStores || true} onClick={ () => navigate(generatePath(routerPaths.stores_details, {
                                    id: storeData.id,
                                    storeName: storeData.name
@@ -189,7 +189,7 @@ export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data, }) =>
                     }
                 ] }>
                 <InfoCardSmall label={ i18n._(t`Service payment`) }
-                               content={ data.servicePaymentAmount ? numberCurrencyFormat(data.servicePaymentAmount) : '0' }/>
+                               content={ (data.servicePaymentAmount && data.servicePaymentAmount>0 )? numberCurrencyFormat(data.servicePaymentAmount)+ ` (${numberCurrencyFormat(data.servicePaymentPercent?data.servicePaymentPercent*100 :  data.servicePaymentAmount/totalCostWithoutDiscountAndServicePayment*100)} %)` : '0' }/>
                 <InfoCardSmall label={ i18n._(t`Discount amount`) }
                                alignSelfStretch={ true }
                                content={ data ? numberCurrencyFormat(data.totalDiscountAmount) : '-' }/>
@@ -230,7 +230,7 @@ export const OrdersDetailsCommon: React.FC<{ data: typeOrder }> = ({ data, }) =>
                             spacing: 60,
                         }
                     ] }>
-                    <InfoCardSmall label={ i18n._(t`Client name`) }
+                    <InfoCardSmall label={ i18n._(t`Client`) }
                                    iconLabel={ <UserIcon/> }
                                    content={ data ? data.customer.fullName : '-' }/>
                     <InfoCardSmall label={ i18n._(t`E-mail`) }

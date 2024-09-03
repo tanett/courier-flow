@@ -53,7 +53,7 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }
                             <Box sx={ {
                                 fontWeight: 600,
                                 fontSize: theme.fontSizes.lg
-                            } }>{ form.values.products.length }</Box>
+                            } }>{ form.values.products.filter(item=>item.storeId===form.values.storeId).length }</Box>
                         </Flex>
                         <Flex gap={ 6 } align={ 'baseline' }>
                             <Text c={ theme.colors.gray[5] }><Trans>Total cost</Trans></Text>

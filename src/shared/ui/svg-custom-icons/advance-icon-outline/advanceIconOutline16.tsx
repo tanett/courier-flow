@@ -9,7 +9,7 @@ export const AdvanceIconOutline16: React.FC<typeSvgCustomIcon> = ({
 
     return (
         <div style={ {
-            color: color,
+           // color: color,
             width: width,
             height: height,
         } }>

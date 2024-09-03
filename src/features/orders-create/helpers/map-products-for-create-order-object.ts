@@ -3,14 +3,14 @@ import { typeOrderCreate } from '../../../entities/orders/model/state-slice';
 import { getDiscountPercentFromDiscountAmount } from 'features/orders-create/helpers/get-discount-percent-from-discount-amount';
 
 export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): typeOrderCreate['products'] => {
-    const productsList = form.values.products.map(item => {
+    const productsList = form.values.products.filter(item => item.storeId === form.values.storeId).map(item => {
         let discountPercent: number | undefined = undefined;
         let discountAmount: number | undefined = undefined;
-
 
         if (form.values.isDiscountInPercent) {
             discountPercent = parseFloat((parseFloat(form.values.discount) / 100).toFixed(4));
             discountAmount = parseFloat(((item.price * (+item.amount)) * discountPercent).toFixed(2));
+
         } else {
             const costInCard = form.values.products.reduce((acc, current) => acc + current.price * (+current.amount), 0);
 
@@ -20,7 +20,8 @@ export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): type
             discountAmount = parseFloat(((item.price * (+item.amount)) * discountPercentTemp / 100).toFixed(2));
         }
 
-        const totalCostForProduct = parseFloat((item.price * (+item.amount) - discountAmount).toFixed(2));
+        const totalCostForProduct = parseFloat((item.price * (+item.amount) - (discountAmount || 0)).toFixed(2));
+
 
         return {
             id: item.id,

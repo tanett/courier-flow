@@ -135,7 +135,7 @@ export const OrdersListFilter: React.FC = () => {
                             data={ statusList }
 
                             { ...form.getInputProps('status') }
-                            rightSection={ <IconChevronDown size="1rem"/> }
+                            rightSection={!form.values.status && <IconChevronDown size="1rem"/> }
                             styles={ {
                                 rightSection: {
                                     pointerEvents: 'none',
