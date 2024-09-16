@@ -24,7 +24,7 @@ export const AuthLayout: React.FC = () => {
                             {/*     <LanguageSelectorWelcome/> */}
                             {/* </Box> */}
                             <Box className={ classes.logoWrapper }>
-                                <Logo/>
+                                {/* <Logo/> */}
                                 <Text>{title}</Text>
                             </Box>
 

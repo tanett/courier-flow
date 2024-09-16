@@ -1,6 +1,7 @@
 import { typeRetailProduct } from 'entities-project/retail-products/model/types';
 import type { UseFormReturnType } from '@mantine/form';
 import { typeProduct } from 'entities-project/products/model/state-slice';
+import { typeProductInCartWithMarkedLabels } from 'features/orders-edit/types/types';
 
 export type typeOrdersForm = {
     customer: {
@@ -14,7 +15,7 @@ export type typeOrdersForm = {
     isServicePaymentInPercent: boolean
     discount: string
     isDiscountInPercent: boolean
-    products: typeProductInCart[],
+    products: typeProductInCartWithMarkedLabels[],
 }
 
 export type typeReturnOrderForm =  UseFormReturnType<typeOrdersForm, (values: typeOrdersForm) => typeOrdersForm>

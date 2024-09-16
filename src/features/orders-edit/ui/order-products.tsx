@@ -40,7 +40,7 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm, orderData: typ
                     } }>
                         <ProductsInCartTableEdit form={ form } orderData={orderData} />
                         <SimpleGrid cols={ 2 } className={ classes.discountContainer }>
-                            <DiscountInput form={ form }/>
+                            <DiscountInput form={ form } disabled={true}/>
                             <ServicePaymentInput form={ form }/>
 
                         </SimpleGrid>

@@ -6,7 +6,7 @@ import { useStyles } from './styles';
 import { Trans } from '@lingui/macro';
 import cn from 'classnames';
 
-const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
+const DiscountInput: React.FC<typeDiscountInput> = ({ form, disabled }) => {
 
     const { classes } = useStyles();
 
@@ -22,12 +22,14 @@ const DiscountInput: React.FC<typeDiscountInput> = ({ form }) => {
     return (
         <Flex>
             <Input.Wrapper
+
                 id={ 'discount-input-wrapper' }
                 label={ <Trans>Discount</Trans> }
                 className={ classes.inputWrapper }
                 error={ form.getInputProps('isDiscountInPercent').error }
               >
                 <Input<any> // a thousand separator work badly
+                    disabled={disabled}
                     component={ IMaskInput }
                     mask={ Number }
                     scale={ 2 } // digits after point, 0 for integers

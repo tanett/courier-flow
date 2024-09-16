@@ -2,7 +2,17 @@ import { baseApi } from 'app/api/base-api';
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
-import { tagTypeOrderFullItem, tagTypesOrdersShortList, typeCreateOrderRequest, typeCreateOrderResponse, typeEditOrderRequest, typePatchOrderForSaleRequest, typeSearchFilterOrders, typeSearchOrdersSortingNames } from './types';
+import {
+    tagTypeOrderFullItem,
+    tagTypesOrdersShortList,
+    typeCreateOrderRequest,
+    typeCreateOrderResponse,
+    typeEditOrderRequest,
+    typePatchOrderForSaleRequest,
+    typePatchOrderForSaleWithEditProductsList,
+    typeSearchFilterOrders,
+    typeSearchOrdersSortingNames
+} from './types';
 import { typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from '../model/state-slice/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 import { typeCreateSale, typeSale } from 'entities-project/sales/model/types';
@@ -28,7 +38,10 @@ export const ordersApi = baseApi.injectEndpoints({
 
                     // Provides a tag for each group in the current page,
                     // as well as the 'PARTIAL-LIST' tag.
-                    ...result.content.map((item: typeOrderShort) => ({ type: tagTypesOrdersShortList.ordersShortList.type, id: item.id.toString() })),
+                    ...result.content.map((item: typeOrderShort) => ({
+                        type: tagTypesOrdersShortList.ordersShortList.type,
+                        id: item.id.toString()
+                    })),
                     tagTypesOrdersShortList.ordersShortList
                 ]
                 : [ tagTypesOrdersShortList.ordersShortList ],
@@ -69,7 +82,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList.type , tagTypeOrderFullItem.type  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList.type, tagTypeOrderFullItem.type ],
         }),
 
         // // change status in progress
@@ -95,7 +108,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList, tagTypeOrderFullItem.type ],
         }),
 
 
@@ -109,7 +122,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList, tagTypeOrderFullItem.type ],
         }),
 
         // change order data - customer, products ...
@@ -122,7 +135,20 @@ export const ordersApi = baseApi.injectEndpoints({
                     body: data,
                 }
             ),
-            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList , tagTypeOrderFullItem.type  ],
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList, tagTypeOrderFullItem.type ],
+        }),
+
+        // change order data with sale - only products ...
+        patchOrderForSaleWithChangeProducts: builder.mutation<unknown, typePatchOrderForSaleWithEditProductsList>({
+            query: (data) => (
+                {
+                    url: API_URLS.ORDERS_PATCH,
+                    method: 'PATCH',
+                    headers: protectedRoutsAPIHeaderCreator(),
+                    body: data,
+                }
+            ),
+            invalidatesTags: [ tagTypesOrdersShortList.ordersShortList, tagTypeOrderFullItem.type ],
         }),
 
         // get Order by id
@@ -134,7 +160,7 @@ export const ordersApi = baseApi.injectEndpoints({
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
             ),
-            providesTags:  [ tagTypeOrderFullItem.type ],
+            providesTags: [ tagTypeOrderFullItem.type ],
         }),
 
         // get list orders statuses
@@ -167,7 +193,8 @@ export const {
     useChangeOrderStatusMutation,
     // useChangeOrderAddAssigneeMutation,
     useChangeOrderAddCourierMutation,
-useChangeOrderDataMutation,
+    useChangeOrderDataMutation,
     usePatchOrderForSaleMutation,
+    usePatchOrderForSaleWithChangeProductsMutation
 
 } = ordersApi;

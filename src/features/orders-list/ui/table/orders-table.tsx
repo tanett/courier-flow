@@ -25,6 +25,8 @@ import { IconTruckDelivery } from '@tabler/icons-react';
 import { ShoppingCartIcon } from '@heroicons/react/16/solid';
 import { TdActions } from 'shared/ui/table/ui/table-actions/table-actions';
 import { useCreateSaleFromOrder } from 'entities-project/sales/hooks/use-create-sale-from-order';
+import { generatePath, useNavigate } from 'react-router-dom';
+import { routerPaths } from 'app/config/router-paths';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isAllowedEditByPermission,
@@ -40,6 +42,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
     const theme = useMantineTheme();
 
+    const navigate = useNavigate();
 
     const{onChangeStatusInDelivering}=useChangeStatusDelivering()
 
@@ -73,11 +76,18 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                 disabled: !isPossible || item.status!== OrderStatuses.WAITING_FOR_DELIVERY,
                             },
                             {
+                                label: i18n._(t`Edit product list and sale`),
+                                handler: () => navigate(generatePath(routerPaths.orders_edit,{id: item.id})),
+                                icon: <PencilSquareIcon color={(!isPossible || item.status!== OrderStatuses.DELIVERING)?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
+                                disabled: !isPossible || item.status!== OrderStatuses.DELIVERING,
+                            },
+                            {
                                 label: i18n._(t`Complete with sale`),
                                 handler: () => createSale(item.id),
                                 icon: <ShoppingCartIcon color={(!isPossible || item.status!== OrderStatuses.DELIVERING)?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
                                 disabled: !isPossible || item.status!== OrderStatuses.DELIVERING,
                             },
+
 
                         ] ;
 
@@ -132,7 +142,7 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                     </Flex></Table.Td>
                                 <Table.Td>{ <BadgeOrdersStatus statusCode={ item.status } key={ item.status }/> }</Table.Td>
 
-                                { (isAllowedEditByPermission && finalActions) ? <TdActions actions={ finalActions } dividerIndex={ 1 }/> : <Table.Td/> }
+                                { (isAllowedEditByPermission && finalActions) ? <TdActions actions={ finalActions } visibleCount={3}/> : <Table.Td/> }
                             </Table.Tr>
                         );
 

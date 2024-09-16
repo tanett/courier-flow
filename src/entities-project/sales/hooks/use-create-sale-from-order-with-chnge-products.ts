@@ -2,7 +2,7 @@ import { typeOrder, typeOrderShortExtended } from 'entities-project/orders/model
 import { useAppDispatchT, useSelectorT } from 'app/state';
 import { Payment, Product, typeCreateSale } from 'entities-project/sales/model/types';
 import { randomId } from '@mantine/hooks';
-import { useLazyGetOrderByIdQuery, usePatchOrderForSaleMutation } from 'entities-project/orders/api/api';
+import { useLazyGetOrderByIdQuery, usePatchOrderForSaleMutation, usePatchOrderForSaleWithChangeProductsMutation } from 'entities-project/orders/api/api';
 import { useEffect, useState } from 'react';
 import { useMakeSaleMutation } from 'entities-project/sales/api/api';
 import { errorHandler } from 'app/utils/errorHandler';
@@ -10,7 +10,7 @@ import { typeResponseError } from 'app/api/types';
 import { v4 as uuidv4 } from 'uuid';
 import { OrderStatuses } from 'entities-project/orders/model/orders-statuses';
 
-export const useCreateSaleFromOrderWithChngeProducts = () => {
+export const useCreateSaleFromOrderWithChangeProducts = () => {
 
     const dispatch = useAppDispatchT();
 
@@ -20,9 +20,7 @@ export const useCreateSaleFromOrderWithChngeProducts = () => {
 
     const baseCurrency = useSelectorT(state => state.merchantCurrency.baseCurrency);
 
-    const [ getFullOrder, { isFetching: isFetchingOrder } ] = useLazyGetOrderByIdQuery();
-
-    const [ patchOrder, { isLoading: isFetchingPatchOrder } ] = usePatchOrderForSaleMutation();
+    const [ getFullOrderAfterPatch, { isFetching: isFetchingOrder } ] = useLazyGetOrderByIdQuery();
 
     const [ makeSale, { isLoading } ] = useMakeSaleMutation();
 
@@ -96,14 +94,15 @@ export const useCreateSaleFromOrderWithChngeProducts = () => {
     const createSale = async (orderId: string) => {
 
         setIsSaleLoading(true);
-        const orderData = await getFullOrder(orderId).unwrap();
+
+        const orderData = await getFullOrderAfterPatch(orderId).unwrap();
         //  console.log('orderData', orderData);
 
         if (orderData) {
 
 
             const sale = createSaleObjectFromOrder(orderData);
-            console.log('sale', sale);
+
             if (sale) {
 
                 try {
@@ -114,16 +113,9 @@ export const useCreateSaleFromOrderWithChngeProducts = () => {
                         IdempotentKey
                     });
 
-                    patchOrder({
-                        id: orderId,
-                        currentStatus: orderData.status,
-                        status: OrderStatuses.COMPLETED,
-                        servicePaymentPercent: orderData.servicePaymentPercent ?? 0,
-                        servicePaymentAmount: orderData.servicePaymentAmount,
-                    });
 
                 } catch (e) {
-                    errorHandler(e as typeResponseError, 'create sale', dispatch);
+                    errorHandler(e as typeResponseError, 'create sale with patched order', dispatch);
                 }
 
             }

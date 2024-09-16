@@ -52,6 +52,7 @@ export const FilterBlock: React.FC<typeFilterBlock> = ({ filterComponent,isListL
                     leftIcon={ isEmptyFilter ? <FunnelIcon/> : <FunnelIconSolid/> }
                     rightIcon={ isEmptyFilter ? undefined : <div ><Tooltip withArrow arrowSize={ 6 } radius="md" label={i18n._(t`Reset filters`)}>
                         <ActionIcon variant="subtle"
+                                    component={'div'}
                                     disabled={ isEmptyFilter }
                                     className={classes.resetActiveIcon}
                                     onClick={ (e) => {

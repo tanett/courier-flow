@@ -4,30 +4,26 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { Button, Flex, Space, Tabs, } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from 'features/orders-create/ui/styles';
-import { useChangeOrderDataMutation, } from '../../../entities-project/orders/api/api';
+import { useChangeOrderDataMutation, usePatchOrderForSaleWithChangeProductsMutation, } from '../../../entities-project/orders/api/api';
 import { useForm } from '@mantine/form';
-import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm, mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
+import { fieldsInTabClient, fieldsInTabProduct, mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 import { typeOrdersForm } from 'features/orders-create/types/types';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { useLingui } from '@lingui/react';
 import { OrderProducts } from './order-products';
-import { typeEditOrderRequest } from '../../../entities-project/orders/api/types';
+import {  typePatchOrderForSaleWithEditProductsList, typeProductToPatch } from '../../../entities-project/orders/api/types';
 import { getServicePaymentAmount } from 'features/orders-create/helpers/get-service-payment-amount';
-import { mapProductsForCreateOrderObject } from 'features/orders-create/helpers/map-products-for-create-order-object';
-import { notificationActions } from '../../../entities-project/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { routerPaths } from 'app/config/router-paths';
 import { typeResponseError } from 'app/api/types';
 import { typeOrder } from '../../../entities-project/orders/model/state-slice';
 import { mapOrderedProductsToCart } from 'features/orders-edit/helpers/map-ordered-products-to-cart';
-import { OrderClient } from 'features/orders-create/ui/order-client';
 import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 import { initialEditOrderForm } from 'features/orders-edit/form/form';
+import { OrderStatuses } from 'entities-project/orders/model/orders-statuses';
+import { useCreateSaleFromOrderWithChangeProducts } from 'entities-project/sales/hooks/use-create-sale-from-order-with-chnge-products';
+import { notificationActions } from 'entities-project/notification/model';
 
-const enum TYPE_TABS {
-    CLIENT = 'client',
-    PRODUCTS = 'products',
-}
 
 export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData }) => {
 
@@ -40,6 +36,8 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
 
     const dispatchAppT = useAppDispatchT();
 
+    const {createSale}=useCreateSaleFromOrderWithChangeProducts()
+
     const form = useForm<typeOrdersForm>({
         ...initialEditOrderForm,
         initialValues: {
@@ -49,44 +47,27 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
                 phone: orderData.customer.phone,
 
             },
-            discount: (orderData.products[0]?.discountPercent && orderData.products[0].discountPercent !== undefined) ? (orderData.products[0].discountPercent *100).toFixed(2) : orderData.totalDiscountAmount.toString(),
+            discount: (orderData.products[0]?.discountPercent && orderData.products[0].discountPercent !== undefined) ? (orderData.products[0].discountPercent * 100).toFixed(2) : orderData.totalDiscountAmount.toString(),
             isDiscountInPercent: !!(orderData.products[0]?.discountPercent && orderData.products[0].discountPercent !== undefined),
             deliveryAddress: {
-               address: orderData.deliveryAddress.address,
+                address: orderData.deliveryAddress.address,
                 additionalInfo: orderData.deliveryAddress.additionalInfo || ''
             },
             storeId: orderData.storeId,
-            servicePayment: orderData.servicePaymentPercent ?(orderData.servicePaymentPercent * 100).toFixed(2): orderData.servicePaymentAmount.toString(),
-            isServicePaymentInPercent: (orderData.servicePaymentPercent === 0 && orderData.servicePaymentAmount === 0 ) ? true : !!orderData.servicePaymentPercent,
+            servicePayment: orderData.servicePaymentPercent ? (orderData.servicePaymentPercent * 100).toFixed(2) : orderData.servicePaymentAmount.toString(),
+            isServicePaymentInPercent: (orderData.servicePaymentPercent === 0 && orderData.servicePaymentAmount === 0) ? true : !!orderData.servicePaymentPercent,
 
             products: mapOrderedProductsToCart(orderData),
         }
     });
 
-    const [ tab, setTab ] = useState(TYPE_TABS.PRODUCTS);
 
-    const [ errorInTab, setErrorInTab ] = useState<TYPE_TABS | null>(null);
 
-    const [ editOrder, { isLoading } ] = useChangeOrderDataMutation();
+    const [ editOrder, { isLoading } ] = usePatchOrderForSaleWithChangeProductsMutation();
 
     const [ isInProgress, setIsInProgress ] = useState(false);
 
 
-    useEffect(() => {
-
-        const fieldWithErrors = Object.keys(form.errors);
-
-        if (fieldWithErrors.length > 0) {
-
-            const errorInClient = fieldsInTabClient.some((fieldName) => fieldWithErrors.includes(fieldName));
-            const errorInProducts = fieldsInTabProduct.some((fieldName) => fieldWithErrors.includes(fieldName));
-            if (errorInClient && tab !== TYPE_TABS.CLIENT) { setErrorInTab(TYPE_TABS.CLIENT);}
-            if (errorInProducts && tab !== TYPE_TABS.PRODUCTS) { setErrorInTab(TYPE_TABS.PRODUCTS);}
-
-        } else {
-            setErrorInTab(null);
-        }
-    }, [ form.errors, tab ]);
 
     const onCancel = () => {
 
@@ -96,43 +77,64 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
     };
 
     const onSave = async () => {
-        if(form.values.storeId) {
+        if (form.values.storeId) {
 
-            const orderObject: typeEditOrderRequest = {
+
+            const changedProductsByAmount = orderData.products.map(item => {
+
+                const productInForm = form.values.products.find(product => product.id === item.id);
+
+                let declinedMarcLabels: string[] = [];
+
+                if (!productInForm || item.quantity > +productInForm.amount) {
+                    declinedMarcLabels = item.markedLabels.filter(item => productInForm? !productInForm.markedLabels.includes(item): true);
+                }
+
+                const productToPatch:typeProductToPatch ={
+                    id: item.id,
+                    discountPercent: item.discountPercent,
+                    discountAmount: item.discountAmount,
+                    markedLabels: item?.markedLabels ? {
+                        values: productInForm?.markedLabels ?? [],
+                        patchType: 'REPLACE'
+                    } : undefined,
+                    declinedMarkedLabels: declinedMarcLabels.length >0 ? {
+                        values: productInForm?.markedLabels??[],
+                        patchType: 'REPLACE'
+                    } : undefined,
+                    quantity: item.quantity,
+                    declinedQuantity: item.quantity - (productInForm? +productInForm.amount : 0)
+                };
+
+                return productToPatch
+
+            }).filter(item=>item.declinedQuantity>0);
+
+            const editedOrder: typePatchOrderForSaleWithEditProductsList = {
                 id: orderData.id,
                 currentStatus: orderData.status,
-                customer: {
-                    fullName: form.values.customer.fullName,
-                    phone: form.values.customer.phone,
-                    email: form.values.customer.email.trim() === '' ? undefined : form.values.customer.email,
-                },
-                deliveryAddress: {
-                    address: form.values.deliveryAddress.address.trim(),
-                    additionalInfo: form.values.deliveryAddress.additionalInfo.trim() === '' ? undefined : form.values.deliveryAddress.additionalInfo.trim()
-                },
+                status: OrderStatuses.COMPLETED,
                 servicePaymentAmount: getServicePaymentAmount(form),
                 servicePaymentPercent: form.values.isServicePaymentInPercent ? +(((+form.values.servicePayment) / 100).toFixed(4)) : 0,
-                products: {
-                    deleteAllExisting: true,
-                    create: mapProductsForCreateOrderObject(form)
-                },
-
+                productsToPatch: changedProductsByAmount
             };
 
             try {
 
-                const resp = await editOrder(orderObject).unwrap();
+                const resp = await editOrder(editedOrder).unwrap();
+
+                 await createSale(orderData.id)
 
                 dispatchAppT(notificationActions.addNotification({
                     type: NOTIFICATION_TYPES.SUCCESS,
-                    message: i18n._(t`Order edited successfully.`),
+                    message: i18n._(t`Order edited and completed successfully.`),
                 }));
 
-                navigate(generatePath(routerPaths.orders_details, { id: orderData.id}));
+                navigate(generatePath(routerPaths.orders));
 
             } catch (err) {
 
-                errorHandlerForForm(err as typeResponseError, 'onEditOrder', dispatchAppT,  form as unknown as typeReturnForm, mapRequestFieldsToFormFieldOrders);
+                errorHandlerForForm(err as typeResponseError, 'onEditOrder', dispatchAppT, form as unknown as typeReturnForm, mapRequestFieldsToFormFieldOrders);
 
                 setIsInProgress(false);
 
@@ -144,32 +146,18 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
 
     return (
 
-                <form onSubmit={ form.onSubmit(onSave) }>
-                    <Tabs
-                        defaultValue={ TYPE_TABS.CLIENT }
-                        className={ classes.tab }
-                        variant="outline"
-                        value={ tab }
-                        onTabChange={ (value) => { setTab(value as TYPE_TABS); } }
-                    >
-                        <Flex justify="space-between" align={ 'end' }>
-                            <Tabs.List className={ classes.tab }>
-                                <Tabs.Tab value={ TYPE_TABS.CLIENT } className={ errorInTab === TYPE_TABS.CLIENT ? classes.errorInTab : undefined }>{ i18n._(t`Client details`) }</Tabs.Tab>
-                                <Tabs.Tab value={ TYPE_TABS.PRODUCTS } className={ errorInTab === TYPE_TABS.PRODUCTS ? classes.errorInTab : undefined }>{ i18n._(t`Products`) }</Tabs.Tab>
-                            </Tabs.List>
-                        </Flex>
+        <form onSubmit={ form.onSubmit(onSave) }>
 
-                        <Tabs.Panel value={ TYPE_TABS.CLIENT }><OrderClient form={ form }/> </Tabs.Panel>
-                        <Tabs.Panel value={ TYPE_TABS.PRODUCTS }><OrderProducts form={ form } orderData={orderData}/></Tabs.Panel>
-                    </Tabs>
-                    { (isInProgress || isLoading) && <LoaderOverlay/> }
-                    <Space h={ 42 }/>
-                    <Flex className={ classes.buttonsBar }>
-                        <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
-                        <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
-                                type="submit">{ t`Save` }</Button>
-                    </Flex>
-                </form>
+            <OrderProducts form={ form } orderData={ orderData }/>
+
+            { (isInProgress || isLoading) && <LoaderOverlay/> }
+            <Space h={ 42 }/>
+            <Flex className={ classes.buttonsBar }>
+                <Button key="cancel" type="reset" variant="outline" onClick={ onCancel }>{ t`Cancel` }</Button>
+                <Button key="submit" disabled={ !!Object.values(form.errors).length || isInProgress }
+                        type="submit">{ t`Save and Complete order` }</Button>
+            </Flex>
+        </form>
 
     );
 

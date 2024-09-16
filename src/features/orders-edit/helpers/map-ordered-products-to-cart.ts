@@ -1,7 +1,8 @@
 import { typeProductInCart } from 'features/orders-create/types/types';
 import { typeOrder } from '../../../entities-project/orders/model/state-slice';
+import { typeProductInCartWithMarkedLabels } from 'features/orders-edit/types/types';
 
-export const mapOrderedProductsToCart = (order: typeOrder): typeProductInCart[] => {
+export const mapOrderedProductsToCart = (order: typeOrder): typeProductInCartWithMarkedLabels[] => {
 
     return order.products.map(item => ({
         amount: item.quantity.toString(),
@@ -20,7 +21,8 @@ export const mapOrderedProductsToCart = (order: typeOrder): typeProductInCart[] 
             merchantId: order.merchantId,
         },
         storeId: order.storeId,
-        price: item.priceInStore
+        price: item.priceInStore,
+        markedLabels: item.markedLabels
     }));
 
 };

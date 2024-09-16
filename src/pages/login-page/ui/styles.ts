@@ -74,6 +74,11 @@ export const useStyles = createStyles((theme) => ({
         height: rem(24),
         color: theme.colors.gray[ 6 ],
     },
+    iconTitle: {
+        width: rem(40),
+        height: rem(40),
+        color: theme.colors.primary[ 5 ],
+    },
     link: {
         color: theme.colors.primary[ 7 ],
         textDecoration: 'underline',
