@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
+import { useIsAllowedPermissions } from '../../../entities-project/users/hooks/use-is-allowed-permissions';
 import NotFoundPage from 'pages/not-found-page/ui/not-found-page';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 

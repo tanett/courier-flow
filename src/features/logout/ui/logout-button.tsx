@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
 import { useAppDispatchT } from 'app/state';
 import { typeLogoutButton } from '../types/types';
-import { authStateActions } from '../../../entities/auth/model/state-slice';
+import { authStateActions } from '../../../entities-project/auth/model/state-slice';
 import { routerPaths } from 'app/config/router-paths';
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
 

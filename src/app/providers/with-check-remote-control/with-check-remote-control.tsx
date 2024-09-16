@@ -1,8 +1,8 @@
 import React from 'react';
 import { getCookie } from 'app/utils/actions-with-cookie';
-import { setAuthSessionStorageDate } from 'features/login/helpers/setAuthSessionStorageDate';
+import { setAuthSessionStorageDate } from 'features/login-user/helpers/setAuthSessionStorageDate';
 import { useAppDispatchT } from 'app/state';
-import { authStateActions } from '../../../entities/auth/model/state-slice';
+import { authStateActions } from '../../../entities-project/auth/model/state-slice';
 
 
 export const WithCheckRemoteControl: React.FC<React.PropsWithChildren> = ({ children }) => {

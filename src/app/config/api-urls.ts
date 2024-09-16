@@ -2,6 +2,8 @@ export enum API_URLS {
     AUTH_LOGIN = '/api/v1/auth/users/access-token',
     AUTH_REFRESH = '/api/v1/auth/users/access-token/refresh',
 
+    AUTH_TERMINAL = '/api/v1/auth/clients/access-token',
+
     USER_GET_CURRENT = '/api/v1/actors/current/with-permissions',
     USER_PATCH = '/api/v1/users',
     USER_CHANGE_PASSWORD = '/api/v1/users/change-password',
@@ -84,6 +86,7 @@ export enum API_URLS {
     SALES_SHORT_GET = '/api/v1/sales/short/{id}',
     SALES_EXPORT = '/api/v1/sales/export',
     SALES_RECEIPT_GET = '/api/v1/sales/{saleId}/receipt',
+    SALES_MAKE_NEW = '/api/v1/sales',
 
 
     REFUNDS_SEARCH = '/api/v1/refunds/search',
@@ -127,4 +130,6 @@ export enum API_URLS {
     MERCHANT_CURRENCY_SEARCH = '/api/v1/merchant-currencies/search',
     MERCHANT_CURRENCY_BY_ID= '/api/v1/merchant-currencies/{id}',
     MERCHANT_BASE_CURRENCY= '/api/v1/base-currency',
+
+    BUNDLE_GET='/api/v1/terminals/bundle'
 }

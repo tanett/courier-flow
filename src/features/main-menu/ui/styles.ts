@@ -1,7 +1,7 @@
 import { createStyles, rem } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-    menuWrapper: { flexDirection: 'column' },
+    menuWrapper: { flexDirection: 'row' },
     link: {
         display: 'flex',
         alignItems: 'center',
@@ -9,7 +9,8 @@ export const useStyles = createStyles((theme) => ({
         padding: `${ rem(16) } ${ rem(24) } ${ rem(16) } ${ rem(20) }`,
         textDecoration: 'none',
         color: theme.colors.gray[ 5 ],
-        borderLeft: `${ rem(4) } solid transparent`,
+        borderBottom: `${ rem(4) } solid transparent`,
+        borderTop: `${ rem(4) } solid transparent`,
         transition: 'all ease-in 0.2s',
 
         '&:hover': { backgroundColor: theme.colors.primary[ 0 ] },
@@ -62,7 +63,7 @@ export const useStyles = createStyles((theme) => ({
     },
     skeletonWrapper: {
         padding: `0 ${ rem(theme.spacing.xs) }`,
-        flexDirection: 'column',
+        flexDirection: 'row',
         gap: theme.spacing.xs,
     },
 }));

@@ -9,7 +9,7 @@ import { SupportLink } from '../../../shared/ui/support-link';
 import { typeRestorePasswordForm } from '../types/types';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { initialRestorePasswordForm } from '../forms/forms';
-import { useChangePasswordMutation } from '../../../entities/user-profile/api/api';
+import { useChangePasswordMutation } from '../../../entities-project/user-profile/api/api';
 import { WithPasswordHelper } from '../../../shared/ui/with-password-helper/with-password-helper';
 import errorIconUrl from '../../../shared/images/auth/error-link.svg';
 import successIconUrl from '../../../shared/images/auth/success-restore.svg';

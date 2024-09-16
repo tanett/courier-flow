@@ -13,7 +13,7 @@ export const useStyles = createStyles((theme) => ({
             backgroundColor: theme.colors.gray[3],
             borderRadius: rem(2),
         },
-        width: `calc(100vw - 310px)`,
+     //   width: `calc(100vw - 310px)`,
         paddingBottom: `4px`,
     },
     tableBorder: {

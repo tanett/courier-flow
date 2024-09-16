@@ -7,10 +7,11 @@ export const useStyles = createStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         gap: rem(8),
-        padding: `${rem(8)} ${rem(24)} ${rem(16)} ${rem(16)}`,
+        padding: `${rem(8)} ${rem(24)} ${rem(16)} ${rem(8)}`,
         textDecoration: 'none',
         color: theme.colors.primary[ 5 ],
-        borderLeft: `${rem(4)} solid transparent`,
+        borderTop: `${rem(4)} solid transparent`,
+        borderBottom: `${rem(4)} solid transparent`,
         transition: 'all ease-in 0.2s',
 
         '&:hover': { backgroundColor: theme.colors.primary[ 0 ] },

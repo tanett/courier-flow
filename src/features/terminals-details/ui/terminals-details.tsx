@@ -4,9 +4,9 @@ import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BuildingStorefrontIcon, MapPinIcon } from '@heroicons/react/24/outline';
-import { useGetTerminalByIdQuery } from '../../../entities/terminals/api/api';
-import { useLazyGetStoreByIdQuery } from '../../../entities/stores/api/api';
-import { typeStore } from '../../../entities/stores/model/types';
+import { useGetTerminalByIdQuery } from '../../../entities-project/terminals/api/api';
+import { useLazyGetStoreByIdQuery } from '../../../entities-project/stores/api/api';
+import { typeStore } from '../../../entities-project/stores/model/types';
 import BadgeStatus from 'shared/ui/badge-status/badge-status';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 

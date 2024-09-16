@@ -8,22 +8,20 @@ import { queryParamsNames } from 'app/config/api-constants';
 import { EllipsisVerticalIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
-import { typeOrder } from 'entities/orders/model/state-slice';
+import { typeOrder } from 'entities-project/orders/model/state-slice';
 import { OrdersDetailsCommon } from 'features/orders-details/ui/orders-details-common';
 import { OrdersDetailsOrderedProductsList } from 'features/orders-details/ui/orders-details-products';
 import { getRefusedProducts } from 'features/orders-details/helpers/get-refused-products';
 import { OrdersDetailsRefusedProductsList } from 'features/orders-details/ui/orders-details-refused-products';
 import cn from 'classnames';
-import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../entities/orders/model/orders-statuses';
-import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
+import { OrderStatusAvailableForEdit, OrderStatuses } from '../../../entities-project/orders/model/orders-statuses';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
 import { Modal } from 'shared/ui/modal';
-import { typeGetCurrentUserResponse } from '../../../entities/user-profile/api/types';
-import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
-import { isOrderPossibleToEdit } from '../../../entities/orders/helpers/is-order-possible-to edit';
-import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
+import { typeGetCurrentUserResponse } from '../../../entities-project/user-profile/api/types';
+import { isOrderPossibleToEdit } from '../../../entities-project/orders/helpers/is-order-possible-to edit';
+import { useIsAllowedPermissions } from '../../../entities-project/users/hooks/use-is-allowed-permissions';
 import { editOrdersPermissions } from 'app/config/permissions-config';
-import { useChangeStatusProcessing } from 'features/orders-list/hooks/use-change-status-processing';
+import { useChangeStatusDelivering } from 'features/orders-list/hooks/use-change-status-delivering';
 
 
 const enum TYPE_TABS {
@@ -45,7 +43,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
 
     const { i18n } = useLingui();
 
-    const isAllowedEditByPermission = useIsAllowedPermissions(editOrdersPermissions);
+    const isAllowedEditByPermission = true // useIsAllowedPermissions(editOrdersPermissions);
 
     const isPossibleToEdit = isOrderPossibleToEdit(orderData, currentUser, isAllowedEditByPermission || false);
 
@@ -61,7 +59,7 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
 
     const goToEditPage = (id: string | number) => navigate(generatePath(routerPaths.orders_edit, { id: id }),);
 
-    const{onChangeStatusInProcessing}=useChangeStatusProcessing()
+    const{onChangeStatusInDelivering}=useChangeStatusDelivering()
 
     const refusedProducts = getRefusedProducts(orderData.products);
 
@@ -69,21 +67,13 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
 
     const dropdownMenuArr: { label: string, handler: () => void, disabled: boolean, textColor?: string }[] | undefined = [
 
+
         {
-            label: i18n._(t`Assign courier `),
-            handler: () => setPopupContent(<ModalAddCourier data={ orderData } setOpen={ setPopupContent }/>),
-            disabled: !isPossibleToEdit
+            label: i18n._(t`Delivering`),
+            handler: () => onChangeStatusInDelivering(orderData),
+            disabled:orderData.status === OrderStatuses.DELIVERING ? true :  !isPossibleToEdit
         },
-        {
-            label: i18n._(t`In process`),
-            handler: () => onChangeStatusInProcessing(orderData),
-            disabled:orderData.status === OrderStatuses.PROCESSING ? true :  !isPossibleToEdit
-        },
-        {
-            label: i18n._(t`Waiting for delivery`),
-            handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ orderData } setOpen={ setPopupContent }/>),
-            disabled: orderData.status === OrderStatuses.WAITING_FOR_DELIVERY ? true :  !isPossibleToEdit
-        },
+
         {
             label: i18n._(t`Cancelled`),
             handler: () => setPopupContent(<ModalCancelOrder data={ orderData } setOpen={ setPopupContent }/>),
@@ -120,39 +110,39 @@ const OrdersTabs: React.FC<{ orderData: typeOrder, currentUser: typeGetCurrentUs
                             <PencilSquareIcon color={ isPossibleToEdit ? theme.colors.primary[5] : theme.colors.gray[5] } width={ 24 } height={ 24 }/>
                         </ActionIcon>
                     </Tooltip> }
-                    <Box key="dots" className={ cn(classes.icon,) }>
-                        <Menu trigger="click" openDelay={ 100 } closeDelay={ 400 } position="bottom-end" offset={ 3 }>
-                            <Menu.Target>
-                                <ActionIcon variant="subtle">
-                                    <EllipsisVerticalIcon color={ theme.colors.gray[5] } width={ 22 }/>
-                                </ActionIcon>
-                            </Menu.Target>
-                            <Menu.Dropdown>
+                    {/* <Box key="dots" className={ cn(classes.icon,) }> */}
+                    {/*     <Menu trigger="click" openDelay={ 100 } closeDelay={ 400 } position="bottom-end" offset={ 3 }> */}
+                    {/*         <Menu.Target> */}
+                    {/*             <ActionIcon variant="subtle"> */}
+                    {/*                 <EllipsisVerticalIcon color={ theme.colors.gray[5] } width={ 22 }/> */}
+                    {/*             </ActionIcon> */}
+                    {/*         </Menu.Target> */}
+                    {/*         <Menu.Dropdown> */}
 
-                                {
-                                    dropdownMenuArr && dropdownMenuArr.map((item, index) => <React.Fragment key={ index }>
-                                        { index === 1 && <Divider size={ 'xs' } color={ theme.colors.gray[2] }/> }
-                                        <Menu.Item
-                                            key={ index }
-                                            className={ classes.menuItem }
-                                            disabled={ item.disabled }
-                                            sx={ { color: item.textColor ? item.textColor : undefined, } }
-                                            onClick={ (e) => {
+                    {/*             { */}
+                    {/*                 dropdownMenuArr && dropdownMenuArr.map((item, index) => <React.Fragment key={ index }> */}
+                    {/*                     { index === 1 && <Divider size={ 'xs' } color={ theme.colors.gray[2] }/> } */}
+                    {/*                     <Menu.Item */}
+                    {/*                         key={ index } */}
+                    {/*                         className={ classes.menuItem } */}
+                    {/*                         disabled={ item.disabled } */}
+                    {/*                         sx={ { color: item.textColor ? item.textColor : undefined, } } */}
+                    {/*                         onClick={ (e) => { */}
 
-                                                e.stopPropagation();
-                                                item.handler();
+                    {/*                             e.stopPropagation(); */}
+                    {/*                             item.handler(); */}
 
-                                            } }
-                                        >
-                                            { item.label }
-                                        </Menu.Item>
-                                    </React.Fragment>)
+                    {/*                         } } */}
+                    {/*                     > */}
+                    {/*                         { item.label } */}
+                    {/*                     </Menu.Item> */}
+                    {/*                 </React.Fragment>) */}
 
-                                }
-                            </Menu.Dropdown>
-                        </Menu>
+                    {/*             } */}
+                    {/*         </Menu.Dropdown> */}
+                    {/*     </Menu> */}
 
-                    </Box>
+                    {/* </Box> */}
                 </Flex> }
             </Flex>
 

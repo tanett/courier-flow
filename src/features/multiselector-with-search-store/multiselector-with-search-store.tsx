@@ -3,10 +3,10 @@ import { typeMultiSelectorStores } from './types';
 import { Flex, Group, Loader, MultiSelect, Text, useMantineTheme } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { IconCheck, IconChevronDown } from '@tabler/icons-react';
-import { useLazySearchStoreQuery } from '../../entities/stores/api/api';
+import { useLazySearchStoreQuery } from '../../entities-project/stores/api/api';
 import { useDebouncedValue } from '@mantine/hooks';
 import { sortDirection, typeResponseError, typeSearchRequest } from 'app/api/types';
-import { typeSearchFilterStore } from '../../entities/stores/api/types';
+import { typeSearchFilterStore } from '../../entities-project/stores/api/types';
 import { errorHandler } from 'app/utils/errorHandler';
 import { useAppDispatchT } from 'app/state';
 

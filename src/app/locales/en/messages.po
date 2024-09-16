@@ -1245,8 +1245,8 @@ msgstr "In process"
 #~ msgstr "In process(change assignee)"
 
 #: src/features/login/ui/login-form/LoginForm.tsx:103
-#~ msgid "Incorrect login or password"
-#~ msgstr "Incorrect login or password"
+#~ msgid "Incorrect login-user or password"
+#~ msgstr "Incorrect login-user or password"
 
 #: src/features/z-reports-details/ui/z-reports-details.tsx:78
 msgid "INN / PINFL"

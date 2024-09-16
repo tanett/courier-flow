@@ -11,12 +11,6 @@ export const MenuSkeleton: React.FC = () => {
             <Skeleton height={40} radius="xs" />
             <Skeleton height={40} radius="xs" />
             <Skeleton height={40} radius="xs" />
-            <Skeleton height={40} radius="xs" />
-            <Skeleton height={40} radius="xs" />
-            <Skeleton height={40} radius="xs" />
-            <Skeleton height={40} radius="xs" />
-            <Skeleton height={40} radius="xs" />
-            <Skeleton height={40} radius="xs" />
         </Flex>
     );
 

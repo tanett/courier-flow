@@ -2,7 +2,7 @@ import { ActionIcon, Box, Flex } from '@mantine/core';
 import { IconCheck, IconExclamationMark, IconX } from '@tabler/icons-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppDispatchT } from '../../../app/state';
-import { notificationActions } from '../../../entities/notification/model';
+import { notificationActions } from '../../../entities-project/notification/model';
 import { NOTIFICATION_EXPIRED_TIME, NOTIFICATION_TYPES } from './constants';
 import { useStyles } from './styles';
 import { typeNotification } from './types';

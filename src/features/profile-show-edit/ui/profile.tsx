@@ -9,13 +9,13 @@ import { Button, Flex, Select, SimpleGrid, Space, TextInput } from '@mantine/cor
 import { t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
-import { typePatchCurrentUser } from '../../../entities/user-profile/api/types';
-import { notificationActions } from '../../../entities/notification/model';
+import { typePatchCurrentUser } from '../../../entities-project/user-profile/api/types';
+import { notificationActions } from '../../../entities-project/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeResponseError } from 'app/api/types';
-import { userProfileActions } from '../../../entities/user-profile/model/state-slice';
+import { userProfileActions } from '../../../entities-project/user-profile/model/state-slice';
 import { convertPhoneNumberToStringForApi } from 'shared/utils/convertPhoneNumbertoString';
-import { useGetCurrentUserQuery, usePatchCurrentUserMutation } from '../../../entities/user-profile/api/api';
+import { useGetCurrentUserQuery, usePatchCurrentUserMutation } from '../../../entities-project/user-profile/api/api';
 import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { IconChevronDown } from '@tabler/icons-react';

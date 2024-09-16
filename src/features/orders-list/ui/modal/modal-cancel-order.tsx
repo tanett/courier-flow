@@ -6,9 +6,9 @@ import { Dialog } from 'shared/ui/dialog-new';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
 import { Box } from '@mantine/core';
-import { useCancelOrder } from '../../../../entities/orders/hooks/use-cancel-order';
-import { OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
-import { typeOrder } from '../../../../entities/orders/model/state-slice';
+import { useCancelOrder } from '../../../../entities-project/orders/hooks/use-cancel-order';
+import { OrderStatuses } from '../../../../entities-project/orders/model/orders-statuses';
+import { typeOrder } from '../../../../entities-project/orders/model/state-slice';
 
 export const ModalCancelOrder: React.FC<{
     setOpen: React.Dispatch<React.SetStateAction<React.ReactNode | null>>

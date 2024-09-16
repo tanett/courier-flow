@@ -4,12 +4,12 @@ export const useStyles = createStyles((theme) => ({
     dashboard: { backgroundColor: theme.colors.gray[ 0 ] },
     scrollBox: { height: '100vh' },
     topWrapper: {
-        gap: rem(10),
+        gap: rem(30),
         paddingLeft: rem(26),
         paddingRight: rem(26),
-        paddingBottom: rem(14),
-        paddingTop: rem(22),
+
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
     logo: { width: rem(42) },
     logoText: {
@@ -18,7 +18,7 @@ export const useStyles = createStyles((theme) => ({
         letterSpacing: rem(0.3),
         color: theme.colors.primary[ 5 ],
     },
-    bottomWrapper: { paddingBottom: rem(20) },
+    bottomWrapper: { paddingBottom: rem(0) },
 
     button: {
         backgroundColor: theme.colors.primary[ 5 ],

@@ -14,9 +14,9 @@ import { typeTablePagination } from 'shared/ui/table/types/type';
 import { Loader } from 'shared/ui/loader/loader';
 import { pageSizeForSelectors } from 'app/config/page-size-for-pulling-in-selectors-and-lists';
 import { typeSelectorForProducts } from 'features/orders-create/ui/selector-products/types';
-import { typeRetailProduct } from '../../../../entities/retail-products/model/types';
-import { useLazySearchRetailProductQuery } from '../../../../entities/retail-products/api/api';
-import { typeSearchFilterRetailProduct } from '../../../../entities/retail-products/api/types';
+import { typeRetailProduct } from '../../../../entities-project/retail-products/model/types';
+import { useLazySearchRetailProductQuery } from '../../../../entities-project/retail-products/api/api';
+import { typeSearchFilterRetailProduct } from '../../../../entities-project/retail-products/api/types';
 import { typeProductInCart } from 'features/orders-create/types/types';
 
 

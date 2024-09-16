@@ -8,7 +8,7 @@ import { FieldsetForForm } from 'shared/ui/fieldset-for-form';
 import { PhoneInputWithCountrySelector } from 'shared/ui/phone-input';
 import { useGetCustomers } from '../hooks/use-get-customers';
 import { useDebouncedValue, useFocusWithin } from '@mantine/hooks';
-import { typeOrdersCustomer } from '../../../entities/orders-customer/model/types';
+import { typeOrdersCustomer } from '../../../entities-project/orders-customer/model/types';
 import { mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 
 
@@ -47,7 +47,7 @@ export const OrderClient: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) 
     };
 
     return (
-        <fieldset className={ classes.fieldset }>
+        <fieldset className={ classes.fieldset } disabled>
 
             <Flex className={ classes.flexColumn }>
 

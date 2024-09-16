@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppDispatchT, useSelectorT } from '../../state';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { authStateActions } from '../../../entities/auth/model/state-slice';
-import { routerPaths } from '../../config/router-paths';
+import { authStateActions } from '../../../entities-project/auth/model/state-slice';
+import { pathSections, routerPaths } from '../../config/router-paths';
 import { LoaderAria } from '../../../shared/ui/loader-area/loader-aria';
 
 export const WithProtectedRouts: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -33,6 +33,13 @@ export const WithProtectedRouts: React.FC<React.PropsWithChildren> = ({ children
                 }); */
 
             }
+
+           if (location.pathname === '/'+ pathSections.dashboard){
+              navigate(pathSections.orders, {
+                 replace: true,
+                 state: location.state,
+             });
+           }
 
         } else if (auth) {
 

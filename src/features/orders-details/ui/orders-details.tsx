@@ -7,7 +7,7 @@ import { routerPaths } from 'app/config/router-paths';
 import { DashboardContent } from 'shared/ui/dashboard-content';
 import { DashboardBreadcrumbs } from 'shared/ui/dashboard-breadcrumbs';
 import OrdersTabs from 'features/orders-details/ui/orders-tabs';
-import { useGetOrderByIdQuery } from '../../../entities/orders/api/api';
+import { useGetOrderByIdQuery } from '../../../entities-project/orders/api/api';
 import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { useSelectorT } from 'app/state';
 
@@ -37,7 +37,7 @@ const OrdersDetails: React.FC<{ orderId: string }> = ({ orderId }) => {
             <>
                 <DashboardContent.Header
                     leftSide={<DashboardBreadcrumbs dataList={[
-                        { name: i18n._(t`Orders`),  path: routerPaths.orders_list },
+                        { name: i18n._(t`Orders`),  path: routerPaths.orders },
                         { name: data?.code || '------' }
                     ]}/>}
                 />

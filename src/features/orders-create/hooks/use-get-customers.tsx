@@ -1,6 +1,6 @@
-import { typeOrdersCustomer } from '../../../entities/orders-customer/model/types';
+import { typeOrdersCustomer } from '../../../entities-project/orders-customer/model/types';
 import { useEffect, useState } from 'react';
-import { useLazySearchOrdersCustomerQuery } from '../../../entities/orders-customer/api/api';
+import { useLazySearchOrdersCustomerQuery } from '../../../entities-project/orders-customer/api/api';
 import { AsYouType, getExampleNumber } from 'libphonenumber-js';
 import examples from 'libphonenumber-js/examples.mobile.json';
 import { useSelectorT } from 'app/state';

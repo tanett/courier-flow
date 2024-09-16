@@ -6,10 +6,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { Box } from '@mantine/core';
 import { UserCircleIcon as UserCircleIconOutline } from '@heroicons/react/24/outline';
 import { UserCircleIcon as UserCircleIconSolid } from '@heroicons/react/24/solid';
+import { useSelectorT } from 'app/state';
 
 export const ProfileButton: React.FC<typeProfileButtonProps> = ({ link }) => {
 
     const { classes } = useStyles();
+
+    const userName = useSelectorT(state => state.userProfile.userProfile?.actor.fullName);
 
     const location = useLocation();
 
@@ -27,7 +30,7 @@ export const ProfileButton: React.FC<typeProfileButtonProps> = ({ link }) => {
                 }
             </Box>
             <span>
-                <Trans>Profile</Trans>
+                { userName ?? '-------' }
             </span>
         </NavLink>
     );

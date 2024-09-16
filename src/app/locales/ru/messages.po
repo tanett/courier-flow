@@ -1235,7 +1235,7 @@ msgstr "В обработке"
 #~ msgstr "В обработке(сменить исполнителя)"
 
 #: src/features/login/ui/login-form/LoginForm.tsx:103
-#~ msgid "Incorrect login or password"
+#~ msgid "Incorrect login-user or password"
 #~ msgstr "Неверный логин или пароль"
 
 #: src/features/z-reports-details/ui/z-reports-details.tsx:78

@@ -3,12 +3,12 @@ export type typeHeadersObj = {
     [key: string]: string;
 }
 
-export const protectedRoutsAPIHeaderCreator = () => {
+export const protectedRoutsAPIHeaderCreator = (forTerminal?:boolean) => {
 
     const headers = [];
 
     // Auth token
-    const accessToken = sessionStorage.getItem('accessTokenValue');
+    const accessToken = sessionStorage.getItem(forTerminal? 'accessTokenTerminal':'accessTokenValue');
     if (accessToken) {
 
         headers.push([ 'Authorization', `Bearer ${accessToken}` ]);

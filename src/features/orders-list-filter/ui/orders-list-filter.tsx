@@ -9,13 +9,11 @@ import { DrawerContext, FilterButtonsBar, FilterFormWrapper } from '../../../sha
 import { FilterSkeleton } from './filter-skeleton';
 import { queryParamsNames } from '../../../app/config/api-constants';
 import { useUrlParams } from '../../../shared/hooks/use-url-params/use-url-params';
-import { SelectorWithSearchStore } from 'features/selector-with-search-store';
-import { typeReturnForm } from 'features/selector-with-search-store/types';
-import { SelectorWithSearchUsers } from 'features/selector-with-search-users';
 import dayjs from 'dayjs';
 import { DateSelectorComponent } from 'shared/ui/date-selector-component/date-selector-component';
 import { IconChevronDown } from '@tabler/icons-react';
 import { useSelectorT } from 'app/state';
+import { typeReturnForm } from 'app/utils/error-handler-for-form';
 
 export const OrdersListFilter: React.FC = () => {
 
@@ -109,25 +107,7 @@ export const OrdersListFilter: React.FC = () => {
                 ? <FilterSkeleton/>
                 : <form onSubmit={ form.onSubmit(setFilterHandler) } onReset={ form.onReset }>
                     <Flex rowGap={ 16 } direction={ 'column' }>
-                        <SelectorWithSearchStore
-                            required={ false }
-                            fieldName={ 'storeId' }
-                            initialValue={ form.values.storeId !== null ? form.values.storeId : null }
-                            form={ form as unknown as typeReturnForm }/>
-                        {/* <SelectorWithSearchCashDesck */}
-                        {/*     required={ false } */}
-                        {/*     label={i18n._(t`Assignee`) } */}
-                        {/*     fieldName={ 'assigneeId' } */}
-                        {/*     form={ form as unknown as typeReturnForm } */}
-                        {/*     initialValue={ form.values.collectorId !== null ? form.values.collectorId : null } */}
-                        {/* /> */}
-                        <SelectorWithSearchUsers
-                            required={ false }
-                            label={i18n._(t`Courier`) }
-                            fieldName={ 'courierId' }
-                            form={ form as unknown as typeReturnForm }
-                            initialValue={ form.values.courierId !== null ? form.values.courierId : null }
-                        />
+
                         <Select
                             withinPortal
                             clearable

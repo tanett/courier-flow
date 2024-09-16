@@ -5,23 +5,22 @@ import { OrderClient } from 'features/orders-create/ui/order-client';
 import { Button, Flex, Space, Tabs } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from './styles';
-import { useCreateOrderMutation } from '../../../entities/orders/api/api';
+import { useCreateOrderMutation } from '../../../entities-project/orders/api/api';
 import { useForm } from '@mantine/form';
 import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm, mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 import { typeOrdersForm } from 'features/orders-create/types/types';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { useLingui } from '@lingui/react';
 import { OrderProducts } from 'features/orders-create/ui/order-products';
-import { typeCreateOrderRequest } from '../../../entities/orders/api/types';
+import { typeCreateOrderRequest } from '../../../entities-project/orders/api/types';
 import dayjs from 'dayjs';
 import { getServicePaymentAmount } from 'features/orders-create/helpers/get-service-payment-amount';
 import { mapProductsForCreateOrderObject } from 'features/orders-create/helpers/map-products-for-create-order-object';
-import { notificationActions } from '../../../entities/notification/model';
+import { notificationActions } from '../../../entities-project/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { routerPaths } from 'app/config/router-paths';
 import { typeResponseError } from 'app/api/types';
-import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
-import { typeReturnForm } from 'features/selector-with-search-store/types';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
 
 const enum TYPE_TABS {
     CLIENT = 'client',

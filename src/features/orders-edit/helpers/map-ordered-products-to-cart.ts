@@ -1,5 +1,5 @@
 import { typeProductInCart } from 'features/orders-create/types/types';
-import { typeOrder } from '../../../entities/orders/model/state-slice';
+import { typeOrder } from '../../../entities-project/orders/model/state-slice';
 
 export const mapOrderedProductsToCart = (order: typeOrder): typeProductInCart[] => {
 

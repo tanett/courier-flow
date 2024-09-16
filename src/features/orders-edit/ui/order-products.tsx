@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { Box, Flex, rem, Text, useMantineTheme, SimpleGrid, } from '@mantine/core';
-import { SelectorWithSearchStore } from 'features/selector-with-search-store';
-import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { SelectorProducts } from 'features/orders-create/ui/selector-products/selector-products';
 import { t, Trans } from '@lingui/macro';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
@@ -13,9 +11,11 @@ import ServicePaymentInput from 'features/orders-create/ui/discount-service-paym
 import { getTotalCostWithDiscountAndServicePayment } from 'features/orders-create/helpers/get-total-cost-with-discount-service-payment';
 import { typeReturnOrderForm } from 'features/orders-create/types/types';
 import { useStyles } from 'features/orders-create/ui/styles';
+import { ProductsInCartTableEdit } from 'features/orders-edit/ui/products-in-cart-table-edit/products-in-cart-table';
+import { typeOrder } from 'entities-project/orders/model/state-slice';
 
 
-export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }) => {
+export const OrderProducts: React.FC<{ form: typeReturnOrderForm, orderData: typeOrder }> = ({ form, orderData}) => {
 
 
     const { classes } = useStyles();
@@ -26,19 +26,19 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }
         <fieldset className={ classes.fieldset }>
 
             <Flex className={ classes.flexColumn }>
-                <SelectorWithSearchStore required={ true } disabled fieldName={ 'storeId' } form={ form as unknown as typeReturnForm } initialValue={ null }/>
 
                 <Flex sx={{ flexDirection: 'row', gap: rem(12), position: 'relative' }}>
-                    <Box sx={ { width: '408px' } }>
-                        <SelectorProducts form={ form }/>
-                    </Box>
+                    {/* <Box sx={ { width: '408px' } }> */}
+                    {/*      */}
+                    {/*     <SelectorProducts form={ form }/> */}
+                    {/* </Box> */}
 
                     <Flex direction="column" justify="space-between" sx={ {
                         height: '525px',
                         position: 'relative',
                         flexGrow: 1
                     } }>
-                        <ProductsInCartTable form={ form }/>
+                        <ProductsInCartTableEdit form={ form } orderData={orderData} />
                         <SimpleGrid cols={ 2 } className={ classes.discountContainer }>
                             <DiscountInput form={ form }/>
                             <ServicePaymentInput form={ form }/>

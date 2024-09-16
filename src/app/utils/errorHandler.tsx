@@ -1,5 +1,5 @@
 import { typeResponseError, typeValidationError } from 'app/api/types';
-import { notificationActions } from '../../entities/notification/model';
+import { notificationActions } from '../../entities-project/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { typeAppDispatch } from 'app/state';
 import { Trans } from '@lingui/macro';

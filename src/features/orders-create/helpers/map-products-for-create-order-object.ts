@@ -1,5 +1,5 @@
 import { typeReturnOrderForm } from 'features/orders-create/types/types';
-import { typeOrderCreate } from '../../../entities/orders/model/state-slice';
+import { typeOrderCreate } from '../../../entities-project/orders/model/state-slice';
 import { getDiscountPercentFromDiscountAmount } from 'features/orders-create/helpers/get-discount-percent-from-discount-amount';
 
 export const mapProductsForCreateOrderObject = (form: typeReturnOrderForm): typeOrderCreate['products'] => {

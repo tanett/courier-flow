@@ -1,19 +1,18 @@
 import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
-import { userProfileApi } from '../../entities/user-profile/api/api';
-import { typeUserProfile, userProfileActions, userProfileStateReducer } from '../../entities/user-profile/model/state-slice';
+import { userProfileApi } from '../../entities-project/user-profile/api/api';
+import { typeUserProfile, userProfileActions, userProfileStateReducer } from '../../entities-project/user-profile/model/state-slice';
 import { baseApi } from 'app/api/base-api';
 import { authApi } from 'app/api/auth-api';
-import { notificationStateReducer } from '../../entities/notification/model';
-import { authStateReducer } from '../../entities/auth/model/state-slice';
+import { notificationStateReducer } from '../../entities-project/notification/model';
+import { authStateReducer } from '../../entities-project/auth/model/state-slice';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { productsStateActions, productsStateReducer } from '../../entities/products/model/state-slice';
-import { productsApi } from '../../entities/products/api/api';
-import { soldProductsStateReducer } from '../../entities/advances/model/state-slice';
-import { ordersApi } from '../../entities/orders/api/api';
-import { ordersStateActions, ordersStateReducer } from '../../entities/orders/model/state-slice';
-import { merchantCurrencyStateActions, merchantCurrencyStateReducer } from '../../entities/merchant-currency/model/state-slice';
-import { merchantCurrencyApi } from '../../entities/merchant-currency/api/api';
+import { ordersApi } from '../../entities-project/orders/api/api';
+import { ordersStateActions, ordersStateReducer } from '../../entities-project/orders/model/state-slice';
+import { merchantCurrencyStateActions, merchantCurrencyStateReducer } from '../../entities-project/merchant-currency/model/state-slice';
+import { merchantCurrencyApi } from '../../entities-project/merchant-currency/api/api';
 import { defaultCurrency } from 'app/config/currency';
+import { bundleStateActions, bundleStateReducer, typeBundle } from 'entities-project/bundle/model/state-slice';
+import { bundleApiSlice } from 'entities-project/bundle/api/api';
 
 
 const ListenerMiddlewareCreate = createListenerMiddleware();
@@ -41,9 +40,15 @@ ListenerMiddlewareCreate.startListening({
         }
         try {
 
-            const response = await listenerApi.dispatch(productsApi.endpoints.getAdditionalFieldInfo.initiate({}));
+            const terminalToken = sessionStorage.getItem('accessTokenTerminal');
 
-            listenerApi.dispatch(productsStateActions.setAdditionalInfoList(response.data));
+            if(terminalToken) {
+                const bundleResponse = await listenerApi.dispatch(bundleApiSlice.endpoints.getBundle.initiate(terminalToken));
+
+                listenerApi.dispatch(bundleStateActions.setBundle(bundleResponse.data as typeBundle));
+            }
+
+
 
         } catch (err) {
 
@@ -70,17 +75,6 @@ ListenerMiddlewareCreate.startListening({
 
             listenerApi.dispatch(merchantCurrencyStateActions.setBaseCurrency(responseBaseCurrency.data ?? defaultCurrency));
 
-            const responseCurrencyList = await listenerApi.dispatch(merchantCurrencyApi.endpoints.searchMerchantCurrency.initiate({
-                filter: {},
-                pagination: {
-                    pageNumber: 0,
-                    pageSize: 100,
-                },
-            }));
-
-            listenerApi.dispatch(merchantCurrencyStateActions.setCurrencyList(responseCurrencyList.data?.content.map(item => item.currency).sort() ?? []));
-
-
         } catch (err) {
 
             // TODO: error
@@ -102,10 +96,9 @@ export const state = configureStore({
         notifications: notificationStateReducer,
         auth: authStateReducer,
         userProfile: userProfileStateReducer,
-        products: productsStateReducer,
-        soldProductDetails: soldProductsStateReducer,
         orders: ordersStateReducer,
         merchantCurrency: merchantCurrencyStateReducer,
+        bundle: bundleStateReducer,
 
     },
     devTools: process.env.NODE_ENV !== 'production',

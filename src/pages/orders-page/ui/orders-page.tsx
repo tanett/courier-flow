@@ -6,9 +6,10 @@ import { t } from '@lingui/macro';
 import { OrdersList } from 'features/orders-list';
 import { CreateButtonFilled } from 'shared/ui/create-button-filled/create-button-filled';
 import { useNavigate } from 'react-router-dom';
-import { useIsAllowedPermissions } from '../../../entities/users/hooks/use-is-allowed-permissions';
+import { useIsAllowedPermissions } from '../../../entities-project/users/hooks/use-is-allowed-permissions';
 import { addOrdersPermissions } from 'app/config/permissions-config';
 import { routerPaths } from 'app/config/router-paths';
+import { useSelectorT } from 'app/state';
 
 const OrdersPage: React.FC = () => {
 
@@ -24,20 +25,22 @@ const OrdersPage: React.FC = () => {
 
     };
 
+    const courierId = useSelectorT(state => state.userProfile.userProfile?.actor.id)
+
     return (
         <DashboardContent>
-            <DashboardContent.Header
-                leftSide={<DashboardBreadcrumbs dataList={[
-                    { name: i18n._(t`Orders`) }
-                ]}/>}
-                rightSide={
-                    isAllowCreate && <CreateButtonFilled
-                        id={'create-new-order'}
-                        handler={onCreateNewOrder}
-                    />}
-            />
+            {/* <DashboardContent.Header */}
+            {/*     leftSide={<DashboardBreadcrumbs dataList={[ */}
+            {/*         { name: i18n._(t`Orders`) } */}
+            {/*     ]}/>} */}
+            {/*     rightSide={ */}
+            {/*         isAllowCreate && <CreateButtonFilled */}
+            {/*             id={'create-new-order'} */}
+            {/*             handler={onCreateNewOrder} */}
+            {/*         />} */}
+            {/* /> */}
 
-           <OrdersList/>
+            {courierId && <OrdersList courierId={courierId}/> }
 
         </DashboardContent>
     );

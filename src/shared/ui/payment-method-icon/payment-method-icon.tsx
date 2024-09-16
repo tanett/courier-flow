@@ -3,7 +3,7 @@ import { Box } from '@mantine/core';
 import { BanknotesIcon, CreditCardIcon, QrCodeIcon } from '@heroicons/react/24/outline';
 import { useStyles } from './styles';
 import { TransferIconOutline } from 'shared/ui/svg-custom-icons/transfer-icon-outline/transfer-icon-outline';
-import { typePayment } from 'entities/sales/model/types';
+import { typePayment } from 'entities-project/sales/model/types';
 import { TransferDollarIconOutline16 } from 'shared/ui/svg-custom-icons/transfer-dollar-icon-outline/transfer-dollar-icon-outline16';
 import { TapToPlayIconOutline16 } from 'shared/ui/svg-custom-icons/tap-to-pay-icon-outline/tap-to-play-icon-outline-16';
 

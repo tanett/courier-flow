@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChangePasswordForFirstLogin } from '../../../features/change-password-for-first-login';
+import { ChangePasswordForFirstLogin } from 'features/change-password-for-first-login';
 import { useSelectorT } from 'app/state';
 import { LoaderAria } from 'shared/ui/loader-area/loader-aria';
 

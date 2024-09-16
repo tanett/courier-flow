@@ -5,17 +5,17 @@ import { useLingui } from '@lingui/react';
 import { InfoCardSmall } from 'shared/ui/info-card-small';
 import { BuildingStorefrontIcon, ChatBubbleBottomCenterIcon, EnvelopeIcon, MapPinIcon, PhoneIcon, UserIcon } from '@heroicons/react/24/outline';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
-import { typeOrder } from '../../../../../entities/orders/model/state-slice';
+import { typeOrder } from '../../../../../entities-project/orders/model/state-slice';
 import DateTimeInLine from 'shared/ui/date-time-in-line/date-time-in-line';
 import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status';
 import ButtonAsLink from 'shared/ui/button-as-link/button-as-link';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { routerPaths } from 'app/config/router-paths';
-import { useGetStoreByIdQuery } from '../../../../../entities/stores/api/api';
-import { useSearchUserQuery } from '../../../../../entities/users/api/api';
-import { typeUser } from '../../../../../entities/user-profile/model/state-slice';
+import { useGetStoreByIdQuery } from '../../../../../entities-project/stores/api/api';
+import { useSearchUserQuery } from '../../../../../entities-project/users/api/api';
+import { typeUser } from '../../../../../entities-project/user-profile/model/state-slice';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
-import { useIsAllowedPermissions } from '../../../../../entities/users/hooks/use-is-allowed-permissions';
+import { useIsAllowedPermissions } from '../../../../../entities-project/users/hooks/use-is-allowed-permissions';
 import { editOrdersPermissions, readStoresPermissions, readUserPermissions } from 'app/config/permissions-config';
 
 

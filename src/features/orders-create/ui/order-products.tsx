@@ -2,8 +2,6 @@ import React from 'react';
 import { useStyles } from './styles';
 import { typeReturnOrderForm } from '../types/types';
 import { Box, Flex, rem, Text, useMantineTheme, SimpleGrid } from '@mantine/core';
-import { SelectorWithSearchStore } from 'features/selector-with-search-store';
-import { typeReturnForm } from 'features/selector-with-search-store/types';
 import { SelectorProducts } from 'features/orders-create/ui/selector-products/selector-products';
 import {  Trans } from '@lingui/macro';
 import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
@@ -25,7 +23,7 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }
 
             <Flex className={ classes.flexColumn }>
 
-                <SelectorWithSearchStore required={ true } fieldName={ 'storeId' } form={ form as unknown as typeReturnForm } initialValue={ null }/>
+                {/* <SelectorWithSearchStore required={ true } fieldName={ 'storeId' } form={ form as unknown as typeReturnForm } initialValue={ null }/> */}
 
                 <Flex sx={{ flexDirection: 'row', gap: rem(12), position: 'relative' }}>
                     <Box sx={ { width: '408px' } }>
@@ -37,7 +35,7 @@ export const OrderProducts: React.FC<{ form: typeReturnOrderForm }> = ({ form, }
                         position: 'relative',
                         flexGrow: 1
                     } }>
-                        <ProductsInCartTable form={ form }/>
+                        <ProductsInCartTable form={ form } />
                         <SimpleGrid cols={ 2 } className={ classes.discountContainer }>
                             <DiscountInput form={ form }/>
                             <ServicePaymentInput form={ form }/>

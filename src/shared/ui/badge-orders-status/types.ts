@@ -1,4 +1,4 @@
-import { OrderStatuses } from '../../../entities/orders/model/orders-statuses';
+import { OrderStatuses } from '../../../entities-project/orders/model/orders-statuses';
 
 export type typeBadgeOrdersStatus = {
     statusCode: string

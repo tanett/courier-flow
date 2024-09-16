@@ -3,7 +3,7 @@ import { Box, Flex, useMantineTheme } from '@mantine/core';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { TableOrderedProducts } from 'features/orders-details/ui/orders-details-products/ui/table/table-ordered-products';
-import { typeOrder } from '../../../../../entities/orders/model/state-slice';
+import { typeOrder } from '../../../../../entities-project/orders/model/state-slice';
 
 export const OrdersDetailsOrderedProductsList: React.FC<{ orderData: typeOrder }> = ({ orderData }) => {
 

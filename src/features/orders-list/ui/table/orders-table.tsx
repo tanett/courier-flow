@@ -15,25 +15,24 @@ import { numberCurrencyFormat } from 'shared/utils/convertToLocalCurrency';
 import { formatIncompletePhoneNumber } from 'libphonenumber-js';
 import BadgeOrdersStatus from 'shared/ui/badge-orders-status/badge-orders-status';
 import { ModalCancelOrder } from 'features/orders-list/ui/modal/modal-cancel-order';
-import { OrdersListFilter } from 'features/orders-list-filter';
-import {  OrderStatuses } from '../../../../entities/orders/model/orders-statuses';
-import { ModalChangeStatusWaitingDelivery } from 'features/orders-list/ui/modal/modal-change-status-waiting-delivery';
-import { ModalAddCourier } from 'features/orders-list/ui/modal/modal-add-courier';
+import {  OrderStatuses } from 'entities-project/orders/model/orders-statuses';
+
 import { TdActionsOrders } from 'features/orders-list/ui/table/table-actions-for-orders/table-actions-orders';
-import { isOrderPossibleToEdit } from '../../../../entities/orders/helpers/is-order-possible-to edit';
-import { useChangeStatusProcessing } from 'features/orders-list/hooks/use-change-status-processing';
+import { isOrderPossibleToEdit } from 'entities-project/orders/helpers/is-order-possible-to edit';
+import { useChangeStatusDelivering } from 'features/orders-list/hooks/use-change-status-delivering';
+import { OrdersListFilter } from 'features/orders-list-filter';
+import { IconTruckDelivery } from '@tabler/icons-react';
+import { ShoppingCartIcon } from '@heroicons/react/16/solid';
+import { TdActions } from 'shared/ui/table/ui/table-actions/table-actions';
+import { useCreateSaleFromOrder } from 'entities-project/sales/hooks/use-create-sale-from-order';
 
 export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     isAllowedEditByPermission,
     currentUser,
-    goToEditPage,
     goToDetailsPage,
-    // onClickRowActionsArchiveItem,
     ordersList,
     pagination,
     isLoading,
-    headerActions,
-    handlersListState,
     setPopupContent
 }) => {
 
@@ -42,30 +41,10 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
     const theme = useMantineTheme();
 
 
-    // observer for checkbox in header - if all checked
-    const allChecked = (ordersList && ordersList.length > 0) ? ordersList?.every((value) => value?.checked) : false;
+    const{onChangeStatusInDelivering}=useChangeStatusDelivering()
 
-    // observer for checkbox in header - if something checked
-    const indeterminate = ordersList?.some((value) => value?.checked) && !allChecked;
+    const {createSale, isSaleLoading} = useCreateSaleFromOrder()
 
-    const onCheckedAllHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-        event.stopPropagation();
-        handlersListState.setState((current) => current.map((value) => ({
-            ...value,
-            checked: !allChecked,
-        })));
-
-    };
-
-    const onCheckedItemHandler = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
-
-        event.stopPropagation();
-        handlersListState.setItemProp(index, 'checked', event.currentTarget.checked);
-
-    };
-
-    const{onChangeStatusInProcessing}=useChangeStatusProcessing()
     return (<>
         <FilterPanel
             withFind={ { placeholder: i18n._(t`Search by client’s phone number, delivery address, order number or order amount`) } }
@@ -73,16 +52,13 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
             isListLoading={isLoading}
         />
 
-        { (isLoading)
+        { (isLoading || isSaleLoading)
             ? <TableSkeleton/>
             : ordersList && <>
             <Table>
                 <OrdersListTableHeader
-                    indeterminate={ indeterminate || false }
-                    allChecked={ allChecked }
-                    headerActions={ headerActions }
                     isAllowedEdit={ isAllowedEditByPermission }
-                    onCheckedAllHandler={ onCheckedAllHandler }/>
+                    />
 
                 <Table.Body>
                     { ordersList.length > 0 && currentUser && ordersList.map((item, index) => {
@@ -91,38 +67,16 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
                         const actions: typeActionList | undefined =  [
                             {
-                                label: i18n._(t`Edit`),
-                                handler: () => goToEditPage(item.id),
-                                icon: <PencilSquareIcon color={!isPossible ?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
-                                disabled: !isPossible,
+                                label: i18n._(t`Took for delivery`),
+                                handler: () => onChangeStatusInDelivering(item),
+                                icon: <IconTruckDelivery color={(!isPossible || item.status!== OrderStatuses.WAITING_FOR_DELIVERY) ?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
+                                disabled: !isPossible || item.status!== OrderStatuses.WAITING_FOR_DELIVERY,
                             },
                             {
-                                label: i18n._(t`Assign courier `),
-                                handler: () => setPopupContent(<ModalAddCourier data={ item } setOpen={ setPopupContent }  />),
-                                disabled:  !isPossible
-
-                            },
-                            // {
-                            //     label: i18n._(t`Assign assignee `),
-                            //     handler: () => setPopupContent(<ModalChangeStatusInProgress data={ item } setOpen={ setPopupContent }  />),
-                            //     disabled:  !isPossible
-                            //
-                            // },
-                            {
-                                label: i18n._(t`In process`),
-                                handler: () => onChangeStatusInProcessing(item),
-                                disabled:  item.status === OrderStatuses.PROCESSING ? true : !isPossible
-                            },
-                            {
-                                label: i18n._(t`Waiting for delivery`),
-                                handler: () => setPopupContent(<ModalChangeStatusWaitingDelivery data={ item } setOpen={ setPopupContent } /> ),
-                                disabled:  item.status === OrderStatuses.WAITING_FOR_DELIVERY ? true :  !isPossible
-                            },
-                            {
-                                label: i18n._(t`Cancelled`),
-                                handler: () => setPopupContent(<ModalCancelOrder data={ item } setOpen={ setPopupContent }/>),
-                                textColor: theme.colors.red[5],
-                                disabled: !isPossible
+                                label: i18n._(t`Complete with sale`),
+                                handler: () => createSale(item.id),
+                                icon: <ShoppingCartIcon color={(!isPossible || item.status!== OrderStatuses.DELIVERING)?theme.colors.gray[3] : theme.colors.primary[5] } width={ 22 }/>,
+                                disabled: !isPossible || item.status!== OrderStatuses.DELIVERING,
                             },
 
                         ] ;
@@ -137,15 +91,8 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
 
 
                         return (
-                            <Table.Tr key={ item.id } handler={ () => goToDetailsPage(item.id, '5') }>
-                                {/* <td onClick={ (event) => event.stopPropagation() } align={ 'center' } width={ 50 } style={ { cursor: 'auto' } }> */ }
+                            <Table.Tr key={ item.id + item.status } handler={ () => goToDetailsPage(item.id, item.code) }>
 
-                                {/*     <Checkbox size={ 'sm' } */ }
-                                {/*         sx={ { '& input': { cursor: 'pointer' } } } */ }
-                                {/*         checked={ item.checked } */ }
-                                {/*         onChange={ (event) => onCheckedItemHandler(event, index) }/> */ }
-
-                                {/* </td> */ }
                                 <Table.Td>
                                     <Flex direction={ 'column' } sx={ {
                                         maxWidth: '140px',
@@ -164,7 +111,6 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                         </Flex>
                                     </Flex>
                                 </Table.Td>
-                                {/* <Table.Td><Box sx={ { width: rem(100) } }><Tooltip label={ item.assigneeName || 'Not assigned' }><Text truncate>{ item.assigneeName || '-' }</Text></Tooltip></Box></Table.Td> */}
                                 <Table.Td><Box sx={ { width: rem(190) , minWidth: rem(190) } }><Text truncate>{ item.storeName || '-' }</Text></Box></Table.Td>
 
                                 <Table.Td align={ 'center' }><Box sx={ { width: rem(110), maxWidth: rem(140) } }>{ item.totalCost ? numberCurrencyFormat(item.totalCost) : '-' }</Box></Table.Td>
@@ -184,10 +130,9 @@ export const OrdersListTable: React.FC<typeOrdersListTable> = ({
                                             { item.customer.phone ? formatIncompletePhoneNumber(item.customer.phone) : '-' }
                                         </Flex>
                                     </Flex></Table.Td>
-                                <Table.Td><Box sx={ { width: rem(110) } }><Tooltip label={ item.courierName || 'Not assigned' }><Text truncate>{ item.courierName || '-' }</Text></Tooltip></Box></Table.Td>
-                                <Table.Td><BadgeOrdersStatus statusCode={ item.status } key={ index + item.status }/></Table.Td>
+                                <Table.Td>{ <BadgeOrdersStatus statusCode={ item.status } key={ item.status }/> }</Table.Td>
 
-                                { (isAllowedEditByPermission && finalActions) ? <TdActionsOrders actions={ finalActions } dividerIndex={ 1 }/> : <Table.Td/> }
+                                { (isAllowedEditByPermission && finalActions) ? <TdActions actions={ finalActions } dividerIndex={ 1 }/> : <Table.Td/> }
                             </Table.Tr>
                         );
 

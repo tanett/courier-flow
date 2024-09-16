@@ -4,25 +4,25 @@ import { LoaderOverlay } from 'shared/ui/loader-overlay';
 import { Button, Flex, Space, Tabs, } from '@mantine/core';
 import { t } from '@lingui/macro';
 import { useStyles } from 'features/orders-create/ui/styles';
-import { useChangeOrderDataMutation, } from '../../../entities/orders/api/api';
+import { useChangeOrderDataMutation, } from '../../../entities-project/orders/api/api';
 import { useForm } from '@mantine/form';
 import { fieldsInTabClient, fieldsInTabProduct, initialOrderForm, mapRequestFieldsToFormFieldOrders } from 'features/orders-create/form/form';
 import { typeOrdersForm } from 'features/orders-create/types/types';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { useLingui } from '@lingui/react';
 import { OrderProducts } from './order-products';
-import { typeEditOrderRequest } from '../../../entities/orders/api/types';
+import { typeEditOrderRequest } from '../../../entities-project/orders/api/types';
 import { getServicePaymentAmount } from 'features/orders-create/helpers/get-service-payment-amount';
 import { mapProductsForCreateOrderObject } from 'features/orders-create/helpers/map-products-for-create-order-object';
-import { notificationActions } from '../../../entities/notification/model';
+import { notificationActions } from '../../../entities-project/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';
 import { routerPaths } from 'app/config/router-paths';
 import { typeResponseError } from 'app/api/types';
-import { typeOrder } from '../../../entities/orders/model/state-slice';
+import { typeOrder } from '../../../entities-project/orders/model/state-slice';
 import { mapOrderedProductsToCart } from 'features/orders-edit/helpers/map-ordered-products-to-cart';
 import { OrderClient } from 'features/orders-create/ui/order-client';
-import { errorHandlerForForm } from 'app/utils/error-handler-for-form';
-import { typeReturnForm } from 'features/selector-with-search-store/types';
+import { errorHandlerForForm, typeReturnForm } from 'app/utils/error-handler-for-form';
+import { initialEditOrderForm } from 'features/orders-edit/form/form';
 
 const enum TYPE_TABS {
     CLIENT = 'client',
@@ -41,7 +41,7 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
     const dispatchAppT = useAppDispatchT();
 
     const form = useForm<typeOrdersForm>({
-        ...initialOrderForm,
+        ...initialEditOrderForm,
         initialValues: {
             customer: {
                 fullName: orderData.customer.fullName,
@@ -63,7 +63,7 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
         }
     });
 
-    const [ tab, setTab ] = useState(TYPE_TABS.CLIENT);
+    const [ tab, setTab ] = useState(TYPE_TABS.PRODUCTS);
 
     const [ errorInTab, setErrorInTab ] = useState<TYPE_TABS | null>(null);
 
@@ -160,7 +160,7 @@ export const OrderEditForm: React.FC<{ orderData: typeOrder }> = ({ orderData })
                         </Flex>
 
                         <Tabs.Panel value={ TYPE_TABS.CLIENT }><OrderClient form={ form }/> </Tabs.Panel>
-                        <Tabs.Panel value={ TYPE_TABS.PRODUCTS }><OrderProducts form={ form }/></Tabs.Panel>
+                        <Tabs.Panel value={ TYPE_TABS.PRODUCTS }><OrderProducts form={ form } orderData={orderData}/></Tabs.Panel>
                     </Tabs>
                     { (isInProgress || isLoading) && <LoaderOverlay/> }
                     <Space h={ 42 }/>

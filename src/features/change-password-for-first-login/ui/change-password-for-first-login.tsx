@@ -6,18 +6,18 @@ import { Alert, Box, Button, Flex, Image, PasswordInput, rem, Space, Text, Title
 import { SupportLink } from 'shared/ui/support-link';
 import { useNavigate } from 'react-router-dom';
 import { initialChangePasswordForm } from '../forms/forms';
-import { useChangePasswordMutation } from '../../../entities/user-profile/api/api';
+import { useChangePasswordMutation } from '../../../entities-project/user-profile/api/api';
 import { WithPasswordHelper } from 'shared/ui/with-password-helper/with-password-helper';
 import successIconUrl from '../../../shared/images/auth/success-restore.svg';
 import { routerPaths } from 'app/config/router-paths';
 import { EyeIcon, EyeSlashIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import { useAppDispatchT } from 'app/state';
-import { authStateActions, typeFirstLoginData } from '../../../entities/auth/model/state-slice';
-import { useLoginMutation } from '../../../entities/auth/api/api';
-import { setAuthSessionStorageDate } from 'features/login/helpers/setAuthSessionStorageDate';
+import { authStateActions, typeFirstLoginData } from '../../../entities-project/auth/model/state-slice';
+import { useLoginMutation } from '../../../entities-project/auth/api/api';
 import { setLastLogins } from 'shared/ui/with-remember-login-helper/utils';
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { Loader } from 'shared/ui/loader/loader';
+import { setAuthSessionStorageDate } from 'features/login-user/helpers/setAuthSessionStorageDate';
 
 
 export const ChangePasswordForFirstLogin: React.FC<typeFirstLoginData> = (oldData) => {

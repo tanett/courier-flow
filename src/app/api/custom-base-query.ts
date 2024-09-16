@@ -1,12 +1,15 @@
 import { API_URLS } from 'app/config/api-urls';
 import { Mutex } from 'async-mutex';
 import { type BaseQueryFn, type FetchArgs, fetchBaseQuery, type FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { iLoginResponse, iLoginResponseTransform } from '../../entities/auth/api/types';
-import { setAuthSessionStorageDate } from 'features/login/helpers/setAuthSessionStorageDate';
-import { authStateActions } from '../../entities/auth/model/state-slice';
+import { iLoginResponse, iLoginResponseTransform } from '../../entities-project/auth/api/types';
+import { setAuthSessionStorageDate } from 'features/login-user/helpers/setAuthSessionStorageDate';
+import { authStateActions } from '../../entities-project/auth/model/state-slice';
 
 
 export const REFRESH_URL = API_URLS.AUTH_REFRESH;
+export const REFRESH_URL_TERMINAL = API_URLS.AUTH_REFRESH;
+
+//const urls_for_terminals = [API_URLS.SALES_MAKE_NEW, API_URLS.BUNDLE_GET];
 
 // Create a new mutex
 const mutex = new Mutex();

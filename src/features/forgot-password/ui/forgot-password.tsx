@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { Box, Button, Flex, Image, rem, Space, Text, TextInput, Title } from '@mantine/core';
 import { LoaderOverlay } from '../../../shared/ui/loader-overlay';
 import { SupportLink } from '../../../shared/ui/support-link';
-import { useLazyAskEmailToPasswordQuery } from '../../../entities/user-profile/api/api';
+import { useLazyAskEmailToPasswordQuery } from '../../../entities-project/user-profile/api/api';
 import iconUrl from '../../../shared/images/auth/sent-mail.svg';
 
 

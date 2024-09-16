@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelectorT } from '../../../app/state';
-import { typeMainMenuItem } from '../types/types';
+
 import { mainMenuConfig } from '../config/main-menu.config';
 import { Flex } from '@mantine/core';
-import { menuCreator } from '../helpers/menuCreator';
 import { useStyles } from './styles';
 import { MainMenuItem } from './main-menu-item';
 import { MenuSkeleton } from './menu-skeleton';
+import { useSelectorT } from 'app/state';
+import { typeMainMenuItem } from 'features/main-menu/types/types';
+import { menuCreator } from 'features/main-menu/helpers/menuCreator';
 
 export const MainMenu: React.FC = () => {
 

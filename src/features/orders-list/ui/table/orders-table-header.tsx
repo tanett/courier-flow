@@ -7,101 +7,59 @@ import { typeOrdersListTableHeader } from 'features/orders-list/types/types';
 import { sortDirection } from 'app/api/types';
 
 
-export const OrdersListTableHeader: React.FC<typeOrdersListTableHeader> = ({
-    onCheckedAllHandler,
-    indeterminate,
-    allChecked,
-    isAllowedEdit,
-    headerActions,
-}) => {
-
-    const theme = useMantineTheme();
-
+export const OrdersListTableHeader: React.FC<typeOrdersListTableHeader> = ({ isAllowedEdit,}) => {
 
     return (
         <Table.Header>
-            {/* <Table.Th withoutLeftDivider> */}
-                {/* <Checkbox */}
-                {/*     size={ 'sm' } */}
-                {/*     sx={ { '& input': { cursor: 'pointer' } } } */}
-                {/*     indeterminate={ indeterminate } */}
-                {/*     checked={ allChecked } */}
-                {/*     onChange={ (event) => onCheckedAllHandler(event) } */}
-                {/* /> */}
-            {/* </Table.Th> */}
-            { (indeterminate || allChecked)
-                ? <Table.Th colSpan={isAllowedEdit ? 6 : 5 }>
-                    <Flex sx={ { flexWrap: 'nowrap' } }>
-                        { headerActions.map((actions, index) => (
-                            <React.Fragment key={ actions.id }>
-                                <UnstyledButton
+            <Table.Th withoutLeftDivider>
+                <Flex justify="space-between" gap={ 10 } sx={ {
+                    width: '100%',
+                    maxWidth: '140px',
+                    lineHeight: '16px'
+                } }>
+                    <Trans>Order&nbsp;number&nbsp;/
+                        Date</Trans>
+                    <SortButton initialSortDirection={ sortDirection.dec }/>
+                </Flex>
+            </Table.Th>
+            {/* <Table.Th> */ }
+            {/*     <Box sx={{minWidth: '110px', textAlign: 'left'}}> */ }
+            {/*         <Trans>Assignee</Trans> */ }
+            {/*     </Box> */ }
 
-                                    id={ actions.id }
-                                    onClick={ actions.handler }
-                                    sx={ {
-                                        fontWeight: 600,
-                                        fontSize: theme.fontSizes.md,
-                                        letterSpacing: 0.3,
-                                        lineHeight: '20px',
-                                        color: theme.black,
-                                        cursor: 'pointer',
-                                        padding: '6px 6px',
-                                        marginLeft: index === 0 ? 0 : rem(16),
-                                        marginRight: rem(16),
-                                        borderTopLeftRadius: rem(4),
-                                        borderTopRightRadius: rem(4),
-                                        textWrap: 'nowrap',
-                                        borderBottom: '1px solid transparent',
-                                        '&:hover': { backgroundColor: theme.fn.rgba(theme.colors.primary[ 5 ], 0.1) },
-                                    } }
-                                >
-                                    { actions.label }
-                                </UnstyledButton>
-                                { index < headerActions.length - 1 && <Divider orientation={'vertical'} sx={{ borderColor: theme.colors.borderColor[ 0 ] }}/> }
-                            </React.Fragment>
-
-                        )) }
-                    </Flex>
-                </Table.Th>
-
-                : <>
-                    <Table.Th withoutLeftDivider>
-                        <Flex justify="space-between" gap={10} sx={{width: '100%',maxWidth: '140px', lineHeight: '16px' }}>
-                            <Trans>Order&nbsp;number&nbsp;/
-                                Date</Trans>
-                            <SortButton initialSortDirection={sortDirection.dec}/>
-                        </Flex>
-                    </Table.Th>
-                    {/* <Table.Th> */}
-                    {/*     <Box sx={{minWidth: '110px', textAlign: 'left'}}> */}
-                    {/*         <Trans>Assignee</Trans> */}
-                    {/*     </Box> */}
-
-                    {/* </Table.Th> */}
-                    <Table.Th>
-                        <Box sx={{minWidth: '170px', lineHeight: '16px', textAlign: 'left' }}>
-                        <Trans>Store</Trans>
-                        </Box>
-                    </Table.Th>
-                    <Table.Th>
-                        <Box sx={{minWidth: '110px', lineHeight: '16px' , textAlign: 'left'}}>
-                            <Trans>Order amount</Trans></Box>
-                    </Table.Th>
-                    <Table.Th>
-                        <Box sx={{ lineHeight: '16px', minWidth: '123px',textAlign: 'left' }}>
-                            <Trans>Client /<br/> Phone number</Trans>
-                        </Box>
-                    </Table.Th>
-                    <Table.Th>
-                        <Box sx={{ lineHeight: '16px', minWidth: '110px', textAlign: 'left'}}>
-                            <Trans>Courier</Trans></Box>
-                    </Table.Th>
-                    <Table.Th >
-                        <Trans>Status</Trans>
-                    </Table.Th>
-                    { isAllowedEdit && <Table.Th align={'center'}>
-                        <Trans>Actions</Trans>
-                    </Table.Th> }</> }
+            {/* </Table.Th> */ }
+            <Table.Th>
+                <Box sx={ {
+                    minWidth: '170px',
+                    lineHeight: '16px',
+                    textAlign: 'left'
+                } }>
+                    <Trans>Store</Trans>
+                </Box>
+            </Table.Th>
+            <Table.Th>
+                <Box sx={ {
+                    minWidth: '110px',
+                    lineHeight: '16px',
+                    textAlign: 'left'
+                } }>
+                    <Trans>Order amount</Trans></Box>
+            </Table.Th>
+            <Table.Th>
+                <Box sx={ {
+                    lineHeight: '16px',
+                    minWidth: '123px',
+                    textAlign: 'left'
+                } }>
+                    <Trans>Client /<br/> Phone number</Trans>
+                </Box>
+            </Table.Th>
+            <Table.Th>
+                <Trans>Status</Trans>
+            </Table.Th>
+            { isAllowedEdit && <Table.Th align={ 'center' }>
+                <Trans>Actions</Trans>
+            </Table.Th> }
         </Table.Header>
     );
 

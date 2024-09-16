@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Badge, useMantineTheme } from '@mantine/core';
 import { useStyles } from './styles';
 import { typeBadgeOrdersStatus } from './types';
-import { OrderStatuses } from '../../../entities/orders/model/orders-statuses';
+import { OrderStatuses } from '../../../entities-project/orders/model/orders-statuses';
 import { useSelectorT } from 'app/state';
 
 const BadgeOrdersStatus:React.FC<typeBadgeOrdersStatus> = ({ statusCode }) => {
@@ -46,6 +46,7 @@ const BadgeOrdersStatus:React.FC<typeBadgeOrdersStatus> = ({ statusCode }) => {
 
     return (
         <Badge variant={'outline'}
+               id={statusCode}
                className={classes.badge}
                sx={{
                    color: statusCode === OrderStatuses.WAITING_FOR_DELIVERY? theme.colors.gray[5] : getColor(statusCode),
