@@ -103,6 +103,7 @@
     "@types/node": "^16.18.59",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
+    "@vercel/analytics": "^1.3.1",
     "async-mutex": "^0.4.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",

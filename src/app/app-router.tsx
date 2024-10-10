@@ -7,6 +7,7 @@ import { withLocales } from './providers/with-locales/with-locales';
 import { withState } from './providers/with-state/withState';
 import { PageNotification } from 'shared/ui/page-notification';
 import { WithCheckRemoteControl } from './providers/with-check-remote-control/with-check-remote-control';
+import { Analytics } from '@vercel/analytics/react';
 
 
 function AppRouter() {
@@ -19,6 +20,7 @@ function AppRouter() {
 
     return (
         <SuspenseProvider>
+            <Analytics/>
             <WithCheckRemoteControl>
                 <PageNotification/>
                 <RouterProvider router={router} />
