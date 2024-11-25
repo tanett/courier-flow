@@ -88,22 +88,22 @@ export const Profile: React.FC = () => {
             }
 
             try {
-
-                const res = await patchUser(editObject).unwrap();
-
-                dispatchAppT(userProfileActions.updateUserProfile(res));
-
-                dispatchAppT(notificationActions.addNotification({
-                    type: NOTIFICATION_TYPES.SUCCESS,
-                    message: i18n._(t`Profile changed successfully.`),
-                }));
-
-                const profileData = res;
-
-                profileForm.setFieldValue('fullName', profileData.fullName ?? '');
-                profileForm.setFieldValue('email', profileData.email ?? '');
-                profileForm.setFieldValue('phone', profileData.phone ?? '');
-                profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
+localStorage.setItem('i18N', JSON.stringify(editObject.userSettings.locale));
+                // const res = await patchUser(editObject).unwrap();
+                //
+                // dispatchAppT(userProfileActions.updateUserProfile(res));
+                //
+                // dispatchAppT(notificationActions.addNotification({
+                //     type: NOTIFICATION_TYPES.SUCCESS,
+                //     message: i18n._(t`Profile changed successfully.`),
+                // }));
+                //
+                // const profileData = res;
+                //
+                // profileForm.setFieldValue('fullName', profileData.fullName ?? '');
+                // profileForm.setFieldValue('email', profileData.email ?? '');
+                // profileForm.setFieldValue('phone', profileData.phone ?? '');
+               //profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
 
             } catch (err) {
 
@@ -122,8 +122,7 @@ export const Profile: React.FC = () => {
         if (profileData) {
 
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
-            profileForm.setFieldValue('email', profileData.email ?? '');
-            profileForm.setFieldValue('phone', profileData.phone ?? '');
+
             profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
         }
 
@@ -141,24 +140,10 @@ export const Profile: React.FC = () => {
                         placeholder={ i18n._(t`User name`) }
                         { ...profileForm.getInputProps('fullName') }
                         maxLength={ 150 }
+                        disabled
                     />
                 </FieldsetForForm>
-                <FieldsetForForm title={ <Trans>Contacts</Trans> }>
-                    <SimpleGrid cols={ 2 } className={ classes.formGrid }>
-                        <PhoneInputWithCountrySelector
-                            isRequired={ false }
-                            { ...profileForm.getInputProps('phone') }
-                            value={ profileForm.values.phone }
-                            onChange={ (value: string) => profileForm.setFieldValue('phone', value) }
-                        />
-                        <TextInput
-                            withAsterisk
-                            label={ mapRequestFieldsToFormField.email.translatedValue}
-                            placeholder="example@email.com"
-                            { ...profileForm.getInputProps('email') }
-                        />
-                    </SimpleGrid>
-                </FieldsetForForm>
+
             </Flex>
             <Space h={ 25 }/>
 
@@ -180,7 +165,7 @@ export const Profile: React.FC = () => {
                             },
                         } }
                         sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
-
+disabled
                     />
                 </SimpleGrid>
             </FieldsetForForm>

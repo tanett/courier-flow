@@ -12,7 +12,7 @@ export const bundleApiSlice = baseApi.injectEndpoints({
             query: (terminalToken) => ({
                 url: API_URLS.BUNDLE_GET,
                 method: 'GET',
-              headers: { 'Authorization': `Bearer ${terminalToken}` }
+                headers: { 'Authorization': `Bearer ${terminalToken}` },
             }),
 
         }),

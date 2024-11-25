@@ -16,20 +16,12 @@ export enum API_URLS {
 
     INDUSTRIES_SEARCH = '/api/v1/industries/search',
 
-    TERMINAL_LIST_SEARCH = '/api/v1/terminals/search',
-    TERMINAL_LIST_SEARCH_WITH_LINKED_CONFIGURATION = '/api/v1/terminals/for-terminal-config',
-    TERMINAL_LIST_SEARCH_EXTENDED = '/api/v1/terminals/extended-search',
-    TERMINAL_CREATE = '/api/v1/terminals',
-    TERMINAL_PATCH = '/api/v1/terminals',
-    TERMINAL_ARCHIVE = '/api/v1/terminals/archive',
-    TERMINAL_GET = '/api/v1/terminals/{id}',
-
-    TERMINAL_CONFIGURATIONS_LIST_SEARCH = '/api/v1/terminal-configs/search',
-    TERMINAL_CONFIGURATIONS_GET = '/api/v1/terminal-configs/{id}',
-    TERMINAL_CONFIGURATIONS_DELETE = '/api/v1/terminal-configs/{id}',
-    TERMINAL_CONFIGURATIONS_CREATE = '/api/v1/terminal-configs',
-    TERMINAL_CONFIGURATIONS_PATCH= '/api/v1/terminal-configs',
-    TERMINAL_CONFIGURATIONS_GET_AVAILABLE_MODULES= '/api/v1/terminal-configs/available-modules',
+    DEVICE_LIST_SEARCH = '/api/v1/devices/search',
+    DEVICE_LIST_SEARCH_EXTENDED = '/api/v1/devices/extended-search',
+    DEVICE_CREATE = '/api/v1/devices',
+    DEVICE_PATCH = '/api/v1/devices',
+    DEVICE_ARCHIVE = '/api/v1/devices/archive',
+    DEVICE_GET = '/api/v1/devices/{id}',
 
     ROLES_SEARCH = '/api/v1/roles/search',
     ROLES_SEARCH_ONE = '/api/v1/roles/search/one',
@@ -131,5 +123,5 @@ export enum API_URLS {
     MERCHANT_CURRENCY_BY_ID= '/api/v1/merchant-currencies/{id}',
     MERCHANT_BASE_CURRENCY= '/api/v1/base-currency',
 
-    BUNDLE_GET='/api/v1/terminals/bundle'
+    BUNDLE_GET='/api/v1/devices/bundle'
 }

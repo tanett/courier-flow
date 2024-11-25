@@ -6,12 +6,19 @@ export const getSalesFiltersFromUrl = (urlParams: typeUseUrlParams) => {
     const tempFilter: typeSearchFilterSales = {};
 
     if (urlParams.searchPhrase) {
+
         const searchPhrase = Number(urlParams.searchPhrase);
         if (!isNaN(searchPhrase)) {
+
             const orFilter: typeSearchFilterSales['_or_'] = [];
-            if (Number.isInteger(searchPhrase)) {orFilter.push({ receiptNumber: searchPhrase });}
+            if (Number.isInteger(searchPhrase)) {
+
+                orFilter.push({ receiptNumber: searchPhrase });
+
+            }
             orFilter.push({ totalCost: searchPhrase });
-            tempFilter._or_ = orFilter
+            tempFilter._or_ = orFilter;
+
         }
 
     }
@@ -20,8 +27,8 @@ export const getSalesFiltersFromUrl = (urlParams: typeUseUrlParams) => {
     if (storeId && typeof storeId === 'string') tempFilter.storeIds = [ storeId ];
     const employee = urlParams.getFilterValue('employeeId');
     if (employee && typeof employee === 'string') tempFilter.soldByIds = [ employee ];
-    const terminalId = urlParams.getFilterValue('terminalId');
-    if (terminalId && typeof terminalId === 'string') tempFilter.terminalIds = [ terminalId ];
+    const deviceId = urlParams.getFilterValue('deviceId');
+    if (deviceId && typeof deviceId === 'string') tempFilter.deviceIds = [ deviceId ];
 
     const soldAtFrom = urlParams.getFilterValue('soldAtFrom');
     const soldAtTo = urlParams.getFilterValue('soldAtTo');

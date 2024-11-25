@@ -7,13 +7,13 @@ export const getTranslatedVariantForPaymentsMethod = (method: typePayment['metho
 
     case 'E_PAYMENT_SYSTEM' :
         return <Trans>EPS</Trans>;
-    case 'CARD':
+    case 'CARD' :
         return <Trans>Card</Trans>;
     case 'QR' :
         return <Trans>Qr-code</Trans>;
-    case 'CASH':
+    case 'CASH' :
         return <Trans>Cash</Trans>;
-    case 'TRANSFER':
+    case 'TRANSFER' :
         return <Trans>Transfer</Trans>;
     default :
         return method;

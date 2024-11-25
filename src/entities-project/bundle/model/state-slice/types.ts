@@ -1,28 +1,25 @@
 import { typeRetailProduct } from 'entities-project/retail-products/model/types';
 import { typeUser } from 'entities-project/user-profile/model/state-slice';
+import { deviceType } from 'entities-project/devices/model/types';
 
 export interface typeBundleState {
     bundle: typeBundle | undefined,
 }
 
 export type typeBundle = {
-    terminalData: typeTerminalData
+    deviceData: typeDeviceData
     storeData: StoreData
     merchantData: IMerchantData
     availableModules: IAvailableModule[]
     currentTime: string
 }
 
-export type typeTerminalData = {
-    id: string
-    model: string
-    serialNumber: string
-    contractCode: string
-    vendor: string
-    fiscalCardId: string
-    label: string
-    cashAppVersion: string
-    paymentAppVersion: string
+export type typeDeviceData = {
+        id: string
+        model: string
+        serialNumber: string
+        vendor: string
+        type: deviceType
 }
 
 export interface StoreData {
@@ -31,8 +28,21 @@ export interface StoreData {
     address: string
     phoneNumber: string
     email: string
-    retailProducts: typeRetailProduct[]
+    retailProducts: RetailProductInBundle[]
     users: typeUser[]
+}
+
+export interface RetailProductInBundle {
+    id: string
+    name: string
+    categoryId?: string
+    categoryName?: string
+    unit: string
+    marked: boolean
+    vat: number
+    barcodes?: string[]
+    additionalFields?: {type: string, value: string}[]
+    price: number
 }
 
 
@@ -42,8 +52,12 @@ export interface IMerchantData {
     address: string
     phone: string
     email: string
+    currencies: typeCurrencyInBundle[]
 }
-
+export type typeCurrencyInBundle = {
+    currency: string,
+    exchangeRate: 0
+}
 export interface IAvailableModule {
     value: string
     name: string

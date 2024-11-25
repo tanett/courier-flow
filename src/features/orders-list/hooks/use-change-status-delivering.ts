@@ -1,5 +1,4 @@
 import { typeOrder, typeOrderShortExtended } from '../../../entities-project/orders/model/state-slice';
-import { typeOrdersShortWithCheckBox } from 'features/orders-list/types/types';
 import { OrderStatuses } from '../../../entities-project/orders/model/orders-statuses';
 import { notificationActions } from '../../../entities-project/notification/model';
 import { NOTIFICATION_TYPES } from 'shared/ui/page-notification';

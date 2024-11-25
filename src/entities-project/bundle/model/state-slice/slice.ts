@@ -13,6 +13,7 @@ const bundleSlice = createSlice({
         setBundle: (state, action: PayloadAction<typeBundle>) => {
 
             state.bundle = action.payload;
+
         },
 
     },

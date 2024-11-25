@@ -105,6 +105,3 @@ export interface iChangePasswordByToken {
 export interface iForgotPasswordRequest {
     email: string,
 }
-
-
-

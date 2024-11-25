@@ -1,14 +1,13 @@
-import { typeOrder, typeOrderShortExtended } from 'entities-project/orders/model/state-slice';
+import { typeOrder } from 'entities-project/orders/model/state-slice';
 import { useAppDispatchT, useSelectorT } from 'app/state';
-import { Payment, Product, typeCreateSale } from 'entities-project/sales/model/types';
+import { Payment, PaymentType, Product, typeCreateSale } from 'entities-project/sales/model/types';
 import { randomId } from '@mantine/hooks';
-import { useLazyGetOrderByIdQuery, usePatchOrderForSaleMutation, usePatchOrderForSaleWithChangeProductsMutation } from 'entities-project/orders/api/api';
-import { useEffect, useState } from 'react';
+import { useLazyGetOrderByIdQuery } from 'entities-project/orders/api/api';
+import { useState } from 'react';
 import { useMakeSaleMutation } from 'entities-project/sales/api/api';
 import { errorHandler } from 'app/utils/errorHandler';
 import { typeResponseError } from 'app/api/types';
 import { v4 as uuidv4 } from 'uuid';
-import { OrderStatuses } from 'entities-project/orders/model/orders-statuses';
 
 export const useCreateSaleFromOrderWithChangeProducts = () => {
 
@@ -37,13 +36,14 @@ export const useCreateSaleFromOrderWithChangeProducts = () => {
         const payment: Payment = {
             amount: order.totalCost,
             baseCurrencyAmount: order.totalCost,
-            createdOnTerminalAt: saleDate,
+            createdOnDeviceAt: saleDate,
             currency: baseCurrency,
             exchangeRate: 1,
-            method: 'CASH'
+            method: 'CASH',
         };
 
         const productList: Product[] = order.products.map(product => {
+
             return {
                 id: product.id,
                 name: product.name,
@@ -58,18 +58,19 @@ export const useCreateSaleFromOrderWithChangeProducts = () => {
                 vatPercent: product.vatPercent,
                 vatAmount: product.vatAmount,
                 totalCost: product.totalCost,
-                additionalFields: product.additionalFields
+                additionalFields: product.additionalFields,
             };
+
         });
 
         const newSale: typeCreateSale = {
-            cashAppVersion: bundle.terminalData.cashAppVersion ?? '-',
-            fiscalModuleId: bundle.terminalData.fiscalCardId ?? '-',
-            fiscalSign: bundle.terminalData.contractCode ?? 'fs',
+            cashAppVersion: 'web-test-sale',
+            fiscalModuleId: 'web-test-sale',
+            fiscalSign:'web-test-sale',
             merchantName: bundle.merchantData.name,
             orderId: order.id,
-            paymentAppVersion: bundle.terminalData.paymentAppVersion ?? '-',
-            paymentType: 'USUAL',
+            paymentAppVersion: 'web-test-sale',
+            paymentType: PaymentType.USUAL,
             payments: [ payment ],
             products: productList,
             publicId: uid,
@@ -80,13 +81,12 @@ export const useCreateSaleFromOrderWithChangeProducts = () => {
             soldByName: user.fullName,
             storeAddress: bundle.storeData.address,
             storeName: bundle.storeData.name,
-            terminalContractCode: bundle.terminalData.contractCode ?? '-',
-            terminalLabel: bundle.terminalData.label,
             totalCost: order.totalCost,
-            zreportNumber: 10
+            zreportNumber: 10,
         };
 
         return newSale;
+
     };
 
     const [ isSaleLoading, setIsSaleLoading ] = useState(false);
@@ -96,6 +96,7 @@ export const useCreateSaleFromOrderWithChangeProducts = () => {
         setIsSaleLoading(true);
 
         const orderData = await getFullOrderAfterPatch(orderId).unwrap();
+
         //  console.log('orderData', orderData);
 
         if (orderData) {
@@ -106,27 +107,32 @@ export const useCreateSaleFromOrderWithChangeProducts = () => {
             if (sale) {
 
                 try {
+
                     const IdempotentKey = uuidv4();
 
                     makeSale({
                         sale,
-                        IdempotentKey
+                        IdempotentKey,
                     });
 
 
                 } catch (e) {
+
                     errorHandler(e as typeResponseError, 'create sale with patched order', dispatch);
+
                 }
 
             }
 
             setIsSaleLoading(false);
+
         }
+
     };
 
     return {
         createSale,
-        isSaleLoading: isSaleLoading || isLoading
+        isSaleLoading: isSaleLoading || isLoading,
     };
 
 };
