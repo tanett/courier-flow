@@ -4,6 +4,7 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeSearchFilterOrdersCustomer, typeSearchOrdersCustomerSortingNames } from './types';
 import { typeOrdersCustomer } from '../model/types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const ordersCustomerApi = baseApi.injectEndpoints({
@@ -13,7 +14,7 @@ export const ordersCustomerApi = baseApi.injectEndpoints({
         searchOrdersCustomer: builder.query<typeSearchResponse<typeOrdersCustomer>, typeSearchRequest<typeSearchFilterOrdersCustomer, typeSearchOrdersCustomerSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_CUSTOMER_SEARCH,
+                    url: createBaseUrl() +API_URLS.ORDERS_CUSTOMER_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,

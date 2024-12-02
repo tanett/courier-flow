@@ -4,6 +4,7 @@ import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-he
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { tagTypesExtendedStoresList, typeEditStoreRequest, typeSearchFilterStore, typeSearchStoreSortingNames, typeStoreToArchiveRequest } from './types';
 import { typeExtendedStore, typeStore, typeStoreWithLinkedConfiguration } from '../model/types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const storesApi = baseApi.injectEndpoints({
@@ -13,7 +14,7 @@ export const storesApi = baseApi.injectEndpoints({
         searchStore: builder.query<typeSearchResponse<typeStore>, typeSearchRequest<typeSearchFilterStore, typeSearchStoreSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.STORES_SEARCH,
+                    url: createBaseUrl() +API_URLS.STORES_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -25,7 +26,7 @@ export const storesApi = baseApi.injectEndpoints({
         extendedSearchStore: builder.query<typeSearchResponse<typeExtendedStore>, typeSearchRequest<typeSearchFilterStore, typeSearchStoreSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.STORES_SEARCH_EXTENDED,
+                    url: createBaseUrl() +API_URLS.STORES_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -47,7 +48,7 @@ export const storesApi = baseApi.injectEndpoints({
         searchStoreWithLinkedConfiguration: builder.query<typeSearchResponse<typeStoreWithLinkedConfiguration>, typeSearchRequest<typeSearchFilterStore, typeSearchStoreSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.STORES_SEARCH_WITH_LINKED_CONFIGURATION,
+                    url: createBaseUrl() +API_URLS.STORES_SEARCH_WITH_LINKED_CONFIGURATION,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -61,7 +62,7 @@ export const storesApi = baseApi.injectEndpoints({
         patchStore: builder.mutation<typeStore, typeEditStoreRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.STORES_PATCH,
+                    url: createBaseUrl() +API_URLS.STORES_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -75,7 +76,7 @@ export const storesApi = baseApi.injectEndpoints({
         getStoreById: builder.query<typeStore, string>({
             query: (id) => (
                 {
-                    url: API_URLS.STORES_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.STORES_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
@@ -87,7 +88,7 @@ export const storesApi = baseApi.injectEndpoints({
         storeToArchive: builder.mutation<typeStore, typeStoreToArchiveRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.STORES_ARCHIVE,
+                    url:createBaseUrl() + API_URLS.STORES_ARCHIVE,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,

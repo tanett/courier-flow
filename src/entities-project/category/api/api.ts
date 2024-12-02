@@ -4,6 +4,7 @@ import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-he
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeCategory, typeCategoryExtended } from '../model/types';
 import { typeCreateCategoryRequest, typeEditCategoryRequest, typeSearchFilterCategory, typeSearchCategorySortingNames, typeCategoryDeleteRequest, tagTypesCategoriesExtendedList } from './types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const productsCategoryApi = baseApi.injectEndpoints({
@@ -13,7 +14,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         searchCategory: builder.query<typeSearchResponse<typeCategory>, typeSearchRequest<typeSearchFilterCategory, typeSearchCategorySortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.CATEGORIES_SEARCH,
+                    url: createBaseUrl() +API_URLS.CATEGORIES_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -26,7 +27,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         searchCategoryExtended: builder.query<typeSearchResponse<typeCategoryExtended>, typeSearchRequest<typeSearchFilterCategory, typeSearchCategorySortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.CATEGORIES_SEARCH_EXTENDED,
+                    url: createBaseUrl() +API_URLS.CATEGORIES_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -48,7 +49,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         createCategory: builder.mutation<typeCategory, typeCreateCategoryRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.CATEGORIES_CREATE,
+                    url: createBaseUrl() +API_URLS.CATEGORIES_CREATE,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -61,7 +62,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         patchCategory: builder.mutation<typeCategory, typeEditCategoryRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.CATEGORIES_PATCH,
+                    url: createBaseUrl() +API_URLS.CATEGORIES_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -74,7 +75,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         categoryDelete: builder.mutation<typeCategory, typeCategoryDeleteRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.CATEGORIES_DELETE,
+                    url: createBaseUrl() +API_URLS.CATEGORIES_DELETE,
                     method: 'DELETE',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -87,7 +88,7 @@ export const productsCategoryApi = baseApi.injectEndpoints({
         getCategoryById: builder.query({
             query: (id) => (
                 {
-                    url: API_URLS.CATEGORIES_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.CATEGORIES_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }

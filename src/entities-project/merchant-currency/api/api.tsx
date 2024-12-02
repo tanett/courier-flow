@@ -4,6 +4,7 @@ import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
 import { typeMerchantCurrency } from 'entities-project/merchant-currency/model/state-slice/types';
 import { typeSearchFilterMerchantCurrency, typeSearchMerchantCurrencySortingNames } from './types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 export const merchantCurrencyApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -12,7 +13,7 @@ export const merchantCurrencyApi = baseApi.injectEndpoints({
         getBaseCurrency: builder.query<string, undefined>({
             query: () => (
                 {
-                    url: API_URLS.MERCHANT_BASE_CURRENCY,
+                    url: createBaseUrl() +API_URLS.MERCHANT_BASE_CURRENCY,
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
@@ -23,7 +24,7 @@ export const merchantCurrencyApi = baseApi.injectEndpoints({
         searchMerchantCurrency: builder.query<typeSearchResponse<typeMerchantCurrency>, typeSearchRequest<typeSearchFilterMerchantCurrency, typeSearchMerchantCurrencySortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.MERCHANT_CURRENCY_SEARCH,
+                    url: createBaseUrl() +API_URLS.MERCHANT_CURRENCY_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -37,7 +38,7 @@ export const merchantCurrencyApi = baseApi.injectEndpoints({
         getMerchantCurrencyById: builder.query<typeMerchantCurrency, string>({
             query: (id) => (
                 {
-                    url: API_URLS.MERCHANT_CURRENCY_BY_ID.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.MERCHANT_CURRENCY_BY_ID.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }

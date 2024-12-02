@@ -6,6 +6,7 @@ import {
 import { baseApi } from 'app/api/base-api';
 import { API_URLS } from 'app/config/api-urls';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const userProfileApi = baseApi.injectEndpoints({
@@ -15,7 +16,7 @@ export const userProfileApi = baseApi.injectEndpoints({
         getCurrentUser: builder.query<typeGetCurrentUserResponse, unknown>({
             query: () => (
                 {
-                    url: API_URLS.USER_GET_CURRENT,
+                    url: createBaseUrl() +API_URLS.USER_GET_CURRENT,
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
             ),
@@ -25,7 +26,7 @@ export const userProfileApi = baseApi.injectEndpoints({
         patchCurrentUser: builder.mutation<typeGetCurrentUserResponse['actor'], typePatchCurrentUser>({
             query: (data) => (
                 {
-                    url: API_URLS.USER_PATCH,
+                    url: createBaseUrl() +API_URLS.USER_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -37,7 +38,7 @@ export const userProfileApi = baseApi.injectEndpoints({
         changePassword: builder.mutation<unknown, typeChangePasswordFirstLoginRequest | typeChangePasswordByTokenRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.USER_CHANGE_PASSWORD,
+                    url: createBaseUrl() +API_URLS.USER_CHANGE_PASSWORD,
                     method: 'PATCH',
                     body: data,
                 }
@@ -48,7 +49,7 @@ export const userProfileApi = baseApi.injectEndpoints({
         askEmailToPassword: builder.query<unknown, typeForgotPasswordRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.USER_FORGOT_PASSWORD,
+                    url: createBaseUrl() +API_URLS.USER_FORGOT_PASSWORD,
                     params: { email: data.email },
                 }
             ),

@@ -12,6 +12,7 @@ import {
     typeSearchRetailProductSortingNames,
 } from '../../retail-products/api/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 export const retailProductsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -20,7 +21,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         searchRetailProduct: builder.query<typeSearchResponse<typeRetailProduct>, typeSearchRequest<typeSearchFilterRetailProduct, typeSearchRetailProductSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.RETAIL_PRODUCTS_SEARCH,
+                    url: createBaseUrl() +API_URLS.RETAIL_PRODUCTS_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -33,7 +34,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         createRetailProduct: builder.mutation<typeRetailProduct, typeCreateRetailProductRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.RETAIL_PRODUCTS_CREATE,
+                    url: createBaseUrl() +API_URLS.RETAIL_PRODUCTS_CREATE,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -45,7 +46,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         patchRetailProduct: builder.mutation<typeRetailProduct, typeEditRetailProductRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.RETAIL_PRODUCTS_PATCH,
+                    url: createBaseUrl() +API_URLS.RETAIL_PRODUCTS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -57,7 +58,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         deleteRetailProduct: builder.mutation<typeRetailProduct, typeRetailProductDeleteRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.RETAIL_PRODUCTS_DELETE,
+                    url: createBaseUrl() +API_URLS.RETAIL_PRODUCTS_DELETE,
                     method: 'DELETE',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -69,7 +70,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         getRetailProductById: builder.query<typeRetailProduct, string>({
             query: (id) => (
                 {
-                    url: API_URLS.RETAIL_PRODUCTS_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.RETAIL_PRODUCTS_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
@@ -80,7 +81,7 @@ export const retailProductsApi = baseApi.injectEndpoints({
         changePricesInAllStores: builder.mutation<typeRetailProduct, typeChangePricesInAllStoresRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.RETAIL_PRODUCTS_CHANGE_PRICES_IN_ALL_STORES,
+                    url: createBaseUrl() +API_URLS.RETAIL_PRODUCTS_CHANGE_PRICES_IN_ALL_STORES,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,

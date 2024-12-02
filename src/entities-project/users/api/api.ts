@@ -10,6 +10,7 @@ import {
     typeSearchFilterUsers, typeSearchUserSortingNames, typeUserToArchiveRequest,
 } from './types';
 import { typeUserWithStoresName } from '../model/types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const usersApi = baseApi.injectEndpoints({
@@ -19,7 +20,7 @@ export const usersApi = baseApi.injectEndpoints({
         searchUser: builder.query<typeSearchResponse<typeUser>, typeSearchRequest<typeSearchFilterUsers, typeSearchUserSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.USER_LIST_SEARCH,
+                    url: createBaseUrl() +API_URLS.USER_LIST_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -32,7 +33,7 @@ export const usersApi = baseApi.injectEndpoints({
         extendedSearchUser: builder.query<typeSearchResponse<typeUserWithStoresName>, typeSearchRequest<typeSearchFilterUsers, typeSearchUserSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.USER_LIST_EXTENDED_SEARCH,
+                    url: createBaseUrl() +API_URLS.USER_LIST_EXTENDED_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -54,7 +55,7 @@ export const usersApi = baseApi.injectEndpoints({
         createUser: builder.mutation<typeUser, typeCreateUserRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.USER_CREATE,
+                    url: createBaseUrl() +API_URLS.USER_CREATE,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -67,7 +68,7 @@ export const usersApi = baseApi.injectEndpoints({
         patchUser: builder.mutation<typeUser, typeEditUserRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.USER_PATCH,
+                    url: createBaseUrl() +API_URLS.USER_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -80,7 +81,7 @@ export const usersApi = baseApi.injectEndpoints({
         userToArchive: builder.mutation<typeUser, typeUserToArchiveRequest >({
             query: (data) => (
                 {
-                    url: API_URLS.USER_ARCHIVE,
+                    url: createBaseUrl() +API_URLS.USER_ARCHIVE,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -93,7 +94,7 @@ export const usersApi = baseApi.injectEndpoints({
         getUserById: builder.query<typeUser, string>({
             query: (id) => (
                 {
-                    url: API_URLS.USER_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.USER_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }

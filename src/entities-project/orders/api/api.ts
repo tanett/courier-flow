@@ -16,6 +16,7 @@ import {
 import { typeAddCourierForOrder, typeChangeOrderStatus, typeOrder, typeOrderShort, typeOrderShortExtended, typeOrderStatus } from '../model/state-slice/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 import { typeCreateSale, typeSale } from 'entities-project/sales/model/types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const ordersApi = baseApi.injectEndpoints({
@@ -26,7 +27,7 @@ export const ordersApi = baseApi.injectEndpoints({
         searchOrdersShortExtended: builder.query<typeSearchResponse<typeOrderShortExtended>, typeSearchRequest<typeSearchFilterOrders, typeSearchOrdersSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_SEARCH_EXTENDED,
+                    url: createBaseUrl() +API_URLS.ORDERS_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -50,7 +51,7 @@ export const ordersApi = baseApi.injectEndpoints({
         searchOrdersShort: builder.query<typeSearchResponse<typeOrderShort>, typeSearchRequest<typeSearchFilterOrders, typeSearchOrdersSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_SEARCH,
+                    url: createBaseUrl() +API_URLS.ORDERS_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -63,7 +64,7 @@ export const ordersApi = baseApi.injectEndpoints({
         createOrder: builder.mutation<typeCreateOrderResponse, typeCreateOrderRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_CREATE,
+                    url: createBaseUrl() +API_URLS.ORDERS_CREATE,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -76,7 +77,7 @@ export const ordersApi = baseApi.injectEndpoints({
         changeOrderStatus: builder.mutation<unknown, typeChangeOrderStatus>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_PATCH,
+                    url: createBaseUrl() +API_URLS.ORDERS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -102,7 +103,7 @@ export const ordersApi = baseApi.injectEndpoints({
         changeOrderAddCourier: builder.mutation<unknown, typeAddCourierForOrder>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_PATCH,
+                    url:createBaseUrl() + API_URLS.ORDERS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -116,7 +117,7 @@ export const ordersApi = baseApi.injectEndpoints({
         changeOrderData: builder.mutation<unknown, typeEditOrderRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_PATCH,
+                    url: createBaseUrl() +API_URLS.ORDERS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -129,7 +130,7 @@ export const ordersApi = baseApi.injectEndpoints({
         patchOrderForSale: builder.mutation<unknown, typePatchOrderForSaleRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_PATCH,
+                    url: createBaseUrl() +API_URLS.ORDERS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -142,7 +143,7 @@ export const ordersApi = baseApi.injectEndpoints({
         patchOrderForSaleWithChangeProducts: builder.mutation<unknown, typePatchOrderForSaleWithEditProductsList>({
             query: (data) => (
                 {
-                    url: API_URLS.ORDERS_PATCH,
+                    url: createBaseUrl() +API_URLS.ORDERS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -155,7 +156,7 @@ export const ordersApi = baseApi.injectEndpoints({
         getOrderById: builder.query<typeOrder, string>({
             query: (id) => (
                 {
-                    url: API_URLS.ORDERS_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.ORDERS_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
@@ -167,7 +168,7 @@ export const ordersApi = baseApi.injectEndpoints({
         getOrdersStatusesList: builder.query<typeOrderStatus[], unknown>({
             query: () => (
                 {
-                    url: API_URLS.ORDERS_GET_STATUSES_LIST,
+                    url: createBaseUrl() +API_URLS.ORDERS_GET_STATUSES_LIST,
                     method: 'GET',
                     headers: {
                         ...protectedRoutsAPIHeaderCreator(),

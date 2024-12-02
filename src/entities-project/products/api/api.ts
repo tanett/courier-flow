@@ -13,6 +13,7 @@ import {
     typeSearchFilterProductExtended,
     typeSearchProductSortingNames,
 } from './types';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const productsApi = baseApi.injectEndpoints({
@@ -22,7 +23,7 @@ export const productsApi = baseApi.injectEndpoints({
         searchProduct: builder.query<typeSearchResponse<typeProduct>, typeSearchRequest<typeSearchFilterProduct, typeSearchProductSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_SEARCH,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -35,7 +36,7 @@ export const productsApi = baseApi.injectEndpoints({
         searchProductExtended: builder.query<typeSearchResponse<typeProductExtended>, typeSearchRequest<typeSearchFilterProductExtended, typeSearchProductSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_SEARCH_EXTENDED,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -57,7 +58,7 @@ export const productsApi = baseApi.injectEndpoints({
         createProduct: builder.mutation<typeProduct, typeCreateProductRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_CREATE,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_CREATE,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -70,7 +71,7 @@ export const productsApi = baseApi.injectEndpoints({
         patchProduct: builder.mutation<typeProduct, typeEditProductRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_PATCH,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_PATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -83,7 +84,7 @@ export const productsApi = baseApi.injectEndpoints({
         batchPatchProduct: builder.mutation<unknown, typeBatchEditProductRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_PATCH_BATCH,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_PATCH_BATCH,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -96,7 +97,7 @@ export const productsApi = baseApi.injectEndpoints({
         changeVatForALl: builder.mutation<unknown, typeChangeVatForAll>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_CHANGE_ALL_VAT,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_CHANGE_ALL_VAT,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -109,7 +110,7 @@ export const productsApi = baseApi.injectEndpoints({
         productToArchive: builder.mutation<typeProduct, typeProductToArchiveRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.PRODUCTS_ARCHIVE,
+                    url: createBaseUrl() +API_URLS.PRODUCTS_ARCHIVE,
                     method: 'PATCH',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -122,7 +123,7 @@ export const productsApi = baseApi.injectEndpoints({
         getProductById: builder.query<typeProduct, string>({
             query: (id) => (
                 {
-                    url: API_URLS.PRODUCTS_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.PRODUCTS_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }
@@ -133,7 +134,7 @@ export const productsApi = baseApi.injectEndpoints({
         getAdditionalFieldInfo: builder.query<typeProductAdditionalFieldInfo[], unknown>({
             query: () => (
                 {
-                    url: API_URLS.PRODUCTS_ADDITIONAL_FIELD_INFO_GET,
+                    url:createBaseUrl() + API_URLS.PRODUCTS_ADDITIONAL_FIELD_INFO_GET,
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }

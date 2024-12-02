@@ -5,6 +5,7 @@ import { tagTypesRolesExtendedList, typeSearchRolesFilter, typeSearchRolesSortin
 import { typeSearchRequest, typeSearchResponse } from 'app/api/types';
 import { typeRole, typeRolesExtended } from '../model/types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
+import { createAuthBaseUrl } from 'app/utils/create-base-url';
 
 
 export const rolesApi = baseApi.injectEndpoints({
@@ -14,7 +15,7 @@ export const rolesApi = baseApi.injectEndpoints({
         searchRoles: builder.query<typeSearchResponse<typeRole>, typeSearchRequest<typeSearchRolesFilter, typeSearchRolesSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.ROLES_SEARCH,
+                    url: createAuthBaseUrl() +API_URLS.ROLES_SEARCH,
                     method: 'POST',
                     headers: {
                         ...protectedRoutsAPIHeaderCreator(),
@@ -29,7 +30,7 @@ export const rolesApi = baseApi.injectEndpoints({
         searchRolesOne: builder.query<typeRole, typeSearchRolesFilter>({
             query: (data) => (
                 {
-                    url: API_URLS.ROLES_SEARCH_ONE,
+                    url:createAuthBaseUrl() + API_URLS.ROLES_SEARCH_ONE,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(),
                     body: data,
@@ -41,7 +42,7 @@ export const rolesApi = baseApi.injectEndpoints({
         searchRolesExtended: builder.query<typeSearchResponse<typeRolesExtended>, typeSearchRequest<typeSearchRolesFilter, typeSearchRolesSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.ROLES_SEARCH_EXTENDED,
+                    url: createAuthBaseUrl() +API_URLS.ROLES_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: {
                         ...protectedRoutsAPIHeaderCreator(),

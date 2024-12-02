@@ -6,6 +6,7 @@ import { typeCreateSale, typeSale, typeSaleShort, typeSaleShortExtended } from '
 import { tagTypesShortSalesList, typeResponseCreateSale, typeSearchFilterSales, typeSearchSalesSortingNames } from './types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 import { responseToBlob } from 'shared/utils/response-to-blob';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 
@@ -16,7 +17,7 @@ export const salesApi = baseApi.injectEndpoints({
         searchSalesShort: builder.query<typeSearchResponse<typeSaleShort>, typeSearchRequest<typeSearchFilterSales, typeSearchSalesSortingNames>>({
             query: (data) => (
                 {
-                    url:  API_URLS.SALES_SHORT_SEARCH,
+                    url:  createBaseUrl() +API_URLS.SALES_SHORT_SEARCH,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(true),
                     body: data,
@@ -28,7 +29,7 @@ export const salesApi = baseApi.injectEndpoints({
         searchSalesShortExtended: builder.query<typeSearchResponse<typeSaleShortExtended>, typeSearchRequest<typeSearchFilterSales, typeSearchSalesSortingNames>>({
             query: (data) => (
                 {
-                    url:  API_URLS.SALES_SHORT_SEARCH_EXTENDED,
+                    url:  createBaseUrl() +API_URLS.SALES_SHORT_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: protectedRoutsAPIHeaderCreator(true),
                     body: data,
@@ -52,7 +53,7 @@ export const salesApi = baseApi.injectEndpoints({
         getSaleById: builder.query<typeSale, string>({
             query: (id) => (
                 {
-                    url: API_URLS.SALES_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.SALES_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(true),
                 }
@@ -63,7 +64,7 @@ export const salesApi = baseApi.injectEndpoints({
         getSaleByIdShort: builder.query<typeSaleShort, string>({
             query: (id) => (
                 {
-                    url:  API_URLS.SALES_SHORT_GET.replace('{id}', id),
+                    url:  createBaseUrl() +API_URLS.SALES_SHORT_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(true),
                 }
@@ -75,7 +76,7 @@ export const salesApi = baseApi.injectEndpoints({
         getSaleReceiptById: builder.query<Blob, string>({
             query: (id) => (
                 {
-                    url: API_URLS.SALES_RECEIPT_GET.replace('{saleId}', id),
+                    url: createBaseUrl() +API_URLS.SALES_RECEIPT_GET.replace('{saleId}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                     responseHandler: async (response) => {
@@ -101,7 +102,7 @@ export const salesApi = baseApi.injectEndpoints({
         makeSale: builder.mutation<typeResponseCreateSale, {sale: typeCreateSale, IdempotentKey: string }>({
             query: (data) => (
                 {
-                    url: API_URLS.SALES_MAKE_NEW,
+                    url: createBaseUrl() +API_URLS.SALES_MAKE_NEW,
                     method: 'POST',
                     headers: {
                         ...protectedRoutsAPIHeaderCreator(true),

@@ -11,6 +11,7 @@ import {
 } from './types';
 import { localeHeaderCreator } from 'app/utils/locale-header-creator';
 import { protectedRoutsAPIHeaderCreator } from 'app/utils/protected-routs-API-header-creator';
+import { createAuthBaseUrl, createBaseUrl } from 'app/utils/create-base-url';
 
 
 export const devicesApi = baseApi.injectEndpoints({
@@ -20,7 +21,7 @@ export const devicesApi = baseApi.injectEndpoints({
         searchDevices: builder.query<typeSearchResponse<typeDevice>, typeSearchRequest<typeSearchDevicesFilter, typeSearchDevicesSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.DEVICE_LIST_SEARCH,
+                    url: createBaseUrl() +API_URLS.DEVICE_LIST_SEARCH,
                     method: 'POST',
                     headers: { ...protectedRoutsAPIHeaderCreator(), ...localeHeaderCreator() },
                     body: data,
@@ -33,7 +34,7 @@ export const devicesApi = baseApi.injectEndpoints({
         searchDevicesExtended: builder.query<typeSearchResponse<typeDeviceExtended>, typeSearchRequest<typeSearchDevicesFilter, typeSearchDevicesSortingNames>>({
             query: (data) => (
                 {
-                    url: API_URLS.DEVICE_LIST_SEARCH_EXTENDED,
+                    url: createBaseUrl() +API_URLS.DEVICE_LIST_SEARCH_EXTENDED,
                     method: 'POST',
                     headers: { ...protectedRoutsAPIHeaderCreator(), ...localeHeaderCreator() },
                     body: data,
@@ -55,7 +56,7 @@ export const devicesApi = baseApi.injectEndpoints({
         archiveDevices: builder.mutation<unknown, string[]>({
             query: (data) => (
                 {
-                    url: API_URLS.DEVICE_ARCHIVE,
+                    url: createBaseUrl() +API_URLS.DEVICE_ARCHIVE,
                     method: 'PATCH',
                     headers: { ...protectedRoutsAPIHeaderCreator(), ...localeHeaderCreator() },
                     body: data,
@@ -68,7 +69,7 @@ export const devicesApi = baseApi.injectEndpoints({
         createDevice: builder.mutation<typeDevice, typeCreateDeviceRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.DEVICE_CREATE,
+                    url: createBaseUrl() +API_URLS.DEVICE_CREATE,
                     method: 'POST',
                     headers: { ...protectedRoutsAPIHeaderCreator(), ...localeHeaderCreator() },
                     body: data,
@@ -80,7 +81,7 @@ export const devicesApi = baseApi.injectEndpoints({
         patchDevice: builder.mutation<typeDevice, typeEditDeviceRequest>({
             query: (data) => (
                 {
-                    url: API_URLS.DEVICE_PATCH,
+                    url: createBaseUrl() +API_URLS.DEVICE_PATCH,
                     method: 'PATCH',
                     headers: { ...protectedRoutsAPIHeaderCreator(), ...localeHeaderCreator() },
                     body: data,
@@ -93,7 +94,7 @@ export const devicesApi = baseApi.injectEndpoints({
         getDeviceById: builder.query<typeDevice, string>({
             query: (id) => (
                 {
-                    url: API_URLS.DEVICE_GET.replace('{id}', id),
+                    url: createBaseUrl() +API_URLS.DEVICE_GET.replace('{id}', id),
                     method: 'GET',
                     headers: protectedRoutsAPIHeaderCreator(),
                 }

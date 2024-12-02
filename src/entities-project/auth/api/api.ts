@@ -6,6 +6,7 @@ import {
 } from './types';
 import { API_URLS } from 'app/config/api-urls';
 import { authApi } from 'app/api/auth-api';
+import { createAuthBaseUrl } from 'app/utils/create-base-url';
 
 
 export const authApiSlice = authApi.injectEndpoints({
@@ -14,7 +15,7 @@ export const authApiSlice = authApi.injectEndpoints({
         // Login
         login: builder.mutation<iLoginResponseTransform, typeLoginRequest>({
             query: (credentials) => ({
-                url: API_URLS.AUTH_LOGIN,
+                url: createAuthBaseUrl() + API_URLS.AUTH_LOGIN,
                 method: 'POST',
                 body: credentials,
                 credentials: 'include',
@@ -34,7 +35,7 @@ export const authApiSlice = authApi.injectEndpoints({
  // login terminal
         loginTerminal: builder.mutation<iLoginResponseTransform, typeLoginRequest>({
             query: (credentials) => ({
-                url: API_URLS.AUTH_TERMINAL,
+                url: createAuthBaseUrl() +API_URLS.AUTH_TERMINAL,
                 method: 'POST',
                 body: credentials,
                 credentials: 'include',

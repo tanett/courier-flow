@@ -42,7 +42,7 @@ export const Profile: React.FC = () => {
     useEffect(() => {
 
         if (data) {
-            dispatchAppT(userProfileActions.changeUserProfile(data))
+            dispatchAppT(userProfileActions.changeUserProfile(data));
             const profileData = data.actor;
 
             profileForm.setFieldValue('fullName', profileData.fullName ?? '');
@@ -88,7 +88,7 @@ export const Profile: React.FC = () => {
             }
 
             try {
-localStorage.setItem('i18N', JSON.stringify(editObject.userSettings.locale));
+                localStorage.setItem('i18N', JSON.stringify(editObject.userSettings.locale));
                 // const res = await patchUser(editObject).unwrap();
                 //
                 // dispatchAppT(userProfileActions.updateUserProfile(res));
@@ -103,7 +103,7 @@ localStorage.setItem('i18N', JSON.stringify(editObject.userSettings.locale));
                 // profileForm.setFieldValue('fullName', profileData.fullName ?? '');
                 // profileForm.setFieldValue('email', profileData.email ?? '');
                 // profileForm.setFieldValue('phone', profileData.phone ?? '');
-               //profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
+                //profileForm.setFieldValue('locale', getLocaleForProfile(profileData.userSettings));
 
             } catch (err) {
 
@@ -165,7 +165,7 @@ localStorage.setItem('i18N', JSON.stringify(editObject.userSettings.locale));
                             },
                         } }
                         sx={ { '&.mantine-Select-root div[aria-expanded=true] .mantine-Select-rightSection': { transform: 'rotate(180deg)' } } }
-disabled
+                        disabled
                     />
                 </SimpleGrid>
             </FieldsetForForm>
