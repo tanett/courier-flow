@@ -35,7 +35,7 @@ export type typeSale = {
     isTest: boolean
     products: typeSoldProduct[]
     payments: typePayment[]
-    zreportNumber: number
+    zReportNumber: number
     productsCount: number
 }
 
@@ -111,7 +111,7 @@ export type typeCreateSale = {
     totalCost: number
     products: Product[]
     payments: Payment[]
-    zreportNumber?: number
+    zReportNumber?: number
     credit?: Credit
 }
 

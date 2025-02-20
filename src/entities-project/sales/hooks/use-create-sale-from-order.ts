@@ -59,7 +59,7 @@ export const useCreateSaleFromOrder = () => {
                 discountPercent: product.discountPercent ?? 0,
                 discountAmount: product.discountAmount ?? 0,
                 vatPercent: product.vatPercent,
-                vatAmount: product.vatAmount,
+                vatAmount: +(product.vatAmount.toFixed(2)),
                 totalCost: product.totalCost,
                 additionalFields: product.additionalFields,
             };
@@ -85,7 +85,7 @@ export const useCreateSaleFromOrder = () => {
             storeAddress: bundle.storeData.address,
             storeName: bundle.storeData.name,
             totalCost: order.totalCost,
-            zreportNumber: 10,
+            zReportNumber: 10,
         };
 
         return newSale;
